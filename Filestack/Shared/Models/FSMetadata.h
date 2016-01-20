@@ -10,16 +10,16 @@
 
 @interface FSMetadata : NSObject
 
-@property (nonatomic, assign) NSInteger size;
-@property (nonatomic, assign) NSString *mimeType;
-@property (nonatomic, assign) NSString *fileName;
-@property (nonatomic, assign) NSInteger width;
-@property (nonatomic, assign) NSInteger height;
-@property (nonatomic, assign) NSNumber *uploaded;
-@property (nonatomic, assign) BOOL writeable;
-@property (nonatomic, assign) NSString *md5;
-@property (nonatomic, assign) NSString *location;
-@property (nonatomic, assign) NSString *path;
-@property (nonatomic, assign) NSString *container;
+@property (nonatomic, readonly, assign) NSInteger size;
+@property (nonatomic, readonly, assign) NSString *mimeType;
+@property (nonatomic, readonly, assign) NSString *fileName;
+@property (nonatomic, readonly, assign) NSInteger width;
+@property (nonatomic, readonly, assign) NSInteger height;
+@property (nonatomic, readonly, assign) float *uploaded;
+@property (nonatomic, readonly, assign) BOOL writeable;
+@property (nonatomic, readonly, assign) NSString *md5;
+@property (nonatomic, readonly, assign) NSString *location;
+@property (nonatomic, readonly, assign) NSString *path;
+@property (nonatomic, readonly, assign) NSString *container;
 
 @end

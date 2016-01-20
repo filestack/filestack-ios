@@ -21,6 +21,8 @@
 		B2253D631C4FD4DF008E47A3 /* FSMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D611C4FD4DF008E47A3 /* FSMetadata.m */; };
 		B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D651C4FD69E008E47A3 /* FSStatOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2253D681C4FD69E008E47A3 /* FSStatOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D661C4FD69E008E47A3 /* FSStatOptions.m */; };
+		B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D6A1C4FE469008E47A3 /* FSMetadata+Private.h */; };
+		B2253D6D1C4FE469008E47A3 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		B2253D611C4FD4DF008E47A3 /* FSMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMetadata.m; sourceTree = "<group>"; };
 		B2253D651C4FD69E008E47A3 /* FSStatOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSStatOptions.h; sourceTree = "<group>"; };
 		B2253D661C4FD69E008E47A3 /* FSStatOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSStatOptions.m; sourceTree = "<group>"; };
+		B2253D6A1C4FE469008E47A3 /* FSMetadata+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSMetadata+Private.h"; sourceTree = "<group>"; };
+		B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSMetadata+Private.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 				B2253D561C4FB808008E47A3 /* FSError.m */,
 				B2253D601C4FD4DF008E47A3 /* FSMetadata.h */,
 				B2253D611C4FD4DF008E47A3 /* FSMetadata.m */,
+				B2253D6A1C4FE469008E47A3 /* FSMetadata+Private.h */,
+				B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,6 +172,7 @@
 				B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */,
 				B2253D5B1C4FC182008E47A3 /* FSError.h in Headers */,
 				B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */,
+				B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */,
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
 				B2253D621C4FD4DF008E47A3 /* FSMetadata.h in Headers */,
 				B2253D5E1C4FCE0E008E47A3 /* FSBlobSerializer.h in Headers */,
@@ -278,6 +285,7 @@
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
 				B2253D681C4FD69E008E47A3 /* FSStatOptions.m in Sources */,
 				B2253D4D1C4F9D9E008E47A3 /* Filestack.m in Sources */,
+				B2253D6D1C4FE469008E47A3 /* FSMetadata+Private.m in Sources */,
 				B2253D581C4FB808008E47A3 /* FSError.m in Sources */,
 				B2253D5F1C4FCE0E008E47A3 /* FSBlobSerializer.m in Sources */,
 			);

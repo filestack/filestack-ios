@@ -1,5 +1,5 @@
 //
-//  FSMetadata.m
+//  FSBlob+Private.h
 //  Filestack
 //
 //  Created by Łukasz Cichecki on 20/01/16.
@@ -8,10 +8,8 @@
 
 #import "FSMetadata.h"
 
-@implementation FSMetadata
+@interface FSMetadata (Private)
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@""];
-}
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

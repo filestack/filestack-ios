@@ -8,6 +8,7 @@
 
 #import "Filestack.h"
 #import "FSBlobSerializer.h"
+#import "FSMetadata+Private.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface Filestack()
@@ -38,16 +39,29 @@
     NSDictionary *parameters = @{@"key": @"A2sIbglHtSdG3DlVpozOKz", @"url": url};
 
     [httpManager POST:FSURLPickPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"response: %@", responseObject);
+        NSLog(@"pick response: %@", responseObject);
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(blob, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"error: %@", error);
+        NSLog(@"pick error: %@", error);
         completionHandler(nil, error);
     }];
 }
 
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:blob.url];
+    NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
+    NSString *combinedPath = [NSString stringWithFormat:@"/%@%@", blobHandle, FSURLMetadataPath];
+    NSDictionary *parameters = [statOptions toQueryParameters];
+
+    [httpManager GET:combinedPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"metadata response: %@", responseObject);
+        FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];
+        completionHandler(metadata, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"metadata error: %@", error);
+        completionHandler(nil, error);
+    }];
 }
 
 - (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL {
@@ -58,7 +72,7 @@
     } else {
         managerBaseURL = [NSURL URLWithString:_fsBaseURL];
     }
-    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:_fsBaseURL] sessionConfiguration:configuration];
+    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:managerBaseURL sessionConfiguration:configuration];
     httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];
 
