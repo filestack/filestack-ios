@@ -36,7 +36,7 @@
 
 - (void)pickWithURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil];
-    NSDictionary *parameters = @{@"key": @"A2sIbglHtSdG3DlVpozOKz", @"url": url};
+    NSDictionary *parameters = @{@"key": _apiKey, @"url": url};
 
     [httpManager POST:FSURLPickPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"pick response: %@", responseObject);
@@ -45,6 +45,25 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"pick error: %@", error);
         completionHandler(nil, error);
+    }];
+}
+
+- (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler {
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil];
+    // Filestack API returns a simple "success" string for successful delete request.
+    // We need responseSerializer to be AFHTTPResponseSerializer to parse this properly instead of
+    // returning false error.
+    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
+    NSString *combinedPath = [NSString stringWithFormat:@"%@/%@", FSURLFilePath, blobHandle];
+    NSDictionary *parameters = @{@"key": _apiKey};
+
+    [httpManager DELETE:combinedPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"delete response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+        completionHandler(nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"delete error: %@", error);
+        completionHandler(error);
     }];
 }
 

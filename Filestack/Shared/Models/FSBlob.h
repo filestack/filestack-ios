@@ -19,5 +19,6 @@
 @property (nonatomic, assign) BOOL writeable;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithURL:(NSString *)url;
 
 @end

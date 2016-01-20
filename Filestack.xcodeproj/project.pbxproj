@@ -14,7 +14,7 @@
 		B2253D581C4FB808008E47A3 /* FSError.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D561C4FB808008E47A3 /* FSError.m */; };
 		B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D521C4FB7F6008E47A3 /* FSBlob.m */; };
 		B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D511C4FB7F6008E47A3 /* FSBlob.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B2253D5B1C4FC182008E47A3 /* FSError.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D551C4FB808008E47A3 /* FSError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2253D5B1C4FC182008E47A3 /* FSError.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D551C4FB808008E47A3 /* FSError.h */; };
 		B2253D5E1C4FCE0E008E47A3 /* FSBlobSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D5C1C4FCE0E008E47A3 /* FSBlobSerializer.h */; };
 		B2253D5F1C4FCE0E008E47A3 /* FSBlobSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D5D1C4FCE0E008E47A3 /* FSBlobSerializer.m */; };
 		B2253D621C4FD4DF008E47A3 /* FSMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D601C4FD4DF008E47A3 /* FSMetadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -170,12 +170,12 @@
 			files = (
 				B2253D111C4F9A1F008E47A3 /* FSFilestack.h in Headers */,
 				B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */,
-				B2253D5B1C4FC182008E47A3 /* FSError.h in Headers */,
 				B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */,
 				B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */,
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
 				B2253D621C4FD4DF008E47A3 /* FSMetadata.h in Headers */,
 				B2253D5E1C4FCE0E008E47A3 /* FSBlobSerializer.h in Headers */,
+				B2253D5B1C4FC182008E47A3 /* FSError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

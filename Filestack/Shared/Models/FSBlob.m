@@ -23,6 +23,10 @@
     return self;
 }
 
+- (instancetype)initWithURL:(NSString *)url {
+    return [self initWithDictionary:@{@"url": url}];
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"\nurl: %@\nfilename: %@\nsize: %ld\nkey: %@ \
                                       \ncontainer: %@\npath: %@\nwriteable: %d",

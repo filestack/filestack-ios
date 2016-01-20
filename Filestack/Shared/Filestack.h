@@ -14,6 +14,7 @@
 typedef NSString * FSURL;
 #define FSURLPickPath @"api/pick"
 #define FSURLMetadataPath @"/metadata"
+#define FSURLFilePath @"api/file"
 
 @protocol FSFilestackDelegate <NSObject>
 
@@ -24,6 +25,7 @@ typedef NSString * FSURL;
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 - (instancetype)initWithApiKey:(NSString *)apiKey andDelegate:(id <FSFilestackDelegate>)delegate;
 - (void)pickWithURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+- (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler;
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler;
 
 @end
