@@ -15,7 +15,7 @@
 @property (nonatomic, readonly, assign) NSString *fileName;
 @property (nonatomic, readonly, assign) NSInteger width;
 @property (nonatomic, readonly, assign) NSInteger height;
-@property (nonatomic, readonly, assign) float *uploaded;
+@property (nonatomic, readonly, assign) NSInteger uploaded;
 @property (nonatomic, readonly, assign) BOOL writeable;
 @property (nonatomic, readonly, assign) NSString *md5;
 @property (nonatomic, readonly, assign) NSString *location;
