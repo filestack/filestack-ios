@@ -34,22 +34,20 @@
     return [self initWithApiKey:apiKey andDelegate:nil];
 }
 
-- (void)pickWithURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil];
+- (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:YES];
     NSDictionary *parameters = @{@"key": _apiKey, @"url": url};
 
     [httpManager POST:FSURLPickPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"pick response: %@", responseObject);
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(blob, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"pick error: %@", error);
         completionHandler(nil, error);
     }];
 }
 
 - (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:NO];
     // Filestack API returns a simple "success" string for successful delete request.
     // We need responseSerializer to be AFHTTPResponseSerializer to parse this properly instead of
     // returning false error.
@@ -59,31 +57,88 @@
     NSDictionary *parameters = @{@"key": _apiKey};
 
     [httpManager DELETE:combinedPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"delete response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
         completionHandler(nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"delete error: %@", error);
         completionHandler(error);
     }];
 }
 
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:blob.url];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:blob.url andPOSTURIParameters:NO];
     NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
     NSString *combinedPath = [NSString stringWithFormat:@"/%@%@", blobHandle, FSURLMetadataPath];
     NSDictionary *parameters = [statOptions toQueryParameters];
 
     [httpManager GET:combinedPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"metadata response: %@", responseObject);
         FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(metadata, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"metadata error: %@", error);
         completionHandler(nil, error);
     }];
 }
 
-- (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL {
+- (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:NO];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
+    parameters[@"url"] = url;
+    NSString *combinedPath;
+    if (storeOptions) {
+        combinedPath = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, storeOptions.storeLocation, _apiKey];
+    } else {
+        combinedPath = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, @"S3", _apiKey];
+    }
+
+    [httpManager POST:combinedPath parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id responseObject) {
+        FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
+        completionHandler(blob, nil);
+    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        completionHandler(nil, error);
+    }];
+}
+
+- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+    NSString *combinedPath;
+    NSString *mimeType;
+    NSDictionary *parameters = [storeOptions toQueryParameters];
+
+    if (storeOptions) {
+        combinedPath = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
+    } else {
+        combinedPath = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
+    }
+
+    if (storeOptions.mimeType) {
+        mimeType = storeOptions.mimeType;
+    } else {
+        mimeType = @"application/octet-stream";
+    }
+
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:combinedPath parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFormData:data name:@"fileUpload"];
+    } error:nil];
+
+    [request setValue:mimeType forHTTPHeaderField:@"Content-Type"];
+
+    if (storeOptions.fileName) {
+        [request setValue:storeOptions.fileName forHTTPHeaderField:@"X-File-Name"];
+    }
+
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+
+    NSURLSessionUploadTask *uploadTask;
+    uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * response, id responseObject, NSError * error) {
+                      if (error) {
+                          completionHandler(nil, error);
+                      } else {
+                          FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
+                          completionHandler(blob, nil);
+                      }
+                  }];
+
+    [uploadTask resume];
+}
+
+- (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL andPOSTURIParameters:(BOOL)postUriParameters {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURL *managerBaseURL;
     if (baseURL) {
@@ -93,8 +148,9 @@
     }
     AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:managerBaseURL sessionConfiguration:configuration];
     httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];
-
+    if (postUriParameters) {
+        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];
+    }
     return httpManager;
 }
 

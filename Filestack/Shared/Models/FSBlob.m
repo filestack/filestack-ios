@@ -14,6 +14,7 @@
     if (self = [super init]) {
         self.url = dictionary[@"url"];
         self.fileName = dictionary[@"filename"];
+        self.mimeType = dictionary[@"mimetype"] ?: dictionary[@"type"];
         self.size = [dictionary[@"size"] integerValue];
         self.key = dictionary[@"key"];
         self.container = dictionary[@"container"];

@@ -23,6 +23,10 @@
 		B2253D681C4FD69E008E47A3 /* FSStatOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D661C4FD69E008E47A3 /* FSStatOptions.m */; };
 		B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D6A1C4FE469008E47A3 /* FSMetadata+Private.h */; };
 		B2253D6D1C4FE469008E47A3 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
+		B273A9D41C50E12100232972 /* FSStoreOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D21C50E12100232972 /* FSStoreOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B273A9D51C50E12100232972 /* FSStoreOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B273A9D31C50E12100232972 /* FSStoreOptions.m */; };
+		B273A9D81C50E2DC00232972 /* FSSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D61C50E2DC00232972 /* FSSecurity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = B273A9D71C50E2DC00232972 /* FSSecurity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		B2253D661C4FD69E008E47A3 /* FSStatOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSStatOptions.m; sourceTree = "<group>"; };
 		B2253D6A1C4FE469008E47A3 /* FSMetadata+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSMetadata+Private.h"; sourceTree = "<group>"; };
 		B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSMetadata+Private.m"; sourceTree = "<group>"; };
+		B273A9D21C50E12100232972 /* FSStoreOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSStoreOptions.h; sourceTree = "<group>"; };
+		B273A9D31C50E12100232972 /* FSStoreOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSStoreOptions.m; sourceTree = "<group>"; };
+		B273A9D61C50E2DC00232972 /* FSSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSecurity.h; sourceTree = "<group>"; };
+		B273A9D71C50E2DC00232972 /* FSSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSecurity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +165,10 @@
 			children = (
 				B2253D651C4FD69E008E47A3 /* FSStatOptions.h */,
 				B2253D661C4FD69E008E47A3 /* FSStatOptions.m */,
+				B273A9D21C50E12100232972 /* FSStoreOptions.h */,
+				B273A9D31C50E12100232972 /* FSStoreOptions.m */,
+				B273A9D61C50E2DC00232972 /* FSSecurity.h */,
+				B273A9D71C50E2DC00232972 /* FSSecurity.m */,
 			);
 			path = Options;
 			sourceTree = "<group>";
@@ -172,6 +184,8 @@
 				B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */,
 				B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */,
 				B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */,
+				B273A9D41C50E12100232972 /* FSStoreOptions.h in Headers */,
+				B273A9D81C50E2DC00232972 /* FSSecurity.h in Headers */,
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
 				B2253D621C4FD4DF008E47A3 /* FSMetadata.h in Headers */,
 				B2253D5E1C4FCE0E008E47A3 /* FSBlobSerializer.h in Headers */,
@@ -281,11 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */,
 				B2253D631C4FD4DF008E47A3 /* FSMetadata.m in Sources */,
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
 				B2253D681C4FD69E008E47A3 /* FSStatOptions.m in Sources */,
 				B2253D4D1C4F9D9E008E47A3 /* Filestack.m in Sources */,
 				B2253D6D1C4FE469008E47A3 /* FSMetadata+Private.m in Sources */,
+				B273A9D51C50E12100232972 /* FSStoreOptions.m in Sources */,
 				B2253D581C4FB808008E47A3 /* FSError.m in Sources */,
 				B2253D5F1C4FCE0E008E47A3 /* FSBlobSerializer.m in Sources */,
 			);

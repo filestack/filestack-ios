@@ -10,11 +10,13 @@
 #import "FSBlob.h"
 #import "FSMetadata.h"
 #import "FSStatOptions.h"
+#import "FSStoreOptions.h"
 
 typedef NSString * FSURL;
 #define FSURLPickPath @"api/pick"
 #define FSURLMetadataPath @"/metadata"
 #define FSURLFilePath @"api/file"
+#define FSURLStorePath @"api/store"
 
 @protocol FSFilestackDelegate <NSObject>
 
@@ -24,8 +26,10 @@ typedef NSString * FSURL;
 
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 - (instancetype)initWithApiKey:(NSString *)apiKey andDelegate:(id <FSFilestackDelegate>)delegate;
-- (void)pickWithURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+- (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 - (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler;
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler;
+- (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
 @end

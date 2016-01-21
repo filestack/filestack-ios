@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *fileName;
+@property (nonatomic, strong) NSString *mimeType;
 @property (nonatomic, assign) NSInteger size;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *container;
