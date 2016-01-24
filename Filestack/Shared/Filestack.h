@@ -63,7 +63,7 @@ typedef NSString * FSURL;
  @brief It stores a file behind provided url to one of few storage locations.
  @param url Url string linking to the file.
  @param storeOptions FSStoreOptions object or nil.
- @param completionHandler Function accepting two arguments: FSblob and NSError, returned from store request.
+ @param completionHandler Function accepting two arguments: FSBlob and NSError, returned from store request.
  */
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
@@ -71,7 +71,7 @@ typedef NSString * FSURL;
  @brief It stores a provided data to one of few storage locations.
  @param data NSData object to be stored.
  @param storeOptions FSStoreOptions object or nil.
- @param completionHandler Function accepting two arguments: FSblob and NSError, returned from store request.
+ @param completionHandler Function accepting two arguments: FSBlob and NSError, returned from store request.
  */
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
