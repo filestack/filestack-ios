@@ -31,7 +31,7 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"\nurl: %@\nfilename: %@\nsize: %ld\nmimetype: %@\nkey: %@ \
                                       \ncontainer: %@\npath: %@\nwriteable: %d",
-            _url, _fileName, _size, _mimeType, _key, _container, _path, _writeable];
+            _url, _fileName, (long)_size, _mimeType, _key, _container, _path, _writeable];
 }
 
 @end

@@ -18,7 +18,7 @@
         self.path = dictionary[@"path"];
         self.container = dictionary[@"container"];
         self.access = dictionary[@"access"];
-        self.base64decode = dictionary[@"base64decode"];
+        self.base64decode = [dictionary[@"base64decode"] boolValue];
         self.security = dictionary[@"security"];
     }
     return self;
