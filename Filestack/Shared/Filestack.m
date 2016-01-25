@@ -83,6 +83,20 @@ typedef NSString * FSURL;
     }];
 }
 
+
+- (void)download:(FSBlob *)blob completionHandler:(void (^)(NSData *data, NSError *error))completionHandler {
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+    [httpManager GET:blob.url parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSData *responseData = [NSData dataWithData:responseObject];
+        completionHandler(responseData, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completionHandler(nil, error);
+    }];
+}
+
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:NO];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
@@ -122,7 +136,6 @@ typedef NSString * FSURL;
                           completionHandler(blob, nil);
                       }
                   }];
-
     [uploadTask resume];
 }
 

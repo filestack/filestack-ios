@@ -7,7 +7,8 @@
 - [x] StoreURL
 - [x] Stat
 - [x] Remove
-- [ ] Download
+- [x] Download
+- [ ] Implement Delegate
 - [ ] Progress
 - [ ] Filestack's Convert Implementation
 - [ ] iOS-picker's FFPickerController Reimplementation
@@ -47,6 +48,7 @@ $ pod install
 - pickURL:completionHandler:
 - remove:completionHandler:
 - stat:withOptions:completionHandler:
+- download:completionHandler:
 - storeURL:withOptions:completionHandler:
 - store:withOptions:completionHandler:
 ```

@@ -54,6 +54,13 @@
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler;
 
 /*!
+ @brief It downloads provided blob to NSData object.
+ @param blob Filestack blob with valid url.
+ @param completionHandler Function accepting two arguments: NSData and NSError, returned from download request.
+ */
+- (void)download:(FSBlob *)blob completionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
+
+/*!
  @brief It stores a file behind provided url to one of few storage locations.
  @param url Url string linking to the file.
  @param storeOptions FSStoreOptions object or nil.
