@@ -12,17 +12,17 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
-        self.size = dictionary[@"size"];
-        self.mimeType = dictionary[@"mimeType"];
-        self.fileName = dictionary[@"fileName"];
-        self.width = dictionary[@"width"];
-        self.height = dictionary[@"height"];
-        self.uploaded = dictionary[@"uploaded"];
-        self.writeable = dictionary[@"writeable"];
-        self.md5 = dictionary[@"md5"];
-        self.location = dictionary[@"location"];
-        self.path = dictionary[@"path"];
-        self.container = dictionary[@"container"];
+        self.size = [dictionary[@"size"] isEqual:@YES];
+        self.mimeType = [dictionary[@"mimetype"] isEqual:@YES];
+        self.fileName = [dictionary[@"filename"] isEqual:@YES];
+        self.width = [dictionary[@"width"] isEqual:@YES];
+        self.height = [dictionary[@"height"] isEqual:@YES];
+        self.uploaded = [dictionary[@"uploaded"] isEqual:@YES];
+        self.writeable = [dictionary[@"writeable"] isEqual:@YES];
+        self.md5 = [dictionary[@"md5"] isEqual:@YES];
+        self.location = [dictionary[@"location"] isEqual:@YES];
+        self.path = [dictionary[@"path"] isEqual:@YES];
+        self.container = [dictionary[@"container"] isEqual:@YES];
     }
     return self;
 }

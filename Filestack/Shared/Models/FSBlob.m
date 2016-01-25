@@ -19,7 +19,7 @@
         self.key = dictionary[@"key"];
         self.container = dictionary[@"container"];
         self.path = dictionary[@"path"];
-        self.writeable = YES;
+        self.writeable = [dictionary[@"writeable"] boolValue];
     }
     return self;
 }

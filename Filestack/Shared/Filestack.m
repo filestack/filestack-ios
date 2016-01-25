@@ -86,15 +86,12 @@ typedef NSString * FSURL;
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:NO];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
+    [self stripAccessAndMimeTypeFromParametersDictionary:parameters];
     parameters[@"url"] = url;
-    NSString *combinedPath;
-    if (storeOptions) {
-        combinedPath = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, storeOptions.storeLocation, _apiKey];
-    } else {
-        combinedPath = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, @"S3", _apiKey];
-    }
 
-    [httpManager POST:combinedPath parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id responseObject) {
+    NSString *fullURL = [self fullURLForStoreOptions:storeOptions andStoringURL:YES];
+
+    [httpManager POST:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id responseObject) {
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(blob, nil);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
@@ -104,7 +101,7 @@ typedef NSString * FSURL;
 
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = [storeOptions toQueryParameters];
-    NSString *fullURL = [self fullURLForStoreOptions:storeOptions];
+    NSString *fullURL = [self fullURLForStoreOptions:storeOptions andStoringURL:NO];
     NSString *mimeType = [self mimeTypeForStoreOptions:storeOptions];
 
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:fullURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -129,6 +126,11 @@ typedef NSString * FSURL;
     [uploadTask resume];
 }
 
+- (void)stripAccessAndMimeTypeFromParametersDictionary:(NSMutableDictionary *)parameters {
+    [parameters removeObjectForKey:@"access"];
+    [parameters removeObjectForKey:@"mimetype"];
+}
+
 - (void)addHeadersToRequest:(NSMutableURLRequest *)request withMimeType:(NSString *)mimeType andFileName:(NSString *)fileName {
     [request setValue:mimeType forHTTPHeaderField:@"Content-Type"];
 
@@ -137,12 +139,20 @@ typedef NSString * FSURL;
     }
 }
 
-- (NSString *)fullURLForStoreOptions:(FSStoreOptions *)storeOptions {
+- (NSString *)fullURLForStoreOptions:(FSStoreOptions *)storeOptions andStoringURL:(BOOL)isStoreURL {
     NSString *fullURL;
-    if (storeOptions) {
-        fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
+    if (isStoreURL) {
+        if (storeOptions) {
+            fullURL = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, storeOptions.storeLocation, _apiKey];
+        } else {
+            fullURL = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, @"S3", _apiKey];
+        }
     } else {
-        fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
+        if (storeOptions) {
+            fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
+        } else {
+            fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
+        }
     }
     return fullURL;
 }
