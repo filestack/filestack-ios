@@ -59,10 +59,10 @@ typedef NSString * FSURL;
     // returning false error.
     httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
-    NSString *combinedPath = [NSString stringWithFormat:@"%@/%@", FSURLFilePath, blobHandle];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/%@", FSURLFilePath, blobHandle];
     NSDictionary *parameters = @{@"key": _apiKey};
 
-    [httpManager DELETE:combinedPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [httpManager DELETE:fullURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         completionHandler(nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completionHandler(error);
@@ -72,10 +72,10 @@ typedef NSString * FSURL;
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:blob.url andPOSTURIParameters:NO];
     NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
-    NSString *combinedPath = [NSString stringWithFormat:@"/%@%@", blobHandle, FSURLMetadataPath];
+    NSString *fullURL = [NSString stringWithFormat:@"/%@%@", blobHandle, FSURLMetadataPath];
     NSDictionary *parameters = [statOptions toQueryParameters];
 
-    [httpManager GET:combinedPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [httpManager GET:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(metadata, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -153,31 +153,24 @@ typedef NSString * FSURL;
 }
 
 - (NSString *)fullURLForStoreOptions:(FSStoreOptions *)storeOptions andStoringURL:(BOOL)isStoreURL {
-    NSString *fullURL;
     if (isStoreURL) {
         if (storeOptions) {
-            fullURL = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, storeOptions.storeLocation, _apiKey];
-        } else {
-            fullURL = [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, @"S3", _apiKey];
+            return [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, storeOptions.storeLocation, _apiKey];
         }
+        return [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, @"S3", _apiKey];
     } else {
         if (storeOptions) {
-            fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
-        } else {
-            fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
+            return [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
         }
+        return [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
     }
-    return fullURL;
 }
 
 - (NSString *)mimeTypeForStoreOptions:(FSStoreOptions *)storeOptions {
-    NSString *mimeType;
     if (storeOptions.mimeType) {
-        mimeType = storeOptions.mimeType;
-    } else {
-        mimeType = @"application/octet-stream";
+        return storeOptions.mimeType;
     }
-    return mimeType;
+    return @"application/octet-stream";
 }
 
 - (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL andPOSTURIParameters:(BOOL)postUriParameters {

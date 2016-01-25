@@ -106,7 +106,7 @@ Properties are as follows:
 - **container** (NSString)
   - If the file was stored in one of the file stores you specified or configured (S3, Rackspace, Azure, etc.), this parameter will tell you in which container this file was put.
 - **path** (NSString)
-  - The path of the Blob indicates its position in the hierarchy of files uploaded when {folders:true} is set. In situations where the file was not uploaded as part of or along with a folder, path will not be defined.
+  - The path of the Blob indicates its position in the hierarchy of files uploaded.
 - **writeable** (BOOL)
   - This flag specifies whether the underlying file is writeable. In most cases this will be true, but if a user uploads a photo from facebook, for instance, the original file cannot be written to.
 
