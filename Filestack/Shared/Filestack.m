@@ -11,6 +11,12 @@
 #import "FSMetadata+Private.h"
 #import <AFNetworking/AFNetworking.h>
 
+typedef NSString * FSURL;
+#define FSURLPickPath @"api/pick"
+#define FSURLMetadataPath @"/metadata"
+#define FSURLFilePath @"api/file"
+#define FSURLStorePath @"api/store"
+
 @interface Filestack()
 
 @property (nonatomic, strong) NSString *apiKey;
@@ -97,31 +103,15 @@
 }
 
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    NSString *combinedPath;
-    NSString *mimeType;
     NSDictionary *parameters = [storeOptions toQueryParameters];
+    NSString *fullURL = [self fullURLForStoreOptions:storeOptions];
+    NSString *mimeType = [self mimeTypeForStoreOptions:storeOptions];
 
-    if (storeOptions) {
-        combinedPath = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
-    } else {
-        combinedPath = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
-    }
-
-    if (storeOptions.mimeType) {
-        mimeType = storeOptions.mimeType;
-    } else {
-        mimeType = @"application/octet-stream";
-    }
-
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:combinedPath parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:fullURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFormData:data name:@"fileUpload"];
     } error:nil];
 
-    [request setValue:mimeType forHTTPHeaderField:@"Content-Type"];
-
-    if (storeOptions.fileName) {
-        [request setValue:storeOptions.fileName forHTTPHeaderField:@"X-File-Name"];
-    }
+    [self addHeadersToRequest:request withMimeType:mimeType andFileName:storeOptions.fileName];
 
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
@@ -130,12 +120,41 @@
                       if (error) {
                           completionHandler(nil, error);
                       } else {
+                          NSLog(@"%@", responseObject);
                           FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
                           completionHandler(blob, nil);
                       }
                   }];
 
     [uploadTask resume];
+}
+
+- (void)addHeadersToRequest:(NSMutableURLRequest *)request withMimeType:(NSString *)mimeType andFileName:(NSString *)fileName {
+    [request setValue:mimeType forHTTPHeaderField:@"Content-Type"];
+
+    if (fileName) {
+        [request setValue:fileName forHTTPHeaderField:@"X-File-Name"];
+    }
+}
+
+- (NSString *)fullURLForStoreOptions:(FSStoreOptions *)storeOptions {
+    NSString *fullURL;
+    if (storeOptions) {
+        fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
+    } else {
+        fullURL = [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
+    }
+    return fullURL;
+}
+
+- (NSString *)mimeTypeForStoreOptions:(FSStoreOptions *)storeOptions {
+    NSString *mimeType;
+    if (storeOptions.mimeType) {
+        mimeType = storeOptions.mimeType;
+    } else {
+        mimeType = @"application/octet-stream";
+    }
+    return mimeType;
 }
 
 - (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL andPOSTURIParameters:(BOOL)postUriParameters {

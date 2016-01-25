@@ -12,12 +12,6 @@
 #import "FSStatOptions.h"
 #import "FSStoreOptions.h"
 
-typedef NSString * FSURL;
-#define FSURLPickPath @"api/pick"
-#define FSURLMetadataPath @"/metadata"
-#define FSURLFilePath @"api/file"
-#define FSURLStorePath @"api/store"
-
 @protocol FSFilestackDelegate <NSObject>
 
 @end
