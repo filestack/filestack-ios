@@ -46,8 +46,10 @@ typedef NSString * FSURL;
 
     [httpManager POST:FSURLPickPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
+        [_delegate filestackPickURLSuccess:blob];
         completionHandler(blob, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [_delegate filestackRequestError:error];
         completionHandler(nil, error);
     }];
 }
@@ -63,8 +65,10 @@ typedef NSString * FSURL;
     NSDictionary *parameters = @{@"key": _apiKey};
 
     [httpManager DELETE:fullURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        [_delegate filestackRemoveSuccess];
         completionHandler(nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [_delegate filestackRequestError:error];
         completionHandler(error);
     }];
 }
@@ -77,8 +81,10 @@ typedef NSString * FSURL;
 
     [httpManager GET:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];
+        [_delegate filestackStatSuccess:metadata];
         completionHandler(metadata, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [_delegate filestackRequestError:error];
         completionHandler(nil, error);
     }];
 }
@@ -91,8 +97,10 @@ typedef NSString * FSURL;
 
     [httpManager GET:blob.url parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSData *responseData = [NSData dataWithData:responseObject];
+        [_delegate filestackDownloadSuccess:responseData];
         completionHandler(responseData, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [_delegate filestackRequestError:error];
         completionHandler(nil, error);
     }];
 }
@@ -107,8 +115,10 @@ typedef NSString * FSURL;
 
     [httpManager POST:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id responseObject) {
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
+        [_delegate filestackStoreURLSuccess:blob];
         completionHandler(blob, nil);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        [_delegate filestackRequestError:error];
         completionHandler(nil, error);
     }];
 }
@@ -129,10 +139,12 @@ typedef NSString * FSURL;
     NSURLSessionUploadTask *uploadTask;
     uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * response, id responseObject, NSError * error) {
                       if (error) {
+                          [_delegate filestackRequestError:error];
                           completionHandler(nil, error);
                       } else {
                           NSLog(@"%@", responseObject);
                           FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
+                          [_delegate filestackStoreSuccess:blob];
                           completionHandler(blob, nil);
                       }
                   }];
