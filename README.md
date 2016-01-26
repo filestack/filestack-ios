@@ -18,7 +18,7 @@
 
 ## Requirements
 
-- iOS 8.0+ / Mac OS X 10.9+
+- iOS 8.4+ / Mac OS X 10.9+
 
 ##Installation
 ###Using CocoaPods
