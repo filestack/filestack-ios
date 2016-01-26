@@ -98,9 +98,9 @@ typedef NSString * FSURL;
 }
 
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:NO];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:YES];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
-    [self stripAccessAndMimeTypeFromParametersDictionary:parameters];
+    [parameters removeObjectForKey:@"mimetype"];
     parameters[@"url"] = url;
 
     NSString *fullURL = [self fullURLForStoreOptions:storeOptions andStoringURL:YES];
@@ -137,11 +137,6 @@ typedef NSString * FSURL;
                       }
                   }];
     [uploadTask resume];
-}
-
-- (void)stripAccessAndMimeTypeFromParametersDictionary:(NSMutableDictionary *)parameters {
-    [parameters removeObjectForKey:@"access"];
-    [parameters removeObjectForKey:@"mimetype"];
 }
 
 - (void)addHeadersToRequest:(NSMutableURLRequest *)request withMimeType:(NSString *)mimeType andFileName:(NSString *)fileName {
