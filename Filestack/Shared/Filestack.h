@@ -25,6 +25,8 @@
 
 @interface Filestack : NSObject
 
+@property (nonatomic, weak) id<FSFilestackDelegate> delegate;
+
 /*!
  @brief Initializes Filestack library instance with api key.
  @param apiKey Found in Developer Portal.
