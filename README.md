@@ -207,5 +207,5 @@ A simple class to store your security policy and signature. **FSSecurity** insta
 
 ## License
 
-Filestack is released under the MIT license. See LICENSE for details.
+Filestack for iOS & Mac is released under the MIT license. See LICENSE for details.
 
