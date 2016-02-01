@@ -19,7 +19,6 @@
 - (void)filestackRemoveSuccess;
 - (void)filestackStatSuccess:(FSMetadata *)metadata;
 - (void)filestackDownloadSuccess:(NSData *)data;
-- (void)filestackStoreURLSuccess:(FSBlob *)blob;
 - (void)filestackStoreSuccess:(FSBlob *)blob;
 @end
 

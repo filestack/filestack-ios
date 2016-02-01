@@ -7,20 +7,14 @@
 //
 
 #import "Filestack.h"
-#import "FSBlobSerializer.h"
-#import "FSMetadata+Private.h"
+#import "FSAPIURL.h"
+#import "FSAPIClient.h"
+#import "FSSessionSettings.h"
 #import <AFNetworking/AFNetworking.h>
 
-typedef NSString * FSURL;
-#define FSURLPickPath @"api/pick"
-#define FSURLMetadataPath @"/metadata"
-#define FSURLFilePath @"api/file"
-#define FSURLStorePath @"api/store"
-
-@interface Filestack()
+@interface Filestack ()
 
 @property (nonatomic, strong) NSString *apiKey;
-@property (nonatomic, strong) NSString *fsBaseURL;
 
 @end
 
@@ -30,7 +24,6 @@ typedef NSString * FSURL;
     if (self = [super init]) {
         self.apiKey = apiKey;
         self.delegate = delegate;
-        self.fsBaseURL = @"https://www.filestackapi.com/";
     }
     return self;
 }
@@ -40,183 +33,129 @@ typedef NSString * FSURL;
 }
 
 - (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:YES];
     NSDictionary *parameters = @{@"key": _apiKey, @"url": url};
+    NSDictionary *sessionSettings = @{FSSessionSettingsURIParams: @YES};
+    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
 
-    [httpManager POST:FSURLPickPath parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
-        if ([_delegate respondsToSelector:@selector(filestackPickURLSuccess:)]) {
-            [_delegate filestackPickURLSuccess:blob];
+    [apiClient POST:FSURLPickPath parameters:parameters options:nil sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
+        if (error) {
+            [self delegateRequestError:error];
+        } else {
+            [self delegatePickSuccess:blob];
         }
-        completionHandler(blob, nil);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-            [_delegate filestackRequestError:error];
-        }
-        completionHandler(nil, error);
+        completionHandler(blob, error);
     }];
 }
 
 - (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:NO];
-    // Filestack API returns a simple "success" string for successful delete request.
-    // We need responseSerializer to be AFHTTPResponseSerializer to parse this properly instead of
-    // returning false error.
-    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
-    NSString *fullURL = [NSString stringWithFormat:@"%@/%@", FSURLFilePath, blobHandle];
+    NSString *deleteURL = [FSAPIURL URLFilePathWithBlobURL:blob.url];
     NSDictionary *parameters = @{@"key": _apiKey};
 
-    [httpManager DELETE:fullURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        if ([_delegate respondsToSelector:@selector(filestackRemoveSuccess)]) {
-            [_delegate filestackRemoveSuccess];
-        }
-        completionHandler(nil);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-            [_delegate filestackRequestError:error];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    [apiClient DELETE:deleteURL parameters:parameters completionHandler:^(NSError *error) {
+        if (error) {
+            [self delegateRequestError:error];
+        } else {
+            [self delegateRemoveSuccess];
         }
         completionHandler(error);
     }];
 }
 
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:blob.url andPOSTURIParameters:NO];
-    NSString *blobHandle = [[NSURL URLWithString:blob.url] lastPathComponent];
-    NSString *fullURL = [NSString stringWithFormat:@"/%@%@", blobHandle, FSURLMetadataPath];
+    NSDictionary *sessionSettings = @{FSSessionSettingsBaseURL: blob.url, FSSessionSettingsURIParams: @NO};
     NSDictionary *parameters = [statOptions toQueryParameters];
+    NSString *statURL = [FSAPIURL URLMetadataPathWithBlobURL:blob.url];
 
-    [httpManager GET:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];
-        if ([_delegate respondsToSelector:@selector(filestackStatSuccess:)]) {
-            [_delegate filestackStatSuccess:metadata];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    [apiClient GET:statURL parameters:parameters options:statOptions sessionSettings:sessionSettings completionHandler:^(FSMetadata *metadata, NSError *error) {
+        if (error) {
+            [self delegateRequestError:error];
+        } else {
+            [self delegateStatSuccess:metadata];
         }
-        completionHandler(metadata, nil);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-            [_delegate filestackRequestError:error];
-        }
-        completionHandler(nil, error);
+        completionHandler(metadata, error);
     }];
 }
 
-
 - (void)download:(FSBlob *)blob completionHandler:(void (^)(NSData *data, NSError *error))completionHandler {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
-    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
-    [httpManager GET:blob.url parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSData *responseData = [NSData dataWithData:responseObject];
-        if ([_delegate respondsToSelector:@selector(filestackDownloadSuccess:)]) {
-            [_delegate filestackDownloadSuccess:responseData];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    [apiClient GET:blob.url parameters:nil completionHandler:^(NSData *data, NSError *error) {
+        if (error) {
+            [self delegateRequestError:error];
+        } else {
+            [self delegateDownloadSuccess:data];
         }
-        completionHandler(responseData, nil);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-            [_delegate filestackRequestError:error];
-        }
-        completionHandler(nil, error);
+        completionHandler(data, error);
     }];
 }
 
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:nil andPOSTURIParameters:YES];
+    NSDictionary *sessionSettings = @{FSSessionSettingsURIParams: @YES};
+    NSString *storeURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:YES andApiKey:_apiKey];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
     [parameters removeObjectForKey:@"mimetype"];
     parameters[@"url"] = url;
 
-    NSString *fullURL = [self fullURLForStoreOptions:storeOptions andStoringURL:YES];
-
-    [httpManager POST:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id responseObject) {
-        FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
-        if ([_delegate respondsToSelector:@selector(filestackStoreURLSuccess:)]) {
-            [_delegate filestackStoreURLSuccess:blob];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    [apiClient POST:storeURL parameters:parameters options:storeOptions sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
+        if (error) {
+            [self delegateRequestError:error];
+        } else {
+            [self delegateStoreSucccess:blob];
         }
-        completionHandler(blob, nil);
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-            [_delegate filestackRequestError:error];
-        }
-        completionHandler(nil, error);
+        completionHandler(blob, error);
     }];
 }
 
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = [storeOptions toQueryParameters];
-    NSString *fullURL = [self fullURLForStoreOptions:storeOptions andStoringURL:NO];
-    NSString *mimeType = [self mimeTypeForStoreOptions:storeOptions];
-
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:fullURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFormData:data name:@"fileUpload"];
-    } error:nil];
-
-    [self addHeadersToRequest:request withMimeType:mimeType andFileName:storeOptions.fileName];
-
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-
-    NSURLSessionUploadTask *uploadTask;
-    uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * response, id responseObject, NSError * error) {
-                      if (error) {
-                          if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-                              [_delegate filestackRequestError:error];
-                          }
-                          completionHandler(nil, error);
-                      } else {
-                          NSLog(@"%@", responseObject);
-                          FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
-                          if ([_delegate respondsToSelector:@selector(filestackStoreSuccess:)]) {
-                              [_delegate filestackStoreSuccess:blob];
-                          }
-                          completionHandler(blob, nil);
-                      }
-                  }];
-    [uploadTask resume];
-}
-
-- (void)addHeadersToRequest:(NSMutableURLRequest *)request withMimeType:(NSString *)mimeType andFileName:(NSString *)fileName {
-    [request setValue:mimeType forHTTPHeaderField:@"Content-Type"];
-
-    if (fileName) {
-        [request setValue:fileName forHTTPHeaderField:@"X-File-Name"];
-    }
-}
-
-- (NSString *)fullURLForStoreOptions:(FSStoreOptions *)storeOptions andStoringURL:(BOOL)isStoreURL {
-    if (isStoreURL) {
-        if (storeOptions) {
-            return [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, storeOptions.storeLocation, _apiKey];
+    NSString *postURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:NO andApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    [apiClient POST:postURL withData:data parameters:parameters multipartOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
+        if (error) {
+            [self delegateRequestError:error];
+        } else {
+            [self delegateStoreSucccess:blob];
         }
-        return [NSString stringWithFormat:@"%@/%@?key=%@", FSURLStorePath, @"S3", _apiKey];
-    } else {
-        if (storeOptions) {
-            return [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, storeOptions.storeLocation, _apiKey];
-        }
-        return [NSString stringWithFormat:@"%@%@/%@?key=%@", _fsBaseURL, FSURLStorePath, @"S3", _apiKey];
+        completionHandler(blob, error);
+    }];
+}
+
+- (void)delegateRequestError:(NSError *)error {
+    if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
+        [_delegate filestackRequestError:error];
     }
 }
 
-- (NSString *)mimeTypeForStoreOptions:(FSStoreOptions *)storeOptions {
-    if (storeOptions.mimeType) {
-        return storeOptions.mimeType;
+- (void)delegateStatSuccess:(FSMetadata *)metadata {
+    if ([_delegate respondsToSelector:@selector(filestackStatSuccess:)]) {
+        [_delegate filestackStatSuccess:metadata];
     }
-    return @"application/octet-stream";
 }
 
-- (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL andPOSTURIParameters:(BOOL)postUriParameters {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURL *managerBaseURL;
-    if (baseURL) {
-        managerBaseURL = [NSURL URLWithString:baseURL];
-    } else {
-        managerBaseURL = [NSURL URLWithString:_fsBaseURL];
+- (void)delegateStoreSucccess:(FSBlob *)blob {
+    if ([_delegate respondsToSelector:@selector(filestackStoreSuccess:)]) {
+        [_delegate filestackStoreSuccess:blob];
     }
-    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:managerBaseURL sessionConfiguration:configuration];
-    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    if (postUriParameters) {
-        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];
+}
+
+- (void)delegateDownloadSuccess:(NSData *)data {
+    if ([_delegate respondsToSelector:@selector(filestackDownloadSuccess:)]) {
+        [_delegate filestackDownloadSuccess:data];
     }
-    return httpManager;
+}
+
+- (void)delegatePickSuccess:(FSBlob *)blob {
+    if ([_delegate respondsToSelector:@selector(filestackPickURLSuccess:)]) {
+        [_delegate filestackPickURLSuccess:blob];
+    }
+}
+
+- (void)delegateRemoveSuccess {
+    if ([_delegate respondsToSelector:@selector(filestackRemoveSuccess)]) {
+        [_delegate filestackRemoveSuccess];
+    }
 }
 
 @end
