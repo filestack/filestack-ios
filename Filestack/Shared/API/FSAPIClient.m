@@ -28,7 +28,7 @@
 }
 
 - (void)POST:(NSString *)postURL parameters:(NSDictionary *)parameters options:(FSStoreOptions *)storeOptions sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings[FSSessionSettingsBaseURL] andPOSTURIParameters:sessionSettings[FSSessionSettingsURIParams]];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings[FSSessionSettingsBaseURL] andPOSTURIParameters:[sessionSettings[FSSessionSettingsURIParams] boolValue]];
 
     [httpManager POST:postURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
@@ -52,7 +52,6 @@
         if (error) {
             completionHandler(nil, error);
         } else {
-            NSLog(@"%@", responseObject);
             FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
             completionHandler(blob, nil);
         }
@@ -74,7 +73,7 @@
 }
 
 - (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters options:(FSStatOptions *)statOptions sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings[FSSessionSettingsBaseURL] andPOSTURIParameters:sessionSettings[FSSessionSettingsURIParams]];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings[FSSessionSettingsBaseURL] andPOSTURIParameters:[sessionSettings[FSSessionSettingsURIParams] boolValue]];
     [httpManager GET:getURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(metadata, nil);

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Filestack-Mac-Demo/Filestack-Mac-Demo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Filestack-iOS-Demo/Filestack-iOS-Demo.xcodeproj">
    </FileRef>
    <FileRef

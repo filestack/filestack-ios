@@ -14,12 +14,12 @@
 
 @protocol FSFilestackDelegate <NSObject>
 @optional
-- (void)filestackRequestError:(NSError *)error;
-- (void)filestackPickURLSuccess:(FSBlob *)blob;
-- (void)filestackRemoveSuccess;
 - (void)filestackStatSuccess:(FSMetadata *)metadata;
 - (void)filestackDownloadSuccess:(NSData *)data;
+- (void)filestackRequestError:(NSError *)error;
+- (void)filestackPickURLSuccess:(FSBlob *)blob;
 - (void)filestackStoreSuccess:(FSBlob *)blob;
+- (void)filestackRemoveSuccess;
 @end
 
 @interface Filestack : NSObject

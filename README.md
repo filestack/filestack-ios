@@ -8,7 +8,7 @@
 - [x] Stat
 - [x] Remove
 - [x] Download
-- [ ] Implement Delegate
+- [x] Implement Delegate
 - [ ] Progress
 - [ ] Filestack's Convert Implementation
 - [ ] iOS-picker's FFPickerController Reimplementation
@@ -79,7 +79,7 @@ NSString *url = @"https://example.com/image.png"
 [filestack pickURL:url completionHandler:^(FSBlob *blob, NSError *error) {
     NSLog(@"blob: %@", blob);
     NSLog(@"error: %@", error);
-    if (error != nil) {
+    if (error == nil) {
         [filestack stat:blob withOptions:nil completionHandler:^(FSMetadata *metadata, NSError *error) {
             NSLog(@"metadata: %@", metadata);
             NSLog(@"error: %@", error);
@@ -107,12 +107,15 @@ Properties are as follows:
   - If the file was stored in one of the file stores you specified or configured (S3, Rackspace, Azure, etc.), this parameter will tell you in which container this file was put.
 - **path** (NSString)
   - The path of the Blob indicates its position in the hierarchy of files uploaded.
-- **writeable** (BOOL)
-  - This flag specifies whether the underlying file is writeable. In most cases this will be true, but if a user uploads a photo from facebook, for instance, the original file cannot be written to.
+- **writeable** (NSNumber)
+  - This flag specifies whether the underlying file is writeable. In most cases this will be true, but if a user uploads a photo from Facebook, for instance, the original file cannot be written to.
+  - This will return either ```0```, ```1``` or ```nil``` if the flag is unknown or wasn't returned from the request.
+- **s3url** (NSString, readonly)
+  - ("Experimental") The direct path to the file on S3, if available.
 
 #### FSMetadata class:
 
-"Read-only" class available in completionHandler of ```stat:withOptions:completionHandler:``` if request was successful.
+"Read-only" class available in completionHandler of ```stat:withOptions:completionHandler:``` or in ```filestackStatSuccess:``` delegate method if request was successful.
 
 Properties you can access:
 - **size** (NSInteger)
@@ -121,11 +124,12 @@ Properties you can access:
 - **width** (NSInteger)
 - **height** (NSInteger)
 - **uploaded** (NSInteger)
-- **writeable** (BOOL)
+- **writeable** (NSNumber)
 - **md5** (NSString)
 - **location** (NSString)
 - **path** (NSString)
 - **container** (NSString)
+- **s3url** (NSString)
 
 #### FSStatOptions class:
 

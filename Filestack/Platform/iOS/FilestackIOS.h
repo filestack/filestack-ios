@@ -1,5 +1,5 @@
 //
-//  FSFilestack.h
+//  FilestackiOS.h
 //  Filestack
 //
 //  Created by Łukasz Cichecki on 20/01/16.
@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "Filestack.h"
 
-FOUNDATION_EXPORT double FSFilestackVersionNumber;
-FOUNDATION_EXPORT const unsigned char FSFilestackVersionString[];
+FOUNDATION_EXPORT double FSFilestackIOSVersionNumber;
+FOUNDATION_EXPORT const unsigned char FSFilestackIOSVersionString[];

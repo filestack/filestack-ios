@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSString *fileName;
 /*! The mimetype of the file, if available. */
 @property (nonatomic, strong) NSString *mimeType;
-/*! he size of the file in bytes */
+/*! The size of the file in bytes */
 @property (nonatomic, assign) NSInteger size;
 /*! If the file was stored in one of the file stores you specified or configured (S3, Rackspace, Azure, etc.), this parameter will tell you where in the file store this file was put. */
 @property (nonatomic, strong) NSString *key;
@@ -25,7 +25,9 @@
 /*! The path of the Blob indicates its position in the hierarchy of files uploaded. */
 @property (nonatomic, strong) NSString *path;
 /*! This flag specifies whether the underlying file is writeable. */
-@property (nonatomic, assign) BOOL writeable;
+@property (nonatomic, strong) NSNumber *writeable;
+/*! ("Experimental") The direct path to the file on S3. */
+@property (nonatomic, readonly, strong) NSString *s3url;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (instancetype)initWithURL:(NSString *)url;

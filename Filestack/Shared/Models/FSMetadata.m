@@ -11,25 +11,32 @@
 @interface FSMetadata ()
 
 @property (nonatomic, readwrite, assign) NSInteger size;
-@property (nonatomic, readwrite, assign) NSString *mimeType;
-@property (nonatomic, readwrite, assign) NSString *fileName;
+@property (nonatomic, readwrite, strong) NSString *mimeType;
+@property (nonatomic, readwrite, strong) NSString *fileName;
 @property (nonatomic, readwrite, assign) NSInteger width;
 @property (nonatomic, readwrite, assign) NSInteger height;
 @property (nonatomic, readwrite, assign) NSInteger uploaded;
-@property (nonatomic, readwrite, assign) BOOL writeable;
-@property (nonatomic, readwrite, assign) NSString *md5;
-@property (nonatomic, readwrite, assign) NSString *location;
-@property (nonatomic, readwrite, assign) NSString *path;
-@property (nonatomic, readwrite, assign) NSString *container;
+@property (nonatomic, readwrite, strong) NSNumber *writeable;
+@property (nonatomic, readwrite, strong) NSString *md5;
+@property (nonatomic, readwrite, strong) NSString *location;
+@property (nonatomic, readwrite, strong) NSString *path;
+@property (nonatomic, readwrite, strong) NSString *container;
 
 @end
 
 @implementation FSMetadata
 
+- (NSString *)s3url {
+    if (_container && _path) {
+        return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", _container, _path];
+    }
+    return nil;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"\nsize: %ld\nfilename: %@\nmimetype: %@\nwidth: %ld \
-            \nheight: %ld\nuploaded: %ld\nwriteable: %d\nmd5: %@\nlocation: %@\npath: %@\ncontainer: %@",
-            (long)_size, _fileName, _mimeType, _width, _height, _uploaded, _writeable, _md5, _location, _path, _container];
+            \nheight: %ld\nuploaded: %ld\nwriteable: %@\nmd5: %@\nlocation: %@\npath: %@\ncontainer: %@\ns3url: %@",
+            (long)_size, _fileName, _mimeType, _width, _height, _uploaded, _writeable, _md5, _location, _path, _container, self.s3url];
 }
 
 @end

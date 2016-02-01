@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Filestack.h"
 
-FOUNDATION_EXPORT double FSFilestackVersionNumber;
-FOUNDATION_EXPORT const unsigned char FSFilestackVersionString[];
+FOUNDATION_EXPORT double FSFilestackMacVersionNumber;
+FOUNDATION_EXPORT const unsigned char FSFilestackMacVersionString[];

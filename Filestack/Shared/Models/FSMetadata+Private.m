@@ -20,7 +20,7 @@
         self.width = [dictionary[@"width"] integerValue];
         self.height = [dictionary[@"height"] integerValue];
         self.uploaded = [dictionary[@"uploaded"] integerValue];
-        self.writeable = [dictionary[@"writeable"] boolValue];
+        self.writeable = dictionary[@"writeable"] ?: [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
         self.md5 = dictionary[@"md5"];
         self.location = dictionary[@"location"];
         self.path = dictionary[@"path"];

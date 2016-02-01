@@ -19,7 +19,7 @@
         self.key = dictionary[@"key"];
         self.container = dictionary[@"container"];
         self.path = dictionary[@"path"];
-        self.writeable = [dictionary[@"writeable"] boolValue];
+        self.writeable = dictionary[@"writeable"] ?: [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
     }
     return self;
 }
@@ -28,10 +28,17 @@
     return [self initWithDictionary:@{@"url": url}];
 }
 
+- (NSString *)s3url {
+    if (_container && _key) {
+        return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", _container, _key];
+    }
+    return nil;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"\nurl: %@\nfilename: %@\nsize: %ld\nmimetype: %@\nkey: %@ \
-                                      \ncontainer: %@\npath: %@\nwriteable: %d",
-            _url, _fileName, (long)_size, _mimeType, _key, _container, _path, _writeable];
+                                      \ncontainer: %@\npath: %@\nwriteable: %@\ns3url: %@",
+            _url, _fileName, (long)_size, _mimeType, _key, _container, _path, _writeable, self.s3url];
 }
 
 @end

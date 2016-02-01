@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		740BFC87E052D266F73257E2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC84A93F0C0ACC58B1D8227 /* libPods.a */; };
-		B2253D111C4F9A1F008E47A3 /* FSFilestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D101C4F9A1F008E47A3 /* FSFilestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2313CE49C397650B9397BD2B /* libPods-FilestackMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3405E2275281ED11043F8491 /* libPods-FilestackMac.a */; };
+		8352BBE6137774B7C390E39D /* libPods-FilestackIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */; };
+		B2253D111C4F9A1F008E47A3 /* FilestackIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D101C4F9A1F008E47A3 /* FilestackIOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2253D4D1C4F9D9E008E47A3 /* Filestack.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D4B1C4F9D9E008E47A3 /* Filestack.m */; };
 		B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D521C4FB7F6008E47A3 /* FSBlob.m */; };
@@ -34,25 +35,22 @@
 		B273A9D81C50E2DC00232972 /* FSSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D61C50E2DC00232972 /* FSSecurity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = B273A9D71C50E2DC00232972 /* FSSecurity.m */; };
 		B273A9ED1C57A07C00232972 /* FilestackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B273A9EC1C57A07C00232972 /* FilestackTests.m */; };
-		B273A9EF1C57A07C00232972 /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2253D0D1C4F9A1F008E47A3 /* Filestack.framework */; };
-		B273A9F81C57A47400232972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B273A9EE1C57A07C00232972 /* Info.plist */; };
-		B273AA011C57A52400232972 /* FSFilestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B273AA001C57A52400232972 /* FSFilestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D651C4FD69E008E47A3 /* FSStatOptions.h */; };
+		B273A9EF1C57A07C00232972 /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2253D0D1C4F9A1F008E47A3 /* FilestackIOS.framework */; };
+		B273AA011C57A52400232972 /* FilestackMac.h in Headers */ = {isa = PBXBuildFile; fileRef = B273AA001C57A52400232972 /* FilestackMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D651C4FD69E008E47A3 /* FSStatOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA071C57C5A900232972 /* FSStatOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D661C4FD69E008E47A3 /* FSStatOptions.m */; };
-		B273AA081C57C5A900232972 /* FSStoreOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D21C50E12100232972 /* FSStoreOptions.h */; };
+		B273AA081C57C5A900232972 /* FSStoreOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D21C50E12100232972 /* FSStoreOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA091C57C5A900232972 /* FSStoreOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B273A9D31C50E12100232972 /* FSStoreOptions.m */; };
-		B273AA0A1C57C5A900232972 /* FSSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D61C50E2DC00232972 /* FSSecurity.h */; };
+		B273AA0A1C57C5A900232972 /* FSSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = B273A9D61C50E2DC00232972 /* FSSecurity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA0B1C57C5A900232972 /* FSSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = B273A9D71C50E2DC00232972 /* FSSecurity.m */; };
-		B273AA0E1C57C5B100232972 /* FSBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D511C4FB7F6008E47A3 /* FSBlob.h */; };
+		B273AA0E1C57C5B100232972 /* FSBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D511C4FB7F6008E47A3 /* FSBlob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA0F1C57C5B100232972 /* FSBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D521C4FB7F6008E47A3 /* FSBlob.m */; };
-		B273AA121C57C5B100232972 /* FSMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D601C4FD4DF008E47A3 /* FSMetadata.h */; };
+		B273AA121C57C5B100232972 /* FSMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D601C4FD4DF008E47A3 /* FSMetadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA131C57C5B100232972 /* FSMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D611C4FD4DF008E47A3 /* FSMetadata.m */; };
 		B273AA141C57C5B100232972 /* FSMetadata+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D6A1C4FE469008E47A3 /* FSMetadata+Private.h */; };
 		B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
-		B273AA161C57C5B400232972 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; };
+		B273AA161C57C5B400232972 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA171C57C5B400232972 /* Filestack.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D4B1C4F9D9E008E47A3 /* Filestack.m */; };
-		B273AA181C57C5BB00232972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B273AA021C57A52400232972 /* Info.plist */; };
-		B273AA191C57C5C200232972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2253D481C4F9C69008E47A3 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,11 +64,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		201E83239A56CE1E7FF3E18C /* libPods-Filestack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Filestack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3405E2275281ED11043F8491 /* libPods-FilestackMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48E15B4DA965847D31B150E2 /* Pods-FilestackIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4DC84A93F0C0ACC58B1D8227 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		54218E539B57A935D1E1255F /* Pods-Filestack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filestack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Filestack/Pods-Filestack.release.xcconfig"; sourceTree = "<group>"; };
 		63190FC6CD4E6F5B6D7D5481 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7E78DE09BD597C3E80A9E2FD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		B2253D0D1C4F9A1F008E47A3 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2253D101C4F9A1F008E47A3 /* FSFilestack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFilestack.h; sourceTree = "<group>"; };
+		B2253D0D1C4F9A1F008E47A3 /* FilestackIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilestackIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2253D101C4F9A1F008E47A3 /* FilestackIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilestackIOS.h; sourceTree = "<group>"; };
 		B2253D481C4F9C69008E47A3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2253D4A1C4F9D9E008E47A3 /* Filestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filestack.h; sourceTree = "<group>"; };
 		B2253D4B1C4F9D9E008E47A3 /* Filestack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filestack.m; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		B254A66A1C5A5C070096F7F6 /* FSAPIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAPIURL.h; sourceTree = "<group>"; };
 		B254A66B1C5A5C070096F7F6 /* FSAPIURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAPIURL.m; sourceTree = "<group>"; };
 		B254A6701C5F66480096F7F6 /* FSSessionSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSessionSettings.h; sourceTree = "<group>"; };
+		B254A6A41C5F6CAC0096F7F6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		B273A9D21C50E12100232972 /* FSStoreOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSStoreOptions.h; sourceTree = "<group>"; };
 		B273A9D31C50E12100232972 /* FSStoreOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSStoreOptions.m; sourceTree = "<group>"; };
 		B273A9D61C50E2DC00232972 /* FSSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSecurity.h; sourceTree = "<group>"; };
@@ -95,8 +98,13 @@
 		B273A9EC1C57A07C00232972 /* FilestackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilestackTests.m; sourceTree = "<group>"; };
 		B273A9EE1C57A07C00232972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B273A9FE1C57A52400232972 /* FilestackMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilestackMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B273AA001C57A52400232972 /* FSFilestack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFilestack.h; sourceTree = "<group>"; };
+		B273AA001C57A52400232972 /* FilestackMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilestackMac.h; sourceTree = "<group>"; };
 		B273AA021C57A52400232972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackIOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackMac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac.debug.xcconfig"; sourceTree = "<group>"; };
+		C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS.release.xcconfig"; sourceTree = "<group>"; };
+		D5A0458392FECE067D2CF4DC /* Pods-FilestackMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackMac.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac.release.xcconfig"; sourceTree = "<group>"; };
+		F52062431BC7673E96A8A509 /* Pods-Filestack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filestack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filestack/Pods-Filestack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				740BFC87E052D266F73257E2 /* libPods.a in Frameworks */,
+				8352BBE6137774B7C390E39D /* libPods-FilestackIOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B273A9EF1C57A07C00232972 /* Filestack.framework in Frameworks */,
+				B273A9EF1C57A07C00232972 /* FilestackIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2313CE49C397650B9397BD2B /* libPods-FilestackMac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +140,12 @@
 			children = (
 				7E78DE09BD597C3E80A9E2FD /* Pods.debug.xcconfig */,
 				63190FC6CD4E6F5B6D7D5481 /* Pods.release.xcconfig */,
+				BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */,
+				D5A0458392FECE067D2CF4DC /* Pods-FilestackMac.release.xcconfig */,
+				F52062431BC7673E96A8A509 /* Pods-Filestack.debug.xcconfig */,
+				54218E539B57A935D1E1255F /* Pods-Filestack.release.xcconfig */,
+				48E15B4DA965847D31B150E2 /* Pods-FilestackIOS.debug.xcconfig */,
+				C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -138,7 +153,11 @@
 		792009A3DA31729B243D6915 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B254A6A41C5F6CAC0096F7F6 /* libPods.a */,
 				4DC84A93F0C0ACC58B1D8227 /* libPods.a */,
+				201E83239A56CE1E7FF3E18C /* libPods-Filestack.a */,
+				3405E2275281ED11043F8491 /* libPods-FilestackMac.a */,
+				B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,7 +178,7 @@
 		B2253D0E1C4F9A1F008E47A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B2253D0D1C4F9A1F008E47A3 /* Filestack.framework */,
+				B2253D0D1C4F9A1F008E47A3 /* FilestackIOS.framework */,
 				B273A9EA1C57A07C00232972 /* FilestackTests.xctest */,
 				B273A9FE1C57A52400232972 /* FilestackMac.framework */,
 			);
@@ -169,7 +188,7 @@
 		B2253D0F1C4F9A1F008E47A3 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B2253D101C4F9A1F008E47A3 /* FSFilestack.h */,
+				B2253D101C4F9A1F008E47A3 /* FilestackIOS.h */,
 				B2253D481C4F9C69008E47A3 /* Info.plist */,
 			);
 			name = iOS;
@@ -192,7 +211,7 @@
 		B2253D471C4F9BD6008E47A3 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				B273AA001C57A52400232972 /* FSFilestack.h */,
+				B273AA001C57A52400232972 /* FilestackMac.h */,
 				B273AA021C57A52400232972 /* Info.plist */,
 			);
 			name = Mac;
@@ -255,7 +274,7 @@
 			files = (
 				B254A66C1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B254A6711C5F670E0096F7F6 /* FSSessionSettings.h in Headers */,
-				B2253D111C4F9A1F008E47A3 /* FSFilestack.h in Headers */,
+				B2253D111C4F9A1F008E47A3 /* FilestackIOS.h in Headers */,
 				B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */,
 				B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */,
 				B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */,
@@ -272,25 +291,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				B254A66D1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
-				B254A6721C5F670F0096F7F6 /* FSSessionSettings.h in Headers */,
 				B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */,
 				B273AA161C57C5B400232972 /* Filestack.h in Headers */,
 				B273AA081C57C5A900232972 /* FSStoreOptions.h in Headers */,
 				B273AA0E1C57C5B100232972 /* FSBlob.h in Headers */,
 				B273AA121C57C5B100232972 /* FSMetadata.h in Headers */,
-				B273AA141C57C5B100232972 /* FSMetadata+Private.h in Headers */,
-				B273AA011C57A52400232972 /* FSFilestack.h in Headers */,
-				B254A6611C5A26800096F7F6 /* FSAPIClient.h in Headers */,
 				B273AA0A1C57C5A900232972 /* FSSecurity.h in Headers */,
+				B254A6721C5F670F0096F7F6 /* FSSessionSettings.h in Headers */,
+				B273AA141C57C5B100232972 /* FSMetadata+Private.h in Headers */,
+				B273AA011C57A52400232972 /* FilestackMac.h in Headers */,
+				B254A6611C5A26800096F7F6 /* FSAPIClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B2253D0C1C4F9A1F008E47A3 /* Filestack */ = {
+		B2253D0C1C4F9A1F008E47A3 /* FilestackIOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2253D151C4F9A1F008E47A3 /* Build configuration list for PBXNativeTarget "Filestack" */;
+			buildConfigurationList = B2253D151C4F9A1F008E47A3 /* Build configuration list for PBXNativeTarget "FilestackIOS" */;
 			buildPhases = (
 				141D0771145D46FEA1E3D250 /* Check Pods Manifest.lock */,
 				B2253D081C4F9A1F008E47A3 /* Sources */,
@@ -303,9 +322,9 @@
 			);
 			dependencies = (
 			);
-			name = Filestack;
+			name = FilestackIOS;
 			productName = Filestack;
-			productReference = B2253D0D1C4F9A1F008E47A3 /* Filestack.framework */;
+			productReference = B2253D0D1C4F9A1F008E47A3 /* FilestackIOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B273A9E91C57A07C00232972 /* FilestackTests */ = {
@@ -330,10 +349,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B273AA031C57A52400232972 /* Build configuration list for PBXNativeTarget "FilestackMac" */;
 			buildPhases = (
+				DB8EF5F04C6D7AA0DA5DAB19 /* Check Pods Manifest.lock */,
 				B273A9F91C57A52400232972 /* Sources */,
 				B273A9FA1C57A52400232972 /* Frameworks */,
 				B273A9FB1C57A52400232972 /* Headers */,
 				B273A9FC1C57A52400232972 /* Resources */,
+				FCB250ECD9479A555DD592A3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -376,7 +397,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B2253D0C1C4F9A1F008E47A3 /* Filestack */,
+				B2253D0C1C4F9A1F008E47A3 /* FilestackIOS */,
 				B273A9FD1C57A52400232972 /* FilestackMac */,
 				B273A9E91C57A07C00232972 /* FilestackTests */,
 			);
@@ -388,7 +409,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B273AA191C57C5C200232972 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +416,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B273A9F81C57A47400232972 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +423,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B273AA181C57C5BB00232972 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +456,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB8EF5F04C6D7AA0DA5DAB19 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FCB250ECD9479A555DD592A3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -489,7 +537,7 @@
 /* Begin PBXTargetDependency section */
 		B273A9F11C57A07C00232972 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B2253D0C1C4F9A1F008E47A3 /* Filestack */;
+			target = B2253D0C1C4F9A1F008E47A3 /* FilestackIOS */;
 			targetProxy = B273A9F01C57A07C00232972 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -533,6 +581,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -574,6 +623,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -585,7 +635,7 @@
 		};
 		B2253D161C4F9A1F008E47A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E78DE09BD597C3E80A9E2FD /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 48E15B4DA965847D31B150E2 /* Pods-FilestackIOS.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -603,7 +653,7 @@
 		};
 		B2253D171C4F9A1F008E47A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63190FC6CD4E6F5B6D7D5481 /* Pods.release.xcconfig */;
+			baseConfigurationReference = C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -641,6 +691,7 @@
 		};
 		B273AA041C57A52400232972 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -649,9 +700,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FilestackMac/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Filestack/Platform/Mac/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -662,6 +714,7 @@
 		};
 		B273AA051C57A52400232972 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5A0458392FECE067D2CF4DC /* Pods-FilestackMac.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -670,9 +723,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FilestackMac/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Filestack/Platform/Mac/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -693,7 +747,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2253D151C4F9A1F008E47A3 /* Build configuration list for PBXNativeTarget "Filestack" */ = {
+		B2253D151C4F9A1F008E47A3 /* Build configuration list for PBXNativeTarget "FilestackIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2253D161C4F9A1F008E47A3 /* Debug */,
