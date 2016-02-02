@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B254A6811C5F6BFF0096F7F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B254A6801C5F6BFF0096F7F6 /* AppDelegate.m */; };
+		B254A6841C5F6BFF0096F7F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B254A6831C5F6BFF0096F7F6 /* main.m */; };
+		B254A6871C5F6BFF0096F7F6 /* ViewControllerMac.m in Sources */ = {isa = PBXBuildFile; fileRef = B254A6861C5F6BFF0096F7F6 /* ViewControllerMac.m */; };
+		B254A6891C5F6BFF0096F7F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B254A6881C5F6BFF0096F7F6 /* Assets.xcassets */; };
+		B254A68C1C5F6BFF0096F7F6 /* MainMac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B254A68A1C5F6BFF0096F7F6 /* MainMac.storyboard */; };
+		B254A69F1C5F6C3B0096F7F6 /* FilestackMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B254A69C1C5F6C300096F7F6 /* FilestackMac.framework */; };
+		B254A6A01C5F6C3B0096F7F6 /* FilestackMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B254A69C1C5F6C300096F7F6 /* FilestackMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B254A6991C5F6C300096F7F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B2253D0D1C4F9A1F008E47A3;
+			remoteInfo = Filestack;
+		};
+		B254A69B1C5F6C300096F7F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B273A9FE1C57A52400232972;
+			remoteInfo = FilestackMac;
+		};
+		B254A69D1C5F6C300096F7F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B273A9EA1C57A07C00232972;
+			remoteInfo = FilestackTests;
+		};
+		B254A6A11C5F6C3B0096F7F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B273A9FD1C57A52400232972;
+			remoteInfo = FilestackMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B254A6A31C5F6C3B0096F7F6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B254A6A01C5F6C3B0096F7F6 /* FilestackMac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B254A67C1C5F6BFF0096F7F6 /* Filestack-Mac-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Filestack-Mac-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B254A67F1C5F6BFF0096F7F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B254A6801C5F6BFF0096F7F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B254A6831C5F6BFF0096F7F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B254A6851C5F6BFF0096F7F6 /* ViewControllerMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerMac.h; sourceTree = "<group>"; };
+		B254A6861C5F6BFF0096F7F6 /* ViewControllerMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMac.m; sourceTree = "<group>"; };
+		B254A6881C5F6BFF0096F7F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B254A68B1C5F6BFF0096F7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainMac.storyboard; sourceTree = "<group>"; };
+		B254A68D1C5F6BFF0096F7F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = ../Filestack.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B254A6791C5F6BFF0096F7F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B254A69F1C5F6C3B0096F7F6 /* FilestackMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B254A6731C5F6BFF0096F7F6 = {
+			isa = PBXGroup;
+			children = (
+				B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */,
+				B254A67E1C5F6BFF0096F7F6 /* Filestack-Mac-Demo */,
+				B254A67D1C5F6BFF0096F7F6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B254A67D1C5F6BFF0096F7F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B254A67C1C5F6BFF0096F7F6 /* Filestack-Mac-Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B254A67E1C5F6BFF0096F7F6 /* Filestack-Mac-Demo */ = {
+			isa = PBXGroup;
+			children = (
+				B254A67F1C5F6BFF0096F7F6 /* AppDelegate.h */,
+				B254A6801C5F6BFF0096F7F6 /* AppDelegate.m */,
+				B254A6851C5F6BFF0096F7F6 /* ViewControllerMac.h */,
+				B254A6861C5F6BFF0096F7F6 /* ViewControllerMac.m */,
+				B254A6881C5F6BFF0096F7F6 /* Assets.xcassets */,
+				B254A68A1C5F6BFF0096F7F6 /* MainMac.storyboard */,
+				B254A68D1C5F6BFF0096F7F6 /* Info.plist */,
+				B254A6821C5F6BFF0096F7F6 /* Supporting Files */,
+			);
+			path = "Filestack-Mac-Demo";
+			sourceTree = "<group>";
+		};
+		B254A6821C5F6BFF0096F7F6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B254A6831C5F6BFF0096F7F6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B254A6941C5F6C300096F7F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B254A69A1C5F6C300096F7F6 /* FilestackIOS.framework */,
+				B254A69C1C5F6C300096F7F6 /* FilestackMac.framework */,
+				B254A69E1C5F6C300096F7F6 /* FilestackTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B254A67B1C5F6BFF0096F7F6 /* Filestack-Mac-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B254A6901C5F6BFF0096F7F6 /* Build configuration list for PBXNativeTarget "Filestack-Mac-Demo" */;
+			buildPhases = (
+				B254A6781C5F6BFF0096F7F6 /* Sources */,
+				B254A6791C5F6BFF0096F7F6 /* Frameworks */,
+				B254A67A1C5F6BFF0096F7F6 /* Resources */,
+				B254A6A31C5F6C3B0096F7F6 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B254A6A21C5F6C3B0096F7F6 /* PBXTargetDependency */,
+			);
+			name = "Filestack-Mac-Demo";
+			productName = "Filestack-Mac-Demo";
+			productReference = B254A67C1C5F6BFF0096F7F6 /* Filestack-Mac-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B254A6741C5F6BFF0096F7F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Filestack;
+				TargetAttributes = {
+					B254A67B1C5F6BFF0096F7F6 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = B254A6771C5F6BFF0096F7F6 /* Build configuration list for PBXProject "Filestack-Mac-Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B254A6731C5F6BFF0096F7F6;
+			productRefGroup = B254A67D1C5F6BFF0096F7F6 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B254A6941C5F6C300096F7F6 /* Products */;
+					ProjectRef = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				B254A67B1C5F6BFF0096F7F6 /* Filestack-Mac-Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B254A69A1C5F6C300096F7F6 /* FilestackIOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FilestackIOS.framework;
+			remoteRef = B254A6991C5F6C300096F7F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B254A69C1C5F6C300096F7F6 /* FilestackMac.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FilestackMac.framework;
+			remoteRef = B254A69B1C5F6C300096F7F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B254A69E1C5F6C300096F7F6 /* FilestackTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FilestackTests.xctest;
+			remoteRef = B254A69D1C5F6C300096F7F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B254A67A1C5F6BFF0096F7F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B254A6891C5F6BFF0096F7F6 /* Assets.xcassets in Resources */,
+				B254A68C1C5F6BFF0096F7F6 /* MainMac.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B254A6781C5F6BFF0096F7F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B254A6871C5F6BFF0096F7F6 /* ViewControllerMac.m in Sources */,
+				B254A6841C5F6BFF0096F7F6 /* main.m in Sources */,
+				B254A6811C5F6BFF0096F7F6 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B254A6A21C5F6C3B0096F7F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FilestackMac;
+			targetProxy = B254A6A11C5F6C3B0096F7F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B254A68A1C5F6BFF0096F7F6 /* MainMac.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B254A68B1C5F6BFF0096F7F6 /* Base */,
+			);
+			name = MainMac.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B254A68E1C5F6BFF0096F7F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B254A68F1C5F6BFF0096F7F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B254A6911C5F6BFF0096F7F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Filestack-Mac-Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.filestack.Filestack-Mac-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B254A6921C5F6BFF0096F7F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Filestack-Mac-Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.filestack.Filestack-Mac-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B254A6771C5F6BFF0096F7F6 /* Build configuration list for PBXProject "Filestack-Mac-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B254A68E1C5F6BFF0096F7F6 /* Debug */,
+				B254A68F1C5F6BFF0096F7F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B254A6901C5F6BFF0096F7F6 /* Build configuration list for PBXNativeTarget "Filestack-Mac-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B254A6911C5F6BFF0096F7F6 /* Debug */,
+				B254A6921C5F6BFF0096F7F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B254A6741C5F6BFF0096F7F6 /* Project object */;
+}
