@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Filestack'
-  s.version      = '0.1.1'
+  s.version      = '0.1.2'
   s.summary      = 'SDK to access Filestack API'
 
   s.description  = <<-DESC
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { 'Filestack' => 'lukasz@filestack.com' }
 
   s.source       = {
-    :git => 'https://github.com/filepicker/filestack-ios.git',
+    :git => 'https://github.com/filestack/filestack-ios.git',
     :tag => "#{s.version}"
   }
 
