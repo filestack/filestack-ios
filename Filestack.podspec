@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { 'Filestack' => 'lukasz@filestack.com' }
 
   s.source       = {
-    :git => 'https://github.com/filepicker/filestack-ios',
+    :git => 'https://github.com/filepicker/filestack-ios.git',
     :tag => "#{s.version}"
   }
 
@@ -37,8 +37,15 @@ Pod::Spec.new do |s|
     Filestack/Platform/Mac/FilestackMac.h
   ).concat(shared_public_header_files)
 
-  s.ios.source_files = 'Filestack/Shared/*.{h,m}', 'Filestack/Platforms/iOS/*.{h,m}'
-  s.osx.source_files = 'Filestack/Shared/*.{h,m}', 'Filestack/Platforms/Mac/*.{h,m}'
+  shared_source_files = %w(
+    Filestack/Shared/*.{h,m}
+    Filestack/Shared/Options/*.{h,m}
+    Filestack/Shared/Models/*.{h,m}
+    Filestack/Shared/API/*.{h,m}
+  )
+
+  s.ios.source_files = %w(Filestack/Platforms/iOS/*.{h,m}).concat(shared_source_files)
+  s.osx.source_files = %w(Filestack/Platforms/Mac/*.{h,m}).concat(shared_source_files)
 
   s.dependency 'AFNetworking', '~> 3.0'
 end
