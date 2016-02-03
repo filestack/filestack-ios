@@ -13,6 +13,7 @@
 - [ ] Filestack's Convert Implementation
 - [ ] iOS-picker's FFPickerController Reimplementation
 - [ ] Unit Test Coverage
+- [ ] Download method response serialization
 - [ ] iOS & Mac Example Apps
 - [ ] Complete Documentation
 
