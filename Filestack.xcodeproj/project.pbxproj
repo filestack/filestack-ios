@@ -52,6 +52,7 @@
 		B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
 		B273AA161C57C5B400232972 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA171C57C5B400232972 /* Filestack.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D4B1C4F9D9E008E47A3 /* Filestack.m */; };
+		B2DE22CD1C6257BC0007C569 /* FSBlobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		B273A9FE1C57A52400232972 /* FilestackMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilestackMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B273AA001C57A52400232972 /* FilestackMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilestackMac.h; sourceTree = "<group>"; };
 		B273AA021C57A52400232972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBlobTests.m; sourceTree = "<group>"; };
 		B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackIOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackMac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				B273A9EC1C57A07C00232972 /* FilestackTests.m */,
+				B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */,
 				B273A9EE1C57A07C00232972 /* Info.plist */,
 			);
 			path = Tests;
@@ -569,6 +572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B273A9ED1C57A07C00232972 /* FilestackTests.m in Sources */,
+				B2DE22CD1C6257BC0007C569 /* FSBlobTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

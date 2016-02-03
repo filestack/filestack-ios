@@ -19,7 +19,7 @@
         self.key = dictionary[@"key"];
         self.container = dictionary[@"container"];
         self.path = dictionary[@"path"];
-        self.writeable = dictionary[@"writeable"] ?: [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
+        self.writeable = dictionary[@"writeable"] == nil ? nil : [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
     }
     return self;
 }
