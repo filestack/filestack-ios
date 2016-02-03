@@ -43,7 +43,10 @@
         } else {
             [self delegatePickSuccess:blob];
         }
-        completionHandler(blob, error);
+
+        if (completionHandler) {
+            completionHandler(blob, error);
+        }
     }];
 }
 
@@ -58,7 +61,10 @@
         } else {
             [self delegateRemoveSuccess];
         }
-        completionHandler(error);
+
+        if (completionHandler) {
+            completionHandler(error);
+        }
     }];
 }
 
@@ -74,7 +80,10 @@
         } else {
             [self delegateStatSuccess:metadata];
         }
-        completionHandler(metadata, error);
+
+        if (completionHandler) {
+            completionHandler(metadata, error);
+        }
     }];
 }
 
@@ -86,7 +95,10 @@
         } else {
             [self delegateDownloadSuccess:data];
         }
-        completionHandler(data, error);
+
+        if (completionHandler) {
+            completionHandler(data, error);
+        }
     }];
 }
 
@@ -104,7 +116,10 @@
         } else {
             [self delegateStoreSucccess:blob];
         }
-        completionHandler(blob, error);
+
+        if (completionHandler) {
+            completionHandler(blob, error);
+        }
     }];
 }
 
@@ -118,7 +133,10 @@
         } else {
             [self delegateStoreSucccess:blob];
         }
-        completionHandler(blob, error);
+
+        if (completionHandler) {
+            completionHandler(blob, error);
+        }
     }];
 }
 

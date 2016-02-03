@@ -1,3 +1,9 @@
+## 0.1.4 (2016-02-03)
+
+### Fixed:
+
+- completionHandler parameter is now optional in all of Filestack's methods (passing ```nil``` won't crash the lib).
+
 ## 0.1.3 (2016-02-03)
 
 ### Fixed:
