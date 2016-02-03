@@ -112,7 +112,7 @@ Properties are as follows:
   - This flag specifies whether the underlying file is writeable. In most cases this will be true, but if a user uploads a photo from Facebook, for instance, the original file cannot be written to.
   - This will return either ```0```, ```1``` or ```nil``` if the flag is unknown or wasn't returned from the request.
 - **s3url** (NSString, readonly)
-  - ("Experimental") The direct path to the file on S3, if available.
+  - ("Experimental") The direct path to the file on S3, if available. This will return invalid link if the file was stored on different storage.
 
 #### FSMetadata class:
 
@@ -130,7 +130,7 @@ Properties you can access:
 - **location** (NSString)
 - **path** (NSString)
 - **container** (NSString)
-- **s3url** (NSString)
+- **s3url** (NSString, experimental)
 
 #### FSStatOptions class:
 
