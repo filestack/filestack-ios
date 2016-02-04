@@ -42,6 +42,7 @@ Pod::Spec.new do |s|
     Filestack/Shared/Options/*.{h,m}
     Filestack/Shared/Models/*.{h,m}
     Filestack/Shared/API/*.{h,m}
+    Filestack/Shared/Transformations/*.{h,m}
   )
 
   s.ios.source_files = %w(Filestack/Platforms/iOS/*.{h,m}).concat(shared_source_files)

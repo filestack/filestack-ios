@@ -11,6 +11,7 @@
 #import "FSMetadata.h"
 #import "FSStatOptions.h"
 #import "FSStoreOptions.h"
+#import "FSTransformation.h"
 
 @protocol FSFilestackDelegate <NSObject>
 @optional
