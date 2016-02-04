@@ -68,7 +68,7 @@ NSString *url = @"https://example.com/image.png"
 
 // stat Example
 Filestack *filestack = [[Filestack alloc] initWithApiKey:@"MYAPIKEY"];
-FSBlob *blob = [[FSBlob alloc] initWithUrl:@"https://www.filepicker.io/api/file/FILEHANDLER"]
+FSBlob *blob = [[FSBlob alloc] initWithUrl:@"https://cdn.filestackcontent.com/FILEHANDLER"]
 
 [filestack stat:blob withOptions:statOptions completionHandler:^(FSMetadata *metadata, NSError *error) {
     NSLog(@"metadata: %@", metadata);
