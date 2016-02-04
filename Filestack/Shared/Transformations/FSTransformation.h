@@ -11,6 +11,8 @@
 #import "FSResize.h"
 #import "FSCrop.h"
 #import "FSRotate.h"
+#import "FSFlip.h"
+#import "FSFlop.h"
 
 @interface FSTransformation : NSObject
 
