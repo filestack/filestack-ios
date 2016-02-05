@@ -13,6 +13,7 @@
 #import "FSRotate.h"
 #import "FSFlip.h"
 #import "FSFlop.h"
+#import "FSWatermark.h"
 
 @interface FSTransformation : NSObject
 

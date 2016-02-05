@@ -105,6 +105,14 @@
 		B2DE23251C63AEC90007C569 /* FSFlop+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23221C63AEC90007C569 /* FSFlop+Private.h */; };
 		B2DE23261C63AEC90007C569 /* FSFlop+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23231C63AEC90007C569 /* FSFlop+Private.m */; };
 		B2DE23271C63AEC90007C569 /* FSFlop+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23231C63AEC90007C569 /* FSFlop+Private.m */; };
+		B2DE232B1C64B8CC0007C569 /* FSWatermark.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23291C64B8CC0007C569 /* FSWatermark.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE232C1C64B8CC0007C569 /* FSWatermark.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23291C64B8CC0007C569 /* FSWatermark.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE232D1C64B8CC0007C569 /* FSWatermark.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE232A1C64B8CC0007C569 /* FSWatermark.m */; };
+		B2DE232E1C64B8CC0007C569 /* FSWatermark.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE232A1C64B8CC0007C569 /* FSWatermark.m */; };
+		B2DE23311C64ED8D0007C569 /* FSWatermark+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */; };
+		B2DE23321C64ED8D0007C569 /* FSWatermark+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */; };
+		B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */; };
+		B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +192,10 @@
 		B2DE231D1C63AEAD0007C569 /* FSFlop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFlop.m; sourceTree = "<group>"; };
 		B2DE23221C63AEC90007C569 /* FSFlop+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSFlop+Private.h"; sourceTree = "<group>"; };
 		B2DE23231C63AEC90007C569 /* FSFlop+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSFlop+Private.m"; sourceTree = "<group>"; };
+		B2DE23291C64B8CC0007C569 /* FSWatermark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWatermark.h; sourceTree = "<group>"; };
+		B2DE232A1C64B8CC0007C569 /* FSWatermark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWatermark.m; sourceTree = "<group>"; };
+		B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSWatermark+Private.h"; sourceTree = "<group>"; };
+		B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSWatermark+Private.m"; sourceTree = "<group>"; };
 		B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackIOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackMac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -384,6 +396,10 @@
 				B2DE23171C63AE4C0007C569 /* FSFlip+Private.m */,
 				B2DE23221C63AEC90007C569 /* FSFlop+Private.h */,
 				B2DE23231C63AEC90007C569 /* FSFlop+Private.m */,
+				B2DE23291C64B8CC0007C569 /* FSWatermark.h */,
+				B2DE232A1C64B8CC0007C569 /* FSWatermark.m */,
+				B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */,
+				B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */,
 			);
 			path = Transformations;
 			sourceTree = "<group>";
@@ -395,6 +411,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2DE232B1C64B8CC0007C569 /* FSWatermark.h in Headers */,
 				B2DE23181C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
 				B254A66C1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B254A6711C5F670E0096F7F6 /* FSSessionSettings.h in Headers */,
@@ -416,6 +433,7 @@
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
 				B2DE22FC1C63972B0007C569 /* FSCrop+Private.h in Headers */,
 				B2DE22E61C6368D40007C569 /* FSTransform.h in Headers */,
+				B2DE23311C64ED8D0007C569 /* FSWatermark+Private.h in Headers */,
 				B2DE23121C63ADFD0007C569 /* FSFlip.h in Headers */,
 				B254A6601C5A26800096F7F6 /* FSAPIClient.h in Headers */,
 				B2253D621C4FD4DF008E47A3 /* FSMetadata.h in Headers */,
@@ -426,6 +444,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2DE232C1C64B8CC0007C569 /* FSWatermark.h in Headers */,
 				B2DE23191C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
 				B254A66D1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */,
@@ -447,6 +466,7 @@
 				B2DE22E71C6368D70007C569 /* FSTransform.h in Headers */,
 				B2DE22FD1C63972B0007C569 /* FSCrop+Private.h in Headers */,
 				B273AA141C57C5B100232972 /* FSMetadata+Private.h in Headers */,
+				B2DE23321C64ED8D0007C569 /* FSWatermark+Private.h in Headers */,
 				B2DE23131C63ADFD0007C569 /* FSFlip.h in Headers */,
 				B273AA011C57A52400232972 /* FilestackMac.h in Headers */,
 				B254A6611C5A26800096F7F6 /* FSAPIClient.h in Headers */,
@@ -703,6 +723,7 @@
 				B2DE22D21C635C910007C569 /* FSResize.m in Sources */,
 				B2DE230A1C639D390007C569 /* FSRotate+Private.m in Sources */,
 				B254A66E1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
+				B2DE232D1C64B8CC0007C569 /* FSWatermark.m in Sources */,
 				B2DE23141C63ADFD0007C569 /* FSFlip.m in Sources */,
 				B2DE22E41C6368A30007C569 /* FSTransform.m in Sources */,
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
@@ -713,6 +734,7 @@
 				B273A9D51C50E12100232972 /* FSStoreOptions.m in Sources */,
 				B254A6621C5A26800096F7F6 /* FSAPIClient.m in Sources */,
 				B2DE22F81C6395230007C569 /* FSCrop.m in Sources */,
+				B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
 				B2DE22F21C6394120007C569 /* FSTransform+Private.m in Sources */,
 				B2DE23261C63AEC90007C569 /* FSFlop+Private.m in Sources */,
 			);
@@ -741,6 +763,7 @@
 				B2DE22D31C635C940007C569 /* FSResize.m in Sources */,
 				B2DE230B1C639D390007C569 /* FSRotate+Private.m in Sources */,
 				B254A66F1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
+				B2DE232E1C64B8CC0007C569 /* FSWatermark.m in Sources */,
 				B2DE23151C63ADFD0007C569 /* FSFlip.m in Sources */,
 				B2DE22E51C6368A30007C569 /* FSTransform.m in Sources */,
 				B273AA0F1C57C5B100232972 /* FSBlob.m in Sources */,
@@ -751,6 +774,7 @@
 				B273AA171C57C5B400232972 /* Filestack.m in Sources */,
 				B254A6631C5A26800096F7F6 /* FSAPIClient.m in Sources */,
 				B2DE22F91C6395230007C569 /* FSCrop.m in Sources */,
+				B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
 				B2DE22F31C6394120007C569 /* FSTransform+Private.m in Sources */,
 				B2DE23271C63AEC90007C569 /* FSFlop+Private.m in Sources */,
 			);
