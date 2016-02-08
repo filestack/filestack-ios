@@ -26,6 +26,13 @@
     return self;
 }
 
+- (instancetype)initWithQueryString:(NSString *)queryString {
+    if (self = [self init]) {
+        [self.transformationsArray addObject:queryString];
+    }
+    return self;
+}
+
 - (void)add:(FSTransform *)transform {
     NSString *transformQuery = [transform toQuery];
 

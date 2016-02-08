@@ -18,9 +18,12 @@
 #import "FSDetectFaces.h"
 #import "FSPixelateFaces.h"
 #import "FSBlurFaces.h"
+#import "FSRoundedCorners.h"
+#import "FSPolaroid.h"
 
 @interface FSTransformation : NSObject
 
+- (instancetype)initWithQueryString:(NSString *)queryString;
 - (void)add:(FSTransform *)transform;
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey andURLToTransform:(NSString *)urlToTransform;
 
