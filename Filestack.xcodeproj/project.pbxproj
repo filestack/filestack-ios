@@ -52,6 +52,22 @@
 		B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
 		B273AA161C57C5B400232972 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA171C57C5B400232972 /* Filestack.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D4B1C4F9D9E008E47A3 /* Filestack.m */; };
+		B2D755FB1C68C6FA003263FB /* FSPixelateFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D755F91C68C6FA003263FB /* FSPixelateFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D755FC1C68C6FA003263FB /* FSPixelateFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */; };
+		B2D755FD1C68C6FD003263FB /* FSPixelateFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */; };
+		B2D756001C68C719003263FB /* FSPixelateFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D755FE1C68C719003263FB /* FSPixelateFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756011C68C719003263FB /* FSPixelateFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D755FE1C68C719003263FB /* FSPixelateFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756021C68C719003263FB /* FSPixelateFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D755FF1C68C719003263FB /* FSPixelateFaces+Private.m */; };
+		B2D756031C68C719003263FB /* FSPixelateFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D755FF1C68C719003263FB /* FSPixelateFaces+Private.m */; };
+		B2D756041C68C728003263FB /* FSPixelateFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D755F91C68C6FA003263FB /* FSPixelateFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756081C68CE73003263FB /* FSBlurFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756061C68CE73003263FB /* FSBlurFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756091C68CE73003263FB /* FSBlurFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756061C68CE73003263FB /* FSBlurFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D7560A1C68CE73003263FB /* FSBlurFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756071C68CE73003263FB /* FSBlurFaces.m */; };
+		B2D7560B1C68CE73003263FB /* FSBlurFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756071C68CE73003263FB /* FSBlurFaces.m */; };
+		B2D7560E1C68CE84003263FB /* FSBlurFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7560C1C68CE84003263FB /* FSBlurFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D7560F1C68CE84003263FB /* FSBlurFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7560C1C68CE84003263FB /* FSBlurFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756101C68CE84003263FB /* FSBlurFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7560D1C68CE84003263FB /* FSBlurFaces+Private.m */; };
+		B2D756111C68CE84003263FB /* FSBlurFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7560D1C68CE84003263FB /* FSBlurFaces+Private.m */; };
 		B2DE22CD1C6257BC0007C569 /* FSBlobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */; };
 		B2DE22D11C635C910007C569 /* FSResize.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE22CF1C635C910007C569 /* FSResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2DE22D21C635C910007C569 /* FSResize.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22D01C635C910007C569 /* FSResize.m */; };
@@ -113,6 +129,22 @@
 		B2DE23321C64ED8D0007C569 /* FSWatermark+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */; };
 		B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */; };
 		B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */; };
+		B2DE233D1C689B5B0007C569 /* FSDetectFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE233B1C689B5B0007C569 /* FSDetectFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE233E1C689B5B0007C569 /* FSDetectFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE233B1C689B5B0007C569 /* FSDetectFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE233F1C689B5B0007C569 /* FSDetectFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE233C1C689B5B0007C569 /* FSDetectFaces.m */; };
+		B2DE23401C689B5B0007C569 /* FSDetectFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE233C1C689B5B0007C569 /* FSDetectFaces.m */; };
+		B2DE23441C689B7F0007C569 /* FSDetectFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23421C689B7F0007C569 /* FSDetectFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE23451C689B7F0007C569 /* FSDetectFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23421C689B7F0007C569 /* FSDetectFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE23461C689B7F0007C569 /* FSDetectFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23431C689B7F0007C569 /* FSDetectFaces+Private.m */; };
+		B2DE23471C689B7F0007C569 /* FSDetectFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23431C689B7F0007C569 /* FSDetectFaces+Private.m */; };
+		B2DE234B1C68A0760007C569 /* FSCropFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23491C68A0760007C569 /* FSCropFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE234C1C68A0760007C569 /* FSCropFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE23491C68A0760007C569 /* FSCropFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE234D1C68A0760007C569 /* FSCropFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE234A1C68A0760007C569 /* FSCropFaces.m */; };
+		B2DE234E1C68A0760007C569 /* FSCropFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE234A1C68A0760007C569 /* FSCropFaces.m */; };
+		B2DE23511C68A0880007C569 /* FSCropFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE23521C68A0880007C569 /* FSCropFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2DE23531C68A0880007C569 /* FSCropFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */; };
+		B2DE23541C68A0880007C569 /* FSCropFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +197,14 @@
 		B273A9FE1C57A52400232972 /* FilestackMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilestackMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B273AA001C57A52400232972 /* FilestackMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilestackMac.h; sourceTree = "<group>"; };
 		B273AA021C57A52400232972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2D755F91C68C6FA003263FB /* FSPixelateFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPixelateFaces.h; sourceTree = "<group>"; };
+		B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPixelateFaces.m; sourceTree = "<group>"; };
+		B2D755FE1C68C719003263FB /* FSPixelateFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSPixelateFaces+Private.h"; sourceTree = "<group>"; };
+		B2D755FF1C68C719003263FB /* FSPixelateFaces+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSPixelateFaces+Private.m"; sourceTree = "<group>"; };
+		B2D756061C68CE73003263FB /* FSBlurFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSBlurFaces.h; sourceTree = "<group>"; };
+		B2D756071C68CE73003263FB /* FSBlurFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBlurFaces.m; sourceTree = "<group>"; };
+		B2D7560C1C68CE84003263FB /* FSBlurFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSBlurFaces+Private.h"; sourceTree = "<group>"; };
+		B2D7560D1C68CE84003263FB /* FSBlurFaces+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSBlurFaces+Private.m"; sourceTree = "<group>"; };
 		B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBlobTests.m; sourceTree = "<group>"; };
 		B2DE22CF1C635C910007C569 /* FSResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSResize.h; sourceTree = "<group>"; };
 		B2DE22D01C635C910007C569 /* FSResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSResize.m; sourceTree = "<group>"; };
@@ -196,6 +236,14 @@
 		B2DE232A1C64B8CC0007C569 /* FSWatermark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWatermark.m; sourceTree = "<group>"; };
 		B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSWatermark+Private.h"; sourceTree = "<group>"; };
 		B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSWatermark+Private.m"; sourceTree = "<group>"; };
+		B2DE233B1C689B5B0007C569 /* FSDetectFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDetectFaces.h; sourceTree = "<group>"; };
+		B2DE233C1C689B5B0007C569 /* FSDetectFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDetectFaces.m; sourceTree = "<group>"; };
+		B2DE23421C689B7F0007C569 /* FSDetectFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSDetectFaces+Private.h"; sourceTree = "<group>"; };
+		B2DE23431C689B7F0007C569 /* FSDetectFaces+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSDetectFaces+Private.m"; sourceTree = "<group>"; };
+		B2DE23491C68A0760007C569 /* FSCropFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCropFaces.h; sourceTree = "<group>"; };
+		B2DE234A1C68A0760007C569 /* FSCropFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCropFaces.m; sourceTree = "<group>"; };
+		B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSCropFaces+Private.h"; sourceTree = "<group>"; };
+		B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCropFaces+Private.m"; sourceTree = "<group>"; };
 		B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackIOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackMac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -367,41 +415,137 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		B2D755F81C68C6E8003263FB /* FSPixelateFaces */ = {
+			isa = PBXGroup;
+			children = (
+				B2D755F91C68C6FA003263FB /* FSPixelateFaces.h */,
+				B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */,
+				B2D755FE1C68C719003263FB /* FSPixelateFaces+Private.h */,
+				B2D755FF1C68C719003263FB /* FSPixelateFaces+Private.m */,
+			);
+			name = FSPixelateFaces;
+			sourceTree = "<group>";
+		};
+		B2D756051C68CD8C003263FB /* FSBlurFaces */ = {
+			isa = PBXGroup;
+			children = (
+				B2D756061C68CE73003263FB /* FSBlurFaces.h */,
+				B2D756071C68CE73003263FB /* FSBlurFaces.m */,
+				B2D7560C1C68CE84003263FB /* FSBlurFaces+Private.h */,
+				B2D7560D1C68CE84003263FB /* FSBlurFaces+Private.m */,
+			);
+			name = FSBlurFaces;
+			sourceTree = "<group>";
+		};
 		B2DE22CE1C635BF60007C569 /* Transformations */ = {
 			isa = PBXGroup;
 			children = (
+				B2D756051C68CD8C003263FB /* FSBlurFaces */,
+				B2D755F81C68C6E8003263FB /* FSPixelateFaces */,
+				B2DE23481C68A0610007C569 /* FSCropFaces */,
+				B2DE23411C689B620007C569 /* FSDetectFaces */,
+				B2DE233A1C689AD80007C569 /* FSWatermark */,
+				B2DE23391C689A720007C569 /* FSFlop */,
+				B2DE23381C689A6C0007C569 /* FSFlip */,
+				B2DE23371C689A630007C569 /* FSCrop */,
+				B2DE23361C689A5D0007C569 /* FSRotate */,
+				B2DE23351C689A530007C569 /* FSResize */,
 				B2DE22E01C6368A30007C569 /* FSTransform.h */,
 				B2DE22E11C6368A30007C569 /* FSTransform.m */,
-				B2DE22CF1C635C910007C569 /* FSResize.h */,
-				B2DE22D01C635C910007C569 /* FSResize.m */,
-				B2DE22F41C6395230007C569 /* FSCrop.h */,
-				B2DE22F51C6395230007C569 /* FSCrop.m */,
-				B2DE23001C639D280007C569 /* FSRotate.h */,
-				B2DE23011C639D280007C569 /* FSRotate.m */,
-				B2DE23101C63ADFD0007C569 /* FSFlip.h */,
-				B2DE23111C63ADFD0007C569 /* FSFlip.m */,
-				B2DE231C1C63AEAD0007C569 /* FSFlop.h */,
-				B2DE231D1C63AEAD0007C569 /* FSFlop.m */,
 				B2DE22D51C6360910007C569 /* FSTransformation.h */,
 				B2DE22D61C6360910007C569 /* FSTransformation.m */,
 				B2DE22EE1C6394120007C569 /* FSTransform+Private.h */,
 				B2DE22EF1C6394120007C569 /* FSTransform+Private.m */,
+			);
+			path = Transformations;
+			sourceTree = "<group>";
+		};
+		B2DE23351C689A530007C569 /* FSResize */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE22CF1C635C910007C569 /* FSResize.h */,
+				B2DE22D01C635C910007C569 /* FSResize.m */,
 				B2DE22E81C6392D40007C569 /* FSResize+Private.h */,
 				B2DE22E91C6392D40007C569 /* FSResize+Private.m */,
-				B2DE22FA1C63972B0007C569 /* FSCrop+Private.h */,
-				B2DE22FB1C63972B0007C569 /* FSCrop+Private.m */,
+			);
+			name = FSResize;
+			sourceTree = "<group>";
+		};
+		B2DE23361C689A5D0007C569 /* FSRotate */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE23001C639D280007C569 /* FSRotate.h */,
+				B2DE23011C639D280007C569 /* FSRotate.m */,
 				B2DE23061C639D390007C569 /* FSRotate+Private.h */,
 				B2DE23071C639D390007C569 /* FSRotate+Private.m */,
+			);
+			name = FSRotate;
+			sourceTree = "<group>";
+		};
+		B2DE23371C689A630007C569 /* FSCrop */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE22F41C6395230007C569 /* FSCrop.h */,
+				B2DE22F51C6395230007C569 /* FSCrop.m */,
+				B2DE22FA1C63972B0007C569 /* FSCrop+Private.h */,
+				B2DE22FB1C63972B0007C569 /* FSCrop+Private.m */,
+			);
+			name = FSCrop;
+			sourceTree = "<group>";
+		};
+		B2DE23381C689A6C0007C569 /* FSFlip */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE23101C63ADFD0007C569 /* FSFlip.h */,
+				B2DE23111C63ADFD0007C569 /* FSFlip.m */,
 				B2DE23161C63AE4C0007C569 /* FSFlip+Private.h */,
 				B2DE23171C63AE4C0007C569 /* FSFlip+Private.m */,
+			);
+			name = FSFlip;
+			sourceTree = "<group>";
+		};
+		B2DE23391C689A720007C569 /* FSFlop */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE231C1C63AEAD0007C569 /* FSFlop.h */,
+				B2DE231D1C63AEAD0007C569 /* FSFlop.m */,
 				B2DE23221C63AEC90007C569 /* FSFlop+Private.h */,
 				B2DE23231C63AEC90007C569 /* FSFlop+Private.m */,
+			);
+			name = FSFlop;
+			sourceTree = "<group>";
+		};
+		B2DE233A1C689AD80007C569 /* FSWatermark */ = {
+			isa = PBXGroup;
+			children = (
 				B2DE23291C64B8CC0007C569 /* FSWatermark.h */,
 				B2DE232A1C64B8CC0007C569 /* FSWatermark.m */,
 				B2DE232F1C64ED8D0007C569 /* FSWatermark+Private.h */,
 				B2DE23301C64ED8D0007C569 /* FSWatermark+Private.m */,
 			);
-			path = Transformations;
+			name = FSWatermark;
+			sourceTree = "<group>";
+		};
+		B2DE23411C689B620007C569 /* FSDetectFaces */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE233B1C689B5B0007C569 /* FSDetectFaces.h */,
+				B2DE233C1C689B5B0007C569 /* FSDetectFaces.m */,
+				B2DE23421C689B7F0007C569 /* FSDetectFaces+Private.h */,
+				B2DE23431C689B7F0007C569 /* FSDetectFaces+Private.m */,
+			);
+			name = FSDetectFaces;
+			sourceTree = "<group>";
+		};
+		B2DE23481C68A0610007C569 /* FSCropFaces */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE23491C68A0760007C569 /* FSCropFaces.h */,
+				B2DE234A1C68A0760007C569 /* FSCropFaces.m */,
+				B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */,
+				B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */,
+			);
+			name = FSCropFaces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,11 +559,15 @@
 				B2DE23181C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
 				B254A66C1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B254A6711C5F670E0096F7F6 /* FSSessionSettings.h in Headers */,
+				B2DE234B1C68A0760007C569 /* FSCropFaces.h in Headers */,
+				B2DE233D1C689B5B0007C569 /* FSDetectFaces.h in Headers */,
 				B2253D111C4F9A1F008E47A3 /* FilestackIOS.h in Headers */,
 				B2DE22D11C635C910007C569 /* FSResize.h in Headers */,
 				B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */,
 				B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */,
 				B2DE23081C639D390007C569 /* FSRotate+Private.h in Headers */,
+				B2D755FB1C68C6FA003263FB /* FSPixelateFaces.h in Headers */,
+				B2D756001C68C719003263FB /* FSPixelateFaces+Private.h in Headers */,
 				B2DE22F01C6394120007C569 /* FSTransform+Private.h in Headers */,
 				B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */,
 				B2DE22EA1C6392D40007C569 /* FSResize+Private.h in Headers */,
@@ -429,6 +577,10 @@
 				B2DE23241C63AEC90007C569 /* FSFlop+Private.h in Headers */,
 				B273A9D41C50E12100232972 /* FSStoreOptions.h in Headers */,
 				B273A9D81C50E2DC00232972 /* FSSecurity.h in Headers */,
+				B2DE23511C68A0880007C569 /* FSCropFaces+Private.h in Headers */,
+				B2D7560E1C68CE84003263FB /* FSBlurFaces+Private.h in Headers */,
+				B2D756081C68CE73003263FB /* FSBlurFaces.h in Headers */,
+				B2DE23441C689B7F0007C569 /* FSDetectFaces+Private.h in Headers */,
 				B2DE22F61C6395230007C569 /* FSCrop.h in Headers */,
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
 				B2DE22FC1C63972B0007C569 /* FSCrop+Private.h in Headers */,
@@ -448,6 +600,9 @@
 				B2DE23191C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
 				B254A66D1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */,
+				B2DE234C1C68A0760007C569 /* FSCropFaces.h in Headers */,
+				B2DE233E1C689B5B0007C569 /* FSDetectFaces.h in Headers */,
+				B2D756011C68C719003263FB /* FSPixelateFaces+Private.h in Headers */,
 				B273AA161C57C5B400232972 /* Filestack.h in Headers */,
 				B2DE22D41C635C990007C569 /* FSResize.h in Headers */,
 				B273AA081C57C5A900232972 /* FSStoreOptions.h in Headers */,
@@ -462,6 +617,10 @@
 				B2DE23251C63AEC90007C569 /* FSFlop+Private.h in Headers */,
 				B273AA0A1C57C5A900232972 /* FSSecurity.h in Headers */,
 				B254A6721C5F670F0096F7F6 /* FSSessionSettings.h in Headers */,
+				B2DE23521C68A0880007C569 /* FSCropFaces+Private.h in Headers */,
+				B2DE23451C689B7F0007C569 /* FSDetectFaces+Private.h in Headers */,
+				B2D7560F1C68CE84003263FB /* FSBlurFaces+Private.h in Headers */,
+				B2D756091C68CE73003263FB /* FSBlurFaces.h in Headers */,
 				B2DE22F71C6395230007C569 /* FSCrop.h in Headers */,
 				B2DE22E71C6368D70007C569 /* FSTransform.h in Headers */,
 				B2DE22FD1C63972B0007C569 /* FSCrop+Private.h in Headers */,
@@ -469,6 +628,7 @@
 				B2DE23321C64ED8D0007C569 /* FSWatermark+Private.h in Headers */,
 				B2DE23131C63ADFD0007C569 /* FSFlip.h in Headers */,
 				B273AA011C57A52400232972 /* FilestackMac.h in Headers */,
+				B2D756041C68C728003263FB /* FSPixelateFaces.h in Headers */,
 				B254A6611C5A26800096F7F6 /* FSAPIClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,7 +876,12 @@
 				B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */,
 				B2DE231A1C63AE4C0007C569 /* FSFlip+Private.m in Sources */,
 				B2DE22FE1C63972B0007C569 /* FSCrop+Private.m in Sources */,
+				B2D755FC1C68C6FA003263FB /* FSPixelateFaces.m in Sources */,
 				B2DE22D91C6360910007C569 /* FSTransformation.m in Sources */,
+				B2D756021C68C719003263FB /* FSPixelateFaces+Private.m in Sources */,
+				B2D756101C68CE84003263FB /* FSBlurFaces+Private.m in Sources */,
+				B2DE23461C689B7F0007C569 /* FSDetectFaces+Private.m in Sources */,
+				B2DE23531C68A0880007C569 /* FSCropFaces+Private.m in Sources */,
 				B2DE23041C639D280007C569 /* FSRotate.m in Sources */,
 				B2253D631C4FD4DF008E47A3 /* FSMetadata.m in Sources */,
 				B2DE22EC1C6392D40007C569 /* FSResize+Private.m in Sources */,
@@ -725,6 +890,9 @@
 				B254A66E1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
 				B2DE232D1C64B8CC0007C569 /* FSWatermark.m in Sources */,
 				B2DE23141C63ADFD0007C569 /* FSFlip.m in Sources */,
+				B2D7560A1C68CE73003263FB /* FSBlurFaces.m in Sources */,
+				B2DE233F1C689B5B0007C569 /* FSDetectFaces.m in Sources */,
+				B2DE234D1C68A0760007C569 /* FSCropFaces.m in Sources */,
 				B2DE22E41C6368A30007C569 /* FSTransform.m in Sources */,
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
 				B2DE23201C63AEAD0007C569 /* FSFlop.m in Sources */,
@@ -756,7 +924,12 @@
 				B273AA0B1C57C5A900232972 /* FSSecurity.m in Sources */,
 				B2DE231B1C63AE4C0007C569 /* FSFlip+Private.m in Sources */,
 				B2DE22FF1C63972B0007C569 /* FSCrop+Private.m in Sources */,
+				B2D755FD1C68C6FD003263FB /* FSPixelateFaces.m in Sources */,
 				B2DE22DA1C6360910007C569 /* FSTransformation.m in Sources */,
+				B2D756031C68C719003263FB /* FSPixelateFaces+Private.m in Sources */,
+				B2D756111C68CE84003263FB /* FSBlurFaces+Private.m in Sources */,
+				B2DE23471C689B7F0007C569 /* FSDetectFaces+Private.m in Sources */,
+				B2DE23541C68A0880007C569 /* FSCropFaces+Private.m in Sources */,
 				B2DE23051C639D280007C569 /* FSRotate.m in Sources */,
 				B273AA131C57C5B100232972 /* FSMetadata.m in Sources */,
 				B2DE22ED1C6392D40007C569 /* FSResize+Private.m in Sources */,
@@ -765,6 +938,9 @@
 				B254A66F1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
 				B2DE232E1C64B8CC0007C569 /* FSWatermark.m in Sources */,
 				B2DE23151C63ADFD0007C569 /* FSFlip.m in Sources */,
+				B2D7560B1C68CE73003263FB /* FSBlurFaces.m in Sources */,
+				B2DE23401C689B5B0007C569 /* FSDetectFaces.m in Sources */,
+				B2DE234E1C68A0760007C569 /* FSCropFaces.m in Sources */,
 				B2DE22E51C6368A30007C569 /* FSTransform.m in Sources */,
 				B273AA0F1C57C5B100232972 /* FSBlob.m in Sources */,
 				B2DE23211C63AEAD0007C569 /* FSFlop.m in Sources */,

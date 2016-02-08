@@ -9,6 +9,7 @@
 #import "FSAPIURL.h"
 
 NSString *const FSURLBaseURL = @"https://www.filestackapi.com/";
+NSString *const FSURLTransformationURL = @"https://process.filestackapi.com";
 
 @implementation FSAPIURL
 

@@ -14,9 +14,14 @@
 #import "FSFlip.h"
 #import "FSFlop.h"
 #import "FSWatermark.h"
+#import "FSCropFaces.h"
+#import "FSDetectFaces.h"
+#import "FSPixelateFaces.h"
+#import "FSBlurFaces.h"
 
 @interface FSTransformation : NSObject
 
 - (void)add:(FSTransform *)transform;
+- (NSString *)transformationURLWithApiKey:(NSString *)apiKey andURLToTransform:(NSString *)urlToTransform;
 
 @end
