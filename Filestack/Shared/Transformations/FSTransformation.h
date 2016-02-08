@@ -20,6 +20,10 @@
 #import "FSBlurFaces.h"
 #import "FSRoundedCorners.h"
 #import "FSPolaroid.h"
+#import "FSTornEdges.h"
+#import "FSShadow.h"
+#import "FSCircle.h"
+#import "FSBorder.h"
 
 @interface FSTransformation : NSObject
 
