@@ -212,8 +212,8 @@
 		B2D756F91C6B7F5F003263FB /* FSASCII+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756F61C6B7F5F003263FB /* FSASCII+Private.h */; };
 		B2D756FA1C6B7F5F003263FB /* FSASCII+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756F71C6B7F5F003263FB /* FSASCII+Private.m */; };
 		B2D756FB1C6B7F5F003263FB /* FSASCII+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756F71C6B7F5F003263FB /* FSASCII+Private.m */; };
-		B2D756FE1C6B84F6003263FB /* FSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756FC1C6B84F6003263FB /* FSOutput.h */; };
-		B2D756FF1C6B84F6003263FB /* FSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756FC1C6B84F6003263FB /* FSOutput.h */; };
+		B2D756FE1C6B84F6003263FB /* FSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756FC1C6B84F6003263FB /* FSOutput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756FF1C6B84F6003263FB /* FSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756FC1C6B84F6003263FB /* FSOutput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2D757001C6B84F6003263FB /* FSOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756FD1C6B84F6003263FB /* FSOutput.m */; };
 		B2D757011C6B84F6003263FB /* FSOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756FD1C6B84F6003263FB /* FSOutput.m */; };
 		B2D757051C6B851B003263FB /* FSOutput+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D757031C6B851B003263FB /* FSOutput+Private.h */; };
