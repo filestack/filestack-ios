@@ -9,7 +9,7 @@
 #import "FSTransform.h"
 
 typedef NSString * FSPPartialBlurType;
-#define FSPPartialBlurTypeeRect @"rect"
+#define FSPPartialBlurTypeRect @"rect"
 #define FSPPartialBlurTypeOval @"oval"
 
 @interface FSPartialBlur : FSTransform

@@ -196,6 +196,30 @@
 		B2D756DF1C6B78F0003263FB /* FSCollage+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756DC1C6B78F0003263FB /* FSCollage+Private.h */; };
 		B2D756E01C6B78F0003263FB /* FSCollage+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756DD1C6B78F0003263FB /* FSCollage+Private.m */; };
 		B2D756E11C6B78F0003263FB /* FSCollage+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756DD1C6B78F0003263FB /* FSCollage+Private.m */; };
+		B2D756E51C6B7E8E003263FB /* FSURLScreenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756E31C6B7E8E003263FB /* FSURLScreenshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756E61C6B7E8E003263FB /* FSURLScreenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756E31C6B7E8E003263FB /* FSURLScreenshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756E71C6B7E8E003263FB /* FSURLScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756E41C6B7E8E003263FB /* FSURLScreenshot.m */; };
+		B2D756E81C6B7E8E003263FB /* FSURLScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756E41C6B7E8E003263FB /* FSURLScreenshot.m */; };
+		B2D756EB1C6B7EA5003263FB /* FSURLScreenshot+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756E91C6B7EA5003263FB /* FSURLScreenshot+Private.h */; };
+		B2D756EC1C6B7EA5003263FB /* FSURLScreenshot+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756E91C6B7EA5003263FB /* FSURLScreenshot+Private.h */; };
+		B2D756ED1C6B7EA5003263FB /* FSURLScreenshot+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756EA1C6B7EA5003263FB /* FSURLScreenshot+Private.m */; };
+		B2D756EE1C6B7EA5003263FB /* FSURLScreenshot+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756EA1C6B7EA5003263FB /* FSURLScreenshot+Private.m */; };
+		B2D756F21C6B7F49003263FB /* FSASCII.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756F01C6B7F49003263FB /* FSASCII.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756F31C6B7F49003263FB /* FSASCII.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756F01C6B7F49003263FB /* FSASCII.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756F41C6B7F49003263FB /* FSASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756F11C6B7F49003263FB /* FSASCII.m */; };
+		B2D756F51C6B7F49003263FB /* FSASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756F11C6B7F49003263FB /* FSASCII.m */; };
+		B2D756F81C6B7F5F003263FB /* FSASCII+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756F61C6B7F5F003263FB /* FSASCII+Private.h */; };
+		B2D756F91C6B7F5F003263FB /* FSASCII+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756F61C6B7F5F003263FB /* FSASCII+Private.h */; };
+		B2D756FA1C6B7F5F003263FB /* FSASCII+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756F71C6B7F5F003263FB /* FSASCII+Private.m */; };
+		B2D756FB1C6B7F5F003263FB /* FSASCII+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756F71C6B7F5F003263FB /* FSASCII+Private.m */; };
+		B2D756FE1C6B84F6003263FB /* FSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756FC1C6B84F6003263FB /* FSOutput.h */; };
+		B2D756FF1C6B84F6003263FB /* FSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756FC1C6B84F6003263FB /* FSOutput.h */; };
+		B2D757001C6B84F6003263FB /* FSOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756FD1C6B84F6003263FB /* FSOutput.m */; };
+		B2D757011C6B84F6003263FB /* FSOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756FD1C6B84F6003263FB /* FSOutput.m */; };
+		B2D757051C6B851B003263FB /* FSOutput+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D757031C6B851B003263FB /* FSOutput+Private.h */; };
+		B2D757061C6B851B003263FB /* FSOutput+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D757031C6B851B003263FB /* FSOutput+Private.h */; };
+		B2D757071C6B851B003263FB /* FSOutput+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D757041C6B851B003263FB /* FSOutput+Private.m */; };
+		B2D757081C6B851B003263FB /* FSOutput+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D757041C6B851B003263FB /* FSOutput+Private.m */; };
 		B2DE22CD1C6257BC0007C569 /* FSBlobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */; };
 		B2DE22D11C635C910007C569 /* FSResize.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE22CF1C635C910007C569 /* FSResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2DE22D21C635C910007C569 /* FSResize.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22D01C635C910007C569 /* FSResize.m */; };
@@ -397,6 +421,18 @@
 		B2D756D71C6B78E0003263FB /* FSCollage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCollage.m; sourceTree = "<group>"; };
 		B2D756DC1C6B78F0003263FB /* FSCollage+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSCollage+Private.h"; sourceTree = "<group>"; };
 		B2D756DD1C6B78F0003263FB /* FSCollage+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCollage+Private.m"; sourceTree = "<group>"; };
+		B2D756E31C6B7E8E003263FB /* FSURLScreenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSURLScreenshot.h; sourceTree = "<group>"; };
+		B2D756E41C6B7E8E003263FB /* FSURLScreenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSURLScreenshot.m; sourceTree = "<group>"; };
+		B2D756E91C6B7EA5003263FB /* FSURLScreenshot+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSURLScreenshot+Private.h"; sourceTree = "<group>"; };
+		B2D756EA1C6B7EA5003263FB /* FSURLScreenshot+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSURLScreenshot+Private.m"; sourceTree = "<group>"; };
+		B2D756F01C6B7F49003263FB /* FSASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSASCII.h; sourceTree = "<group>"; };
+		B2D756F11C6B7F49003263FB /* FSASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSASCII.m; sourceTree = "<group>"; };
+		B2D756F61C6B7F5F003263FB /* FSASCII+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSASCII+Private.h"; sourceTree = "<group>"; };
+		B2D756F71C6B7F5F003263FB /* FSASCII+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSASCII+Private.m"; sourceTree = "<group>"; };
+		B2D756FC1C6B84F6003263FB /* FSOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSOutput.h; sourceTree = "<group>"; };
+		B2D756FD1C6B84F6003263FB /* FSOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSOutput.m; sourceTree = "<group>"; };
+		B2D757031C6B851B003263FB /* FSOutput+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSOutput+Private.h"; sourceTree = "<group>"; };
+		B2D757041C6B851B003263FB /* FSOutput+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSOutput+Private.m"; sourceTree = "<group>"; };
 		B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBlobTests.m; sourceTree = "<group>"; };
 		B2DE22CF1C635C910007C569 /* FSResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSResize.h; sourceTree = "<group>"; };
 		B2DE22D01C635C910007C569 /* FSResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSResize.m; sourceTree = "<group>"; };
@@ -805,9 +841,45 @@
 			name = FSCollage;
 			sourceTree = "<group>";
 		};
+		B2D756E21C6B7E79003263FB /* FSURLScreenshot */ = {
+			isa = PBXGroup;
+			children = (
+				B2D756E31C6B7E8E003263FB /* FSURLScreenshot.h */,
+				B2D756E41C6B7E8E003263FB /* FSURLScreenshot.m */,
+				B2D756E91C6B7EA5003263FB /* FSURLScreenshot+Private.h */,
+				B2D756EA1C6B7EA5003263FB /* FSURLScreenshot+Private.m */,
+			);
+			name = FSURLScreenshot;
+			sourceTree = "<group>";
+		};
+		B2D756EF1C6B7F39003263FB /* FSASCII */ = {
+			isa = PBXGroup;
+			children = (
+				B2D756F01C6B7F49003263FB /* FSASCII.h */,
+				B2D756F11C6B7F49003263FB /* FSASCII.m */,
+				B2D756F61C6B7F5F003263FB /* FSASCII+Private.h */,
+				B2D756F71C6B7F5F003263FB /* FSASCII+Private.m */,
+			);
+			name = FSASCII;
+			sourceTree = "<group>";
+		};
+		B2D757021C6B8505003263FB /* FSOutput */ = {
+			isa = PBXGroup;
+			children = (
+				B2D756FC1C6B84F6003263FB /* FSOutput.h */,
+				B2D756FD1C6B84F6003263FB /* FSOutput.m */,
+				B2D757031C6B851B003263FB /* FSOutput+Private.h */,
+				B2D757041C6B851B003263FB /* FSOutput+Private.m */,
+			);
+			name = FSOutput;
+			sourceTree = "<group>";
+		};
 		B2DE22CE1C635BF60007C569 /* Transformations */ = {
 			isa = PBXGroup;
 			children = (
+				B2D757021C6B8505003263FB /* FSOutput */,
+				B2D756EF1C6B7F39003263FB /* FSASCII */,
+				B2D756E21C6B7E79003263FB /* FSURLScreenshot */,
 				B2D756D51C6B78B0003263FB /* FSCollage */,
 				B2D756C81C6B770C003263FB /* FSPartialBlur */,
 				B2D756C11C6B5061003263FB /* FSPartialPixelate */,
@@ -949,6 +1021,8 @@
 				B2DE234B1C68A0760007C569 /* FSCropFaces.h in Headers */,
 				B2D7564F1C68EEF2003263FB /* FSCircle+Private.h in Headers */,
 				B2D756DE1C6B78F0003263FB /* FSCollage+Private.h in Headers */,
+				B2D756F21C6B7F49003263FB /* FSASCII.h in Headers */,
+				B2D756F81C6B7F5F003263FB /* FSASCII+Private.h in Headers */,
 				B2DE233D1C689B5B0007C569 /* FSDetectFaces.h in Headers */,
 				B2253D111C4F9A1F008E47A3 /* FilestackIOS.h in Headers */,
 				B2DE22D11C635C910007C569 /* FSResize.h in Headers */,
@@ -967,6 +1041,8 @@
 				B2DE22DB1C6361390007C569 /* FSTransformation.h in Headers */,
 				B2D756281C68D77F003263FB /* FSPolaroid+Private.h in Headers */,
 				B2DE231E1C63AEAD0007C569 /* FSFlop.h in Headers */,
+				B2D756E51C6B7E8E003263FB /* FSURLScreenshot.h in Headers */,
+				B2D756FE1C6B84F6003263FB /* FSOutput.h in Headers */,
 				B2D7563C1C68E404003263FB /* FSShadow.h in Headers */,
 				B2D756491C68EE77003263FB /* FSCircle.h in Headers */,
 				B2D756AA1C6B4825003263FB /* FSOilPaint+Private.h in Headers */,
@@ -977,6 +1053,7 @@
 				B2D756221C68D772003263FB /* FSPolaroid.h in Headers */,
 				B2D756151C68D361003263FB /* FSRoundedCorners.h in Headers */,
 				B273A9D41C50E12100232972 /* FSStoreOptions.h in Headers */,
+				B2D756EB1C6B7EA5003263FB /* FSURLScreenshot+Private.h in Headers */,
 				B273A9D81C50E2DC00232972 /* FSSecurity.h in Headers */,
 				B2DE23511C68A0880007C569 /* FSCropFaces+Private.h in Headers */,
 				B2D7560E1C68CE84003263FB /* FSBlurFaces+Private.h in Headers */,
@@ -990,6 +1067,7 @@
 				B2D756A41C6B4812003263FB /* FSOilPaint.h in Headers */,
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
 				B2D756761C6B3EBD003263FB /* FSBlur+Private.h in Headers */,
+				B2D757051C6B851B003263FB /* FSOutput+Private.h in Headers */,
 				B2DE22FC1C63972B0007C569 /* FSCrop+Private.h in Headers */,
 				B2D756421C68E413003263FB /* FSShadow+Private.h in Headers */,
 				B2D756631C6B3B91003263FB /* FSSharpen.h in Headers */,
@@ -1022,6 +1100,8 @@
 				B2DE234C1C68A0760007C569 /* FSCropFaces.h in Headers */,
 				B2D756501C68EEF2003263FB /* FSCircle+Private.h in Headers */,
 				B2D756DF1C6B78F0003263FB /* FSCollage+Private.h in Headers */,
+				B2D756F31C6B7F49003263FB /* FSASCII.h in Headers */,
+				B2D756F91C6B7F5F003263FB /* FSASCII+Private.h in Headers */,
 				B2DE233E1C689B5B0007C569 /* FSDetectFaces.h in Headers */,
 				B2D756011C68C719003263FB /* FSPixelateFaces+Private.h in Headers */,
 				B273AA161C57C5B400232972 /* Filestack.h in Headers */,
@@ -1040,6 +1120,8 @@
 				B2DE231F1C63AEAD0007C569 /* FSFlop.h in Headers */,
 				B2D756291C68D77F003263FB /* FSPolaroid+Private.h in Headers */,
 				B2DE23251C63AEC90007C569 /* FSFlop+Private.h in Headers */,
+				B2D756E61C6B7E8E003263FB /* FSURLScreenshot.h in Headers */,
+				B2D756FF1C6B84F6003263FB /* FSOutput.h in Headers */,
 				B2D7563D1C68E404003263FB /* FSShadow.h in Headers */,
 				B2D7564A1C68EE77003263FB /* FSCircle.h in Headers */,
 				B2D756AB1C6B4825003263FB /* FSOilPaint+Private.h in Headers */,
@@ -1050,6 +1132,7 @@
 				B2D756231C68D772003263FB /* FSPolaroid.h in Headers */,
 				B2D756161C68D361003263FB /* FSRoundedCorners.h in Headers */,
 				B254A6721C5F670F0096F7F6 /* FSSessionSettings.h in Headers */,
+				B2D756EC1C6B7EA5003263FB /* FSURLScreenshot+Private.h in Headers */,
 				B2DE23521C68A0880007C569 /* FSCropFaces+Private.h in Headers */,
 				B2DE23451C689B7F0007C569 /* FSDetectFaces+Private.h in Headers */,
 				B2D7560F1C68CE84003263FB /* FSBlurFaces+Private.h in Headers */,
@@ -1063,6 +1146,7 @@
 				B2D756A51C6B4812003263FB /* FSOilPaint.h in Headers */,
 				B2DE22FD1C63972B0007C569 /* FSCrop+Private.h in Headers */,
 				B2D756771C6B3EBD003263FB /* FSBlur+Private.h in Headers */,
+				B2D757061C6B851B003263FB /* FSOutput+Private.h in Headers */,
 				B273AA141C57C5B100232972 /* FSMetadata+Private.h in Headers */,
 				B2D756431C68E413003263FB /* FSShadow+Private.h in Headers */,
 				B2D756641C6B3B91003263FB /* FSSharpen.h in Headers */,
@@ -1321,6 +1405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D756F41C6B7F49003263FB /* FSASCII.m in Sources */,
 				B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */,
 				B2DE231A1C63AE4C0007C569 /* FSFlip+Private.m in Sources */,
 				B2DE22FE1C63972B0007C569 /* FSCrop+Private.m in Sources */,
@@ -1348,7 +1433,9 @@
 				B254A66E1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
 				B2D756B31C6B4B23003263FB /* FSModulate.m in Sources */,
 				B2D7565E1C68F038003263FB /* FSBorder+Private.m in Sources */,
+				B2D756FA1C6B7F5F003263FB /* FSASCII+Private.m in Sources */,
 				B2D7561D1C68D36F003263FB /* FSRoundedCorners+Private.m in Sources */,
+				B2D756ED1C6B7EA5003263FB /* FSURLScreenshot+Private.m in Sources */,
 				B2D756441C68E413003263FB /* FSShadow+Private.m in Sources */,
 				B2D756A61C6B4812003263FB /* FSOilPaint.m in Sources */,
 				B2DE232D1C64B8CC0007C569 /* FSWatermark.m in Sources */,
@@ -1362,6 +1449,7 @@
 				B2D756DA1C6B78E0003263FB /* FSCollage.m in Sources */,
 				B2D756D31C6B7739003263FB /* FSPartialBlur+Private.m in Sources */,
 				B2DE22E41C6368A30007C569 /* FSTransform.m in Sources */,
+				B2D756E71C6B7E8E003263FB /* FSURLScreenshot.m in Sources */,
 				B2D756651C6B3B91003263FB /* FSSharpen.m in Sources */,
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
 				B2DE23201C63AEAD0007C569 /* FSFlop.m in Sources */,
@@ -1374,6 +1462,7 @@
 				B273A9D51C50E12100232972 /* FSStoreOptions.m in Sources */,
 				B254A6621C5A26800096F7F6 /* FSAPIClient.m in Sources */,
 				B2DE22F81C6395230007C569 /* FSCrop.m in Sources */,
+				B2D757071C6B851B003263FB /* FSOutput+Private.m in Sources */,
 				B2D7569F1C6B453B003263FB /* FSPixelate+Private.m in Sources */,
 				B2D756C61C6B5090003263FB /* FSPartialPixelate+Private.m in Sources */,
 				B2D756171C68D361003263FB /* FSRoundedCorners.m in Sources */,
@@ -1382,6 +1471,7 @@
 				B2D756511C68EEF2003263FB /* FSCircle+Private.m in Sources */,
 				B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
 				B2DE22F21C6394120007C569 /* FSTransform+Private.m in Sources */,
+				B2D757001C6B84F6003263FB /* FSOutput.m in Sources */,
 				B2DE23261C63AEC90007C569 /* FSFlop+Private.m in Sources */,
 				B2D7568C1C6B4411003263FB /* FSSepia.m in Sources */,
 				B2D756781C6B3EBD003263FB /* FSBlur+Private.m in Sources */,
@@ -1401,6 +1491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D756F51C6B7F49003263FB /* FSASCII.m in Sources */,
 				B273AA0B1C57C5A900232972 /* FSSecurity.m in Sources */,
 				B2DE231B1C63AE4C0007C569 /* FSFlip+Private.m in Sources */,
 				B2DE22FF1C63972B0007C569 /* FSCrop+Private.m in Sources */,
@@ -1428,7 +1519,9 @@
 				B254A66F1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
 				B2D756B41C6B4B23003263FB /* FSModulate.m in Sources */,
 				B2D7565F1C68F038003263FB /* FSBorder+Private.m in Sources */,
+				B2D756FB1C6B7F5F003263FB /* FSASCII+Private.m in Sources */,
 				B2D7561E1C68D36F003263FB /* FSRoundedCorners+Private.m in Sources */,
+				B2D756EE1C6B7EA5003263FB /* FSURLScreenshot+Private.m in Sources */,
 				B2D756451C68E413003263FB /* FSShadow+Private.m in Sources */,
 				B2D756A71C6B4812003263FB /* FSOilPaint.m in Sources */,
 				B2DE232E1C64B8CC0007C569 /* FSWatermark.m in Sources */,
@@ -1442,6 +1535,7 @@
 				B2D756DB1C6B78E0003263FB /* FSCollage.m in Sources */,
 				B2D756D41C6B7739003263FB /* FSPartialBlur+Private.m in Sources */,
 				B2DE22E51C6368A30007C569 /* FSTransform.m in Sources */,
+				B2D756E81C6B7E8E003263FB /* FSURLScreenshot.m in Sources */,
 				B2D756661C6B3B91003263FB /* FSSharpen.m in Sources */,
 				B273AA0F1C57C5B100232972 /* FSBlob.m in Sources */,
 				B2DE23211C63AEAD0007C569 /* FSFlop.m in Sources */,
@@ -1454,6 +1548,7 @@
 				B273AA171C57C5B400232972 /* Filestack.m in Sources */,
 				B254A6631C5A26800096F7F6 /* FSAPIClient.m in Sources */,
 				B2DE22F91C6395230007C569 /* FSCrop.m in Sources */,
+				B2D757081C6B851B003263FB /* FSOutput+Private.m in Sources */,
 				B2D756A01C6B453B003263FB /* FSPixelate+Private.m in Sources */,
 				B2D756C71C6B5090003263FB /* FSPartialPixelate+Private.m in Sources */,
 				B2D756181C68D361003263FB /* FSRoundedCorners.m in Sources */,
@@ -1462,6 +1557,7 @@
 				B2D756521C68EEF2003263FB /* FSCircle+Private.m in Sources */,
 				B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
 				B2DE22F31C6394120007C569 /* FSTransform+Private.m in Sources */,
+				B2D757011C6B84F6003263FB /* FSOutput.m in Sources */,
 				B2DE23271C63AEC90007C569 /* FSFlop+Private.m in Sources */,
 				B2D7568D1C6B4411003263FB /* FSSepia.m in Sources */,
 				B2D756791C6B3EBD003263FB /* FSBlur+Private.m in Sources */,

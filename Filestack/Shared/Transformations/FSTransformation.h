@@ -33,6 +33,10 @@
 #import "FSModulate.h"
 #import "FSPartialBlur.h"
 #import "FSPartialPixelate.h"
+#import "FSCollage.h"
+#import "FSURLScreenshot.h"
+#import "FSASCII.h"
+#import "FSOutput.h"
 
 @interface FSTransformation : NSObject
 

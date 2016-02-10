@@ -13,7 +13,10 @@
 @interface FSTransformation ()
 
 @property (nonatomic, strong) NSMutableArray *transformationsArray;
+// Custom return value setting for FSDetectFaces.
 @property (nonatomic, assign) BOOL exportFacesToJSON;
+// Custom return value setting for FSOutput.
+@property (nonatomic, assign) BOOL docInfoJSON;
 
 @end
 
@@ -39,6 +42,8 @@
     if (transformQuery) {
         if ([transformQuery isMemberOfClass:[FSDetectFaces class]]) {
             _exportFacesToJSON = ((FSDetectFaces *)transformQuery).exportToJSON;
+        } else if ([transformQuery isMemberOfClass:[FSOutput class]]) {
+            _docInfoJSON = ((FSOutput *)transformQuery).docInfo;
         }
         [_transformationsArray addObject:transformQuery];
     }
