@@ -13,6 +13,6 @@
 @property (nonatomic, strong) NSArray<NSNumber *> *spread;
 @property (nonatomic, strong) NSString *background;
 
-- (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread andBackground:(NSString *)background;
+- (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread background:(NSString *)background;
 
 @end

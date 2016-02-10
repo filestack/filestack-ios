@@ -10,7 +10,7 @@
 
 @implementation FSCrop
 
-- (instancetype)initWithX:(NSNumber *)x y:(NSNumber *)y width:(NSNumber *)width andHeight:(NSNumber *)height {
+- (instancetype)initWithX:(NSNumber *)x y:(NSNumber *)y width:(NSNumber *)width height:(NSNumber *)height {
     if (self = [super init]) {
         self.x = x;
         self.y = y;

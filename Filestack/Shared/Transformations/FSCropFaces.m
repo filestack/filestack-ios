@@ -11,7 +11,7 @@
 @implementation FSCropFaces
 
 
-- (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height andBuffer:(NSNumber *)buffer {
+- (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer {
     if (self = [super init]) {
         self.mode = mode;
         self.width = width;
@@ -20,22 +20,22 @@
     return self;
 }
 
-- (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer andFace:(NSNumber *)face {
-    if (self = [self initWithMode:mode width:width height:height andBuffer:buffer]) {
+- (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer face:(NSNumber *)face {
+    if (self = [self initWithMode:mode width:width height:height buffer:buffer]) {
         self.face = face;
     }
     return self;
 }
 
-- (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer andFaces:(NSArray<NSNumber *> *)faces {
-    if (self = [self initWithMode:mode width:width height:height andBuffer:buffer]) {
+- (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer faces:(NSArray<NSNumber *> *)faces {
+    if (self = [self initWithMode:mode width:width height:height buffer:buffer]) {
         self.faces = faces;
     }
     return self;
 }
 
-- (instancetype)initAllFacesWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height andBuffer:(NSNumber *)buffer {
-    if (self = [self initWithMode:mode width:width height:height andBuffer:buffer]) {
+- (instancetype)initAllFacesWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer {
+    if (self = [self initWithMode:mode width:width height:height buffer:buffer]) {
         self.allFaces = YES;
     }
     return self;

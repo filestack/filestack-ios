@@ -24,10 +24,10 @@ typedef NSString * FSWatermarkPosition;
 
 @interface FSWatermark : FSTransform
 
-@property (nonatomic, strong) FSBlob *blob;
-@property (nonatomic, strong) NSNumber *size;
-@property (nonatomic, strong) FSWatermarkPosition position;
+@property (nonatomic, nonnull, strong) FSBlob *blob;
+@property (nonatomic, nullable, strong) NSNumber *size;
+@property (nonatomic, nullable, strong) FSWatermarkPosition position;
 
-- (instancetype)initWithBlob:(FSBlob *)blob size:(NSNumber *)size andPosition:(FSWatermarkPosition)position;
+- (instancetype _Nullable)initWithBlob:(FSBlob * _Nonnull)blob size:(NSNumber * _Nullable)size position:(FSWatermarkPosition _Nullable)position;
 
 @end

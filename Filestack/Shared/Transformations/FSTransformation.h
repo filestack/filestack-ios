@@ -27,6 +27,12 @@
 #import "FSSharpen.h"
 #import "FSBlur.h"
 #import "FSMonochrome.h"
+#import "FSSepia.h"
+#import "FSPixelate.h"
+#import "FSOilPaint.h"
+#import "FSModulate.h"
+#import "FSPartialBlur.h"
+#import "FSPartialPixelate.h"
 
 @interface FSTransformation : NSObject
 

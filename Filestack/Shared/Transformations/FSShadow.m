@@ -10,7 +10,7 @@
 
 @implementation FSShadow
 
-- (instancetype)initWithBlur:(NSNumber *)blur opacity:(NSNumber *)opacity vector:(NSArray<NSNumber *> *)vector color:(NSString *)color andBackground:(NSString *)background {
+- (instancetype)initWithBlur:(NSNumber *)blur opacity:(NSNumber *)opacity vector:(NSArray<NSNumber *> *)vector color:(NSString *)color background:(NSString *)background {
     if (self = [super init]) {
         self.blur = blur;
         self.opacity = opacity;

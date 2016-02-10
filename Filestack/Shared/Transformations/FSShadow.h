@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *background;
 
-- (instancetype)initWithBlur:(NSNumber *)blur opacity:(NSNumber *)opacity vector:(NSArray<NSNumber *> *)vector color:(NSString *)color andBackground:(NSString *)background;
+- (instancetype)initWithBlur:(NSNumber *)blur opacity:(NSNumber *)opacity vector:(NSArray<NSNumber *> *)vector color:(NSString *)color background:(NSString *)background;
 
 @end

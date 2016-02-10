@@ -15,6 +15,6 @@
 @property (nonatomic, strong, nonnull) NSNumber *width;
 @property (nonatomic, strong, nonnull) NSNumber *height;
 
-- (instancetype _Nullable)initWithX:(NSNumber * _Nonnull)x y:(NSNumber * _Nonnull)y width:(NSNumber * _Nonnull)width andHeight:(NSNumber * _Nonnull)height;
+- (instancetype _Nullable)initWithX:(NSNumber * _Nonnull)x y:(NSNumber * _Nonnull)y width:(NSNumber * _Nonnull)width height:(NSNumber * _Nonnull)height;
 
 @end

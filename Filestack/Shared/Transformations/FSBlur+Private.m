@@ -14,6 +14,7 @@
     if (!self.amount) {
         return @"sharpen";
     }
+
     return [NSString stringWithFormat:@"blur=amount:%ld", [self.amount integerValue]];
 }
 

@@ -14,6 +14,6 @@
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *background;
 
-- (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color andBackground:(NSString *)background;
+- (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color background:(NSString *)background;
 
 @end

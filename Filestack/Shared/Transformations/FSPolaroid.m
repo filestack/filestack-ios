@@ -10,7 +10,7 @@
 
 @implementation FSPolaroid
 
-- (instancetype)initWithColor:(NSString *)color background:(NSString *)background andRotation:(NSNumber *)rotate {
+- (instancetype)initWithColor:(NSString *)color background:(NSString *)background rotation:(NSNumber *)rotate {
     if (self = [super init]) {
         self.color = color;
         self.background = background;

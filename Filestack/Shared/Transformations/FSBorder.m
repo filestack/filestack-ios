@@ -10,7 +10,7 @@
 
 @implementation FSBorder
 
-- (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color andBackground:(NSString *)background {
+- (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color background:(NSString *)background {
     if (self = [super init]) {
         self.width = width;
         self.color = color;

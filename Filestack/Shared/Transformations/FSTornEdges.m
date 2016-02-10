@@ -10,7 +10,7 @@
 
 @implementation FSTornEdges
 
-- (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread andBackground:(NSString *)background {
+- (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread background:(NSString *)background {
     if (self = [super init]) {
         self.spread = spread;
         self.background = background;

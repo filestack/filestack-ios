@@ -35,8 +35,8 @@ typedef NSString * FSResizeAlign;
 
 - (instancetype)initWithHeight:(NSNumber *)height;
 - (instancetype)initWithWidth:(NSNumber *)width;
-- (instancetype)initWithWidth:(NSNumber *)width andHeight:(NSNumber *)height;
-- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height andFit:(FSResizeFit)fit;
-- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit andAlign:(FSResizeAlign)align;
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height;
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit;
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit align:(FSResizeAlign)align;
 
 @end

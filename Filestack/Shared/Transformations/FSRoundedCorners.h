@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *background;
 @property (nonatomic, assign) BOOL maxRadius;
 
-- (instancetype)initWithRadius:(NSNumber *)radius blur:(NSNumber *)blur andBackground:(NSString *)background;
-- (instancetype)initWithMaxRadiusAndBlur:(NSNumber *)blur andBackground:(NSString *)background;
+- (instancetype)initWithRadius:(NSNumber *)radius blur:(NSNumber *)blur background:(NSString *)background;
+- (instancetype)initWithMaxRadiusAndBlur:(NSNumber *)blur background:(NSString *)background;
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation FSResize
 
-- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit andAlign:(FSResizeAlign)align {
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit align:(FSResizeAlign)align {
     if (self = [super init]) {
         self.width = width;
         self.height = height;
@@ -24,20 +24,20 @@
     return self;
 }
 
-- (instancetype)initWithWidth:(NSNumber *)width andHeight:(NSNumber *)height {
-    return [self initWithWidth:width height:height fit:nil andAlign:nil];
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height {
+    return [self initWithWidth:width height:height fit:nil align:nil];
 }
 
-- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height andFit:(FSResizeFit)fit {
-    return [self initWithWidth:width height:height fit:fit andAlign:nil];
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit {
+    return [self initWithWidth:width height:height fit:fit align:nil];
 }
 
 - (instancetype)initWithHeight:(NSNumber *)height {
-    return [self initWithWidth:nil height:height fit:nil andAlign:nil];
+    return [self initWithWidth:nil height:height fit:nil align:nil];
 }
 
 - (instancetype)initWithWidth:(NSNumber *)width {
-    return [self initWithWidth:width height:nil fit:nil andAlign:nil];
+    return [self initWithWidth:width height:nil fit:nil align:nil];
 }
 
 @end

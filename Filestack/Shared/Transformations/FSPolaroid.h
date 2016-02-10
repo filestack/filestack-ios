@@ -14,6 +14,6 @@
 @property (nonatomic, strong) NSString *background;
 @property (nonatomic, strong) NSNumber *rotate;
 
-- (instancetype)initWithColor:(NSString *)color background:(NSString *)background andRotation:(NSNumber *)rotate;
+- (instancetype)initWithColor:(NSString *)color background:(NSString *)background rotation:(NSNumber *)rotate;
 
 @end

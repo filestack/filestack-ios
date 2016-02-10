@@ -11,7 +11,7 @@
 @implementation FSDetectFaces
 
 
-- (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize color:(NSString *)color andExportToJSON:(BOOL)exportToJSON {
+- (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize color:(NSString *)color exportToJSON:(BOOL)exportToJSON {
     if (self = [super init]) {
         self.minSize = minSize;
         self.maxSize = maxSize;
@@ -22,7 +22,7 @@
 }
 
 - (instancetype)initWithExportToJSON:(BOOL)exportToJSON {
-    return [self initWithMinSize:nil maxSize:nil color:nil andExportToJSON:exportToJSON];
+    return [self initWithMinSize:nil maxSize:nil color:nil exportToJSON:exportToJSON];
 }
 
 @end

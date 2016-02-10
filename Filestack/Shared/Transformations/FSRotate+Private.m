@@ -13,9 +13,9 @@
 - (NSString *)toQuery {
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
-    if ((self.degrees && self.toEXIF) || (!self.degrees && self.toEXIF)) {
+    if (self.toEXIF) {
         [queryArray addObject:@"deg:exif"];
-    } else if (self.degrees && !self.toEXIF) {
+    } else if (self.degrees) {
         [queryArray addObject:[NSString stringWithFormat:@"deg:%ld", [self.degrees integerValue]]];
     }
 

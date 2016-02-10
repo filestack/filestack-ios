@@ -11,7 +11,7 @@
 @implementation FSRoundedCorners
 
 
-- (instancetype)initWithRadius:(NSNumber *)radius blur:(NSNumber *)blur andBackground:(NSString *)background {
+- (instancetype)initWithRadius:(NSNumber *)radius blur:(NSNumber *)blur background:(NSString *)background {
     if (self = [super init]) {
         self.radius = radius;
         self.blur = blur;
@@ -20,8 +20,8 @@
     return self;
 }
 
-- (instancetype)initWithMaxRadiusAndBlur:(NSNumber *)blur andBackground:(NSString *)background {
-    if (self = [self initWithRadius:nil blur:blur andBackground:background]) {
+- (instancetype)initWithMaxRadiusAndBlur:(NSNumber *)blur background:(NSString *)background {
+    if (self = [self initWithRadius:nil blur:blur background:background]) {
         self.maxRadius = YES;
     }
     return self;
