@@ -24,6 +24,9 @@
 #import "FSShadow.h"
 #import "FSCircle.h"
 #import "FSBorder.h"
+#import "FSSharpen.h"
+#import "FSBlur.h"
+#import "FSMonochrome.h"
 
 @interface FSTransformation : NSObject
 

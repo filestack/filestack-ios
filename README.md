@@ -70,7 +70,7 @@ NSString *url = @"https://example.com/image.png"
 Filestack *filestack = [[Filestack alloc] initWithApiKey:@"MYAPIKEY"];
 FSBlob *blob = [[FSBlob alloc] initWithUrl:@"https://cdn.filestackcontent.com/FILEHANDLER"]
 
-[filestack stat:blob withOptions:statOptions completionHandler:^(FSMetadata *metadata, NSError *error) {
+[filestack stat:blob withOptions:nil completionHandler:^(FSMetadata *metadata, NSError *error) {
     NSLog(@"metadata: %@", metadata);
     NSLog(@"error: %@", error);
 }];
@@ -78,12 +78,14 @@ FSBlob *blob = [[FSBlob alloc] initWithUrl:@"https://cdn.filestackcontent.com/FI
 // or...
 NSString *url = @"https://example.com/image.png"
 [filestack pickURL:url completionHandler:^(FSBlob *blob, NSError *error) {
-    NSLog(@"blob: %@", blob);
-    NSLog(@"error: %@", error);
-    if (error == nil) {
-        [filestack stat:blob withOptions:nil completionHandler:^(FSMetadata *metadata, NSError *error) {
+    if (error) {
+        NSLog(@"error: %@", error);
+    } else {
+        NSLog(@"blob: %@", blob);
+        FSStatOptions *options = [[FSStatOptions alloc] initWithDictionary:@{@"mimetype": @YES, @"md5": @YES};
+        [filestack stat:blob withOptions:options completionHandler:^(FSMetadata *metadata, NSError *error) {
             NSLog(@"metadata: %@", metadata);
-            NSLog(@"error: %@", error);
+            NSLog(@"error: %@", error); 
         }];
     }
 }];

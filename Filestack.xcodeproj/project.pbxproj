@@ -116,6 +116,30 @@
 		B2D7565D1C68F038003263FB /* FSBorder+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7565A1C68F038003263FB /* FSBorder+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2D7565E1C68F038003263FB /* FSBorder+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7565B1C68F038003263FB /* FSBorder+Private.m */; };
 		B2D7565F1C68F038003263FB /* FSBorder+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7565B1C68F038003263FB /* FSBorder+Private.m */; };
+		B2D756631C6B3B91003263FB /* FSSharpen.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756611C6B3B91003263FB /* FSSharpen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756641C6B3B91003263FB /* FSSharpen.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756611C6B3B91003263FB /* FSSharpen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756651C6B3B91003263FB /* FSSharpen.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756621C6B3B91003263FB /* FSSharpen.m */; };
+		B2D756661C6B3B91003263FB /* FSSharpen.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756621C6B3B91003263FB /* FSSharpen.m */; };
+		B2D756691C6B3BA1003263FB /* FSSharpen+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756671C6B3BA1003263FB /* FSSharpen+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D7566A1C6B3BA1003263FB /* FSSharpen+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756671C6B3BA1003263FB /* FSSharpen+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D7566B1C6B3BA1003263FB /* FSSharpen+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756681C6B3BA1003263FB /* FSSharpen+Private.m */; };
+		B2D7566C1C6B3BA1003263FB /* FSSharpen+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756681C6B3BA1003263FB /* FSSharpen+Private.m */; };
+		B2D756701C6B3EAE003263FB /* FSBlur.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7566E1C6B3EAE003263FB /* FSBlur.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756711C6B3EAE003263FB /* FSBlur.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7566E1C6B3EAE003263FB /* FSBlur.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756721C6B3EAE003263FB /* FSBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7566F1C6B3EAE003263FB /* FSBlur.m */; };
+		B2D756731C6B3EAE003263FB /* FSBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7566F1C6B3EAE003263FB /* FSBlur.m */; };
+		B2D756761C6B3EBD003263FB /* FSBlur+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756741C6B3EBD003263FB /* FSBlur+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756771C6B3EBD003263FB /* FSBlur+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756741C6B3EBD003263FB /* FSBlur+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756781C6B3EBD003263FB /* FSBlur+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756751C6B3EBD003263FB /* FSBlur+Private.m */; };
+		B2D756791C6B3EBD003263FB /* FSBlur+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756751C6B3EBD003263FB /* FSBlur+Private.m */; };
+		B2D7567D1C6B42BB003263FB /* FSMonochrome.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7567B1C6B42BB003263FB /* FSMonochrome.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D7567E1C6B42BB003263FB /* FSMonochrome.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D7567B1C6B42BB003263FB /* FSMonochrome.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D7567F1C6B42BB003263FB /* FSMonochrome.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7567C1C6B42BB003263FB /* FSMonochrome.m */; };
+		B2D756801C6B42BB003263FB /* FSMonochrome.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D7567C1C6B42BB003263FB /* FSMonochrome.m */; };
+		B2D756831C6B42C9003263FB /* FSMonochrome+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756811C6B42C9003263FB /* FSMonochrome+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756841C6B42C9003263FB /* FSMonochrome+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D756811C6B42C9003263FB /* FSMonochrome+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D756851C6B42C9003263FB /* FSMonochrome+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756821C6B42C9003263FB /* FSMonochrome+Private.m */; };
+		B2D756861C6B42C9003263FB /* FSMonochrome+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D756821C6B42C9003263FB /* FSMonochrome+Private.m */; };
 		B2DE22CD1C6257BC0007C569 /* FSBlobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */; };
 		B2DE22D11C635C910007C569 /* FSResize.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE22CF1C635C910007C569 /* FSResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2DE22D21C635C910007C569 /* FSResize.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE22D01C635C910007C569 /* FSResize.m */; };
@@ -277,6 +301,18 @@
 		B2D756551C68F029003263FB /* FSBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBorder.m; sourceTree = "<group>"; };
 		B2D7565A1C68F038003263FB /* FSBorder+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSBorder+Private.h"; sourceTree = "<group>"; };
 		B2D7565B1C68F038003263FB /* FSBorder+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSBorder+Private.m"; sourceTree = "<group>"; };
+		B2D756611C6B3B91003263FB /* FSSharpen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSharpen.h; sourceTree = "<group>"; };
+		B2D756621C6B3B91003263FB /* FSSharpen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSharpen.m; sourceTree = "<group>"; };
+		B2D756671C6B3BA1003263FB /* FSSharpen+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSSharpen+Private.h"; sourceTree = "<group>"; };
+		B2D756681C6B3BA1003263FB /* FSSharpen+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSSharpen+Private.m"; sourceTree = "<group>"; };
+		B2D7566E1C6B3EAE003263FB /* FSBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSBlur.h; sourceTree = "<group>"; };
+		B2D7566F1C6B3EAE003263FB /* FSBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBlur.m; sourceTree = "<group>"; };
+		B2D756741C6B3EBD003263FB /* FSBlur+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSBlur+Private.h"; sourceTree = "<group>"; };
+		B2D756751C6B3EBD003263FB /* FSBlur+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSBlur+Private.m"; sourceTree = "<group>"; };
+		B2D7567B1C6B42BB003263FB /* FSMonochrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMonochrome.h; sourceTree = "<group>"; };
+		B2D7567C1C6B42BB003263FB /* FSMonochrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMonochrome.m; sourceTree = "<group>"; };
+		B2D756811C6B42C9003263FB /* FSMonochrome+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSMonochrome+Private.h"; sourceTree = "<group>"; };
+		B2D756821C6B42C9003263FB /* FSMonochrome+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSMonochrome+Private.m"; sourceTree = "<group>"; };
 		B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBlobTests.m; sourceTree = "<group>"; };
 		B2DE22CF1C635C910007C569 /* FSResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSResize.h; sourceTree = "<group>"; };
 		B2DE22D01C635C910007C569 /* FSResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSResize.m; sourceTree = "<group>"; };
@@ -575,9 +611,45 @@
 			name = FSBorders;
 			sourceTree = "<group>";
 		};
+		B2D756601C6B3B5A003263FB /* FSSharpen */ = {
+			isa = PBXGroup;
+			children = (
+				B2D756611C6B3B91003263FB /* FSSharpen.h */,
+				B2D756621C6B3B91003263FB /* FSSharpen.m */,
+				B2D756671C6B3BA1003263FB /* FSSharpen+Private.h */,
+				B2D756681C6B3BA1003263FB /* FSSharpen+Private.m */,
+			);
+			name = FSSharpen;
+			sourceTree = "<group>";
+		};
+		B2D7566D1C6B3E9A003263FB /* FSBlur */ = {
+			isa = PBXGroup;
+			children = (
+				B2D7566E1C6B3EAE003263FB /* FSBlur.h */,
+				B2D7566F1C6B3EAE003263FB /* FSBlur.m */,
+				B2D756741C6B3EBD003263FB /* FSBlur+Private.h */,
+				B2D756751C6B3EBD003263FB /* FSBlur+Private.m */,
+			);
+			name = FSBlur;
+			sourceTree = "<group>";
+		};
+		B2D7567A1C6B416D003263FB /* FSMonochrome */ = {
+			isa = PBXGroup;
+			children = (
+				B2D7567B1C6B42BB003263FB /* FSMonochrome.h */,
+				B2D7567C1C6B42BB003263FB /* FSMonochrome.m */,
+				B2D756811C6B42C9003263FB /* FSMonochrome+Private.h */,
+				B2D756821C6B42C9003263FB /* FSMonochrome+Private.m */,
+			);
+			name = FSMonochrome;
+			sourceTree = "<group>";
+		};
 		B2DE22CE1C635BF60007C569 /* Transformations */ = {
 			isa = PBXGroup;
 			children = (
+				B2D7567A1C6B416D003263FB /* FSMonochrome */,
+				B2D7566D1C6B3E9A003263FB /* FSBlur */,
+				B2D756601C6B3B5A003263FB /* FSSharpen */,
 				B2D756531C68F01B003263FB /* FSBorders */,
 				B2D756461C68EE67003263FB /* FSCircle */,
 				B2D756391C68E3F2003263FB /* FSShadow */,
@@ -701,6 +773,7 @@
 			files = (
 				B2DE232B1C64B8CC0007C569 /* FSWatermark.h in Headers */,
 				B2DE23181C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
+				B2D756701C6B3EAE003263FB /* FSBlur.h in Headers */,
 				B254A66C1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B254A6711C5F670E0096F7F6 /* FSSessionSettings.h in Headers */,
 				B2DE234B1C68A0760007C569 /* FSCropFaces.h in Headers */,
@@ -716,6 +789,7 @@
 				B2D756001C68C719003263FB /* FSPixelateFaces+Private.h in Headers */,
 				B2DE22F01C6394120007C569 /* FSTransform+Private.h in Headers */,
 				B2253D6C1C4FE469008E47A3 /* FSMetadata+Private.h in Headers */,
+				B2D756831C6B42C9003263FB /* FSMonochrome+Private.h in Headers */,
 				B2DE22EA1C6392D40007C569 /* FSResize+Private.h in Headers */,
 				B2DE23021C639D280007C569 /* FSRotate.h in Headers */,
 				B2DE22DB1C6361390007C569 /* FSTransformation.h in Headers */,
@@ -734,11 +808,15 @@
 				B2D756351C68E2BF003263FB /* FSTornEdges+Private.h in Headers */,
 				B2D7565C1C68F038003263FB /* FSBorder+Private.h in Headers */,
 				B2DE23441C689B7F0007C569 /* FSDetectFaces+Private.h in Headers */,
+				B2D7567D1C6B42BB003263FB /* FSMonochrome.h in Headers */,
 				B2DE22F61C6395230007C569 /* FSCrop.h in Headers */,
 				B2253D671C4FD69E008E47A3 /* FSStatOptions.h in Headers */,
+				B2D756761C6B3EBD003263FB /* FSBlur+Private.h in Headers */,
 				B2DE22FC1C63972B0007C569 /* FSCrop+Private.h in Headers */,
 				B2D756421C68E413003263FB /* FSShadow+Private.h in Headers */,
+				B2D756631C6B3B91003263FB /* FSSharpen.h in Headers */,
 				B2DE22E61C6368D40007C569 /* FSTransform.h in Headers */,
+				B2D756691C6B3BA1003263FB /* FSSharpen+Private.h in Headers */,
 				B2DE23311C64ED8D0007C569 /* FSWatermark+Private.h in Headers */,
 				B2D756561C68F029003263FB /* FSBorder.h in Headers */,
 				B2D7562F1C68E2A9003263FB /* FSTornEdges.h in Headers */,
@@ -754,6 +832,7 @@
 			files = (
 				B2DE232C1C64B8CC0007C569 /* FSWatermark.h in Headers */,
 				B2DE23191C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
+				B2D756711C6B3EAE003263FB /* FSBlur.h in Headers */,
 				B254A66D1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */,
 				B2DE234C1C68A0760007C569 /* FSCropFaces.h in Headers */,
@@ -769,6 +848,7 @@
 				B2DE22F11C6394120007C569 /* FSTransform+Private.h in Headers */,
 				B2DE22DC1C63613C0007C569 /* FSTransformation.h in Headers */,
 				B2DE22EB1C6392D40007C569 /* FSResize+Private.h in Headers */,
+				B2D756841C6B42C9003263FB /* FSMonochrome+Private.h in Headers */,
 				B2DE23031C639D280007C569 /* FSRotate.h in Headers */,
 				B273AA121C57C5B100232972 /* FSMetadata.h in Headers */,
 				B2DE231F1C63AEAD0007C569 /* FSFlop.h in Headers */,
@@ -787,11 +867,15 @@
 				B2D756361C68E2BF003263FB /* FSTornEdges+Private.h in Headers */,
 				B2D7565D1C68F038003263FB /* FSBorder+Private.h in Headers */,
 				B2DE22F71C6395230007C569 /* FSCrop.h in Headers */,
+				B2D7567E1C6B42BB003263FB /* FSMonochrome.h in Headers */,
 				B2DE22E71C6368D70007C569 /* FSTransform.h in Headers */,
 				B2DE22FD1C63972B0007C569 /* FSCrop+Private.h in Headers */,
+				B2D756771C6B3EBD003263FB /* FSBlur+Private.h in Headers */,
 				B273AA141C57C5B100232972 /* FSMetadata+Private.h in Headers */,
 				B2D756431C68E413003263FB /* FSShadow+Private.h in Headers */,
+				B2D756641C6B3B91003263FB /* FSSharpen.h in Headers */,
 				B2DE23321C64ED8D0007C569 /* FSWatermark+Private.h in Headers */,
+				B2D7566A1C6B3BA1003263FB /* FSSharpen+Private.h in Headers */,
 				B2DE23131C63ADFD0007C569 /* FSFlip.h in Headers */,
 				B2D756571C68F029003263FB /* FSBorder.h in Headers */,
 				B2D756301C68E2A9003263FB /* FSTornEdges.h in Headers */,
@@ -1050,6 +1134,7 @@
 				B2D756021C68C719003263FB /* FSPixelateFaces+Private.m in Sources */,
 				B2D756101C68CE84003263FB /* FSBlurFaces+Private.m in Sources */,
 				B2D7563E1C68E404003263FB /* FSShadow.m in Sources */,
+				B2D756851C6B42C9003263FB /* FSMonochrome+Private.m in Sources */,
 				B2DE23461C689B7F0007C569 /* FSDetectFaces+Private.m in Sources */,
 				B2D7562A1C68D77F003263FB /* FSPolaroid+Private.m in Sources */,
 				B2DE23531C68A0880007C569 /* FSCropFaces+Private.m in Sources */,
@@ -1057,6 +1142,7 @@
 				B2253D631C4FD4DF008E47A3 /* FSMetadata.m in Sources */,
 				B2DE22EC1C6392D40007C569 /* FSResize+Private.m in Sources */,
 				B2DE22D21C635C910007C569 /* FSResize.m in Sources */,
+				B2D7566B1C6B3BA1003263FB /* FSSharpen+Private.m in Sources */,
 				B2DE230A1C639D390007C569 /* FSRotate+Private.m in Sources */,
 				B254A66E1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
 				B2D7565E1C68F038003263FB /* FSBorder+Private.m in Sources */,
@@ -1067,11 +1153,14 @@
 				B2D756311C68E2A9003263FB /* FSTornEdges.m in Sources */,
 				B2D7560A1C68CE73003263FB /* FSBlurFaces.m in Sources */,
 				B2DE233F1C689B5B0007C569 /* FSDetectFaces.m in Sources */,
+				B2D756721C6B3EAE003263FB /* FSBlur.m in Sources */,
 				B2DE234D1C68A0760007C569 /* FSCropFaces.m in Sources */,
 				B2DE22E41C6368A30007C569 /* FSTransform.m in Sources */,
+				B2D756651C6B3B91003263FB /* FSSharpen.m in Sources */,
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
 				B2DE23201C63AEAD0007C569 /* FSFlop.m in Sources */,
 				B2253D681C4FD69E008E47A3 /* FSStatOptions.m in Sources */,
+				B2D7567F1C6B42BB003263FB /* FSMonochrome.m in Sources */,
 				B2D756241C68D772003263FB /* FSPolaroid.m in Sources */,
 				B2253D4D1C4F9D9E008E47A3 /* Filestack.m in Sources */,
 				B2253D6D1C4FE469008E47A3 /* FSMetadata+Private.m in Sources */,
@@ -1085,6 +1174,7 @@
 				B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
 				B2DE22F21C6394120007C569 /* FSTransform+Private.m in Sources */,
 				B2DE23261C63AEC90007C569 /* FSFlop+Private.m in Sources */,
+				B2D756781C6B3EBD003263FB /* FSBlur+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1200,7 @@
 				B2D756031C68C719003263FB /* FSPixelateFaces+Private.m in Sources */,
 				B2D756111C68CE84003263FB /* FSBlurFaces+Private.m in Sources */,
 				B2D7563F1C68E404003263FB /* FSShadow.m in Sources */,
+				B2D756861C6B42C9003263FB /* FSMonochrome+Private.m in Sources */,
 				B2DE23471C689B7F0007C569 /* FSDetectFaces+Private.m in Sources */,
 				B2D7562B1C68D77F003263FB /* FSPolaroid+Private.m in Sources */,
 				B2DE23541C68A0880007C569 /* FSCropFaces+Private.m in Sources */,
@@ -1117,6 +1208,7 @@
 				B273AA131C57C5B100232972 /* FSMetadata.m in Sources */,
 				B2DE22ED1C6392D40007C569 /* FSResize+Private.m in Sources */,
 				B2DE22D31C635C940007C569 /* FSResize.m in Sources */,
+				B2D7566C1C6B3BA1003263FB /* FSSharpen+Private.m in Sources */,
 				B2DE230B1C639D390007C569 /* FSRotate+Private.m in Sources */,
 				B254A66F1C5A5C070096F7F6 /* FSAPIURL.m in Sources */,
 				B2D7565F1C68F038003263FB /* FSBorder+Private.m in Sources */,
@@ -1127,11 +1219,14 @@
 				B2D756321C68E2A9003263FB /* FSTornEdges.m in Sources */,
 				B2D7560B1C68CE73003263FB /* FSBlurFaces.m in Sources */,
 				B2DE23401C689B5B0007C569 /* FSDetectFaces.m in Sources */,
+				B2D756731C6B3EAE003263FB /* FSBlur.m in Sources */,
 				B2DE234E1C68A0760007C569 /* FSCropFaces.m in Sources */,
 				B2DE22E51C6368A30007C569 /* FSTransform.m in Sources */,
+				B2D756661C6B3B91003263FB /* FSSharpen.m in Sources */,
 				B273AA0F1C57C5B100232972 /* FSBlob.m in Sources */,
 				B2DE23211C63AEAD0007C569 /* FSFlop.m in Sources */,
 				B273AA071C57C5A900232972 /* FSStatOptions.m in Sources */,
+				B2D756801C6B42BB003263FB /* FSMonochrome.m in Sources */,
 				B2D756251C68D772003263FB /* FSPolaroid.m in Sources */,
 				B273AA091C57C5A900232972 /* FSStoreOptions.m in Sources */,
 				B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */,
@@ -1145,6 +1240,7 @@
 				B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
 				B2DE22F31C6394120007C569 /* FSTransform+Private.m in Sources */,
 				B2DE23271C63AEC90007C569 /* FSFlop+Private.m in Sources */,
+				B2D756791C6B3EBD003263FB /* FSBlur+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
