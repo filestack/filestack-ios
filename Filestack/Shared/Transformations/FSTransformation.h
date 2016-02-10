@@ -40,6 +40,8 @@
 
 @interface FSTransformation : NSObject
 
+@property (nonatomic, assign) BOOL debug;
+
 - (instancetype)initWithQueryString:(NSString *)queryString;
 - (void)add:(FSTransform *)transform;
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey andURLToTransform:(NSString *)urlToTransform;
