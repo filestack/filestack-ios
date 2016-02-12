@@ -10,6 +10,7 @@
 #import "FSStoreOptions.h"
 
 FOUNDATION_EXPORT NSString *const FSURLBaseURL;
+FOUNDATION_EXPORT NSString *const FSURLTransformationURL;
 
 typedef NSString * FSURL;
 #define FSURLPickPath @"api/pick"

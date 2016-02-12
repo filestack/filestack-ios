@@ -1,3 +1,7 @@
+## 0.2.0 (2016-02-12)
+
+### Initial Filestack's Transformations release.
+
 ## 0.1.4 (2016-02-03)
 
 ### Fixed:

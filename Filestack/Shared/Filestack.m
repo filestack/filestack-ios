@@ -11,6 +11,7 @@
 #import "FSAPIClient.h"
 #import "FSSessionSettings.h"
 #import <AFNetworking/AFNetworking.h>
+#import "FSTransformErrorSerializer.h"
 
 @interface Filestack ()
 
@@ -20,7 +21,7 @@
 
 @implementation Filestack
 
-- (instancetype)initWithApiKey:(NSString *)apiKey andDelegate:(id <FSFilestackDelegate>)delegate {
+- (instancetype)initWithApiKey:(NSString *)apiKey delegate:(id <FSFilestackDelegate>)delegate {
     if (self = [super init]) {
         self.apiKey = apiKey;
         self.delegate = delegate;
@@ -29,13 +30,13 @@
 }
 
 - (instancetype)initWithApiKey:(NSString *)apiKey {
-    return [self initWithApiKey:apiKey andDelegate:nil];
+    return [self initWithApiKey:apiKey delegate:nil];
 }
 
 - (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = @{@"key": _apiKey, @"url": url};
     NSDictionary *sessionSettings = @{FSSessionSettingsURIParams: @YES};
-    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
 
     [apiClient POST:FSURLPickPath parameters:parameters options:nil sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
         if (error) {
@@ -54,7 +55,7 @@
     NSString *deleteURL = [FSAPIURL URLFilePathWithBlobURL:blob.url];
     NSDictionary *parameters = @{@"key": _apiKey};
 
-    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient DELETE:deleteURL parameters:parameters completionHandler:^(NSError *error) {
         if (error) {
             [self delegateRequestError:error];
@@ -73,7 +74,7 @@
     NSDictionary *parameters = [statOptions toQueryParameters];
     NSString *statURL = [FSAPIURL URLMetadataPathWithBlobURL:blob.url];
 
-    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient GET:statURL parameters:parameters options:statOptions sessionSettings:sessionSettings completionHandler:^(FSMetadata *metadata, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
@@ -88,7 +89,7 @@
 }
 
 - (void)download:(FSBlob *)blob completionHandler:(void (^)(NSData *data, NSError *error))completionHandler {
-    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient GET:blob.url parameters:nil completionHandler:^(NSData *data, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
@@ -109,7 +110,7 @@
     [parameters removeObjectForKey:@"mimetype"];
     parameters[@"url"] = url;
 
-    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient POST:storeURL parameters:parameters options:storeOptions sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
@@ -126,7 +127,7 @@
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = [storeOptions toQueryParameters];
     NSString *postURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:NO andApiKey:_apiKey];
-    FSAPIClient *apiClient = [[FSAPIClient alloc] initWithApiKey:_apiKey];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient POST:postURL withData:data parameters:parameters multipartOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
@@ -138,6 +139,47 @@
             completionHandler(blob, error);
         }
     }];
+}
+
+- (void)transformURL:(NSString *)url transformation:(FSTransformation *)transformation security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSDictionary *JSON, NSError *error))completionHandler {
+    NSString *transformationURL = [transformation transformationURLWithApiKey:_apiKey security:security URLToTransform:url];
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
+    [apiClient GET:transformationURL parameters:nil completionHandler:^(NSData *data, NSError *error) {
+        NSDictionary *JSON;
+        NSError *fsError;
+
+        if (data && [transformation willReturnJSON]) {
+            JSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            [self filestackTransformSuccessJSON:JSON];
+        } else if (data) {
+            [self filestackTransformSuccess:data];
+        }
+
+        if (error) {
+            fsError = [FSTransformErrorSerializer transformErrorWithError:error];
+            [self delegateRequestError:fsError];
+        }
+
+        if (completionHandler) {
+            if (JSON) {
+                completionHandler(nil, JSON, fsError);
+            } else {
+                completionHandler(data, JSON, fsError);
+            }
+        }
+    }];
+}
+
+- (void)filestackTransformSuccess:(NSData *)data {
+    if ([_delegate respondsToSelector:@selector(filestackTransformSuccess:)]) {
+        [_delegate filestackTransformSuccess:data];
+    }
+}
+
+- (void)filestackTransformSuccessJSON:(NSDictionary *)JSON {
+    if ([_delegate respondsToSelector:@selector(filestackTransformSuccessJSON:)]) {
+        [_delegate filestackTransformSuccessJSON:JSON];
+    }
 }
 
 - (void)delegateRequestError:(NSError *)error {
