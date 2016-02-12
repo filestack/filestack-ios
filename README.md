@@ -354,7 +354,33 @@ resizeTransformation.align = FSResizeFitAlignLeft;
 
 - Transformations list:
   - [FSResize](#fsresize)
+  - [FSCrop](#fscrop)
+  - [FSRotate](#fsrotate)
+  - [FSFlip and FSFlop](#fsflip-and-fsflop)
+  - [FSWatermark](#fswatermark)
+  - [FSDetectFaces](#fsdetectfaces)
+  - [FSCropFaces](#fscropfaces)
+  - [FSPixelateFaces](#fspixelatefaces)
+  - [FSBlurFaces](#fsblurfaces)
+  - [FSRoundedCorners](#fsroundedcorners)
+  - [FSPolaroid](#fspolaroid)
+  - [FSTornEdges](#fstornedges)
   - [FSShadow](#fsshadow)
+  - [FSCircle](#fscircle)
+  - [FSBorder](#fsborder)
+  - [FSSharpen](#fssharpen)
+  - [FSBlur](#fsblur)
+  - [FSMonochrome](#fsmonochrome)
+  - [FSSepia](#fssepia)
+  - [FSPixelate](#fspixelate)
+  - [FSOilPaint](#fsoilpaint)
+  - [FSModulate](#fsmodulate)
+  - [FSPartialPixelate](#fspartialpixelate)
+  - [FSPartialBlur](#fspartialblur)
+  - [FSCollage](#fscollage)
+  - [FSURLScreenshot](#fsurlscreenshot)
+  - [FSASCII](#fsascii)
+  - [FSOutput](#fsoutput)
 
 #### **FSResize**
 > https://www.filestack.com/docs/image-transformations/resize
