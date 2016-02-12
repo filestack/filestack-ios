@@ -19,7 +19,7 @@
     [super viewDidLoad];
 
     // Remember to use your api key.
-    Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" andDelegate:self];
+    Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" delegate:self];
 
     // Either like this...
     FSStatOptions *statOptions = [[FSStatOptions alloc] initWithDictionary:@{@"size": @YES, @"uploaded": @YES, @"writeable": @YES}];
@@ -62,5 +62,7 @@
 //- (void)filestackPickURLSuccess:(FSBlob *)blob;
 //- (void)filestackStoreSuccess:(FSBlob *)blob;
 //- (void)filestackRemoveSuccess;
+//- (void)filestackTransformSuccess:(NSData *)data;
+//- (void)filestackTransformSuccessJSON:(NSDictionary *)JSON;
 
 @end

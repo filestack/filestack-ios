@@ -21,7 +21,7 @@
     [super viewDidLoad];
 
     // Remember to use your api key.
-    Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" andDelegate:self];
+    Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" delegate:self];
 
     // Either like this...
     FSStatOptions *statOptions = [[FSStatOptions alloc] initWithDictionary:@{@"size": @YES, @"uploaded": @YES, @"writeable": @YES}];
@@ -33,7 +33,7 @@
     storeOptions.location = FSStoreLocationS3;
     storeOptions.path = @"my-folder/";
 
-    NSString *sampleURL = @"https://assets.filestackapi.com/web/8d93688/img/upload-illustration.png";
+    NSString *sampleURL = @"https://dev.filestack.com/static/assets/icons/logo-primary.png";
 
     // Lets store the sample url on S3 using provided store options.
     [filestack storeURL:sampleURL withOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
@@ -46,6 +46,29 @@
                 NSLog(@"stat error: %@", error);
             }];
         }
+    }];
+
+    // Time for some transformation magic.
+    FSTransformation *transformation = [[FSTransformation alloc] init];
+
+    // URL to an image of the ASTP crew.
+    NSString *urlToTransform = @"https://d1wtqaffaaj63z.cloudfront.net/images/Portrait_of_ASTP_crews.jpg";
+
+    // First, we will crop one of the faces on the image. The first one to be specific.
+    FSCropFaces *cropFaces = [[FSCropFaces alloc] initWithMode:nil width:nil height:nil buffer:nil face:@1];
+    [transformation add:cropFaces];
+
+    // Now, lets blur it.
+    FSBlur *blur = [[FSBlur alloc] initWithAmount:@3];
+    [transformation add:blur];
+
+    // And finally "apply" the transformation
+    [filestack transformURL:urlToTransform transformation:transformation security:nil completionHandler:^(NSData *data, NSDictionary *JSON, NSError *error) {
+        _imageView.image = [UIImage imageWithData:data];
+        // Wall of text so lets comment this off.
+        // NSLog(@"data: %@", data);
+        NSLog(@"JSON: %@", JSON);
+        NSLog(@"error: %@", error);
     }];
 }
 
@@ -64,7 +87,7 @@
         // Remember to set fileName and/or mimetype in storeOptions so it will upload as a "valid" file.
         // Without at least one of them, for NSData, we are setting mimetype as "application/octet-stream".
         NSString *fileName = [info[@"PHImageFileURLKey"] lastPathComponent];
-        Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" andDelegate:self];
+        Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" delegate:self];
         FSStoreOptions *storeOptions = [[FSStoreOptions alloc] init];
         storeOptions.fileName = fileName;
         storeOptions.access = FSAccessPublic;
@@ -91,5 +114,7 @@
 //- (void)filestackPickURLSuccess:(FSBlob *)blob;
 //- (void)filestackStoreSuccess:(FSBlob *)blob;
 //- (void)filestackRemoveSuccess;
+//- (void)filestackTransformSuccess:(NSData *)data;
+//- (void)filestackTransformSuccessJSON:(NSDictionary *)JSON;
 
 @end
