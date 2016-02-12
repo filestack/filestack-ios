@@ -352,6 +352,10 @@ resizeTransformation.fit = FSResizeFitScale;
 resizeTransformation.align = FSResizeFitAlignLeft;
 ```
 
+- Transformations list:
+  - [FSResize](#fsresize)
+  - [FSShadow](#fsshadow)
+
 #### **FSResize**
 > https://www.filestack.com/docs/image-transformations/resize
 
@@ -365,8 +369,8 @@ FSResizeAlign align
 typedefs "helpers":
 ```objectivec
 // FSResizeFit
-FSResizeFitClip 
-FSResizeFitCrop 
+FSResizeFitClip
+FSResizeFitCrop
 FSResizeFitScale
 FSResizeFitMax
 
