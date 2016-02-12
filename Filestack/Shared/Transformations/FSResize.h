@@ -28,9 +28,23 @@ typedef NSString * FSResizeAlign;
 
 @interface FSResize : FSTransform
 
+/**
+ The width in pixels to resize the image to. The value must be an integer from 1 to 10000.
+ @warning `width` must not be `nil` if `height` is `nil`.
+ */
 @property (nonatomic, strong) NSNumber *width;
+/**
+ The height in pixels to resize the image to. The value must be an integer from 1 to 10000.
+ @warning `height` must not be `nil` if `height` is `nil`.
+ */
 @property (nonatomic, strong) NSNumber *height;
+/**
+ The way to resize the image to fit the specified parameters. The default value for the fit parameter is FSResizeFitClip.
+ */
 @property (nonatomic, strong) FSResizeFit fit;
+/**
+ The area of the image to focus on. The default value for the align parameter is FSResizeAlignCenter.
+ */
 @property (nonatomic, strong) FSResizeAlign align;
 
 - (instancetype)initWithHeight:(NSNumber *)height;

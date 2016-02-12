@@ -351,7 +351,7 @@ FSRotate *rotate = [[FSRotate alloc] initWithDegrees:@120 background:@"black" ro
 }
 ```
 
-There are three special cases when you will get ```JSON``` instead of ```data```. First, for every transformation when you are in debug mode (```transformation.debug = YES;```), second, when you are using ```FSDetectFaces``` with ```exportTOJSON = YES``` and third case with ```FSOutput``` with requested docinfo (```docInfo = YES```). All other cases will return either data or error. Error will have an additional key ```"com.filestack.serialization.response.error"``` in ```userInfo``` dictionary, containing error message serialized to string.
+There are three special cases when you will get ```JSON``` instead of ```data```. First, for every transformation when you are in debug mode (```transformation.debug = YES;```), second, when you are using ```FSDetectFaces``` with ```exportToJSON = YES``` and third case with ```FSOutput``` with requested docinfo (```docInfo = YES```). All other cases will return either data or error. Error will have an additional key ```"com.filestack.serialization.response.error"``` in ```userInfo``` dictionary, containing error message serialized to string.
 
 ### Available transformations
 Please refer to Filestack's documentation, as **there is no client-side parameters validation**, so it's on your shoulders to provide a valid values (or face the consequences of an error! :D).
