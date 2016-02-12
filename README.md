@@ -372,6 +372,7 @@ resizeTransformation.align = FSResizeFitAlignLeft;
 ```
 
 **Important**
+
 Multiple ```FSTransform``` accepts ```color``` and ```background``` as parameters, these parameters are of type ```NSString``` instead of ```UIColor``` to maintain consistency with our web transformations. This string can be either a color keyword or HEX code (with alpha, e.g. 000000FF for black).
 For accepted color keywords please visit [Color Options](https://www.filestack.com/docs/image-transformations/colors).
 
