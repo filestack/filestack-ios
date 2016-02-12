@@ -14,7 +14,6 @@
 
 @interface FSAPIClient : NSObject
 
-- (instancetype)initWithApiKey:(NSString *)apiKey;
 - (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
 - (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters options:(FSStatOptions *)statOptions sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler;
 - (void)DELETE:(NSString *)deleteURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSError *error))completionHandler;

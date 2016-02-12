@@ -15,6 +15,8 @@
 
 @protocol FSFilestackDelegate <NSObject>
 @optional
+- (void)filestackTransformSuccess:(NSData *)data;
+- (void)filestackTransformSuccessJSON:(NSDictionary *)JSON;
 - (void)filestackStatSuccess:(FSMetadata *)metadata;
 - (void)filestackDownloadSuccess:(NSData *)data;
 - (void)filestackRequestError:(NSError *)error;
@@ -38,7 +40,7 @@
  @param apiKey Found in Developer Portal.
  @param delegate Filestack library delegate.
  */
-- (instancetype)initWithApiKey:(NSString *)apiKey andDelegate:(id <FSFilestackDelegate>)delegate;
+- (instancetype)initWithApiKey:(NSString *)apiKey delegate:(id <FSFilestackDelegate>)delegate;
 
 /*!
  @brief Creates a symlink of the provided url.
@@ -84,5 +86,14 @@
  @param completionHandler Function accepting two arguments: FSBlob and NSError, returned from store request.
  */
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+
+/*!
+ @brief Transforms provided url using Filestack's transformation engine.
+ @param url Url string linking to the file.
+ @param transformation FSTransformation object or nil.
+ @param security FSSecurity object or nil.
+ @param completionHandler Function accepting three arguments: NSData, NSDictionary and NSError, returned from transform request.
+ */
+- (void)transformURL:(NSString *)url transformation:(FSTransformation *)transformation security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSDictionary *JSON, NSError *error))completionHandler;
 
 @end

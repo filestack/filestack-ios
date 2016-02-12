@@ -10,9 +10,14 @@
 
 @interface FSSecurity : NSObject
 
-@property (nonatomic, readonly, strong) NSString *policy;
-@property (nonatomic, readonly, strong) NSString *signature;
+@property (nonatomic, readonly, nonnull, strong) NSString *policy;
+@property (nonatomic, readonly, nonnull, strong) NSString *signature;
 
-- (instancetype)initWithPolicy:(NSString *)policy andSignature:(NSString *)signature;
+/*!
+ @brief Initializes FSSecurity instance with policy and signature.
+ @param policy Policy found in Developer portal's Security section.
+ @param signature Signature found in Developer portal's Security section.
+ */
+- (instancetype _Nullable)initWithPolicy:(NSString * _Nonnull)policy signature:(NSString * _Nonnull)signature;
 
 @end

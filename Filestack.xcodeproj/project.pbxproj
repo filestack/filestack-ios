@@ -52,6 +52,14 @@
 		B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
 		B273AA161C57C5B400232972 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA171C57C5B400232972 /* Filestack.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D4B1C4F9D9E008E47A3 /* Filestack.m */; };
+		B2C8053B1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */; };
+		B2C8053C1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */; };
+		B2C8053D1C6CEE2400F90B2E /* FSSecurity+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */; };
+		B2C8053E1C6CEE2400F90B2E /* FSSecurity+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */; };
+		B2C805411C6DE9F400F90B2E /* FSTransformErrorSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */; };
+		B2C805421C6DE9F400F90B2E /* FSTransformErrorSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */; };
+		B2C805431C6DE9F400F90B2E /* FSTransformErrorSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C805401C6DE9F400F90B2E /* FSTransformErrorSerializer.m */; };
+		B2C805441C6DE9F400F90B2E /* FSTransformErrorSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C805401C6DE9F400F90B2E /* FSTransformErrorSerializer.m */; };
 		B2D755FB1C68C6FA003263FB /* FSPixelateFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D755F91C68C6FA003263FB /* FSPixelateFaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2D755FC1C68C6FA003263FB /* FSPixelateFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */; };
 		B2D755FD1C68C6FD003263FB /* FSPixelateFaces.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */; };
@@ -349,6 +357,10 @@
 		B273A9FE1C57A52400232972 /* FilestackMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilestackMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B273AA001C57A52400232972 /* FilestackMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilestackMac.h; sourceTree = "<group>"; };
 		B273AA021C57A52400232972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSSecurity+Private.h"; sourceTree = "<group>"; };
+		B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSSecurity+Private.m"; sourceTree = "<group>"; };
+		B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTransformErrorSerializer.h; sourceTree = "<group>"; };
+		B2C805401C6DE9F400F90B2E /* FSTransformErrorSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTransformErrorSerializer.m; sourceTree = "<group>"; };
 		B2D755F91C68C6FA003263FB /* FSPixelateFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPixelateFaces.h; sourceTree = "<group>"; };
 		B2D755FA1C68C6FA003263FB /* FSPixelateFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPixelateFaces.m; sourceTree = "<group>"; };
 		B2D755FE1C68C719003263FB /* FSPixelateFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSPixelateFaces+Private.h"; sourceTree = "<group>"; };
@@ -472,6 +484,7 @@
 		B2DE234A1C68A0760007C569 /* FSCropFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCropFaces.m; sourceTree = "<group>"; };
 		B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSCropFaces+Private.h"; sourceTree = "<group>"; };
 		B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCropFaces+Private.m"; sourceTree = "<group>"; };
+		B2FC9B9F1C6CD41100B7928C /* libPods-FilestackIOS-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FilestackIOS-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-FilestackIOS-AFNetworking.a"; sourceTree = "<group>"; };
 		B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackIOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3B13CB2EB36A229031257F /* Pods-FilestackMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackMac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackMac/Pods-FilestackMac.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A915A6A9F539A260A663E5 /* Pods-FilestackIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOS/Pods-FilestackIOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -528,6 +541,7 @@
 		792009A3DA31729B243D6915 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2FC9B9F1C6CD41100B7928C /* libPods-FilestackIOS-AFNetworking.a */,
 				B254A6A41C5F6CAC0096F7F6 /* libPods.a */,
 				4DC84A93F0C0ACC58B1D8227 /* libPods.a */,
 				201E83239A56CE1E7FF3E18C /* libPods-Filestack.a */,
@@ -616,6 +630,8 @@
 				B254A66A1C5A5C070096F7F6 /* FSAPIURL.h */,
 				B254A66B1C5A5C070096F7F6 /* FSAPIURL.m */,
 				B254A6701C5F66480096F7F6 /* FSSessionSettings.h */,
+				B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */,
+				B2C805401C6DE9F400F90B2E /* FSTransformErrorSerializer.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -629,6 +645,8 @@
 				B273A9D31C50E12100232972 /* FSStoreOptions.m */,
 				B273A9D61C50E2DC00232972 /* FSSecurity.h */,
 				B273A9D71C50E2DC00232972 /* FSSecurity.m */,
+				B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */,
+				B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */,
 			);
 			path = Options;
 			sourceTree = "<group>";
@@ -906,10 +924,10 @@
 				B2DE23371C689A630007C569 /* FSCrop */,
 				B2DE23361C689A5D0007C569 /* FSRotate */,
 				B2DE23351C689A530007C569 /* FSResize */,
-				B2DE22E01C6368A30007C569 /* FSTransform.h */,
-				B2DE22E11C6368A30007C569 /* FSTransform.m */,
 				B2DE22D51C6360910007C569 /* FSTransformation.h */,
 				B2DE22D61C6360910007C569 /* FSTransformation.m */,
+				B2DE22E01C6368A30007C569 /* FSTransform.h */,
+				B2DE22E11C6368A30007C569 /* FSTransform.m */,
 				B2DE22EE1C6394120007C569 /* FSTransform+Private.h */,
 				B2DE22EF1C6394120007C569 /* FSTransform+Private.m */,
 			);
@@ -1027,6 +1045,7 @@
 				B2253D111C4F9A1F008E47A3 /* FilestackIOS.h in Headers */,
 				B2DE22D11C635C910007C569 /* FSResize.h in Headers */,
 				B2D7561B1C68D36F003263FB /* FSRoundedCorners+Private.h in Headers */,
+				B2C8053B1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */,
 				B2253D4C1C4F9D9E008E47A3 /* Filestack.h in Headers */,
 				B2253D5A1C4FC17F008E47A3 /* FSBlob.h in Headers */,
 				B2DE23081C639D390007C569 /* FSRotate+Private.h in Headers */,
@@ -1043,6 +1062,7 @@
 				B2DE231E1C63AEAD0007C569 /* FSFlop.h in Headers */,
 				B2D756E51C6B7E8E003263FB /* FSURLScreenshot.h in Headers */,
 				B2D756FE1C6B84F6003263FB /* FSOutput.h in Headers */,
+				B2C805411C6DE9F400F90B2E /* FSTransformErrorSerializer.h in Headers */,
 				B2D7563C1C68E404003263FB /* FSShadow.h in Headers */,
 				B2D756491C68EE77003263FB /* FSCircle.h in Headers */,
 				B2D756AA1C6B4825003263FB /* FSOilPaint+Private.h in Headers */,
@@ -1106,6 +1126,7 @@
 				B2D756011C68C719003263FB /* FSPixelateFaces+Private.h in Headers */,
 				B273AA161C57C5B400232972 /* Filestack.h in Headers */,
 				B2D7561C1C68D36F003263FB /* FSRoundedCorners+Private.h in Headers */,
+				B2C8053C1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */,
 				B2DE22D41C635C990007C569 /* FSResize.h in Headers */,
 				B273AA081C57C5A900232972 /* FSStoreOptions.h in Headers */,
 				B273AA0E1C57C5B100232972 /* FSBlob.h in Headers */,
@@ -1122,6 +1143,7 @@
 				B2DE23251C63AEC90007C569 /* FSFlop+Private.h in Headers */,
 				B2D756E61C6B7E8E003263FB /* FSURLScreenshot.h in Headers */,
 				B2D756FF1C6B84F6003263FB /* FSOutput.h in Headers */,
+				B2C805421C6DE9F400F90B2E /* FSTransformErrorSerializer.h in Headers */,
 				B2D7563D1C68E404003263FB /* FSShadow.h in Headers */,
 				B2D7564A1C68EE77003263FB /* FSCircle.h in Headers */,
 				B2D756AB1C6B4825003263FB /* FSOilPaint+Private.h in Headers */,
@@ -1453,6 +1475,7 @@
 				B2D756651C6B3B91003263FB /* FSSharpen.m in Sources */,
 				B2253D591C4FC0AC008E47A3 /* FSBlob.m in Sources */,
 				B2DE23201C63AEAD0007C569 /* FSFlop.m in Sources */,
+				B2C805431C6DE9F400F90B2E /* FSTransformErrorSerializer.m in Sources */,
 				B2253D681C4FD69E008E47A3 /* FSStatOptions.m in Sources */,
 				B2D7567F1C6B42BB003263FB /* FSMonochrome.m in Sources */,
 				B2D756241C68D772003263FB /* FSPolaroid.m in Sources */,
@@ -1467,6 +1490,7 @@
 				B2D756C61C6B5090003263FB /* FSPartialPixelate+Private.m in Sources */,
 				B2D756171C68D361003263FB /* FSRoundedCorners.m in Sources */,
 				B2D756991C6B452C003263FB /* FSPixelate.m in Sources */,
+				B2C8053D1C6CEE2400F90B2E /* FSSecurity+Private.m in Sources */,
 				B2D7564B1C68EE77003263FB /* FSCircle.m in Sources */,
 				B2D756511C68EEF2003263FB /* FSCircle+Private.m in Sources */,
 				B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
@@ -1539,6 +1563,7 @@
 				B2D756661C6B3B91003263FB /* FSSharpen.m in Sources */,
 				B273AA0F1C57C5B100232972 /* FSBlob.m in Sources */,
 				B2DE23211C63AEAD0007C569 /* FSFlop.m in Sources */,
+				B2C805441C6DE9F400F90B2E /* FSTransformErrorSerializer.m in Sources */,
 				B273AA071C57C5A900232972 /* FSStatOptions.m in Sources */,
 				B2D756801C6B42BB003263FB /* FSMonochrome.m in Sources */,
 				B2D756251C68D772003263FB /* FSPolaroid.m in Sources */,
@@ -1553,6 +1578,7 @@
 				B2D756C71C6B5090003263FB /* FSPartialPixelate+Private.m in Sources */,
 				B2D756181C68D361003263FB /* FSRoundedCorners.m in Sources */,
 				B2D7569A1C6B452C003263FB /* FSPixelate.m in Sources */,
+				B2C8053E1C6CEE2400F90B2E /* FSSecurity+Private.m in Sources */,
 				B2D7564C1C68EE77003263FB /* FSCircle.m in Sources */,
 				B2D756521C68EEF2003263FB /* FSCircle+Private.m in Sources */,
 				B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
@@ -1677,6 +1703,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.Filestack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1695,6 +1722,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.Filestack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -28,7 +28,7 @@
 ```bash
 $ gem install cocoapods
 ```
-To integrate WootricSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate Filestack into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 pod "Filestack", "~> 0.1.4"
@@ -45,13 +45,28 @@ $ pod install
 
 ```objectivec
 - initWithApiKey:
-- initWithApiKey:andDelegate:
+- initWithApiKey:delegate:
 - pickURL:completionHandler:
 - remove:completionHandler:
 - stat:withOptions:completionHandler:
 - download:completionHandler:
 - storeURL:withOptions:completionHandler:
 - store:withOptions:completionHandler:
+- transformURL:transformation:security:completionHandler:
+```
+
+#### Delegate methods:
+
+```objectivec
+// FSFilestackDelegate
+- filestackTransformSuccess:
+- filestackTransformSuccessJSON:
+- filestackStatSuccess:
+- filestackDownloadSuccess:
+- filestackRequestError:
+- filestackPickURLSuccess:
+- filestackStoreSuccess:
+- filestackRemoveSuccess
 ```
 
 #### Examples:
@@ -210,7 +225,654 @@ Available dictionary keys (and properties):
 A simple class to store your security policy and signature. **FSSecurity** instance is a ```security``` parameter in **FSStoreOptions**.
 [Read more about security and how to generate policies and signatures](https://www.filestack.com/docs/security)
 
-```- initWithPolicy:andSignature:```
+```- initWithPolicy:signature:```
+
+## Image Transformations
+
+> Filestack's transformation engine brings the addition of more complicated transformations in a powerful and flexible package. Gone is the requirement that you have a Filestack URL before you can convert a file. Now you can pass us any publicly accessible URL and we will slice and dice it into the format you need. Your conversions can also be more sophisticated as we have created a conversion task router that allows for a real order of operations for file conversions. So now you can make sure your image is cropped before it is resized, or resized before it is cropped, or even resized before it is cropped, rotated and watermarked.
+
+#### **FSTransformation**
+
+```FSTransformation``` is the main transformations class. You are building your final transformation by adding ```FSTransform``` objects to the instance of ```FSTransformation```.
+
+```objectivec
+FSTransformation *transformation = [[FSTransformation alloc] init];
+FSResize *resize = [[FSResize alloc] initWithWidth:@150 height:nil fit:FSResizeFitClip align:FSResizeAlignFaces];
+
+[transformation add:resize];
+```
+
+**properties:**
+```objectivec
+BOOL debug
+```
+
+**initializers:**
+```objectivec
+- initWithQueryString:
+```
+
+```- initWithQueryString:``` can be used if you have prepared the query yourself, for example you have a blur faces and torn edges transformations string ready ```"blur_faces=maxsize:0.35,type:oval,faces:[1,2]/torn_edges=spread:[10,10]"``` in this case you can initialize ```FSTransformation``` like this:
+
+```objectivec
+FSTransformation *transformation = [[FSTransformation alloc] initWithQueryString:@"blur_faces=maxsize:0.35,type:oval,faces:[1,2]/torn_edges=spread:[10,10]"];
+```
+
+so you don't have to create and add ```FSBlurFaces``` and ```FSTornEdges``` to ```FSTransformation``` instance.
+
+**methods:**
+```objectivec
+- add:
+- transformationURLWithApiKey:URLToTransform:
+```
+
+```- add:``` is the main method you are going to use to add a single transformation to the "transformations collection".
+
+```- transformationURLWithApiKey:security:URLToTransform:``` will return a complete url for provided api key, security, url to transform and all transformations currently "in collection". For example:
+```objectivec
+NSString *urlToTransform = @"https://d1wtqaffaaj63z.cloudfront.net/images/Portrait_of_ASTP_crews.jpg";
+FSTransformation *transformation = [[FSTransformation alloc] init];
+FSBlurFaces *blurFaces = [[FSBlurFaces alloc] initWithMinSize:nil maxSize:@0.35 type:FSPBlurFacesTypeOval buffer:nil blurAmount:nil obscureAmount:nil faces:@[@1, @2]];
+FSTornEdges *tornEdges = [[FSTornEdges alloc] initWithSpread:@[@10, @10] background:nil];
+
+[transformation add:blurFaces];
+[transformation add:tornEdges];
+
+NSString *transformationURL = [transformation transformationURLWithApiKey:@"APIKEY" security:nil URLToTransform:urlToTransform];
+
+// NSLog("%@", transformationURL);
+// https://process.filestackapi.com/APIKEY/blur_faces=maxsize:0.350000,type:oval,faces:[1,2]/torn_edges=spread:[10,10]/https://d1wtqaffaaj63z.cloudfront.net/images/Portrait_of_ASTP_crews.jpg
+```
+
+##### Debug mode:
+> https://www.filestack.com/docs/image-transformations/debug
+
+To enable debug mode for transformation:
+```objectivec
+FSTransformation *transformation = [[FSTransformation alloc] init];
+transformation.debug = YES;
+```
+
+### Chaining Transformation Tasks
+> https://www.filestack.com/docs/image-transformations/chained-transformations
+
+**BE ADVISED THAT THE ORDER IN WHICH YOU ARE ADDING TRANSFORMATIONS DOES MATTER!**
+
+To chain transformations tasks simply create additional ```FSTransform``` object  
+
+```objectivec
+FSTransformation *transformation = [[FSTransformation alloc] init];
+FSResize *resize = [[FSResize alloc] initWithWidth:@150 height:nil fit:FSResizeFitClip align:FSResizeAlignFaces];
+FSCrop *crop = [[FSCrop alloc] initWithX:@0 y:@0 width:@300 height:@400];
+FSRotate *rotate = [[FSRotate alloc] initWithDegrees:@120 background:@"black" rotateToEXIF:NO resetEXIF:YES];
+
+[transformation add:resize];
+[transformation add:crop];
+[transformation add:rotate];
+```
+
+### Usage
+
+To use transformations you need to combine it with Filestack's ```- transformURL:transformation:security:completionHandler:``` method. For example:
+
+```objectivec
+Filestack *filestack = [[Filestack alloc] initWithApiKey:@"APIKEY" delegate:self];
+NSString *urlToTransform = @"https://d1wtqaffaaj63z.cloudfront.net/images/Portrait_of_ASTP_crews.jpg";
+FSTransformation *transformation = [[FSTransformation alloc] init];
+FSCrop *crop = [[FSCrop alloc] initWithX:@0 y:@0 width:@300 height:@400];
+FSRotate *rotate = [[FSRotate alloc] initWithDegrees:@120 background:@"black" rotateToEXIF:NO resetEXIF:YES];
+
+[transformation add:crop];
+[transformation add:rotate];
+
+[filestack transformURL:urlToTransform transformation:transformation security:nil completionHandler:^(NSData *data, NSDictionary *JSON, NSError *error) {
+    NSLog(@"data: %@", data);
+    NSLog(@"JSON: %@", JSON);
+    NSLog(@"error: %@", error);
+}];
+```
+
+There are three special cases when you will get ```JSON``` instead of ```data```. First, for every transformation when you are in debug mode (```transformation.debug = YES;```), second, when you are using ```FSDetectFaces``` with ```exportTOJSON = YES``` and third case with ```FSOutput``` with requested docinfo (```docInfo = YES```). All other cases will return either data or error. Error will have an additional key ```"com.filestack.serialization.response.error"``` in ```userInfo``` dictionary, containing error message serialized to string.
+
+### Available transformations
+Please refer to Filestack's documentation, as **there is no client-side parameters validation**, so it's on your shoulders to provide a valid values (or face the consequences of an error! :D).
+> "With great power comes great responsibility."
+
+Every ```FSTransform``` object can be created by either initializer(s) with parameters or by setting the properties yourself. Few of the transformations takes no parameters whatsoever.
+
+```objectivec
+// FSResize init with parameters example
+FSResize *resizeTransformation = [[FSResize alloc] initWithWidth:@200 height:@300 fit:FSResizeFitScale andAlign:FSResizeAlignLeft];
+
+// FSResize init and setting the properties example:
+FSResize *resizeTransformation = [[FSResize alloc] init];
+resizeTransformation.width = @200;
+resizeTransformation.height = @300;
+resizeTransformation.fit = FSResizeFitScale;
+resizeTransformation.align = FSResizeFitAlignLeft;
+```
+
+#### **FSResize**
+> https://www.filestack.com/docs/image-transformations/resize
+
+properties:
+```objectivec
+NSNumber *width
+NSNumber *height
+FSResizeFit fit
+FSResizeAlign align
+```
+typedefs "helpers":
+```objectivec
+// FSResizeFit
+FSResizeFitClip 
+FSResizeFitCrop 
+FSResizeFitScale
+FSResizeFitMax
+
+// FSResizeAlign
+FSResizeAlignLeft
+FSResizeAlignRight
+FSResizeAlignTop
+FSResizeAlignBottom
+FSResizeAlignCenter
+FSResizeAlignFaces
+FSResizeAlignTopLeft
+FSResizeAlignTopRight
+FSResizeAlignBottomLeft
+FSResizeAlignBottomRight
+```
+
+initializers:
+```objectivec
+- initWithHeight:
+- initWithWidth:
+- initWithWidth:height:
+- initWithWidth:height:fit:
+- initWithWidth:height:fit:align:
+```
+
+#### **FSCrop**
+> https://www.filestack.com/docs/image-transformations/crop
+
+properties:
+```objectivec
+NSNumber *x
+NSNumber *y
+NSNumber *width
+NSNumber *height
+```
+
+initializers:
+```objectivec
+- initWithX:y:width:height:
+```
+
+#### **FSRotate**
+> https://www.filestack.com/docs/image-transformations/rotate#rotate
+
+properties:
+```objectivec
+NSNumber *degrees
+NSString *background
+BOOL toEXIF
+BOOL resetEXIF
+```
+
+initializers:
+```objectivec
+- initWithDegrees:background:rotateToEXIF:resetEXIF:;
+```
+
+#### **FSFlip** and **FSFlop**
+> https://www.filestack.com/docs/image-transformations/rotate#flip
+
+> https://www.filestack.com/docs/image-transformations/rotate#flop
+
+#### **FSWatermark**
+> https://www.filestack.com/docs/image-transformations/watermark
+
+Instead of Filestack handle, FSWatermark is accepting FSBlob in place of ```file``` parameter.
+
+typedefs “helpers”:
+```objectivec
+// FSWatermarkPosition
+FSWatermarkPositionLeft
+FSWatermarkPositionRight
+FSWatermarkPositionBottom
+FSWatermarkPositionCenter
+FSWatermarkPositionTop
+FSWatermarkPositionTopLeft
+FSWatermarkPositionBottomLeft
+FSWatermarkPositionTopRight
+FSWatermarkPositionBottomRight
+FSWatermarkPositionTopCenter
+FSWatermarkPositionBottomCenter
+```
+
+properties:
+```objectivec
+FSBlob *blob
+NSNumber *size
+FSWatermarkPosition position
+```
+
+initializers:
+```objectivec
+- initWithBlob:size:position:position
+```
+
+#### **FSDetectFaces**
+> https://www.filestack.com/docs/image-transformations/facial-detection#detect_faces
+
+properties:
+```objectivec
+NSNumber *minSize
+NSNumber *maxSize
+NSString *color
+BOOL exportToJSON
+```
+
+initializers:
+```objectivec
+- initWithMinSize:maxSize:color:exportToJSON:
+- initWithExportToJSON:
+```
+
+#### **FSCropFaces**
+> https://www.filestack.com/docs/image-transformations/facial-detection#crop_faces
+
+typedefs "helpers""
+
+```objectivec
+// FSCropFacesMode
+FSCropFacesModeThumb
+FSCropFacesModeCrop
+FSCropFacesModeFill
+```
+
+properties:
+```objectivec
+FSCropFacesMode mode
+NSNumber *width
+NSNumber *height
+NSNumber *buffer
+NSNumber *face
+NSArray<NSNumber *> *faces
+BOOL allFaces
+```
+
+initializers:
+```objectivec
+- initWithMode:width:height:buffer:
+- initWithMode:width:height:buffer:face:
+- initWithMode:width:height:buffer:faces:
+- initAllFacesWithMode:width:height:buffer:
+```
+
+#### **FSPixelateFaces**
+> https://www.filestack.com/docs/image-transformations/facial-detection#pixelate_faces
+
+typedef "helpers":
+```objectivec
+// FSPixelateFacesType
+FSPixelateFacesTypeRect
+FSPixelateFacesTypeOval
+```
+
+properties:
+```objectivec
+NSNumber *minSize
+NSNumber *maxSize
+NSNumber *buffer
+NSNumber *blur
+NSNumber *amount
+FSPixelateFacesType type
+NSNumber *face
+NSArray<NSNumber *> *faces
+BOOL allFaces
+```
+
+initializers:
+```objectivec
+- (instancetype)initWithMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:
+- (instancetype)initWithAllFacesAndMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:
+- (instancetype)initWithMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:face:
+- (instancetype)initWithMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:faces:
+```
+
+#### **FSBlurFaces**
+> https://www.filestack.com/docs/image-transformations/facial-detection#blur_faces
+
+typedef "helpers":
+```objectivec
+// FSPBlurFacesType
+FSPBlurFacesTypeRect
+FSPBlurFacesTypeOval
+```
+
+properties:
+```objectivec
+NSNumber *minSize
+NSNumber *maxSize
+NSNumber *buffer
+NSNumber *blur
+NSNumber *amount
+FSPBlurFacesType type
+NSNumber *face
+NSArray<NSNumber *> *faces
+BOOL allFaces
+```
+
+initializers:
+```objectivec
+- (instancetype)initWithMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:
+- (instancetype)initWithAllFacesAndMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:
+- (instancetype)initWithMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:face:
+- (instancetype)initWithMinSize:maxSize:type:buffer:blurAmount:pixelateAmount:faces:
+```
+
+#### **FSRoundedCorners**
+> https://www.filestack.com/docs/image-transformations/borders-and-effects#rounded-corners
+
+properties:
+```objectivec
+NSNumber *radius
+NSNumber *blur
+NSString *background
+BOOL maxRadius
+```
+
+initializers:
+```objectivec
+- initWithRadius:blur:background:
+- initWithMaxRadiusAndBlur:background:
+```
+
+#### **FSPolaroid**
+> https://www.filestack.com/docs/image-transformations/borders-and-effects#polaroid
+
+properties:
+```objectivec
+NSString *color
+NSString *background
+NSNumber *rotate
+```
+
+initializers:
+```objectivec
+- initWithColor:background:rotation:
+```
+
+#### **FSTornEdges**
+> https://www.filestack.com/docs/image-transformations/borders-and-effects#torn-edges
+
+properties:
+```objectivec
+NSArray<NSNumber *> *spread
+NSString *background
+```
+
+initializers:
+```objectivec
+- initWithSpread:background:
+```
+
+#### **FSShadow**
+> https://www.filestack.com/docs/image-transformations/borders-and-effects#shadow
+
+properties:
+```objectivec
+NSNumber *blur
+NSNumber *opacity
+NSArray<NSNumber *> *vector
+NSString *color
+NSString *background
+```
+
+initializers:
+```objectivec
+- initWithBlur:opacity:vector:color:background:
+```
+
+#### **FSCircle**
+> https://www.filestack.com/docs/image-transformations/borders-and-effects#circle
+
+properties:
+```objectivec
+NSString *background
+```
+
+initializers:
+```objectivec
+- initWithBackground:
+```
+
+#### **FSBorder**
+> https://www.filestack.com/docs/image-transformations/borders-and-effects#border
+
+properties:
+```objectivec
+NSNumber *width
+NSString *color
+NSString *background
+```
+
+initializers:
+```objectivec
+- initWithWidth:color:background:
+```
+
+#### **FSSharpen**
+> https://www.filestack.com/docs/image-transformations/filter#sharpen
+
+properties:
+```objectivec
+NSNumber *amount
+```
+
+initializers:
+```objectivec
+- initWithAmount:
+```
+
+#### **FSBlur**
+> https://www.filestack.com/docs/image-transformations/filter#blur
+
+properties:
+```objectivec
+NSNumber *amount
+```
+
+initializers:
+```objectivec
+- initWithAmount:
+```
+
+#### **FSMonochrome**
+> https://www.filestack.com/docs/image-transformations/filter#monochrome
+
+#### **FSSepia**
+> https://www.filestack.com/docs/image-transformations/filter#sepia
+
+properties:
+```objectivec
+NSNumber *tone
+```
+
+initializers:
+```objectivec
+- initWithTone:
+```
+
+#### **FSPixelate**
+> https://www.filestack.com/docs/image-transformations/filter#pixelate
+
+properties:
+```objectivec
+NSNumber *amount
+```
+
+initializers:
+```objectivec
+- initWithAmount:
+```
+
+#### **FSOilPaint**
+> https://www.filestack.com/docs/image-transformations/filter#oil_paint
+
+properties:
+```objectivec
+NSNumber *amount
+```
+
+initializers:
+```objectivec
+- initWithAmount:
+```
+
+#### **FSModulate**
+> https://www.filestack.com/docs/image-transformations/filter#modulate
+
+properties:
+```objectivec
+NSNumber *hue
+NSNumber *brightness
+NSNumber *saturation
+```
+
+initializers:
+```objectivec
+- initWithBrightness:hue:saturation:
+```
+
+#### **FSPartialPixelate**
+> https://www.filestack.com/docs/image-transformations/filter#partial_pixelate
+
+typedef "helpers":
+```objectivec
+// FSPPartialPixelateType
+FSPPartialPixelateTypeRect
+FSPPartialPixelateTypeOval
+```
+
+properties:
+```objectivec
+NSNumber *buffer
+NSNumber *amount
+NSNumber *blur
+FSPPartialPixelateType type
+NSArray<NSArray<NSNumber *> *> *objects
+```
+
+initializers:
+```objectivec
+- initWithObjects:
+- initWithObjects:buffer:amount:blur:type:
+```
+
+#### **FSPartialBlur**
+> https://www.filestack.com/docs/image-transformations/filter#partial_blur
+
+typedef "helpers":
+```objectivec
+// FSPPartialBlurType
+FSPPartialBlurTypeRect
+FSPPartialBlurTypeOval
+```
+
+properties:
+```objectivec
+NSNumber *buffer
+NSNumber *amount
+NSNumber *blur
+FSPPartialBlurType type
+NSArray<NSArray<NSNumber *> *> *objects
+```
+
+initializers:
+```objectivec
+- initWithObjects:
+- initWithObjects:buffer:amount:blur:type:
+```
+
+#### **FSCollage**
+> https://www.filestack.com/docs/image-transformations/collage
+
+Instead of an array of filestack handles, FSCollage is accepting array of FSBlobs in place of ```files``` parameter. 
+
+properties:
+```objectivec
+NSString *color
+NSNumber *margin
+NSArray<FSBlob *> *files
+NSNumber *width
+NSNumber *height
+```
+
+initializers:
+```objectivec
+- initWithFiles:width:height:
+- initWithFiles:width:height:margin:color:
+```
+
+#### **FSURLScreenshot**
+> https://www.filestack.com/docs/image-transformations/url-screenshot
+
+#### **FSASCII**
+> https://www.filestack.com/docs/image-transformations/img-to-ascii
+
+#### **FSOutput**
+> https://www.filestack.com/docs/image-transformations/output
+
+typedef "helpers":
+```objectivec
+// FSOutputFormat
+FSOutputFormatPDF
+FSOutputFormatDOC
+FSOutputFormatDOCX
+FSOutputFormatODT
+FSOutputFormatXLS
+FSOutputFormatXLSX
+FSOutputFormatODS
+FSOutputFormatPPT
+FSOutputFormatPPTX
+FSOutputFormatODP
+FSOutputFormatBMP
+FSOutputFormatGIF
+FSOutputFormatJPG
+FSOutputFormatPNG
+FSOutputFormatTIFF
+FSOutputFormatAI
+FSOutputFormatPSD
+FSOutputFormatSVG
+FSOutputFormatHTML
+FSOutputFormatTXT
+
+// FSOutputColorspace
+FSOutputColorspaceRGB
+FSOutputColorspaceCMYK
+FSOutputColorspaceInput
+```
+
+properties:
+```objectivec
+FSOutputFormat format
+FSOutputColorspace colorspace
+NSNumber *page
+NSNumber *density
+NSNumber *quality
+BOOL compress
+BOOL secure
+BOOL docInfo
+```
+
+initializers:
+```objectivec
+- initWithFormat:colorspace:page:density:compress:quality:secure:
+- initWithFormat:
+- initWithDocInfo:
+```
 
 ## License
 

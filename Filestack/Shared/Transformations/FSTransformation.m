@@ -8,6 +8,7 @@
 
 #import "FSTransformation.h"
 #import "FSTransform+Private.h"
+#import "FSSecurity+Private.h"
 #import "FSAPIURL.h"
 
 @interface FSTransformation ()
@@ -17,6 +18,8 @@
 @property (nonatomic, assign) BOOL exportFacesToJSON;
 // Custom return value setting for FSOutput.
 @property (nonatomic, assign) BOOL docInfoJSON;
+@property (nonatomic, assign) BOOL debugSet;
+@property (nonatomic, assign) BOOL securitySet;
 
 @end
 
@@ -40,20 +43,33 @@
     NSString *transformQuery = [transform toQuery];
 
     if (transformQuery) {
-        if ([transformQuery isMemberOfClass:[FSDetectFaces class]]) {
-            _exportFacesToJSON = ((FSDetectFaces *)transformQuery).exportToJSON;
-        } else if ([transformQuery isMemberOfClass:[FSOutput class]]) {
-            _docInfoJSON = ((FSOutput *)transformQuery).docInfo;
+        if ([transform isMemberOfClass:[FSDetectFaces class]]) {
+            _exportFacesToJSON = ((FSDetectFaces *)transform).exportToJSON;
+        } else if ([transform isMemberOfClass:[FSOutput class]]) {
+            _docInfoJSON = ((FSOutput *)transform).docInfo;
         }
         [_transformationsArray addObject:transformQuery];
     }
-
-    NSLog(@"%@", _transformationsArray);
 }
 
-- (NSString *)transformationURLWithApiKey:(NSString *)apiKey andURLToTransform:(NSString *)urlToTransform {
+- (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform {
+    if (security && !_securitySet) {
+        _securitySet = YES;
+        [_transformationsArray insertObject:[security toQuery] atIndex:1];
+    }
+
+    if (_debug && !_debugSet) {
+        _debugSet = YES;
+        [_transformationsArray insertObject:@"debug" atIndex:0];
+    }
+
     NSString *transformationQuery = [_transformationsArray componentsJoinedByString:@"/"];
+
     return [NSString stringWithFormat:@"%@/%@/%@/%@", FSURLTransformationURL, apiKey, transformationQuery, urlToTransform];
+}
+
+- (BOOL)willReturnJSON {
+    return (_exportFacesToJSON || _debug || _docInfoJSON);
 }
 
 @end

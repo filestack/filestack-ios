@@ -37,6 +37,7 @@
 #import "FSURLScreenshot.h"
 #import "FSASCII.h"
 #import "FSOutput.h"
+#import "FSSecurity.h"
 
 @interface FSTransformation : NSObject
 
@@ -44,6 +45,7 @@
 
 - (instancetype)initWithQueryString:(NSString *)queryString;
 - (void)add:(FSTransform *)transform;
-- (NSString *)transformationURLWithApiKey:(NSString *)apiKey andURLToTransform:(NSString *)urlToTransform;
+- (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform;
+- (BOOL)willReturnJSON;
 
 @end

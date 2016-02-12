@@ -12,20 +12,7 @@
 #import "FSMetadata+Private.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface FSAPIClient ()
-
-@property (nonatomic, strong) NSString *apiKey;
-
-@end
-
 @implementation FSAPIClient
-
-- (instancetype)initWithApiKey:(NSString *)apiKey {
-    if (self = [super init]) {
-        self.apiKey = apiKey;
-    }
-    return self;
-}
 
 - (void)POST:(NSString *)postURL parameters:(NSDictionary *)parameters options:(FSStoreOptions *)storeOptions sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings[FSSessionSettingsBaseURL] andPOSTURIParameters:[sessionSettings[FSSessionSettingsURIParams] boolValue]];
