@@ -12,10 +12,10 @@
 
 - (NSString *)toQuery {
     if (!self.amount) {
-        return @"sharpen";
+        return @"blur";
     }
 
-    return [NSString stringWithFormat:@"blur=amount:%ld", [self.amount integerValue]];
+    return [NSString stringWithFormat:@"blur=amount:%ld", (long)[self.amount integerValue]];
 }
 
 @end

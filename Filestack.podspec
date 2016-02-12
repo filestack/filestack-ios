@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Filestack'
-  s.version      = '0.2.0'
+  s.version      = '0.2.1'
   s.summary      = 'SDK to access Filestack API'
 
   s.description  = <<-DESC
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   )
 
   shared_private_transformations_header = %w(
-    Filestack/Shared/Transformations/*+Private*
+    Filestack/Shared/Transformations/*+Private.h*
   )
 
   s.ios.public_header_files = %w(
