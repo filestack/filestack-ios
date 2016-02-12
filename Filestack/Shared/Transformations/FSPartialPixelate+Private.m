@@ -20,11 +20,11 @@
     [queryArray addObject:[self objectsArrayToString]];
 
     if (self.buffer) {
-        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", [self.buffer integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)[self.buffer integerValue]]];
     }
 
     if (self.amount) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%ld", [self.amount integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"amount:%ld", (long)[self.amount integerValue]]];
     }
 
     if (self.blur) {

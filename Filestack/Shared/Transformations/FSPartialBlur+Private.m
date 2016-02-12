@@ -20,7 +20,7 @@
     [queryArray addObject:[self objectsArrayToString]];
 
     if (self.buffer) {
-        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", [self.buffer integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)[self.buffer integerValue]]];
     }
 
     if (self.amount) {

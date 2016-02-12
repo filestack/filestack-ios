@@ -18,7 +18,7 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.width) {
-        [queryArray addObject:[NSString stringWithFormat:@"width:%ld", [self.width integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"width:%ld", (long)[self.width integerValue]]];
     }
 
     if (self.background) {

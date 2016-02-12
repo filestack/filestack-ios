@@ -20,7 +20,7 @@
     [queryArray addObject:[NSString stringWithFormat:@"file:%@", fileHandle]];
 
     if (self.size) {
-        [queryArray addObject:[NSString stringWithFormat:@"size:%ld", [self.size integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"size:%ld", (long)[self.size integerValue]]];
     }
 
     if (self.position) {

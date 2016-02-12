@@ -22,7 +22,7 @@
     }
 
     if (self.buffer) {
-        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", [self.buffer integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)[self.buffer integerValue]]];
     }
 
     if (self.face || self.faces || self.allFaces) {
@@ -31,7 +31,7 @@
         } else if (self.faces) {
             [queryArray addObject:[NSString stringWithFormat:@"faces:%@", [self facesArrayToString]]];
         } else {
-            [queryArray addObject:[NSString stringWithFormat:@"faces:%ld", [self.face integerValue]]];
+            [queryArray addObject:[NSString stringWithFormat:@"faces:%ld", (long)[self.face integerValue]]];
         }
     }
     return [NSString stringWithFormat:@"%@=%@", @"crop_faces", [queryArray componentsJoinedByString:@","]];

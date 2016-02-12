@@ -19,11 +19,11 @@
     }
 
     if (self.page) {
-        [queryArray addObject:[NSString stringWithFormat:@"page:%ld", [self.page integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"page:%ld", (long)[self.page integerValue]]];
     }
 
     if (self.density) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%ld", [self.density integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%ld", (long)[self.density integerValue]]];
     }
 
     if (self.compress) {
@@ -31,7 +31,7 @@
     }
 
     if (self.quality) {
-        [queryArray addObject:[NSString stringWithFormat:@"quality:%ld", [self.quality integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"quality:%ld", (long)[self.quality integerValue]]];
     }
 
     if (self.secure) {

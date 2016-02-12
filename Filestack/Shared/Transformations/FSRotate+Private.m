@@ -16,7 +16,7 @@
     if (self.toEXIF) {
         [queryArray addObject:@"deg:exif"];
     } else if (self.degrees) {
-        [queryArray addObject:[NSString stringWithFormat:@"deg:%ld", [self.degrees integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"deg:%ld", (long)[self.degrees integerValue]]];
     }
 
     if (self.resetEXIF) {

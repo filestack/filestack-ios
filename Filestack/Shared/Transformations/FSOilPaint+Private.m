@@ -15,7 +15,7 @@
         return @"oil_paint";
     }
 
-    return [NSString stringWithFormat:@"oil_paint=amount:%ld", [self.amount integerValue]];
+    return [NSString stringWithFormat:@"oil_paint=amount:%ld", (long)[self.amount integerValue]];
 }
 
 @end

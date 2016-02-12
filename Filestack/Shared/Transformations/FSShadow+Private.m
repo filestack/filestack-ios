@@ -18,7 +18,7 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%ld", [self.blur integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%ld", (long)[self.blur integerValue]]];
     }
 
     if (self.color) {
@@ -26,7 +26,7 @@
     }
 
     if (self.opacity) {
-        [queryArray addObject:[NSString stringWithFormat:@"opacity:%ld", [self.opacity integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"opacity:%ld", (long)[self.opacity integerValue]]];
     }
 
     if (self.vector) {

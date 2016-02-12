@@ -18,7 +18,7 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.rotate) {
-        [queryArray addObject:[NSString stringWithFormat:@"rotate:%ld", [self.rotate integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"rotate:%ld", (long)[self.rotate integerValue]]];
     }
 
     if (self.background) {

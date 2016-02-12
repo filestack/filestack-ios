@@ -15,7 +15,7 @@
         return @"pixelate";
     }
 
-    return [NSString stringWithFormat:@"pixelate=amount:%ld", [self.amount integerValue]];
+    return [NSString stringWithFormat:@"pixelate=amount:%ld", (long)[self.amount integerValue]];
 }
 
 @end

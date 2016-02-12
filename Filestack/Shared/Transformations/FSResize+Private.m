@@ -18,11 +18,11 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.width) {
-        [queryArray addObject:[NSString stringWithFormat:@"width:%ld", [self.width integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"width:%ld", (long)[self.width integerValue]]];
     }
 
     if (self.height) {
-        [queryArray addObject:[NSString stringWithFormat:@"height:%ld", [self.height integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"height:%ld", (long)[self.height integerValue]]];
     }
 
     if (self.fit) {

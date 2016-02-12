@@ -11,7 +11,7 @@
 @implementation FSCrop (Private)
 
 - (NSString *)toQuery {
-    return [NSString stringWithFormat:@"crop=dim:[%ld,%ld,%ld,%ld]", [self.x integerValue], [self.y integerValue], [self.width integerValue], [self.height integerValue]];
+    return [NSString stringWithFormat:@"crop=dim:[%ld,%ld,%ld,%ld]", (long)[self.x integerValue], (long)[self.y integerValue], (long)[self.width integerValue], (long)[self.height integerValue]];
 }
 
 @end

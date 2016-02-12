@@ -19,7 +19,7 @@
 
     if (self.radius || self.maxRadius) {
         if (self.radius) {
-            [queryArray addObject:[NSString stringWithFormat:@"radius:%ld", [self.radius integerValue]]];
+            [queryArray addObject:[NSString stringWithFormat:@"radius:%ld", (long)[self.radius integerValue]]];
         } else {
             [queryArray addObject:@"radius:max"];
         }

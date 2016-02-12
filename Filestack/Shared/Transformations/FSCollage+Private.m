@@ -18,15 +18,15 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     [queryArray addObject:[self filesArrayToString]];
-    [queryArray addObject:[NSString stringWithFormat:@"width:%ld", [self.width integerValue]]];
-    [queryArray addObject:[NSString stringWithFormat:@"height:%ld", [self.height integerValue]]];
+    [queryArray addObject:[NSString stringWithFormat:@"width:%ld", (long)[self.width integerValue]]];
+    [queryArray addObject:[NSString stringWithFormat:@"height:%ld", (long)[self.height integerValue]]];
 
     if (self.color) {
         [queryArray addObject:[NSString stringWithFormat:@"color:%@", self.color]];
     }
 
     if (self.margin) {
-        [queryArray addObject:[NSString stringWithFormat:@"margin:%ld", [self.margin integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"margin:%ld", (long)[self.margin integerValue]]];
     }
 
     return [NSString stringWithFormat:@"%@=%@", @"partial_pixelate", [queryArray componentsJoinedByString:@","]];
