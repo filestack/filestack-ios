@@ -1,5 +1,12 @@
 # Filestack for iOS & Mac
 
+- Table of contents
+  - [TODO](#todo)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Image Transformations](#image-transformations)
+
 ## TODO
 
 - [x] pickURL
@@ -9,8 +16,8 @@
 - [x] Remove
 - [x] Download
 - [x] Implement Delegate
+- [x] Filestack's Transformations Implementation
 - [ ] Progress
-- [ ] Filestack's Convert Implementation
 - [ ] iOS-picker's FFPickerController Reimplementation
 - [ ] Unit Test Coverage
 - [ ] Download method response serialization
@@ -84,7 +91,7 @@ NSString *url = @"https://example.com/image.png"
 // stat Example
 Filestack *filestack = [[Filestack alloc] initWithApiKey:@"MYAPIKEY"];
 FSBlob *blob = [[FSBlob alloc] initWithUrl:@"https://cdn.filestackcontent.com/FILEHANDLER"]
-
+]
 [filestack stat:blob withOptions:nil completionHandler:^(FSMetadata *metadata, NSError *error) {
     NSLog(@"metadata: %@", metadata);
     NSLog(@"error: %@", error);
@@ -231,6 +238,8 @@ A simple class to store your security policy and signature. **FSSecurity** insta
 
 > Filestack's transformation engine brings the addition of more complicated transformations in a powerful and flexible package. Gone is the requirement that you have a Filestack URL before you can convert a file. Now you can pass us any publicly accessible URL and we will slice and dice it into the format you need. Your conversions can also be more sophisticated as we have created a conversion task router that allows for a real order of operations for file conversions. So now you can make sure your image is cropped before it is resized, or resized before it is cropped, or even resized before it is cropped, rotated and watermarked.
 
+> https://www.filestack.com/docs/image-transformations/image-transformations
+
 #### **FSTransformation**
 
 ```FSTransformation``` is the main transformations class. You are building your final transformation by adding ```FSTransform``` objects to the instance of ```FSTransformation```.
@@ -298,7 +307,7 @@ transformation.debug = YES;
 
 **BE ADVISED THAT THE ORDER IN WHICH YOU ARE ADDING TRANSFORMATIONS DOES MATTER!**
 
-To chain transformations tasks simply create additional ```FSTransform``` object  
+To chain transformations tasks simply create and add additional ```FSTransform``` object.
 
 ```objectivec
 FSTransformation *transformation = [[FSTransformation alloc] init];
@@ -330,6 +339,16 @@ FSRotate *rotate = [[FSRotate alloc] initWithDegrees:@120 background:@"black" ro
     NSLog(@"JSON: %@", JSON);
     NSLog(@"error: %@", error);
 }];
+
+// ...
+
+- (void)filestackTransformSuccess:(NSData *)data {
+    NSLog(@"data: %@", data);
+}
+
+- (void)filestackTransformSuccessJSON:(NSDictionary *)JSON {
+    NSLog(@"JSON: %@", JSON);
+}
 ```
 
 There are three special cases when you will get ```JSON``` instead of ```data```. First, for every transformation when you are in debug mode (```transformation.debug = YES;```), second, when you are using ```FSDetectFaces``` with ```exportTOJSON = YES``` and third case with ```FSOutput``` with requested docinfo (```docInfo = YES```). All other cases will return either data or error. Error will have an additional key ```"com.filestack.serialization.response.error"``` in ```userInfo``` dictionary, containing error message serialized to string.
