@@ -18,7 +18,7 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.spread) {
-        [queryArray addObject:[NSString stringWithFormat:@"spread:[%@]", [self.spread componentsJoinedByString:@","]]];
+        [queryArray addObject:[NSString stringWithFormat:@"spread:%@", [self spreadArrayToString]]];
     }
 
     if (self.background) {
@@ -26,6 +26,16 @@
     }
 
     return [NSString stringWithFormat:@"%@=%@", @"torn_edges", [queryArray componentsJoinedByString:@","]];
+}
+
+- (NSString *)spreadArrayToString {
+    NSMutableArray *spreadIntegerArray = [[NSMutableArray alloc] init];
+
+    for (NSNumber *spreadComponent in self.spread) {
+        [spreadIntegerArray addObject:[NSNumber numberWithInteger:[spreadComponent integerValue]]];
+    }
+
+    return [NSString stringWithFormat:@"[%@]", [spreadIntegerArray componentsJoinedByString:@","]];
 }
 
 @end

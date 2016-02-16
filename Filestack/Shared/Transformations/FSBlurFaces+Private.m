@@ -57,7 +57,7 @@
     NSMutableArray *facesIntegerArray = [[NSMutableArray alloc] init];
 
     for (NSNumber *faceNumber in self.faces) {
-        [faceIntegerArray addObject:[NSNumber numberWithInteger:[faceNumber integerValue]]];
+        [facesIntegerArray addObject:[NSNumber numberWithInteger:[faceNumber integerValue]]];
     }
 
     return [NSString stringWithFormat:@"[%@]", [facesIntegerArray componentsJoinedByString:@","]];

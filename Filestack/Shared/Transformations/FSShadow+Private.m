@@ -30,7 +30,7 @@
     }
 
     if (self.vector) {
-        [queryArray addObject:[NSString stringWithFormat:@"vector:[%@]", [self.vector componentsJoinedByString:@","]]];
+        [queryArray addObject:[NSString stringWithFormat:@"vector:%@", [self vectorArrayToString]]];
     }
 
     if (self.background) {
@@ -38,6 +38,16 @@
     }
 
     return [NSString stringWithFormat:@"%@=%@", @"shadow", [queryArray componentsJoinedByString:@","]];
+}
+
+- (NSString *)vectorArrayToString {
+    NSMutableArray *vectorIntegerArray = [[NSMutableArray alloc] init];
+
+    for (NSNumber *vectorComponent in self.vector) {
+        [vectorIntegerArray addObject:[NSNumber numberWithInteger:[vectorComponent integerValue]]];
+    }
+
+    return [NSString stringWithFormat:@"[%@]", [vectorIntegerArray componentsJoinedByString:@","]];
 }
 
 @end

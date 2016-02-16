@@ -18,10 +18,10 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.radius || self.maxRadius) {
-        if (self.radius) {
-            [queryArray addObject:[NSString stringWithFormat:@"radius:%ld", (long)[self.radius integerValue]]];
-        } else {
+        if (self.maxRadius) {
             [queryArray addObject:@"radius:max"];
+        } else {
+            [queryArray addObject:[NSString stringWithFormat:@"radius:%ld", (long)[self.radius integerValue]]];
         }
     }
 

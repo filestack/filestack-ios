@@ -237,4 +237,71 @@
     XCTAssertEqualObjects(blurFacesQueryAllNil, @"blur_faces");
 }
 
+- (void)testFSRoundedCorners {
+    FSRoundedCorners *roundedCorners = [[FSRoundedCorners alloc] initWithMaxRadiusAndBlur:@1.34 background:@"red"];
+    roundedCorners.radius = @12;
+    NSString *roundedCornersQuery = [roundedCorners toQuery];
+    XCTAssertEqualObjects(roundedCornersQuery, @"rounded_corners=radius:max,blur:1.340000,background:red");
+
+    FSRoundedCorners *roundedCorners2 = [[FSRoundedCorners alloc] initWithRadius:@45.3 blur:@1.34 background:@"red"];
+    NSString *roundedCornersQuery2 = [roundedCorners2 toQuery];
+    XCTAssertEqualObjects(roundedCornersQuery2, @"rounded_corners=radius:45,blur:1.340000,background:red");
+
+    FSRoundedCorners *roundedCorners3 = [[FSRoundedCorners alloc] initWithRadius:nil blur:nil background:nil];
+    NSString *roundedCornersQuery3 = [roundedCorners3 toQuery];
+    XCTAssertEqualObjects(roundedCornersQuery3, @"rounded_corners");
+}
+
+- (void)testFSPolaroid {
+    FSPolaroid *polaroid = [[FSPolaroid alloc] initWithColor:@"yellow" background:@"pink" rotation:@300.12];
+    NSString *polaroidQuery = [polaroid toQuery];
+    XCTAssertEqualObjects(polaroidQuery, @"polaroid=rotate:300,background:pink,color:yellow");
+
+    FSPolaroid *polaroid2 = [[FSPolaroid alloc] init];
+    NSString *polaroidQuery2 = [polaroid2 toQuery];
+    XCTAssertEqualObjects(polaroidQuery2, @"polaroid");
+
+    polaroid2.background = @"blue";
+    polaroidQuery2 = [polaroid2 toQuery];
+    XCTAssertEqualObjects(polaroidQuery2, @"polaroid=background:blue");
+}
+
+- (void)testTornEdges {
+    FSTornEdges *tornEdges = [[FSTornEdges alloc] initWithSpread:@[@1.34, @49.2] background:@"green"];
+    NSString *tornEdgesQuery = [tornEdges toQuery];
+    XCTAssertEqualObjects(tornEdgesQuery, @"torn_edges=spread:[1,49],background:green");
+
+    FSTornEdges *tornEdgesAllNil = [[FSTornEdges alloc] init];
+    NSString *tornEdgesAllNilQuery = [tornEdgesAllNil toQuery];
+    XCTAssertEqualObjects(tornEdgesAllNilQuery, @"torn_edges");
+}
+
+- (void)testFSShadow {
+    FSShadow *shadow = [[FSShadow alloc] initWithBlur:@4.3 opacity:@70.12 vector:@[@(-10.12), @90.13] color:@"blue" background:@"green"];
+    NSString *shadowQuery = [shadow toQuery];
+    XCTAssertEqualObjects(shadowQuery, @"shadow=blur:4,color:blue,opacity:70,vector:[-10,90],background:green");
+
+    shadow.background = @"purple";
+    shadowQuery = [shadow toQuery];
+    XCTAssertEqualObjects(shadowQuery, @"shadow=blur:4,color:blue,opacity:70,vector:[-10,90],background:purple");
+
+    shadow.opacity = nil;
+    shadowQuery = [shadow toQuery];
+    XCTAssertEqualObjects(shadowQuery, @"shadow=blur:4,color:blue,vector:[-10,90],background:purple");
+
+    FSShadow *shadowAllNil = [[FSShadow alloc] init];
+    NSString *shadowAllNilQuery = [shadowAllNil toQuery];
+    XCTAssertEqualObjects(shadowAllNilQuery, @"shadow");
+}
+
+- (void)testFSCircle {
+    FSCircle *circle = [[FSCircle alloc] initWithBackground:@"yellow"];
+    NSString *circleQuery = [circle toQuery];
+    XCTAssertEqualObjects(circleQuery, @"circle=background:yellow");
+
+    circle.background = nil;
+    circleQuery = [circle toQuery];
+    XCTAssertEqualObjects(circleQuery, @"circle");
+}
+
 @end
