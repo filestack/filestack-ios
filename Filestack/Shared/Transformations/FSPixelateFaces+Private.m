@@ -18,11 +18,11 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.minSize) {
-        [queryArray addObject:[NSString stringWithFormat:@"minsize:%f", [self.minSize floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"minsize:%.02f", [self.minSize floatValue]]];
     }
 
     if (self.maxSize) {
-        [queryArray addObject:[NSString stringWithFormat:@"maxsize:%f", [self.maxSize floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"maxsize:%.02f", [self.maxSize floatValue]]];
     }
 
     if (self.buffer) {
@@ -34,7 +34,7 @@
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%f", [self.blur floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", [self.blur floatValue]]];
     }
 
     if (self.type) {
@@ -54,7 +54,13 @@
 }
 
 - (NSString *)facesArrayToString {
-    return [NSString stringWithFormat:@"[%@]", [self.faces componentsJoinedByString:@","]];
+    NSMutableArray *facesIntegerArray = [[NSMutableArray alloc] init];
+
+    for (NSNumber *faceNumber in self.faces) {
+        [facesIntegerArray addObject:[NSNumber numberWithInteger:[faceNumber integerValue]]];
+    }
+
+    return [NSString stringWithFormat:@"[%@]", [facesIntegerArray componentsJoinedByString:@","]];
 }
 
 @end

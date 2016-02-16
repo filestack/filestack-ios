@@ -154,4 +154,87 @@
     XCTAssertEqualObjects(detectFacesQueryAllNil, @"detect_faces");
 }
 
+- (void)testFSCropFaces {
+    FSCropFaces *cropFaces = [[FSCropFaces alloc] initWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87];
+    NSString *cropFacesQuery = [cropFaces toQuery];
+    XCTAssertEqualObjects(cropFacesQuery, @"crop_faces=width:100,height:98,buffer:87,mode:fill");
+
+    FSCropFaces *cropFacesAllNil = [[FSCropFaces alloc] initWithMode:nil width:nil height:nil buffer:nil faces:nil];
+    NSString *cropFacesAllNilQuery = [cropFacesAllNil toQuery];
+    XCTAssertEqualObjects(cropFacesAllNilQuery, @"crop_faces");
+
+    FSCropFaces *cropFacesWithArray = [[FSCropFaces alloc] initWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87 faces:@[@1.1, @2.3, @4]];
+    NSString *cropFacesWithArrayQuery = [cropFacesWithArray toQuery];
+    XCTAssertEqualObjects(cropFacesWithArrayQuery, @"crop_faces=width:100,height:98,buffer:87,mode:fill,faces:[1,2,4]");
+
+    FSCropFaces *cropFacesWithArray2 = [[FSCropFaces alloc] initWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87 faces:@[@1.1, @2.3, @4]];
+    cropFacesWithArray2.face = @1;
+    cropFacesWithArray2.allFaces = YES;
+    NSString *cropFacesWithArrayQuery2 = [cropFacesWithArray2 toQuery];
+    XCTAssertEqualObjects(cropFacesWithArrayQuery2, @"crop_faces=width:100,height:98,buffer:87,mode:fill,faces:all");
+
+    FSCropFaces *cropFacesWithArray3 = [[FSCropFaces alloc] initWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87 faces:@[@1.1, @2.3, @4]];
+    cropFacesWithArray3.face = @5;
+    NSString *cropFacesWithArrayQuery3 = [cropFacesWithArray3 toQuery];
+    XCTAssertEqualObjects(cropFacesWithArrayQuery3, @"crop_faces=width:100,height:98,buffer:87,mode:fill,faces:[1,2,4]");
+
+    FSCropFaces *cropFacesWithArray4 = [[FSCropFaces alloc] initWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87 face:@4];
+    cropFacesWithArray4.allFaces = YES;
+    NSString *cropFacesWithArrayQuery4 = [cropFacesWithArray4 toQuery];
+    XCTAssertEqualObjects(cropFacesWithArrayQuery4, @"crop_faces=width:100,height:98,buffer:87,mode:fill,faces:all");
+
+    FSCropFaces *cropFacesWithArray5 = [[FSCropFaces alloc] initAllFacesWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87];
+    cropFacesWithArray5.faces = @[@1, @2, @3];
+    NSString *cropFacesWithArrayQuery5 = [cropFacesWithArray5 toQuery];
+    XCTAssertEqualObjects(cropFacesWithArrayQuery5, @"crop_faces=width:100,height:98,buffer:87,mode:fill,faces:all");
+
+    FSCropFaces *cropFacesWithArray6 = [[FSCropFaces alloc] initWithMode:FSCropFacesModeFill width:@100.12 height:@98.1 buffer:@87 face:@1];
+    NSString *cropFacesWithArrayQuery6 = [cropFacesWithArray6 toQuery];
+    XCTAssertEqualObjects(cropFacesWithArrayQuery6, @"crop_faces=width:100,height:98,buffer:87,mode:fill,faces:1");
+}
+
+- (void)testFSPixelateFaces {
+    FSPixelateFaces *pixelateFaces = [[FSPixelateFaces alloc] initWithMinSize:@0.35 maxSize:@1001 type:FSPixelateFacesTypeOval buffer:@100 blurAmount:@0.4 pixelateAmount:@4.2 faces:@[@1, @2]];
+    NSString *pixelateFacesQuery = [pixelateFaces toQuery];
+    XCTAssertEqualObjects(pixelateFacesQuery, @"pixelate_faces=minsize:0.35,maxsize:1001.00,buffer:100,amount:4,blur:0.400000,type:oval,faces:[1,2]");
+
+    FSPixelateFaces *pixelateFaces2 = [[FSPixelateFaces alloc] initWithAllFacesAndMinSize:@100 maxSize:@100 type:FSPixelateFacesTypeRect buffer:@1 blurAmount:@1 pixelateAmount:@1];
+    NSString *pixelateFacesQuery2 = [pixelateFaces2 toQuery];
+    XCTAssertEqualObjects(pixelateFacesQuery2, @"pixelate_faces=minsize:100.00,maxsize:100.00,buffer:1,amount:1,blur:1.000000,type:rect,faces:all");
+
+    FSPixelateFaces *pixelateFaces3 = [[FSPixelateFaces alloc] initWithMinSize:@100 maxSize:@100 type:FSPixelateFacesTypeRect buffer:@1 blurAmount:@1 pixelateAmount:@1];
+    NSString *pixelateFacesQuery3 = [pixelateFaces3 toQuery];
+    XCTAssertEqualObjects(pixelateFacesQuery3, @"pixelate_faces=minsize:100.00,maxsize:100.00,buffer:1,amount:1,blur:1.000000,type:rect");
+
+    FSPixelateFaces *pixelateFaces4 = [[FSPixelateFaces alloc] initWithMinSize:@100 maxSize:@100 type:FSPixelateFacesTypeRect buffer:@1 blurAmount:@1 pixelateAmount:@1 face:@1];
+    NSString *pixelateFacesQuery4 = [pixelateFaces4 toQuery];
+    XCTAssertEqualObjects(pixelateFacesQuery4, @"pixelate_faces=minsize:100.00,maxsize:100.00,buffer:1,amount:1,blur:1.000000,type:rect,faces:1");
+
+    FSPixelateFaces *pixelateFacesAllNil = [[FSPixelateFaces alloc] initWithMinSize:nil maxSize:nil type:nil buffer:nil blurAmount:nil pixelateAmount:nil face:nil];
+    NSString *pixelateFacesQueryAllNil = [pixelateFacesAllNil toQuery];
+    XCTAssertEqualObjects(pixelateFacesQueryAllNil, @"pixelate_faces");
+}
+
+- (void)testFSBlurFaces {
+    FSBlurFaces *blurFaces = [[FSBlurFaces alloc] initWithMinSize:@0.35 maxSize:@1001 type:FSBlurFacesTypeOval buffer:@100 blurAmount:@0.4 obscureAmount:@4.2 faces:@[@1, @2]];
+    NSString *blurFacesQuery = [blurFaces toQuery];
+    XCTAssertEqualObjects(blurFacesQuery, @"blur_faces=minsize:0.35,maxsize:1001.00,buffer:100,amount:4.200000,blur:0.400000,type:oval,faces:[1,2]");
+
+    FSBlurFaces *blurFaces2 = [[FSBlurFaces alloc] initWithAllFacesAndMinSize:@100 maxSize:@100 type:FSBlurFacesTypeRect buffer:@1 blurAmount:@1 obscureAmount:@1];
+    NSString *blurFacesQuery2 = [blurFaces2 toQuery];
+    XCTAssertEqualObjects(blurFacesQuery2, @"blur_faces=minsize:100.00,maxsize:100.00,buffer:1,amount:1.000000,blur:1.000000,type:rect,faces:all");
+
+    FSBlurFaces *blurFaces3 = [[FSBlurFaces alloc] initWithMinSize:@100 maxSize:@100 type:FSBlurFacesTypeRect buffer:@1 blurAmount:@1 obscureAmount:@1];
+    NSString *blurFacesQuery3 = [blurFaces3 toQuery];
+    XCTAssertEqualObjects(blurFacesQuery3, @"blur_faces=minsize:100.00,maxsize:100.00,buffer:1,amount:1.000000,blur:1.000000,type:rect");
+
+    FSBlurFaces *blurFaces4 = [[FSBlurFaces alloc] initWithMinSize:@100 maxSize:@100 type:FSBlurFacesTypeRect buffer:@1 blurAmount:@1 obscureAmount:@1 face:@1];
+    NSString *blurFacesQuery4 = [blurFaces4 toQuery];
+    XCTAssertEqualObjects(blurFacesQuery4, @"blur_faces=minsize:100.00,maxsize:100.00,buffer:1,amount:1.000000,blur:1.000000,type:rect,faces:1");
+
+    FSBlurFaces *blurFacesAllNil = [[FSBlurFaces alloc] initWithMinSize:nil maxSize:nil type:nil buffer:nil blurAmount:nil obscureAmount:nil face:nil];
+    NSString *blurFacesQueryAllNil = [blurFacesAllNil toQuery];
+    XCTAssertEqualObjects(blurFacesQueryAllNil, @"blur_faces");
+}
+
 @end

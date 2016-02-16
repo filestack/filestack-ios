@@ -11,18 +11,26 @@
 @implementation FSCropFaces (Private)
 
 - (NSString *)toQuery {
-    if (!self.mode && !self.buffer && !self.face && !self.allFaces && !self.faces) {
+    if (!self.mode && !self.buffer && !self.face && !self.allFaces && !self.faces && !self.width && !self.height) {
         return @"crop_faces";
     }
 
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
-    if (self.mode) {
-        [queryArray addObject:[NSString stringWithFormat:@"mode:%@", self.mode]];
+    if (self.width) {
+        [queryArray addObject:[NSString stringWithFormat:@"width:%ld", (long)[self.width integerValue]]];
+    }
+
+    if (self.height) {
+        [queryArray addObject:[NSString stringWithFormat:@"height:%ld", (long)[self.height integerValue]]];
     }
 
     if (self.buffer) {
         [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)[self.buffer integerValue]]];
+    }
+
+    if (self.mode) {
+        [queryArray addObject:[NSString stringWithFormat:@"mode:%@", self.mode]];
     }
 
     if (self.face || self.faces || self.allFaces) {
@@ -38,7 +46,13 @@
 }
 
 - (NSString *)facesArrayToString {
-    return [NSString stringWithFormat:@"[%@]", [self.faces componentsJoinedByString:@","]];
+    NSMutableArray *facesIntegerArray = [[NSMutableArray alloc] init];
+
+    for (NSNumber *faceNumber in self.faces) {
+        [facesIntegerArray addObject:[NSNumber numberWithInteger:[faceNumber integerValue]]];
+    }
+
+    return [NSString stringWithFormat:@"[%@]", [facesIntegerArray componentsJoinedByString:@","]];
 }
 
 @end

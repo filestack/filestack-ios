@@ -16,6 +16,7 @@
         self.mode = mode;
         self.width = width;
         self.height = height;
+        self.buffer = buffer;
     }
     return self;
 }

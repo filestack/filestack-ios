@@ -601,8 +601,8 @@ initializers:
 typedef "helpers":
 ```objectivec
 // FSPBlurFacesType
-FSPBlurFacesTypeRect
-FSPBlurFacesTypeOval
+FSBlurFacesTypeRect
+FSBlurFacesTypeOval
 ```
 
 properties:

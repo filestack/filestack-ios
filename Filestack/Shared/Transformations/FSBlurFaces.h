@@ -9,8 +9,8 @@
 #import "FSTransform.h"
 
 typedef NSString * FSPBlurFacesType;
-#define FSPBlurFacesTypeRect @"rect"
-#define FSPBlurFacesTypeOval @"oval"
+#define FSBlurFacesTypeRect @"rect"
+#define FSBlurFacesTypeOval @"oval"
 
 @interface FSBlurFaces : FSTransform
 
@@ -27,11 +27,11 @@ typedef NSString * FSPBlurFacesType;
  */
 @property (nonatomic, strong) NSNumber *buffer;
 /**
- The amount to blur the obscured faces. The value for this parameter can be any float in a range from 0 to 20.
+ The amount to blur the obscured faces. The value for this parameter can be any float in a range from 0 to 20. The default value for this parameter is 4.0.
  */
 @property (nonatomic, strong) NSNumber *blur;
 /**
- The amount of blur to apply to the selected faces. The value for this parameter can be any integer in a range from 2 to 100.
+ The amount of blur to apply to the selected faces. The value for this parameter can be any float in a range from 0 to 20. The default value for this parameter is 4.0.
  */
 @property (nonatomic, strong) NSNumber *amount;
 /**
