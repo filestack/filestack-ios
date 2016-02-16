@@ -14,7 +14,13 @@ target :'FilestackMac' do
   pod 'AFNetworking', '~> 3.0'
 end
 
-target :'FilestackTests' do
+target :'FilestackIOSTests' do
+  platform :ios, '8.4'
+  pod 'OHHTTPStubs'
+end
+
+target :'FilestackMacTests' do
+  platform :osx, '10.9'
   pod 'OHHTTPStubs'
 end
 

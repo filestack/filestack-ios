@@ -12,7 +12,7 @@
 @interface FSCollage : FSTransform
 
 /**
-
+ Sets the border color for the collage. This can be the word for a color, or the hex color code. The default color is white.
  */
 @property (nonatomic, nullable, strong) NSString *color;
 /**

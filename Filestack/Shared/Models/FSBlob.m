@@ -25,7 +25,10 @@
 }
 
 - (instancetype)initWithURL:(NSString *)url {
-    return [self initWithDictionary:@{@"url": url}];
+    if (url != nil) {
+        return [self initWithDictionary:@{@"url": url}];
+    }
+    return [self initWithDictionary:@{}];
 }
 
 - (NSString *)s3url {

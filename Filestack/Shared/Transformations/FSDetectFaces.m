@@ -21,8 +21,8 @@
     return self;
 }
 
-- (instancetype)initWithExportToJSON:(BOOL)exportToJSON {
-    return [self initWithMinSize:nil maxSize:nil color:nil exportToJSON:exportToJSON];
+- (instancetype)initWithExportToJSON {
+    return [self initWithMinSize:nil maxSize:nil color:nil exportToJSON:YES];
 }
 
 @end

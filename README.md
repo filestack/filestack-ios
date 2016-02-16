@@ -530,7 +530,7 @@ BOOL exportToJSON
 initializers:
 ```objectivec
 - initWithMinSize:maxSize:color:exportToJSON:
-- initWithExportToJSON:
+- initWithExportToJSON
 ```
 
 #### **FSCropFaces**

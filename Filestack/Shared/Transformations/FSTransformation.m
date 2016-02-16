@@ -55,7 +55,7 @@
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform {
     if (security && !_securitySet) {
         _securitySet = YES;
-        [_transformationsArray insertObject:[security toQuery] atIndex:1];
+        [_transformationsArray addObject:[security toQuery]];
     }
 
     if (_debug && !_debugSet) {
