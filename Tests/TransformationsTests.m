@@ -304,4 +304,201 @@
     XCTAssertEqualObjects(circleQuery, @"circle");
 }
 
+- (void)testFSBorder {
+    FSBorder *border = [[FSBorder alloc] initWithWidth:@10.1 color:@"blue" background:@"black"];
+    NSString *borderQuery = [border toQuery];
+    XCTAssertEqualObjects(borderQuery, @"border=width:10,background:black,color:blue");
+
+    border.width = nil;
+    border.color = nil;
+    border.background = nil;
+    borderQuery = [border toQuery];
+    XCTAssertEqualObjects(borderQuery, @"border");
+}
+
+- (void)testFSSharpen {
+    FSSharpen *sharpen = [[FSSharpen alloc] initWithAmount:@11.4];
+    NSString *sharpenQuery = [sharpen toQuery];
+    XCTAssertEqualObjects(sharpenQuery, @"sharpen=amount:11");
+
+    sharpen.amount = nil;
+    sharpenQuery = [sharpen toQuery];
+    XCTAssertEqualObjects(sharpenQuery, @"sharpen");
+}
+
+- (void)testFSBlur {
+    FSBlur *blur = [[FSBlur alloc] initWithAmount:@11.4];
+    NSString *blurQuery = [blur toQuery];
+    XCTAssertEqualObjects(blurQuery, @"blur=amount:11");
+
+    blur.amount = nil;
+    blurQuery = [blur toQuery];
+    XCTAssertEqualObjects(blurQuery, @"blur");
+}
+
+- (void)testFSMonochrome {
+    FSMonochrome *monochrome = [[FSMonochrome alloc] init];
+    NSString *monochromeQuery = [monochrome toQuery];
+    XCTAssertEqualObjects(monochromeQuery, @"monochrome");
+}
+
+- (void)testFSSepia {
+    FSSepia *sepia = [[FSSepia alloc] initWithTone:@11.4];
+    NSString *sepiaQuery = [sepia toQuery];
+    XCTAssertEqualObjects(sepiaQuery, @"sepia=tone:11");
+
+    sepia.tone = nil;
+    sepiaQuery = [sepia toQuery];
+    XCTAssertEqualObjects(sepiaQuery, @"sepia");
+}
+
+- (void)testFSPixelate {
+    FSPixelate *pixelate = [[FSPixelate alloc] initWithAmount:@11.4];
+    NSString *pixelateQuery = [pixelate toQuery];
+    XCTAssertEqualObjects(pixelateQuery, @"pixelate=amount:11");
+
+    pixelate.amount = nil;
+    pixelateQuery = [pixelate toQuery];
+    XCTAssertEqualObjects(pixelateQuery, @"pixelate");
+}
+
+- (void)testFSOilPaint {
+    FSOilPaint *oilPaint = [[FSOilPaint alloc] initWithAmount:@11.4];
+    NSString *oilPaintQuery = [oilPaint toQuery];
+    XCTAssertEqualObjects(oilPaintQuery, @"oil_paint=amount:11");
+
+    oilPaint.amount = nil;
+    oilPaintQuery = [oilPaint toQuery];
+    XCTAssertEqualObjects(oilPaintQuery, @"oil_paint");
+}
+
+- (void)testFSModulate {
+    FSModulate *modulate = [[FSModulate alloc] initWithBrightness:@193.0 hue:@100.8 saturation:@0.4];
+    NSString *modulateQuery = [modulate toQuery];
+    XCTAssertEqualObjects(modulateQuery, @"modulate=hue:100,brightness:193,saturation:0");
+
+    modulate.hue = nil;
+    modulate.brightness = nil;
+    modulate.saturation = nil;
+    modulateQuery = [modulate toQuery];
+    XCTAssertEqualObjects(modulateQuery, @"modulate");
+
+    modulate.saturation = @19.89;
+    modulateQuery = [modulate toQuery];
+    XCTAssertEqualObjects(modulateQuery, @"modulate=saturation:19");
+}
+
+- (void)testFSPartialPixelate {
+    FSPartialPixelate *partialPixelate = [[FSPartialPixelate alloc] initWithObjects:@[@[@12, @89.2, @100, @95.34], @[@(-10.34), @90.2, @88, @23.9]] buffer:@10.1 amount:@90.2 blur:@13.56 type:FSPPartialPixelateTypeOval];
+    NSString *partialPixelateQuery = [partialPixelate toQuery];
+    XCTAssertEqualObjects(partialPixelateQuery, @"partial_pixelate=objects:[[12,89,100,95],[-10,90,88,23]],buffer:10,amount:90,blur:13.5600,type:oval");
+
+    partialPixelate.objects = @[];
+    partialPixelateQuery = [partialPixelate toQuery];
+    XCTAssertNil(partialPixelateQuery);
+
+    FSPartialPixelate *partialPixelate2 = [[FSPartialPixelate alloc] initWithObjects:@[@[@12, @89.2, @100, @95.34], @[@(-10.34), @90.2, @88, @23.9]]];
+    NSString *partialPixelateQuery2 = [partialPixelate2 toQuery];
+    XCTAssertEqualObjects(partialPixelateQuery2, @"partial_pixelate=objects:[[12,89,100,95],[-10,90,88,23]]");
+}
+
+- (void)testFSPartialBlur {
+    FSPartialBlur *partialBlur = [[FSPartialBlur alloc] initWithObjects:@[@[@12, @89.2, @100, @95.34], @[@(-10.34), @90.2, @88, @23.9]] buffer:@10.1 amount:@90.12 blur:@13.56 type:FSPPartialBlurTypeOval];
+    NSString *partialBlurQuery = [partialBlur toQuery];
+    XCTAssertEqualObjects(partialBlurQuery, @"partial_pixelate=objects:[[12,89,100,95],[-10,90,88,23]],buffer:10,amount:90.1200,blur:13.5600,type:oval");
+
+    partialBlur.objects = @[];
+    partialBlurQuery = [partialBlur toQuery];
+    XCTAssertNil(partialBlurQuery);
+
+    FSPartialBlur *partialBlur2 = [[FSPartialBlur alloc] initWithObjects:@[@[@12, @89.2, @100, @95.34], @[@(-10.34), @90.2, @88, @23.9]]];
+    NSString *partialBlurQuery2 = [partialBlur2 toQuery];
+    XCTAssertEqualObjects(partialBlurQuery2, @"partial_pixelate=objects:[[12,89,100,95],[-10,90,88,23]]");
+}
+
+- (void)testFSCollage {
+    FSBlob *blob = [[FSBlob alloc] initWithURL:@"https://www.filestackapi.com/filehandler"];
+    FSBlob *blob2 = [[FSBlob alloc] initWithURL:@"https://www.filestackapi.com/filehandler2"];
+    FSCollage *collage = [[FSCollage alloc] initWithFiles:@[blob, blob2] width:@100.34 height:@98.2 margin:@100.89 color:@"white"];
+    NSString *collageQuery = [collage toQuery];
+    XCTAssertEqualObjects(collageQuery, @"collage=files:[filehandler,filehandler2],width:100,height:98,color:white,margin:100");
+
+    collage.height = [[NSNumber alloc] init];
+    collageQuery = [collage toQuery];
+    XCTAssertNil(collageQuery);
+
+    collage.width = [[NSNumber alloc] init];
+    collage.height = @100;
+    collageQuery = [collage toQuery];
+    XCTAssertNil(collageQuery);
+
+    collage.width = @100;
+    collage.height = @100;
+    collage.files = @[];
+    collageQuery = [collage toQuery];
+    XCTAssertNil(collageQuery);
+
+    FSCollage *collage2 = [[FSCollage alloc] initWithFiles:@[blob, blob2] width:@99.12 height:@98.12];
+    NSString *collageQuery2 = [collage2 toQuery];
+    XCTAssertEqualObjects(collageQuery2, @"collage=files:[filehandler,filehandler2],width:99,height:98");
+}
+
+- (void)testFSURLScreenshot {
+    FSURLScreenshot *urlScreenshot = [[FSURLScreenshot alloc] init];
+    NSString *urlScreenshotQuery = [urlScreenshot toQuery];
+    XCTAssertEqualObjects(urlScreenshotQuery, @"urlscreenshot");
+}
+
+- (void)testFSASCII {
+    FSASCII *ascii = [[FSASCII alloc] init];
+    NSString *asciiQuery = [ascii toQuery];
+    XCTAssertEqualObjects(asciiQuery, @"ascii");
+}
+
+- (void)testFSCrop {
+    FSCrop *crop = [[FSCrop alloc] initWithX:@10.12 y:@20.12 width:@90.56 height:@90.78];
+    NSString *cropQuery = [crop toQuery];
+    XCTAssertEqualObjects(cropQuery, @"crop=dim:[10,20,90,90]");
+
+    crop.height = [[NSNumber alloc] init];
+    cropQuery = [crop toQuery];
+    XCTAssertNil(cropQuery);
+
+    crop.x = [[NSNumber alloc] init];
+    crop.height = @100;
+    cropQuery = [crop toQuery];
+    XCTAssertNil(cropQuery);
+
+    crop.y = [[NSNumber alloc] init];
+    crop.x = @100;
+    crop.height = @100;
+    cropQuery = [crop toQuery];
+    XCTAssertNil(cropQuery);
+
+    crop.width = [[NSNumber alloc] init];
+    crop.x = @100;
+    crop.y = @100;
+    crop.height = @100;
+    cropQuery = [crop toQuery];
+    XCTAssertNil(cropQuery);
+}
+
+- (void)testFSOutput {
+    FSOutput *output = [[FSOutput alloc] initWithFormat:FSOutputFormatBMP colorspace:FSOutputColorspaceCMYK page:@1.23 density:@10.1 compress:YES quality:@10.1 secure:YES];
+    NSString *outputQuery = [output toQuery];
+    XCTAssertEqualObjects(outputQuery, @"output=format:bmp,page:1,density:10,compress:true,quality:10,secure:true");
+
+    output.docInfo = YES;
+    outputQuery = [output toQuery];
+    XCTAssertEqualObjects(outputQuery, @"output=format:bmp,page:1,density:10,compress:true,quality:10,secure:true,docinfo:true");
+
+    FSOutput *output2 = [[FSOutput alloc] initWithFormat:FSOutputFormatPNG];
+    NSString *outputQuery2 = [output2 toQuery];
+    XCTAssertEqualObjects(outputQuery2, @"output=format:png");
+
+    FSOutput *output3 = [[FSOutput alloc] initWithDocInfo];
+    NSString *outputQuery3 = [output3 toQuery];
+    XCTAssertEqualObjects(outputQuery3, @"output=docinfo:true");
+}
+
 @end

@@ -27,9 +27,9 @@
     return [self initWithFormat:format colorspace:nil page:nil density:nil compress:NO quality:nil secure:NO];
 }
 
-- (instancetype)initWithDocInfo:(BOOL)docInfo {
+- (instancetype)initWithDocInfo {
     if (self = [self initWithFormat:nil colorspace:nil page:nil density:nil compress:NO quality:nil secure:NO]) {
-        self.docInfo = docInfo;
+        self.docInfo = YES;
     }
     return self;
 }

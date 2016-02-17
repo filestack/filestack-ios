@@ -24,11 +24,11 @@
     }
 
     if (self.amount) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%f", [self.amount floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"amount:%.04f", [self.amount floatValue]]];
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", [self.blur floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%.04f", [self.blur floatValue]]];
     }
 
     if (self.type) {
@@ -42,10 +42,20 @@
     NSMutableArray *objectsString = [[NSMutableArray alloc] init];
 
     for (NSArray *object in self.objects) {
-        [objectsString addObject:[NSString stringWithFormat:@"[%@]", [object componentsJoinedByString:@","]]];
+        [objectsString addObject:[NSString stringWithFormat:@"%@", [self stringFromSingleObjectArray:object]]];
     }
 
-    return [objectsString componentsJoinedByString:@","];
+    return [NSString stringWithFormat:@"objects:[%@]", [objectsString componentsJoinedByString:@","]];
+}
+
+- (NSString *)stringFromSingleObjectArray:(NSArray *)objectArray {
+    NSMutableArray *coordinateArray = [[NSMutableArray alloc] init];
+
+    for (NSNumber *coordinate in objectArray) {
+        [coordinateArray addObject:[NSNumber numberWithInteger:[coordinate integerValue]]];
+    }
+
+    return [NSString stringWithFormat:@"[%@]", [coordinateArray componentsJoinedByString:@","]];
 }
 
 @end

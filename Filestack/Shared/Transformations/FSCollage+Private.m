@@ -29,7 +29,7 @@
         [queryArray addObject:[NSString stringWithFormat:@"margin:%ld", (long)[self.margin integerValue]]];
     }
 
-    return [NSString stringWithFormat:@"%@=%@", @"partial_pixelate", [queryArray componentsJoinedByString:@","]];
+    return [NSString stringWithFormat:@"%@=%@", @"collage", [queryArray componentsJoinedByString:@","]];
 }
 
 - (NSString *)filesArrayToString {
@@ -39,7 +39,7 @@
         [objectsString addObject:[[NSURL URLWithString:blob.url] lastPathComponent]];
     }
 
-    return [objectsString componentsJoinedByString:@","];
+    return [NSString stringWithFormat:@"files:[%@]", [objectsString componentsJoinedByString:@","]];
 }
 
 @end

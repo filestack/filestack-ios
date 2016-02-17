@@ -23,7 +23,7 @@
     }
 
     if (self.density) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%ld", (long)[self.density integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"density:%ld", (long)[self.density integerValue]]];
     }
 
     if (self.compress) {

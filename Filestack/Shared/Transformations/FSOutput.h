@@ -72,6 +72,6 @@ typedef NSString * FSOutputColorspace;
 
 - (instancetype)initWithFormat:(FSOutputFormat)format colorspace:(FSOutputColorspace)colorspace page:(NSNumber *)page density:(NSNumber *)density compress:(BOOL)compress quality:(NSNumber *)quality secure:(BOOL)secure;
 - (instancetype)initWithFormat:(FSOutputFormat)format;
-- (instancetype)initWithDocInfo:(BOOL)docInfo;
+- (instancetype)initWithDocInfo;
 
 @end

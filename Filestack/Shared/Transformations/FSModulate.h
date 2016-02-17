@@ -11,7 +11,7 @@
 @interface FSModulate : FSTransform
 
 /**
- The degree to set the hue to. The value for this parameter can be any integer in a range from 0 to 359, where 0 is the equivalent of red and 180 is the equivalent of cyan.
+ The degree to set the hue to. The value for this parameter can be any integer in a range from 0 to 359, where 0 is the equivalent of red and 180 is the equivalent of cyan. The default value for this parameter is 0.
  */
 @property (nonatomic, strong) NSNumber *hue;
 /**
