@@ -1,3 +1,13 @@
+## 0.2.4 (2016-02-17)
+
+### Added:
+
+- Complete FSTransforms tests.
+
+### Fixed:
+
+- Few transformations' properties are now of correct type and correctly serialized to query string.
+
 ## 0.2.3 (2016-02-16)
 
 ### Added:
