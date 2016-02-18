@@ -1,3 +1,13 @@
+## 0.2.5 (2016-02-18)
+
+### Added:
+
+- FSTransformation tests.
+
+### Fixed:
+
+- ```[FSStatOptions toQueryParameters]``` should now properly set filename and mimetype.
+
 ## 0.2.4 (2016-02-17)
 
 ### Added:
