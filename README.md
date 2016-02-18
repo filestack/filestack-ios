@@ -874,8 +874,44 @@ initializers:
 #### **FSURLScreenshot**
 > https://www.filestack.com/docs/image-transformations/url-screenshot
 
+typedef "helpers":
+// FSURLScreenshotAgent
+FSURLScreenshotAgentMobile
+FSURLScreenshotAgentDesktop
+
+FSURLScreenshotMode
+FSURLScreenshotModeAll
+FSURLScreenshotModeWindow
+
+properties:
+```objectivec
+NSNumber *width
+NSNumber *height
+FSURLScreenshotAgent agent
+FSURLScreenshotMode mode
+```
+
+initializers:
+```objectivec
+- initWithWidth:height:agent:mode:
+```
+
 #### **FSASCII**
 > https://www.filestack.com/docs/image-transformations/img-to-ascii
+
+properties:
+```objectivec
+NSString *foreground
+NSString *background
+NSNumber *size
+BOOL reverse
+BOOL colored
+```
+
+initializers:
+```objectivec
+- initWithForeground:background:size:reverse:colored:
+```
 
 #### **FSOutput**
 > https://www.filestack.com/docs/image-transformations/output

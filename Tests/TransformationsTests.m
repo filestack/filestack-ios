@@ -417,12 +417,20 @@
     FSURLScreenshot *urlScreenshot = [[FSURLScreenshot alloc] init];
     NSString *urlScreenshotQuery = [urlScreenshot toQuery];
     XCTAssertEqualObjects(urlScreenshotQuery, @"urlscreenshot");
+
+    FSURLScreenshot *urlScreenshot2 = [[FSURLScreenshot alloc] initWithWidth:@100.1 height:@200.2 agent:FSURLScreenshotAgentMobile mode:FSURLScreenshotModeWindow];
+    NSString *urlScreenshotQuery2 = [urlScreenshot2 toQuery];
+    XCTAssertEqualObjects(urlScreenshotQuery2, @"urlscreenshot=width:100,height:200,agent:mobile,mode:window");
 }
 
 - (void)testFSASCII {
     FSASCII *ascii = [[FSASCII alloc] init];
     NSString *asciiQuery = [ascii toQuery];
     XCTAssertEqualObjects(asciiQuery, @"ascii");
+
+    FSASCII *ascii2 = [[FSASCII alloc] initWithForeground:@"yellow" background:@"blue" size:@98.12 reverse:YES colored:YES];
+    NSString *asciiQuery2 = [ascii2 toQuery];
+    XCTAssertEqualObjects(asciiQuery2, @"ascii=background:blue,foreground:yellow,colored:true,reverse:true,size:98");
 }
 
 - (void)testFSCrop {
