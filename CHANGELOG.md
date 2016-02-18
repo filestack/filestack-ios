@@ -1,3 +1,9 @@
+## 0.2.6 (2016-02-18)
+
+### Added
+
+- FSURLScreenshot and FSASCII available properties and initializers after backend changes.
+
 ## 0.2.5 (2016-02-18)
 
 ### Added:
