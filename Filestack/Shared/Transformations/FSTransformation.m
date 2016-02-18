@@ -42,14 +42,17 @@
 - (void)add:(FSTransform *)transform {
     NSString *transformQuery = [transform toQuery];
 
-    if (transformQuery) {
-        if ([transform isMemberOfClass:[FSDetectFaces class]]) {
-            _exportFacesToJSON = ((FSDetectFaces *)transform).exportToJSON;
-        } else if ([transform isMemberOfClass:[FSOutput class]]) {
-            _docInfoJSON = ((FSOutput *)transform).docInfo;
-        }
-        [_transformationsArray addObject:transformQuery];
+    if (!transformQuery) {
+        return;
     }
+
+    if ([transform isMemberOfClass:[FSDetectFaces class]]) {
+        _exportFacesToJSON = ((FSDetectFaces *)transform).exportToJSON;
+    } else if ([transform isMemberOfClass:[FSOutput class]]) {
+        _docInfoJSON = ((FSOutput *)transform).docInfo;
+    }
+
+    [_transformationsArray addObject:transformQuery];
 }
 
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform {

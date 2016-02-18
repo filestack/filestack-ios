@@ -35,11 +35,11 @@
     }
 
     if (_mimeType) {
-        queryParameters[@"mimeType"] = @"true";
+        queryParameters[@"mimetype"] = @"true";
     }
 
     if (_fileName) {
-        queryParameters[@"fileName"] = @"true";
+        queryParameters[@"filename"] = @"true";
     }
 
     if (_width) {

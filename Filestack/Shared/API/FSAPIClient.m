@@ -57,7 +57,7 @@
     }];
 }
 
-- (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters options:(FSStatOptions *)statOptions sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
+- (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings[FSSessionSettingsBaseURL] andPOSTURIParameters:[sessionSettings[FSSessionSettingsURIParams] boolValue]];
     [httpManager GET:getURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         FSMetadata *metadata = [[FSMetadata alloc] initWithDictionary:(NSDictionary *)responseObject];

@@ -57,6 +57,12 @@
 		B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D6B1C4FE469008E47A3 /* FSMetadata+Private.m */; };
 		B273AA161C57C5B400232972 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2253D4A1C4F9D9E008E47A3 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B273AA171C57C5B400232972 /* Filestack.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D4B1C4F9D9E008E47A3 /* Filestack.m */; };
+		B2A1934B1C75C94400CC8961 /* FSMetadataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A1934A1C75C94400CC8961 /* FSMetadataTests.m */; };
+		B2A1934C1C75C94400CC8961 /* FSMetadataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A1934A1C75C94400CC8961 /* FSMetadataTests.m */; };
+		B2A1934E1C75DE2E00CC8961 /* FSTransformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A1934D1C75DE2E00CC8961 /* FSTransformationTests.m */; };
+		B2A1934F1C75DE2E00CC8961 /* FSTransformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A1934D1C75DE2E00CC8961 /* FSTransformationTests.m */; };
+		B2A193581C75FD3900CC8961 /* FSStatOptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */; };
+		B2A193591C75FD3900CC8961 /* FSStatOptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */; };
 		B2C8053B1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */; };
 		B2C8053C1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */; };
 		B2C8053D1C6CEE2400F90B2E /* FSSecurity+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */; };
@@ -380,6 +386,9 @@
 		B273A9FE1C57A52400232972 /* FilestackMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilestackMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B273AA001C57A52400232972 /* FilestackMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilestackMac.h; sourceTree = "<group>"; };
 		B273AA021C57A52400232972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2A1934A1C75C94400CC8961 /* FSMetadataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMetadataTests.m; sourceTree = "<group>"; };
+		B2A1934D1C75DE2E00CC8961 /* FSTransformationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTransformationTests.m; sourceTree = "<group>"; };
+		B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSStatOptionsTests.m; sourceTree = "<group>"; };
 		B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSSecurity+Private.h"; sourceTree = "<group>"; };
 		B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSSecurity+Private.m"; sourceTree = "<group>"; };
 		B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTransformErrorSerializer.h; sourceTree = "<group>"; };
@@ -702,6 +711,9 @@
 				B273A9EC1C57A07C00232972 /* FilestackTests.m */,
 				B2DE22CC1C6257BC0007C569 /* FSBlobTests.m */,
 				B268BF6B1C731B1A0094B993 /* TransformationsTests.m */,
+				B2A1934A1C75C94400CC8961 /* FSMetadataTests.m */,
+				B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */,
+				B2A1934D1C75DE2E00CC8961 /* FSTransformationTests.m */,
 				B273A9EE1C57A07C00232972 /* Info.plist */,
 			);
 			path = Tests;
@@ -1630,8 +1642,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B268BF7C1C7322BD0094B993 /* FilestackTests.m in Sources */,
+				B2A1934C1C75C94400CC8961 /* FSMetadataTests.m in Sources */,
 				B268BF7D1C7322BD0094B993 /* FSBlobTests.m in Sources */,
+				B2A1934F1C75DE2E00CC8961 /* FSTransformationTests.m in Sources */,
 				B268BF7E1C7322BD0094B993 /* TransformationsTests.m in Sources */,
+				B2A193591C75FD3900CC8961 /* FSStatOptionsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1640,8 +1655,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B268BF6C1C731B1A0094B993 /* TransformationsTests.m in Sources */,
+				B2A1934B1C75C94400CC8961 /* FSMetadataTests.m in Sources */,
 				B273A9ED1C57A07C00232972 /* FilestackTests.m in Sources */,
+				B2A1934E1C75DE2E00CC8961 /* FSTransformationTests.m in Sources */,
 				B2DE22CD1C6257BC0007C569 /* FSBlobTests.m in Sources */,
+				B2A193581C75FD3900CC8961 /* FSStatOptionsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

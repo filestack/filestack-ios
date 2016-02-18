@@ -75,7 +75,7 @@
     NSString *statURL = [FSAPIURL URLMetadataPathWithBlobURL:blob.url];
 
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
-    [apiClient GET:statURL parameters:parameters options:statOptions sessionSettings:sessionSettings completionHandler:^(FSMetadata *metadata, NSError *error) {
+    [apiClient GET:statURL parameters:parameters sessionSettings:sessionSettings completionHandler:^(FSMetadata *metadata, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
         } else {
