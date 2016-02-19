@@ -1,3 +1,9 @@
+## 0.2.7 (2016-02-19)
+
+### Added:
+
+- ```store:withOptions:completionHandler:``` now also accepts ```progress``` argument.
+
 ## 0.2.6 (2016-02-18)
 
 ### Added
