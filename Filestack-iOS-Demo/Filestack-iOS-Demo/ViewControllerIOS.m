@@ -39,7 +39,7 @@
     [filestack storeURL:sampleURL withOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
         NSLog(@"stored blob: %@", blob);
         NSLog(@"storeURL error: %@", error);
-        if (error == nil) {
+        if (!error) {
             // Now lets try to get the stored file metadata
             [filestack stat:blob withOptions:statOptions completionHandler:^(FSMetadata *metadata, NSError *error) {
                 NSLog(@"file metadata: %@", metadata);
@@ -91,7 +91,9 @@
         FSStoreOptions *storeOptions = [[FSStoreOptions alloc] init];
         storeOptions.fileName = fileName;
         storeOptions.access = FSAccessPublic;
-        [filestack store:imageData withOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
+        [filestack store:imageData withOptions:storeOptions progress:^(NSProgress *progress) {
+            NSLog(@"progress: %f", progress.fractionCompleted);
+        } completionHandler:^(FSBlob *blob, NSError *error) {
             NSLog(@"stored data blob: %@", blob);
         }];
     }];

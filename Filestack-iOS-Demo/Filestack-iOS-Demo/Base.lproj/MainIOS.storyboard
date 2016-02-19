@@ -28,16 +28,16 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1O9-cl-l9a">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="277"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="centerY" secondItem="MoA-aU-9oM" secondAttribute="centerY" id="1Zh-N0-oPx"/>
+                            <constraint firstItem="1O9-cl-l9a" firstAttribute="centerY" secondItem="MoA-aU-9oM" secondAttribute="centerY" constant="-161.5" id="1Zh-N0-oPx"/>
                             <constraint firstItem="MoA-aU-9oM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2FT-cS-x7k"/>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Xcl-nG-Mt0"/>
+                            <constraint firstItem="1O9-cl-l9a" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-323" id="Xcl-nG-Mt0"/>
                             <constraint firstItem="MoA-aU-9oM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c0V-cq-Gon"/>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="centerX" secondItem="MoA-aU-9oM" secondAttribute="centerX" id="h3e-KD-bmL"/>
+                            <constraint firstItem="1O9-cl-l9a" firstAttribute="centerX" secondItem="MoA-aU-9oM" secondAttribute="centerX" constant="-124.5" id="h3e-KD-bmL"/>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="o2E-ZI-KCy"/>
                         </constraints>
                     </view>

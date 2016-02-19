@@ -124,11 +124,11 @@
     }];
 }
 
-- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *progress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = [storeOptions toQueryParameters];
     NSString *postURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:NO andApiKey:_apiKey];
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
-    [apiClient POST:postURL withData:data parameters:parameters multipartOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
+    [apiClient POST:postURL withData:data parameters:parameters multipartOptions:storeOptions progress:progress completionHandler:^(FSBlob *blob, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
         } else {

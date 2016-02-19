@@ -37,7 +37,7 @@
     [filestack storeURL:sampleURL withOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
         NSLog(@"stored blob: %@", blob);
         NSLog(@"storeURL error: %@", error);
-        if (error == nil) {
+        if (!error) {
             // Now lets try to get the stored file metadata
             [filestack stat:blob withOptions:statOptions completionHandler:^(FSMetadata *metadata, NSError *error) {
                 NSLog(@"file metadata: %@", metadata);

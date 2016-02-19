@@ -18,6 +18,6 @@
 - (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler;
 - (void)DELETE:(NSString *)deleteURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSError *error))completionHandler;
 - (void)POST:(NSString *)postURL parameters:(NSDictionary *)parameters options:(FSStoreOptions *)storeOptions sessionSettings:(NSDictionary *)sessionSettings completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
-- (void)POST:(NSString *)postURL withData:(NSData *)data parameters:(NSDictionary *)parameters multipartOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+- (void)POST:(NSString *)postURL withData:(NSData *)data parameters:(NSDictionary *)parameters multipartOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *progress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
 @end

@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "Filestack.h"
+#import "FSTransform+Private.h"
 
 @interface FilestackTests : XCTestCase
 
@@ -37,7 +38,7 @@
     __block FSBlob *responseBlob;
 
     NSString *url = @"https://example.com/image.png";
-    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:url storeOptions:nil  andMethod:@"pick"];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:url storeOptions:nil transform:nil method:@"pick"];
 
     [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"POST"];
 
@@ -52,7 +53,7 @@
 
 - (void)testRemoveValidURLQuery {
     XCTestExpectation* responseArrived = [self expectationWithDescription:@"Valid URL"];
-    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:_sampleBlob.url storeOptions:nil  andMethod:@"remove"];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:_sampleBlob.url storeOptions:nil transform:nil method:@"remove"];
 
     [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"DELETE"];
 
@@ -68,7 +69,7 @@
     XCTestExpectation* responseArrived = [self expectationWithDescription:@"Valid URL"];
     __block NSData *responseData;
 
-    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:_sampleBlob.url storeOptions:nil andMethod:@"download"];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:_sampleBlob.url storeOptions:nil transform:nil method:@"download"];
 
     [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"GET"];
 
@@ -88,7 +89,7 @@
 
     NSString *url = @"https://example.com/image.png";
     FSStoreOptions *storeOptions = [[FSStoreOptions alloc] initWithDictionary:@{@"location": FSStoreLocationDropbox}];
-    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:url storeOptions:storeOptions andMethod:@"storeURL"];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:url storeOptions:storeOptions transform:nil method:@"storeURL"];
 
     [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"POST"];
 
@@ -108,11 +109,11 @@
 
     NSData *dataToStore = [NSData data];
     FSStoreOptions *storeOptions = [[FSStoreOptions alloc] initWithDictionary:@{@"location": FSStoreLocationDropbox, @"path": @"test/"}];
-    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:@"" storeOptions:storeOptions andMethod:@"store"];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:@"" storeOptions:storeOptions transform:nil method:@"store"];
 
     [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"POST"];
 
-    [_filestack store:dataToStore withOptions:storeOptions completionHandler:^(FSBlob *blob, NSError *error) {
+    [_filestack store:dataToStore withOptions:storeOptions progress:nil completionHandler:^(FSBlob *blob, NSError *error) {
         responseBlob = blob;
         [responseArrived fulfill];
     }];
@@ -126,7 +127,7 @@
     XCTestExpectation* responseArrived = [self expectationWithDescription:@"Valid URL"];
     __block FSMetadata *responseMetadata;
 
-    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:_sampleBlob.url storeOptions:nil andMethod:@"stat"];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:_sampleBlob.url storeOptions:nil transform:nil method:@"stat"];
 
     [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"GET"];
 
@@ -140,7 +141,29 @@
     }];
 }
 
-- (NSString *)expectedURLWithKey:(NSString *)key url:(NSString *)url storeOptions:(FSStoreOptions *)storeOptions andMethod:(NSString *)method {
+- (void)testTransformURLValidURLQuery {
+    XCTestExpectation* responseArrived = [self expectationWithDescription:@"Valid URL"];
+    __block NSData *responseData;
+
+    NSString *sampleURL = @"https://www.example.com/image.png";
+    FSTransformation *transformation = [[FSTransformation alloc] init];
+    FSResize *resize = [[FSResize alloc] initWithWidth:@100 height:@100];
+    [transformation add:resize];
+    NSString *expectedURL = [self expectedURLWithKey:_apiKey url:sampleURL storeOptions:nil transform:resize method:@"transform"];
+
+    [self setupStubsWithExpectedURL:expectedURL respondWithError:NO andHTTPMethod:@"GET"];
+
+    [_filestack transformURL:sampleURL transformation:transformation security:nil completionHandler:^(NSData *data, NSDictionary *JSON, NSError *error) {
+        responseData = data;
+        [responseArrived fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:5 handler:^(NSError * _Nullable error) {
+        XCTAssertNotNil(responseData);
+    }];
+}
+
+- (NSString *)expectedURLWithKey:(NSString *)key url:(NSString *)url storeOptions:(FSStoreOptions *)storeOptions transform:(FSTransform *)transform method:(NSString *)method {
     if ([method isEqualToString:@"stat"]) {
         NSString *fileHandler = [[NSURL URLWithString:url] lastPathComponent];
         return [NSString stringWithFormat:@"https://cdn.filestackcontent.com/%@/metadata", fileHandler];
@@ -154,6 +177,8 @@
         return [NSString stringWithFormat:@"https://www.filestackapi.com/api/file/%@?key=%@", fileHandler, _apiKey];
     } else if ([method isEqualToString:@"download"]) {
         return url;
+    } else if ([method isEqualToString:@"transform"]) {
+        return [NSString stringWithFormat:@"https://process.filestackapi.com/%@/%@/%@", _apiKey, [transform toQuery], url];
     } else {
         NSString *encodedURL = [self AFNetworkingEncodedURL:url];
         return [NSString stringWithFormat:@"https://www.filestackapi.com/api/%@?key=%@&url=%@", method, key, encodedURL];

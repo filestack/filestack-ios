@@ -17,7 +17,7 @@
 - [x] Download
 - [x] Implement Delegate
 - [x] Filestack's Transformations Implementation
-- [ ] Progress
+- [x] Store Progress
 - [ ] iOS-picker's FFPickerController Reimplementation
 - [ ] Unit Test Coverage
 - [ ] Download method response serialization
@@ -58,7 +58,7 @@ $ pod install
 - stat:withOptions:completionHandler:
 - download:completionHandler:
 - storeURL:withOptions:completionHandler:
-- store:withOptions:completionHandler:
+- store:withOptions:progress:completionHandler:
 - transformURL:transformation:security:completionHandler:
 ```
 
@@ -107,7 +107,7 @@ NSString *url = @"https://example.com/image.png"
         FSStatOptions *options = [[FSStatOptions alloc] initWithDictionary:@{@"mimetype": @YES, @"md5": @YES};
         [filestack stat:blob withOptions:options completionHandler:^(FSMetadata *metadata, NSError *error) {
             NSLog(@"metadata: %@", metadata);
-            NSLog(@"error: %@", error); 
+            NSLog(@"error: %@", error);
         }];
     }
 }];
