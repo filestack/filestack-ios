@@ -1,5 +1,7 @@
 # Filestack for iOS & Mac
 
+[![CocoaPods](https://img.shields.io/cocoapods/v/Filestack.svg)]() [![CocoaPods](https://img.shields.io/cocoapods/p/Filestack.svg)]()
+
 - Table of contents
   - [TODO](#todo)
   - [Requirements](#requirements)
