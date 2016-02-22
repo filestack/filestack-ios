@@ -316,6 +316,8 @@
 		B2DE23521C68A0880007C569 /* FSCropFaces+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */; };
 		B2DE23531C68A0880007C569 /* FSCropFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */; };
 		B2DE23541C68A0880007C569 /* FSCropFaces+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */; };
+		B2E92D811C7B3B3400542C34 /* FSSessionSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E92D801C7B3B3400542C34 /* FSSessionSettings.m */; };
+		B2E92D821C7B3B3400542C34 /* FSSessionSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E92D801C7B3B3400542C34 /* FSSessionSettings.m */; };
 		CC7A5780CE425A717F2A6D06 /* libPods-FilestackIOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F400B189ACEDA4C9312071B5 /* libPods-FilestackIOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -516,6 +518,7 @@
 		B2DE234A1C68A0760007C569 /* FSCropFaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCropFaces.m; sourceTree = "<group>"; };
 		B2DE234F1C68A0880007C569 /* FSCropFaces+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSCropFaces+Private.h"; sourceTree = "<group>"; };
 		B2DE23501C68A0880007C569 /* FSCropFaces+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCropFaces+Private.m"; sourceTree = "<group>"; };
+		B2E92D801C7B3B3400542C34 /* FSSessionSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSessionSettings.m; sourceTree = "<group>"; };
 		B2FC9B9F1C6CD41100B7928C /* libPods-FilestackIOS-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FilestackIOS-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-FilestackIOS-AFNetworking.a"; sourceTree = "<group>"; };
 		B6003329E1E7DEFBE8CDF4D2 /* Pods-FilestackIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilestackIOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilestackIOSTests/Pods-FilestackIOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B679D3F0B298BCB35BCFAF41 /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FilestackIOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -684,6 +687,7 @@
 				B254A66A1C5A5C070096F7F6 /* FSAPIURL.h */,
 				B254A66B1C5A5C070096F7F6 /* FSAPIURL.m */,
 				B254A6701C5F66480096F7F6 /* FSSessionSettings.h */,
+				B2E92D801C7B3B3400542C34 /* FSSessionSettings.m */,
 				B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */,
 				B2C805401C6DE9F400F90B2E /* FSTransformErrorSerializer.m */,
 			);
@@ -1629,6 +1633,7 @@
 				B2D7564B1C68EE77003263FB /* FSCircle.m in Sources */,
 				B2D756511C68EEF2003263FB /* FSCircle+Private.m in Sources */,
 				B2DE23331C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
+				B2E92D811C7B3B3400542C34 /* FSSessionSettings.m in Sources */,
 				B2DE22F21C6394120007C569 /* FSTransform+Private.m in Sources */,
 				B2D757001C6B84F6003263FB /* FSOutput.m in Sources */,
 				B2DE23261C63AEC90007C569 /* FSFlop+Private.m in Sources */,
@@ -1734,6 +1739,7 @@
 				B2D7564C1C68EE77003263FB /* FSCircle.m in Sources */,
 				B2D756521C68EEF2003263FB /* FSCircle+Private.m in Sources */,
 				B2DE23341C64ED8D0007C569 /* FSWatermark+Private.m in Sources */,
+				B2E92D821C7B3B3400542C34 /* FSSessionSettings.m in Sources */,
 				B2DE22F31C6394120007C569 /* FSTransform+Private.m in Sources */,
 				B2D757011C6B84F6003263FB /* FSOutput.m in Sources */,
 				B2DE23271C63AEC90007C569 /* FSFlop+Private.m in Sources */,
@@ -1795,7 +1801,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1837,7 +1843,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos9.2;
@@ -1861,7 +1867,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.Filestack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1880,7 +1886,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.Filestack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

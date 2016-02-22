@@ -6,6 +6,11 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-typedef NSString * FSSessionSettings;
-#define FSSessionSettingsURIParams @"URIParams"
-#define FSSessionSettingsBaseURL @"baseURL"
+#import <Foundation/Foundation.h>
+
+@interface FSSessionSettings : NSObject
+
+@property (nonatomic, strong) NSString *baseURL;
+@property (nonatomic, assign) BOOL paramsInURI;
+
+@end

@@ -35,7 +35,8 @@
 
 - (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = @{@"key": _apiKey, @"url": url};
-    NSDictionary *sessionSettings = @{FSSessionSettingsURIParams: @YES};
+    FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
+    sessionSettings.paramsInURI = YES;
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
 
     [apiClient POST:FSURLPickPath parameters:parameters options:nil sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
@@ -70,7 +71,8 @@
 }
 
 - (void)stat:(FSBlob *)blob withOptions:(FSStatOptions *)statOptions completionHandler:(void (^)(FSMetadata *metadata, NSError *error))completionHandler {
-    NSDictionary *sessionSettings = @{FSSessionSettingsBaseURL: blob.url, FSSessionSettingsURIParams: @NO};
+    FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
+    sessionSettings.baseURL = blob.url;
     NSDictionary *parameters = [statOptions toQueryParameters];
     NSString *statURL = [FSAPIURL URLMetadataPathWithBlobURL:blob.url];
 
@@ -104,7 +106,8 @@
 }
 
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    NSDictionary *sessionSettings = @{FSSessionSettingsURIParams: @YES};
+    FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
+    sessionSettings.paramsInURI = YES;
     NSString *storeURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:YES andApiKey:_apiKey];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
     [parameters removeObjectForKey:@"mimetype"];
