@@ -33,9 +33,6 @@
 
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
         if (progress) {
-            if ([NSThread isMainThread]) {
-                NSLog(@"main");
-            }
             progress(uploadProgress);
         }
     } completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {

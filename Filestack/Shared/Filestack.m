@@ -9,8 +9,6 @@
 #import "Filestack.h"
 #import "FSAPIURL.h"
 #import "FSAPIClient.h"
-#import "FSSessionSettings.h"
-#import <AFNetworking/AFNetworking.h>
 #import "FSTransformErrorSerializer.h"
 
 @interface Filestack ()
@@ -118,7 +116,7 @@
         if (error) {
             [self delegateRequestError:error];
         } else {
-            [self delegateStoreSucccess:blob];
+            [self delegateStoreSuccess:blob];
         }
 
         if (completionHandler) {
@@ -127,7 +125,7 @@
     }];
 }
 
-- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *progress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = [storeOptions toQueryParameters];
     NSString *postURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:NO andApiKey:_apiKey];
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
@@ -135,7 +133,7 @@
         if (error) {
             [self delegateRequestError:error];
         } else {
-            [self delegateStoreSucccess:blob];
+            [self delegateStoreSuccess:blob];
         }
 
         if (completionHandler) {
@@ -197,7 +195,7 @@
     }
 }
 
-- (void)delegateStoreSucccess:(FSBlob *)blob {
+- (void)delegateStoreSuccess:(FSBlob *)blob {
     if ([_delegate respondsToSelector:@selector(filestackStoreSuccess:)]) {
         [_delegate filestackStoreSuccess:blob];
     }

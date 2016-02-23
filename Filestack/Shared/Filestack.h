@@ -86,7 +86,7 @@
  @param progress A block object taking one argument: upload progress.
  @param completionHandler A block object taking two arguments: blob and error, returned from store request.
  */
-- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *progress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+- (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
 /*!
  @brief Transforms provided url using Filestack's transformation engine.

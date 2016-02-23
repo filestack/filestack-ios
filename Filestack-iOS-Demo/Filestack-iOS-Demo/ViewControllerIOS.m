@@ -91,8 +91,8 @@
         FSStoreOptions *storeOptions = [[FSStoreOptions alloc] init];
         storeOptions.fileName = fileName;
         storeOptions.access = FSAccessPublic;
-        [filestack store:imageData withOptions:storeOptions progress:^(NSProgress *progress) {
-            NSLog(@"progress: %f", progress.fractionCompleted);
+        [filestack store:imageData withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
+            NSLog(@"progress: %f", uploadProgress.fractionCompleted);
         } completionHandler:^(FSBlob *blob, NSError *error) {
             NSLog(@"stored data blob: %@", blob);
         }];
