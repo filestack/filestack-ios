@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Filestack'
-  s.version      = '0.2.8'
+  s.version      = '0.2.9'
   s.summary      = 'SDK to access Filestack API'
 
   s.description  = <<-DESC
