@@ -14,7 +14,7 @@
 @interface FilestackTests : XCTestCase
 
 @property (nonatomic, strong) Filestack *filestack;
-@property (nonatomic, strong) NSString *apiKey;
+@property (nonatomic, copy) NSString *apiKey;
 @property (nonatomic, strong) FSBlob *sampleBlob;
 
 @end

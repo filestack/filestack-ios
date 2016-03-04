@@ -13,31 +13,31 @@
 
 - (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer {
     if (self = [super init]) {
-        self.mode = mode;
-        self.width = width;
-        self.height = height;
-        self.buffer = buffer;
+        _mode = mode;
+        _width = width;
+        _height = height;
+        _buffer = buffer;
     }
     return self;
 }
 
 - (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer face:(NSNumber *)face {
     if (self = [self initWithMode:mode width:width height:height buffer:buffer]) {
-        self.face = face;
+        _face = face;
     }
     return self;
 }
 
 - (instancetype)initWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer faces:(NSArray<NSNumber *> *)faces {
     if (self = [self initWithMode:mode width:width height:height buffer:buffer]) {
-        self.faces = faces;
+        _faces = faces;
     }
     return self;
 }
 
 - (instancetype)initAllFacesWithMode:(FSCropFacesMode)mode width:(NSNumber *)width height:(NSNumber *)height buffer:(NSNumber *)buffer {
     if (self = [self initWithMode:mode width:width height:height buffer:buffer]) {
-        self.allFaces = YES;
+        _allFaces = YES;
     }
     return self;
 }

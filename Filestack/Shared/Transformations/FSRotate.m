@@ -12,10 +12,10 @@
 
 - (instancetype)initWithDegrees:(NSNumber *)degrees background:(NSString *)background rotateToEXIF:(BOOL)toEXIF resetEXIF:(BOOL)resetEXIF {
     if (self = [super init]) {
-        self.degrees = degrees;
-        self.background = background;
-        self.toEXIF = toEXIF;
-        self.resetEXIF = resetEXIF;
+        _degrees = degrees;
+        _background = background;
+        _toEXIF = toEXIF;
+        _resetEXIF = resetEXIF;
     }
     return self;
 }

@@ -12,9 +12,9 @@
 
 - (instancetype)initWithBlob:(FSBlob *)blob size:(NSNumber *)size position:(FSWatermarkPosition)position {
     if (self = [super init]) {
-        self.blob = blob;
-        self.size = size;
-        self.position = position;
+        _blob = blob;
+        _size = size;
+        _position = position;
     }
     return self;
 }

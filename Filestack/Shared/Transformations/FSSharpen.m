@@ -12,7 +12,7 @@
 
 - (instancetype)initWithAmount:(NSNumber *)amount {
     if (self = [super init]) {
-        self.amount = amount;
+        _amount = amount;
     }
     return self;
 }

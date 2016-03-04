@@ -12,10 +12,10 @@
 
 - (instancetype)initWithX:(NSNumber *)x y:(NSNumber *)y width:(NSNumber *)width height:(NSNumber *)height {
     if (self = [super init]) {
-        self.x = x;
-        self.y = y;
-        self.width = width;
-        self.height = height;
+        _x = x;
+        _y = y;
+        _width = width;
+        _height = height;
     }
     return self;
 }

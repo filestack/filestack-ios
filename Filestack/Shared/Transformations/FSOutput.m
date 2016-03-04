@@ -12,13 +12,13 @@
 
 - (instancetype)initWithFormat:(FSOutputFormat)format colorspace:(FSOutputColorspace)colorspace page:(NSNumber *)page density:(NSNumber *)density compress:(BOOL)compress quality:(NSNumber *)quality secure:(BOOL)secure {
     if (self = [super init]) {
-        self.format = format;
-        self.colorspace = colorspace;
-        self.page = page;
-        self.density = density;
-        self.compress = compress;
-        self.quality = quality;
-        self.secure = secure;
+        _format = format;
+        _colorspace = colorspace;
+        _page = page;
+        _density = density;
+        _compress = compress;
+        _quality = quality;
+        _secure = secure;
     }
     return self;
 }
@@ -29,7 +29,7 @@
 
 - (instancetype)initWithDocInfo {
     if (self = [self initWithFormat:nil colorspace:nil page:nil density:nil compress:NO quality:nil secure:NO]) {
-        self.docInfo = YES;
+        _docInfo = YES;
     }
     return self;
 }

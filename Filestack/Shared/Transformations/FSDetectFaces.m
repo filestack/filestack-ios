@@ -13,10 +13,10 @@
 
 - (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize color:(NSString *)color exportToJSON:(BOOL)exportToJSON {
     if (self = [super init]) {
-        self.minSize = minSize;
-        self.maxSize = maxSize;
-        self.color = color;
-        self.exportToJSON = exportToJSON;
+        _minSize = minSize;
+        _maxSize = maxSize;
+        _color = color;
+        _exportToJSON = exportToJSON;
     }
     return self;
 }

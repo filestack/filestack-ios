@@ -45,7 +45,7 @@ typedef NSString * FSPixelateFacesType;
 /**
  Specify an array of face objects to choose. The value must be an array of integers. Takes precedence over `face` property.
  */
-@property (nonatomic, strong) NSArray<NSNumber *> *faces;
+@property (nonatomic, copy) NSArray<NSNumber *> *faces;
 /**
  If `YES`, it will choose all face objects available. Takes precedence over `face` and/or `faces` properties.
  */

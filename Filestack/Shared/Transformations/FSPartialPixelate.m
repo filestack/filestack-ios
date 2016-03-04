@@ -12,11 +12,11 @@
 
 - (instancetype)initWithObjects:(NSArray<NSArray<NSNumber *> *> *)objects buffer:(NSNumber *)buffer amount:(NSNumber *)amount blur:(NSNumber *)blur type:(FSPPartialPixelateType)type {
     if (self = [super init]) {
-        self.objects = objects;
-        self.buffer = buffer;
-        self.amount = amount;
-        self.blur = blur;
-        self.type = type;
+        _objects = objects;
+        _buffer = buffer;
+        _amount = amount;
+        _blur = blur;
+        _type = type;
     }
     return self;
 }

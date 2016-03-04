@@ -12,10 +12,10 @@
 
 - (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height agent:(FSURLScreenshotAgent)agent mode:(FSURLScreenshotMode)mode {
     if (self = [super init]) {
-        self.width = width;
-        self.height = height;
-        self.agent = agent;
-        self.mode = mode;
+        _width = width;
+        _height = height;
+        _agent = agent;
+        _mode = mode;
     }
     return self;
 }

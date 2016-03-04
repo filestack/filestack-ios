@@ -16,10 +16,10 @@
 
 - (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit align:(FSResizeAlign)align {
     if (self = [super init]) {
-        self.width = width;
-        self.height = height;
-        self.fit = fit;
-        self.align = align;
+        _width = width;
+        _height = height;
+        _fit = fit;
+        _align = align;
     }
     return self;
 }

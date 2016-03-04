@@ -10,7 +10,7 @@
 
 @interface FSSessionSettings : NSObject
 
-@property (nonatomic, strong) NSString *baseURL;
+@property (nonatomic, copy) NSString *baseURL;
 @property (nonatomic, assign) BOOL paramsInURI;
 
 @end

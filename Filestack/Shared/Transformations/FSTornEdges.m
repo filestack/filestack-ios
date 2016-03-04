@@ -12,8 +12,8 @@
 
 - (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread background:(NSString *)background {
     if (self = [super init]) {
-        self.spread = spread;
-        self.background = background;
+        _spread = spread;
+        _background = background;
     }
     return self;
 }

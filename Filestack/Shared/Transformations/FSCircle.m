@@ -12,7 +12,7 @@
 
 - (instancetype)initWithBackground:(NSString *)background {
     if (self = [super init]) {
-        self.background = background;
+        _background = background;
     }
     return self;
 }

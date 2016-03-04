@@ -12,7 +12,7 @@
 
 - (instancetype)initWithTone:(NSNumber *)tone {
     if (self = [super init]) {
-        self.tone = tone;
+        _tone = tone;
     }
     return self;
 }

@@ -12,14 +12,14 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
-        self.fileName = dictionary[@"filename"];
-        self.location = dictionary[@"location"];
-        self.mimeType = dictionary[@"mimetype"];
-        self.path = dictionary[@"path"];
-        self.container = dictionary[@"container"];
-        self.access = dictionary[@"access"];
-        self.base64decode = [dictionary[@"base64decode"] boolValue];
-        self.security = dictionary[@"security"];
+        _fileName = dictionary[@"filename"];
+        _location = dictionary[@"location"];
+        _mimeType = dictionary[@"mimetype"];
+        _path = dictionary[@"path"];
+        _container = dictionary[@"container"];
+        _access = dictionary[@"access"];
+        _base64decode = [dictionary[@"base64decode"] boolValue];
+        _security = dictionary[@"security"];
     }
     return self;
 }

@@ -13,7 +13,7 @@
 
 @interface Filestack ()
 
-@property (nonatomic, strong) NSString *apiKey;
+@property (nonatomic, copy) NSString *apiKey;
 
 @end
 
@@ -21,8 +21,8 @@
 
 - (instancetype)initWithApiKey:(NSString *)apiKey delegate:(id <FSFilestackDelegate>)delegate {
     if (self = [super init]) {
-        self.apiKey = apiKey;
-        self.delegate = delegate;
+        _apiKey = apiKey;
+        _delegate = delegate;
     }
     return self;
 }

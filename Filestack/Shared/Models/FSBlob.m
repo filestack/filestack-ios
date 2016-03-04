@@ -12,14 +12,14 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
-        self.url = dictionary[@"url"];
-        self.fileName = dictionary[@"filename"];
-        self.mimeType = dictionary[@"mimetype"] ?: dictionary[@"type"];
-        self.size = [dictionary[@"size"] integerValue];
-        self.key = dictionary[@"key"];
-        self.container = dictionary[@"container"];
-        self.path = dictionary[@"path"];
-        self.writeable = dictionary[@"writeable"] == nil ? nil : [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
+        _url = dictionary[@"url"];
+        _fileName = dictionary[@"filename"];
+        _mimeType = dictionary[@"mimetype"] ?: dictionary[@"type"];
+        _size = [dictionary[@"size"] integerValue];
+        _key = dictionary[@"key"];
+        _container = dictionary[@"container"];
+        _path = dictionary[@"path"];
+        _writeable = dictionary[@"writeable"] == nil ? nil : [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
     }
     return self;
 }

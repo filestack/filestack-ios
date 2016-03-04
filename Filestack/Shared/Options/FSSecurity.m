@@ -10,8 +10,8 @@
 
 @interface FSSecurity ()
 
-@property (nonatomic, readwrite, strong) NSString *policy;
-@property (nonatomic, readwrite, strong) NSString *signature;
+@property (nonatomic, readwrite, copy) NSString *policy;
+@property (nonatomic, readwrite, copy) NSString *signature;
 
 @end
 
@@ -19,8 +19,8 @@
 
 - (instancetype)initWithPolicy:(NSString *)policy signature:(NSString *)signature {
     if (self = [super init]) {
-        self.policy = policy;
-        self.signature = signature;
+        _policy = policy;
+        _signature = signature;
     }
     return self;
 }

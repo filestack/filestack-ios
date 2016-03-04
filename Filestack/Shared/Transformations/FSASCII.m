@@ -12,11 +12,11 @@
 
 - (instancetype)initWithForeground:(NSString *)foreground background:(NSString *)background size:(NSNumber *)size reverse:(BOOL)reverse colored:(BOOL)colored {
     if (self = [super init]) {
-        self.foreground = foreground;
-        self.background = background;
-        self.size = size;
-        self.reverse = reverse;
-        self.colored = colored;
+        _foreground = foreground;
+        _background = background;
+        _size = size;
+        _reverse = reverse;
+        _colored = colored;
     }
     return self;
 }

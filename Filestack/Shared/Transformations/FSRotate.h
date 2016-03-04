@@ -17,7 +17,7 @@
 /**
  Sets the background color to display if the image is rotated less than a fill 90 degrees. This can be the word for a color, or the hex color code.
  */
-@property (nonatomic, strong) NSString *background;
+@property (nonatomic, copy) NSString *background;
 /**
  If `YES`, the image will be rotated based upon any exif metadata it may contain.
  */

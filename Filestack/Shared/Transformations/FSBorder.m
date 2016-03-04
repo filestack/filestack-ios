@@ -12,9 +12,9 @@
 
 - (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color background:(NSString *)background {
     if (self = [super init]) {
-        self.width = width;
-        self.color = color;
-        self.background = background;
+        _width = width;
+        _color = color;
+        _background = background;
     }
     return self;
 }
