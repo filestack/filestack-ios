@@ -1,3 +1,9 @@
+## 0.2.10 (2016-03-04)
+
+### Changed:
+- Remove use of accessors in init methods.
+- Use ```copy``` instead of ```strong``` for classes with mutable counterparts.
+
 ## 0.2.7 (2016-02-19)
 
 ### Added:
