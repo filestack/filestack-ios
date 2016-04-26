@@ -42,6 +42,10 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithDictionary:@{}];
+}
+
 - (NSDictionary *)toQueryParameters {
     NSMutableDictionary *queryParameters = [[NSMutableDictionary alloc] init];
 

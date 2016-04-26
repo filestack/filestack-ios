@@ -17,4 +17,8 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithAmount:nil];
+}
+
 @end

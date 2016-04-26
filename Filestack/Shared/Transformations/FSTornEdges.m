@@ -11,11 +11,15 @@
 @implementation FSTornEdges
 
 - (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread background:(NSString *)background {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _spread = spread;
         _background = background;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithSpread:nil background:nil];
 }
 
 @end

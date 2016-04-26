@@ -11,7 +11,7 @@
 @implementation FSCollage
 
 - (instancetype)initWithFiles:(NSArray<FSBlob *> *)files width:(NSNumber *)width height:(NSNumber *)height margin:(NSNumber *)margin color:(NSString *)color {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _files = files;
         _width = width;
         _height = height;
@@ -23,6 +23,10 @@
 
 - (instancetype)initWithFiles:(NSArray<FSBlob *> *)files width:(NSNumber *)width height:(NSNumber *)height {
     return [self initWithFiles:files width:width height:height margin:nil color:nil];
+}
+
+- (instancetype)init {
+    return [self initWithFiles:@[] width:@1 height:@1 margin:nil color:nil];
 }
 
 @end

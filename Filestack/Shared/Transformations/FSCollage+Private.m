@@ -36,7 +36,8 @@
     NSMutableArray *objectsString = [[NSMutableArray alloc] init];
 
     for (FSBlob *blob in self.files) {
-        [objectsString addObject:[NSURL URLWithString:blob.url].lastPathComponent];
+        NSString *blobHandler = [NSURL URLWithString:blob.url].lastPathComponent;
+        [objectsString addObject:blobHandler];
     }
 
     return [NSString stringWithFormat:@"files:[%@]", [objectsString componentsJoinedByString:@","]];

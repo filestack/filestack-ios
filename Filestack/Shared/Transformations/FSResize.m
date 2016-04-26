@@ -15,7 +15,7 @@
 @implementation FSResize
 
 - (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height fit:(FSResizeFit)fit align:(FSResizeAlign)align {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _width = width;
         _height = height;
         _fit = fit;
@@ -38,6 +38,10 @@
 
 - (instancetype)initWithWidth:(NSNumber *)width {
     return [self initWithWidth:width height:nil fit:nil align:nil];
+}
+
+- (instancetype)init {
+    return [self initWithWidth:nil height:nil fit:nil align:nil];
 }
 
 @end

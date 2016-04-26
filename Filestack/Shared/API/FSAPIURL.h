@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "FSStoreOptions.h"
 
 FOUNDATION_EXPORT NSString *const FSURLBaseURL;

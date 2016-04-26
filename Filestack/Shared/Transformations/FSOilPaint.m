@@ -11,10 +11,14 @@
 @implementation FSOilPaint
 
 - (instancetype)initWithAmount:(NSNumber *)amount {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _amount = amount;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithAmount:nil];
 }
 
 @end
