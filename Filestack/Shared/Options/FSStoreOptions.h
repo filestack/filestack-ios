@@ -22,11 +22,11 @@ typedef NSString * FSAccess;
 
 @interface FSStoreOptions : NSObject
 
-@property (nonatomic, strong) NSString *fileName;
+@property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, strong) FSStoreLocation location;
-@property (nonatomic, strong) NSString *mimeType;
-@property (nonatomic, strong) NSString *path;
-@property (nonatomic, strong) NSString *container;
+@property (nonatomic, copy) NSString *mimeType;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *container;
 @property (nonatomic, strong) FSAccess access;
 @property (nonatomic, assign) BOOL base64decode;
 @property (nonatomic, strong) FSSecurity *security;

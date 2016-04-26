@@ -13,11 +13,11 @@
 /**
  This can be the word for a color, or the hex color code. Defaults to "black".
  */
-@property (nonatomic, strong) NSString *foreground;
+@property (nonatomic, copy) NSString *foreground;
 /**
  This can be the word for a color, or the hex color code. Defaults to "white".
  */
-@property (nonatomic, strong) NSString *background;
+@property (nonatomic, copy) NSString *background;
 /**
  The value must be an integer from 10 to 100. Defaults to 100.
  */

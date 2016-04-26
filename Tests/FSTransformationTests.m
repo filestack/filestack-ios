@@ -13,9 +13,9 @@
 
 @interface FSTransformationTests : XCTestCase
 
-@property (nonatomic, strong) NSString *apiKey;
-@property (nonatomic, strong) NSString *testURL;
-@property (nonatomic, strong) NSString *processURL;
+@property (nonatomic, copy) NSString *apiKey;
+@property (nonatomic, copy) NSString *testURL;
+@property (nonatomic, copy) NSString *processURL;
 @property (nonatomic, strong) FSSecurity *security;
 
 @end

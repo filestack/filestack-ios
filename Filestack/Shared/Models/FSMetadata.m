@@ -11,16 +11,16 @@
 @interface FSMetadata ()
 
 @property (nonatomic, readwrite, assign) NSInteger size;
-@property (nonatomic, readwrite, strong) NSString *mimeType;
-@property (nonatomic, readwrite, strong) NSString *fileName;
+@property (nonatomic, readwrite, copy) NSString *mimeType;
+@property (nonatomic, readwrite, copy) NSString *fileName;
 @property (nonatomic, readwrite, assign) NSInteger width;
 @property (nonatomic, readwrite, assign) NSInteger height;
 @property (nonatomic, readwrite, assign) NSInteger uploaded;
 @property (nonatomic, readwrite, strong) NSNumber *writeable;
-@property (nonatomic, readwrite, strong) NSString *md5;
-@property (nonatomic, readwrite, strong) NSString *location;
-@property (nonatomic, readwrite, strong) NSString *path;
-@property (nonatomic, readwrite, strong) NSString *container;
+@property (nonatomic, readwrite, copy) NSString *md5;
+@property (nonatomic, readwrite, copy) NSString *location;
+@property (nonatomic, readwrite, copy) NSString *path;
+@property (nonatomic, readwrite, copy) NSString *container;
 
 @end
 

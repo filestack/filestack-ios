@@ -21,7 +21,7 @@
 /**
  Sets the background color to display where the rounded corners have removed part of the image. This can be the word for a color, or the hex color code.
  */
-@property (nonatomic, strong) NSString *background;
+@property (nonatomic, copy) NSString *background;
 /**
  If `YES`, will set rounded corner radius to max value possible.
  */

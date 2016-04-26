@@ -12,9 +12,9 @@
 
 - (instancetype)initWithColor:(NSString *)color background:(NSString *)background rotation:(NSNumber *)rotate {
     if ((self = [super init])) {
-        self.color = color;
-        self.background = background;
-        self.rotate = rotate;
+        _color = color;
+        _background = background;
+        _rotate = rotate;
     }
     return self;
 }

@@ -27,14 +27,15 @@
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.transformationsArray = [[NSMutableArray alloc] init];
+        _transformationsArray = [[NSMutableArray alloc] init];
+
     }
     return self;
 }
 
 - (instancetype)initWithQueryString:(NSString *)queryString {
     if ((self = [self init])) {
-        [self.transformationsArray addObject:queryString];
+        [_transformationsArray addObject:queryString];
     }
     return self;
 }

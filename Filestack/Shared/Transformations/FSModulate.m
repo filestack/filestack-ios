@@ -13,9 +13,9 @@
 
 - (instancetype)initWithBrightness:(NSNumber *)brightness hue:(NSNumber *)hue saturation:(NSNumber *)saturation {
     if (self = [super init]) {
-        self.brightness = brightness;
-        self.hue = hue;
-        self.saturation = saturation;
+        _brightness = brightness;
+        _hue = hue;
+        _saturation = saturation;
     }
     return self;
 }

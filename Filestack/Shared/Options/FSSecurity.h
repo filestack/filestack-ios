@@ -10,8 +10,8 @@
 
 @interface FSSecurity : NSObject
 
-@property (nonatomic, readonly, nonnull, strong) NSString *policy;
-@property (nonatomic, readonly, nonnull, strong) NSString *signature;
+@property (nonatomic, readonly, nonnull, copy) NSString *policy;
+@property (nonatomic, readonly, nonnull, copy) NSString *signature;
 
 /*!
  @brief Initializes FSSecurity instance with policy and signature.

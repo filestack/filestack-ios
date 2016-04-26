@@ -13,16 +13,16 @@
 
 - (instancetype)initWithRadius:(NSNumber *)radius blur:(NSNumber *)blur background:(NSString *)background {
     if ((self = [super init])) {
-        self.radius = radius;
-        self.blur = blur;
-        self.background = background;
+        _radius = radius;
+        _blur = blur;
+        _background = background;
     }
     return self;
 }
 
 - (instancetype)initWithMaxRadiusAndBlur:(NSNumber *)blur background:(NSString *)background {
     if ((self = [self initWithRadius:nil blur:blur background:background])) {
-        self.maxRadius = YES;
+        _maxRadius = YES;
     }
     return self;
 }

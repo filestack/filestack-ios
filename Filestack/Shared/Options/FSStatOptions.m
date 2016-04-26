@@ -12,17 +12,17 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
-        self.size = [dictionary[@"size"] isEqual:@YES];
-        self.mimeType = [dictionary[@"mimetype"] isEqual:@YES];
-        self.fileName = [dictionary[@"filename"] isEqual:@YES];
-        self.width = [dictionary[@"width"] isEqual:@YES];
-        self.height = [dictionary[@"height"] isEqual:@YES];
-        self.uploaded = [dictionary[@"uploaded"] isEqual:@YES];
-        self.writeable = [dictionary[@"writeable"] isEqual:@YES];
-        self.md5 = [dictionary[@"md5"] isEqual:@YES];
-        self.location = [dictionary[@"location"] isEqual:@YES];
-        self.path = [dictionary[@"path"] isEqual:@YES];
-        self.container = [dictionary[@"container"] isEqual:@YES];
+        _size = [dictionary[@"size"] isEqual:@YES];
+        _mimeType = [dictionary[@"mimetype"] isEqual:@YES];
+        _fileName = [dictionary[@"filename"] isEqual:@YES];
+        _width = [dictionary[@"width"] isEqual:@YES];
+        _height = [dictionary[@"height"] isEqual:@YES];
+        _uploaded = [dictionary[@"uploaded"] isEqual:@YES];
+        _writeable = [dictionary[@"writeable"] isEqual:@YES];
+        _md5 = [dictionary[@"md5"] isEqual:@YES];
+        _location = [dictionary[@"location"] isEqual:@YES];
+        _path = [dictionary[@"path"] isEqual:@YES];
+        _container = [dictionary[@"container"] isEqual:@YES];
     }
     return self;
 }

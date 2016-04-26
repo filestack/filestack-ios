@@ -21,7 +21,7 @@
 /**
  Change the color of the face object boxes and text. This can be the word for a color, or the hex color code.
  */
-@property (nonatomic, strong) NSString *color;
+@property (nonatomic, copy) NSString *color;
 /**
  If `YES`, it will export all face objects to a JSON object.
  */

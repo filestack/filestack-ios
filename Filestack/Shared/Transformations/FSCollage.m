@@ -12,11 +12,11 @@
 
 - (instancetype)initWithFiles:(NSArray<FSBlob *> *)files width:(NSNumber *)width height:(NSNumber *)height margin:(NSNumber *)margin color:(NSString *)color {
     if (self = [super init]) {
-        self.files = files;
-        self.width = width;
-        self.height = height;
-        self.margin = margin;
-        self.color = color;
+        _files = files;
+        _width = width;
+        _height = height;
+        _margin = margin;
+        _color = color;
     }
     return self;
 }

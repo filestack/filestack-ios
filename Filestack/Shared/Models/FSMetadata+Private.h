@@ -11,16 +11,16 @@
 @interface FSMetadata (Private)
 
 @property (nonatomic, assign) NSInteger size;
-@property (nonatomic, strong) NSString *mimeType;
-@property (nonatomic, strong) NSString *fileName;
+@property (nonatomic, copy) NSString *mimeType;
+@property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, assign) NSInteger width;
 @property (nonatomic, assign) NSInteger height;
 @property (nonatomic, assign) NSInteger uploaded;
 @property (nonatomic, strong) NSNumber *writeable;
-@property (nonatomic, strong) NSString *md5;
-@property (nonatomic, strong) NSString *location;
-@property (nonatomic, strong) NSString *path;
-@property (nonatomic, strong) NSString *container;
+@property (nonatomic, copy) NSString *md5;
+@property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *container;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
