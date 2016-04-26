@@ -31,6 +31,10 @@
     return [self initWithApiKey:apiKey delegate:nil];
 }
 
+- (instancetype)init {
+    return [self initWithApiKey:nil delegate:nil];
+}
+
 - (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = @{@"key": self.apiKey, @"url": url};
     FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];

@@ -18,11 +18,11 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.minSize) {
-        [queryArray addObject:[NSString stringWithFormat:@"minsize:%.02f", (self.minSize).floatValue]];
+        [queryArray addObject:[NSString stringWithFormat:@"minsize:%.02f", (self.minSize).doubleValue]];
     }
 
     if (self.maxSize) {
-        [queryArray addObject:[NSString stringWithFormat:@"maxsize:%.02f", (self.maxSize).floatValue]];
+        [queryArray addObject:[NSString stringWithFormat:@"maxsize:%.02f", (self.maxSize).doubleValue]];
     }
 
     if (self.buffer) {
@@ -30,11 +30,11 @@
     }
 
     if (self.amount) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%f", (self.amount).floatValue]];
+        [queryArray addObject:[NSString stringWithFormat:@"amount:%f", (self.amount).doubleValue]];
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", (self.blur).floatValue]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", (self.blur).doubleValue]];
     }
 
     if (self.type) {

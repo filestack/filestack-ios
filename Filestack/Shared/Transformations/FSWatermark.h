@@ -38,6 +38,7 @@ typedef NSString * FSWatermarkPosition;
  */
 @property (nonatomic, nullable, strong) FSWatermarkPosition position;
 
-- (instancetype)initWithBlob:(FSBlob * _Nonnull)blob size:(NSNumber * _Nullable)size position:(FSWatermarkPosition _Nullable)position NS_DESIGNATED_INITIALIZER;
+- (instancetype _Nullable)initWithBlob:(FSBlob * _Nonnull)blob size:(NSNumber * _Nullable)size position:(FSWatermarkPosition _Nullable)position NS_DESIGNATED_INITIALIZER;
+- (instancetype _Nullable)init NS_UNAVAILABLE;
 
 @end

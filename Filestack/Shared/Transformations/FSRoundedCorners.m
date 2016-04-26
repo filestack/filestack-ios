@@ -27,4 +27,8 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithRadius:nil blur:nil background:nil];
+}
+
 @end

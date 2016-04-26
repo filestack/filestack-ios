@@ -34,4 +34,8 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithFormat:nil colorspace:nil page:nil density:nil compress:NO quality:nil secure:NO];
+}
+
 @end

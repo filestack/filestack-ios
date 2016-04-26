@@ -19,4 +19,8 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithColor:nil background:nil rotation:nil];
+}
+
 @end

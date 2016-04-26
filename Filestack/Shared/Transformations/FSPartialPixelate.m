@@ -25,4 +25,8 @@
     return [self initWithObjects:objects buffer:nil amount:nil blur:nil type:nil];
 }
 
+- (instancetype)init {
+    return [self initWithObjects:@[] buffer:nil amount:nil blur:nil type:nil];
+}
+
 @end

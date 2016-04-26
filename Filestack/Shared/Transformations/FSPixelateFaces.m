@@ -43,4 +43,8 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithMinSize:nil maxSize:nil type:nil buffer:nil blurAmount:nil pixelateAmount:nil faces:nil];
+}
+
 @end

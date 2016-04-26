@@ -11,12 +11,16 @@
 @implementation FSBorder
 
 - (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color background:(NSString *)background {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _width = width;
         _color = color;
         _background = background;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithWidth:nil color:nil background:nil];
 }
 
 @end

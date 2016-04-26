@@ -11,7 +11,7 @@
 @implementation FSStatOptions
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _size = [dictionary[@"size"] isEqual:@YES];
         _mimeType = [dictionary[@"mimetype"] isEqual:@YES];
         _fileName = [dictionary[@"filename"] isEqual:@YES];
@@ -27,50 +27,54 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithDictionary:@{}];
+}
+
 - (NSDictionary *)toQueryParameters {
     NSMutableDictionary *queryParameters = [[NSMutableDictionary alloc] init];
 
-    if (_size) {
+    if (self.size) {
         queryParameters[@"size"] = @"true";
     }
 
-    if (_mimeType) {
+    if (self.mimeType) {
         queryParameters[@"mimetype"] = @"true";
     }
 
-    if (_fileName) {
+    if (self.fileName) {
         queryParameters[@"filename"] = @"true";
     }
 
-    if (_width) {
+    if (self.width) {
         queryParameters[@"width"] = @"true";
     }
 
-    if (_height) {
+    if (self.height) {
         queryParameters[@"height"] = @"true";
     }
 
-    if (_uploaded) {
+    if (self.uploaded) {
         queryParameters[@"uploaded"] = @"true";
     }
 
-    if (_writeable) {
+    if (self.writeable) {
         queryParameters[@"writeable"] = @"true";
     }
 
-    if (_md5) {
+    if (self.md5) {
         queryParameters[@"md5"] = @"true";
     }
 
-    if (_location) {
+    if (self.location) {
         queryParameters[@"location"] = @"true";
     }
 
-    if (_path) {
+    if (self.path) {
         queryParameters[@"path"] = @"true";
     }
 
-    if (_container) {
+    if (self.container) {
         queryParameters[@"container"] = @"true";
     }
 

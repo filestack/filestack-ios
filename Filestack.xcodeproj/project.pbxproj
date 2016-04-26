@@ -1894,10 +1894,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WARNING_CFLAGS = (
-					"-Wno-objc-missing-property-synthesis",
-					"-Weverything",
-				);
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -1917,10 +1914,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WARNING_CFLAGS = (
-					"-Wno-objc-missing-property-synthesis",
-					"-Weverything",
-				);
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};

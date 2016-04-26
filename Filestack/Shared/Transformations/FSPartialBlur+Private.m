@@ -24,11 +24,11 @@
     }
 
     if (self.amount) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%.04f", (self.amount).floatValue]];
+        [queryArray addObject:[NSString stringWithFormat:@"amount:%.04f", (self.amount).doubleValue]];
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%.04f", (self.blur).floatValue]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%.04f", (self.blur).doubleValue]];
     }
 
     if (self.type) {

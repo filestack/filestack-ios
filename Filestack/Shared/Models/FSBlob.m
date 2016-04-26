@@ -31,6 +31,10 @@
     return [self initWithDictionary:@{}];
 }
 
+- (instancetype)init {
+    return [self initWithDictionary:@{}];
+}
+
 - (NSString *)s3url {
     if (self.container && self.key) {
         return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", self.container, self.key];
