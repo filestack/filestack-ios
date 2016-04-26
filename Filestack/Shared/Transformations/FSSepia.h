@@ -15,6 +15,6 @@
  */
 @property (nonatomic, strong) NSNumber *tone;
 
-- (instancetype)initWithTone:(NSNumber *)tone;
+- (instancetype)initWithTone:(NSNumber *)tone NS_DESIGNATED_INITIALIZER;
 
 @end

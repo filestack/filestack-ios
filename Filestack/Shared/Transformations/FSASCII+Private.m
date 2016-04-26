@@ -34,7 +34,7 @@
     }
 
     if (self.size) {
-        [queryArray addObject:[NSString stringWithFormat:@"size:%ld", (long)[self.size integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"size:%ld", (long)(self.size).integerValue]];
     }
 
     return [NSString stringWithFormat:@"%@=%@", @"ascii", [queryArray componentsJoinedByString:@","]];

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface FSTransform : NSObject
 

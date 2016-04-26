@@ -11,15 +11,15 @@
 @implementation FSBlob
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [super init]) {
-        self.url = dictionary[@"url"];
-        self.fileName = dictionary[@"filename"];
-        self.mimeType = dictionary[@"mimetype"] ?: dictionary[@"type"];
-        self.size = [dictionary[@"size"] integerValue];
-        self.key = dictionary[@"key"];
-        self.container = dictionary[@"container"];
-        self.path = dictionary[@"path"];
-        self.writeable = dictionary[@"writeable"] == nil ? nil : [NSNumber numberWithBool:[dictionary[@"writeable"] boolValue]];
+    if ((self = [super init])) {
+        _url = dictionary[@"url"];
+        _fileName = dictionary[@"filename"];
+        _mimeType = dictionary[@"mimetype"] ?: dictionary[@"type"];
+        _size = [dictionary[@"size"] integerValue];
+        _key = dictionary[@"key"];
+        _container = dictionary[@"container"];
+        _path = dictionary[@"path"];
+        _writeable = dictionary[@"writeable"] == nil ? nil : @([dictionary[@"writeable"] boolValue]);
     }
     return self;
 }
@@ -32,8 +32,8 @@
 }
 
 - (NSString *)s3url {
-    if (_container && _key) {
-        return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", _container, _key];
+    if (self.container && self.key) {
+        return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", self.container, self.key];
     }
     return nil;
 }
@@ -41,7 +41,7 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"\nurl: %@\nfilename: %@\nsize: %ld\nmimetype: %@\nkey: %@ \
                                       \ncontainer: %@\npath: %@\nwriteable: %@\ns3url: %@",
-            _url, _fileName, (long)_size, _mimeType, _key, _container, _path, _writeable, self.s3url];
+            self.url, self.fileName, (long)self.size, self.mimeType, self.key, self.container, self.path, self.writeable, self.s3url];
 }
 
 @end

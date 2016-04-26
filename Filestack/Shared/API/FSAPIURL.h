@@ -17,6 +17,8 @@ typedef NSString * FSURL;
 #define FSURLMetadataPath @"/metadata"
 #define FSURLFilePath @"api/file"
 #define FSURLStorePath @"api/store"
+#define FSURLContentPath @"api/path"
+#define FSURLClientPath @"api/client"
 
 @interface FSAPIURL : NSObject
 

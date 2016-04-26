@@ -15,7 +15,7 @@
         return @"sepia";
     }
 
-    return [NSString stringWithFormat:@"sepia=tone:%ld", (long)[self.tone integerValue]];
+    return [NSString stringWithFormat:@"sepia=tone:%ld", (long)(self.tone).integerValue];
 }
 
 @end

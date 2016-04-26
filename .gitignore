@@ -23,6 +23,7 @@ xcuserdata
 *.xcuserstate
 *.xcscmblueprint
 .idea
+compile_commands.json
 
 ## Obj-C/Swift specific
 *.hmap

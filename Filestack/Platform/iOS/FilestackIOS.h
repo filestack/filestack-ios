@@ -6,8 +6,9 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "Filestack.h"
+#import "Filestack+FSPicker.h"
 
 FOUNDATION_EXPORT double FSFilestackIOSVersionNumber;
 FOUNDATION_EXPORT const unsigned char FSFilestackIOSVersionString[];

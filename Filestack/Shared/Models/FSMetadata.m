@@ -27,15 +27,15 @@
 @implementation FSMetadata
 
 - (NSString *)s3url {
-    if (_container && _path) {
-        return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", _container, _path];
+    if (self.container && self.path) {
+        return [NSString stringWithFormat:@"https://%@.s3.amazonaws.com/%@", self.container, self.path];
     }
     return nil;
 }
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"\nsize: %ld\nfilename: %@\nmimetype: %@\nwidth: %ld\nheight: %ld\nuploaded: %ld\nwriteable: %@\nmd5: %@\nlocation: %@\npath: %@\ncontainer: %@\ns3url: %@",
-            (long)_size, _fileName, _mimeType, (long)_width, (long)_height, (long)_uploaded, _writeable, _md5, _location, _path, _container, self.s3url];
+            (long)self.size, self.fileName, self.mimeType, (long)self.width, (long)self.height, (long)self.uploaded, self.writeable, self.md5, self.location, self.path, self.container, self.s3url];
 }
 
 @end

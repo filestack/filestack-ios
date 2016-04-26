@@ -84,6 +84,8 @@
     }];
 }
 
+#pragma mark - Helper methods
+
 - (void)addHeadersToRequest:(NSMutableURLRequest *)request withMimeType:(NSString *)mimeType andFileName:(NSString *)fileName {
     [request setValue:mimeType forHTTPHeaderField:@"Content-Type"];
 

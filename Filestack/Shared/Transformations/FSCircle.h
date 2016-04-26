@@ -15,6 +15,6 @@
  */
 @property (nonatomic, strong) NSString *background;
 
-- (instancetype)initWithBackground:(NSString *)background;
+- (instancetype)initWithBackground:(NSString *)background NS_DESIGNATED_INITIALIZER;
 
 @end

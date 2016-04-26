@@ -18,15 +18,15 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     [queryArray addObject:[self filesArrayToString]];
-    [queryArray addObject:[NSString stringWithFormat:@"width:%ld", (long)[self.width integerValue]]];
-    [queryArray addObject:[NSString stringWithFormat:@"height:%ld", (long)[self.height integerValue]]];
+    [queryArray addObject:[NSString stringWithFormat:@"width:%ld", (long)(self.width).integerValue]];
+    [queryArray addObject:[NSString stringWithFormat:@"height:%ld", (long)(self.height).integerValue]];
 
     if (self.color) {
         [queryArray addObject:[NSString stringWithFormat:@"color:%@", self.color]];
     }
 
     if (self.margin) {
-        [queryArray addObject:[NSString stringWithFormat:@"margin:%ld", (long)[self.margin integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"margin:%ld", (long)(self.margin).integerValue]];
     }
 
     return [NSString stringWithFormat:@"%@=%@", @"collage", [queryArray componentsJoinedByString:@","]];
@@ -36,7 +36,7 @@
     NSMutableArray *objectsString = [[NSMutableArray alloc] init];
 
     for (FSBlob *blob in self.files) {
-        [objectsString addObject:[[NSURL URLWithString:blob.url] lastPathComponent]];
+        [objectsString addObject:[NSURL URLWithString:blob.url].lastPathComponent];
     }
 
     return [NSString stringWithFormat:@"files:[%@]", [objectsString componentsJoinedByString:@","]];

@@ -8,6 +8,9 @@
       location = "group:Filestack-iOS-Demo/Filestack-iOS-Demo.xcodeproj">
    </FileRef>
    <FileRef
+      location = "absolute:/Users/lukasz/projects/FSPickerFilestack/../FSPicker/FSPicker.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Filestack.xcodeproj">
    </FileRef>
    <FileRef

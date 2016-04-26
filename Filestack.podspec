@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
 
   shared_public_header_files = %w(
     Filestack/Shared/Filestack.h
+    Filestack/Shared/Filestack+FSPicker.h
     Filestack/Shared/Models/FSBlob.h
     Filestack/Shared/Models/FSMetadata.h
     Filestack/Shared/Options/FSSecurity.h

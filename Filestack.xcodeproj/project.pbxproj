@@ -63,6 +63,14 @@
 		B2A1934F1C75DE2E00CC8961 /* FSTransformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A1934D1C75DE2E00CC8961 /* FSTransformationTests.m */; };
 		B2A193581C75FD3900CC8961 /* FSStatOptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */; };
 		B2A193591C75FD3900CC8961 /* FSStatOptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */; };
+		B2BEBBB71C97195E00E6248F /* FSAPIClient+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEBBB51C97195E00E6248F /* FSAPIClient+FSPicker.h */; };
+		B2BEBBB81C97195E00E6248F /* FSAPIClient+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEBBB51C97195E00E6248F /* FSAPIClient+FSPicker.h */; };
+		B2BEBBB91C97195E00E6248F /* FSAPIClient+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BEBBB61C97195E00E6248F /* FSAPIClient+FSPicker.m */; };
+		B2BEBBBA1C97195E00E6248F /* FSAPIClient+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BEBBB61C97195E00E6248F /* FSAPIClient+FSPicker.m */; };
+		B2BFEB201C90565A0037571D /* Filestack+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BFEB1E1C90565A0037571D /* Filestack+FSPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2BFEB211C90565A0037571D /* Filestack+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BFEB1E1C90565A0037571D /* Filestack+FSPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2BFEB221C90565A0037571D /* Filestack+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFEB1F1C90565A0037571D /* Filestack+FSPicker.m */; };
+		B2BFEB231C90565A0037571D /* Filestack+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFEB1F1C90565A0037571D /* Filestack+FSPicker.m */; };
 		B2C8053B1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */; };
 		B2C8053C1C6CEE2400F90B2E /* FSSecurity+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */; };
 		B2C8053D1C6CEE2400F90B2E /* FSSecurity+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */; };
@@ -391,6 +399,10 @@
 		B2A1934A1C75C94400CC8961 /* FSMetadataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMetadataTests.m; sourceTree = "<group>"; };
 		B2A1934D1C75DE2E00CC8961 /* FSTransformationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTransformationTests.m; sourceTree = "<group>"; };
 		B2A193571C75FD3900CC8961 /* FSStatOptionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSStatOptionsTests.m; sourceTree = "<group>"; };
+		B2BEBBB51C97195E00E6248F /* FSAPIClient+FSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSAPIClient+FSPicker.h"; sourceTree = "<group>"; };
+		B2BEBBB61C97195E00E6248F /* FSAPIClient+FSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSAPIClient+FSPicker.m"; sourceTree = "<group>"; };
+		B2BFEB1E1C90565A0037571D /* Filestack+FSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Filestack+FSPicker.h"; sourceTree = "<group>"; };
+		B2BFEB1F1C90565A0037571D /* Filestack+FSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Filestack+FSPicker.m"; sourceTree = "<group>"; };
 		B2C805391C6CEE2400F90B2E /* FSSecurity+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSSecurity+Private.h"; sourceTree = "<group>"; };
 		B2C8053A1C6CEE2400F90B2E /* FSSecurity+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSSecurity+Private.m"; sourceTree = "<group>"; };
 		B2C8053F1C6DE9F400F90B2E /* FSTransformErrorSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTransformErrorSerializer.h; sourceTree = "<group>"; };
@@ -651,6 +663,8 @@
 				B2253D4E1C4F9EB0008E47A3 /* Models */,
 				B2253D4A1C4F9D9E008E47A3 /* Filestack.h */,
 				B2253D4B1C4F9D9E008E47A3 /* Filestack.m */,
+				B2BFEB1E1C90565A0037571D /* Filestack+FSPicker.h */,
+				B2BFEB1F1C90565A0037571D /* Filestack+FSPicker.m */,
 			);
 			name = Shared;
 			path = Filestack/Shared;
@@ -684,6 +698,8 @@
 			children = (
 				B254A65E1C5A26800096F7F6 /* FSAPIClient.h */,
 				B254A65F1C5A26800096F7F6 /* FSAPIClient.m */,
+				B2BEBBB51C97195E00E6248F /* FSAPIClient+FSPicker.h */,
+				B2BEBBB61C97195E00E6248F /* FSAPIClient+FSPicker.m */,
 				B254A66A1C5A5C070096F7F6 /* FSAPIURL.h */,
 				B254A66B1C5A5C070096F7F6 /* FSAPIURL.m */,
 				B254A6701C5F66480096F7F6 /* FSSessionSettings.h */,
@@ -1094,6 +1110,7 @@
 				B2DE232B1C64B8CC0007C569 /* FSWatermark.h in Headers */,
 				B2DE23181C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
 				B2D756701C6B3EAE003263FB /* FSBlur.h in Headers */,
+				B2BFEB201C90565A0037571D /* Filestack+FSPicker.h in Headers */,
 				B2D756CB1C6B7724003263FB /* FSPartialBlur.h in Headers */,
 				B254A66C1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B254A6711C5F670E0096F7F6 /* FSSessionSettings.h in Headers */,
@@ -1162,6 +1179,7 @@
 				B2D7562F1C68E2A9003263FB /* FSTornEdges.h in Headers */,
 				B2DE23121C63ADFD0007C569 /* FSFlip.h in Headers */,
 				B2D756BD1C6B5058003263FB /* FSPartialPixelate.h in Headers */,
+				B2BEBBB71C97195E00E6248F /* FSAPIClient+FSPicker.h in Headers */,
 				B254A6601C5A26800096F7F6 /* FSAPIClient.h in Headers */,
 				B2D756B11C6B4B23003263FB /* FSModulate.h in Headers */,
 				B2253D621C4FD4DF008E47A3 /* FSMetadata.h in Headers */,
@@ -1175,6 +1193,7 @@
 				B2DE232C1C64B8CC0007C569 /* FSWatermark.h in Headers */,
 				B2DE23191C63AE4C0007C569 /* FSFlip+Private.h in Headers */,
 				B2D756711C6B3EAE003263FB /* FSBlur.h in Headers */,
+				B2BFEB211C90565A0037571D /* Filestack+FSPicker.h in Headers */,
 				B2D756CC1C6B7724003263FB /* FSPartialBlur.h in Headers */,
 				B254A66D1C5A5C070096F7F6 /* FSAPIURL.h in Headers */,
 				B273AA061C57C5A900232972 /* FSStatOptions.h in Headers */,
@@ -1243,6 +1262,7 @@
 				B2D756301C68E2A9003263FB /* FSTornEdges.h in Headers */,
 				B273AA011C57A52400232972 /* FilestackMac.h in Headers */,
 				B2D756BE1C6B5058003263FB /* FSPartialPixelate.h in Headers */,
+				B2BEBBB81C97195E00E6248F /* FSAPIClient+FSPicker.h in Headers */,
 				B2D756041C68C728003263FB /* FSPixelateFaces.h in Headers */,
 				B2D756B21C6B4B23003263FB /* FSModulate.h in Headers */,
 				B254A6611C5A26800096F7F6 /* FSAPIClient.h in Headers */,
@@ -1340,7 +1360,7 @@
 		B2253D041C4F9A1E008E47A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					B2253D0C1C4F9A1F008E47A3 = {
@@ -1567,6 +1587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D756F41C6B7F49003263FB /* FSASCII.m in Sources */,
+				B2BFEB221C90565A0037571D /* Filestack+FSPicker.m in Sources */,
 				B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */,
 				B2DE231A1C63AE4C0007C569 /* FSFlip+Private.m in Sources */,
 				B2DE22FE1C63972B0007C569 /* FSCrop+Private.m in Sources */,
@@ -1622,6 +1643,7 @@
 				B2253D6D1C4FE469008E47A3 /* FSMetadata+Private.m in Sources */,
 				B2D756371C68E2BF003263FB /* FSTornEdges+Private.m in Sources */,
 				B273A9D51C50E12100232972 /* FSStoreOptions.m in Sources */,
+				B2BEBBB91C97195E00E6248F /* FSAPIClient+FSPicker.m in Sources */,
 				B254A6621C5A26800096F7F6 /* FSAPIClient.m in Sources */,
 				B2DE22F81C6395230007C569 /* FSCrop.m in Sources */,
 				B2D757071C6B851B003263FB /* FSOutput+Private.m in Sources */,
@@ -1673,6 +1695,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D756F51C6B7F49003263FB /* FSASCII.m in Sources */,
+				B2BFEB231C90565A0037571D /* Filestack+FSPicker.m in Sources */,
 				B273AA0B1C57C5A900232972 /* FSSecurity.m in Sources */,
 				B2DE231B1C63AE4C0007C569 /* FSFlip+Private.m in Sources */,
 				B2DE22FF1C63972B0007C569 /* FSCrop+Private.m in Sources */,
@@ -1728,6 +1751,7 @@
 				B273AA151C57C5B100232972 /* FSMetadata+Private.m in Sources */,
 				B2D756381C68E2BF003263FB /* FSTornEdges+Private.m in Sources */,
 				B273AA171C57C5B400232972 /* Filestack.m in Sources */,
+				B2BEBBBA1C97195E00E6248F /* FSAPIClient+FSPicker.m in Sources */,
 				B254A6631C5A26800096F7F6 /* FSAPIClient.m in Sources */,
 				B2DE22F91C6395230007C569 /* FSCrop.m in Sources */,
 				B2D757081C6B851B003263FB /* FSOutput+Private.m in Sources */,
@@ -1805,7 +1829,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos9.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1846,7 +1870,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos9.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1870,6 +1894,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wno-objc-missing-property-synthesis",
+					"-Weverything",
+				);
 			};
 			name = Debug;
 		};
@@ -1889,6 +1917,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wno-objc-missing-property-synthesis",
+					"-Weverything",
+				);
 			};
 			name = Release;
 		};

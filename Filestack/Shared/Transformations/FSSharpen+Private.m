@@ -15,7 +15,7 @@
         return @"sharpen";
     }
 
-    return [NSString stringWithFormat:@"sharpen=amount:%ld", (long)[self.amount integerValue]];
+    return [NSString stringWithFormat:@"sharpen=amount:%ld", (long)(self.amount).integerValue];
 }
 
 @end

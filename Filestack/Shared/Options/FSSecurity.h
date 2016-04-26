@@ -18,6 +18,6 @@
  @param policy Policy found in Developer portal's Security section.
  @param signature Signature found in Developer portal's Security section.
  */
-- (instancetype _Nullable)initWithPolicy:(NSString * _Nonnull)policy signature:(NSString * _Nonnull)signature;
+- (instancetype)initWithPolicy:(NSString * _Nonnull)policy signature:(NSString * _Nonnull)signature NS_DESIGNATED_INITIALIZER;
 
 @end

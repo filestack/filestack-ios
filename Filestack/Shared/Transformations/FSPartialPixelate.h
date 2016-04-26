@@ -36,8 +36,8 @@ typedef NSString * FSPPartialPixelateType;
  */
 @property (nonatomic, strong, nonnull) NSArray<NSArray<NSNumber *> *> *objects;
 
-- (instancetype _Nullable)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects;
-- (instancetype _Nullable)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects buffer:(NSNumber * _Nullable)buffer amount:(NSNumber * _Nullable)amount blur:(NSNumber * _Nullable)blur type:(FSPPartialPixelateType _Nullable)type;
+- (instancetype)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects;
+- (instancetype)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects buffer:(NSNumber * _Nullable)buffer amount:(NSNumber * _Nullable)amount blur:(NSNumber * _Nullable)blur type:(FSPPartialPixelateType _Nullable)type NS_DESIGNATED_INITIALIZER;
 
 
 @end

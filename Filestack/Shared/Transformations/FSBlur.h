@@ -15,6 +15,6 @@
  */
 @property (nonatomic, strong) NSNumber *amount;
 
-- (instancetype)initWithAmount:(NSNumber *)amount;
+- (instancetype)initWithAmount:(NSNumber *)amount NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -22,7 +22,7 @@
 @property (nonatomic, assign) BOOL path;
 @property (nonatomic, assign) BOOL container;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)toQueryParameters;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *toQueryParameters;
 
 @end

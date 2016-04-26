@@ -20,7 +20,7 @@
 @implementation Filestack
 
 - (instancetype)initWithApiKey:(NSString *)apiKey delegate:(id <FSFilestackDelegate>)delegate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.apiKey = apiKey;
         self.delegate = delegate;
     }
@@ -32,7 +32,7 @@
 }
 
 - (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    NSDictionary *parameters = @{@"key": _apiKey, @"url": url};
+    NSDictionary *parameters = @{@"key": self.apiKey, @"url": url};
     FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
     sessionSettings.paramsInURI = YES;
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
@@ -52,7 +52,7 @@
 
 - (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler {
     NSString *deleteURL = [FSAPIURL URLFilePathWithBlobURL:blob.url];
-    NSDictionary *parameters = @{@"key": _apiKey};
+    NSDictionary *parameters = @{@"key": self.apiKey};
 
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient DELETE:deleteURL parameters:parameters completionHandler:^(NSError *error) {
@@ -106,7 +106,7 @@
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
     sessionSettings.paramsInURI = YES;
-    NSString *storeURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:YES andApiKey:_apiKey];
+    NSString *storeURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:YES andApiKey:self.apiKey];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[storeOptions toQueryParameters]];
     [parameters removeObjectForKey:@"mimetype"];
     parameters[@"url"] = url;
@@ -127,7 +127,7 @@
 
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSDictionary *parameters = [storeOptions toQueryParameters];
-    NSString *postURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:NO andApiKey:_apiKey];
+    NSString *postURL = [FSAPIURL URLForStoreOptions:storeOptions storeURL:NO andApiKey:self.apiKey];
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient POST:postURL withData:data parameters:parameters multipartOptions:storeOptions progress:progress completionHandler:^(FSBlob *blob, NSError *error) {
         if (error) {
@@ -143,14 +143,14 @@
 }
 
 - (void)transformURL:(NSString *)url transformation:(FSTransformation *)transformation security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSDictionary *JSON, NSError *error))completionHandler {
-    NSString *transformationURL = [transformation transformationURLWithApiKey:_apiKey security:security URLToTransform:url];
+    NSString *transformationURL = [transformation transformationURLWithApiKey:self.apiKey security:security URLToTransform:url];
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient GET:transformationURL parameters:nil completionHandler:^(NSData *data, NSError *error) {
         NSDictionary *JSON;
         NSError *fsError;
 
         if (data && [transformation willReturnJSON]) {
-            JSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             [self filestackTransformSuccessJSON:JSON];
         } else if (data) {
             [self filestackTransformSuccess:data];
@@ -172,50 +172,50 @@
 }
 
 - (void)filestackTransformSuccess:(NSData *)data {
-    if ([_delegate respondsToSelector:@selector(filestackTransformSuccess:)]) {
-        [_delegate filestackTransformSuccess:data];
+    if ([self.delegate respondsToSelector:@selector(filestackTransformSuccess:)]) {
+        [self.delegate filestackTransformSuccess:data];
     }
 }
 
 - (void)filestackTransformSuccessJSON:(NSDictionary *)JSON {
-    if ([_delegate respondsToSelector:@selector(filestackTransformSuccessJSON:)]) {
-        [_delegate filestackTransformSuccessJSON:JSON];
+    if ([self.delegate respondsToSelector:@selector(filestackTransformSuccessJSON:)]) {
+        [self.delegate filestackTransformSuccessJSON:JSON];
     }
 }
 
 - (void)delegateRequestError:(NSError *)error {
-    if ([_delegate respondsToSelector:@selector(filestackRequestError:)]) {
-        [_delegate filestackRequestError:error];
+    if ([self.delegate respondsToSelector:@selector(filestackRequestError:)]) {
+        [self.delegate filestackRequestError:error];
     }
 }
 
 - (void)delegateStatSuccess:(FSMetadata *)metadata {
-    if ([_delegate respondsToSelector:@selector(filestackStatSuccess:)]) {
-        [_delegate filestackStatSuccess:metadata];
+    if ([self.delegate respondsToSelector:@selector(filestackStatSuccess:)]) {
+        [self.delegate filestackStatSuccess:metadata];
     }
 }
 
 - (void)delegateStoreSuccess:(FSBlob *)blob {
-    if ([_delegate respondsToSelector:@selector(filestackStoreSuccess:)]) {
-        [_delegate filestackStoreSuccess:blob];
+    if ([self.delegate respondsToSelector:@selector(filestackStoreSuccess:)]) {
+        [self.delegate filestackStoreSuccess:blob];
     }
 }
 
 - (void)delegateDownloadSuccess:(NSData *)data {
-    if ([_delegate respondsToSelector:@selector(filestackDownloadSuccess:)]) {
-        [_delegate filestackDownloadSuccess:data];
+    if ([self.delegate respondsToSelector:@selector(filestackDownloadSuccess:)]) {
+        [self.delegate filestackDownloadSuccess:data];
     }
 }
 
 - (void)delegatePickSuccess:(FSBlob *)blob {
-    if ([_delegate respondsToSelector:@selector(filestackPickURLSuccess:)]) {
-        [_delegate filestackPickURLSuccess:blob];
+    if ([self.delegate respondsToSelector:@selector(filestackPickURLSuccess:)]) {
+        [self.delegate filestackPickURLSuccess:blob];
     }
 }
 
 - (void)delegateRemoveSuccess {
-    if ([_delegate respondsToSelector:@selector(filestackRemoveSuccess)]) {
-        [_delegate filestackRemoveSuccess];
+    if ([self.delegate respondsToSelector:@selector(filestackRemoveSuccess)]) {
+        [self.delegate filestackRemoveSuccess];
     }
 }
 

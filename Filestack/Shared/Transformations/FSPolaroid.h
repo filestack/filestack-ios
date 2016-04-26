@@ -23,6 +23,6 @@
  */
 @property (nonatomic, strong) NSNumber *rotate;
 
-- (instancetype)initWithColor:(NSString *)color background:(NSString *)background rotation:(NSNumber *)rotate;
+- (instancetype)initWithColor:(NSString *)color background:(NSString *)background rotation:(NSNumber *)rotate NS_DESIGNATED_INITIALIZER;
 
 @end

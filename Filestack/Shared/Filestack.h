@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "FSBlob.h"
 #import "FSMetadata.h"
 #import "FSStatOptions.h"
@@ -40,7 +40,7 @@
  @param apiKey Found in Developer Portal.
  @param delegate Filestack library delegate.
  */
-- (instancetype)initWithApiKey:(NSString *)apiKey delegate:(id <FSFilestackDelegate>)delegate;
+- (instancetype)initWithApiKey:(NSString *)apiKey delegate:(id <FSFilestackDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /*!
  @brief Creates a symlink of the provided url.

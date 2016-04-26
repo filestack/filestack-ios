@@ -11,7 +11,7 @@
 @implementation FSPartialBlur
 
 - (instancetype)initWithObjects:(NSArray<NSArray<NSNumber *> *> *)objects buffer:(NSNumber *)buffer amount:(NSNumber *)amount blur:(NSNumber *)blur type:(FSPPartialBlurType)type {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.objects = objects;
         self.buffer = buffer;
         self.amount = amount;

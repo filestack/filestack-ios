@@ -46,6 +46,6 @@
 - (instancetype)initWithQueryString:(NSString *)queryString;
 - (void)add:(FSTransform *)transform;
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform;
-- (BOOL)willReturnJSON;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL willReturnJSON;
 
 @end

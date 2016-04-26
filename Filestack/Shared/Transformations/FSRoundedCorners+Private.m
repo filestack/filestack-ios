@@ -21,12 +21,12 @@
         if (self.maxRadius) {
             [queryArray addObject:@"radius:max"];
         } else {
-            [queryArray addObject:[NSString stringWithFormat:@"radius:%ld", (long)[self.radius integerValue]]];
+            [queryArray addObject:[NSString stringWithFormat:@"radius:%ld", (long)(self.radius).integerValue]];
         }
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", [self.blur floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", (self.blur).floatValue]];
     }
 
     if (self.background) {

@@ -31,8 +31,8 @@ typedef NSString * FSAccess;
 @property (nonatomic, assign) BOOL base64decode;
 @property (nonatomic, strong) FSSecurity *security;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)toQueryParameters;
-- (NSString *)storeLocation;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *toQueryParameters;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *storeLocation;
 
 @end

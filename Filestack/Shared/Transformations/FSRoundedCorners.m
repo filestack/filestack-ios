@@ -12,7 +12,7 @@
 
 
 - (instancetype)initWithRadius:(NSNumber *)radius blur:(NSNumber *)blur background:(NSString *)background {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.radius = radius;
         self.blur = blur;
         self.background = background;
@@ -21,7 +21,7 @@
 }
 
 - (instancetype)initWithMaxRadiusAndBlur:(NSNumber *)blur background:(NSString *)background {
-    if (self = [self initWithRadius:nil blur:blur background:background]) {
+    if ((self = [self initWithRadius:nil blur:blur background:background])) {
         self.maxRadius = YES;
     }
     return self;
