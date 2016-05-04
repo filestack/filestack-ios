@@ -23,16 +23,16 @@ typedef NSString * FSAccess;
 @interface FSStoreOptions : NSObject
 
 @property (nonatomic, copy) NSString *fileName;
-@property (nonatomic, strong) FSStoreLocation location;
 @property (nonatomic, copy) NSString *mimeType;
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *container;
-@property (nonatomic, strong) FSAccess access;
 @property (nonatomic, assign) BOOL base64decode;
+@property (nonatomic, strong) FSAccess access;
 @property (nonatomic, strong) FSSecurity *security;
+@property (nonatomic, strong) FSStoreLocation location;
+@property (nonatomic, readonly, copy) NSDictionary *toQueryParameters;
+@property (nonatomic, readonly, copy) NSString *storeLocation;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *toQueryParameters;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *storeLocation;
 
 @end
