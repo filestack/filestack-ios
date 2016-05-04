@@ -18,7 +18,7 @@
 @implementation FSSecurity
 
 - (instancetype)initWithPolicy:(NSString *)policy signature:(NSString *)signature {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _policy = policy;
         _signature = signature;
     }

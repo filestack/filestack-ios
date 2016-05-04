@@ -7,55 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21DCBBA1CCF73F600AA008C /* FSPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBB91CCF73F600AA008C /* FSPicker.framework */; };
+		B21DCBBB1CCF73F600AA008C /* FSPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBB91CCF73F600AA008C /* FSPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B21DCBBD1CCF741800AA008C /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */; };
+		B21DCBBE1CCF741800AA008C /* FilestackIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2253D261C4F9A39008E47A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D251C4F9A39008E47A3 /* main.m */; };
 		B2253D291C4F9A39008E47A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D281C4F9A39008E47A3 /* AppDelegate.m */; };
 		B2253D2C1C4F9A39008E47A3 /* ViewControllerIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D2B1C4F9A39008E47A3 /* ViewControllerIOS.m */; };
 		B2253D2F1C4F9A39008E47A3 /* MainIOS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2253D2D1C4F9A39008E47A3 /* MainIOS.storyboard */; };
 		B2253D311C4F9A39008E47A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2253D301C4F9A39008E47A3 /* Assets.xcassets */; };
 		B2253D341C4F9A39008E47A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2253D321C4F9A39008E47A3 /* LaunchScreen.storyboard */; };
-		B2253D411C4F9B49008E47A3 /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2253D401C4F9B3E008E47A3 /* FilestackIOS.framework */; };
-		B2253D421C4F9B49008E47A3 /* FilestackIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2253D401C4F9B3E008E47A3 /* FilestackIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B2253D3F1C4F9B3E008E47A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B2253D0D1C4F9A1F008E47A3;
-			remoteInfo = Filestack;
-		};
-		B2253D431C4F9B49008E47A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B2253D0C1C4F9A1F008E47A3;
-			remoteInfo = Filestack;
-		};
-		B248B00B1C60BF8B006F3AD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B273A9FE1C57A52400232972;
-			remoteInfo = FilestackMac;
-		};
-		B248B00D1C60BF8B006F3AD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B273A9EA1C57A07C00232972;
-			remoteInfo = FilestackTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		B2253D451C4F9B49008E47A3 /* Embed Frameworks */ = {
+		B21DCBB41CCF735200AA008C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B2253D421C4F9B49008E47A3 /* FilestackIOS.framework in Embed Frameworks */,
+				B21DCBBB1CCF73F600AA008C /* FSPicker.framework in Embed Frameworks */,
+				B21DCBBE1CCF741800AA008C /* FilestackIOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B21DCBB91CCF73F600AA008C /* FSPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = FSPicker.framework; path = "/Users/lukasz/Library/Developer/Xcode/DerivedData/Filestack-efmvrrnzngzbfzbkijyadzmobebx/Build/Products/Debug-iphoneos/FSPicker.framework"; sourceTree = "<absolute>"; };
+		B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = FilestackIOS.framework; path = "/Users/lukasz/Library/Developer/Xcode/DerivedData/Filestack-efmvrrnzngzbfzbkijyadzmobebx/Build/Products/Debug-iphoneos/FilestackIOS.framework"; sourceTree = "<absolute>"; };
 		B2253D211C4F9A39008E47A3 /* Filestack-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Filestack-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2253D251C4F9A39008E47A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2253D271C4F9A39008E47A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,7 +47,6 @@
 		B2253D301C4F9A39008E47A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2253D331C4F9A39008E47A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2253D351C4F9A39008E47A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = ../Filestack.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2253D411C4F9B49008E47A3 /* FilestackIOS.framework in Frameworks */,
+				B21DCBBA1CCF73F600AA008C /* FSPicker.framework in Frameworks */,
+				B21DCBBD1CCF741800AA008C /* FilestackIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +65,8 @@
 		B2253D181C4F9A39008E47A3 = {
 			isa = PBXGroup;
 			children = (
-				B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */,
+				B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */,
+				B21DCBB91CCF73F600AA008C /* FSPicker.framework */,
 				B2253D231C4F9A39008E47A3 /* Filestack-iOS-Demo */,
 				B2253D221C4F9A39008E47A3 /* Products */,
 			);
@@ -129,16 +104,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B2253D3C1C4F9B3E008E47A3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B2253D401C4F9B3E008E47A3 /* FilestackIOS.framework */,
-				B248B00C1C60BF8B006F3AD4 /* FilestackMac.framework */,
-				B248B00E1C60BF8B006F3AD4 /* FilestackTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,12 +114,11 @@
 				B2253D1D1C4F9A39008E47A3 /* Sources */,
 				B2253D1E1C4F9A39008E47A3 /* Frameworks */,
 				B2253D1F1C4F9A39008E47A3 /* Resources */,
-				B2253D451C4F9B49008E47A3 /* Embed Frameworks */,
+				B21DCBB41CCF735200AA008C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B2253D441C4F9B49008E47A3 /* PBXTargetDependency */,
 			);
 			name = "Filestack-iOS-Demo";
 			productName = "Filestack-iOS-Demo";
@@ -172,6 +136,7 @@
 				TargetAttributes = {
 					B2253D201C4F9A39008E47A3 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 96JWLX568W;
 					};
 				};
 			};
@@ -186,42 +151,12 @@
 			mainGroup = B2253D181C4F9A39008E47A3;
 			productRefGroup = B2253D221C4F9A39008E47A3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B2253D3C1C4F9B3E008E47A3 /* Products */;
-					ProjectRef = B2253D3B1C4F9B3E008E47A3 /* Filestack.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B2253D201C4F9A39008E47A3 /* Filestack-iOS-Demo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B2253D401C4F9B3E008E47A3 /* FilestackIOS.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FilestackIOS.framework;
-			remoteRef = B2253D3F1C4F9B3E008E47A3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B248B00C1C60BF8B006F3AD4 /* FilestackMac.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FilestackMac.framework;
-			remoteRef = B248B00B1C60BF8B006F3AD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B248B00E1C60BF8B006F3AD4 /* FilestackTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FilestackTests.xctest;
-			remoteRef = B248B00D1C60BF8B006F3AD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B2253D1F1C4F9A39008E47A3 /* Resources */ = {
@@ -248,14 +183,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B2253D441C4F9B49008E47A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Filestack;
-			targetProxy = B2253D431C4F9B49008E47A3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B2253D2D1C4F9A39008E47A3 /* MainIOS.storyboard */ = {
@@ -363,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Filestack-iOS-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.filestack.Filestack-iOS-Demo";
@@ -374,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Filestack-iOS-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.filestack.Filestack-iOS-Demo";

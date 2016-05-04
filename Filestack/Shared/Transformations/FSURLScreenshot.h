@@ -29,6 +29,6 @@ typedef NSString * FSURLScreenshotMode;
 @property (nonatomic, strong) FSURLScreenshotAgent agent;
 @property (nonatomic, strong) FSURLScreenshotMode mode;
 
-- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height agent:(FSURLScreenshotAgent)agent mode:(FSURLScreenshotMode)mode;
+- (instancetype)initWithWidth:(NSNumber *)width height:(NSNumber *)height agent:(FSURLScreenshotAgent)agent mode:(FSURLScreenshotMode)mode NS_DESIGNATED_INITIALIZER;
 
 @end

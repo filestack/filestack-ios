@@ -11,10 +11,14 @@
 @implementation FSSepia
 
 - (instancetype)initWithTone:(NSNumber *)tone {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _tone = tone;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithTone:nil];
 }
 
 @end

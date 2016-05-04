@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "FSStoreOptions.h"
 
 FOUNDATION_EXPORT NSString *const FSURLBaseURL;
@@ -17,6 +17,8 @@ typedef NSString * FSURL;
 #define FSURLMetadataPath @"/metadata"
 #define FSURLFilePath @"api/file"
 #define FSURLStorePath @"api/store"
+#define FSURLContentPath @"api/path"
+#define FSURLClientPath @"api/client"
 
 @interface FSAPIURL : NSObject
 

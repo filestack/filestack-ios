@@ -27,7 +27,7 @@
  */
 @property (nonatomic, assign) BOOL exportToJSON;
 
-- (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize color:(NSString *)color exportToJSON:(BOOL)exportToJSON;
+- (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize color:(NSString *)color exportToJSON:(BOOL)exportToJSON NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithExportToJSON;
 
 @end

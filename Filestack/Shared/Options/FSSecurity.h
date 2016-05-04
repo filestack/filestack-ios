@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface FSSecurity : NSObject
 
@@ -18,6 +18,7 @@
  @param policy Policy found in Developer portal's Security section.
  @param signature Signature found in Developer portal's Security section.
  */
-- (instancetype _Nullable)initWithPolicy:(NSString * _Nonnull)policy signature:(NSString * _Nonnull)signature;
+- (instancetype _Nullable)initWithPolicy:(NSString * _Nonnull)policy signature:(NSString * _Nonnull)signature NS_DESIGNATED_INITIALIZER;
+- (instancetype _Nullable)init NS_UNAVAILABLE;
 
 @end

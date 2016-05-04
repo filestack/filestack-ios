@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "FSTransform.h"
 #import "FSResize.h"
 #import "FSCrop.h"
@@ -42,10 +42,10 @@
 @interface FSTransformation : NSObject
 
 @property (nonatomic, assign) BOOL debug;
+@property (nonatomic, readonly, assign) BOOL willReturnJSON;
 
 - (instancetype)initWithQueryString:(NSString *)queryString;
 - (void)add:(FSTransform *)transform;
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform;
-- (BOOL)willReturnJSON;
 
 @end

@@ -28,13 +28,13 @@ NSString *const FSURLTransformationURL = @"https://process.filestackapi.com";
 }
 
 + (NSString *)URLFilePathWithBlobURL:(NSString *)blobURL {
-    NSString *blobHandle = [[NSURL URLWithString:blobURL] lastPathComponent];
+    NSString *blobHandle = [NSURL URLWithString:blobURL].lastPathComponent;
     NSString *URL = [NSString stringWithFormat:@"%@/%@", FSURLFilePath, blobHandle];
     return URL;
 }
 
 + (NSString *)URLMetadataPathWithBlobURL:(NSString *)blobURL {
-    NSString *blobHandle = [[NSURL URLWithString:blobURL] lastPathComponent];
+    NSString *blobHandle = [NSURL URLWithString:blobURL].lastPathComponent;
     NSString *URL = [NSString stringWithFormat:@"/%@%@", blobHandle, FSURLMetadataPath];
     return URL;
 }

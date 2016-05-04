@@ -11,7 +11,7 @@
 @implementation FSPixelateFaces
 
 - (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize type:(FSPixelateFacesType)type buffer:(NSNumber *)buffer blurAmount:(NSNumber *)blurAmount pixelateAmount:(NSNumber *)pixelateAmount {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _minSize = minSize;
         _maxSize = maxSize;
         _buffer = buffer;
@@ -23,24 +23,28 @@
 }
 
 - (instancetype)initWithAllFacesAndMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize type:(FSPixelateFacesType)type buffer:(NSNumber *)buffer blurAmount:(NSNumber *)blurAmount pixelateAmount:(NSNumber *)pixelateAmount {
-    if (self = [self initWithMinSize:minSize maxSize:maxSize type:type buffer:buffer blurAmount:blurAmount pixelateAmount:pixelateAmount]) {
+    if ((self = [self initWithMinSize:minSize maxSize:maxSize type:type buffer:buffer blurAmount:blurAmount pixelateAmount:pixelateAmount])) {
         _allFaces = YES;
     }
     return self;
 }
 
 - (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize type:(FSPixelateFacesType)type buffer:(NSNumber *)buffer blurAmount:(NSNumber *)blurAmount pixelateAmount:(NSNumber *)pixelateAmount face:(NSNumber *)face {
-    if (self = [self initWithMinSize:minSize maxSize:maxSize type:type buffer:buffer blurAmount:blurAmount pixelateAmount:pixelateAmount]) {
+    if ((self = [self initWithMinSize:minSize maxSize:maxSize type:type buffer:buffer blurAmount:blurAmount pixelateAmount:pixelateAmount])) {
         _face = face;
     }
     return self;
 }
 
 - (instancetype)initWithMinSize:(NSNumber *)minSize maxSize:(NSNumber *)maxSize type:(FSPixelateFacesType)type buffer:(NSNumber *)buffer blurAmount:(NSNumber *)blurAmount pixelateAmount:(NSNumber *)pixelateAmount faces:(NSArray<NSNumber *> *)faces {
-    if (self = [self initWithMinSize:minSize maxSize:maxSize type:type buffer:buffer blurAmount:blurAmount pixelateAmount:pixelateAmount]) {
+    if ((self = [self initWithMinSize:minSize maxSize:maxSize type:type buffer:buffer blurAmount:blurAmount pixelateAmount:pixelateAmount])) {
         _faces = faces;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithMinSize:nil maxSize:nil type:nil buffer:nil blurAmount:nil pixelateAmount:nil faces:nil];
 }
 
 @end

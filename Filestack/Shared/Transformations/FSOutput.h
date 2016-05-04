@@ -70,7 +70,7 @@ typedef NSString * FSOutputColorspace;
  */
 @property (nonatomic, assign) BOOL docInfo;
 
-- (instancetype)initWithFormat:(FSOutputFormat)format colorspace:(FSOutputColorspace)colorspace page:(NSNumber *)page density:(NSNumber *)density compress:(BOOL)compress quality:(NSNumber *)quality secure:(BOOL)secure;
+- (instancetype)initWithFormat:(FSOutputFormat)format colorspace:(FSOutputColorspace)colorspace page:(NSNumber *)page density:(NSNumber *)density compress:(BOOL)compress quality:(NSNumber *)quality secure:(BOOL)secure NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFormat:(FSOutputFormat)format;
 - (instancetype)initWithDocInfo;
 

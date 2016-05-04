@@ -11,10 +11,14 @@
 @implementation FSCircle
 
 - (instancetype)initWithBackground:(NSString *)background {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _background = background;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithBackground:nil];
 }
 
 @end

@@ -10,8 +10,25 @@
 
 @implementation FSStoreOptions
 
+- (id)copyWithZone:(NSZone *)zone {
+    FSStoreOptions *newOptions = [[[self class] allocWithZone:zone] init];
+
+    if (newOptions) {
+        newOptions.fileName = self.fileName;
+        newOptions.location = self.location;
+        newOptions.mimeType = self.mimeType;
+        newOptions.path = self.path;
+        newOptions.container = self.container;
+        newOptions.access = self.access;
+        newOptions.base64decode = self.base64decode;
+        newOptions.security = self.security;
+    }
+
+    return newOptions;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _fileName = dictionary[@"filename"];
         _location = dictionary[@"location"];
         _mimeType = dictionary[@"mimetype"];
@@ -21,48 +38,54 @@
         _base64decode = [dictionary[@"base64decode"] boolValue];
         _security = dictionary[@"security"];
     }
+
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithDictionary:@{}];
 }
 
 - (NSDictionary *)toQueryParameters {
     NSMutableDictionary *queryParameters = [[NSMutableDictionary alloc] init];
 
-    if (_fileName) {
-        queryParameters[@"filename"] = _fileName;
+    if (self.fileName) {
+        queryParameters[@"filename"] = self.fileName;
     }
 
-    if (_mimeType) {
-        queryParameters[@"mimetype"] = _mimeType;
+    if (self.mimeType) {
+        queryParameters[@"mimetype"] = self.mimeType;
     }
 
-    if (_path) {
-        queryParameters[@"path"] = _path;
+    if (self.path) {
+        queryParameters[@"path"] = self.path;
     }
 
-    if (_container) {
-        queryParameters[@"container"] = _container;
+    if (self.container) {
+        queryParameters[@"container"] = self.container;
     }
 
-    if (_access) {
-        queryParameters[@"access"] = _access;
+    if (self.access) {
+        queryParameters[@"access"] = self.access;
     }
 
-    if (_base64decode) {
+    if (self.base64decode) {
         queryParameters[@"base64decode"] = @"true";
     }
 
-    if (_security) {
-        queryParameters[@"policy"] = _security.policy;
-        queryParameters[@"signature"] = _security.signature;
+    if (self.security) {
+        queryParameters[@"policy"] = self.security.policy;
+        queryParameters[@"signature"] = self.security.signature;
     }
 
     return queryParameters;
 }
 
 - (NSString *)storeLocation {
-    if (_location) {
-        return _location;
+    if (self.location) {
+        return self.location;
     }
+
     return @"S3";
 }
 

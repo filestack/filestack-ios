@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface FSStatOptions : NSObject
 
@@ -21,8 +21,8 @@
 @property (nonatomic, assign) BOOL location;
 @property (nonatomic, assign) BOOL path;
 @property (nonatomic, assign) BOOL container;
+@property (nonatomic, readonly, copy) NSDictionary *toQueryParameters;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)toQueryParameters;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 
 @end

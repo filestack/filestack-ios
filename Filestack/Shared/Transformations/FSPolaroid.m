@@ -11,12 +11,16 @@
 @implementation FSPolaroid
 
 - (instancetype)initWithColor:(NSString *)color background:(NSString *)background rotation:(NSNumber *)rotate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _color = color;
         _background = background;
         _rotate = rotate;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithColor:nil background:nil rotation:nil];
 }
 
 @end

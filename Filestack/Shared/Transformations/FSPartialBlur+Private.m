@@ -20,15 +20,15 @@
     [queryArray addObject:[self objectsArrayToString]];
 
     if (self.buffer) {
-        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)[self.buffer integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)(self.buffer).integerValue]];
     }
 
     if (self.amount) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%.04f", [self.amount floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"amount:%.04f", (self.amount).doubleValue]];
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%.04f", [self.blur floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%.04f", (self.blur).doubleValue]];
     }
 
     if (self.type) {
@@ -52,7 +52,7 @@
     NSMutableArray *coordinateArray = [[NSMutableArray alloc] init];
 
     for (NSNumber *coordinate in objectArray) {
-        [coordinateArray addObject:[NSNumber numberWithInteger:[coordinate integerValue]]];
+        [coordinateArray addObject:@(coordinate.integerValue)];
     }
 
     return [NSString stringWithFormat:@"[%@]", [coordinateArray componentsJoinedByString:@","]];

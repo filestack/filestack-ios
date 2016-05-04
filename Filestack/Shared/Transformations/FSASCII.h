@@ -31,6 +31,6 @@
  */
 @property (nonatomic, assign) BOOL colored;
 
-- (instancetype)initWithForeground:(NSString *)foreground background:(NSString *)background size:(NSNumber *)size reverse:(BOOL)reverse colored:(BOOL)colored;
+- (instancetype)initWithForeground:(NSString *)foreground background:(NSString *)background size:(NSNumber *)size reverse:(BOOL)reverse colored:(BOOL)colored NS_DESIGNATED_INITIALIZER;
 
 @end

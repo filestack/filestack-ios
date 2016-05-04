@@ -23,6 +23,6 @@
  */
 @property (nonatomic, strong) NSNumber *saturation;
 
-- (instancetype)initWithBrightness:(NSNumber *)brightness hue:(NSNumber *)hue saturation:(NSNumber *)saturation;
+- (instancetype)initWithBrightness:(NSNumber *)brightness hue:(NSNumber *)hue saturation:(NSNumber *)saturation NS_DESIGNATED_INITIALIZER;
 
 @end

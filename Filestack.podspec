@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Filestack'
-  s.version      = '0.2.10'
+  s.version      = '0.2.11'
   s.summary      = 'SDK to access Filestack API'
 
   s.description  = <<-DESC
@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
 
   shared_public_header_files = %w(
     Filestack/Shared/Filestack.h
+    Filestack/Shared/Filestack+FSPicker.h
     Filestack/Shared/Models/FSBlob.h
     Filestack/Shared/Models/FSMetadata.h
     Filestack/Shared/Options/FSSecurity.h
@@ -57,4 +58,8 @@ Pod::Spec.new do |s|
   s.osx.source_files = %w(Filestack/Platforms/Mac/*.{h,m}).concat(shared_source_files)
 
   s.dependency 'AFNetworking', '~> 3.0'
+
+  s.subspec 'FSPicker' do |fspicker|
+    fspicker.module_name = 'FilestackIOS'
+  end
 end

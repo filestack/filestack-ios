@@ -32,7 +32,7 @@
     NSMutableArray *spreadIntegerArray = [[NSMutableArray alloc] init];
 
     for (NSNumber *spreadComponent in self.spread) {
-        [spreadIntegerArray addObject:[NSNumber numberWithInteger:[spreadComponent integerValue]]];
+        [spreadIntegerArray addObject:@(spreadComponent.integerValue)];
     }
 
     return [NSString stringWithFormat:@"[%@]", [spreadIntegerArray componentsJoinedByString:@","]];

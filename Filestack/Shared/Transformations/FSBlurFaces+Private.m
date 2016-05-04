@@ -18,23 +18,23 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.minSize) {
-        [queryArray addObject:[NSString stringWithFormat:@"minsize:%.02f", [self.minSize floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"minsize:%.02f", (self.minSize).doubleValue]];
     }
 
     if (self.maxSize) {
-        [queryArray addObject:[NSString stringWithFormat:@"maxsize:%.02f", [self.maxSize floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"maxsize:%.02f", (self.maxSize).doubleValue]];
     }
 
     if (self.buffer) {
-        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)[self.buffer integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"buffer:%ld", (long)(self.buffer).integerValue]];
     }
 
     if (self.amount) {
-        [queryArray addObject:[NSString stringWithFormat:@"amount:%f", [self.amount floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"amount:%f", (self.amount).doubleValue]];
     }
 
     if (self.blur) {
-        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", [self.blur floatValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"blur:%f", (self.blur).doubleValue]];
     }
 
     if (self.type) {
@@ -47,7 +47,7 @@
         } else if (self.faces) {
             [queryArray addObject:[NSString stringWithFormat:@"faces:%@", [self facesArrayToString]]];
         } else {
-            [queryArray addObject:[NSString stringWithFormat:@"faces:%ld", (long)[self.face integerValue]]];
+            [queryArray addObject:[NSString stringWithFormat:@"faces:%ld", (long)(self.face).integerValue]];
         }
     }
     return [NSString stringWithFormat:@"%@=%@", @"blur_faces", [queryArray componentsJoinedByString:@","]];
@@ -57,7 +57,7 @@
     NSMutableArray *facesIntegerArray = [[NSMutableArray alloc] init];
 
     for (NSNumber *faceNumber in self.faces) {
-        [facesIntegerArray addObject:[NSNumber numberWithInteger:[faceNumber integerValue]]];
+        [facesIntegerArray addObject:@(faceNumber.integerValue)];
     }
 
     return [NSString stringWithFormat:@"[%@]", [facesIntegerArray componentsJoinedByString:@","]];

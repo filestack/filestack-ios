@@ -36,6 +36,6 @@
 @property (nonatomic, nonnull, strong) NSNumber *height;
 
 - (instancetype _Nullable)initWithFiles:(NSArray<FSBlob *> * _Nonnull)files width:(NSNumber * _Nonnull)width height:(NSNumber * _Nonnull)height;
-- (instancetype _Nullable)initWithFiles:(NSArray<FSBlob *> * _Nonnull)files width:(NSNumber * _Nonnull)width height:(NSNumber * _Nonnull)height margin:(NSNumber * _Nullable)margin color:(NSString * _Nullable)color;
+- (instancetype _Nullable)initWithFiles:(NSArray<FSBlob *> * _Nonnull)files width:(NSNumber * _Nonnull)width height:(NSNumber * _Nonnull)height margin:(NSNumber * _Nullable)margin color:(NSString * _Nullable)color NS_DESIGNATED_INITIALIZER;
 
 @end

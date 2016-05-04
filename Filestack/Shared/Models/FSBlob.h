@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface FSBlob : NSObject
 
@@ -29,7 +29,7 @@
 /*! ("Experimental") The direct path to the file on S3. */
 @property (nonatomic, readonly, copy) NSString *s3url;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithURL:(NSString *)url;
 
 @end

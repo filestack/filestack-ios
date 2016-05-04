@@ -23,6 +23,6 @@
  */
 @property (nonatomic, copy) NSString *background;
 
-- (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color background:(NSString *)background;
+- (instancetype)initWithWidth:(NSNumber *)width color:(NSString *)color background:(NSString *)background NS_DESIGNATED_INITIALIZER;
 
 @end

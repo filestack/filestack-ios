@@ -19,6 +19,6 @@
  */
 @property (nonatomic, copy) NSString *background;
 
-- (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread background:(NSString *)background;
+- (instancetype)initWithSpread:(NSArray<NSNumber *> *)spread background:(NSString *)background NS_DESIGNATED_INITIALIZER;
 
 @end

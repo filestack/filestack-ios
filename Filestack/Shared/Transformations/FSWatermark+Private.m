@@ -16,11 +16,11 @@
     }
 
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
-    NSString *fileHandle = [[NSURL URLWithString:self.blob.url] lastPathComponent];
+    NSString *fileHandle = [NSURL URLWithString:self.blob.url].lastPathComponent;
     [queryArray addObject:[NSString stringWithFormat:@"file:%@", fileHandle]];
 
     if (self.size) {
-        [queryArray addObject:[NSString stringWithFormat:@"size:%ld", (long)[self.size integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"size:%ld", (long)(self.size).integerValue]];
     }
 
     if (self.position) {

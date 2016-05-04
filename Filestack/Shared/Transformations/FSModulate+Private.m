@@ -18,15 +18,15 @@
     NSMutableArray *queryArray = [[NSMutableArray alloc] init];
 
     if (self.hue) {
-        [queryArray addObject:[NSString stringWithFormat:@"hue:%ld", (long)[self.hue integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"hue:%ld", (long)(self.hue).integerValue]];
     }
 
     if (self.brightness) {
-        [queryArray addObject:[NSString stringWithFormat:@"brightness:%ld", (long)[self.brightness integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"brightness:%ld", (long)(self.brightness).integerValue]];
     }
 
     if (self.saturation) {
-        [queryArray addObject:[NSString stringWithFormat:@"saturation:%ld", (long)[self.saturation integerValue]]];
+        [queryArray addObject:[NSString stringWithFormat:@"saturation:%ld", (long)(self.saturation).integerValue]];
     }
 
     return [NSString stringWithFormat:@"%@=%@", @"modulate", [queryArray componentsJoinedByString:@","]];

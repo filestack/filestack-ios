@@ -11,7 +11,7 @@
 @implementation FSWatermark
 
 - (instancetype)initWithBlob:(FSBlob *)blob size:(NSNumber *)size position:(FSWatermarkPosition)position {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _blob = blob;
         _size = size;
         _position = position;

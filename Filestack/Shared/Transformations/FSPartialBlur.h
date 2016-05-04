@@ -37,6 +37,6 @@ typedef NSString * FSPPartialBlurType;
 @property (nonatomic, strong, nonnull) NSArray<NSArray<NSNumber *> *> *objects;
 
 - (instancetype _Nullable)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects;
-- (instancetype _Nullable)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects buffer:(NSNumber * _Nullable)buffer amount:(NSNumber * _Nullable)amount blur:(NSNumber * _Nullable)blur type:(FSPPartialBlurType _Nullable)type;
+- (instancetype _Nullable)initWithObjects:(NSArray<NSArray<NSNumber *> *> * _Nonnull)objects buffer:(NSNumber * _Nullable)buffer amount:(NSNumber * _Nullable)amount blur:(NSNumber * _Nullable)blur type:(FSPPartialBlurType _Nullable)type NS_DESIGNATED_INITIALIZER;
 
 @end

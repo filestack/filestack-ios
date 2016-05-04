@@ -16,11 +16,10 @@ end
 
 target :'FilestackIOSTests' do
   platform :ios, '8.4'
-  pod 'OHHTTPStubs'
+  pod 'OHHTTPStubs', '~> 5.0'
 end
 
 target :'FilestackMacTests' do
   platform :osx, '10.9'
-  pod 'OHHTTPStubs'
+  pod 'OHHTTPStubs', '~> 5.0'
 end
-

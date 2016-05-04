@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--View Controller iOS-->
@@ -35,12 +35,16 @@
                         <constraints>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="centerY" secondItem="MoA-aU-9oM" secondAttribute="centerY" constant="-161.5" id="1Zh-N0-oPx"/>
                             <constraint firstItem="MoA-aU-9oM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2FT-cS-x7k"/>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-323" id="Xcl-nG-Mt0"/>
+                            <constraint firstItem="1O9-cl-l9a" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-279" id="Xcl-nG-Mt0"/>
                             <constraint firstItem="MoA-aU-9oM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c0V-cq-Gon"/>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="centerX" secondItem="MoA-aU-9oM" secondAttribute="centerX" constant="-124.5" id="h3e-KD-bmL"/>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="o2E-ZI-KCy"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" style="plain" id="Ley-8B-zbl"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="1O9-cl-l9a" id="Zqh-bb-lDq"/>
                     </connections>

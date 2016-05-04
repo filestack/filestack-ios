@@ -11,7 +11,7 @@
 @implementation FSASCII
 
 - (instancetype)initWithForeground:(NSString *)foreground background:(NSString *)background size:(NSNumber *)size reverse:(BOOL)reverse colored:(BOOL)colored {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _foreground = foreground;
         _background = background;
         _size = size;
@@ -19,6 +19,10 @@
         _colored = colored;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithForeground:nil background:nil size:nil reverse:NO colored:NO];
 }
 
 @end

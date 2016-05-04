@@ -27,6 +27,6 @@
  */
 @property (nonatomic, assign) BOOL resetEXIF;
 
-- (instancetype)initWithDegrees:(NSNumber *)degrees background:(NSString *)background rotateToEXIF:(BOOL)toEXIF resetEXIF:(BOOL)resetEXIF;
+- (instancetype)initWithDegrees:(NSNumber *)degrees background:(NSString *)background rotateToEXIF:(BOOL)toEXIF resetEXIF:(BOOL)resetEXIF NS_DESIGNATED_INITIALIZER;
 
 @end

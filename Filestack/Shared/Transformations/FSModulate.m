@@ -10,14 +10,17 @@
 
 @implementation FSModulate
 
-
 - (instancetype)initWithBrightness:(NSNumber *)brightness hue:(NSNumber *)hue saturation:(NSNumber *)saturation {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _brightness = brightness;
         _hue = hue;
         _saturation = saturation;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithBrightness:nil hue:nil saturation:nil];
 }
 
 @end

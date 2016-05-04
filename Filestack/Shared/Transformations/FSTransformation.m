@@ -26,14 +26,15 @@
 @implementation FSTransformation
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _transformationsArray = [[NSMutableArray alloc] init];
+
     }
     return self;
 }
 
 - (instancetype)initWithQueryString:(NSString *)queryString {
-    if (self = [self init]) {
+    if ((self = [self init])) {
         [_transformationsArray addObject:queryString];
     }
     return self;
@@ -47,32 +48,32 @@
     }
 
     if ([transform isMemberOfClass:[FSDetectFaces class]]) {
-        _exportFacesToJSON = ((FSDetectFaces *)transform).exportToJSON;
+        self.exportFacesToJSON = ((FSDetectFaces *)transform).exportToJSON;
     } else if ([transform isMemberOfClass:[FSOutput class]]) {
-        _docInfoJSON = ((FSOutput *)transform).docInfo;
+        self.docInfoJSON = ((FSOutput *)transform).docInfo;
     }
 
-    [_transformationsArray addObject:transformQuery];
+    [self.transformationsArray addObject:transformQuery];
 }
 
 - (NSString *)transformationURLWithApiKey:(NSString *)apiKey security:(FSSecurity *)security URLToTransform:(NSString *)urlToTransform {
-    if (security && !_securitySet) {
-        _securitySet = YES;
-        [_transformationsArray addObject:[security toQuery]];
+    if (security && !self.securitySet) {
+        self.securitySet = YES;
+        [self.transformationsArray addObject:[security toQuery]];
     }
 
-    if (_debug && !_debugSet) {
-        _debugSet = YES;
-        [_transformationsArray insertObject:@"debug" atIndex:0];
+    if (self.debug && !self.debugSet) {
+        self.debugSet = YES;
+        [self.transformationsArray insertObject:@"debug" atIndex:0];
     }
 
-    NSString *transformationQuery = [_transformationsArray componentsJoinedByString:@"/"];
+    NSString *transformationQuery = [self.transformationsArray componentsJoinedByString:@"/"];
 
     return [NSString stringWithFormat:@"%@/%@/%@/%@", FSURLTransformationURL, apiKey, transformationQuery, urlToTransform];
 }
 
 - (BOOL)willReturnJSON {
-    return (_exportFacesToJSON || _debug || _docInfoJSON);
+    return (self.exportFacesToJSON || self.debug || self.docInfoJSON);
 }
 
 @end
