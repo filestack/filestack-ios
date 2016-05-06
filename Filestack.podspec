@@ -58,8 +58,4 @@ Pod::Spec.new do |s|
   s.osx.source_files = %w(Filestack/Platforms/Mac/*.{h,m}).concat(shared_source_files)
 
   s.dependency 'AFNetworking', '~> 3.0'
-
-  s.subspec 'FSPicker' do |fspicker|
-    fspicker.name = 'FilestackIOS'
-  end
 end

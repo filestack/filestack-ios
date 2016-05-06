@@ -1,3 +1,8 @@
+## 0.3.0 (2016-05-06)
+
+### Added:
+- ```FSPicker``` specific methods.
+
 ## 0.2.10 (2016-03-04)
 
 ### Changed:
