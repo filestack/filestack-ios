@@ -1,3 +1,8 @@
+## 0.3.1 (2016-05-16)
+
+### Fixed:
+- FSStoreOptions's ```path``` property, should now work as intended.
+
 ## 0.3.0 (2016-05-06)
 
 ### Added:

@@ -27,7 +27,9 @@
 - (void)POST:(NSString *)postURL withData:(NSData *)data parameters:(NSDictionary *)parameters multipartOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:postURL parameters:parameters error:nil];
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    serializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];
+    NSMutableURLRequest *request = [serializer requestWithMethod:@"POST" URLString:postURL parameters:parameters error:nil];
     NSString *mimeType = [self mimeTypeForStoreOptions:storeOptions];
     [self addHeadersToRequest:request withMimeType:mimeType andFileName:storeOptions.fileName];
 
