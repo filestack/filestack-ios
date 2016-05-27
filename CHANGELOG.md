@@ -1,3 +1,9 @@
+## 0.3.2 (2016-05-27)
+
+### Added:
+
+- Export method used by ```FSPicker```.
+
 ## 0.3.1 (2016-05-16)
 
 ### Fixed:
