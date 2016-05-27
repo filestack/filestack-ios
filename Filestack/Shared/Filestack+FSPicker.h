@@ -10,6 +10,7 @@
 
 @interface Filestack (FSPicker)
 
++ (void)exportURL:(NSString *)fsURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 + (void)pickFSURL:(NSString *)fsURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 + (void)getContentForPath:(NSString *)contentPath parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSDictionary *responseJSON, NSError *error))completionHandler;
 + (void)logoutFromSource:(NSString *)sourceIdentifier externalDomains:(NSArray *)externalDomains parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSError *error))completionHandler;

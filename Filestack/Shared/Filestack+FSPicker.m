@@ -13,6 +13,19 @@
 
 @implementation Filestack (FSPicker)
 
++ (void)exportURL:(NSString *)fsURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+    FSAPIClient *apiClient = [[FSAPIClient alloc] init];
+    FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
+    NSString *exportURL = [NSString stringWithFormat:@"%@%@%@", FSURLBaseURL, FSURLContentPath, fsURL];
+    exportURL = [exportURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    [apiClient POST:exportURL parameters:parameters options:nil sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
+        if (completionHandler) {
+            completionHandler(blob, error);
+        }
+    }];
+}
+
 + (void)pickFSURL:(NSString *)fsURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
