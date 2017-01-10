@@ -17,16 +17,17 @@
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings.baseURL andPOSTURIParameters:sessionSettings.paramsInURI];
 
     [httpManager POST:postURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [httpManager invalidateSessionCancelingTasks:YES];
         FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
         completionHandler(blob, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [httpManager invalidateSessionCancelingTasks:YES];
         completionHandler(nil, error);
     }];
 }
 
 - (void)POST:(NSString *)postURL withData:(NSData *)data parameters:(NSDictionary *)parameters multipartOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] init];
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     serializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];
     NSMutableURLRequest *request = [serializer requestWithMethod:@"POST" URLString:postURL parameters:parameters error:nil];
@@ -38,6 +39,7 @@
             progress(uploadProgress);
         }
     } completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
+        [manager invalidateSessionCancelingTasks:YES];
         if (error) {
             completionHandler(nil, error);
         } else {
@@ -50,11 +52,10 @@
 }
 
 - (void)GET:(NSString *)getURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSData *data, NSError *error))completionHandler {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] init];
     httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
-    [httpManager GET:getURL parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [httpManager GET:getURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSData *responseData = [NSData dataWithData:responseObject];
         completionHandler(responseData, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -104,14 +105,13 @@
 }
 
 - (AFHTTPSessionManager *)httpSessionManagerWithBaseURL:(NSString *)baseURL andPOSTURIParameters:(BOOL)postUriParameters {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURL *managerBaseURL;
     if (baseURL) {
         managerBaseURL = [NSURL URLWithString:baseURL];
     } else {
         managerBaseURL = [NSURL URLWithString:FSURLBaseURL];
     }
-    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:managerBaseURL sessionConfiguration:configuration];
+    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:managerBaseURL];
     httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     if (postUriParameters) {
         httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];

@@ -18,7 +18,7 @@ $ gem install cocoapods
 To integrate Filestack into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod "Filestack", "~> 0.3.2"
+pod "Filestack", "~> 0.3.3"
 ```
 Then, run the following command:
 
@@ -33,4 +33,3 @@ To learn more visit our [wiki](https://github.com/filestack/filestack-ios/wiki).
 ## License
 
 Filestack for iOS/OSX is released under the MIT license. See LICENSE for details.
-

@@ -10,6 +10,7 @@
 #import "FSAPIURL.h"
 #import "FSAPIClient.h"
 #import "FSTransformErrorSerializer.h"
+#import "FSSecurity+Private.h"
 
 @interface Filestack ()
 
@@ -35,10 +36,15 @@
     return [self initWithApiKey:nil delegate:nil];
 }
 
-- (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    NSDictionary *parameters = @{@"key": self.apiKey, @"url": url};
+- (void)pickURL:(NSString *)url security:(FSSecurity *)security completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     FSSessionSettings *sessionSettings = [[FSSessionSettings alloc] init];
     sessionSettings.paramsInURI = YES;
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (security) {
+        [parameters addEntriesFromDictionary:[security toQueryParameters]];
+    }
+    [parameters setValue:self.apiKey forKey:@"key"];
+    [parameters setValue:url forKey:@"url"];
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
 
     [apiClient POST:FSURLPickPath parameters:parameters options:nil sessionSettings:sessionSettings completionHandler:^(FSBlob *blob, NSError *error) {
@@ -54,9 +60,13 @@
     }];
 }
 
-- (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler {
+- (void)remove:(FSBlob *)blob security:(FSSecurity *)security completionHandler:(void (^)(NSError *error))completionHandler {
     NSString *deleteURL = [FSAPIURL URLFilePathWithBlobURL:blob.url];
-    NSDictionary *parameters = @{@"key": self.apiKey};
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (security) {
+        [parameters addEntriesFromDictionary:[security toQueryParameters]];
+    }
+    [parameters setValue:self.apiKey forKey:@"key"];
 
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
     [apiClient DELETE:deleteURL parameters:parameters completionHandler:^(NSError *error) {
@@ -92,9 +102,14 @@
     }];
 }
 
-- (void)download:(FSBlob *)blob completionHandler:(void (^)(NSData *data, NSError *error))completionHandler {
+- (void)download:(FSBlob *)blob security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSError *error))completionHandler {
+    NSMutableDictionary *parameters;
+    if (security) {
+        parameters = [[NSMutableDictionary alloc] init];
+        [parameters addEntriesFromDictionary:[security toQueryParameters]];
+    }
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
-    [apiClient GET:blob.url parameters:nil completionHandler:^(NSData *data, NSError *error) {
+    [apiClient GET:blob.url parameters:parameters completionHandler:^(NSData *data, NSError *error) {
         if (error) {
             [self delegateRequestError:error];
         } else {

@@ -45,16 +45,18 @@
 /*!
  @brief Creates a symlink of the provided url.
  @param url Url string linking to the file.
+ @param security FSSecurity object or nil.
  @param completionHandler A block object taking two arguments: blob and error, returned from pick request.
  */
-- (void)pickURL:(NSString *)url completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+- (void)pickURL:(NSString *)url security:(FSSecurity *)security completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
 /*!
  @brief Removes the blob from the storage or removes the symlink.
  @param blob Filestack blob with valid url.
+ @param security FSSecurity object or nil.
  @param completionHandler A block object taking one argument: error, returned from remove request.
  */
-- (void)remove:(FSBlob *)blob completionHandler:(void (^)(NSError *error))completionHandler;
+- (void)remove:(FSBlob *)blob security:(FSSecurity *)security completionHandler:(void (^)(NSError *error))completionHandler;
 
 /*!
  @brief Returns metadata of the provided blob.
@@ -67,9 +69,10 @@
 /*!
  @brief Downloads provided blob to NSData object.
  @param blob Filestack blob with valid url.
+@param security FSSecurity object or nil.
  @param completionHandler A block object taking two arguments: data and error, returned from download request.
  */
-- (void)download:(FSBlob *)blob completionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
+- (void)download:(FSBlob *)blob security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
 
 /*!
  @brief Stores file behind provided url to one of a few storage locations.
@@ -80,7 +83,7 @@
 - (void)storeURL:(NSString *)url withOptions:(FSStoreOptions *)storeOptions completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
 
 /*!
- @brief Stores provided data to one of few a storage locations.
+ @brief Stores provided data to one of a few storage locations.
  @param data NSData object to be stored.
  @param storeOptions FSStoreOptions object or nil.
  @param progress A block object taking one argument: upload progress.

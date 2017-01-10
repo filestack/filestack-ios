@@ -18,4 +18,12 @@
     return [NSString stringWithFormat:@"security=policy:%@,signature:%@", self.policy, self.signature];
 }
 
+- (NSDictionary *)toQueryParameters {
+    if (!self.policy && !self.signature) {
+        return nil;
+    }
+
+    return @{@"policy": self.policy, @"signature": self.signature};
+}
+
 @end

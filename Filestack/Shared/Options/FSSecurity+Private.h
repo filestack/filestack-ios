@@ -11,5 +11,6 @@
 @interface FSSecurity (Private)
 
 - (NSString *)toQuery;
+- (NSDictionary *)toQueryParameters;
 
 @end

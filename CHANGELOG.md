@@ -1,3 +1,9 @@
+## 0.3.3 (2017-01-10)
+
+### Added:
+
+- ```remove```, ```pickURL``` and ```download``` methods now accept ```FSSecurity``` object as parameter.
+
 ## 0.3.2 (2016-05-27)
 
 ### Added:
