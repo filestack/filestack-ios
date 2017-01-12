@@ -43,9 +43,9 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"\nurl: %@\nfilename: %@\nsize: %ld\nmimetype: %@\nkey: %@ \
+    return [NSString stringWithFormat:@"\nurl: %@\ninternalURL: %@\nfilename: %@\nsize: %ld\nmimetype: %@\nkey: %@ \
                                       \ncontainer: %@\npath: %@\nwriteable: %@\ns3url: %@",
-            self.url, self.fileName, (long)self.size, self.mimeType, self.key, self.container, self.path, self.writeable, self.s3url];
+            self.url, self.internalURL, self.fileName, (long)self.size, self.mimeType, self.key, self.container, self.path, self.writeable, self.s3url];
 }
 
 @end

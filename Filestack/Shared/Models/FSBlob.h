@@ -12,6 +12,8 @@
 
 /*! The most critical part of the file, the url points to where the file is stored and acts as a sort of "file path". */
 @property (nonatomic, copy) NSString *url;
+/*! Path to file in temp directory, used by FSPicker */
+@property (nonatomic, copy) NSString *internalURL;
 /*! The name of the file, if available */
 @property (nonatomic, copy) NSString *fileName;
 /*! The mimetype of the file, if available. */

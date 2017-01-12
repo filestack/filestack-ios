@@ -1,3 +1,9 @@
+## 0.3.4 (2017-01-12)
+
+### Added:
+
+- ```internalURL``` property to FSBlob. Used by FSPicker only.
+
 ## 0.3.3 (2017-01-10)
 
 ### Added:

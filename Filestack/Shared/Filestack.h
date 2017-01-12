@@ -69,7 +69,7 @@
 /*!
  @brief Downloads provided blob to NSData object.
  @param blob Filestack blob with valid url.
-@param security FSSecurity object or nil.
+ @param security FSSecurity object or nil.
  @param completionHandler A block object taking two arguments: data and error, returned from download request.
  */
 - (void)download:(FSBlob *)blob security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
