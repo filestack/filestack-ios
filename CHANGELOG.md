@@ -1,3 +1,9 @@
+## 0.3.5 (2017-01-16)
+
+### Fixed:
+
+- Conflicting nullability specifier on return types.
+
 ## 0.3.4 (2017-01-12)
 
 ### Added:
