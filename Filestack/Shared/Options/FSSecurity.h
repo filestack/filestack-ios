@@ -19,6 +19,6 @@
  @param signature Signature found in Developer portal's Security section.
  */
 - (instancetype _Nullable)initWithPolicy:(NSString * _Nonnull)policy signature:(NSString * _Nonnull)signature NS_DESIGNATED_INITIALIZER;
-- (instancetype _Nullable)init NS_UNAVAILABLE;
+- (instancetype _Nonnull)init NS_UNAVAILABLE;
 
 @end
