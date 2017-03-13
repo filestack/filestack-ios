@@ -7,6 +7,7 @@
 //
 
 #import "ViewControllerIOS.h"
+
 @import Photos;
 
 @import FilestackIOS;
@@ -17,11 +18,13 @@
 
 @implementation ViewControllerIOS
 
+NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Remember to use your api key.
-    Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" delegate:self];
+    Filestack *filestack = [[Filestack alloc] initWithApiKey:apiKey delegate:self];
 
     // Either like this...
     FSStatOptions *statOptions = [[FSStatOptions alloc] initWithDictionary:@{@"size": @YES, @"uploaded": @YES, @"writeable": @YES}];
@@ -87,7 +90,7 @@
         // Remember to set fileName and/or mimetype in storeOptions so it will upload as a "valid" file.
         // Without at least one of them, for NSData, we are setting mimetype as "application/octet-stream".
         NSString *fileName = [info[@"PHImageFileURLKey"] lastPathComponent];
-        Filestack *filestack = [[Filestack alloc] initWithApiKey:@"YOUR_API_KEY" delegate:self];
+        Filestack *filestack = [[Filestack alloc] initWithApiKey:apiKey delegate:self];
         FSStoreOptions *storeOptions = [[FSStoreOptions alloc] init];
         storeOptions.fileName = fileName;
         storeOptions.access = FSAccessPublic;

@@ -22,6 +22,7 @@
         newOptions.access = self.access;
         newOptions.base64decode = self.base64decode;
         newOptions.security = self.security;
+        newOptions.region = self.region;
     }
 
     return newOptions;
@@ -37,6 +38,7 @@
         _access = dictionary[@"access"];
         _base64decode = [dictionary[@"base64decode"] boolValue];
         _security = dictionary[@"security"];
+        _region = dictionary[@"region"];
     }
 
     return self;
@@ -76,6 +78,10 @@
     if (self.security) {
         queryParameters[@"policy"] = self.security.policy;
         queryParameters[@"signature"] = self.security.signature;
+    }
+    
+    if (self.region) {
+        queryParameters[@"region"] = self.region;
     }
 
     return queryParameters;

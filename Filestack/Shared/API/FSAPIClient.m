@@ -10,23 +10,133 @@
 #import "FSAPIURL.h"
 #import "FSMetadata+Private.h"
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
+#import <AFNetworkActivityLogger/AFNetworkActivityConsoleLogger.h>
+
 
 @implementation FSAPIClient
 
-- (void)POST:(NSString *)postURL parameters:(NSDictionary *)parameters options:(FSStoreOptions *)storeOptions sessionSettings:(FSSessionSettings *)sessionSettings completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
-    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings.baseURL andPOSTURIParameters:sessionSettings.paramsInURI];
-
-    [httpManager POST:postURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [httpManager invalidateSessionCancelingTasks:YES];
-        FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
-        completionHandler(blob, nil);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [httpManager invalidateSessionCancelingTasks:YES];
-        completionHandler(nil, error);
-    }];
+- (void) startLogging {
+    AFNetworkActivityConsoleLogger *consoleLogger = [AFNetworkActivityConsoleLogger new];
+    [consoleLogger setLevel:AFLoggerLevelDebug];
+    [[AFNetworkActivityLogger sharedLogger] removeLogger:[[[AFNetworkActivityLogger sharedLogger] loggers] anyObject]];
+    [[AFNetworkActivityLogger sharedLogger] addLogger:consoleLogger];
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
 }
 
-- (void)POST:(NSString *)postURL withData:(NSData *)data parameters:(NSDictionary *)parameters multipartOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+- (void)PUT:(NSString *)postURL
+    formdata:(NSDictionary *)form
+        data:(NSData*)data
+progress:(void (^)(NSProgress *uploadProgress))progress
+completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHandler {
+    [self startLogging];
+
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] init];
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    NSMutableURLRequest *request = [serializer requestWithMethod:@"PUT" URLString:postURL parameters:nil error:nil];
+    for (id key in form) {
+        [request setValue:form[key] forHTTPHeaderField:key];
+    }
+    NSString *dataLength = [NSString stringWithFormat:@"%ld", [data length]];
+    [request setValue:dataLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
+    [request setValue:nil forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
+        if (progress) {
+            progress(uploadProgress);
+        }
+    } completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
+        [manager invalidateSessionCancelingTasks:YES];
+        if (error) {
+            NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",ErrorResponse);
+            completionHandler(nil, error);
+        } else {
+            NSLog(@"%@ %@", response, responseObject);
+            NSHTTPURLResponse *response2 = (NSHTTPURLResponse *)response;
+            NSDictionary *headers = [response2 allHeaderFields];
+            NSLog(@"HEADERS : %@",[headers description]);
+            completionHandler(headers, nil);
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+// This version returns an NSDictionary object
+- (void)POST:(NSString *)postURL
+    formdata:(NSDictionary *)form
+        data:(NSData*)data
+     options:(FSStoreOptions *)storeOptions
+sessionSettings:(FSSessionSettings *)sessionSettings
+completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHandler {
+    [self startLogging];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings.baseURL
+                                                       andPOSTURIParameters:sessionSettings.paramsInURI];
+    
+    [httpManager POST:postURL
+           parameters:nil
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    if(data) {
+        [formData appendPartWithFileData:data
+                                    name:@"files"
+                                fileName:form[@"filename"]
+                                mimeType:form[@"mimetype"]];
+    }
+    
+    for (id key in form) {
+        if (!(data && ([key isEqualToString:@"filename"] ||
+                     [key isEqualToString:@"mimetype"]))) {
+            [formData appendPartWithFormData:[[form objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:key];
+        }
+    }
+}
+             progress:nil
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  [httpManager invalidateSessionCancelingTasks:YES];
+                  NSDictionary *response = [[NSDictionary alloc]
+                                            initWithDictionary:(NSDictionary *)responseObject];
+                  completionHandler(response, nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+                  NSLog(@"%@",ErrorResponse);
+                  
+                  [httpManager invalidateSessionCancelingTasks:YES];
+                  completionHandler(nil, error);
+              }];
+}
+
+// This version returns a FSBlob object
+- (void)POST:(NSString *)postURL parameters:(NSDictionary *)parameters
+        options:(FSStoreOptions *)storeOptions
+        sessionSettings:(FSSessionSettings *)sessionSettings
+        completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+    //[self startLogging];
+    AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings.baseURL
+                                                       andPOSTURIParameters:sessionSettings.paramsInURI];
+    httpManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [httpManager POST:postURL
+           parameters:parameters
+             progress:nil
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  [httpManager invalidateSessionCancelingTasks:YES];
+                  FSBlob *blob = [[FSBlob alloc] initWithDictionary:(NSDictionary *)responseObject];
+                  completionHandler(blob, nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  [httpManager invalidateSessionCancelingTasks:YES];
+                  completionHandler(nil, error);
+              }];
+}
+
+- (void)POST:(NSString *)postURL
+    withData:(NSData *)data parameters:(NSDictionary *)parameters
+multipartOptions:(FSStoreOptions *)storeOptions
+    progress:(void (^)(NSProgress *uploadProgress))progress
+completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] init];
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     serializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD", @"DELETE"]];

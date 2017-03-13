@@ -11,6 +11,7 @@
 
 FOUNDATION_EXPORT NSString *const FSURLBaseURL;
 FOUNDATION_EXPORT NSString *const FSURLTransformationURL;
+FOUNDATION_EXPORT NSString *const FSURLUploadURL;
 
 typedef NSString * FSURL;
 #define FSURLPickPath @"api/pick"
@@ -19,6 +20,9 @@ typedef NSString * FSURL;
 #define FSURLStorePath @"api/store"
 #define FSURLContentPath @"api/path"
 #define FSURLClientPath @"api/client"
+#define FSURLMultiPartUploadStartPath @"multipart/start"
+#define FSURLMultiPartUploadPath @"multipart/upload"
+#define FSURLMultiPartUploadCompletePath @"multipart/complete"
 
 @interface FSAPIURL : NSObject
 

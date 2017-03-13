@@ -11,6 +11,7 @@
 #import "FSAPIClient.h"
 #import "FSTransformErrorSerializer.h"
 #import "FSSecurity+Private.h"
+#import "FSMultipartUpload.h"
 
 @interface Filestack ()
 
@@ -159,6 +160,24 @@
             completionHandler(blob, error);
         }
     }];
+}
+
+// This starts the multi-part upload process
+- (void)upload:(NSData *)data
+   withOptions:(FSUploadOptions *)options
+   withStoreOptions:(FSStoreOptions *)storeOptions
+      progress:(void (^)(NSProgress *uploadProgress))progress
+completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler {
+
+    FSMultipartUpload *mpu = [[FSMultipartUpload alloc] initWithOptions:options
+                                                       withStoreOptions:storeOptions
+                                                             withApiKey:_apiKey progress:^(NSProgress *uploadProgress) {
+                                                                 progress(uploadProgress);
+                                                             } completionHandler:^(NSDictionary *result, NSError *error) {
+                                                                 completionHandler(result, error);
+                                                             }];
+    
+    [mpu upload:data];
 }
 
 - (void)transformURL:(NSString *)url transformation:(FSTransformation *)transformation security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSDictionary *JSON, NSError *error))completionHandler {

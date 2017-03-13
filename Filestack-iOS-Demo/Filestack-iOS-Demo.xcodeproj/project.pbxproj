@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B21DCBBA1CCF73F600AA008C /* FSPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBB91CCF73F600AA008C /* FSPicker.framework */; };
-		B21DCBBB1CCF73F600AA008C /* FSPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBB91CCF73F600AA008C /* FSPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B21DCBBD1CCF741800AA008C /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */; };
-		B21DCBBE1CCF741800AA008C /* FilestackIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		79AE9FFC1E6B19870029EB21 /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */; };
+		79AE9FFD1E6B19870029EB21 /* FilestackIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2253D261C4F9A39008E47A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D251C4F9A39008E47A3 /* main.m */; };
 		B2253D291C4F9A39008E47A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D281C4F9A39008E47A3 /* AppDelegate.m */; };
 		B2253D2C1C4F9A39008E47A3 /* ViewControllerIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D2B1C4F9A39008E47A3 /* ViewControllerIOS.m */; };
@@ -20,14 +18,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B21DCBB41CCF735200AA008C /* Embed Frameworks */ = {
+		79AE9FFA1E6B19520029EB21 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B21DCBBB1CCF73F600AA008C /* FSPicker.framework in Embed Frameworks */,
-				B21DCBBE1CCF741800AA008C /* FilestackIOS.framework in Embed Frameworks */,
+				79AE9FFD1E6B19870029EB21 /* FilestackIOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,8 +32,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B21DCBB91CCF73F600AA008C /* FSPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = FSPicker.framework; path = "/Users/lukasz/Library/Developer/Xcode/DerivedData/Filestack-efmvrrnzngzbfzbkijyadzmobebx/Build/Products/Debug-iphoneos/FSPicker.framework"; sourceTree = "<absolute>"; };
-		B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = FilestackIOS.framework; path = "/Users/lukasz/Library/Developer/Xcode/DerivedData/Filestack-efmvrrnzngzbfzbkijyadzmobebx/Build/Products/Debug-iphoneos/FilestackIOS.framework"; sourceTree = "<absolute>"; };
+		7906E8BA1E6B18A600189D0F /* libFSPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFSPicker.a; path = "../../../../Library/Developer/Xcode/DerivedData/Filestack-gdxrhkfrijzxitdspqozfijrjnss/Build/Products/Debug-iphonesimulator/FSPicker/libFSPicker.a"; sourceTree = "<group>"; };
+		7906E8BC1E6B18B200189D0F /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FilestackIOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/Filestack-gdxrhkfrijzxitdspqozfijrjnss/Build/Products/Debug-iphonesimulator/libPods-FilestackIOS.a"; sourceTree = "<group>"; };
+		79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2253D211C4F9A39008E47A3 /* Filestack-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Filestack-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2253D251C4F9A39008E47A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2253D271C4F9A39008E47A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,21 +52,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B21DCBBA1CCF73F600AA008C /* FSPicker.framework in Frameworks */,
-				B21DCBBD1CCF741800AA008C /* FilestackIOS.framework in Frameworks */,
+				79AE9FFC1E6B19870029EB21 /* FilestackIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7906E8B91E6B18A500189D0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7906E8BC1E6B18B200189D0F /* libPods-FilestackIOS.a */,
+				7906E8BA1E6B18A600189D0F /* libFSPicker.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B2253D181C4F9A39008E47A3 = {
 			isa = PBXGroup;
 			children = (
-				B21DCBBC1CCF741800AA008C /* FilestackIOS.framework */,
-				B21DCBB91CCF73F600AA008C /* FSPicker.framework */,
+				79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */,
 				B2253D231C4F9A39008E47A3 /* Filestack-iOS-Demo */,
 				B2253D221C4F9A39008E47A3 /* Products */,
+				7906E8B91E6B18A500189D0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,7 +120,7 @@
 				B2253D1D1C4F9A39008E47A3 /* Sources */,
 				B2253D1E1C4F9A39008E47A3 /* Frameworks */,
 				B2253D1F1C4F9A39008E47A3 /* Resources */,
-				B21DCBB41CCF735200AA008C /* Embed Frameworks */,
+				79AE9FFA1E6B19520029EB21 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,12 +137,12 @@
 		B2253D191C4F9A39008E47A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					B2253D201C4F9A39008E47A3 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 96JWLX568W;
+						DevelopmentTeam = 78554YEBNK;
 					};
 				};
 			};
@@ -217,8 +223,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -261,8 +269,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -291,6 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 78554YEBNK;
 				INFOPLIST_FILE = "Filestack-iOS-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.filestack.Filestack-iOS-Demo";
@@ -303,6 +314,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 78554YEBNK;
 				INFOPLIST_FILE = "Filestack-iOS-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.filestack.Filestack-iOS-Demo";

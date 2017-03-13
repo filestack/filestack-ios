@@ -6,12 +6,19 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
+#ifdef DEBUG
+#   define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#   define NSLog(...) (void)0
+#endif
+
 @import Foundation;
 #import "FSBlob.h"
 #import "FSMetadata.h"
 #import "FSStatOptions.h"
 #import "FSStoreOptions.h"
 #import "FSTransformation.h"
+#import "FSUploadOptions.h"
 
 @protocol FSFilestackDelegate <NSObject>
 @optional
@@ -90,6 +97,20 @@
  @param completionHandler A block object taking two arguments: blob and error, returned from store request.
  */
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+
+/*!
+ @brief Uploads provided data to one of a few storage locations using multi-part upload feature.
+ @param data NSData object to be stored.
+ @param storeOptions FSStoreOptions object or nil.
+ @param progress A block object taking one argument: upload progress.
+ @param completionHandler A block object taking two arguments: blob and error, returned from store request.
+ */
+- (void)upload:(NSData *)data
+   withOptions:(FSUploadOptions *)uploadOptions
+   withStoreOptions:(FSStoreOptions *)storeOptions
+      progress:(void (^)(NSProgress *uploadProgress))progress
+completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
+
 
 /*!
  @brief Transforms provided url using Filestack's transformation engine.
