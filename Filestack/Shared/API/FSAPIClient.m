@@ -21,7 +21,7 @@
     [consoleLogger setLevel:AFLoggerLevelDebug];
     [[AFNetworkActivityLogger sharedLogger] removeLogger:[[[AFNetworkActivityLogger sharedLogger] loggers] anyObject]];
     [[AFNetworkActivityLogger sharedLogger] addLogger:consoleLogger];
-    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    //[[AFNetworkActivityLogger sharedLogger] startLogging];
 }
 
 - (void)PUT:(NSString *)postURL
@@ -53,10 +53,10 @@ completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHa
             NSLog(@"%@",ErrorResponse);
             completionHandler(nil, error);
         } else {
-            NSLog(@"%@ %@", response, responseObject);
+            // NSLog(@"%@ %@", response, responseObject);
             NSHTTPURLResponse *response2 = (NSHTTPURLResponse *)response;
             NSDictionary *headers = [response2 allHeaderFields];
-            NSLog(@"HEADERS : %@",[headers description]);
+            // NSLog(@"HEADERS : %@",[headers description]);
             completionHandler(headers, nil);
         }
     }];

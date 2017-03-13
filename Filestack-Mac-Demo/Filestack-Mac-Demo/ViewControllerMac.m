@@ -7,6 +7,7 @@
 //
 
 #import "ViewControllerMac.h"
+
 @import FilestackMac;
 
 @interface ViewControllerMac () <FSFilestackDelegate> // Filestack delegate.
@@ -19,25 +20,10 @@
 // Create a .filestack file with your key
 // The location of this file can be configured via Info.plist
 NSString *apikey = @"";
+double totalSize = 0.0;
+NSMutableArray *partsArray; // keep track of number of bytes uploaded for each part
 
 - (void)awakeFromNib {
-
-    // create a button for multipart-upload test
-    int x = 100; //possition x
-    int y = 100; //possition y
-    
-    int width = 130;
-    int height = 40;
-    
-    NSButton *selectFileBtn = [[NSButton alloc] initWithFrame:NSMakeRect(x, y, width, height)];
-    [[self view] addSubview: selectFileBtn];
-    [selectFileBtn setTitle: @"Select File(s)..."];
-    [selectFileBtn setButtonType:NSMomentaryLightButton]; //Set what type button You want
-    [selectFileBtn setBezelStyle:NSRoundedBezelStyle]; //Set what style You want
-    
-    [selectFileBtn setTarget:self];
-    [selectFileBtn setAction:@selector(selectFileBtnPressed)];
-    
     
     // Load the api key
     NSString *path = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FSAPIKeyFile"];
@@ -48,7 +34,11 @@ NSString *apikey = @"";
     
 }
 
--(void)selectFileBtnPressed {
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self appendTextToResultView:@"Welcome to Filestack OSX Sample App!"];
+}
+- (IBAction)multipartBtnAction:(id)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setCanChooseFiles:YES];
     [panel setCanChooseDirectories:NO];
@@ -57,9 +47,22 @@ NSString *apikey = @"";
     NSInteger clicked = [panel runModal];
     
     if (clicked == NSFileHandlingPanelOKButton) {
+        totalSize = 0.0;
+        partsArray = [[NSMutableArray alloc] init];
+        
         for (NSURL *url in [panel URLs]) {
-            // do something with the url here.
-            [self upload:url];
+            NSString *path = [url path];
+            NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+            double partSize = [data length];
+            [partsArray addObject:[NSNumber numberWithDouble:0.0]];
+            totalSize = totalSize + partSize;
+        }
+        
+        int i = 0;
+        for (NSURL *url in [panel URLs]) {
+            [_uploadProgressIndicator incrementBy:-100.0]; // reset the progress bar
+            [self upload:url withPart:i];
+            i++;
         }
     }
 }
@@ -94,8 +97,15 @@ NSString *apikey = @"";
     }];
 }
 
+- (void) appendTextToResultView:(NSString*) theText {
+    NSString *theTextWithNewline = [NSString stringWithFormat:@"%@\n", theText];
+    NSAttributedString* attr = [[NSAttributedString alloc] initWithString:theTextWithNewline];
+    [[_resultsTextView textStorage] appendAttributedString:attr];
+    [_resultsTextView scrollRangeToVisible:NSMakeRange([[_resultsTextView string] length], 0)];
+}
+
 // For large files stored locally or for bad connections, use multi-part upload
-- (void)upload:(NSURL *)url {
+- (void)upload:(NSURL *)url withPart:(int)partNumber {
     Filestack *filestack = [[Filestack alloc] initWithApiKey:apikey delegate:self];
     
     FSStoreOptions *storeOptions = [[FSStoreOptions alloc] init];
@@ -115,18 +125,30 @@ NSString *apikey = @"";
     
     NSString *path = [url path];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+    double partSize = [data length];
     
     // Lets store the sample url on S3 using provided store options.
     [filestack upload:data
           withOptions:uploadOptions
      withStoreOptions:storeOptions
              progress:^(NSProgress *uploadProgress) {
-                 NSLog(@"Overall Progress: %f", uploadProgress.fractionCompleted);
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     double currentPartsCompletedThisPart = [partsArray[partNumber] doubleValue];
+                     double currentPartTotalComplete = partSize * uploadProgress.fractionCompleted;
+                     double partsCompletedThisPart = currentPartTotalComplete - currentPartsCompletedThisPart;            // total bytes completed for this part (32,000 or something)
+                     partsArray[partNumber] = [NSNumber numberWithDouble:currentPartTotalComplete];
+                     
+                     // Now need to calc how much to increment the bar
+                     double increment = partsCompletedThisPart / totalSize * 100.0;
+                     [_uploadProgressIndicator incrementBy: increment];
+                 });
              }
     completionHandler:^(NSDictionary *result, NSError *error) {
         if (!error) {
+            [self appendTextToResultView:[NSString stringWithFormat:@"stored file: %@", result]];
             NSLog(@"stored file: %@", result);
         } else {
+            [self appendTextToResultView:[NSString stringWithFormat:@"upload error: %@", error]];
             NSLog(@"upload error: %@", error);
         }
     }];
