@@ -166,15 +166,27 @@
 - (void)upload:(NSData *)data
    withOptions:(FSUploadOptions *)options
    withStoreOptions:(FSStoreOptions *)storeOptions
+       onStart:(void (^)())onStart
       progress:(void (^)(NSProgress *uploadProgress))progress
 completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler {
 
     FSMultipartUpload *mpu = [[FSMultipartUpload alloc] initWithOptions:options
                                                        withStoreOptions:storeOptions
-                                                             withApiKey:_apiKey progress:^(NSProgress *uploadProgress) {
-                                                                 progress(uploadProgress);
-                                                             } completionHandler:^(NSDictionary *result, NSError *error) {
-                                                                 completionHandler(result, error);
+                                                             withApiKey:_apiKey
+                                                                onStart:^() {
+                                                                    if (onStart) {
+                                                                        onStart();
+                                                                    }
+                                                                }
+                                                               progress:^(NSProgress *uploadProgress) {
+                                                                 if (progress) {
+                                                                     progress(uploadProgress);
+                                                                 }
+                                                             }
+                                                      completionHandler:^(NSDictionary *result, NSError *error) {
+                                                                 if (completionHandler) {
+                                                                     completionHandler(result, error);
+                                                                 }
                                                              }];
     
     [mpu upload:data];

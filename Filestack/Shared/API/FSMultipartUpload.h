@@ -15,6 +15,7 @@
 - (instancetype) initWithOptions:(FSUploadOptions*)uploadOptions
                 withStoreOptions:(FSStoreOptions*)storeOptions
                       withApiKey:(NSString*)apiKey
+                         onStart:(void (^)())onStart
                         progress:(void (^)(NSProgress *uploadProgress))progress
                completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
 

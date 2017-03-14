@@ -12,8 +12,9 @@
 #import "FSSessionSettings.h"
 #import <CommonCrypto/CommonDigest.h> // Need to import for CC_MD5 access
 
-typedef void(^CompletionHandler)(NSDictionary*, NSError*);
+typedef void(^OnStartHandler)();
 typedef void(^ProgressHandler)(NSProgress*);
+typedef void(^CompletionHandler)(NSDictionary*, NSError*);
 
 @interface NSData (MyAdditions)
 - (NSString*)md5;
@@ -49,8 +50,10 @@ typedef void(^ProgressHandler)(NSProgress*);
 @property (nonatomic) NSMutableArray *failedParts;
 @property (nonatomic, strong) NSMutableArray *progress;
 
-@property (nonatomic, readonly) CompletionHandler completionHandler;
+@property (nonatomic, readonly) OnStartHandler onStartHandler;
 @property (nonatomic, readonly) ProgressHandler progressHandler;
+@property (nonatomic, readonly) CompletionHandler completionHandler;
+
 
 @property (nonatomic, strong) NSProgress* progressTotal;
 
@@ -62,6 +65,7 @@ typedef void(^ProgressHandler)(NSProgress*);
 - (instancetype) initWithOptions:(FSUploadOptions*)uploadOptions
                 withStoreOptions:(FSStoreOptions*)storeOptions
                       withApiKey:(NSString*)apiKey
+                         onStart:(void (^)())onStart
                         progress:(void (^)(NSProgress *uploadProgress))progress
                completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler {
     self = [super init];
@@ -79,8 +83,9 @@ typedef void(^ProgressHandler)(NSProgress*);
         _uploadedParts = [[NSMutableArray alloc] init];
         _failedParts = [[NSMutableArray alloc] init];
         _progress = nil;
-        _completionHandler = completionHandler;
+        _onStartHandler = onStart;
         _progressHandler = progress;
+        _completionHandler = completionHandler;
         _progressTotal = nil;
     }
     return self;
@@ -94,9 +99,12 @@ typedef void(^ProgressHandler)(NSProgress*);
     _progressTotal = [NSProgress progressWithTotalUnitCount:[_file length]];
     
     [self start:^(NSError *error) {
-        if (error) {
+        if (error && _completionHandler) {
             _completionHandler(nil, error);
         } else {
+            if (_onStartHandler) {
+                _onStartHandler();
+            }
             [self loadNextPart];
         }
     }];
@@ -183,7 +191,7 @@ typedef void(^ProgressHandler)(NSProgress*);
     sessionSettings:_sessionSettings
   completionHandler:^(NSDictionary *response, NSError *error) {
       if (error) {
-          // TODO
+          // TODO - retry
       } else {
           [self uploadPart:chunk
                 uploadData:response
@@ -204,12 +212,14 @@ typedef void(^ProgressHandler)(NSProgress*);
               dispatch_async(dispatch_get_main_queue(), ^{
                   NSLog(@"Part: %d - Progress: %f", partNumber, uploadProgress.fractionCompleted);
                   @try {
+                      // Add child if not already added, only way is to try/catch
                       [_progressTotal addChild:uploadProgress withPendingUnitCount:[uploadProgress totalUnitCount]];
                   }
-                  @catch (NSException *e) {
-                      
+                  @catch (NSException *e) {}
+                  
+                  if(_progressHandler) {
+                      _progressHandler(_progressTotal);
                   }
-                  _progressHandler(_progressTotal);
               });
           } completionHandler:^(NSDictionary *response, NSError *error) {
               // Signal main thread that this upload has completed, this should open up a new slot
@@ -256,9 +266,9 @@ typedef void(^ProgressHandler)(NSProgress*);
             options:_storeOptions
     sessionSettings:_sessionSettings
   completionHandler:^(NSDictionary *response, NSError *error) {
-      if (error) {
-          // TODO
-      } else {
+      if (error && _completionHandler) {
+          _completionHandler(nil, error);
+      } else if(_completionHandler) {
           _completionHandler(response, nil);
       }
   }];

@@ -108,6 +108,7 @@
 - (void)upload:(NSData *)data
    withOptions:(FSUploadOptions *)uploadOptions
    withStoreOptions:(FSStoreOptions *)storeOptions
+       onStart:(void (^)())onStart
       progress:(void (^)(NSProgress *uploadProgress))progress
 completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
 

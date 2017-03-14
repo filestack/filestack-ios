@@ -131,6 +131,9 @@ NSMutableArray *partsArray; // keep track of number of bytes uploaded for each p
     [filestack upload:data
           withOptions:uploadOptions
      withStoreOptions:storeOptions
+              onStart:^() {
+                  [self appendTextToResultView:[NSString stringWithFormat:@"Uploaded started for: %@", storeOptions.fileName]];
+              }
              progress:^(NSProgress *uploadProgress) {
                  dispatch_async(dispatch_get_main_queue(), ^{
                      double currentPartsCompletedThisPart = [partsArray[partNumber] doubleValue];
