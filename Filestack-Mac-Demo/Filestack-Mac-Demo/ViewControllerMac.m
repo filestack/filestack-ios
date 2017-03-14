@@ -114,9 +114,9 @@ NSMutableArray *partsArray; // keep track of number of bytes uploaded for each p
     
     FSRetryOptions *retryOptions = [[FSRetryOptions alloc] init];
     retryOptions.retries = 10;
-    retryOptions.factor = [[NSNumber numberWithFloat:2.0] decimalValue];
-    retryOptions.minTimeout = 1 * 1000;
-    retryOptions.maxTimeout = 60 * 1000;
+    retryOptions.factor = [NSNumber numberWithFloat:2.0];
+    retryOptions.minTimeout = 1;  // seconds
+    retryOptions.maxTimeout = 60; // seconds
     
     FSUploadOptions *uploadOptions = [[FSUploadOptions alloc] init];
     uploadOptions.partSize = @(5 * 1024 * 1024);
@@ -133,6 +133,11 @@ NSMutableArray *partsArray; // keep track of number of bytes uploaded for each p
      withStoreOptions:storeOptions
               onStart:^() {
                   [self appendTextToResultView:[NSString stringWithFormat:@"Uploaded started for: %@", storeOptions.fileName]];
+              }
+              onRetry:^(double attempt, double secs) {
+                  [self appendTextToResultView:[NSString stringWithFormat:@"Failed parts, retry attempt %f in %f",
+                                                attempt,
+                                                secs]];
               }
              progress:^(NSProgress *uploadProgress) {
                  dispatch_async(dispatch_get_main_queue(), ^{

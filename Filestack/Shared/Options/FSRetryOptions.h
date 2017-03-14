@@ -11,7 +11,7 @@
 @interface FSRetryOptions : NSObject
 
 @property (nonatomic) NSInteger retries;
-@property (nonatomic) NSDecimal factor;
+@property (nonatomic, strong) NSNumber *factor;
 @property (nonatomic) NSInteger minTimeout;
 @property (nonatomic) NSInteger maxTimeout;
 

@@ -15,6 +15,7 @@
 typedef void(^OnStartHandler)();
 typedef void(^ProgressHandler)(NSProgress*);
 typedef void(^CompletionHandler)(NSDictionary*, NSError*);
+typedef void(^RetryHandler)(double, double);
 
 @interface NSData (MyAdditions)
 - (NSString*)md5;
@@ -42,6 +43,7 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
 @property (nonatomic, strong) NSDictionary *uploadData;
 @property (nonatomic, copy) NSString *apiKey;
 @property (nonatomic) NSNumber *currentUploads;
+@property (nonatomic) NSInteger retryAttempts;
 
 // Parts info
 @property (nonatomic) NSNumber *currentPart;
@@ -51,6 +53,7 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
 @property (nonatomic, strong) NSMutableArray *progress;
 
 @property (nonatomic, readonly) OnStartHandler onStartHandler;
+@property (nonatomic, readonly) RetryHandler onRetryHandler;
 @property (nonatomic, readonly) ProgressHandler progressHandler;
 @property (nonatomic, readonly) CompletionHandler completionHandler;
 
@@ -66,6 +69,7 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
                 withStoreOptions:(FSStoreOptions*)storeOptions
                       withApiKey:(NSString*)apiKey
                          onStart:(void (^)())onStart
+                         onRetry:(void (^)(double, double))onRetry
                         progress:(void (^)(NSProgress *uploadProgress))progress
                completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler {
     self = [super init];
@@ -77,6 +81,7 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
         _sessionSettings.paramsInURI = false;
         _uploadData = nil;
         _currentUploads = @0;
+        _retryAttempts = 0;
         _apiKey = apiKey;
         _currentPart = @0;
         _totalParts = @0;
@@ -84,6 +89,7 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
         _failedParts = [[NSMutableArray alloc] init];
         _progress = nil;
         _onStartHandler = onStart;
+        _onRetryHandler = onRetry;
         _progressHandler = progress;
         _completionHandler = completionHandler;
         _progressTotal = nil;
@@ -137,14 +143,18 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
 - (void)loadNextPart {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     
-    // If all parts have completed, start complete call
-    if ([_progressTotal completedUnitCount] == [_file length]) {
-        [self complete];
+    // If all parts have completed, start complete call, or process retries if failures
+    if ([_failedParts count] + [_uploadedParts count] >= [_totalParts integerValue]) {
+        if ([_failedParts count] > 0) {
+            [self processRetries];
+        } else {
+            [self complete];
+        }
         return;
     }
     
     // Don't keep reading / uploading unless there is an open slot
-    // _currentUpload >= maxConcurrentUploads
+    // _currentUploads >= maxConcurrentUploads
     if ([_currentUploads compare:_uploadOptions.maxConcurrentUploads] != NSOrderedAscending) {
         return;
     }
@@ -155,6 +165,17 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
     if (partNumber >= totalParts) {
         return;
     }
+    
+    // If this part has already been uploaded, skip it
+    for (id part in _uploadedParts) {
+        NSString *partWithEtag = [NSString stringWithString:part];
+        NSString *partPartNumber = [partWithEtag componentsSeparatedByString:@":"][0];
+        if ([partPartNumber isEqualToString:[NSString stringWithFormat:@"%d", partNumber+1]]) {
+            NSLog(@"Skipping already upload part %@", partPartNumber);
+            return;
+        }
+    }
+    
     _currentUploads = [NSNumber numberWithInt:[_currentUploads intValue] + 1]; // _currentUploads + 1
     
     int partSize = [_uploadOptions.partSize intValue];
@@ -191,7 +212,10 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
     sessionSettings:_sessionSettings
   completionHandler:^(NSDictionary *response, NSError *error) {
       if (error) {
-          // TODO - retry
+          dispatch_async(dispatch_get_main_queue(), ^{
+              [self handleError:error part:partNumber chunk:chunk];
+              [self loadNextPart];
+          });
       } else {
           [self uploadPart:chunk
                 uploadData:response
@@ -231,8 +255,7 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
                       [_uploadedParts addObject:etagPart];
                   } else {
                       // This part failed to upload
-                      NSLog(@"%@", error);
-                      [_failedParts addObject:[NSNumber numberWithInt:partNumber]];
+                      [self handleError:error part:partNumber chunk:chunk];
                   }
                   _currentUploads = [NSNumber numberWithInt:[_currentUploads intValue] - 1]; // _currentUpload - 1
                   [self loadNextPart];
@@ -272,7 +295,58 @@ typedef void(^CompletionHandler)(NSDictionary*, NSError*);
           _completionHandler(response, nil);
       }
   }];
+}
 
+- (void)handleError:(NSError*)error part:(int)partNumber chunk:(NSData*)chunk {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"Error on part %d: %@", partNumber, error);
+    
+    NSNumber *part = [NSNumber numberWithInt:partNumber];
+    if ([_failedParts containsObject:part]) {
+        return; //already handled this error
+    }
+    _currentUploads = [NSNumber numberWithInt:[_currentUploads intValue] - 1]; // _currentUpload - 1
+    [_failedParts addObject:part];
+}
+
+- (void)processRetries {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+
+    if (_uploadOptions.retryOptions &&
+        (_retryAttempts <  _uploadOptions.retryOptions.retries)) {
+        double bow = [self backOffWait];
+        _retryAttempts++;
+        _currentUploads = @0;
+        _currentPart = @0;
+        [_failedParts removeAllObjects];
+        
+        if (_onRetryHandler) {
+            _onRetryHandler(_retryAttempts, bow);
+        }
+        
+        [self performSelector:@selector(loadNextPart) withObject:nil afterDelay:bow];
+    } else if(_completionHandler) { // retry not configured or max retries attempted
+        _completionHandler(nil, [NSError errorWithDomain:@"com.filestack.upload"
+                                                    code:-42
+                                                userInfo:@{@"description":@"Max retries hit"}]);
+    }
+}
+
+-(double)backOffWait {
+    double bow = 1.0;
+    double minTimeout = _uploadOptions.retryOptions.minTimeout;
+    double maxTimeout = _uploadOptions.retryOptions.maxTimeout;
+    double factor = 2.0;
+    if (_retryAttempts == 0) {
+        bow = minTimeout;
+    } else if (_uploadOptions.retryOptions.factor) {
+        factor = [_uploadOptions.retryOptions.factor doubleValue];
+        bow = pow(factor, _retryAttempts);
+        if (bow > maxTimeout) {
+            bow = maxTimeout;
+        }
+    }
+    return bow;
 }
 
 // Helper - Almost all calls to the api require the same set of form-fields passed

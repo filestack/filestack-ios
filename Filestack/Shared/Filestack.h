@@ -109,6 +109,7 @@
    withOptions:(FSUploadOptions *)uploadOptions
    withStoreOptions:(FSStoreOptions *)storeOptions
        onStart:(void (^)())onStart
+       onRetry:(void (^)(double, double))onRetry
       progress:(void (^)(NSProgress *uploadProgress))progress
 completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
 

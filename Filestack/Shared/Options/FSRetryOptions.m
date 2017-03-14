@@ -26,7 +26,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if ((self = [super init])) {
         _retries = [dictionary[@"retries"] integerValue];
-        _factor = [dictionary[@"factor"] decimalValue];
+        _factor = dictionary[@"factor"];
         _minTimeout = [dictionary[@"minTimeout"] integerValue];
         _maxTimeout = [dictionary[@"maxTimeout"] integerValue];
     }

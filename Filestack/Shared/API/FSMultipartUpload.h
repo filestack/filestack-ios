@@ -16,6 +16,7 @@
                 withStoreOptions:(FSStoreOptions*)storeOptions
                       withApiKey:(NSString*)apiKey
                          onStart:(void (^)())onStart
+                         onRetry:(void (^)(double retryAttempt, double inSeconds))onRetry
                         progress:(void (^)(NSProgress *uploadProgress))progress
                completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
 
