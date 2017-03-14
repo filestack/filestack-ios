@@ -44,6 +44,7 @@ typedef void(^RetryHandler)(double, double);
 @property (nonatomic, copy) NSString *apiKey;
 @property (nonatomic) NSNumber *currentUploads;
 @property (nonatomic) NSInteger retryAttempts;
+@property (nonatomic) BOOL cancelRequested;
 
 // Parts info
 @property (nonatomic) NSNumber *currentPart;
@@ -57,6 +58,7 @@ typedef void(^RetryHandler)(double, double);
 @property (nonatomic, readonly) ProgressHandler progressHandler;
 @property (nonatomic, readonly) CompletionHandler completionHandler;
 
+@property (nonatomic) NSMutableArray *uploadSessions;
 
 @property (nonatomic, strong) NSProgress* progressTotal;
 
@@ -93,9 +95,13 @@ typedef void(^RetryHandler)(double, double);
         _progressHandler = progress;
         _completionHandler = completionHandler;
         _progressTotal = nil;
+        _cancelRequested = FALSE;
+        _uploadSessions = [[NSMutableArray alloc] init];
     }
     return self;
 }
+
+// Public Methods
 
 - (void)upload:(NSData*)file {
     _file = file;
@@ -116,8 +122,37 @@ typedef void(^RetryHandler)(double, double);
     }];
 }
 
+- (void)cancel {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    _cancelRequested = TRUE;
+    for (id session in _uploadSessions) {
+        NSURLSessionUploadTask *uploadTask = (NSURLSessionUploadTask*)session;
+        [uploadTask cancel];
+    }
+}
+
+- (void)pause {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    for (id session in _uploadSessions) {
+        NSURLSessionUploadTask *uploadTask = (NSURLSessionUploadTask*)session;
+        [uploadTask suspend];
+    }
+}
+
+- (void)resume {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    for (id session in _uploadSessions) {
+        NSURLSessionUploadTask *uploadTask = (NSURLSessionUploadTask*)session;
+        [uploadTask resume];
+    }
+}
+
+// Private Methods
+
 // Make call to filestack to start multi-part upload
 - (void)start:(void (^)(NSError *error))completionHandler {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
     NSString *lengthStr = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)[_file length]];
     NSDictionary *params = @{@"size" : lengthStr};
     
@@ -163,6 +198,16 @@ typedef void(^RetryHandler)(double, double);
     int totalParts = [_totalParts intValue];
     // If we've read all the parts, stop
     if (partNumber >= totalParts) {
+        return;
+    }
+    
+    // User canceled upload request
+    if (_cancelRequested) {
+        [self handleError:[NSError errorWithDomain:@"com.filestack.upload"
+                                              code:-43
+                                          userInfo:@{@"description" : @"user canceled upload"}]
+                     part:partNumber
+                    chunk:nil];
         return;
     }
     
@@ -229,7 +274,7 @@ typedef void(^RetryHandler)(double, double);
     NSLog(@"%@", NSStringFromSelector(_cmd));
     
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];
-    [apiClient PUT:uploadData[@"url"]
+    NSURLSessionUploadTask *uploadTask = [apiClient PUT:uploadData[@"url"]
           formdata:uploadData[@"headers"]
               data:chunk
           progress:^(NSProgress *uploadProgress) {
@@ -261,6 +306,10 @@ typedef void(^RetryHandler)(double, double);
                   [self loadNextPart];
               });
           }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_uploadSessions addObject:uploadTask];
+    });
 }
 
 // Upload has finished to s3, call complete
@@ -312,6 +361,13 @@ typedef void(^RetryHandler)(double, double);
 - (void)processRetries {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 
+    if (_cancelRequested) {
+        _completionHandler(nil, [NSError errorWithDomain:@"com.filestack.upload"
+                                                    code:-44
+                                                userInfo:@{@"description":@"Cancel requested"}]);
+        return;
+    }
+    
     if (_uploadOptions.retryOptions &&
         (_retryAttempts <  _uploadOptions.retryOptions.retries)) {
         double bow = [self backOffWait];

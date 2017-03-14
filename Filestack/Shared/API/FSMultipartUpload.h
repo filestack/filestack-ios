@@ -21,5 +21,8 @@
                completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
 
 - (void)upload:(NSData*)file;
+- (void)cancel;
+- (void)pause;
+- (void)resume;
 
 @end

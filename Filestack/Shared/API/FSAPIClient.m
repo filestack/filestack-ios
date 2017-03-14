@@ -9,7 +9,6 @@
 #import "FSAPIClient.h"
 #import "FSAPIURL.h"
 #import "FSMetadata+Private.h"
-#import <AFNetworking/AFNetworking.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityConsoleLogger.h>
 
@@ -24,7 +23,7 @@
     //[[AFNetworkActivityLogger sharedLogger] startLogging];
 }
 
-- (void)PUT:(NSString *)postURL
+- (NSURLSessionUploadTask*)PUT:(NSString *)postURL
     formdata:(NSDictionary *)form
         data:(NSData*)data
 progress:(void (^)(NSProgress *uploadProgress))progress
@@ -60,8 +59,8 @@ completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHa
             completionHandler(headers, nil);
         }
     }];
-    
     [uploadTask resume];
+    return uploadTask;
 }
 
 // This version returns an NSDictionary object

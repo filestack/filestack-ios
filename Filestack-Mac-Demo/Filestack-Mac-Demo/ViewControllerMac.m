@@ -22,6 +22,7 @@
 NSString *apikey = @"";
 double totalSize = 0.0;
 NSMutableArray *partsArray; // keep track of number of bytes uploaded for each part
+NSMutableArray *filesArray;
 
 - (void)awakeFromNib {
     
@@ -38,7 +39,31 @@ NSMutableArray *partsArray; // keep track of number of bytes uploaded for each p
     [super viewDidLoad];
     [self appendTextToResultView:@"Welcome to Filestack OSX Sample App!"];
 }
+
+- (IBAction)cancelUploadBtnAction:(id)sender {
+    for (id file in filesArray) {
+        FSMultipartUpload *mpu = (FSMultipartUpload*)file;
+        [mpu cancel];
+    }
+    
+}
+
+- (IBAction)pauseUploadBtnAction:(id)sender {
+    for (id file in filesArray) {
+        FSMultipartUpload *mpu = (FSMultipartUpload*)file;
+        [mpu pause];
+    }
+}
+
+- (IBAction)resumeUploadBtnAction:(id)sender {
+    for (id file in filesArray) {
+        FSMultipartUpload *mpu = (FSMultipartUpload*)file;
+        [mpu resume];
+    }
+}
+
 - (IBAction)multipartBtnAction:(id)sender {
+    filesArray = [[NSMutableArray alloc] init];
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setCanChooseFiles:YES];
     [panel setCanChooseDirectories:NO];
@@ -128,7 +153,7 @@ NSMutableArray *partsArray; // keep track of number of bytes uploaded for each p
     double partSize = [data length];
     
     // Lets store the sample url on S3 using provided store options.
-    [filestack upload:data
+    FSMultipartUpload *mpu = [filestack upload:data
           withOptions:uploadOptions
      withStoreOptions:storeOptions
               onStart:^() {
@@ -160,6 +185,8 @@ NSMutableArray *partsArray; // keep track of number of bytes uploaded for each p
             NSLog(@"upload error: %@", error);
         }
     }];
+    
+    [filesArray addObject:mpu];
 }
 
 - (void)setRepresentedObject:(id)representedObject {

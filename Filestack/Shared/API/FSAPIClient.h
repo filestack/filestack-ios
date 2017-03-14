@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking/AFNetworking.h>
 #import "FSSessionSettings.h"
 #import "FSStoreOptions.h"
 #import "FSStatOptions.h"
@@ -21,7 +22,7 @@
 
 - (void)DELETE:(NSString *)deleteURL parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSError *error))completionHandler;
 
-- (void)PUT:(NSString *)postURL
+- (NSURLSessionUploadTask*)PUT:(NSString *)postURL
    formdata:(NSDictionary *)form
        data:(NSData*)data
    progress:(void (^)(NSProgress *uploadProgress))progress

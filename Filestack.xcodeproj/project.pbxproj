@@ -10,12 +10,15 @@
 		41064D8E2E5987A3E769A74C /* libPods-FilestackMacTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6263FB08942A0533302BA824 /* libPods-FilestackMacTests.a */; };
 		47201483682DF76863E31BA6 /* libPods-FilestackIOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5738A54B891FC70FA127B3E /* libPods-FilestackIOSTests.a */; };
 		591E51E14EEB7962C6F6CE70 /* libPods-FilestackMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3E41308DB30C343072BAAD /* libPods-FilestackMac.a */; };
+		797963B11E7866B700A3E64A /* FSMultipartUpload.m in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00C1E70697A0029EB21 /* FSMultipartUpload.m */; };
+		797963B21E7866E700A3E64A /* FSMultipartUpload.m in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00C1E70697A0029EB21 /* FSMultipartUpload.m */; };
+		797963B31E78670D00A3E64A /* FSMultipartUpload.h in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA00B1E70697A0029EB21 /* FSMultipartUpload.h */; };
 		79AEA0061E7051750029EB21 /* FSRetryOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA0041E7049AD0029EB21 /* FSRetryOptions.m */; };
 		79AEA0081E70517F0029EB21 /* FSUploadOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA0021E70463E0029EB21 /* FSUploadOptions.m */; };
 		79AEA0091E7054940029EB21 /* FSRetryOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA0031E7049AD0029EB21 /* FSRetryOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79AEA00A1E70549A0029EB21 /* FSUploadOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA0011E70463E0029EB21 /* FSUploadOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79AEA00D1E70697A0029EB21 /* FSMultipartUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00B1E70697A0029EB21 /* FSMultipartUpload.h */; };
-		79AEA00E1E70697A0029EB21 /* FSMultipartUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00B1E70697A0029EB21 /* FSMultipartUpload.h */; };
+		79AEA00E1E70697A0029EB21 /* FSMultipartUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00B1E70697A0029EB21 /* FSMultipartUpload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79AEA00F1E70697A0029EB21 /* FSMultipartUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA00C1E70697A0029EB21 /* FSMultipartUpload.m */; };
 		79AEA0101E70697A0029EB21 /* FSMultipartUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA00C1E70697A0029EB21 /* FSMultipartUpload.m */; };
 		8315051CED249B1D347666D2 /* libPods-FilestackIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F63CA6B9BF35CCB37928924 /* libPods-FilestackIOS.a */; };
@@ -1150,6 +1153,7 @@
 				B2D7563C1C68E404003263FB /* FSShadow.h in Headers */,
 				B2D756491C68EE77003263FB /* FSCircle.h in Headers */,
 				B2D756AA1C6B4825003263FB /* FSOilPaint+Private.h in Headers */,
+				797963B21E7866E700A3E64A /* FSMultipartUpload.m in Headers */,
 				B2D756B71C6B4B43003263FB /* FSModulate+Private.h in Headers */,
 				B2DE23241C63AEC90007C569 /* FSFlop+Private.h in Headers */,
 				B2D756971C6B452C003263FB /* FSPixelate.h in Headers */,
@@ -1219,12 +1223,12 @@
 				B273AA081C57C5A900232972 /* FSStoreOptions.h in Headers */,
 				B273AA0E1C57C5B100232972 /* FSBlob.h in Headers */,
 				B2D756C51C6B5090003263FB /* FSPartialPixelate+Private.h in Headers */,
-				79AEA00E1E70697A0029EB21 /* FSMultipartUpload.h in Headers */,
 				B2DE23091C639D390007C569 /* FSRotate+Private.h in Headers */,
 				B2DE22F11C6394120007C569 /* FSTransform+Private.h in Headers */,
 				B2DE22DC1C63613C0007C569 /* FSTransformation.h in Headers */,
 				B2DE22EB1C6392D40007C569 /* FSResize+Private.h in Headers */,
 				B2D756841C6B42C9003263FB /* FSMonochrome+Private.h in Headers */,
+				79AEA00E1E70697A0029EB21 /* FSMultipartUpload.h in Headers */,
 				B2DE23031C639D280007C569 /* FSRotate.h in Headers */,
 				B273AA121C57C5B100232972 /* FSMetadata.h in Headers */,
 				B2DE231F1C63AEAD0007C569 /* FSFlop.h in Headers */,
@@ -1236,6 +1240,7 @@
 				B2D7563D1C68E404003263FB /* FSShadow.h in Headers */,
 				B2D7564A1C68EE77003263FB /* FSCircle.h in Headers */,
 				B2D756AB1C6B4825003263FB /* FSOilPaint+Private.h in Headers */,
+				797963B11E7866B700A3E64A /* FSMultipartUpload.m in Headers */,
 				B2D756B81C6B4B43003263FB /* FSModulate+Private.h in Headers */,
 				B273AA0A1C57C5A900232972 /* FSSecurity.h in Headers */,
 				B2D756981C6B452C003263FB /* FSPixelate.h in Headers */,
@@ -1594,6 +1599,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797963B31E78670D00A3E64A /* FSMultipartUpload.h in Sources */,
 				B2D756F41C6B7F49003263FB /* FSASCII.m in Sources */,
 				B2BFEB221C90565A0037571D /* Filestack+FSPicker.m in Sources */,
 				B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */,

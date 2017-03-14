@@ -6,6 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
+// Only log in debug env
 #ifdef DEBUG
 #   define NSLog(...) NSLog(__VA_ARGS__)
 #else
@@ -19,6 +20,7 @@
 #import "FSStoreOptions.h"
 #import "FSTransformation.h"
 #import "FSUploadOptions.h"
+#import "FSMultipartUpload.h"
 
 @protocol FSFilestackDelegate <NSObject>
 @optional
@@ -105,7 +107,7 @@
  @param progress A block object taking one argument: upload progress.
  @param completionHandler A block object taking two arguments: blob and error, returned from store request.
  */
-- (void)upload:(NSData *)data
+- (FSMultipartUpload*)upload:(NSData *)data
    withOptions:(FSUploadOptions *)uploadOptions
    withStoreOptions:(FSStoreOptions *)storeOptions
        onStart:(void (^)())onStart
