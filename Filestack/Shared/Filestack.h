@@ -103,7 +103,10 @@
 /*!
  @brief Uploads provided data to one of a few storage locations using multi-part upload feature.
  @param data NSData object to be stored.
- @param storeOptions FSStoreOptions object or nil.
+ @param uploadOptions FSUploadOptions object
+ @param storeOptions FSStoreOptions object
+ @param onStart: A block object with no params that is called when upload begins
+ @param onRetry: A block object with two double params indicating that a chunk has failed and retry will be attempted
  @param progress A block object taking one argument: upload progress.
  @param completionHandler A block object taking two arguments: blob and error, returned from store request.
  */
