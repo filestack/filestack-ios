@@ -38,6 +38,8 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to photos in order to upload.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We would like to demo camera taking capabilities.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

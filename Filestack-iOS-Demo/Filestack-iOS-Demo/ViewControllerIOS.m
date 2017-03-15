@@ -7,21 +7,24 @@
 //
 
 #import "ViewControllerIOS.h"
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @import Photos;
+@import AVFoundation;
+@import AVKit;
 
 @import FilestackIOS;
 
 @interface ViewControllerIOS () <FSFilestackDelegate, // Filestack delegate.
-    UIImagePickerControllerDelegate,
-    UIPickerViewDelegate,
-    UIPickerViewDataSource,
-    UINavigationControllerDelegate>
+    UIImagePickerControllerDelegate, UINavigationControllerDelegate, // For image and video selection
+    UIPickerViewDelegate, UIPickerViewDataSource> // For picker view
 
-@property (nonatomic, strong) NSString *imageURL;
+@property (nonatomic, strong) NSString *cdnURL;
+@property (nonatomic, strong) NSString *cdnMimetype;
 @property (nonatomic) NSArray *transformData;
 @property (weak, nonatomic) IBOutlet UIProgressView *uploadProgressView;
 @property (weak, nonatomic) IBOutlet UIButton *transformBtn;
+@property (weak, nonatomic) IBOutlet UILabel *cdnLabel;
 
 @end
 
@@ -37,12 +40,15 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _imageURL = nil;
+    _cdnURL = nil;
+    _cdnMimetype = nil;
     _transformData = @[@"Oil Paint", @"Monochrome", @"Blur", @"Sepia", @"Polaroid"];
     _transformPicker.dataSource = self;
     _transformPicker.delegate = self;
     _transformBtn.hidden = true;
     _uploadProgressView.hidden = true;
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 // Picker View Delegates
@@ -65,7 +71,7 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
 // Catpure the picker view selection
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     // User must upload an image from camera first
-    if (!_imageURL) {
+    if (!_cdnURL) {
         return;
     }
     
@@ -98,7 +104,7 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
     
     // And finally "apply" the transformation
     Filestack *filestack = [[Filestack alloc] initWithApiKey:apiKey delegate:self];
-    [filestack transformURL:_imageURL transformation:transformation security:nil completionHandler:^(NSData *data, NSDictionary *JSON, NSError *error) {
+    [filestack transformURL:_cdnURL transformation:transformation security:nil completionHandler:^(NSData *data, NSDictionary *JSON, NSError *error) {
         
          dispatch_async(dispatch_get_main_queue(), ^{
              _imageView.image = [UIImage imageWithData:data];
@@ -114,9 +120,20 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
 
 // Button Actions
 - (IBAction)transformBtnTouchUpInside:(id)sender {
-    _transformPicker.hidden = false;
+    if ([_cdnMimetype isEqualToString:@"video/quicktime"]) {
+        // Play video from CDN
+        NSURL *url = [NSURL URLWithString:_cdnURL];
+        AVPlayer *player = [AVPlayer playerWithURL:url];
+        AVPlayerViewController *videoController = [[AVPlayerViewController alloc] init];
+        videoController.player = player;
+        [self presentViewController:videoController animated:YES completion:nil];
+        [player play];
+    } else {
+        _transformPicker.hidden = false;
+    }
 }
 
+// Not currently used
 - (IBAction)storeURLTouchUpInside:(id)sender {
     Filestack *filestack = [[Filestack alloc] initWithApiKey:apiKey delegate:self];
     
@@ -147,6 +164,8 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
 - (IBAction)selectImage {
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.delegate = self;
+    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    pickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
@@ -170,7 +189,7 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
             _uploadProgressView.hidden = true;
         } else {
             NSLog(@"stored data blob: %@", blob);
-            _imageURL = [NSString stringWithString:blob.url];
+            _cdnURL = [NSString stringWithString:blob.url];
             _uploadProgressView.hidden = true;
             _transformBtn.hidden = false;
         }
@@ -180,7 +199,7 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
     });
 }
 
-- (void)multiPartUpload:(NSString*)fileName withImageData:(NSData*)imageData {
+- (void)multiPartUpload:(NSString*)fileName withData:(NSData*)data withMimetype:(NSString *)mimetype {
     
     // UI stuff
     [_uploadProgressView setProgress:0.0];
@@ -194,6 +213,7 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
     storeOptions.fileName = fileName;
     storeOptions.location = FSStoreLocationS3;
     storeOptions.access = FSAccessPublic;
+    storeOptions.mimeType = mimetype;
     
     FSRetryOptions *retryOptions = [[FSRetryOptions alloc] init];
     retryOptions.retries = 10;
@@ -206,7 +226,7 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
     uploadOptions.maxConcurrentUploads = @5;
     uploadOptions.retryOptions = retryOptions;
     
-    [filestack upload:imageData withOptions:uploadOptions withStoreOptions:storeOptions
+    [filestack upload:data withOptions:uploadOptions withStoreOptions:storeOptions
               onStart:nil
               onRetry:nil
              progress:^(NSProgress *uploadProgress) {
@@ -215,33 +235,59 @@ NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
                      [_uploadProgressView setProgress:uploadProgress.fractionCompleted animated:YES];
                  });
              } completionHandler:^(NSDictionary *result, NSError *error) {
-                 if (error) {
-                     NSLog(@"Error: %@", error);
-                     _uploadProgressView.hidden = true;
-                 } else {
-                     NSLog(@"stored result: %@", result);
-                     _imageURL = [NSString stringWithString:result[@"url"]];
-                     _uploadProgressView.hidden = true;
-                     _transformBtn.hidden = false;
-                 }
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     if (error) {
+                         NSLog(@"Error: %@", error);
+                         _uploadProgressView.hidden = true;
+                         _cdnLabel.text = @"";
+                     } else {
+                         NSLog(@"stored result: %@", result);
+                         _cdnURL = [NSString stringWithString:result[@"url"]];
+                         _uploadProgressView.hidden = true;
+                         _cdnLabel.text = _cdnURL;
+                         _cdnMimetype = mimetype;
+                         _transformBtn.hidden = false;
+
+                         if ([mimetype isEqualToString:@"video/quicktime"]) {
+                             [_transformBtn setTitle:@"Play Video" forState:UIControlStateNormal];
+                         } else {
+                             [_transformBtn setTitle:@"Transform Image" forState:UIControlStateNormal];
+                             
+                             // Now pull the image from the CDN
+                             NSURL *url = [NSURL URLWithString:_cdnURL];
+                             NSData *cdnData = [NSData dataWithContentsOfURL:url];
+                             _imageView.image = [UIImage imageWithData:cdnData];
+                         }
+                     }
+                 });
              }];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _imageView.image = [UIImage imageWithData:imageData];
-    });
 }
 
 // Delegate for Camera Roll Picker
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    // PHAssets and UIImagePickerController magic.
-    NSURL *path = [info valueForKey:UIImagePickerControllerReferenceURL];
-    PHFetchResult *assets = [PHAsset fetchAssetsWithALAssetURLs:@[path] options:nil];
-    PHAsset *asset = assets.firstObject;
-    [[PHImageManager defaultManager] requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-        // Remember to set fileName and/or mimetype in storeOptions so it will upload as a "valid" file.
-        // Without at least one of them, for NSData, we are setting mimetype as "application/octet-stream".
-        NSString *fileName = [info[@"PHImageFileURLKey"] lastPathComponent];
-        [self multiPartUpload:fileName withImageData:imageData];
-    }];
+    
+    // Get media type
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+
+    // Handle a movie capture
+    if (CFStringCompare ((__bridge_retained CFStringRef)mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
+        NSURL *videoURL = (NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
+        NSString *fileName = [videoURL lastPathComponent];
+        NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+        [self multiPartUpload:fileName withData:videoData withMimetype:@"video/quicktime"];
+
+    } else { // image
+        // PHAssets and UIImagePickerController magic.
+        NSURL *path = [info valueForKey:UIImagePickerControllerReferenceURL];
+        PHFetchResult *assets = [PHAsset fetchAssetsWithALAssetURLs:@[path] options:nil];
+        PHAsset *asset = assets.firstObject;
+        [[PHImageManager defaultManager] requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            // Remember to set fileName and/or mimetype in storeOptions so it will upload as a "valid" file.
+            // Without at least one of them, for NSData, we are setting mimetype as "application/octet-stream".
+            NSString *fileName = [info[@"PHImageFileURLKey"] lastPathComponent];
+            [self multiPartUpload:fileName withData:imageData withMimetype:@"image/jpeg"];
+        }];
+    }
 
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

@@ -43,7 +43,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="102" id="Dxz-Tn-LMP"/>
                                 </constraints>
-                                <state key="normal" title="Select Image"/>
+                                <state key="normal" title="Camera Roll"/>
                                 <connections>
                                     <action selector="selectImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbA-b3-5k5"/>
                                 </connections>
@@ -55,6 +55,15 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="xqk-lQ-72J"/>
                                 </constraints>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkV-za-djD">
+                                <rect key="frame" x="0.0" y="422" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="EMs-wb-2p2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -65,9 +74,12 @@
                             <constraint firstAttribute="bottom" secondItem="rCw-xH-TSK" secondAttribute="bottom" id="M1A-Wr-bq1"/>
                             <constraint firstItem="MoA-aU-9oM" firstAttribute="top" secondItem="1O9-cl-l9a" secondAttribute="bottom" constant="8" id="U4h-tS-997"/>
                             <constraint firstItem="MoA-aU-9oM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VZg-AI-651"/>
+                            <constraint firstItem="jkV-za-djD" firstAttribute="top" secondItem="MoA-aU-9oM" secondAttribute="bottom" constant="20" id="YSp-J8-VNa"/>
+                            <constraint firstAttribute="trailing" secondItem="jkV-za-djD" secondAttribute="trailing" id="fh6-8V-Len"/>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="id1-gW-jUN"/>
                             <constraint firstAttribute="trailing" secondItem="1O9-cl-l9a" secondAttribute="trailing" id="kLu-b8-9Ms"/>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="o2E-ZI-KCy"/>
+                            <constraint firstItem="jkV-za-djD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pbF-ec-8nn"/>
                             <constraint firstItem="kyn-4E-yD2" firstAttribute="top" secondItem="1O9-cl-l9a" secondAttribute="bottom" constant="22" id="q0Q-E0-TES"/>
                             <constraint firstItem="kyn-4E-yD2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rBj-dS-zcH"/>
                         </constraints>
@@ -77,6 +89,7 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cdnLabel" destination="jkV-za-djD" id="8nz-Rn-7YG"/>
                         <outlet property="imageView" destination="1O9-cl-l9a" id="Zqh-bb-lDq"/>
                         <outlet property="transformBtn" destination="DIi-29-FOW" id="c6J-Wb-AxI"/>
                         <outlet property="transformPicker" destination="rCw-xH-TSK" id="oiN-X8-DVf"/>

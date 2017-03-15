@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		797963BA1E79A32E00A3E64A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797963B91E79A32E00A3E64A /* AssetsLibrary.framework */; };
+		797963BC1E79A33600A3E64A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797963BB1E79A33600A3E64A /* AVFoundation.framework */; };
+		797963BE1E79A33E00A3E64A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797963BD1E79A33E00A3E64A /* CoreMedia.framework */; };
+		797963C01E79A34C00A3E64A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797963BF1E79A34C00A3E64A /* MediaPlayer.framework */; };
+		797963C21E79A35700A3E64A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797963C11E79A35700A3E64A /* MobileCoreServices.framework */; };
+		797963C41E79A36000A3E64A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797963C31E79A36000A3E64A /* QuartzCore.framework */; };
 		79AE9FFC1E6B19870029EB21 /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */; };
 		79AE9FFD1E6B19870029EB21 /* FilestackIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2253D261C4F9A39008E47A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2253D251C4F9A39008E47A3 /* main.m */; };
@@ -34,6 +40,12 @@
 /* Begin PBXFileReference section */
 		7906E8BA1E6B18A600189D0F /* libFSPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFSPicker.a; path = "../../../../Library/Developer/Xcode/DerivedData/Filestack-gdxrhkfrijzxitdspqozfijrjnss/Build/Products/Debug-iphonesimulator/FSPicker/libFSPicker.a"; sourceTree = "<group>"; };
 		7906E8BC1E6B18B200189D0F /* libPods-FilestackIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FilestackIOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/Filestack-gdxrhkfrijzxitdspqozfijrjnss/Build/Products/Debug-iphonesimulator/libPods-FilestackIOS.a"; sourceTree = "<group>"; };
+		797963B91E79A32E00A3E64A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		797963BB1E79A33600A3E64A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		797963BD1E79A33E00A3E64A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		797963BF1E79A34C00A3E64A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		797963C11E79A35700A3E64A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		797963C31E79A36000A3E64A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		79AE9FFB1E6B19870029EB21 /* FilestackIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2253D211C4F9A39008E47A3 /* Filestack-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Filestack-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2253D251C4F9A39008E47A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,6 +64,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797963C41E79A36000A3E64A /* QuartzCore.framework in Frameworks */,
+				797963C21E79A35700A3E64A /* MobileCoreServices.framework in Frameworks */,
+				797963C01E79A34C00A3E64A /* MediaPlayer.framework in Frameworks */,
+				797963BE1E79A33E00A3E64A /* CoreMedia.framework in Frameworks */,
+				797963BC1E79A33600A3E64A /* AVFoundation.framework in Frameworks */,
+				797963BA1E79A32E00A3E64A /* AssetsLibrary.framework in Frameworks */,
 				79AE9FFC1E6B19870029EB21 /* FilestackIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +80,12 @@
 		7906E8B91E6B18A500189D0F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				797963C31E79A36000A3E64A /* QuartzCore.framework */,
+				797963C11E79A35700A3E64A /* MobileCoreServices.framework */,
+				797963BF1E79A34C00A3E64A /* MediaPlayer.framework */,
+				797963BD1E79A33E00A3E64A /* CoreMedia.framework */,
+				797963BB1E79A33600A3E64A /* AVFoundation.framework */,
+				797963B91E79A32E00A3E64A /* AssetsLibrary.framework */,
 				7906E8BC1E6B18B200189D0F /* libPods-FilestackIOS.a */,
 				7906E8BA1E6B18A600189D0F /* libFSPicker.a */,
 			);
