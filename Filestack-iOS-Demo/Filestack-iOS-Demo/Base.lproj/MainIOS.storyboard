@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="xqk-lQ-72J"/>
                                 </constraints>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkV-za-djD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkV-za-djD">
                                 <rect key="frame" x="0.0" y="422" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="EMs-wb-2p2"/>

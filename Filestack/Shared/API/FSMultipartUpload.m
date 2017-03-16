@@ -217,6 +217,8 @@ typedef void(^RetryHandler)(double, double);
         NSString *partPartNumber = [partWithEtag componentsSeparatedByString:@":"][0];
         if ([partPartNumber isEqualToString:[NSString stringWithFormat:@"%d", partNumber+1]]) {
             NSLog(@"Skipping already upload part %@", partPartNumber);
+            _currentPart = [NSNumber numberWithInt:[_currentPart intValue] + 1]; // _currentPart + 1
+            [self loadNextPart];
             return;
         }
     }
