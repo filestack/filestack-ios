@@ -1,3 +1,9 @@
+## 0.3.6 (2017-03-20)
+
+### Added:
+
+- ```upload``` method for multi-part uploads.
+
 ## 0.3.5 (2017-01-16)
 
 ### Fixed:
