@@ -9,18 +9,22 @@
 #import "FSAPIClient.h"
 #import "FSAPIURL.h"
 #import "FSMetadata+Private.h"
+
+#ifdef DEBUG
 #import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityConsoleLogger.h>
-
+#endif
 
 @implementation FSAPIClient
 
 - (void) startLogging {
+#ifdef DEBUG
     AFNetworkActivityConsoleLogger *consoleLogger = [AFNetworkActivityConsoleLogger new];
     [consoleLogger setLevel:AFLoggerLevelDebug];
     [[AFNetworkActivityLogger sharedLogger] removeLogger:[[[AFNetworkActivityLogger sharedLogger] loggers] anyObject]];
     [[AFNetworkActivityLogger sharedLogger] addLogger:consoleLogger];
-    //[[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+#endif
 }
 
 - (NSURLSessionUploadTask*)PUT:(NSString *)postURL
@@ -36,7 +40,7 @@ completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHa
     for (id key in form) {
         [request setValue:form[key] forHTTPHeaderField:key];
     }
-    NSString *dataLength = [NSString stringWithFormat:@"%ld", [data length]];
+    NSString *dataLength = [NSString stringWithFormat:@"%ld", (unsigned long)[data length]];
     [request setValue:dataLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
     [request setValue:nil forHTTPHeaderField:@"Content-Type"];

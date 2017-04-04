@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
     Filestack/Shared/Options/FSRetryOptions.h
     Filestack/Shared/Options/FSUploadOptions.h
     Filestack/Shared/Transformations/*.h
+    Filestack/Shared/API/FSMultipartUpload.h
   )
 
   shared_private_transformations_header = %w(
@@ -56,8 +57,8 @@ Pod::Spec.new do |s|
     Filestack/Shared/Transformations/*.{h,m}
   )
 
-  s.ios.source_files = %w(Filestack/Platforms/iOS/*.{h,m}).concat(shared_source_files)
-  s.osx.source_files = %w(Filestack/Platforms/Mac/*.{h,m}).concat(shared_source_files)
+  s.ios.source_files = %w(Filestack/Platform/iOS/*.{h,m}).concat(shared_source_files)
+  s.osx.source_files = %w(Filestack/Platform/Mac/*.{h,m}).concat(shared_source_files)
 
   s.dependency 'AFNetworking', '~> 3.0'
 end

@@ -246,7 +246,7 @@ typedef void(^RetryHandler)(double, double);
     NSLog(@"%@", NSStringFromSelector(_cmd));
     
     NSDictionary *params = @{@"part": [NSString stringWithFormat:@"%d", partNumber],
-                             @"size": [NSString stringWithFormat:@"%ld", [chunk length]],
+                             @"size": [NSString stringWithFormat:@"%ld", (unsigned long)[chunk length]],
                              @"md5": md5};
     
     NSDictionary *formData = [self createUploadFormData:params];
@@ -327,7 +327,7 @@ typedef void(^RetryHandler)(double, double);
     }
     
     NSDictionary *params = @{@"filename": _storeOptions.fileName,
-                             @"size": [NSString stringWithFormat:@"%ld", [_file length]],
+                             @"size": [NSString stringWithFormat:@"%ld", (unsigned long)[_file length]],
                              @"mimetype": mimetype,
                              @"parts": [_uploadedParts componentsJoinedByString:@";"]};
     

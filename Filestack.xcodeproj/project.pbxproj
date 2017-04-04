@@ -12,7 +12,6 @@
 		591E51E14EEB7962C6F6CE70 /* libPods-FilestackMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3E41308DB30C343072BAAD /* libPods-FilestackMac.a */; };
 		797963B11E7866B700A3E64A /* FSMultipartUpload.m in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00C1E70697A0029EB21 /* FSMultipartUpload.m */; };
 		797963B21E7866E700A3E64A /* FSMultipartUpload.m in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA00C1E70697A0029EB21 /* FSMultipartUpload.m */; };
-		797963B31E78670D00A3E64A /* FSMultipartUpload.h in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA00B1E70697A0029EB21 /* FSMultipartUpload.h */; };
 		797963B51E7974A300A3E64A /* FSUploadOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA0011E70463E0029EB21 /* FSUploadOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		797963B61E7974AF00A3E64A /* FSRetryOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AEA0031E7049AD0029EB21 /* FSRetryOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		797963B71E79948C00A3E64A /* FSRetryOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AEA0041E7049AD0029EB21 /* FSRetryOptions.m */; };
@@ -1605,7 +1604,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				797963B31E78670D00A3E64A /* FSMultipartUpload.h in Sources */,
 				B2D756F41C6B7F49003263FB /* FSASCII.m in Sources */,
 				B2BFEB221C90565A0037571D /* Filestack+FSPicker.m in Sources */,
 				B273A9D91C50E2DC00232972 /* FSSecurity.m in Sources */,
