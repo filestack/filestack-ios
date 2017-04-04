@@ -31,7 +31,7 @@
 @implementation ViewControllerIOS
 
 // Remember to use your api key.
-NSString *const apiKey = @"A4kb0Ft2OSFy81feBYw68z";
+NSString *const apiKey = @"YOUR_API_KEY";
 
 - (void) awakeFromNib {
     [super awakeFromNib];
