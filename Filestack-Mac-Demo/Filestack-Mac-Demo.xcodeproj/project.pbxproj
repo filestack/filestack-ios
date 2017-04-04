@@ -17,6 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7906E8B71E67589200189D0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B268BF711C7321010094B993;
+			remoteInfo = FilestackMacTests;
+		};
 		B254A6991C5F6C300096F7F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B254A6931C5F6C300096F7F6 /* Filestack.xcodeproj */;
@@ -131,7 +138,8 @@
 			children = (
 				B254A69A1C5F6C300096F7F6 /* FilestackIOS.framework */,
 				B254A69C1C5F6C300096F7F6 /* FilestackMac.framework */,
-				B254A69E1C5F6C300096F7F6 /* FilestackTests.xctest */,
+				B254A69E1C5F6C300096F7F6 /* FilestackIOSTests.xctest */,
+				7906E8B81E67589200189D0F /* FilestackMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,7 +172,7 @@
 		B254A6741C5F6BFF0096F7F6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					B254A67B1C5F6BFF0096F7F6 = {
@@ -197,6 +205,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7906E8B81E67589200189D0F /* FilestackMacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FilestackMacTests.xctest;
+			remoteRef = 7906E8B71E67589200189D0F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B254A69A1C5F6C300096F7F6 /* FilestackIOS.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -211,10 +226,10 @@
 			remoteRef = B254A69B1C5F6C300096F7F6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B254A69E1C5F6C300096F7F6 /* FilestackTests.xctest */ = {
+		B254A69E1C5F6C300096F7F6 /* FilestackIOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = FilestackTests.xctest;
+			path = FilestackIOSTests.xctest;
 			remoteRef = B254A69D1C5F6C300096F7F6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -278,8 +293,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -321,8 +338,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";

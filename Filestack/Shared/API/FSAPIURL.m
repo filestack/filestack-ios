@@ -10,6 +10,7 @@
 
 NSString *const FSURLBaseURL = @"https://www.filestackapi.com/";
 NSString *const FSURLTransformationURL = @"https://process.filestackapi.com";
+NSString *const FSURLUploadURL = @"https://upload.filestackapi.com";
 
 @implementation FSAPIURL
 

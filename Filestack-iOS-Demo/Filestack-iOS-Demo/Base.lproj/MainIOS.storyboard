@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller iOS-->
@@ -14,31 +19,69 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1O9-cl-l9a">
+                                <rect key="frame" x="0.0" y="20" width="375" height="344"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="344" id="lYs-cv-Wd4"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIi-29-FOW">
+                                <rect key="frame" x="243" y="372" width="116" height="30"/>
+                                <state key="normal" title="Transform Image"/>
+                                <connections>
+                                    <action selector="transformBtnTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="soM-5O-XJF"/>
+                                </connections>
+                            </button>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCw-xH-TSK">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                            </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoA-aU-9oM">
-                                <rect key="frame" x="249" y="285" width="102" height="30"/>
+                                <rect key="frame" x="16" y="372" width="102" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="102" id="Dxz-Tn-LMP"/>
                                 </constraints>
-                                <state key="normal" title="Select Image"/>
+                                <state key="normal" title="Camera Roll"/>
                                 <connections>
                                     <action selector="selectImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbA-b3-5k5"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1O9-cl-l9a">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="277"/>
-                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kyn-4E-yD2">
+                                <rect key="frame" x="209" y="386" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="xBk-fW-hCh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="xqk-lQ-72J"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkV-za-djD">
+                                <rect key="frame" x="0.0" y="422" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="EMs-wb-2p2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="centerY" secondItem="MoA-aU-9oM" secondAttribute="centerY" constant="-161.5" id="1Zh-N0-oPx"/>
-                            <constraint firstItem="MoA-aU-9oM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2FT-cS-x7k"/>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-279" id="Xcl-nG-Mt0"/>
-                            <constraint firstItem="MoA-aU-9oM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c0V-cq-Gon"/>
-                            <constraint firstItem="1O9-cl-l9a" firstAttribute="centerX" secondItem="MoA-aU-9oM" secondAttribute="centerX" constant="-124.5" id="h3e-KD-bmL"/>
+                            <constraint firstItem="DIi-29-FOW" firstAttribute="top" secondItem="1O9-cl-l9a" secondAttribute="bottom" constant="8" id="28K-Rs-mfb"/>
+                            <constraint firstItem="rCw-xH-TSK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4cN-PR-2qd"/>
+                            <constraint firstAttribute="trailing" secondItem="rCw-xH-TSK" secondAttribute="trailing" id="FJg-qD-t14"/>
+                            <constraint firstItem="DIi-29-FOW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FQ2-2H-fbm"/>
+                            <constraint firstAttribute="bottom" secondItem="rCw-xH-TSK" secondAttribute="bottom" id="M1A-Wr-bq1"/>
+                            <constraint firstItem="MoA-aU-9oM" firstAttribute="top" secondItem="1O9-cl-l9a" secondAttribute="bottom" constant="8" id="U4h-tS-997"/>
+                            <constraint firstItem="MoA-aU-9oM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VZg-AI-651"/>
+                            <constraint firstItem="jkV-za-djD" firstAttribute="top" secondItem="MoA-aU-9oM" secondAttribute="bottom" constant="20" id="YSp-J8-VNa"/>
+                            <constraint firstAttribute="trailing" secondItem="jkV-za-djD" secondAttribute="trailing" id="fh6-8V-Len"/>
+                            <constraint firstItem="1O9-cl-l9a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="id1-gW-jUN"/>
+                            <constraint firstAttribute="trailing" secondItem="1O9-cl-l9a" secondAttribute="trailing" id="kLu-b8-9Ms"/>
                             <constraint firstItem="1O9-cl-l9a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="o2E-ZI-KCy"/>
+                            <constraint firstItem="jkV-za-djD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pbF-ec-8nn"/>
+                            <constraint firstItem="kyn-4E-yD2" firstAttribute="top" secondItem="1O9-cl-l9a" secondAttribute="bottom" constant="22" id="q0Q-E0-TES"/>
+                            <constraint firstItem="kyn-4E-yD2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rBj-dS-zcH"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -46,12 +89,16 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cdnLabel" destination="jkV-za-djD" id="8nz-Rn-7YG"/>
                         <outlet property="imageView" destination="1O9-cl-l9a" id="Zqh-bb-lDq"/>
+                        <outlet property="transformBtn" destination="DIi-29-FOW" id="c6J-Wb-AxI"/>
+                        <outlet property="transformPicker" destination="rCw-xH-TSK" id="oiN-X8-DVf"/>
+                        <outlet property="uploadProgressView" destination="kyn-4E-yD2" id="1yF-CK-Nqb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="513"/>
+            <point key="canvasLocation" x="917.60000000000002" y="512.29385307346331"/>
         </scene>
     </scenes>
 </document>

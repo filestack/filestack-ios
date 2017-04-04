@@ -32,6 +32,7 @@ typedef NSString * FSAccess;
 @property (nonatomic, strong) FSStoreLocation location;
 @property (nonatomic, readonly, copy) NSDictionary *toQueryParameters;
 @property (nonatomic, readonly, copy) NSString *storeLocation;
+@property (nonatomic, copy) NSString *region;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 

@@ -161,6 +161,43 @@
     }];
 }
 
+// This starts the multi-part upload process
+- (FSMultipartUpload*)upload:(NSData *)data
+   withOptions:(FSUploadOptions *)options
+   withStoreOptions:(FSStoreOptions *)storeOptions
+       onStart:(void (^)())onStart
+       onRetry:(void (^)(double, double))onRetry
+      progress:(void (^)(NSProgress *uploadProgress))progress
+completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler {
+
+    FSMultipartUpload *mpu = [[FSMultipartUpload alloc] initWithOptions:options
+                                                       withStoreOptions:storeOptions
+                                                             withApiKey:_apiKey
+                                                                onStart:^() {
+                                                                    if (onStart) {
+                                                                        onStart();
+                                                                    }
+                                                                }
+                                                                onRetry:^(double attempt, double secs) {
+                                                                    if (onRetry) {
+                                                                        onRetry(attempt, secs);
+                                                                    }
+                                                                }
+                                                               progress:^(NSProgress *uploadProgress) {
+                                                                 if (progress) {
+                                                                     progress(uploadProgress);
+                                                                 }
+                                                             }
+                                                      completionHandler:^(NSDictionary *result, NSError *error) {
+                                                                 if (completionHandler) {
+                                                                     completionHandler(result, error);
+                                                                 }
+                                                             }];
+    
+    [mpu upload:data];
+    return mpu;
+}
+
 - (void)transformURL:(NSString *)url transformation:(FSTransformation *)transformation security:(FSSecurity *)security completionHandler:(void (^)(NSData *data, NSDictionary *JSON, NSError *error))completionHandler {
     NSString *transformationURL = [transformation transformationURLWithApiKey:self.apiKey security:security URLToTransform:url];
     FSAPIClient *apiClient = [[FSAPIClient alloc] init];

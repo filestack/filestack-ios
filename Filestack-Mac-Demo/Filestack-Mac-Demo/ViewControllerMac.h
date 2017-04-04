@@ -10,4 +10,8 @@
 
 @interface ViewControllerMac : NSViewController
 
+@property (weak) IBOutlet NSButtonCell *multipartUploadBtn;
+@property (unsafe_unretained) IBOutlet NSTextView *resultsTextView;
+@property (weak) IBOutlet NSProgressIndicator *uploadProgressIndicator;
+
 @end

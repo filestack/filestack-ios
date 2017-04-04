@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Filestack'
-  s.version      = '0.3.5'
+  s.version      = '0.3.6'
   s.summary      = 'SDK to access Filestack API'
 
   s.description  = <<-DESC
@@ -28,6 +28,8 @@ Pod::Spec.new do |s|
     Filestack/Shared/Options/FSSecurity.h
     Filestack/Shared/Options/FSStatOptions.h
     Filestack/Shared/Options/FSStoreOptions.h
+    Filestack/Shared/Options/FSRetryOptions.h
+    Filestack/Shared/Options/FSUploadOptions.h
     Filestack/Shared/Transformations/*.h
   )
 

@@ -6,12 +6,21 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
+// Only log in debug env
+#ifdef DEBUG
+#   define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#   define NSLog(...) (void)0
+#endif
+
 @import Foundation;
 #import "FSBlob.h"
 #import "FSMetadata.h"
 #import "FSStatOptions.h"
 #import "FSStoreOptions.h"
 #import "FSTransformation.h"
+#import "FSUploadOptions.h"
+#import "FSMultipartUpload.h"
 
 @protocol FSFilestackDelegate <NSObject>
 @optional
@@ -90,6 +99,25 @@
  @param completionHandler A block object taking two arguments: blob and error, returned from store request.
  */
 - (void)store:(NSData *)data withOptions:(FSStoreOptions *)storeOptions progress:(void (^)(NSProgress *uploadProgress))progress completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler;
+
+/*!
+ @brief Uploads provided data to one of a few storage locations using multi-part upload feature.
+ @param data NSData object to be stored.
+ @param uploadOptions FSUploadOptions object
+ @param storeOptions FSStoreOptions object
+ @param onStart: A block object with no params that is called when upload begins
+ @param onRetry: A block object with two double params indicating that a chunk has failed and retry will be attempted
+ @param progress A block object taking one argument: upload progress.
+ @param completionHandler A block object taking two arguments: blob and error, returned from store request.
+ */
+- (FSMultipartUpload*)upload:(NSData *)data
+   withOptions:(FSUploadOptions *)uploadOptions
+   withStoreOptions:(FSStoreOptions *)storeOptions
+       onStart:(void (^)())onStart
+       onRetry:(void (^)(double, double))onRetry
+      progress:(void (^)(NSProgress *uploadProgress))progress
+completionHandler:(void (^)(NSDictionary *result, NSError *error))completionHandler;
+
 
 /*!
  @brief Transforms provided url using Filestack's transformation engine.
