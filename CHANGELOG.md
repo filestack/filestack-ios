@@ -1,3 +1,9 @@
+## 0.3.7 (2017-04-04)
+
+### Fixed:
+
+- Removed AFNetworkingActivityLogger dependency
+
 ## 0.3.6 (2017-03-20)
 
 ### Added:

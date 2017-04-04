@@ -10,30 +10,13 @@
 #import "FSAPIURL.h"
 #import "FSMetadata+Private.h"
 
-#ifdef DEBUG
-#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
-#import <AFNetworkActivityLogger/AFNetworkActivityConsoleLogger.h>
-#endif
-
 @implementation FSAPIClient
-
-- (void) startLogging {
-#ifdef DEBUG
-    AFNetworkActivityConsoleLogger *consoleLogger = [AFNetworkActivityConsoleLogger new];
-    [consoleLogger setLevel:AFLoggerLevelDebug];
-    [[AFNetworkActivityLogger sharedLogger] removeLogger:[[[AFNetworkActivityLogger sharedLogger] loggers] anyObject]];
-    [[AFNetworkActivityLogger sharedLogger] addLogger:consoleLogger];
-    [[AFNetworkActivityLogger sharedLogger] startLogging];
-#endif
-}
 
 - (NSURLSessionUploadTask*)PUT:(NSString *)postURL
     formdata:(NSDictionary *)form
         data:(NSData*)data
 progress:(void (^)(NSProgress *uploadProgress))progress
 completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHandler {
-    [self startLogging];
-
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] init];
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     NSMutableURLRequest *request = [serializer requestWithMethod:@"PUT" URLString:postURL parameters:nil error:nil];
@@ -74,7 +57,6 @@ completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHa
      options:(FSStoreOptions *)storeOptions
 sessionSettings:(FSSessionSettings *)sessionSettings
 completionHandler:(void (^)(NSDictionary *response, NSError *error))completionHandler {
-    [self startLogging];
     AFHTTPSessionManager *httpManager = [self httpSessionManagerWithBaseURL:sessionSettings.baseURL
                                                        andPOSTURIParameters:sessionSettings.paramsInURI];
     
