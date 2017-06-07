@@ -1,3 +1,9 @@
+## 0.3.8 (2017-06-07)
+
+### Fixed:
+
+- Fixing non-portable path to file ```FSUploadOptions.h``` (as reported by #12)
+
 ## 0.3.7 (2017-04-04)
 
 ### Fixed:
