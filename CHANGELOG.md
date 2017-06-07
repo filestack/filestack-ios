@@ -2,7 +2,7 @@
 
 ### Fixed:
 
-- Fixing non-portable path to file ```FSUploadOptions.h``` (as reported by #12)
+- Fixed non-portable path to file ```FSUploadOptions.h``` (as reported by #12)
 
 ## 0.3.7 (2017-04-04)
 
