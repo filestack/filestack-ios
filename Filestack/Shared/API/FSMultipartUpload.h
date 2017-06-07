@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FSUploadoptions.h"
+#import "FSUploadOptions.h"
 #import "FSStoreOptions.h"
 
 @interface FSMultipartUpload : NSObject
