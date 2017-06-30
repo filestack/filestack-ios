@@ -1,3 +1,9 @@
+## 0.3.9 (2017-06-30)
+
+### Fixed:
+
+- Fixed some warnings that were being reported by Xcode and also CocoaPods.
+
 ## 0.3.8 (2017-06-07)
 
 ### Fixed:
