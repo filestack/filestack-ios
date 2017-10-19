@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		454054741F98A30F00C12B2F /* Filestack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054731F98A30F00C12B2F /* Filestack.swift */; };
 		457085091F975C6C00991340 /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457084FF1F975C6C00991340 /* Filestack.framework */; };
-		4570850E1F975C6C00991340 /* FilestackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570850D1F975C6C00991340 /* FilestackTests.swift */; };
+		4570850E1F975C6C00991340 /* FilestackUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570850D1F975C6C00991340 /* FilestackUploadTests.swift */; };
 		457085101F975C6C00991340 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 457085021F975C6C00991340 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		457965241F989F52004C570A /* FilestackSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457964FE1F989E92004C570A /* FilestackSDK.framework */; };
+		457CDBE91F98B13E00EA0B12 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457965111F989E99004C570A /* OHHTTPStubs.framework */; };
+		45E539D81F98B281003863BA /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E539CE1F98B281003863BA /* sample.jpg */; };
+		45E539D91F98B281003863BA /* large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E539D71F98B281003863BA /* large.jpg */; };
+		45E539E11F98D363003863BA /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E539E01F98D362003863BA /* Seeds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,15 +26,105 @@
 			remoteGlobalIDString = 457084FE1F975C6C00991340;
 			remoteInfo = Filestack;
 		};
+		457964FD1F989E92004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457964F51F989E92004C570A /* FilestackSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 45B8309B1F03B27A0053742A;
+			remoteInfo = FilestackSDK;
+		};
+		457964FF1F989E92004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457964F51F989E92004C570A /* FilestackSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 45B8310D1F03D8140053742A;
+			remoteInfo = FilestackSDKTests;
+		};
+		4579650C1F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09110A4119805F4800D175E4;
+			remoteInfo = "OHHTTPStubs iOS StaticLib";
+		};
+		4579650E1F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09110A5119805F4800D175E4;
+			remoteInfo = "OHHTTPStubs iOS Lib Tests";
+		};
+		457965101F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 725CD99B1A9EB65100F84C8B;
+			remoteInfo = "OHHTTPStubs iOS Framework";
+		};
+		457965121F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 093442F91B80EC4A00A91535;
+			remoteInfo = "OHHTTPStubs iOS Fmk Tests";
+		};
+		457965141F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 095981C219806A7900807DBE;
+			remoteInfo = "OHHTTPStubs Mac Framework";
+		};
+		457965161F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 095981D219806A7900807DBE;
+			remoteInfo = "OHHTTPStubs Mac Tests";
+		};
+		457965181F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EAA436A51BE1598D000E9E99;
+			remoteInfo = "OHHTTPStubs tvOS Framework";
+		};
+		4579651A1F989E99004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA100AB71BE15BE400129352;
+			remoteInfo = "OHHTTPStubs tvOS Fmk Tests";
+		};
+		4579651E1F989EB2004C570A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457964F51F989E92004C570A /* FilestackSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 45B8309A1F03B27A0053742A;
+			remoteInfo = FilestackSDK;
+		};
+		457CDBDE1F98B0CE00EA0B12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 725CD99A1A9EB65100F84C8B;
+			remoteInfo = "OHHTTPStubs iOS Framework";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		454054731F98A30F00C12B2F /* Filestack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filestack.swift; sourceTree = "<group>"; };
 		457084FF1F975C6C00991340 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		457085021F975C6C00991340 /* Filestack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filestack.h; sourceTree = "<group>"; };
 		457085031F975C6C00991340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		457085081F975C6C00991340 /* FilestackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilestackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4570850D1F975C6C00991340 /* FilestackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilestackTests.swift; sourceTree = "<group>"; };
+		4570850D1F975C6C00991340 /* FilestackUploadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilestackUploadTests.swift; sourceTree = "<group>"; };
 		4570850F1F975C6C00991340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		457964F51F989E92004C570A /* FilestackSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilestackSDK.xcodeproj; path = "../../Carthage/Checkouts/filestack-swift/FilestackSDK.xcodeproj"; sourceTree = "<group>"; };
+		457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHHTTPStubs.xcodeproj; path = ../../Carthage/Checkouts/OHHTTPStubs/OHHTTPStubs/OHHTTPStubs.xcodeproj; sourceTree = "<group>"; };
+		45E539CE1F98B281003863BA /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
+		45E539D71F98B281003863BA /* large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = large.jpg; sourceTree = "<group>"; };
+		45E539E01F98D362003863BA /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457965241F989F52004C570A /* FilestackSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457CDBE91F98B13E00EA0B12 /* OHHTTPStubs.framework in Frameworks */,
 				457085091F975C6C00991340 /* Filestack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,9 +151,11 @@
 		457084F51F975C6B00991340 = {
 			isa = PBXGroup;
 			children = (
+				457964CF1F989D93004C570A /* External Dependencies */,
 				457085011F975C6C00991340 /* Filestack */,
 				4570850C1F975C6C00991340 /* FilestackTests */,
 				457085001F975C6C00991340 /* Products */,
+				457965221F989F52004C570A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +173,7 @@
 			children = (
 				457085021F975C6C00991340 /* Filestack.h */,
 				457085031F975C6C00991340 /* Info.plist */,
+				454054731F98A30F00C12B2F /* Filestack.swift */,
 			);
 			path = Filestack;
 			sourceTree = "<group>";
@@ -80,10 +181,62 @@
 		4570850C1F975C6C00991340 /* FilestackTests */ = {
 			isa = PBXGroup;
 			children = (
-				4570850D1F975C6C00991340 /* FilestackTests.swift */,
 				4570850F1F975C6C00991340 /* Info.plist */,
+				4570850D1F975C6C00991340 /* FilestackUploadTests.swift */,
+				45E539DF1F98B2AC003863BA /* Fixtures */,
+				45E539E01F98D362003863BA /* Seeds.swift */,
 			);
 			path = FilestackTests;
+			sourceTree = "<group>";
+		};
+		457964CF1F989D93004C570A /* External Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				457964F51F989E92004C570A /* FilestackSDK.xcodeproj */,
+				457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */,
+			);
+			path = "External Dependencies";
+			sourceTree = "<group>";
+		};
+		457964F61F989E92004C570A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				457964FE1F989E92004C570A /* FilestackSDK.framework */,
+				457965001F989E92004C570A /* FilestackSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		457965021F989E99004C570A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4579650D1F989E99004C570A /* libOHHTTPStubs.a */,
+				4579650F1F989E99004C570A /* OHHTTPStubs iOS Lib Tests.xctest */,
+				457965111F989E99004C570A /* OHHTTPStubs.framework */,
+				457965131F989E99004C570A /* OHHTTPStubs iOS Fmk Tests.xctest */,
+				457965151F989E99004C570A /* OHHTTPStubs.framework */,
+				457965171F989E99004C570A /* OHHTTPStubs Mac Tests.xctest */,
+				457965191F989E99004C570A /* OHHTTPStubs.framework */,
+				4579651B1F989E99004C570A /* OHHTTPStubs tvOS Fmk Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		457965221F989F52004C570A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		45E539DF1F98B2AC003863BA /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				45E539D71F98B281003863BA /* large.jpg */,
+				45E539CE1F98B281003863BA /* sample.jpg */,
+			);
+			name = Fixtures;
+			path = ../Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +265,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4579651F1F989EB2004C570A /* PBXTargetDependency */,
 			);
 			name = Filestack;
 			productName = Filestack;
@@ -129,6 +283,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				457CDBDF1F98B0CE00EA0B12 /* PBXTargetDependency */,
 				4570850B1F975C6C00991340 /* PBXTargetDependency */,
 			);
 			name = FilestackTests;
@@ -148,6 +303,7 @@
 				TargetAttributes = {
 					457084FE1F975C6C00991340 = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					457085071F975C6C00991340 = {
@@ -166,6 +322,16 @@
 			mainGroup = 457084F51F975C6B00991340;
 			productRefGroup = 457085001F975C6C00991340 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 457964F61F989E92004C570A /* Products */;
+					ProjectRef = 457964F51F989E92004C570A /* FilestackSDK.xcodeproj */;
+				},
+				{
+					ProductGroup = 457965021F989E99004C570A /* Products */;
+					ProjectRef = 457965011F989E99004C570A /* OHHTTPStubs.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				457084FE1F975C6C00991340 /* Filestack */,
@@ -173,6 +339,79 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		457964FE1F989E92004C570A /* FilestackSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FilestackSDK.framework;
+			remoteRef = 457964FD1F989E92004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457965001F989E92004C570A /* FilestackSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FilestackSDKTests.xctest;
+			remoteRef = 457964FF1F989E92004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4579650D1F989E99004C570A /* libOHHTTPStubs.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOHHTTPStubs.a;
+			remoteRef = 4579650C1F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4579650F1F989E99004C570A /* OHHTTPStubs iOS Lib Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OHHTTPStubs iOS Lib Tests.xctest";
+			remoteRef = 4579650E1F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457965111F989E99004C570A /* OHHTTPStubs.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OHHTTPStubs.framework;
+			remoteRef = 457965101F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457965131F989E99004C570A /* OHHTTPStubs iOS Fmk Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OHHTTPStubs iOS Fmk Tests.xctest";
+			remoteRef = 457965121F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457965151F989E99004C570A /* OHHTTPStubs.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OHHTTPStubs.framework;
+			remoteRef = 457965141F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457965171F989E99004C570A /* OHHTTPStubs Mac Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OHHTTPStubs Mac Tests.xctest";
+			remoteRef = 457965161F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457965191F989E99004C570A /* OHHTTPStubs.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OHHTTPStubs.framework;
+			remoteRef = 457965181F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4579651B1F989E99004C570A /* OHHTTPStubs tvOS Fmk Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OHHTTPStubs tvOS Fmk Tests.xctest";
+			remoteRef = 4579651A1F989E99004C570A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		457084FD1F975C6C00991340 /* Resources */ = {
@@ -186,6 +425,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E539D81F98B281003863BA /* sample.jpg in Resources */,
+				45E539D91F98B281003863BA /* large.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				454054741F98A30F00C12B2F /* Filestack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +445,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4570850E1F975C6C00991340 /* FilestackTests.swift in Sources */,
+				45E539E11F98D363003863BA /* Seeds.swift in Sources */,
+				4570850E1F975C6C00991340 /* FilestackUploadTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +457,16 @@
 			isa = PBXTargetDependency;
 			target = 457084FE1F975C6C00991340 /* Filestack */;
 			targetProxy = 4570850A1F975C6C00991340 /* PBXContainerItemProxy */;
+		};
+		4579651F1F989EB2004C570A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FilestackSDK;
+			targetProxy = 4579651E1F989EB2004C570A /* PBXContainerItemProxy */;
+		};
+		457CDBDF1F98B0CE00EA0B12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "OHHTTPStubs iOS Framework";
+			targetProxy = 457CDBDE1F98B0CE00EA0B12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,9 +589,12 @@
 		457085141F975C6C00991340 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -349,6 +605,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.Filestack;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -356,9 +614,11 @@
 		457085151F975C6C00991340 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -369,6 +629,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.Filestack;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -376,6 +637,7 @@
 		457085171F975C6C00991340 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FilestackTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -388,6 +650,7 @@
 		457085181F975C6C00991340 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FilestackTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
