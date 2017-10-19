@@ -1,2 +1,4 @@
 github "Alamofire/Alamofire" "4.5.1"
 github "AliSoftware/OHHTTPStubs" "6.0.0"
+github "filestack/filestack-swift" "1.0"
+github "onmyway133/Arcane" "0.5.1"
