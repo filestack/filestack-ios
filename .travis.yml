@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode9
 branches:
   only:
     - ios-sdk
@@ -10,11 +10,14 @@ env:
   - IOS_FRAMEWORK_SCHEME="Filestack"
   - NSUnbufferedIO=YES
   matrix:
+    - DESTINATION="OS=11.0,name=iPhone 8 Plus"   SCHEME="$IOS_FRAMEWORK_SCHEME"
     - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"   SCHEME="$IOS_FRAMEWORK_SCHEME"
     - DESTINATION="OS=9.3,name=iPhone 6"           SCHEME="$IOS_FRAMEWORK_SCHEME"
     - DESTINATION="OS=9.0,name=iPhone 5"           SCHEME="$IOS_FRAMEWORK_SCHEME"
 before_install:
-  - brew install carthage
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
+  - brew outdated xctool || brew upgrade xctool
   - carthage bootstrap --no-build --use-submodules --verbose
 script:
   - set -o pipefail
