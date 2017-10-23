@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4505992A1F99F56800DFA168 /* FilestackSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 450599081F99F53500DFA168 /* FilestackSDK.framework */; };
 		454054741F98A30F00C12B2F /* Filestack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054731F98A30F00C12B2F /* Filestack.swift */; };
+		4568DCD01F9DFD7300F29923 /* PickerUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */; };
 		457085091F975C6C00991340 /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457084FF1F975C6C00991340 /* Filestack.framework */; };
 		4570850E1F975C6C00991340 /* FilestackUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570850D1F975C6C00991340 /* FilestackUploadTests.swift */; };
 		457085101F975C6C00991340 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 457085021F975C6C00991340 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,6 +116,7 @@
 		450598FF1F99F53400DFA168 /* FilestackSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilestackSDK.xcodeproj; path = "Carthage/Checkouts/filestack-swift/FilestackSDK.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4505990B1F99F54600DFA168 /* OHHTTPStubs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHHTTPStubs.xcodeproj; path = Carthage/Checkouts/OHHTTPStubs/OHHTTPStubs/OHHTTPStubs.xcodeproj; sourceTree = SOURCE_ROOT; };
 		454054731F98A30F00C12B2F /* Filestack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filestack.swift; sourceTree = "<group>"; };
+		4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUploadController.swift; sourceTree = "<group>"; };
 		457084FF1F975C6C00991340 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		457085021F975C6C00991340 /* Filestack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filestack.h; sourceTree = "<group>"; };
 		457085031F975C6C00991340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				457085021F975C6C00991340 /* Filestack.h */,
 				457085031F975C6C00991340 /* Info.plist */,
 				454054731F98A30F00C12B2F /* Filestack.swift */,
+				4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */,
 			);
 			path = Filestack;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4568DCD01F9DFD7300F29923 /* PickerUploadController.swift in Sources */,
 				454054741F98A30F00C12B2F /* Filestack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

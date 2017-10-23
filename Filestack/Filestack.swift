@@ -20,7 +20,13 @@ import FilestackSDK
     /// A `Security` object. `nil` by default.
     public let security: Security?
 
+
+    // MARK: - Private Properties
+
     private let client: Client
+
+    fileprivate var uploadControllers: [PickerUploadController] = []
+
 
     // MARK: - Lifecyle Functions
 
@@ -65,11 +71,52 @@ import FilestackSDK
                                           uploadProgress: ((Progress) -> Void)? = nil,
                                           completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> MultipartUpload {
 
-        return client.multiPartUpload(from: localURL,
+        let mpu = client.multiPartUpload(from: localURL,
                                       storage: storage,
                                       useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
                                       queue: queue,
+                                      startUploadImmediately: false,
                                       uploadProgress: uploadProgress,
                                       completionHandler: completionHandler)
+
+        mpu.uploadFile()
+
+        return mpu
+    }
+
+    @discardableResult public func uploadFromImagePicker(viewController: UIViewController,
+                                                         sourceType: UIImagePickerControllerSourceType,
+                                                         storage: StorageLocation = .s3,
+                                                         useIntelligentIngestionIfAvailable: Bool = true,
+                                                         queue: DispatchQueue = .main,
+                                                         uploadProgress: ((Progress) -> Void)? = nil,
+                                                         completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> MultipartUpload {
+
+        let mpu = client.multiPartUpload(storage: storage,
+                                         useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
+                                         queue: queue,
+                                         startUploadImmediately: false,
+                                         uploadProgress: uploadProgress,
+                                         completionHandler: completionHandler)
+
+        let uploadController = PickerUploadController(multipartUpload: mpu,
+                                                      viewController: viewController,
+                                                      sourceType: sourceType)
+
+        uploadController.delegate = self
+        uploadController.start()
+        uploadControllers.append(uploadController)
+
+        return mpu
+    }
+}
+
+extension Filestack: PickerUploadControllerDelegate {
+
+    func pickerUploadControllerDidFinish(_ pickerUploadController: PickerUploadController) {
+
+        if let index = uploadControllers.index(of: pickerUploadController) {
+            uploadControllers.remove(at: index)
+        }
     }
 }
