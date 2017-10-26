@@ -10,12 +10,18 @@ import Foundation
 import FilestackSDK
 
 
+public typealias FolderListCompletionHandler = (_ response: FolderListResponse) -> Swift.Void
+public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
+
+
 @objc(FSFilestack) public class Filestack: NSObject {
 
     // MARK: - Properties
 
     /// An API key obtained from the [Developer Portal](http://dev.filestack.com).
     public let apiKey: String
+
+    public let appURL: URL
 
     /// A `Security` object. `nil` by default.
     public let security: Security?
@@ -24,6 +30,10 @@ import FilestackSDK
     // MARK: - Private Properties
 
     private let client: Client
+    private let cloudService = CloudService()
+
+    private var pendingRequests: [String: (CloudRequest, CompletionHandler)]
+    private var lastToken: String?
 
     fileprivate var uploadControllers: [PickerUploadController] = []
 
@@ -38,11 +48,14 @@ import FilestackSDK
         - Parameter apiKey: An API key obtained from the Developer Portal.
         - Parameter security: A `Security` object. `nil` by default.
      */
-    @objc public init(apiKey: String, security: Security? = nil) {
+    @objc public init(appURL: URL, apiKey: String, security: Security? = nil, lastToken: String? = nil) {
 
+        self.appURL = appURL
         self.apiKey = apiKey
         self.security = security
+        self.lastToken = lastToken
         self.client = Client(apiKey: apiKey, security: security)
+        self.pendingRequests = [:]
 
         super.init()
     }
@@ -108,6 +121,77 @@ import FilestackSDK
         uploadControllers.append(uploadController)
 
         return mpu
+    }
+
+    public func folderList(provider: CloudProvider,
+                           path: String,
+                           pageToken: String? = nil,
+                           completionBlock: @escaping FolderListCompletionHandler) {
+
+        let request = FolderListRequest(appURL: appURL,
+                                       apiKey: apiKey,
+                                       security: security,
+                                       token:  lastToken,
+                                       pageToken: pageToken,
+                                       provider: provider,
+                                       path: path)
+
+        let genericCompletionBlock: CompletionHandler = { response in
+            guard let response = response as? FolderListResponse else { return }
+            completionBlock(response)
+        }
+
+        perform(request: request, completionBlock: genericCompletionBlock)
+    }
+
+    /// To be called by the app delegate's `application(_:,url:,options:)`
+    public func resumeCloudRequest(using url: URL) {
+
+        // Compare the given URL's scheme to the app URL, then try to extract the request UUID from the URL.
+        // If unable to find a match or if UUID is missing, return early.
+        guard url.scheme?.lowercased() == appURL.scheme?.lowercased(), let requestUUID = url.host else {
+            return
+        }
+
+        // Find pending request identified by `requestUUID` or return early.
+        guard let (request, completionBlock) = pendingRequests[requestUUID] else {
+            return
+        }
+
+        // Perform pending request.
+        // On success, store last token, remove pending request, and call completion block.
+        // Else, if auth is still required, open Safari and request authentication.
+        request.perform(cloudService: cloudService) { (requestUUID, response) in
+            if let authRedirectURL = response.authRedirectURL {
+                UIApplication.shared.open(authRedirectURL, options: [:], completionHandler: nil)
+            } else {
+                self.lastToken = request.token
+                self.pendingRequests.removeValue(forKey: requestUUID)
+                completionBlock(response)
+            }
+        }
+    }
+
+
+    // MARK: - Private Functions
+
+    private func perform(request: CloudRequest, completionBlock: @escaping CompletionHandler) {
+
+        // Perform request.
+        // On success, store last token and call completion block.
+        // Else, if auth is required, add request to pending requests, open Safari and request authentication.
+        request.perform(cloudService: cloudService) { (requestUUID, response) in
+            if let authRedirectURL = response.authRedirectURL {
+                UIApplication.shared.open(authRedirectURL, options: [:], completionHandler: { success in
+                    if success {
+                        self.pendingRequests[requestUUID] = (request, completionBlock)
+                    }
+                })
+            } else {
+                self.lastToken = request.token
+                completionBlock(response)
+            }
+        }
     }
 }
 
