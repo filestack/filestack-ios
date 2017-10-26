@@ -64,7 +64,7 @@ internal final class FolderListRequest: CloudRequest {
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, completionBlock: @escaping CloudActionCompletionHandler) {
+    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler) {
 
         let actionUUID = UUID().uuidString
         let appURLWithUUID = URL(string: "\(appURL.absoluteString)\(actionUUID)")!

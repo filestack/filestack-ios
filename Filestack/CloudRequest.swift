@@ -14,13 +14,13 @@ import Foundation
     var authRedirectURL: URL? { get }
 }
 
-internal typealias CloudActionCompletionHandler = (_ uuid: String, _ response: CloudResponse) -> Swift.Void
+internal typealias CloudRequestCompletionHandler = (_ uuid: String, _ response: CloudResponse) -> Swift.Void
 
 internal protocol CloudRequest {
 
     var token: String? { get }
 
-    func perform(cloudService: CloudService, completionBlock: @escaping CloudActionCompletionHandler)
+    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler)
     func parseJSON(data: Data) -> [String: Any]?
 }
 
