@@ -126,36 +126,36 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     public func folderList(provider: CloudProvider,
                            path: String,
                            pageToken: String? = nil,
-                           completionBlock: @escaping FolderListCompletionHandler) {
+                           completionHandler: @escaping FolderListCompletionHandler) {
 
         let request = FolderListRequest(appURL: appURL,
-                                       apiKey: apiKey,
-                                       security: security,
-                                       token:  lastToken,
-                                       pageToken: pageToken,
-                                       provider: provider,
-                                       path: path)
+                                        apiKey: apiKey,
+                                        security: security,
+                                        token:  lastToken,
+                                        pageToken: pageToken,
+                                        provider: provider,
+                                        path: path)
 
-        let genericCompletionBlock: CompletionHandler = { response in
+        let genericCompletionHandler: CompletionHandler = { response in
             guard let response = response as? FolderListResponse else { return }
-            completionBlock(response)
+            completionHandler(response)
         }
 
-        perform(request: request, completionBlock: genericCompletionBlock)
+        perform(request: request, completionBlock: genericCompletionHandler)
     }
 
     /// To be called by the app delegate's `application(_:,url:,options:)`
-    public func resumeCloudRequest(using url: URL) {
+    @discardableResult public func resumeCloudRequest(using url: URL) -> Bool {
 
         // Compare the given URL's scheme to the app URL, then try to extract the request UUID from the URL.
         // If unable to find a match or if UUID is missing, return early.
         guard url.scheme?.lowercased() == appURL.scheme?.lowercased(), let requestUUID = url.host else {
-            return
+            return false
         }
 
         // Find pending request identified by `requestUUID` or return early.
         guard let (request, completionBlock) = pendingRequests[requestUUID] else {
-            return
+            return false
         }
 
         // Perform pending request.
@@ -170,6 +170,8 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                 completionBlock(response)
             }
         }
+
+        return true
     }
 
 
