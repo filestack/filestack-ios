@@ -27,50 +27,33 @@ import Alamofire
 
 internal final class StoreRequest: CloudRequest {
 
+    
     // MARK: - Properties
 
-    let appURLScheme: String
     let apiKey: String
     let security: Security?
     let provider: CloudProvider
     let path: String
-    let storeLocation: StorageLocation
-    let storeRegion: String?
-    let storeContainer: String?
-    let storePath: String?
-    let storeAccess: StorageAccess?
-    let storeFilename: String?
+    let storeOptions: StorageOptions
 
     private(set) var token: String?
 
 
     // MARK: - Lifecyle Functions
 
-    init(appURLScheme: String,
-         apiKey: String,
+    init(apiKey: String,
          security: Security? = nil,
          token: String? = nil,
          provider: CloudProvider,
          path: String,
-         storeLocation: StorageLocation = .s3,
-         storeRegion: String? = nil,
-         storeContainer: String? = nil,
-         storePath: String? = nil,
-         storeAccess: StorageAccess? = nil,
-         storeFilename: String? = nil) {
+         storeOptions: StorageOptions) {
 
-        self.appURLScheme = appURLScheme
         self.apiKey = apiKey
         self.security = security
         self.token = token
         self.provider = provider
         self.path = path
-        self.storeLocation = storeLocation
-        self.storeRegion = storeRegion
-        self.storeContainer = storeContainer
-        self.storePath = storePath
-        self.storeAccess = storeAccess
-        self.storeFilename = storeFilename
+        self.storeOptions = storeOptions
     }
 
 
@@ -82,16 +65,10 @@ internal final class StoreRequest: CloudRequest {
 
         let request = cloudService.storeRequest(provider: provider,
                                                 path: path,
-                                                appURL: appURLWithRequestUUID(uuid: requestUUID),
                                                 apiKey: apiKey,
                                                 security: security,
                                                 token: token,
-                                                storeLocation: storeLocation,
-                                                storeRegion: storeRegion,
-                                                storeContainer: storeContainer,
-                                                storePath: storePath,
-                                                storeAccess: storeAccess,
-                                                storeFilename: storeFilename)
+                                                storeOptions: storeOptions)
 
         request.validate(statusCode: Config.validHTTPResponseCodes)
 

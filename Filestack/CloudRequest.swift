@@ -20,7 +20,6 @@ internal typealias CloudRequestCompletionHandler = (_ uuid: UUID, _ response: Cl
 
 internal protocol CloudRequest {
 
-    var appURLScheme: String { get }
     var token: String? { get }
     var provider: CloudProvider { get }
     var apiKey: String { get }
@@ -32,7 +31,6 @@ internal protocol CloudRequest {
     func getResults(from json: [String: Any]) -> [String: Any]?
 
     func generateRequestUUID() -> UUID
-    func appURLWithRequestUUID(uuid: UUID) -> URL
 }
 
 internal extension CloudRequest {
@@ -59,10 +57,5 @@ internal extension CloudRequest {
     func generateRequestUUID() -> UUID {
 
         return UUID()
-    }
-
-    func appURLWithRequestUUID(uuid: UUID) -> URL {
-
-        return URL(string: appURLScheme + "://Filestack/?requestUUID=" + uuid.uuidString)!
     }
 }

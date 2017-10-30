@@ -104,4 +104,12 @@ internal final class FolderListRequest: CloudRequest {
             }
         })
     }
+
+
+    // MARK: - Private Functions
+
+    private func appURLWithRequestUUID(uuid: UUID) -> URL {
+
+        return URL(string: appURLScheme + "://Filestack/?requestUUID=" + uuid.uuidString)!
+    }
 }

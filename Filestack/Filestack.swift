@@ -25,8 +25,6 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     /// An API key obtained from the [Developer Portal](http://dev.filestack.com).
     public let apiKey: String
 
-    public let appURLScheme: String
-
     /// A `Security` object. `nil` by default.
     public let security: Security?
 
@@ -52,9 +50,8 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         - Parameter apiKey: An API key obtained from the Developer Portal.
         - Parameter security: A `Security` object. `nil` by default.
      */
-    @objc public init(appURLScheme: String, apiKey: String, security: Security? = nil, lastToken: String? = nil) {
+    @objc public init(apiKey: String, security: Security? = nil, lastToken: String? = nil) {
 
-        self.appURLScheme = appURLScheme
         self.apiKey = apiKey
         self.security = security
         self.lastToken = lastToken
@@ -141,6 +138,7 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     public func folderList(provider: CloudProvider,
                            path: String,
                            pageToken: String? = nil,
+                           appURLScheme: String,
                            completionHandler: @escaping FolderListCompletionHandler) {
 
         let request = FolderListRequest(appURLScheme: appURLScheme,
@@ -161,26 +159,15 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
     public func store(provider: CloudProvider,
                       path: String,
-                      storeLocation: StorageLocation = .s3,
-                      storeRegion: String? = nil,
-                      storeContainer: String? = nil,
-                      storePath: String? = nil,
-                      storeAccess: StorageAccess? = nil,
-                      storeFilename: String? = nil,
+                      storeOptions: StorageOptions = StorageOptions(location: .s3),
                       completionHandler: @escaping StoreCompletionHandler) {
 
-        let request = StoreRequest(appURLScheme: appURLScheme,
-                                   apiKey: apiKey,
+        let request = StoreRequest(apiKey: apiKey,
                                    security: security,
                                    token:  lastToken,
                                    provider: provider,
                                    path: path,
-                                   storeLocation: storeLocation,
-                                   storeRegion: storeRegion,
-                                   storeContainer: storeContainer,
-                                   storePath: storePath,
-                                   storeAccess: storeAccess,
-                                   storeFilename: storeFilename)
+                                   storeOptions: storeOptions)
 
         let genericCompletionHandler: CompletionHandler = { response in
             guard let response = response as? StoreResponse else { return }
@@ -217,8 +204,7 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
         // Compare the given URL's scheme to the app URL, then try to extract the request UUID from the URL.
         // If unable to find a match or if UUID is missing, return early.
-        guard url.scheme?.lowercased() == appURLScheme.lowercased(), url.host == "Filestack",
-            let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems,
+        guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems,
             let idx = (queryItems.index { $0.name == "requestUUID" }),
             let requestUUIDString = queryItems[idx].value,
             let requestUUID = UUID(uuidString: requestUUIDString) else {

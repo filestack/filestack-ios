@@ -61,22 +61,15 @@ internal class CloudService {
 
     func storeRequest(provider: CloudProvider,
                       path: String,
-                      appURL: URL,
                       apiKey: String,
                       security: Security? = nil,
                       token: String? = nil,
-                      storeLocation: StorageLocation = .s3,
-                      storeRegion: String? = nil,
-                      storeContainer: String? = nil,
-                      storePath: String? = nil,
-                      storeAccess: StorageAccess? = nil,
-                      storeFilename: String? = nil) -> DataRequest {
+                      storeOptions: StorageOptions) -> DataRequest {
 
         let url = baseURL.appendingPathComponent("store/")
 
         var params: [String: Any] = [
             "flow": "mobile",
-            "appurl": appURL.absoluteString,
             "apikey": apiKey,
         ]
 
@@ -84,34 +77,34 @@ internal class CloudService {
             params["token"] = token
         }
 
-        var storeOptions: [String: Any] = [
-            "location": storeLocation.description.lowercased()
+        var storeOptionsJSON: [String: Any] = [
+            "location": storeOptions.location.description.lowercased()
         ]
 
-        if let storeRegion = storeRegion {
-            storeOptions["region"] = storeRegion
+        if let storeRegion = storeOptions.region {
+            storeOptionsJSON["region"] = storeRegion
         }
 
-        if let storeContainer = storeContainer {
-            storeOptions["container"] = storeContainer
+        if let storeContainer = storeOptions.container {
+            storeOptionsJSON["container"] = storeContainer
         }
 
-        if let storePath = storePath {
-            storeOptions["path"] = storePath
+        if let storePath = storeOptions.path {
+            storeOptionsJSON["path"] = storePath
         }
 
-        if let storeAccess = storeAccess {
-            storeOptions["access"] = storeAccess.description
+        if let storeAccess = storeOptions.access {
+            storeOptionsJSON["access"] = storeAccess.description
         }
 
-        if let storeFilename = storeFilename {
-            storeOptions["filename"] = storeFilename
+        if let storeFilename = storeOptions.filename {
+            storeOptionsJSON["filename"] = storeFilename
         }
 
         params["clouds"] = [
             provider.description: [
                 "path": path,
-                "store": storeOptions
+                "store": storeOptionsJSON
             ]
         ]
 
