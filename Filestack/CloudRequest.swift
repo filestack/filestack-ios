@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import FilestackSDK
+
 
 @objc(FSCloudResponse) public protocol CloudResponse {
 
@@ -14,14 +16,23 @@ import Foundation
     var authRedirectURL: URL? { get }
 }
 
-internal typealias CloudRequestCompletionHandler = (_ uuid: String, _ response: CloudResponse) -> Swift.Void
+internal typealias CloudRequestCompletionHandler = (_ uuid: UUID, _ response: CloudResponse) -> Swift.Void
 
 internal protocol CloudRequest {
 
+    var appURLScheme: String { get }
     var token: String? { get }
+    var provider: CloudProvider { get }
+    var apiKey: String { get }
+    var security: Security? { get }
 
     func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler)
     func parseJSON(data: Data) -> [String: Any]?
+    func getAuthRedirectURL(from json: [String: Any]) -> URL?
+    func getResults(from json: [String: Any]) -> [String: Any]?
+
+    func generateRequestUUID() -> UUID
+    func appURLWithRequestUUID(uuid: UUID) -> URL
 }
 
 internal extension CloudRequest {
@@ -29,5 +40,29 @@ internal extension CloudRequest {
     func parseJSON(data: Data) -> [String: Any]? {
 
         return (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
+    }
+
+    func getAuthRedirectURL(from json: [String: Any]) -> URL? {
+
+        guard let providerJSON = json[provider.description] as? [String: Any] else { return nil }
+        guard let authJSON = providerJSON["auth"] as? [String: Any] else { return nil }
+        guard let redirectURLString = authJSON["redirect_url"] as? String else { return nil }
+
+        return URL(string: redirectURLString)
+    }
+
+    func getResults(from json: [String: Any]) -> [String: Any]? {
+
+        return json[provider.description] as? [String: Any]
+    }
+
+    func generateRequestUUID() -> UUID {
+
+        return UUID()
+    }
+
+    func appURLWithRequestUUID(uuid: UUID) -> URL {
+
+        return URL(string: appURLScheme + "://Filestack/?requestUUID=" + uuid.uuidString)!
     }
 }

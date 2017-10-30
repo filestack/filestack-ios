@@ -32,19 +32,19 @@ internal final class FolderListRequest: CloudRequest {
 
     // MARK: - Properties
 
+    let appURLScheme: String
     let apiKey: String
     let security: Security?
+    let pageToken: String?
     let provider: CloudProvider
     let path: String
-    let appURL: URL
-    let pageToken: String?
 
-    var token: String?
+    private(set) var token: String?
 
 
     // MARK: - Lifecyle Functions
 
-    init(appURL: URL,
+    init(appURLScheme: String,
          apiKey: String,
          security: Security? = nil,
          token: String? = nil,
@@ -52,7 +52,7 @@ internal final class FolderListRequest: CloudRequest {
          provider: CloudProvider,
          path: String) {
 
-        self.appURL = appURL
+        self.appURLScheme = appURLScheme
         self.apiKey = apiKey
         self.security = security
         self.token = token
@@ -66,12 +66,11 @@ internal final class FolderListRequest: CloudRequest {
 
     func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler) {
 
-        let actionUUID = UUID().uuidString
-        let appURLWithUUID = URL(string: "\(appURL.absoluteString)\(actionUUID)")!
+        let requestUUID = generateRequestUUID()
 
         let request = cloudService.folderListRequest(provider: provider,
                                                      path: path,
-                                                     appURL: appURLWithUUID,
+                                                     appURL: appURLWithRequestUUID(uuid: requestUUID),
                                                      apiKey: apiKey,
                                                      security: security,
                                                      token: token,
@@ -83,7 +82,7 @@ internal final class FolderListRequest: CloudRequest {
             // Parse JSON, or return early with error if unable to parse.
             guard let data = dataResponse.data, let json = self.parseJSON(data: data) else {
                 let response = FolderListResponse(error: dataResponse.error)
-                completionBlock(actionUUID, response)
+                completionBlock(requestUUID, response)
 
                 return
             }
@@ -94,32 +93,15 @@ internal final class FolderListRequest: CloudRequest {
             if let authRedirectURL = self.getAuthRedirectURL(from: json) {
                 // Auth is required — redirect to authentication URL
                 let response = FolderListResponse(authRedirectURL: authRedirectURL)
-                completionBlock(actionUUID, response)
+                completionBlock(requestUUID, response)
             } else if let results = self.getResults(from: json) {
                 // Results received — return response with contents, and, optionally next token
                 let contents = results["contents"] as? [[String: Any]]
                 let nextToken: String? = (results["next"] as? String).flatMap { $0.count > 0 ? $0 : nil }
                 let response = FolderListResponse(contents: contents, nextToken: nextToken, error: dataResponse.error)
 
-                completionBlock(actionUUID, response)
+                completionBlock(requestUUID, response)
             }
         })
-    }
-
-
-    // MARK: - Private Functions
-
-    private func getAuthRedirectURL(from json: [String: Any]) -> URL? {
-
-        guard let providerJSON = json[provider.description] as? [String: Any] else { return nil }
-        guard let authJSON = providerJSON["auth"] as? [String: Any] else { return nil }
-        guard let redirectURLString = authJSON["redirect_url"] as? String else { return nil }
-
-        return URL(string: redirectURLString)
-    }
-
-    private func getResults(from json: [String: Any]) -> [String: Any]? {
-
-        return json[provider.description] as? [String: Any]
     }
 }
