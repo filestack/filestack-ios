@@ -12,7 +12,7 @@ import Alamofire
 
 
 /**
-     This class represents a response obtained from a call to obtain a folder list from a cloud provider.
+     This class represents a response obtained from a cloud folder list request.
  */
 @objc(FSFolderListResponse) public class FolderListResponse: NSObject, CloudResponse {
 

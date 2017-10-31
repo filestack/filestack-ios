@@ -12,7 +12,7 @@ import Alamofire
 
 
 /**
-     This class represents a response obtained from a call to store a file from a cloud provider into a store location.
+     This class represents a response obtained from a cloud store request.
  */
 @objc(FSStoreResponse) public class StoreResponse: NSObject, CloudResponse {
 
