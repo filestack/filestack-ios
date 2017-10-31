@@ -310,8 +310,7 @@
 				45E539D71F98B281003863BA /* large.jpg */,
 				45E539CE1F98B281003863BA /* sample.jpg */,
 			);
-			name = Fixtures;
-			path = ../Fixtures;
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
