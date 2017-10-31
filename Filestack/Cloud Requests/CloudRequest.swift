@@ -10,6 +10,7 @@ import Foundation
 import FilestackSDK
 
 
+/// :nodoc:
 @objc(FSCloudResponse) public protocol CloudResponse {
 
     var error: Error? { get }

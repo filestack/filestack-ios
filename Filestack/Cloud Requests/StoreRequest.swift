@@ -11,11 +11,25 @@ import FilestackSDK
 import Alamofire
 
 
+/**
+     This class represents a response obtained from a call to store a file from a cloud provider into a store location.
+ */
 @objc(FSStoreResponse) public class StoreResponse: NSObject, CloudResponse {
 
+
+    // MARK: - Properties
+
+    /// The contents payload as a dictionary containing details about the operation response.
     public let contents: [String: Any]?
+
+    /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
     public let authRedirectURL: URL? = nil
+
+    /// An error response. Optional.
     public let error: Error?
+
+
+    // MARK: - Lifecyle Functions
 
     internal init(contents: [String: Any]? = nil, error: Error? = nil) {
 
@@ -27,7 +41,7 @@ import Alamofire
 
 internal final class StoreRequest: CloudRequest {
 
-    
+
     // MARK: - Properties
 
     let apiKey: String

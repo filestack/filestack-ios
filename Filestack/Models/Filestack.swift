@@ -20,8 +20,12 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
  */
 @objc(FSFilestack) public class Filestack: NSObject {
 
+
+    // MARK: - Notifications
+
     /// This notification should be posted after an app receives an URL after authentication against a cloud provider.
     public static let resumeCloudRequestNotification = Notification.Name("resume-filestack-cloud-request")
+
 
     // MARK: - Properties
 
@@ -238,7 +242,6 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         }
     }
 
-    /// To be called by the app delegate's `application(_:,url:,options:)`
     @discardableResult private func resumeCloudRequest(using url: URL) -> Bool {
 
         // Compare the given URL's scheme to the app URL, then try to extract the request UUID from the URL.

@@ -11,14 +11,33 @@ import FilestackSDK
 import Alamofire
 
 
+/**
+     This class represents a response obtained from a call to obtain a folder list from a cloud provider.
+ */
 @objc(FSFolderListResponse) public class FolderListResponse: NSObject, CloudResponse {
 
+
+    // MARK: - Properties
+
+    /// The contents payload as an array of dictionaries, where each dictionary represents an entry in the cloud.
     public let contents: [[String: Any]]?
+
+    /// A next token used for pagination purposes. Optional.
     public let nextToken: String?
+
+    /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
     public let authRedirectURL: URL?
+
+    /// An error response. Optional.
     public let error: Error?
 
-    internal init(contents: [[String: Any]]? = nil, nextToken: String? = nil, authRedirectURL: URL? = nil, error: Error? = nil) {
+
+    // MARK: - Lifecyle Functions
+
+    internal init(contents: [[String: Any]]? = nil,
+                  nextToken: String? = nil,
+                  authRedirectURL: URL? = nil,
+                  error: Error? = nil) {
 
         self.contents = contents
         self.nextToken = nextToken
