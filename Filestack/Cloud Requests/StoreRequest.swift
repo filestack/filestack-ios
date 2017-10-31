@@ -82,6 +82,9 @@ internal final class StoreRequest: CloudRequest {
                 return
             }
 
+            // Store any token we receive so we can use it next time.
+            self.token = json["token"] as? String
+
             if let results = self.getResults(from: json) {
                 // Results received — return response with contents
                 let response = StoreResponse(contents: results, error: dataResponse.error)

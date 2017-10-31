@@ -166,6 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		452B6AD21FA8860400FFD490 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				454054731F98A30F00C12B2F /* Filestack.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		452DCF631FA1E1CA0033B75D /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +219,7 @@
 			children = (
 				455804A61F9F445F007C694C /* BundleInfo.swift */,
 				455804A41F9F4420007C694C /* Config.swift */,
+				4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -248,13 +257,11 @@
 			children = (
 				457085021F975C6C00991340 /* Filestack.h */,
 				457085031F975C6C00991340 /* Info.plist */,
-				45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */,
-				454054731F98A30F00C12B2F /* Filestack.swift */,
-				4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */,
 				45A92F0C1FA0BE3500FEB611 /* Cloud Requests */,
 				452DCF631FA1E1CA0033B75D /* Enums */,
 				455804A81F9F4478007C694C /* Extensions */,
 				455804A31F9F4418007C694C /* Misc */,
+				452B6AD21FA8860400FFD490 /* Models */,
 				455804981F9F438A007C694C /* Services */,
 			);
 			path = Filestack;
@@ -290,6 +297,7 @@
 		45A92F0C1FA0BE3500FEB611 /* Cloud Requests */ = {
 			isa = PBXGroup;
 			children = (
+				45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */,
 				45A92F171FA0BE9600FEB611 /* FolderListRequest.swift */,
 				4587330C1FA32B66002DAA9D /* StoreRequest.swift */,
 			);

@@ -15,6 +15,9 @@ public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Swift.V
 public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
 
+/**
+    The `Filestack` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
+ */
 @objc(FSFilestack) public class Filestack: NSObject {
 
     /// This notification should be posted after an app receives an URL after authentication against a cloud provider.
@@ -45,22 +48,24 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     /**
         Default initializer.
 
-        - SeeAlso: `Security`
-
         - Parameter apiKey: An API key obtained from the Developer Portal.
         - Parameter security: A `Security` object. `nil` by default.
+        - Parameter token: A token obtained from `lastToken` to use initially. This could be useful to avoid
+             authenticating against a cloud provider assuming that the passed token has not yet expired.
      */
-    @objc public init(apiKey: String, security: Security? = nil, lastToken: String? = nil) {
+    @objc public init(apiKey: String, security: Security? = nil, token: String? = nil) {
 
         self.apiKey = apiKey
         self.security = security
-        self.lastToken = lastToken
+        self.lastToken = token
         self.client = Client(apiKey: apiKey, security: security)
         self.pendingRequests = [:]
 
         super.init()
 
-        NotificationCenter.default.addObserver(forName: Filestack.resumeCloudRequestNotification, object: nil, queue: .main) { (notification) in
+        NotificationCenter.default.addObserver(forName: Filestack.resumeCloudRequestNotification,
+                                               object: nil,
+                                               queue: .main) { (notification) in
             if let url = notification.object as? URL {
                 self.resumeCloudRequest(using: url)
             }
@@ -81,12 +86,11 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
         - Parameter localURL: The URL of the local file to be uploaded.
         - Parameter storage: The storage location. Defaults to `s3`.
-        - Parameter useIntelligentIngestionIfAvailable: Attempts to use Intelligent Ingestion
-        for file uploading. Defaults to `true`.
-        - Parameter queue: The queue on which the upload progress and completion handlers are
-        dispatched.
-        - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle
-        of the upload process as data is uploaded to the server. `nil` by default.
+        - Parameter useIntelligentIngestionIfAvailable: Attempts to use Intelligent Ingestion for file uploading.
+             Defaults to `true`.
+        - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
+        - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
+             as data is uploaded to the server. `nil` by default.
         - Parameter completionHandler: Adds a handler to be called once the upload has finished.
      */
     @discardableResult public func upload(from localURL: URL,
@@ -109,6 +113,19 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         return mpu
     }
 
+    /**
+        Uploads a file to a given storage location picked interactively from the camera or the photo library.
+
+        - Parameter viewController: The view controller that will present the picker.
+        - Parameter sourceType: The desired source type (e.g. camera, photo library.)
+        - Parameter storage: The storage location. Defaults to `s3`.
+        - Parameter useIntelligentIngestionIfAvailable: Attempts to use Intelligent Ingestion for file uploading.
+             Defaults to `true`.
+        - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
+        - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
+             as data is uploaded to the server. `nil` by default.
+        - Parameter completionHandler: Adds a handler to be called once the upload has finished.
+     */
     @discardableResult public func uploadFromImagePicker(viewController: UIViewController,
                                                          sourceType: UIImagePickerControllerSourceType,
                                                          storage: StorageLocation = .s3,
@@ -135,6 +152,18 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         return mpu
     }
 
+    /**
+         Lists the content of a cloud provider at a given path. Results are paginated (see `pageToken` below.)
+
+         - Parameter provider: The cloud provider to use (e.g. Dropbox, GoogleDrive, S3)
+         - Parameter path: The path to list (be sure to include a trailing slash "/".)
+         - Parameter pageToken: A token obtained from a previous call to this function. This token is included in every
+             `FolderListResponse` returned by this function in a property called `nextToken`.
+         - Parameter appURLScheme: An URL scheme supported by the app. This is required to complete the cloud provider's
+             authentication flow.
+         - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
+             or error response.
+     */
     public func folderList(provider: CloudProvider,
                            path: String,
                            pageToken: String? = nil,
@@ -157,6 +186,16 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         perform(request: request, completionBlock: genericCompletionHandler)
     }
 
+    /**
+        Stores a file from a given cloud provider and path at the desired store location.
+
+        - Parameter provider: The cloud provider to use (e.g. Dropbox, GoogleDrive, S3)
+        - Parameter path: The path to a file in the cloud provider.
+        - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
+             If none given, S3 location is assumed.
+         - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
+             or error response.
+     */
     public func store(provider: CloudProvider,
                       path: String,
                       storeOptions: StorageOptions = StorageOptions(location: .s3),
