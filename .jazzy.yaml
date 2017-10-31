@@ -1,0 +1,13 @@
+module: Filestack
+author: Filestack
+github_url: http://github.com/filestack/filestack-ios
+
+theme: fullwidth
+clean: true
+
+readme: README.md
+
+skip_undocumented: false
+hide_documentation_coverage: false
+
+xcodebuild_arguments: [-project, Filestack.xcodeproj, -target, Filestack]
