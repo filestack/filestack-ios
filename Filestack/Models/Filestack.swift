@@ -230,11 +230,17 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         // Else, if auth is required, add request to pending requests, open Safari and request authentication.
         request.perform(cloudService: cloudService) { (requestUUID, response) in
             if let authRedirectURL = response.authRedirectURL {
-                UIApplication.shared.open(authRedirectURL, options: [:], completionHandler: { success in
-                    if success {
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(authRedirectURL) { success in
+                        if success {
+                            self.pendingRequests[requestUUID] = (request, completionBlock)
+                        }
+                    }
+                } else {
+                    if UIApplication.shared.openURL(authRedirectURL) {
                         self.pendingRequests[requestUUID] = (request, completionBlock)
                     }
-                })
+                }
             } else {
                 self.lastToken = request.token
                 completionBlock(response)
@@ -263,7 +269,11 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         // Else, if auth is still required, open Safari and request authentication.
         request.perform(cloudService: cloudService) { (requestUUID, response) in
             if let authRedirectURL = response.authRedirectURL {
-                UIApplication.shared.open(authRedirectURL, options: [:], completionHandler: nil)
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(authRedirectURL)
+                } else {
+                    UIApplication.shared.openURL(authRedirectURL)
+                }
             } else {
                 self.lastToken = request.token
                 self.pendingRequests.removeValue(forKey: requestUUID)
