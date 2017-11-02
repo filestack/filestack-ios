@@ -25,7 +25,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 0.5-pre'
+    pod 'Filestack', '~> 0.5-pre2'
 end
 ```
 
@@ -46,7 +46,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 0.5-pre`
+`github "filestack/filestack-ios" ~> 0.5-pre2`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `Arcane.framework` to the embedded frameworks build phase of your app's target.
 
@@ -208,7 +208,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
 // The cloud provider to use
 let provider: CloudProvider = .googleDrive
 
-// The cloud provider's path to a file
+// A path to a file in the cloud
 let path = "/some-large-image.jpg"
 
 // The store options representing the store location, region, access, etc. for your file store.
