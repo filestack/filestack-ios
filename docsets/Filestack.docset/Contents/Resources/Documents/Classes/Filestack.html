@@ -290,8 +290,8 @@
                   <div>
                     <code>
                     <a name="/s:9FilestackAAC6uploadXeXeF"></a>
-                    <a name="//apple_ref/swift/Method/upload(from:storage:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9FilestackAAC6uploadXeXeF">upload(from:storage:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)</a>
+                    <a name="//apple_ref/swift/Method/upload(from:storeOptions:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9FilestackAAC6uploadXeXeF">upload(from:storeOptions:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,7 +307,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">upload</span><span class="p">(</span><span class="n">from</span> <span class="nv">localURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span>
-                                          <span class="nv">storage</span><span class="p">:</span> <span class="kt">StorageLocation</span> <span class="o">=</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span>
+                                          <span class="nv">storeOptions</span><span class="p">:</span> <span class="kt">StorageOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">),</span>
                                           <span class="nv">useIntelligentIngestionIfAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
                                           <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                           <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
@@ -403,8 +403,8 @@
                   <div>
                     <code>
                     <a name="/s:9FilestackAAC21uploadFromImagePickerXeXeF"></a>
-                    <a name="//apple_ref/swift/Method/uploadFromImagePicker(viewController:sourceType:storage:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9FilestackAAC21uploadFromImagePickerXeXeF">uploadFromImagePicker(viewController:sourceType:storage:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)</a>
+                    <a name="//apple_ref/swift/Method/uploadFromImagePicker(viewController:sourceType:storeOptions:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9FilestackAAC21uploadFromImagePickerXeXeF">uploadFromImagePicker(viewController:sourceType:storeOptions:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -421,7 +421,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
                                                          <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">UIImagePickerControllerSourceType</span><span class="p">,</span>
-                                                         <span class="nv">storage</span><span class="p">:</span> <span class="kt">StorageLocation</span> <span class="o">=</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span>
+                                                         <span class="nv">storeOptions</span><span class="p">:</span> <span class="kt">StorageOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">),</span>
                                                          <span class="nv">useIntelligentIngestionIfAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
                                                          <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                                          <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
@@ -721,7 +721,7 @@ or error response.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-10-31)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-11-02)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
