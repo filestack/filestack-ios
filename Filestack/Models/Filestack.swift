@@ -89,23 +89,24 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         Uploads a file directly to a given storage location (currently only S3 is supported.)
 
         - Parameter localURL: The URL of the local file to be uploaded.
-        - Parameter storage: The storage location. Defaults to `s3`.
+        - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.
+            If none given, S3 location with default options is assumed.
         - Parameter useIntelligentIngestionIfAvailable: Attempts to use Intelligent Ingestion for file uploading.
-             Defaults to `true`.
+            Defaults to `true`.
         - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
         - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
-             as data is uploaded to the server. `nil` by default.
+            as data is uploaded to the server. `nil` by default.
         - Parameter completionHandler: Adds a handler to be called once the upload has finished.
      */
     @discardableResult public func upload(from localURL: URL,
-                                          storage: StorageLocation = .s3,
+                                          storeOptions: StorageOptions = StorageOptions(location: .s3),
                                           useIntelligentIngestionIfAvailable: Bool = true,
                                           queue: DispatchQueue = .main,
                                           uploadProgress: ((Progress) -> Void)? = nil,
                                           completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> MultipartUpload {
 
         let mpu = client.multiPartUpload(from: localURL,
-                                         storage: storage,
+                                         storeOptions: storeOptions,
                                          useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
                                          queue: queue,
                                          startUploadImmediately: false,
@@ -122,23 +123,24 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
         - Parameter viewController: The view controller that will present the picker.
         - Parameter sourceType: The desired source type (e.g. camera, photo library.)
-        - Parameter storage: The storage location. Defaults to `s3`.
+        - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
+            If none given, S3 location with default options is assumed.
         - Parameter useIntelligentIngestionIfAvailable: Attempts to use Intelligent Ingestion for file uploading.
-             Defaults to `true`.
+            Defaults to `true`.
         - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
         - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
-             as data is uploaded to the server. `nil` by default.
+            as data is uploaded to the server. `nil` by default.
         - Parameter completionHandler: Adds a handler to be called once the upload has finished.
      */
     @discardableResult public func uploadFromImagePicker(viewController: UIViewController,
                                                          sourceType: UIImagePickerControllerSourceType,
-                                                         storage: StorageLocation = .s3,
+                                                         storeOptions: StorageOptions = StorageOptions(location: .s3),
                                                          useIntelligentIngestionIfAvailable: Bool = true,
                                                          queue: DispatchQueue = .main,
                                                          uploadProgress: ((Progress) -> Void)? = nil,
                                                          completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> MultipartUpload {
 
-        let mpu = client.multiPartUpload(storage: storage,
+        let mpu = client.multiPartUpload(storeOptions: storeOptions,
                                          useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
                                          queue: queue,
                                          startUploadImmediately: false,
