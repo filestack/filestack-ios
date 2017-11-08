@@ -27,7 +27,6 @@ internal protocol CloudRequest {
     var security: Security? { get }
 
     func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler)
-    func parseJSON(data: Data) -> [String: Any]?
     func getAuthRedirectURL(from json: [String: Any]) -> URL?
     func getResults(from json: [String: Any]) -> [String: Any]?
 
@@ -35,11 +34,6 @@ internal protocol CloudRequest {
 }
 
 internal extension CloudRequest {
-
-    func parseJSON(data: Data) -> [String: Any]? {
-
-        return (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
-    }
 
     func getAuthRedirectURL(from json: [String: Any]) -> URL? {
 

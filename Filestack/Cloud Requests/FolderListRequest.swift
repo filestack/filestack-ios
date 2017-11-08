@@ -99,7 +99,7 @@ internal final class FolderListRequest: CloudRequest {
 
         request.responseJSON(completionHandler: { dataResponse in
             // Parse JSON, or return early with error if unable to parse.
-            guard let data = dataResponse.data, let json = self.parseJSON(data: data) else {
+            guard let data = dataResponse.data, let json = data.parseJSON() else {
                 let response = FolderListResponse(error: dataResponse.error)
                 completionBlock(requestUUID, response)
 
