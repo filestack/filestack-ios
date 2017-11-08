@@ -115,4 +115,12 @@ internal class CloudService {
 
         return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
     }
+
+    func prefetchRequest(apiKey: String) -> DataRequest {
+
+        let url = baseURL.appendingPathComponent("prefetch")
+        let params: [String: Any] = ["apikey": apiKey]
+
+        return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
+    }
 }

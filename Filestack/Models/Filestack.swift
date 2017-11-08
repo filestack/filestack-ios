@@ -187,7 +187,7 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         - Parameter path: The path to a file in the cloud provider.
         - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
              If none given, S3 location is assumed.
-         - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
+        - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
              or error response.
      */
     public func store(provider: CloudProvider,
@@ -208,6 +208,32 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         }
 
         perform(request: request, completionBlock: genericCompletionHandler)
+    }
+
+    /**
+        Presents an interactive UI that will allow the user to pick files from a local or cloud source and upload them
+        to a given location.
+
+        - Parameter viewController: The view controller that will present the interactive UI.
+     */
+    public func presentInteractiveUploader(viewController: UIViewController) {
+
+        let storyboard = UIStoryboard(name: "InteractiveUI", bundle: Bundle(for: self.classForCoder))
+
+        if let nc = storyboard.instantiateViewController(withIdentifier: "navigationController") as? FilestackNavigationController {
+            nc.filestack = self
+            viewController.present(nc, animated: true)
+        }
+    }
+
+
+    // MARK: - Internal Functions
+
+    internal func prefetch(completionBlock: @escaping PrefetchCompletionHandler) {
+
+        let prefetchRequest = PrefetchRequest(apiKey: apiKey)
+
+        prefetchRequest.perform(cloudService: cloudService, completionBlock: completionBlock)
     }
 
 
