@@ -43,6 +43,7 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
     private var pendingRequests: [UUID: (CloudRequest, CompletionHandler)]
     private var lastToken: String?
+    private var resumeCloudRequestNotificationObserver: NSObjectProtocol!
 
     fileprivate var uploadControllers: [PickerUploadController] = []
 
@@ -66,19 +67,6 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         self.pendingRequests = [:]
 
         super.init()
-
-        NotificationCenter.default.addObserver(forName: Filestack.resumeCloudRequestNotification,
-                                               object: nil,
-                                               queue: .main) { (notification) in
-            if let url = notification.object as? URL {
-                self.resumeCloudRequest(using: url)
-            }
-        }
-    }
-
-    deinit {
-
-        NotificationCenter.default.removeObserver(self, name: Filestack.resumeCloudRequestNotification, object: nil)
     }
 
 
@@ -243,6 +231,10 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                         self.pendingRequests[requestUUID] = (request, completionBlock)
                     }
                 }
+
+                if !self.pendingRequests.isEmpty && self.resumeCloudRequestNotificationObserver == nil {
+                    self.addResumeCloudRequestNotificationObserver()
+                }
             } else {
                 self.lastToken = request.token
                 completionBlock(response)
@@ -281,9 +273,34 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                 self.pendingRequests.removeValue(forKey: requestUUID)
                 completionBlock(response)
             }
+
+            if self.pendingRequests.isEmpty {
+                self.removeResumeCloudRequestNotificationObserver()
+            }
         }
 
         return true
+    }
+
+    private func addResumeCloudRequestNotificationObserver() {
+
+        resumeCloudRequestNotificationObserver =
+            NotificationCenter.default.addObserver(forName: Filestack.resumeCloudRequestNotification,
+                                                   object: nil,
+                                                   queue: .main) { (notification) in
+                                                    if let url = notification.object as? URL {
+                                                        self.resumeCloudRequest(using: url)
+                                                    }
+        }
+    }
+
+    private func removeResumeCloudRequestNotificationObserver() {
+
+        if let resumeCloudRequestNotificationObserver = resumeCloudRequestNotificationObserver {
+            NotificationCenter.default.removeObserver(resumeCloudRequestNotificationObserver)
+        }
+
+        resumeCloudRequestNotificationObserver = nil
     }
 }
 
