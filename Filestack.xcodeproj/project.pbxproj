@@ -239,7 +239,6 @@
 			children = (
 				455804A61F9F445F007C694C /* BundleInfo.swift */,
 				455804A41F9F4420007C694C /* Config.swift */,
-				4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -257,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				45786D5B1FB3202B00478545 /* FilestackNavigationController.swift */,
+				4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */,
 				4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */,
 				452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */,
 			);
