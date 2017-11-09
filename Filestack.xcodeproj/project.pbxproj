@@ -253,14 +253,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4569C77B1FB1B6A100DE990E /* View Controllers */ = {
+		4569C77B1FB1B6A100DE990E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				45786D5B1FB3202B00478545 /* FilestackNavigationController.swift */,
 				4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */,
 				452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		4569C7861FB1C33E00DE990E /* Resources */ = {
@@ -277,7 +277,7 @@
 				4569C79C1FB1CFC000DE990E /* InteractiveUploader.storyboard */,
 				4569C7A11FB1F80A00DE990E /* Enums */,
 				4569C7A21FB1F81300DE990E /* Protocols */,
-				4569C77B1FB1B6A100DE990E /* View Controllers */,
+				4569C77B1FB1B6A100DE990E /* Controllers */,
 			);
 			path = UI;
 			sourceTree = "<group>";
