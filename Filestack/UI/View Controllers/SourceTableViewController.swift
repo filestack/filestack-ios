@@ -166,8 +166,6 @@ internal class SourceTableViewController: UITableViewController {
 
     private func upload(sourceType: UIImagePickerControllerSourceType) {
 
-        guard let filestack = filestack else { return }
-
         var mpu: MultipartUpload? = nil
 
         // Disable user interaction on this view until the file is picked and uploaded.
