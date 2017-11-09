@@ -275,9 +275,9 @@
 			isa = PBXGroup;
 			children = (
 				4569C79C1FB1CFC000DE990E /* InteractiveUploader.storyboard */,
+				4569C77B1FB1B6A100DE990E /* Controllers */,
 				4569C7A11FB1F80A00DE990E /* Enums */,
 				4569C7A21FB1F81300DE990E /* Protocols */,
-				4569C77B1FB1B6A100DE990E /* Controllers */,
 			);
 			path = UI;
 			sourceTree = "<group>";
