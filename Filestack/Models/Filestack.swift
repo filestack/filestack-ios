@@ -45,8 +45,6 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     private var lastToken: String?
     private var resumeCloudRequestNotificationObserver: NSObjectProtocol!
 
-    fileprivate var uploadControllers: [PickerUploadController] = []
-
 
     // MARK: - Lifecyle Functions
 
@@ -139,9 +137,20 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                                                       viewController: viewController,
                                                       sourceType: sourceType)
 
-        uploadController.delegate = self
+        uploadController.filePickedCompletionHandler = { (success) in
+            // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
+            uploadController.filePickedCompletionHandler = nil
+
+            if success {
+                // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
+                let progress = Progress(totalUnitCount: 1)
+                progress.completedUnitCount = 0
+
+                uploadProgress?(progress)
+            }
+        }
+
         uploadController.start()
-        uploadControllers.append(uploadController)
 
         return mpu
     }
@@ -215,15 +224,23 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         to a given location.
 
         - Parameter viewController: The view controller that will present the interactive UI.
+        - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
+            If none given, S3 location is assumed.
      */
-    public func presentInteractiveUploader(viewController: UIViewController) {
+    public func presentInteractiveUploader(viewController: UIViewController,
+                                           storeOptions: StorageOptions = StorageOptions(location: .s3)) {
 
-        let storyboard = UIStoryboard(name: "InteractiveUI", bundle: Bundle(for: self.classForCoder))
+        let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: self.classForCoder))
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "navigationController")
 
-        if let nc = storyboard.instantiateViewController(withIdentifier: "navigationController") as? FilestackNavigationController {
-            nc.filestack = self
-            viewController.present(nc, animated: true)
+        guard let fsnc = navigationController as? FilestackNavigationController else {
+            fatalError("Navigation controller must be an instance of FilestackNavigationController")
         }
+
+        fsnc.filestack = self
+        fsnc.storeOptions = storeOptions
+
+        viewController.present(fsnc, animated: true)
     }
 
 
@@ -330,12 +347,3 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     }
 }
 
-extension Filestack: PickerUploadControllerDelegate {
-
-    func pickerUploadControllerDidFinish(_ pickerUploadController: PickerUploadController) {
-
-        if let index = uploadControllers.index(of: pickerUploadController) {
-            uploadControllers.remove(at: index)
-        }
-    }
-}

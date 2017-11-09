@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import FilestackSDK
+
 
 internal class FilestackNavigationController: UINavigationController {
 
-    var filestack: Filestack? = nil
+    var filestack: Filestack!
+    var storeOptions: StorageOptions!
 }

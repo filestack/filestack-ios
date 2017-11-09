@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452B77BE1FB45EF9000F3FAE /* UploadMonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */; };
 		452DCF6D1FA1E1E30033B75D /* CloudProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DCF6C1FA1E1E30033B75D /* CloudProvider.swift */; };
 		454054741F98A30F00C12B2F /* Filestack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054731F98A30F00C12B2F /* Filestack.swift */; };
 		454157D51FA7593C00F37C9F /* FilestackSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454157881FA7592000F37C9F /* FilestackSDK.framework */; };
@@ -18,7 +19,7 @@
 		4568DCD01F9DFD7300F29923 /* PickerUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */; };
 		4569C7851FB1B6C500DE990E /* SourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */; };
 		4569C7881FB1C35600DE990E /* SourceIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4569C7871FB1C35600DE990E /* SourceIcons.xcassets */; };
-		4569C79D1FB1CFC000DE990E /* InteractiveUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4569C79C1FB1CFC000DE990E /* InteractiveUI.storyboard */; };
+		4569C79D1FB1CFC000DE990E /* InteractiveUploader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4569C79C1FB1CFC000DE990E /* InteractiveUploader.storyboard */; };
 		4569C7A41FB1F84500DE990E /* CellDescriptibleSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569C7A31FB1F84500DE990E /* CellDescriptibleSource.swift */; };
 		4569C7A61FB1F85800DE990E /* LocalSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569C7A51FB1F85800DE990E /* LocalSource.swift */; };
 		4569C7A81FB1F86700DE990E /* CloudSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569C7A71FB1F86700DE990E /* CloudSource.swift */; };
@@ -131,6 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMonitorViewController.swift; sourceTree = "<group>"; };
 		452DCF6C1FA1E1E30033B75D /* CloudProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudProvider.swift; sourceTree = "<group>"; };
 		454054731F98A30F00C12B2F /* Filestack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filestack.swift; sourceTree = "<group>"; };
 		4541577F1FA7591F00F37C9F /* FilestackSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilestackSDK.xcodeproj; path = "Carthage/Checkouts/filestack-swift/FilestackSDK.xcodeproj"; sourceTree = "<group>"; };
@@ -142,7 +144,7 @@
 		4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUploadController.swift; sourceTree = "<group>"; };
 		4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceTableViewController.swift; sourceTree = "<group>"; };
 		4569C7871FB1C35600DE990E /* SourceIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SourceIcons.xcassets; sourceTree = "<group>"; };
-		4569C79C1FB1CFC000DE990E /* InteractiveUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InteractiveUI.storyboard; sourceTree = "<group>"; };
+		4569C79C1FB1CFC000DE990E /* InteractiveUploader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InteractiveUploader.storyboard; sourceTree = "<group>"; };
 		4569C7A31FB1F84500DE990E /* CellDescriptibleSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDescriptibleSource.swift; sourceTree = "<group>"; };
 		4569C7A51FB1F85800DE990E /* LocalSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSource.swift; sourceTree = "<group>"; };
 		4569C7A71FB1F86700DE990E /* CloudSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSource.swift; sourceTree = "<group>"; };
@@ -254,8 +256,9 @@
 		4569C77B1FB1B6A100DE990E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */,
 				45786D5B1FB3202B00478545 /* FilestackNavigationController.swift */,
+				4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */,
+				452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -271,7 +274,7 @@
 		4569C78F1FB1CF1800DE990E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4569C79C1FB1CFC000DE990E /* InteractiveUI.storyboard */,
+				4569C79C1FB1CFC000DE990E /* InteractiveUploader.storyboard */,
 				4569C7A11FB1F80A00DE990E /* Enums */,
 				4569C7A21FB1F81300DE990E /* Protocols */,
 				4569C77B1FB1B6A100DE990E /* View Controllers */,
@@ -561,7 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4569C7881FB1C35600DE990E /* SourceIcons.xcassets in Resources */,
-				4569C79D1FB1CFC000DE990E /* InteractiveUI.storyboard in Resources */,
+				4569C79D1FB1CFC000DE990E /* InteractiveUploader.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				452B77BE1FB45EF9000F3FAE /* UploadMonitorViewController.swift in Sources */,
 				45A92F161FA0BE3F00FEB611 /* CloudRequest.swift in Sources */,
 				4568DCD01F9DFD7300F29923 /* PickerUploadController.swift in Sources */,
 				4569C7851FB1B6C500DE990E /* SourceTableViewController.swift in Sources */,

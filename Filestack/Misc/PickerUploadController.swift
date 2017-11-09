@@ -10,11 +10,6 @@ import Foundation
 import FilestackSDK
 
 
-protocol PickerUploadControllerDelegate {
-
-    func pickerUploadControllerDidFinish(_ pickerUploadController: PickerUploadController)
-}
-
 internal class PickerUploadController: NSObject {
 
     let multipartUpload: MultipartUpload
@@ -22,7 +17,7 @@ internal class PickerUploadController: NSObject {
     let picker: UIImagePickerController
     let sourceType: UIImagePickerControllerSourceType
 
-    var delegate: PickerUploadControllerDelegate?
+    var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
 
     init(multipartUpload: MultipartUpload, viewController: UIViewController, sourceType: UIImagePickerControllerSourceType) {
 
@@ -50,14 +45,13 @@ extension PickerUploadController: UIImagePickerControllerDelegate {
 
         picker.dismiss(animated: true) {
             self.multipartUpload.cancel()
-            self.delegate?.pickerUploadControllerDidFinish(self)
+            self.filePickedCompletionHandler?(false)
         }
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
         picker.dismiss(animated: true) {
-
             if let imageURL = info["UIImagePickerControllerImageURL"] as? URL {
                 // Upload image from camera roll
                 self.multipartUpload.localURL = imageURL
@@ -84,7 +78,7 @@ extension PickerUploadController: UIImagePickerControllerDelegate {
                 }
             }
 
-            self.delegate?.pickerUploadControllerDidFinish(self)
+            self.filePickedCompletionHandler?(true)
         }
     }
 }
