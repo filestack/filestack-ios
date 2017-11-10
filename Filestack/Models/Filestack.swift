@@ -266,22 +266,36 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(authRedirectURL) { success in
                         if success {
-                            self.pendingRequests[requestUUID] = (request, completionBlock)
+                            self.addPendingRequest(uuid: requestUUID, request: request, completionBlock: completionBlock)
                         }
                     }
                 } else {
                     if UIApplication.shared.openURL(authRedirectURL) {
-                        self.pendingRequests[requestUUID] = (request, completionBlock)
+                        self.addPendingRequest(uuid: requestUUID, request: request, completionBlock: completionBlock)
                     }
-                }
-
-                if !self.pendingRequests.isEmpty && self.resumeCloudRequestNotificationObserver == nil {
-                    self.addResumeCloudRequestNotificationObserver()
                 }
             } else {
                 self.lastToken = request.token
                 completionBlock(response)
             }
+        }
+    }
+
+    private func addPendingRequest(uuid: UUID, request: CloudRequest, completionBlock: @escaping CompletionHandler) {
+
+        pendingRequests[uuid] = (request, completionBlock)
+
+        if resumeCloudRequestNotificationObserver == nil {
+            self.addResumeCloudRequestNotificationObserver()
+        }
+    }
+
+    private func removePendingRequest(uuid: UUID) {
+
+        pendingRequests.removeValue(forKey: uuid)
+
+        if pendingRequests.isEmpty {
+            removeResumeCloudRequestNotificationObserver()
         }
     }
 
@@ -313,12 +327,8 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                 }
             } else {
                 self.lastToken = request.token
-                self.pendingRequests.removeValue(forKey: requestUUID)
+                self.removePendingRequest(uuid: requestUUID)
                 completionBlock(response)
-            }
-
-            if self.pendingRequests.isEmpty {
-                self.removeResumeCloudRequestNotificationObserver()
             }
         }
 
