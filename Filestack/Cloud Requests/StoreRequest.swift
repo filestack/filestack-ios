@@ -39,7 +39,7 @@ import Alamofire
 }
 
 
-internal final class StoreRequest: CloudRequest {
+internal final class StoreRequest: CloudRequest, CancellableRequest {
 
 
     // MARK: - Properties
@@ -51,6 +51,7 @@ internal final class StoreRequest: CloudRequest {
     let storeOptions: StorageOptions
 
     private(set) var token: String?
+    private weak var dataRequest: DataRequest?
 
 
     // MARK: - Lifecyle Functions
@@ -70,10 +71,14 @@ internal final class StoreRequest: CloudRequest {
         self.storeOptions = storeOptions
     }
 
+    func cancel() {
+
+        dataRequest?.cancel()
+    }
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler) {
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler) {
 
         let requestUUID = generateRequestUUID()
 
@@ -84,10 +89,11 @@ internal final class StoreRequest: CloudRequest {
                                                 token: token,
                                                 storeOptions: storeOptions)
 
-        request.validate(statusCode: Config.validHTTPResponseCodes)
+        dataRequest = request
 
-        request.responseJSON(completionHandler: { dataResponse in
+        request.validate(statusCode: Constants.validHTTPResponseCodes)
 
+        request.responseJSON(queue: queue) { dataResponse in
             // Parse JSON, or return early with error if unable to parse.
             guard let data = dataResponse.data, let json = data.parseJSON() else {
                 let response = StoreResponse(error: dataResponse.error)
@@ -104,6 +110,6 @@ internal final class StoreRequest: CloudRequest {
                 let response = StoreResponse(contents: results, error: dataResponse.error)
                 completionBlock(requestUUID, response)
             }
-        })
+        }
     }
 }

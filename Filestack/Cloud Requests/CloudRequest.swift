@@ -26,23 +26,12 @@ internal protocol CloudRequest {
     var apiKey: String { get }
     var security: Security? { get }
 
-    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler)
-    func getAuthRedirectURL(from json: [String: Any]) -> URL?
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler)
     func getResults(from json: [String: Any]) -> [String: Any]?
-
     func generateRequestUUID() -> UUID
 }
 
 internal extension CloudRequest {
-
-    func getAuthRedirectURL(from json: [String: Any]) -> URL? {
-
-        guard let providerJSON = json[provider.description] as? [String: Any] else { return nil }
-        guard let authJSON = providerJSON["auth"] as? [String: Any] else { return nil }
-        guard let redirectURLString = authJSON["redirect_url"] as? String else { return nil }
-
-        return URL(string: redirectURLString)
-    }
 
     func getResults(from json: [String: Any]) -> [String: Any]? {
 

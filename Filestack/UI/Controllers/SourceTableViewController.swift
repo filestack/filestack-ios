@@ -20,6 +20,7 @@ internal class SourceTableViewController: UITableViewController {
     private var storeOptions: StorageOptions!
     private var customSourceName: String? = nil
     private var useCustomSource: Bool = false
+
     private weak var uploadMonitorViewController: UploadMonitorViewController?
 
 
@@ -29,8 +30,12 @@ internal class SourceTableViewController: UITableViewController {
 
         super.viewDidLoad()
 
+        // Setup cancel button in navigation bar
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
+        navigationItem.rightBarButtonItem = cancelButton
+
         // Try to obtain `Filestack` object from navigation controller
-        if let navigationController = navigationController as? FilestackNavigationController {
+        if let navigationController = navigationController as? NavigationController {
             // Keep a reference to the `Filestack` object so we can use it later.
             self.filestack = navigationController.filestack
             // Keep a reference to the `StoreOptions` object so we can use it later.
@@ -50,17 +55,6 @@ internal class SourceTableViewController: UITableViewController {
                 }
 
                 self.tableView.reloadData()
-            }
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if let destination = segue.destination as? UploadMonitorViewController {
-            self.uploadMonitorViewController = destination
-
-            if let mpu = sender as? MultipartUpload {
-                destination.mpu = mpu
             }
         }
     }
@@ -155,9 +149,21 @@ internal class SourceTableViewController: UITableViewController {
 
             upload(sourceType: .photoLibrary)
 
+        case let cloudSource as CloudSource:
+
+            // Navigate to given cloud's "/" path
+            let scene = CloudSourceDetailScene(filestack: filestack,
+                                               source: cloudSource,
+                                               nextToken: nil,
+                                               path: nil)
+
+            if let vc = storyboard?.instantiateViewController(for: scene) {
+                navigationController?.pushViewController(vc, animated: true)
+            }
+
         default:
 
-            fatalError("Not yet implemented.")
+            break
         }
     }
 
@@ -166,39 +172,48 @@ internal class SourceTableViewController: UITableViewController {
 
     private func upload(sourceType: UIImagePickerControllerSourceType) {
 
-        var mpu: MultipartUpload? = nil
+        var cancellableRequest: CancellableRequest? = nil
 
         // Disable user interaction on this view until the file is picked and uploaded.
         // We want to prevent any taps from happening during the short timeframe between tapping the local source
         // and the time the picker is presented on the screen.
         view.isUserInteractionEnabled = false
 
-        mpu = filestack.uploadFromImagePicker(viewController: self,
-                                              sourceType: sourceType,
-                                              storeOptions: storeOptions,
-                                              uploadProgress: { (progress) in
-                                                // Present upload monitor (if not already presented)
-                                                if self.uploadMonitorViewController == nil {
-                                                    self.performSegue(withIdentifier: "uploadMonitor", sender: mpu)
-                                                }
+        let uploadProgressHandler: ((Progress) -> Void) = { (progress) in
+            // Present upload monitor (if not already presented)
+            if self.uploadMonitorViewController == nil {
+                let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
 
-                                                // Send progress update to upload monitor
-                                                let fractionCompleted = Float(progress.fractionCompleted)
-                                                self.uploadMonitorViewController?.updateProgress(value: fractionCompleted)
-        },
-                                              completionHandler: { (response) in
-                                                // Upon completion, re-enable user interaction...
-                                                self.view.isUserInteractionEnabled = true
+                if let vc = self.storyboard?.instantiateViewController(for: scene) {
+                    self.uploadMonitorViewController = vc
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
 
-                                                // ... and dismiss monitor view (if present)
-                                                self.uploadMonitorViewController?.dismiss(animated: true) {
-                                                    self.uploadMonitorViewController = nil
-                                                }
+            // Send progress update to upload monitor
+            let fractionCompleted = Float(progress.fractionCompleted)
+            self.uploadMonitorViewController?.updateProgress(value: fractionCompleted)
+        }
 
-                                                // Finally, nil the reference to the `MultipartUpload` object, so the
-                                                // object can be properly deallocated.
-                                                mpu = nil
-        })
+        let completionHandler: ((NetworkJSONResponse?) -> Void) = { (response) in
+            // Upon completion, re-enable user interaction...
+            self.view.isUserInteractionEnabled = true
+
+            // ... and dismiss monitor view (if present)
+            self.uploadMonitorViewController?.dismiss(animated: true) {
+                self.uploadMonitorViewController = nil
+            }
+
+            // Finally, nil the reference to the `MultipartUpload` object, so the
+            // object can be properly deallocated.
+            cancellableRequest = nil
+        }
+
+        cancellableRequest = filestack.uploadFromImagePicker(viewController: self,
+                                                             sourceType: sourceType,
+                                                             storeOptions: storeOptions,
+                                                             uploadProgress: uploadProgressHandler,
+                                                             completionHandler: completionHandler)
     }
 
     private func source(from indexPath: IndexPath) -> CellDescriptibleSource? {

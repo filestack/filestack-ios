@@ -12,7 +12,8 @@ import FilestackSDK
 
 public typealias FolderListCompletionHandler = (_ response: FolderListResponse) -> Swift.Void
 public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Swift.Void
-public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
+
+internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
 
 /**
@@ -35,13 +36,16 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     /// A `Security` object. `nil` by default.
     public let security: Security?
 
+    /// A `Config` object.
+    public let config: Config
+
 
     // MARK: - Private Properties
 
     private let client: Client
     private let cloudService = CloudService()
 
-    private var pendingRequests: [UUID: (CloudRequest, CompletionHandler)]
+    private var pendingRequests: [UUID: (CloudRequest, DispatchQueue, CompletionHandler)]
     private var lastToken: String?
     private var resumeCloudRequestNotificationObserver: NSObjectProtocol!
 
@@ -53,16 +57,18 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
         - Parameter apiKey: An API key obtained from the Developer Portal.
         - Parameter security: A `Security` object. `nil` by default.
+        - Parameter config: A `Config` object. `nil` by default.
         - Parameter token: A token obtained from `lastToken` to use initially. This could be useful to avoid
              authenticating against a cloud provider assuming that the passed token has not yet expired.
      */
-    @objc public init(apiKey: String, security: Security? = nil, token: String? = nil) {
+    @objc public init(apiKey: String, security: Security? = nil, config: Config? = nil, token: String? = nil) {
 
         self.apiKey = apiKey
         self.security = security
         self.lastToken = token
         self.client = Client(apiKey: apiKey, security: security)
         self.pendingRequests = [:]
+        self.config = config ?? Config()
 
         super.init()
     }
@@ -89,7 +95,7 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                                           useIntelligentIngestionIfAvailable: Bool = true,
                                           queue: DispatchQueue = .main,
                                           uploadProgress: ((Progress) -> Void)? = nil,
-                                          completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> MultipartUpload {
+                                          completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
 
         let mpu = client.multiPartUpload(from: localURL,
                                          storeOptions: storeOptions,
@@ -124,7 +130,7 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                                                          useIntelligentIngestionIfAvailable: Bool = true,
                                                          queue: DispatchQueue = .main,
                                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                                         completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> MultipartUpload {
+                                                         completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
 
         let mpu = client.multiPartUpload(storeOptions: storeOptions,
                                          useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
@@ -162,16 +168,18 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
          - Parameter path: The path to list (be sure to include a trailing slash "/".)
          - Parameter pageToken: A token obtained from a previous call to this function. This token is included in every
              `FolderListResponse` returned by this function in a property called `nextToken`.
-         - Parameter appURLScheme: An URL scheme supported by the app. This is required to complete the cloud provider's
-             authentication flow.
          - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
              or error response.
      */
-    public func folderList(provider: CloudProvider,
-                           path: String,
-                           pageToken: String? = nil,
-                           appURLScheme: String,
-                           completionHandler: @escaping FolderListCompletionHandler) {
+    @discardableResult public func folderList(provider: CloudProvider,
+                                              path: String,
+                                              pageToken: String? = nil,
+                                              queue: DispatchQueue = .main,
+                                              completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
+
+        guard let appURLScheme = config.appURLScheme else {
+            fatalError("Please make sure your Filestack config object has an appURLScheme set.")
+        }
 
         let request = FolderListRequest(appURLScheme: appURLScheme,
                                         apiKey: apiKey,
@@ -186,7 +194,9 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
             completionHandler(response)
         }
 
-        perform(request: request, completionBlock: genericCompletionHandler)
+        perform(request: request, queue: queue, completionBlock: genericCompletionHandler)
+
+        return request
     }
 
     /**
@@ -199,10 +209,11 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
              or error response.
      */
-    public func store(provider: CloudProvider,
-                      path: String,
-                      storeOptions: StorageOptions = StorageOptions(location: .s3),
-                      completionHandler: @escaping StoreCompletionHandler) {
+    @discardableResult public func store(provider: CloudProvider,
+                                         path: String,
+                                         storeOptions: StorageOptions = StorageOptions(location: .s3),
+                                         queue: DispatchQueue = .main,
+                                         completionHandler: @escaping StoreCompletionHandler) -> CancellableRequest {
 
         let request = StoreRequest(apiKey: apiKey,
                                    security: security,
@@ -216,7 +227,9 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
             completionHandler(response)
         }
 
-        perform(request: request, completionBlock: genericCompletionHandler)
+        perform(request: request, queue: queue, completionBlock: genericCompletionHandler)
+
+        return request
     }
 
     /**
@@ -230,15 +243,12 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     public func presentInteractiveUploader(viewController: UIViewController,
                                            storeOptions: StorageOptions = StorageOptions(location: .s3)) {
 
-        let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: self.classForCoder))
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "navigationController")
+        let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: classForCoder))
 
-        guard let fsnc = navigationController as? FilestackNavigationController else {
-            fatalError("Navigation controller must be an instance of FilestackNavigationController")
-        }
+        let scene = NavigationScene(filestack: self,
+                                    storeOptions: storeOptions)
 
-        fsnc.filestack = self
-        fsnc.storeOptions = storeOptions
+        let fsnc = storyboard.instantiateViewController(for: scene)
 
         viewController.present(fsnc, animated: true)
     }
@@ -256,22 +266,22 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
     // MARK: - Private Functions
 
-    private func perform(request: CloudRequest, completionBlock: @escaping CompletionHandler) {
+    private func perform(request: CloudRequest, queue: DispatchQueue = .main, completionBlock: @escaping CompletionHandler) {
 
         // Perform request.
         // On success, store last token and call completion block.
         // Else, if auth is required, add request to pending requests, open Safari and request authentication.
-        request.perform(cloudService: cloudService) { (requestUUID, response) in
+        request.perform(cloudService: cloudService, queue: queue) { (requestUUID, response) in
             if let authRedirectURL = response.authRedirectURL {
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(authRedirectURL) { success in
                         if success {
-                            self.addPendingRequest(uuid: requestUUID, request: request, completionBlock: completionBlock)
+                            self.addPendingRequest(uuid: requestUUID, request: request, queue: queue, completionBlock: completionBlock)
                         }
                     }
                 } else {
                     if UIApplication.shared.openURL(authRedirectURL) {
-                        self.addPendingRequest(uuid: requestUUID, request: request, completionBlock: completionBlock)
+                        self.addPendingRequest(uuid: requestUUID, request: request, queue: queue, completionBlock: completionBlock)
                     }
                 }
             } else {
@@ -281,9 +291,9 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         }
     }
 
-    private func addPendingRequest(uuid: UUID, request: CloudRequest, completionBlock: @escaping CompletionHandler) {
+    private func addPendingRequest(uuid: UUID, request: CloudRequest, queue: DispatchQueue, completionBlock: @escaping CompletionHandler) {
 
-        pendingRequests[uuid] = (request, completionBlock)
+        pendingRequests[uuid] = (request, queue, completionBlock)
 
         if resumeCloudRequestNotificationObserver == nil {
             self.addResumeCloudRequestNotificationObserver()
@@ -311,14 +321,14 @@ public typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         }
 
         // Find pending request identified by `requestUUID` or return early.
-        guard let (request, completionBlock) = pendingRequests[requestUUID] else {
+        guard let (request, queue, completionBlock) = pendingRequests[requestUUID] else {
             return false
         }
 
         // Perform pending request.
         // On success, store last token, remove pending request, and call completion block.
         // Else, if auth is still required, open Safari and request authentication.
-        request.perform(cloudService: cloudService) { (requestUUID, response) in
+        request.perform(cloudService: cloudService, queue: queue) { (_, response) in
             if let authRedirectURL = response.authRedirectURL {
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(authRedirectURL)

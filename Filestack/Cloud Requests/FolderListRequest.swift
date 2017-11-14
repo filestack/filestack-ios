@@ -47,7 +47,7 @@ import Alamofire
 }
 
 
-internal final class FolderListRequest: CloudRequest {
+internal final class FolderListRequest: CloudRequest, CancellableRequest {
 
     // MARK: - Properties
 
@@ -59,6 +59,7 @@ internal final class FolderListRequest: CloudRequest {
     let path: String
 
     private(set) var token: String?
+    private weak var dataRequest: DataRequest?
 
 
     // MARK: - Lifecyle Functions
@@ -80,10 +81,14 @@ internal final class FolderListRequest: CloudRequest {
         self.path = path
     }
 
+    func cancel() {
+
+        dataRequest?.cancel()
+    }
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletionHandler) {
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler) {
 
         let requestUUID = generateRequestUUID()
 
@@ -95,9 +100,11 @@ internal final class FolderListRequest: CloudRequest {
                                                      token: token,
                                                      pageToken: pageToken)
 
-        request.validate(statusCode: Config.validHTTPResponseCodes)
+        dataRequest = request
 
-        request.responseJSON(completionHandler: { dataResponse in
+        request.validate(statusCode: Constants.validHTTPResponseCodes)
+
+        request.responseJSON(queue: queue) { dataResponse in
             // Parse JSON, or return early with error if unable to parse.
             guard let data = dataResponse.data, let json = data.parseJSON() else {
                 let response = FolderListResponse(error: dataResponse.error)
@@ -121,11 +128,20 @@ internal final class FolderListRequest: CloudRequest {
 
                 completionBlock(requestUUID, response)
             }
-        })
+        }
     }
 
 
     // MARK: - Private Functions
+
+    func getAuthRedirectURL(from json: [String: Any]) -> URL? {
+
+        guard let providerJSON = json[provider.description] as? [String: Any] else { return nil }
+        guard let authJSON = providerJSON["auth"] as? [String: Any] else { return nil }
+        guard let redirectURLString = authJSON["redirect_url"] as? String else { return nil }
+
+        return URL(string: redirectURLString)
+    }
 
     private func appURLWithRequestUUID(uuid: UUID) -> URL {
 

@@ -53,7 +53,7 @@ internal final class PrefetchRequest {
 
         let request = cloudService.prefetchRequest(apiKey: apiKey)
 
-        request.validate(statusCode: Config.validHTTPResponseCodes)
+        request.validate(statusCode: Constants.validHTTPResponseCodes)
 
         request.responseJSON(completionHandler: { dataResponse in
 

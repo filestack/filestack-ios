@@ -1,5 +1,5 @@
 //
-//  SessionManager+filestackDefault.swift
+//  SessionManager+FilestackDefault.swift
 //  Filestack
 //
 //  Created by Ruben Nine on 10/24/17.

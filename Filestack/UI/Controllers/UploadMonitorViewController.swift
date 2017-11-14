@@ -10,12 +10,23 @@ import Foundation
 import FilestackSDK
 
 
+struct UploadMonitorScene: Scene {
+
+    var cancellableRequest: CancellableRequest?
+
+    func configureViewController(_ viewController: UploadMonitorViewController) {
+
+        // Inject the dependencies
+        viewController.cancellableRequest = cancellableRequest
+    }
+}
+
 internal class UploadMonitorViewController: UIViewController {
 
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var cancelButton: UIButton!
 
-    weak var mpu: MultipartUpload?
+    var cancellableRequest: CancellableRequest?
 
 
     // MARK: - Internal Functions
@@ -31,7 +42,7 @@ internal class UploadMonitorViewController: UIViewController {
 
     @IBAction func cancel(_ sender: AnyObject) {
 
-        mpu?.cancel()
+        cancellableRequest?.cancel()
         self.dismiss(animated: true, completion: nil)
     }
 }
