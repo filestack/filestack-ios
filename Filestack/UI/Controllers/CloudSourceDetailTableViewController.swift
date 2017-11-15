@@ -142,6 +142,12 @@ class CloudSourceDetailTableViewController: UITableViewController {
 
         cell.textLabel?.text = item.name
 
+        if item.isFolder {
+            cell.accessoryType = .disclosureIndicator
+        } else {
+            cell.accessoryType = .none
+        }
+
         guard let cachedImage = thumbnailCache.object(forKey: item.thumbnailURL as NSURL) else {
             loadThumbnail(for: item, into: cell)
 
