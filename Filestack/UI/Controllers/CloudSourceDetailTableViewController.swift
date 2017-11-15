@@ -40,7 +40,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
     var pageToken: String?
     var storeOptions: StorageOptions!
 
-    private var items: [CloudItem] = [CloudItem]()
+    private var items: [CloudItem]? = nil
     private var currentRequest: CancellableRequest?
 
     private let thumbnailCache: NSCache<NSURL, UIImage> = {
@@ -114,11 +114,11 @@ class CloudSourceDetailTableViewController: UITableViewController {
         switch section {
         case 0:
 
-            if items.count == 0 {
+            if let items = items {
+                return pageToken == nil ? items.count : items.count + 1
+            } else {
                 return 1
             }
-
-            return pageToken == nil ? items.count : items.count + 1
 
         default:
 
@@ -128,7 +128,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if indexPath.row == items.count {
+        guard let items = items else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "activityIndicatorTVC", for: indexPath) as! ActivityIndicatorTableViewCell
 
             cell.activityIndicator.startAnimating()
@@ -155,7 +155,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        guard let item = items[safe: UInt(indexPath.row)] else { return }
+        guard let item = items?[safe: UInt(indexPath.row)] else { return }
 
         if item.isFolder {
             let scene = CloudSourceDetailScene(filestack: filestack,
@@ -175,7 +175,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
-        if indexPath.row == items.count && currentRequest == nil {
+        if indexPath.row == items?.count && currentRequest == nil {
             loadNextPage()
         }
     }
@@ -274,9 +274,10 @@ class CloudSourceDetailTableViewController: UITableViewController {
             self.currentRequest = nil
 
             guard let contents = response.contents else { return }
+            
             let items = contents.flatMap { CloudItem(dictionary: $0) }
 
-            self.items.append(contentsOf: items)
+            self.items?.append(contentsOf: items)
             self.pageToken = response.nextToken
             self.tableView.reloadData()
         }
