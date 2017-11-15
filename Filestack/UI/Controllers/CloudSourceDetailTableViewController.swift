@@ -244,14 +244,17 @@ class CloudSourceDetailTableViewController: UITableViewController {
                     self.thumbnailRequests.remove(at: idx)
                 }
 
-                // Obtain image from data, and square it.
-                guard let data = response.data,
-                      let image = UIImage(data: data)?.squared else {
-                        return
-                }
+                var image: UIImage?
 
+                // Obtain image from data, and square it.
+                if let data = response.data, let squareImage = UIImage(data: data)?.squared {
+                    image = squareImage
                 // Update thumbnail cache with image.
-                self.thumbnailCache.setObject(image, forKey: item.thumbnailURL as NSURL)
+                    self.thumbnailCache.setObject(squareImage, forKey: item.thumbnailURL as NSURL)
+                } else {
+                    // Unable to obtain image, use file placeholder.
+                    image = UIImage(named: "file", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+                }
 
                 // Update cell's image with thumbnail.
                 DispatchQueue.main.async {
