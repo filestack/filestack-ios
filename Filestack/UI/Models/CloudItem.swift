@@ -29,7 +29,14 @@ internal struct CloudItem {
 
         self.isFolder = isFolder
         self.name = name
-        self.path = path
+
+        if isFolder {
+            // Ensure items representing folders contain a trailing slash.
+            // Sometimes, results from some providers (e.g. using GitHub) do not include it.
+            self.path = path.last == "/" ? path : "\(path)/"
+        } else {
+            self.path = path
+        }
 
         self.thumbnailURL = thumbnailURL
     }
