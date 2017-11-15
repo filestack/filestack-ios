@@ -29,6 +29,14 @@ internal class UploadMonitorViewController: UIViewController {
     var cancellableRequest: CancellableRequest?
 
 
+    // MARK: - View Overrides
+
+    override func viewDidLoad() {
+
+        progressView.progress = 0
+    }
+
+
     // MARK: - Internal Functions
 
     func updateProgress(value: Float) {
