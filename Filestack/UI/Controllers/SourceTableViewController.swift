@@ -9,13 +9,13 @@
 import UIKit
 import FilestackSDK
 
-
 internal class SourceTableViewController: UITableViewController {
 
     private let defaultSectionHeaderHeight: CGFloat = 32
-    private let localSources = LocalSource.all()
 
-    private var cloudSources = CloudSource.all().filter { $0 != .customSource }
+    private var localSources = [LocalSource]()
+    private var cloudSources = [CloudSource]()
+
     private var filestack: Filestack!
     private var storeOptions: StorageOptions!
     private var customSourceName: String? = nil
@@ -41,6 +41,17 @@ internal class SourceTableViewController: UITableViewController {
             // Keep a reference to the `StoreOptions` object so we can use it later.
             self.storeOptions = navigationController.storeOptions
 
+            // Get available local sources from config
+            self.localSources = filestack.config.availableLocalSources
+
+            // Get available cloud sources from config, but discard "custom source" (if present)
+            // We will add it later, only if it is actually enabled in the Developer Portal.
+            self.cloudSources = filestack.config.availableCloudSources.flatMap {
+                $0 == .customSource ? nil : $0
+            }
+
+            let wantsToPresentCustomSource = filestack.config.availableCloudSources.contains(.customSource)
+
             // Fetch configuration info from the API — don't care if it fails.
             filestack.prefetch { (response) in
                 guard let contents = response.contents else { return }
@@ -50,11 +61,12 @@ internal class SourceTableViewController: UITableViewController {
                 // Try to obtain custom source name
                 self.customSourceName = contents["customsource_name"] as? String
 
-                if self.useCustomSource {
-                    self.cloudSources = CloudSource.all()
+                if self.useCustomSource && wantsToPresentCustomSource {
+                    self.cloudSources.append(.customSource)
                 }
 
-                self.tableView.reloadData()
+                // Refresh the table view
+                self.tableView.reloadSections([1], with: .automatic)
             }
         }
     }
@@ -131,6 +143,7 @@ internal class SourceTableViewController: UITableViewController {
             cell.textLabel?.text = source.description
         }
 
+        cell.accessoryType = .disclosureIndicator
         cell.imageView?.image = UIImage(named: source.iconName, in: Bundle(for: classForCoder), compatibleWith: nil)
 
         return cell

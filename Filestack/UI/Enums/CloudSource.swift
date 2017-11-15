@@ -9,21 +9,49 @@
 import Foundation
 
 
-internal enum CloudSource: UInt, CustomStringConvertible, CellDescriptibleSource {
+/**
+    Represents a type of cloud source to be used in the interactive uploader.
+ */
+@objc(FSCloudSource) public enum CloudSource: UInt {
 
+    /// Facebook
     case facebook
-    case instagram
-    case googleDrive
-    case dropbox
-    case box
-    case gitHub
-    case gmail
-    case googlePhotos
-    case oneDrive
-    case amazonDrive
-    case customSource
 
-    static func all() -> [CloudSource] {
+    /// Instagram
+    case instagram
+
+    /// Google Drive
+    case googleDrive
+
+    /// Dropbox
+    case dropbox
+
+    /// Box
+    case box
+
+    /// GitHub
+    case gitHub
+
+    /// Gmail
+    case gmail
+
+    /// Google Photos
+    case googlePhotos
+
+    /// OneDrive
+    case oneDrive
+
+    /// Amazon Drive
+    case amazonDrive
+
+    /// Custom Source
+    case customSource
+}
+
+extension CloudSource: CustomStringConvertible, CellDescriptibleSource {
+
+    /// Returns all the supported sources.
+    public static func all() -> [CloudSource] {
 
         return [.facebook, .instagram, .googleDrive, .dropbox, .box, .gitHub,
                 .gmail, .googlePhotos, .oneDrive, .amazonDrive, .customSource]
@@ -44,7 +72,10 @@ internal enum CloudSource: UInt, CustomStringConvertible, CellDescriptibleSource
         return "icon-\(provider.description)"
     }
 
-    var description: String {
+    // MARK: - CustomStringConvertible
+
+    /// Returns a `String` representation of self.
+    public var description: String {
 
         switch self {
         case .facebook:
@@ -93,4 +124,3 @@ internal enum CloudSource: UInt, CustomStringConvertible, CellDescriptibleSource
         }
     }
 }
-

@@ -9,12 +9,22 @@
 import Foundation
 
 
-internal enum LocalSource: CustomStringConvertible, CellDescriptibleSource {
+/**
+    Represents a type of local source to be used in the interactive uploader.
+ */
+@objc(FSLocalSource) public enum LocalSource: UInt {
 
+    /// Camera
     case camera
-    case photoLibrary
 
-    static func all() -> [LocalSource] {
+    /// Photo Library
+    case photoLibrary
+}
+
+extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
+
+    /// Returns all the supported sources.
+    public static func all() -> [LocalSource] {
 
         return [.camera, .photoLibrary]
     }
@@ -38,7 +48,11 @@ internal enum LocalSource: CustomStringConvertible, CellDescriptibleSource {
         }
     }
 
-    var description: String {
+
+    // MARK: - CustomStringConvertible
+
+    /// Returns a `String` representation of self.
+    public var description: String {
 
         switch self {
         case .camera:
