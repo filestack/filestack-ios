@@ -205,6 +205,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
             let items = contents.flatMap { CloudItem(dictionary: $0) }
 
             self.items = items
+            self.pageToken = response.nextToken
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -249,7 +250,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
                 // Obtain image from data, and square it.
                 if let data = response.data, let squareImage = UIImage(data: data)?.squared {
                     image = squareImage
-                // Update thumbnail cache with image.
+                    // Update thumbnail cache with image.
                     self.thumbnailCache.setObject(squareImage, forKey: item.thumbnailURL as NSURL)
                 } else {
                     // Unable to obtain image, use file placeholder.
