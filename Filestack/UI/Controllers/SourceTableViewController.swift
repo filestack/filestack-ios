@@ -196,17 +196,30 @@ internal class SourceTableViewController: UITableViewController {
         }
 
         let completionHandler: ((NetworkJSONResponse?) -> Void) = { (response) in
-            // Upon completion, re-enable user interaction...
+            // Nil the reference to the request object, so the object can be properly deallocated.
+            cancellableRequest = nil
+            // Re-enable user interaction.
             self.view.isUserInteractionEnabled = true
 
-            // ... and dismiss monitor view (if present)
-            self.uploadMonitorViewController?.dismiss(animated: true) {
-                self.uploadMonitorViewController = nil
-            }
+            if let error = response?.error {
+                let alert = UIAlertController(title: "Upload Failed",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
 
-            // Finally, nil the reference to the `MultipartUpload` object, so the
-            // object can be properly deallocated.
-            cancellableRequest = nil
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    // Dismiss monitor view controller, and remove strong reference to it
+                    self.uploadMonitorViewController?.dismiss(animated: true) {
+                        self.uploadMonitorViewController = nil
+                    }
+                }))
+
+                self.uploadMonitorViewController?.present(alert, animated: true)
+            } else {
+                // Dismiss monitor view controller, and remove strong reference to it
+                self.uploadMonitorViewController?.dismiss(animated: true) {
+                    self.uploadMonitorViewController = nil
+                }
+            }
         }
 
         cancellableRequest = filestack.uploadFromImagePicker(viewController: self,
