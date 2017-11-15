@@ -154,7 +154,8 @@ internal class SourceTableViewController: UITableViewController {
             // Navigate to given cloud's "/" path
             let scene = CloudSourceDetailScene(filestack: filestack,
                                                source: cloudSource,
-                                               nextToken: nil,
+                                               storeOptions: storeOptions,
+                                               pageToken: nil,
                                                path: nil)
 
             if let vc = storyboard?.instantiateViewController(for: scene) {

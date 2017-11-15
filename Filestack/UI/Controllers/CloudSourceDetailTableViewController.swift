@@ -15,8 +15,9 @@ struct CloudSourceDetailScene: Scene {
 
     let filestack: Filestack
     let source: CloudSource
+    let storeOptions: StorageOptions
 
-    var nextToken: String? = nil
+    var pageToken: String? = nil
     var path: String? = nil
 
     func configureViewController(_ viewController: CloudSourceDetailTableViewController) {
@@ -25,7 +26,8 @@ struct CloudSourceDetailScene: Scene {
         viewController.filestack = filestack
         viewController.source = source
         viewController.path = path ?? "/"
-        viewController.nextToken = nextToken
+        viewController.pageToken = pageToken
+        viewController.storeOptions = storeOptions
     }
 }
 
@@ -35,7 +37,8 @@ class CloudSourceDetailTableViewController: UITableViewController {
     var filestack: Filestack!
     var source: CloudSource!
     var path: String!
-    var nextToken: String?
+    var pageToken: String?
+    var storeOptions: StorageOptions!
 
     private var items: [CloudItem] = [CloudItem]()
     private var currentRequest: CancellableRequest?
@@ -50,6 +53,8 @@ class CloudSourceDetailTableViewController: UITableViewController {
     }()
 
     private var thumbnailRequests: [DataRequest] = [DataRequest]()
+
+    private weak var uploadMonitorViewController: UploadMonitorViewController?
 
 
     // MARK: - View Overrides
@@ -74,7 +79,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
             let items = contents.flatMap { CloudItem(dictionary: $0) }
 
             self.items = items
-            self.nextToken = response.nextToken
+            self.pageToken = response.nextToken
             self.tableView.reloadData()
 
             self.refreshControl = UIRefreshControl()
@@ -113,7 +118,7 @@ class CloudSourceDetailTableViewController: UITableViewController {
                 return 1
             }
 
-            return nextToken == nil ? items.count : items.count + 1
+            return pageToken == nil ? items.count : items.count + 1
 
         default:
 
@@ -155,12 +160,16 @@ class CloudSourceDetailTableViewController: UITableViewController {
         if item.isFolder {
             let scene = CloudSourceDetailScene(filestack: filestack,
                                                source: source,
-                                               nextToken: nil,
+                                               storeOptions: storeOptions,
+                                               pageToken: nil,
                                                path: item.path)
 
             if let vc = storyboard?.instantiateViewController(for: scene) {
                 navigationController?.pushViewController(vc, animated: true)
             }
+        } else {
+            // Store at destination store location
+            self.store(item: item)
         }
     }
 
@@ -190,7 +199,6 @@ class CloudSourceDetailTableViewController: UITableViewController {
             let items = contents.flatMap { CloudItem(dictionary: $0) }
 
             self.items = items
-            self.nextToken = response.nextToken
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -260,17 +268,71 @@ class CloudSourceDetailTableViewController: UITableViewController {
 
     private func loadNextPage() {
 
-        guard let nextToken = nextToken, currentRequest == nil else { return }
+        guard let pageToken = pageToken, currentRequest == nil else { return }
 
-        currentRequest = requestFolderList(source: source, path: path, pageToken: nextToken) { (response) in
+        currentRequest = requestFolderList(source: source, path: path, pageToken: pageToken) { (response) in
             self.currentRequest = nil
 
             guard let contents = response.contents else { return }
             let items = contents.flatMap { CloudItem(dictionary: $0) }
 
             self.items.append(contentsOf: items)
-            self.nextToken = response.nextToken
+            self.pageToken = response.nextToken
             self.tableView.reloadData()
         }
+    }
+
+    private func store(item: CloudItem) {
+
+        var cancellableRequest: CancellableRequest? = nil
+
+        // Instantiate upload monitor controller
+        let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
+
+        guard let uploadMonitorViewController = storyboard?.instantiateViewController(for: scene) else { return }
+
+        self.uploadMonitorViewController = uploadMonitorViewController
+
+        present(uploadMonitorViewController, animated: true) {
+            // Since we can not measure progress here, we will have to fake it.
+            // Set progress to 50% after 0.25 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                uploadMonitorViewController.updateProgress(value: 0.5)
+            }
+        }
+
+        let completionHandler: ((StoreResponse) -> Void) = { (response) in
+            // Nil the reference to the request object, so the object can be properly deallocated.
+            cancellableRequest = nil
+
+            if let error = response.error {
+                let alert = UIAlertController(title: "Upload Failed",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    // Dismiss monitor view controller, and remove strong reference to it
+                    uploadMonitorViewController.dismiss(animated: true) {
+                        self.uploadMonitorViewController = nil
+                    }
+                }))
+
+                uploadMonitorViewController.present(alert, animated: true)
+            } else {
+                // Set progress to 100%
+                uploadMonitorViewController.updateProgress(value: 1.0)
+                // After 0.25 seconds, dismiss monitor view controller, and remove strong reference to it.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    uploadMonitorViewController.dismiss(animated: true) {
+                        self.uploadMonitorViewController = nil
+                    }
+                }
+            }
+        }
+
+        cancellableRequest = filestack.store(provider: source.provider,
+                                             path: item.path,
+                                             storeOptions: storeOptions,
+                                             completionHandler: completionHandler)
     }
 }
