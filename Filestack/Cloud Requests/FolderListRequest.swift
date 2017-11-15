@@ -26,7 +26,7 @@ import Alamofire
     public let nextToken: String?
 
     /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
-    public let authRedirectURL: URL?
+    public let authURL: URL?
 
     /// An error response. Optional.
     public let error: Error?
@@ -36,12 +36,12 @@ import Alamofire
 
     internal init(contents: [[String: Any]]? = nil,
                   nextToken: String? = nil,
-                  authRedirectURL: URL? = nil,
+                  authURL: URL? = nil,
                   error: Error? = nil) {
 
         self.contents = contents
         self.nextToken = nextToken
-        self.authRedirectURL = authRedirectURL
+        self.authURL = authURL
         self.error = error
     }
 }
@@ -90,11 +90,11 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
 
     func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler) {
 
-        let requestUUID = generateRequestUUID()
+        let appRedirectURL = generateAppRedirectURL(using: UUID())
 
         let request = cloudService.folderListRequest(provider: provider,
                                                      path: path,
-                                                     appURL: appURLWithRequestUUID(uuid: requestUUID),
+                                                     appURL: appRedirectURL,
                                                      apiKey: apiKey,
                                                      security: security,
                                                      token: token,
@@ -108,7 +108,8 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
             // Parse JSON, or return early with error if unable to parse.
             guard let data = dataResponse.data, let json = data.parseJSON() else {
                 let response = FolderListResponse(error: dataResponse.error)
-                completionBlock(requestUUID, response)
+
+                completionBlock(nil, response)
 
                 return
             }
@@ -116,17 +117,18 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
             // Store any token we receive so we can use it next time.
             self.token = json["token"] as? String
 
-            if let authRedirectURL = self.getAuthRedirectURL(from: json) {
+            if let authURL = self.getAuthURL(from: json) {
                 // Auth is required — redirect to authentication URL
-                let response = FolderListResponse(authRedirectURL: authRedirectURL)
-                completionBlock(requestUUID, response)
+                let response = FolderListResponse(authURL: authURL)
+
+                completionBlock(appRedirectURL, response)
             } else if let results = self.getResults(from: json) {
                 // Results received — return response with contents, and, optionally next token
                 let contents = results["contents"] as? [[String: Any]]
                 let nextToken: String? = (results["next"] as? String).flatMap { $0.count > 0 ? $0 : nil }
                 let response = FolderListResponse(contents: contents, nextToken: nextToken, error: dataResponse.error)
 
-                completionBlock(requestUUID, response)
+                completionBlock(nil, response)
             }
         }
     }
@@ -134,7 +136,7 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
 
     // MARK: - Private Functions
 
-    func getAuthRedirectURL(from json: [String: Any]) -> URL? {
+    func getAuthURL(from json: [String: Any]) -> URL? {
 
         guard let providerJSON = json[provider.description] as? [String: Any] else { return nil }
         guard let authJSON = providerJSON["auth"] as? [String: Any] else { return nil }
@@ -143,8 +145,8 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
         return URL(string: redirectURLString)
     }
 
-    private func appURLWithRequestUUID(uuid: UUID) -> URL {
+    private func generateAppRedirectURL(using uuid: UUID) -> URL {
 
-        return URL(string: appURLScheme + "://Filestack/?requestUUID=" + uuid.uuidString)!
+        return URL(string: appURLScheme.lowercased() + "://Filestack/?requestUUID=" + uuid.uuidString)!
     }
 }

@@ -74,6 +74,11 @@ class CloudSourceDetailTableViewController: UITableViewController {
         currentRequest = requestFolderList(source: source, path: path) { (response) in
             self.currentRequest = nil
 
+            if response.error != nil {
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
+
             guard let contents = response.contents else { return }
 
             let items = contents.flatMap { CloudItem(dictionary: $0) }
@@ -85,11 +90,6 @@ class CloudSourceDetailTableViewController: UITableViewController {
             self.refreshControl = UIRefreshControl()
             self.refreshControl?.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-
-        super.viewWillAppear(animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

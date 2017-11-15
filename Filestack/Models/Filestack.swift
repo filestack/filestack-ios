@@ -8,12 +8,13 @@
 
 import Foundation
 import FilestackSDK
+import SafariServices
 
 
 public typealias FolderListCompletionHandler = (_ response: FolderListResponse) -> Swift.Void
 public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Swift.Void
 
-internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
+internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
 
 
 /**
@@ -45,9 +46,10 @@ internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
     private let client: Client
     private let cloudService = CloudService()
 
-    private var pendingRequests: [UUID: (CloudRequest, DispatchQueue, CompletionHandler)]
+    private var pendingRequests: [URL: (CloudRequest, DispatchQueue, CompletionHandler)]
     private var lastToken: String?
     private var resumeCloudRequestNotificationObserver: NSObjectProtocol!
+    private var safariAuthSession: AnyObject? = nil
 
 
     // MARK: - Lifecyle Functions
@@ -189,9 +191,21 @@ internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                                         provider: provider,
                                         path: path)
 
-        let genericCompletionHandler: CompletionHandler = { response in
-            guard let response = response as? FolderListResponse else { return }
-            completionHandler(response)
+        let genericCompletionHandler: CompletionHandler = { response, safariError in
+            switch (response, safariError) {
+            case (let response as FolderListResponse, nil):
+
+                completionHandler(response)
+
+            case (_, let error):
+
+                let response = FolderListResponse(contents: nil,
+                                                  nextToken: nil,
+                                                  authURL: nil,
+                                                  error: error)
+
+                completionHandler(response)
+            }
         }
 
         perform(request: request, queue: queue, completionBlock: genericCompletionHandler)
@@ -222,7 +236,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                                    path: path,
                                    storeOptions: storeOptions)
 
-        let genericCompletionHandler: CompletionHandler = { response in
+        let genericCompletionHandler: CompletionHandler = { response, _ in
             guard let response = response as? StoreResponse else { return }
             completionHandler(response)
         }
@@ -271,41 +285,70 @@ internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
         // Perform request.
         // On success, store last token and call completion block.
         // Else, if auth is required, add request to pending requests, open Safari and request authentication.
-        request.perform(cloudService: cloudService, queue: queue) { (requestUUID, response) in
+        request.perform(cloudService: cloudService, queue: queue) { (authRedirectURL, response) in
             if let token = request.token {
                 self.lastToken = token
             }
 
-            if let authRedirectURL = response.authRedirectURL {
-                if #available(iOS 10, *) {
-                    UIApplication.shared.open(authRedirectURL) { success in
-                        if success {
-                            self.addPendingRequest(uuid: requestUUID, request: request, queue: queue, completionBlock: completionBlock)
+            if let authURL = response.authURL, let authRedirectURL = authRedirectURL {
+                DispatchQueue.main.async {
+                    if #available(iOS 11, *) {
+                        let safariAuthSession = SFAuthenticationSession(url: authURL,
+                                                                        callbackURLScheme: self.config.appURLScheme,
+                                                                        completionHandler: { (url, error) in
+                                                                            // Remove strong reference,
+                                                                            // so object can be deallocated.
+                                                                            self.safariAuthSession = nil
+
+                                                                            if let safariError = error {
+                                                                                completionBlock(response, safariError)
+                                                                            } else if let url = url, url.absoluteString.starts(with: authRedirectURL.absoluteString) {
+                                                                                self.perform(request: request,
+                                                                                             queue: queue,
+                                                                                             completionBlock: completionBlock)
+                                                                            }
+                        })
+
+                        // Keep a strong reference to the auth session.
+                        self.safariAuthSession = safariAuthSession
+
+                        safariAuthSession.start()
+                    } else if #available(iOS 10, *) {
+                        UIApplication.shared.open(authURL) { success in
+                            if success {
+                                self.addPendingRequest(appRedirectURL: authRedirectURL,
+                                                       request: request,
+                                                       queue: queue,
+                                                       completionBlock: completionBlock)
+                            }
                         }
-                    }
-                } else {
-                    if UIApplication.shared.openURL(authRedirectURL) {
-                        self.addPendingRequest(uuid: requestUUID, request: request, queue: queue, completionBlock: completionBlock)
+                    } else {
+                        if UIApplication.shared.openURL(authURL) {
+                            self.addPendingRequest(appRedirectURL: authRedirectURL,
+                                                   request: request,
+                                                   queue: queue,
+                                                   completionBlock: completionBlock)
+                        }
                     }
                 }
             } else {
-                completionBlock(response)
+                completionBlock(response, nil)
             }
         }
     }
 
-    private func addPendingRequest(uuid: UUID, request: CloudRequest, queue: DispatchQueue, completionBlock: @escaping CompletionHandler) {
+    private func addPendingRequest(appRedirectURL: URL, request: CloudRequest, queue: DispatchQueue, completionBlock: @escaping CompletionHandler) {
 
-        pendingRequests[uuid] = (request, queue, completionBlock)
+        pendingRequests[appRedirectURL] = (request, queue, completionBlock)
 
         if resumeCloudRequestNotificationObserver == nil {
             self.addResumeCloudRequestNotificationObserver()
         }
     }
 
-    private func removePendingRequest(uuid: UUID) {
+    private func removePendingRequest(appRedirectURL: URL) {
 
-        pendingRequests.removeValue(forKey: uuid)
+        pendingRequests.removeValue(forKey: appRedirectURL)
 
         if pendingRequests.isEmpty {
             removeResumeCloudRequestNotificationObserver()
@@ -314,17 +357,10 @@ internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
 
     @discardableResult private func resumeCloudRequest(using url: URL) -> Bool {
 
-        // Compare the given URL's scheme to the app URL, then try to extract the request UUID from the URL.
-        // If unable to find a match or if UUID is missing, return early.
-        guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems,
-            let idx = (queryItems.index { $0.name == "requestUUID" }),
-            let requestUUIDString = queryItems[idx].value,
-            let requestUUID = UUID(uuidString: requestUUIDString) else {
-                return false
-        }
-
         // Find pending request identified by `requestUUID` or return early.
-        guard let (request, queue, completionBlock) = pendingRequests[requestUUID] else {
+        let matchingRequests = pendingRequests.filter { url.absoluteString.starts(with: $0.key.absoluteString) }
+
+        guard let (request, queue, completionBlock) = matchingRequests.first?.value else {
             return false
         }
 
@@ -336,15 +372,15 @@ internal typealias CompletionHandler = (_ response: CloudResponse) -> Swift.Void
                 self.lastToken = token
             }
 
-            if let authRedirectURL = response.authRedirectURL {
+            if let authURL = response.authURL {
                 if #available(iOS 10, *) {
-                    UIApplication.shared.open(authRedirectURL)
+                    UIApplication.shared.open(authURL)
                 } else {
-                    UIApplication.shared.openURL(authRedirectURL)
+                    UIApplication.shared.openURL(authURL)
                 }
             } else {
-                self.removePendingRequest(uuid: requestUUID)
-                completionBlock(response)
+                self.removePendingRequest(appRedirectURL: url)
+                completionBlock(response, nil)
             }
         }
 

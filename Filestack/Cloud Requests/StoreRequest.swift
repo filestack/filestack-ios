@@ -23,7 +23,7 @@ import Alamofire
     public let contents: [String: Any]?
 
     /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
-    public let authRedirectURL: URL? = nil
+    public let authURL: URL? = nil
 
     /// An error response. Optional.
     public let error: Error?
@@ -80,8 +80,6 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
 
     func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler) {
 
-        let requestUUID = generateRequestUUID()
-
         let request = cloudService.storeRequest(provider: provider,
                                                 path: path,
                                                 apiKey: apiKey,
@@ -97,7 +95,7 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
             // Parse JSON, or return early with error if unable to parse.
             guard let data = dataResponse.data, let json = data.parseJSON() else {
                 let response = StoreResponse(error: dataResponse.error)
-                completionBlock(requestUUID, response)
+                completionBlock(nil, response)
 
                 return
             }
@@ -108,7 +106,7 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
             if let results = self.getResults(from: json) {
                 // Results received — return response with contents
                 let response = StoreResponse(contents: results, error: dataResponse.error)
-                completionBlock(requestUUID, response)
+                completionBlock(nil, response)
             }
         }
     }

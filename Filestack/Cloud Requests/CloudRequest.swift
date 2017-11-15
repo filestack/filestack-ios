@@ -14,10 +14,10 @@ import FilestackSDK
 @objc(FSCloudResponse) public protocol CloudResponse {
 
     var error: Error? { get }
-    var authRedirectURL: URL? { get }
+    var authURL: URL? { get }
 }
 
-internal typealias CloudRequestCompletionHandler = (_ uuid: UUID, _ response: CloudResponse) -> Swift.Void
+internal typealias CloudRequestCompletionHandler = (_ appRedirectURL: URL?, _ response: CloudResponse) -> Swift.Void
 
 internal protocol CloudRequest {
 
@@ -28,7 +28,6 @@ internal protocol CloudRequest {
 
     func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler)
     func getResults(from json: [String: Any]) -> [String: Any]?
-    func generateRequestUUID() -> UUID
 }
 
 internal extension CloudRequest {
@@ -36,10 +35,5 @@ internal extension CloudRequest {
     func getResults(from json: [String: Any]) -> [String: Any]? {
 
         return json[provider.description] as? [String: Any]
-    }
-
-    func generateRequestUUID() -> UUID {
-
-        return UUID()
     }
 }
