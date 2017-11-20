@@ -8,6 +8,7 @@
 
 import Foundation
 import FilestackSDK
+import AVFoundation.AVAssetExportSession
 
 
 internal class PickerUploadController: NSObject {
@@ -16,15 +17,18 @@ internal class PickerUploadController: NSObject {
     let viewController: UIViewController
     let picker: UIImagePickerController
     let sourceType: UIImagePickerControllerSourceType
+    let config: Config
 
     var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
 
-    init(multipartUpload: MultipartUpload, viewController: UIViewController, sourceType: UIImagePickerControllerSourceType) {
+
+    init(multipartUpload: MultipartUpload, viewController: UIViewController, sourceType: UIImagePickerControllerSourceType, config: Config) {
 
         self.multipartUpload = multipartUpload
         self.viewController = viewController
         self.sourceType = sourceType
         self.picker = UIImagePickerController()
+        self.config = config
     }
 
 
@@ -34,6 +38,13 @@ internal class PickerUploadController: NSObject {
         picker.modalPresentationStyle = .currentContext
         picker.sourceType = sourceType
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: sourceType)!
+
+        if #available(iOS 11.0, *) {
+            picker.imageExportPreset = config.imageURLExportPreset
+            picker.videoExportPreset = config.videoExportPreset
+        }
+
+        picker.videoQuality = config.videoQuality
 
         viewController.present(picker, animated: true, completion: nil)
     }
@@ -61,24 +72,63 @@ extension PickerUploadController: UIImagePickerControllerDelegate {
                 self.multipartUpload.localURL = mediaURL
                 self.multipartUpload.uploadFile()
             } else if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-                // Save picture as a temporary JPEG file
-                if let imageData = UIImageJPEGRepresentation(image, 0.85) {
-                    let tmpDir = NSTemporaryDirectory()
-                    let tmpFileName = UUID().uuidString
-                    let tmpURL = URL(fileURLWithPath: "\(tmpDir)\(tmpFileName).jpeg")
+                var exportedURL: URL?
+                // Export to HEIC or JPEG following according to the image export preset.
+                // On iOS versions before 11, this defaults always to JPEG.
+                if #available(iOS 11.0, *), picker.imageExportPreset == .current {
+                    exportedURL = self.exportedHEICImageURL(image: image) ?? self.exportedJPEGImageURL(image: image)
+                } else {
+                    exportedURL = self.exportedJPEGImageURL(image: image)
+                }
 
-                    do {
-                        try imageData.write(to: tmpURL)
-
-                        self.multipartUpload.localURL = tmpURL
-                        self.multipartUpload.uploadFile()
-                    } catch {
-                        self.multipartUpload.cancel()
-                    }
+                if let url = exportedURL {
+                    self.multipartUpload.localURL = url
+                    self.multipartUpload.uploadFile()
+                } else {
+                    self.multipartUpload.cancel()
                 }
             }
 
             self.filePickedCompletionHandler?(true)
+        }
+    }
+
+
+    // MARK: - Private Functions
+
+    @available(iOS 11.0, *)
+    private func exportedHEICImageURL(image: UIImage) -> URL? {
+
+        // Save picture as a temporary HEIC file
+        if let imageData = image.heicRepresentation(quality: config.imageExportQuality) {
+            let filename = UUID().uuidString + ".heic"
+            return writeImageDataToURL(imageData: imageData, filename: filename)
+        }
+
+        return nil
+    }
+
+    private func exportedJPEGImageURL(image: UIImage) -> URL? {
+
+        // Save picture as a temporary JPEG file
+        if let imageData = UIImageJPEGRepresentation(image, CGFloat(config.imageExportQuality)) {
+            let filename = UUID().uuidString + ".jpeg"
+            return writeImageDataToURL(imageData: imageData, filename: filename)
+        }
+
+        return nil
+    }
+
+    private func writeImageDataToURL(imageData: Data, filename: String) -> URL? {
+
+        do {
+            let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory() + filename)
+            try imageData.write(to: tmpURL)
+
+            return tmpURL
+        } catch {
+            // NO-OP
+            return nil
         }
     }
 }

@@ -143,7 +143,8 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
         let uploadController = PickerUploadController(multipartUpload: mpu,
                                                       viewController: viewController,
-                                                      sourceType: sourceType)
+                                                      sourceType: sourceType,
+                                                      config: config)
 
         uploadController.filePickedCompletionHandler = { (success) in
             // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
