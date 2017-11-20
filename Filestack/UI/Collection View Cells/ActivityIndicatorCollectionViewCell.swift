@@ -1,15 +1,15 @@
 //
-//  ActivityIndicatorTableViewCell.swift
+//  ActivityIndicatorCollectionViewCell.swift
 //  Filestack
 //
-//  Created by Ruben Nine on 11/13/17.
+//  Created by Ruben Nine on 11/17/17.
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
 import UIKit
 
 
-class ActivityIndicatorTableViewCell: UITableViewCell {
+class ActivityIndicatorCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 }

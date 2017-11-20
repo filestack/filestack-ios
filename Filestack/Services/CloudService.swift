@@ -13,7 +13,7 @@ import FilestackSDK
 
 internal class CloudService {
 
-    let sessionManager = SessionManager.filestackDefault()
+    let sessionManager = SessionManager.filestackDefault
     let baseURL = Constants.cloudURL
 
     func folderListRequest(provider: CloudProvider,

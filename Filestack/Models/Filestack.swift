@@ -257,7 +257,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
     public func presentInteractiveUploader(viewController: UIViewController,
                                            storeOptions: StorageOptions = StorageOptions(location: .s3)) {
 
-        let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: classForCoder))
+        let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: type(of: self)))
 
         let scene = NavigationScene(filestack: self,
                                     storeOptions: storeOptions)

@@ -144,7 +144,7 @@ internal class SourceTableViewController: UITableViewController {
         }
 
         cell.accessoryType = .disclosureIndicator
-        cell.imageView?.image = UIImage(named: source.iconName, in: Bundle(for: classForCoder), compatibleWith: nil)
+        cell.imageView?.image = UIImage(named: source.iconName, in: Bundle(for: type(of: self)), compatibleWith: nil)
 
         return cell
     }
@@ -164,12 +164,17 @@ internal class SourceTableViewController: UITableViewController {
 
         case let cloudSource as CloudSource:
 
+            // Try to retrieve store view type from user defaults, or default to "list"
+            let viewType = UserDefaults.standard.cloudSourceViewType() ?? .list
+
             // Navigate to given cloud's "/" path
-            let scene = CloudSourceDetailScene(filestack: filestack,
-                                               source: cloudSource,
+            let scene = CloudSourceTabBarScene(filestack: filestack,
                                                storeOptions: storeOptions,
-                                               pageToken: nil,
-                                               path: nil)
+                                               source: cloudSource,
+                                               customSourceName: customSourceName,
+                                               path: nil,
+                                               nextPageToken: nil,
+                                               viewType: viewType)
 
             if let vc = storyboard?.instantiateViewController(for: scene) {
                 navigationController?.pushViewController(vc, animated: true)
