@@ -12,10 +12,12 @@ import Alamofire
 
 internal extension SessionManager {
 
-    static let filestackDefault: SessionManager = {
+    static var filestackDefault: SessionManager {
 
         let configuration = URLSessionConfiguration.default
         var defaultHeaders = SessionManager.defaultHTTPHeaders
+
+        configuration.httpShouldUsePipelining = true
 
         if let shortVersionString = BundleInfo.version {
             defaultHeaders["User-Agent"] = "filestack-ios \(shortVersionString)"
@@ -25,5 +27,5 @@ internal extension SessionManager {
         configuration.httpAdditionalHeaders = defaultHeaders
 
         return SessionManager(configuration: configuration)
-    }()
+    }
 }
