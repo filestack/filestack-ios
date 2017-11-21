@@ -88,6 +88,16 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         tabBar.isHidden = true
         // Replace default back button with one with a custom title
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        // Add logout button (unless we are displaying the custom source)
+        if source != .customSource {
+            let logoutImage = UIImage(named: "icon-logout", in: Bundle(for: type(of: self)), compatibleWith: nil)
+
+            navigationItem.rightBarButtonItems = [
+                UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(logout))
+            ]
+        } else {
+            navigationItem.rightBarButtonItems = []
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -300,7 +310,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
 
         if toggleViewTypeButton == nil {
             toggleViewTypeButton = UIBarButtonItem(image: alternateIcon(), style: .plain, target: self, action: #selector(toggleViewType))
-            navigationItem.rightBarButtonItem = toggleViewTypeButton
+            navigationItem.rightBarButtonItems?.append(toggleViewTypeButton!)
         } else {
             toggleViewTypeButton?.image = alternateIcon()
         }
@@ -337,5 +347,22 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         setupViewtypeButton()
         // Store view type in user defaults
         UserDefaults.standard.set(cloudSourceViewType: viewType)
+    }
+
+    @IBAction func logout(_ sender: Any) {
+
+        filestack.logout(provider: source.provider) { (response) in
+            if let error = response.error {
+                let alert = UIAlertController(title: "Logout Failed",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                self.present(alert, animated: true)
+            } else {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
     }
 }

@@ -123,4 +123,20 @@ internal class CloudService {
 
         return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
     }
+
+    func logoutRequest(provider: CloudProvider, apiKey: String, token: String) -> DataRequest {
+
+        let url = baseURL.appendingPathComponent("auth/logout")
+
+        let params: [String: Any] = [
+            "apikey": apiKey,
+            "token": token,
+            "flow": "mobile",
+            "clouds": [
+                provider.description: [:]
+            ]
+        ]
+
+        return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
+    }
 }

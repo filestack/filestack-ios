@@ -278,6 +278,15 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         prefetchRequest.perform(cloudService: cloudService, completionBlock: completionBlock)
     }
 
+    internal func logout(provider: CloudProvider, completionBlock: @escaping LogoutCompletionHandler) {
+
+        guard let token = lastToken else { return }
+
+        let logoutRequest = LogoutRequest(provider: provider, apiKey: apiKey, token: token)
+
+        logoutRequest.perform(cloudService: cloudService, completionBlock: completionBlock)
+    }
+
 
     // MARK: - Private Functions
 
