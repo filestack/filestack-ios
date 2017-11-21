@@ -94,14 +94,14 @@ class CloudSourceCollectionViewController: UICollectionViewController {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: .cloudItemReuseIdentifier, for: indexPath)
         }
     
-        guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return cell }
-
         switch cell {
         case let cell as ActivityIndicatorCollectionViewCell:
 
             cell.activityIndicator.startAnimating()
 
         case let cell as CloudItemCollectionViewCell:
+
+            guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return cell }
 
             // Configure the cell
             cell.label.text = item.name

@@ -94,14 +94,14 @@ internal class CloudSourceTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: .cloudItemReuseIdentifier, for: indexPath)
         }
 
-        guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return cell }
-
         switch cell {
         case let cell as ActivityIndicatorTableViewCell:
 
             cell.activityIndicator.startAnimating()
 
         case let cell as CloudItemTableViewCell:
+
+            guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return cell }
 
             cell.textLabel?.text = item.name
 
