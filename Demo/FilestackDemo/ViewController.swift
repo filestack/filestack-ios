@@ -79,11 +79,11 @@ class ViewController: UIViewController {
         }
 
         // Here you can enumerate the available local sources for the picker.
-        // If you simply want to enumerate all local sources, you may use `LocalSource.all()`, but if you would like to
+        // If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would like to
         // enumerate, let's say the camera source only, you could use `[.camera]` instead.
         config.availableLocalSources = LocalSource.all()
         // Here you can enumerate the available cloud sources for the picker.
-        // If you simply want to enumerate all cloud sources, you may use `CloudSource()`, but if you would like to
+        // If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would like to
         // enumerate selected cloud sources, you could use, for instance, `[.dropbox, .googledrive, .googlephotos]` (etc.)
         // instead.
         config.availableCloudSources = CloudSource.all()
