@@ -268,6 +268,22 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         viewController.present(fsnc, animated: true)
     }
 
+    /**
+        Logs out the user from a given provider.
+
+        - Parameter provider: The `CloudProvider` to logout from.
+        - Parameter completionHandler: Adds a handler to be called once the request has completed. The response will either
+            contain an error (on failure) or nothing at all (on success.)
+     */
+    public func logout(provider: CloudProvider, completionHandler: @escaping LogoutCompletionHandler) {
+
+        guard let token = lastToken else { return }
+
+        let logoutRequest = LogoutRequest(provider: provider, apiKey: apiKey, token: token)
+
+        logoutRequest.perform(cloudService: cloudService, completionBlock: completionHandler)
+    }
+
 
     // MARK: - Internal Functions
 
@@ -276,15 +292,6 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         let prefetchRequest = PrefetchRequest(apiKey: apiKey)
 
         prefetchRequest.perform(cloudService: cloudService, completionBlock: completionBlock)
-    }
-
-    internal func logout(provider: CloudProvider, completionBlock: @escaping LogoutCompletionHandler) {
-
-        guard let token = lastToken else { return }
-
-        let logoutRequest = LogoutRequest(provider: provider, apiKey: apiKey, token: token)
-
-        logoutRequest.perform(cloudService: cloudService, completionBlock: completionBlock)
     }
 
 

@@ -11,22 +11,20 @@ import FilestackSDK
 import Alamofire
 
 
-internal typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
+public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
 
-internal class LogoutResponse: NSObject {
+public class LogoutResponse: NSObject {
 
 
     // MARK: - Properties
 
-    public let contents: [String: Any]?
     public let error: Error?
 
 
     // MARK: - Lifecyle Functions
 
-    internal init(contents: [String: Any]? = nil, error: Error? = nil) {
+    internal init(error: Error? = nil) {
 
-        self.contents = contents
         self.error = error
     }
 }
@@ -61,7 +59,7 @@ internal final class LogoutRequest {
         request.validate(statusCode: Constants.validHTTPResponseCodes)
 
         request.responseData { (dataResponse) in
-            let response = LogoutResponse(contents: nil, error: dataResponse.error)
+            let response = LogoutResponse(error: dataResponse.error)
 
             completionBlock(response)
         }
