@@ -259,7 +259,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
      */
     public func picker(storeOptions: StorageOptions = StorageOptions(location: .s3)) -> PickerNavigationController {
 
-        let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: type(of: self)))
+        let storyboard = UIStoryboard(name: "Picker", bundle: Bundle(for: type(of: self)))
 
         let scene = PickerNavigationScene(filestack: self,
                                           storeOptions: storeOptions)
