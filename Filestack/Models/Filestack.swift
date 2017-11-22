@@ -248,24 +248,25 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
     }
 
     /**
-        Presents an interactive UI that will allow the user to pick files from a local or cloud source and upload them
-        to a given location.
+        Returns an instance of a `PickerNavigationController` that will allow the user to interactively
+        pick files from a local or cloud source and upload them to a given location.
 
-        - Parameter viewController: The view controller that will present the interactive UI.
+        To present this controller on the screen, simply call the `present(_:animated:)` function on
+        your view controller, passing the `PickerNavigationController` returned by this function.
+
         - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
             If none given, S3 location is assumed.
      */
-    public func presentInteractiveUploader(viewController: UIViewController,
-                                           storeOptions: StorageOptions = StorageOptions(location: .s3)) {
+    public func picker(storeOptions: StorageOptions = StorageOptions(location: .s3)) -> PickerNavigationController {
 
         let storyboard = UIStoryboard(name: "InteractiveUploader", bundle: Bundle(for: type(of: self)))
 
-        let scene = NavigationScene(filestack: self,
-                                    storeOptions: storeOptions)
+        let scene = PickerNavigationScene(filestack: self,
+                                          storeOptions: storeOptions)
 
         let fsnc = storyboard.instantiateViewController(for: scene)
 
-        viewController.present(fsnc, animated: true)
+        return fsnc
     }
 
     /**

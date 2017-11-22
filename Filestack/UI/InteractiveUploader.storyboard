@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="2093.5999999999999" y="513.19340329835086"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Picker Navigation Controller-->
         <scene sceneID="tDc-lK-qgj">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" id="mfw-Bx-U3m" customClass="NavigationController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PickerNavigationController" id="mfw-Bx-U3m" customClass="FSPickerNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tz5-1a-qid">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

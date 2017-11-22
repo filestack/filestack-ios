@@ -35,7 +35,7 @@
 		457085091F975C6C00991340 /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457084FF1F975C6C00991340 /* Filestack.framework */; };
 		4570850E1F975C6C00991340 /* FilestackUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570850D1F975C6C00991340 /* FilestackUploadTests.swift */; };
 		457085101F975C6C00991340 /* Filestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 457085021F975C6C00991340 /* Filestack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45786D5C1FB3202B00478545 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45786D5B1FB3202B00478545 /* NavigationController.swift */; };
+		45786D5C1FB3202B00478545 /* PickerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45786D5B1FB3202B00478545 /* PickerNavigationController.swift */; };
 		4587330D1FA32B66002DAA9D /* StoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587330C1FA32B66002DAA9D /* StoreRequest.swift */; };
 		459ADA0A1FB9FB050087698A /* ActivityIndicatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ADA091FB9FB050087698A /* ActivityIndicatorTableViewCell.swift */; };
 		45A48C161FB311F000356BC6 /* PrefetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A48C151FB311F000356BC6 /* PrefetchRequest.swift */; };
@@ -185,7 +185,7 @@
 		457085081F975C6C00991340 /* FilestackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilestackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4570850D1F975C6C00991340 /* FilestackUploadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilestackUploadTests.swift; sourceTree = "<group>"; };
 		4570850F1F975C6C00991340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		45786D5B1FB3202B00478545 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		45786D5B1FB3202B00478545 /* PickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerNavigationController.swift; sourceTree = "<group>"; };
 		4587330C1FA32B66002DAA9D /* StoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRequest.swift; sourceTree = "<group>"; };
 		459ADA091FB9FB050087698A /* ActivityIndicatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorTableViewCell.swift; sourceTree = "<group>"; };
 		45A48C151FB311F000356BC6 /* PrefetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefetchRequest.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 				4565CEEC1FBEE5940043BFBB /* CloudSourceCollectionViewController.swift */,
 				45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */,
 				454662821FB5BBEB00260033 /* CloudSourceTableViewController.swift */,
-				45786D5B1FB3202B00478545 /* NavigationController.swift */,
+				45786D5B1FB3202B00478545 /* PickerNavigationController.swift */,
 				4568DCCF1F9DFD7300F29923 /* PickerUploadController.swift */,
 				4569C7841FB1B6C500DE990E /* SourceTableViewController.swift */,
 				452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */,
@@ -734,7 +734,7 @@
 				452DCF6D1FA1E1E30033B75D /* CloudProvider.swift in Sources */,
 				4500C5731FC46A9200B17485 /* LogoutRequest.swift in Sources */,
 				4546628E1FB6063F00260033 /* CloudItem.swift in Sources */,
-				45786D5C1FB3202B00478545 /* NavigationController.swift in Sources */,
+				45786D5C1FB3202B00478545 /* PickerNavigationController.swift in Sources */,
 				45CBF4891FBF6D7700891BBD /* CloudItemTableViewCell.swift in Sources */,
 				45DEBA571FBB05F600A267E7 /* UIImage+Squared.swift in Sources */,
 				4565CEED1FBEE5940043BFBB /* CloudSourceCollectionViewController.swift in Sources */,

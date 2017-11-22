@@ -35,7 +35,7 @@ internal class SourceTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = cancelButton
 
         // Try to obtain `Filestack` object from navigation controller
-        if let navigationController = navigationController as? NavigationController {
+        if let navigationController = navigationController as? PickerNavigationController {
             // Keep a reference to the `Filestack` object so we can use it later.
             self.filestack = navigationController.filestack
             // Keep a reference to the `StoreOptions` object so we can use it later.
