@@ -12,7 +12,7 @@ import FilestackSDK
 
 protocol CloudSourceDataSource: class {
 
-    var filestack: Filestack! { get }
+    var client: Client! { get }
     var storeOptions: StorageOptions! { get }
     var source: CloudSource!  { get }
     var path: String! { get set }

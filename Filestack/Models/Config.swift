@@ -11,7 +11,7 @@ import UIKit.UIImagePickerController
 import AVFoundation.AVAssetExportSession
 
 /**
-    The `Config` class is used together with `Filestack` to configure certain aspects of the API.
+    The `Config` class is used together with `Client` to configure certain aspects of the API.
  */
 @objc(FSConfig) public class Config: NSObject {
 

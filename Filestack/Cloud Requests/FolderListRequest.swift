@@ -129,6 +129,10 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
                 let response = FolderListResponse(contents: contents, nextToken: nextToken, error: dataResponse.error)
 
                 completionBlock(nil, response)
+            } else {
+                let response = FolderListResponse(contents: nil, nextToken: nil, error: dataResponse.error)
+
+                completionBlock(nil, response)
             }
         }
     }

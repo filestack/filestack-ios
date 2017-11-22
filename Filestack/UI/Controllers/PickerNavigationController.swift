@@ -11,13 +11,13 @@ import FilestackSDK
 
 struct PickerNavigationScene: Scene {
 
-    let filestack: Filestack
+    let client: Client
     let storeOptions: StorageOptions
 
     func configureViewController(_ viewController: PickerNavigationController) {
 
         // Inject the dependencies
-        viewController.filestack = filestack
+        viewController.client = client
         viewController.storeOptions = storeOptions
     }
 }
@@ -26,6 +26,6 @@ struct PickerNavigationScene: Scene {
 @objc(FSPickerNavigationController)
 public class PickerNavigationController: UINavigationController {
 
-    var filestack: Filestack!
+    var client: Client!
     var storeOptions: StorageOptions!
 }

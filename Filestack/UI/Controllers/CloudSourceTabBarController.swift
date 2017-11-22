@@ -13,7 +13,7 @@ import FilestackSDK
 
 internal struct CloudSourceTabBarScene: Scene {
 
-    let filestack: Filestack
+    let client: Client
     let storeOptions: StorageOptions
     let source: CloudSource
 
@@ -25,7 +25,7 @@ internal struct CloudSourceTabBarScene: Scene {
     func configureViewController(_ viewController: CloudSourceTabBarController) {
 
         // Inject the dependencies
-        viewController.filestack = filestack
+        viewController.client = client
         viewController.storeOptions = storeOptions
         viewController.source = source
         viewController.customSourceName = customSourceName
@@ -38,7 +38,7 @@ internal struct CloudSourceTabBarScene: Scene {
 
 internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
 
-    var filestack: Filestack!
+    var client: Client!
     var storeOptions: StorageOptions!
     var source: CloudSource!
     var path: String!
@@ -113,9 +113,19 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         currentRequest = requestFolderList(source: source, path: path) { (response) in
             self.currentRequest = nil
 
-            // Got an error, pop to root view controller (i.e., source list selection)
-            if response.error != nil {
-                self.navigationController?.popToRootViewController(animated: true)
+            // Got an error, present error and pop to root view controller (i.e., source list selection)
+            if let error = response.error {
+                let alert = UIAlertController(title: "Error",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    // Dismiss monitor view controller, and remove strong reference to it
+                    self.navigationController?.popToRootViewController(animated: true)
+                }))
+
+                self.present(alert, animated: true)
+
                 return
             }
 
@@ -194,10 +204,10 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             }
         }
 
-        cancellableRequest = filestack.store(provider: source.provider,
-                                             path: item.path,
-                                             storeOptions: storeOptions,
-                                             completionHandler: completionHandler)
+        cancellableRequest = client.store(provider: source.provider,
+                                          path: item.path,
+                                          storeOptions: storeOptions,
+                                          completionHandler: completionHandler)
     }
 
     func loadNextPage(completionHandler: @escaping (() -> Void)) {
@@ -241,7 +251,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
 
     func cacheThumbnail(for item: CloudItem, completionHandler: @escaping ((UIImage) -> Void)) {
 
-        let cachePolicy = filestack.config.cloudThumbnailCachePolicy
+        let cachePolicy = client.config.cloudThumbnailCachePolicy
         let urlRequest = URLRequest(url: item.thumbnailURL, cachePolicy: cachePolicy)
 
         var request: DataRequest! = nil
@@ -279,7 +289,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
 
     func navigate(to item: CloudItem) {
 
-        let scene = CloudSourceTabBarScene(filestack: filestack,
+        let scene = CloudSourceTabBarScene(client: client,
                                            storeOptions: storeOptions,
                                            source: source,
                                            customSourceName: customSourceName,
@@ -321,11 +331,11 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                                    pageToken: String? = nil,
                                    completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
 
-        return filestack.folderList(provider: source.provider,
-                                    path: path,
-                                    pageToken: pageToken,
-                                    queue: .main,
-                                    completionHandler: completionHandler)
+        return client.folderList(provider: source.provider,
+                                 path: path,
+                                 pageToken: pageToken,
+                                 queue: .main,
+                                 completionHandler: completionHandler)
     }
 
     private func cancelPendingThumbnailRequests() {
@@ -351,7 +361,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
 
     @IBAction func logout(_ sender: Any) {
 
-        filestack.logout(provider: source.provider) { (response) in
+        client.logout(provider: source.provider) { (response) in
             if let error = response.error {
                 let alert = UIAlertController(title: "Logout Failed",
                                               message: error.localizedDescription,

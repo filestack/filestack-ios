@@ -16,7 +16,7 @@ internal class SourceTableViewController: UITableViewController {
     private var localSources = [LocalSource]()
     private var cloudSources = [CloudSource]()
 
-    private var filestack: Filestack!
+    private var client: Client!
     private var storeOptions: StorageOptions!
     private var customSourceName: String? = nil
     private var useCustomSource: Bool = false
@@ -34,26 +34,26 @@ internal class SourceTableViewController: UITableViewController {
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = cancelButton
 
-        // Try to obtain `Filestack` object from navigation controller
+        // Try to obtain `Client` object from navigation controller
         if let navigationController = navigationController as? PickerNavigationController {
-            // Keep a reference to the `Filestack` object so we can use it later.
-            self.filestack = navigationController.filestack
+            // Keep a reference to the `Client` object so we can use it later.
+            self.client = navigationController.client
             // Keep a reference to the `StoreOptions` object so we can use it later.
             self.storeOptions = navigationController.storeOptions
 
             // Get available local sources from config
-            self.localSources = filestack.config.availableLocalSources
+            self.localSources = client.config.availableLocalSources
 
             // Get available cloud sources from config, but discard "custom source" (if present)
             // We will add it later, only if it is actually enabled in the Developer Portal.
-            self.cloudSources = filestack.config.availableCloudSources.flatMap {
+            self.cloudSources = client.config.availableCloudSources.flatMap {
                 $0 == .customSource ? nil : $0
             }
 
-            let wantsToPresentCustomSource = filestack.config.availableCloudSources.contains(.customSource)
+            let wantsToPresentCustomSource = client.config.availableCloudSources.contains(.customSource)
 
             // Fetch configuration info from the API — don't care if it fails.
-            filestack.prefetch { (response) in
+            client.prefetch { (response) in
                 guard let contents = response.contents else { return }
 
                 // Custom source enabled?
@@ -168,7 +168,7 @@ internal class SourceTableViewController: UITableViewController {
             let viewType = UserDefaults.standard.cloudSourceViewType() ?? .list
 
             // Navigate to given cloud's "/" path
-            let scene = CloudSourceTabBarScene(filestack: filestack,
+            let scene = CloudSourceTabBarScene(client: client,
                                                storeOptions: storeOptions,
                                                source: cloudSource,
                                                customSourceName: customSourceName,
@@ -241,11 +241,11 @@ internal class SourceTableViewController: UITableViewController {
             }
         }
 
-        cancellableRequest = filestack.uploadFromImagePicker(viewController: self,
-                                                             sourceType: sourceType,
-                                                             storeOptions: storeOptions,
-                                                             uploadProgress: uploadProgressHandler,
-                                                             completionHandler: completionHandler)
+        cancellableRequest = client.uploadFromImagePicker(viewController: self,
+                                                          sourceType: sourceType,
+                                                          storeOptions: storeOptions,
+                                                          uploadProgress: uploadProgressHandler,
+                                                          completionHandler: completionHandler)
     }
 
     private func source(from indexPath: IndexPath) -> CellDescriptibleSource? {

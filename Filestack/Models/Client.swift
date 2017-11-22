@@ -1,5 +1,5 @@
 //
-//  Filestack.swift
+//  Client.swift
 //  Filestack
 //
 //  Created by Ruben Nine on 10/19/17.
@@ -18,9 +18,9 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
 
 /**
-    The `Filestack` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
+    The `Client` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
  */
-@objc(FSFilestack) public class Filestack: NSObject {
+@objc(FSFilestackClient) public class Client: NSObject {
 
 
     // MARK: - Notifications
@@ -43,7 +43,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
     // MARK: - Private Properties
 
-    private let client: Client
+    private let client: FilestackSDK.Client
     private let cloudService = CloudService()
 
     private var pendingRequests: [URL: (CloudRequest, DispatchQueue, CompletionHandler)]
@@ -68,7 +68,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         self.apiKey = apiKey
         self.security = security
         self.lastToken = token
-        self.client = Client(apiKey: apiKey, security: security)
+        self.client = FilestackSDK.Client(apiKey: apiKey, security: security)
         self.pendingRequests = [:]
         self.config = config ?? Config()
 
@@ -261,7 +261,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
         let storyboard = UIStoryboard(name: "Picker", bundle: Bundle(for: type(of: self)))
 
-        let scene = PickerNavigationScene(filestack: self,
+        let scene = PickerNavigationScene(client: self,
                                           storeOptions: storeOptions)
 
         let fsnc = storyboard.instantiateViewController(for: scene)
@@ -408,7 +408,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
     private func addResumeCloudRequestNotificationObserver() {
 
         resumeCloudRequestNotificationObserver =
-            NotificationCenter.default.addObserver(forName: Filestack.resumeCloudRequestNotification,
+            NotificationCenter.default.addObserver(forName: Client.resumeCloudRequestNotification,
                                                    object: nil,
                                                    queue: .main) { (notification) in
                                                     if let url = notification.object as? URL {
