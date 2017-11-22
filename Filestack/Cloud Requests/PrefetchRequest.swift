@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import FilestackSDK
 import Alamofire
+
 
 internal typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Swift.Void
 

@@ -220,7 +220,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         - Parameter provider: The cloud provider to use (e.g. Dropbox, GoogleDrive, S3)
         - Parameter path: The path to a file in the cloud provider.
         - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
-             If none given, S3 location is assumed.
+             If none given, S3 location with default options is assumed.
         - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
              or error response.
      */
@@ -248,14 +248,14 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
     }
 
     /**
-        Returns an instance of a `PickerNavigationController` that will allow the user to interactively
-        pick files from a local or cloud source and upload them to a given location.
+        Returns an instance of a `PickerNavigationController` that will allow the user to interactively pick files from
+        a local or cloud source and upload them to a given location.
 
-        To present this controller on the screen, simply call the `present(_:animated:)` function on
-        your view controller, passing the `PickerNavigationController` returned by this function.
+        To present this controller on the screen, simply call the `present(_:animated:)` function on your view controller,
+        passing the `PickerNavigationController` returned by this function.
 
         - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
-            If none given, S3 location is assumed.
+            If none given, S3 location with default options is assumed.
      */
     public func picker(storeOptions: StorageOptions = StorageOptions(location: .s3)) -> PickerNavigationController {
 
@@ -273,8 +273,8 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         Logs out the user from a given provider.
 
         - Parameter provider: The `CloudProvider` to logout from.
-        - Parameter completionHandler: Adds a handler to be called once the request has completed. The response will either
-            contain an error (on failure) or nothing at all (on success.)
+        - Parameter completionHandler: Adds a handler to be called once the request has completed. The response will
+            either contain an error (on failure) or nothing at all (on success.)
      */
     public func logout(provider: CloudProvider, completionHandler: @escaping LogoutCompletionHandler) {
 
