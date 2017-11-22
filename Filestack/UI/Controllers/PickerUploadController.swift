@@ -40,7 +40,7 @@ internal class PickerUploadController: NSObject {
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: sourceType)!
 
         if #available(iOS 11.0, *) {
-            picker.imageExportPreset = config.imageURLExportPreset
+            picker.imageExportPreset = config.imageURLExportPreset.asImagePickerControllerImageURLExportPreset
             picker.videoExportPreset = config.videoExportPreset
         }
 

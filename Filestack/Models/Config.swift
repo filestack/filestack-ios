@@ -35,25 +35,19 @@ import AVFoundation.AVAssetExportSession
     /// Possible values are `.compatible` (for JPEG) and `.current` (for HEIF).
     /// In iOS versions earlier than 11.0, JPEG will always be used.
     @available(iOS 11.0, *)
-    open var imageURLExportPreset: UIImagePickerControllerImageURLExportPreset {
+    public var imageURLExportPreset: ImageURLExportPreset {
         // This ugly workaround is required because Swift does not currently allow marking stored properties'
         // availability.
         get {
-            var preset: UIImagePickerControllerImageURLExportPreset?
-
-            if let rawPreset = _imageURLExportPreset {
-                preset = UIImagePickerControllerImageURLExportPreset(rawValue: rawPreset)
-            }
-
-            return preset ?? .compatible
+            return _imageURLExportPreset ?? .compatible
         }
 
         set {
-            _imageURLExportPreset = newValue.rawValue
+            _imageURLExportPreset = newValue
         }
     }
 
-    private var _imageURLExportPreset: Int?
+    private var _imageURLExportPreset: ImageURLExportPreset?
 
     /// This setting determines the quality setting for images taken using the camera and exported either as HEIC or JPEG.
     /// - Note: This setting has no effect on images picked from the photo library.
@@ -69,7 +63,7 @@ import AVFoundation.AVAssetExportSession
     ///
     /// The default value is `AVAssetExportPresetHEVCHighestQuality`
     @available(iOS 11.0, *)
-    open var videoExportPreset: String {
+    public var videoExportPreset: String {
         // This ugly workaround is required because Swift does not currently allow marking stored properties'
         // availability.
         get {
