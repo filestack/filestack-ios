@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol CancellableRequest {
+@objc(FSCancellableRequest) public protocol CancellableRequest: class {
 
     func cancel()
 }
