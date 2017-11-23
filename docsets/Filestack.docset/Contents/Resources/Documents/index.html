@@ -120,7 +120,7 @@ This is the official Swift iOS for Filestack — API and content management syst
 <ul>
 <li>Xcode 8.3 or later</li>
 <li>Swift 3.2 / Objective-C</li>
-<li>iOS 9 or later<br></li>
+<li>iOS 9 or later</li>
 </ul>
 <h2 id='installing' class='heading'>Installing</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
@@ -285,7 +285,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
         <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
             <span class="c1">// NO-OP</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span> 
+            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span>
                                             <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
         <span class="p">}</span>
 
@@ -360,7 +360,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="p">}</span>
 
 <span class="c1">// Here you can enumerate the available local sources for the picker.</span>
-<span class="c1">// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would </span>
+<span class="c1">// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would</span>
 <span class="c1">// like to enumerate, let's say the camera source only, you could set it like this:</span>
 <span class="c1">//</span>
 <span class="c1">//   config.availableLocalSources = [.camera]</span>
@@ -368,8 +368,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="n">config</span><span class="o">.</span><span class="n">availableLocalSources</span> <span class="o">=</span> <span class="kt">LocalSource</span><span class="o">.</span><span class="nf">all</span><span class="p">()</span>
 
 <span class="c1">// Here you can enumerate the available cloud sources for the picker.</span>
-<span class="c1">// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would </span>
-<span class="c1">// like to enumerate selected cloud sources, you could set these like this: </span>
+<span class="c1">// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would</span>
+<span class="c1">// like to enumerate selected cloud sources, you could set these like this:</span>
 <span class="c1">//</span>
 <span class="c1">//   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]</span>
 <span class="c1">//</span>
@@ -400,7 +400,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
         <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
             <span class="c1">// NO-OP</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span> 
+            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span>
                                             <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
         <span class="p">}</span>
 
@@ -414,7 +414,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <h3 id='final-notes-on-usage' class='heading'>Final Notes on Usage</h3>
 
 <ul>
-<li>Some of the functions and objects used above support additional parameters and properties, consult the <a href="https://filestack.github.io/filestack-ios/Classes/Filestack.html">API Reference</a> for more details.</li>
+<li>Some of the functions and objects used above support additional parameters and properties, consult the <a href="https://filestack.github.io/filestack-ios/">API Reference</a> for more details.</li>
 </ul>
 <h2 id='demo' class='heading'>Demo</h2>
 
