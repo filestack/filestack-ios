@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Filestack Docs
         </a>
-         (88% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -105,7 +105,13 @@
         <section class="section">
           <div class="section-content">
             <h1>CancellableRequest</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">@objc(FSCancellableRequest)</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CancellableRequest</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+
+                </div>
+              </div>
+            <p>This protocol is implemented by any classes representing a request that can be cancelled.</p>
 
           </div>
         </section>
@@ -127,8 +133,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Any cancellable requests must implement the <code>cancel()</code> function.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">cancel</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

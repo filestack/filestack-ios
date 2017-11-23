@@ -1,61 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Cloud Requests/LogoutRequest.swift",
-      "line": 15,
-      "symbol": "LogoutResponse",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Cloud Requests/LogoutRequest.swift",
-      "line": 20,
-      "symbol": "LogoutResponse.error",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Enums/ImageURLExportPreset.swift",
-      "line": 12,
-      "symbol": "ImageURLExportPreset",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Enums/ImageURLExportPreset.swift",
-      "line": 14,
-      "symbol": "ImageURLExportPreset.compatible",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Enums/ImageURLExportPreset.swift",
-      "line": 16,
-      "symbol": "ImageURLExportPreset.current",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Protocols/CancellableRequest.swift",
-      "line": 12,
-      "symbol": "CancellableRequest",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Protocols/CancellableRequest.swift",
-      "line": 14,
-      "symbol": "CancellableRequest.cancel()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Controllers/PickerNavigationController.swift",
-      "line": 27,
-      "symbol": "PickerNavigationController",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/ruben/src/filestack/filestack-ios"
 }

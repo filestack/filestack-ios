@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Filestack Docs
         </a>
-         (88% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -140,7 +140,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This notification should be posted after an app receives an URL after authentication against a cloud provider.</p>
+                        <p>This notification should be posted after an app receives an URL after authentication against a cloud provider
+on iOS versions prior to iOS 11.</p>
 
                       </div>
                       <div class="declaration">
@@ -664,6 +665,18 @@ as data is uploaded to the server. <code>nil</code> by default.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>queue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The queue on which the completion handler is dispatched.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>completionHandler</em>
                                 </code>
                               </td>
@@ -746,6 +759,18 @@ or error response.</p>
                                 <div>
                                   <p>An object containing the store options (e.g. location, region, container, access, etc.)
  If none given, S3 location with default options is assumed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The queue on which the completion handler is dispatched.</p>
                                 </div>
                               </td>
                             </tr>
