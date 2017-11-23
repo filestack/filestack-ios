@@ -9,6 +9,12 @@ This is the official Swift iOS for Filestack — API and content management syst
 * [Documentation](https://www.filestack.com/docs)
 * [API Reference](https://filestack.github.io/filestack-ios/)
 
+## Requirements
+
+* Xcode 8.3 or later
+* Swift 3.2 / Objective-C
+* iOS 9 or later    
+
 ## Installing
 
 ### CocoaPods
@@ -25,7 +31,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 0.6-pre1'
+    pod 'Filestack', '~> 1.0'
 end
 ```
 
@@ -46,9 +52,9 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 0.6-pre1`
+`github "filestack/filestack-ios" ~> 1.0`
 
-Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `Arcane.framework` to the embedded frameworks build phase of your app's target.
+Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `CryptoSwift.framework` to the embedded frameworks build phase of your app's target.
 
 ### Manually
 
@@ -64,7 +70,7 @@ Add Filestack and its dependencies as git submodules by running the following co
 $ git submodule add https://github.com/filestack/filestack-ios.git
 $ git submodule add https://github.com/filestack/filestack-swift.git
 $ git submodule add https://github.com/Alamofire/Alamofire.git
-$ git submodule add https://github.com/onmyway133/Arcane.git
+$ git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
 ```
 
 Open the new `filestack-ios` folder, and drag the `Filestack.xcodeproj` into the Project Navigator of your application's Xcode project.
@@ -78,7 +84,7 @@ In the tab bar at the top of that window, open the "General" panel.
 
 Click on the + button under the "Embedded Binaries" section and choose the `Filestack.framework` for iOS.
 
-Repeat the same process for adding `Alamofire`, `Arcane`, and `FilestackSDK` dependent frameworks.
+Repeat the same process for adding `Alamofire`, `CryptoSwift`, and `FilestackSDK` dependent frameworks.
 
 ## Usage
 
@@ -107,7 +113,13 @@ guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET")
     return
 }
 
-let filestack = Filestack(apiKey: "YOUR-API-KEY", security: security)
+// Create `Config` object.
+let config = Filestack.Config()
+
+// Make sure to assign an app scheme URL that matches the one configured in your info.plist.
+config.appURLScheme = "filestackdemo"
+
+let client = Filestack.Client(apiKey: "YOUR-API-KEY", security: security, config: config)
 ```
 
 ### Uploading Local Files
@@ -115,7 +127,7 @@ let filestack = Filestack(apiKey: "YOUR-API-KEY", security: security)
 ```swift
 let localURL = URL(string: "file:///an-app-sandbox-friendly-local-url")!
 
-let uploadRequest = filestack.upload(from: localURL, uploadProgress: { (progress) in
+let uploadRequest = client.upload(from: localURL, uploadProgress: { (progress) in
     // Here you may update the UI to reflect the upload progress.
     print("progress = \(String(describing: progress))")
 }) { (response) in
@@ -137,7 +149,7 @@ let presentingViewController = self
 // The source type (e.g. `.camera`, `.photoLibrary`)
 let sourceType: UIImagePickerControllerSourceType = .camera
 
-let uploadRequest = filestack.uploadFromImagePicker(viewController: presentingViewController, sourceType: sourceType, uploadProgress: { (progress) in
+let uploadRequest = client.uploadFromImagePicker(viewController: presentingViewController, sourceType: sourceType, uploadProgress: { (progress) in
     // Here you may update the UI to reflect the upload progress.
     print("progress = \(String(describing: progress))")
 }) { (response) in
@@ -156,7 +168,7 @@ In both uploading examples, an upload may be cancelled at anytime by calling `ca
 uploadRequest.cancel()
 ```
 
-### Listing contents from a cloud provider
+### Listing Contents from a Cloud Provider
 
 ```swift
 // The cloud provider to use (it may require authentication)
@@ -168,7 +180,7 @@ let path = "/"
 // An URL scheme that your app can handle.
 let appURLScheme = "FilestackDemo"
 
-filestack.folderList(provider: provider, path: path, pageToken: nil, appURLScheme: appURLScheme) { response in
+client.folderList(provider: provider, path: path, pageToken: nil) { response in
     if let error = response.error {
         // Handle error
         return
@@ -187,22 +199,28 @@ filestack.folderList(provider: provider, path: path, pageToken: nil, appURLSchem
 }
 ```
 
-Please also make sure to add the following function to your `AppDelegate` to allow resuming any folder list request after authentication against a cloud provider. Again, the `appURLScheme` must be set to an URL scheme your app is registered to handle:
+Remember also to add this piece of code to your `AppDelegate` so the auth flow can complete:
 
 ```swift
 func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 
-    if url.scheme?.lowercased() == appURLScheme.lowercased() && url.host == "Filestack" {
-        NotificationCenter.default.post(name: Filestack.resumeCloudRequestNotification, object: url)
+    if url.scheme == "YOUR-APP-URL-SCHEME" && url.host == "Filestack" {
+        if #available(iOS 11.0, *) {
+            // NO-OP
+        } else {
+            NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification, 
+                                            object: url)
+        }
+
+        return true
     }
 
-    // Your custom handling here.
-
-    return true
+    // Here we just state that any other URLs should not be handled by this app.
+    return false
 }
 ```
 
-### Storing contents from a cloud provider into a store location
+### Storing Contents from a Cloud Provider into a Store Location
 
 ```swift
 // The cloud provider to use
@@ -211,10 +229,11 @@ let provider: CloudProvider = .googleDrive
 // A path to a file in the cloud
 let path = "/some-large-image.jpg"
 
-// The store options representing the store location, region, access, etc. for your file store.
-let storeOptions = StorageOptions(location: .dropbox)
+// Store options for your uploaded files.
+// Here we are saying our storage location is S3 and access for uploaded files should be public.
+let storeOptions = StorageOptions(location: .s3, access: .public)
 
-filestack.store(provider: provider, path: path, storeOptions: storeOptions) { (response) in
+client.store(provider: provider, path: path, storeOptions: storeOptions) { (response) in
     if let error = response.error {
         // Handle error
         return
@@ -228,9 +247,123 @@ filestack.store(provider: provider, path: path, storeOptions: storeOptions) { (r
 
 Please make sure to authenticate against the cloud provider first by using the `folderList` function before calling `store`.
 
-### Notes
 
-- Some of the functions above support additional optional parameters, consult the [API Reference](https://filestack.github.io/filestack-ios/Classes/Filestack.html) for more details.
+### Launching Picker UI
+
+This is a code fragment broken into pieces taken from the [Demo app](https://github.com/filestack/filestack-ios/tree/master/Demo) describing the process of launching the picker UI using some of the most relevant config options:
+
+#### 1. Setting up Policy and Security objects
+
+```swift
+// In case your Filestack account has security enabled, you will need to instantiate a `Security` object.
+// We can do this by either configuring a `Policy` and instantiating a `Security` object by passing
+// the `Policy` and an `appSecret`, or by instantiating a `Security` object directly by passing an already
+// encoded policy together with its corresponding signature — in this example, we will use the 1st method.
+
+// Create `Policy` object with an expiry time and call permissions.
+let policy = Policy(expiry: .distantFuture,
+                    call: [.pick, .read, .stat, .write, .writeURL, .store, .convert, .remove, .exif])
+
+// Create `Security` object based on our previously created `Policy` object and app secret obtained from
+// [Filestack Developer Portal](https://dev.filestack.com/).
+guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET-HERE") else {
+    fatalError("Unable to instantiate Security object.")
+}
+```
+
+#### 2. Setting up Config object
+
+```swift
+// Create `Config` object.
+let config = Filestack.Config()
+
+// IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist
+config.appURLScheme = "YOUR-APP-URL-SCHEME"
+
+// Video quality for video recording (and sometimes exporting.)
+config.videoQuality = .typeHigh
+
+if #available(iOS 11.0, *) {
+    // On iOS 11, you can export images in HEIF or JPEG by setting this value to `.current` or `.compatible`
+    // respectively.
+    // Here we state we prefer HEIF for image export.
+    config.imageURLExportPreset = .current
+    // On iOS 11, you can decide what format and quality will be used for exported videos.
+    // Here we state we want to export HEVC at the highest quality.
+    config.videoExportPreset = AVAssetExportPresetHEVCHighestQuality
+}
+
+// Here you can enumerate the available local sources for the picker.
+// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would 
+// like to enumerate, let's say the camera source only, you could set it like this:
+//
+//   config.availableLocalSources = [.camera]
+//
+config.availableLocalSources = LocalSource.all()
+
+// Here you can enumerate the available cloud sources for the picker.
+// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would 
+// like to enumerate selected cloud sources, you could set these like this: 
+//
+//   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]
+//
+config.availableCloudSources = CloudSource.all()
+```
+
+#### 3. Setting up Client object
+
+```swift
+// Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),
+// together with a `Security` and `Config` object.
+// If your account does not have security enabled, then you can omit this parameter or set it to `nil`.
+let client = Filestack.Client(apiKey: "YOUR-API-KEY-HERE", security: security, config: config)
+```
+
+#### 4. Instantiating the Picker with custom Storage Options
+
+```swift
+// Store options for your uploaded files.
+// Here we are saying our storage location is S3 and access for uploaded files should be public.
+let storeOptions = StorageOptions(location: .s3, access: .public)
+
+// Instantiate picker by passing the `StorageOptions` object we just set up.
+let picker = client.picker(storeOptions: storeOptions)
+```
+
+#### 5. Presenting the Picker on the screen
+
+```swift
+yourViewController.present(picker, animated: true)
+```
+
+Finally, remember that you'll need this piece of code in your `AppDelegate` for the auth flow to complete:
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+
+    if url.scheme == "YOUR-APP-URL-SCHEME" && url.host == "Filestack" {
+        if #available(iOS 11.0, *) {
+            // NO-OP
+        } else {
+            NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification, 
+                                            object: url)
+        }
+
+        return true
+    }
+
+    // Here we just state that any other URLs should not be handled by this app.
+    return false
+}
+```
+
+### Final Notes on Usage
+
+- Some of the functions and objects used above support additional parameters and properties, consult the [API Reference](https://filestack.github.io/filestack-ios/Classes/Filestack.html) for more details.
+
+## Demo
+
+Check the [Demo app](https://github.com/filestack/filestack-ios/tree/master/Demo) for an example on how to launch the picker UI with all the settings and options discussed above.
 
 ## Versioning
 
