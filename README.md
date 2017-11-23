@@ -13,7 +13,7 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 * Xcode 8.3 or later
 * Swift 3.2 / Objective-C
-* iOS 9 or later    
+* iOS 9 or later
 
 ## Installing
 
@@ -208,7 +208,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
         if #available(iOS 11.0, *) {
             // NO-OP
         } else {
-            NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification, 
+            NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification,
                                             object: url)
         }
 
@@ -294,7 +294,7 @@ if #available(iOS 11.0, *) {
 }
 
 // Here you can enumerate the available local sources for the picker.
-// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would 
+// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would
 // like to enumerate, let's say the camera source only, you could set it like this:
 //
 //   config.availableLocalSources = [.camera]
@@ -302,8 +302,8 @@ if #available(iOS 11.0, *) {
 config.availableLocalSources = LocalSource.all()
 
 // Here you can enumerate the available cloud sources for the picker.
-// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would 
-// like to enumerate selected cloud sources, you could set these like this: 
+// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would
+// like to enumerate selected cloud sources, you could set these like this:
 //
 //   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]
 //
@@ -345,7 +345,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
         if #available(iOS 11.0, *) {
             // NO-OP
         } else {
-            NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification, 
+            NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification,
                                             object: url)
         }
 
@@ -359,7 +359,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
 
 ### Final Notes on Usage
 
-- Some of the functions and objects used above support additional parameters and properties, consult the [API Reference](https://filestack.github.io/filestack-ios/Classes/Filestack.html) for more details.
+- Some of the functions and objects used above support additional parameters and properties, consult the [API Reference](https://filestack.github.io/filestack-ios/) for more details.
 
 ## Demo
 
