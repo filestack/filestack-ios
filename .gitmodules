@@ -4,9 +4,6 @@
 [submodule "Carthage/Checkouts/Alamofire"]
 	path = Carthage/Checkouts/Alamofire
 	url = https://github.com/Alamofire/Alamofire.git
-[submodule "Carthage/Checkouts/Arcane"]
-	path = Carthage/Checkouts/Arcane
-	url = https://github.com/onmyway133/Arcane.git
 [submodule "Carthage/Checkouts/filestack-swift"]
 	path = Carthage/Checkouts/filestack-swift
 	url = https://github.com/filestack/filestack-swift.git
