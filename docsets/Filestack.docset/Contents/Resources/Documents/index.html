@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           Filestack Docs
         </a>
-         (100% documented)
+         (88% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -53,10 +53,19 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Filestack.html">Filestack</a>
+                <a class="nav-group-task-link" href="Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Config.html">Config</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/FolderListResponse.html">FolderListResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/LogoutResponse.html">LogoutResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes.html#/c:@M@Filestack@objc(cs)FSPickerNavigationController">PickerNavigationController</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/StoreResponse.html">StoreResponse</a>
@@ -68,6 +77,23 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/CloudProvider.html">CloudProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/CloudSource.html">CloudSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/LocalSource.html">LocalSource</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/CancellableRequest.html">CancellableRequest</a>
               </li>
             </ul>
           </li>
@@ -89,6 +115,13 @@ This is the official Swift iOS for Filestack — API and content management syst
 <li><a href="https://www.filestack.com/docs">Documentation</a></li>
 <li><a href="https://filestack.github.io/filestack-ios/">API Reference</a></li>
 </ul>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<ul>
+<li>Xcode 8.3 or later</li>
+<li>Swift 3.2 / Objective-C</li>
+<li>iOS 9 or later<br></li>
+</ul>
 <h2 id='installing' class='heading'>Installing</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
@@ -102,7 +135,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 0.5-pre2'
+    pod 'Filestack', '~&gt; 1.0'
 end
 </code></pre>
 
@@ -120,9 +153,9 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 0.5-pre2</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 1.0</code></p>
 
-<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, and <code>Arcane.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
+<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, and <code>CryptoSwift.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
 <h4 id='embedded-framework' class='heading'>Embedded Framework</h4>
 
@@ -134,7 +167,7 @@ $ brew install carthage
 <pre class="highlight shell"><code><span class="gp">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
 <span class="gp">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
 <span class="gp">$ </span>git submodule add https://github.com/Alamofire/Alamofire.git
-<span class="gp">$ </span>git submodule add https://github.com/onmyway133/Arcane.git
+<span class="gp">$ </span>git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
 </code></pre>
 
 <p>Open the new <code>filestack-ios</code> folder, and drag the <code>Filestack.xcodeproj</code> into the Project Navigator of your application&rsquo;s Xcode project.</p>
@@ -148,7 +181,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <p>Click on the + button under the <q>Embedded Binaries</q> section and choose the <code>Filestack.framework</code> for iOS.</p>
 
-<p>Repeat the same process for adding <code>Alamofire</code>, <code>Arcane</code>, and <code>FilestackSDK</code> dependent frameworks.</p>
+<p>Repeat the same process for adding <code>Alamofire</code>, <code>CryptoSwift</code>, and <code>FilestackSDK</code> dependent frameworks.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='importing-required-frameworks' class='heading'>Importing Required Frameworks</h3>
 
@@ -170,12 +203,18 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="k">return</span>
 <span class="p">}</span>
 
-<span class="k">let</span> <span class="nv">filestack</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">)</span>
+<span class="c1">// Create `Config` object.</span>
+<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="p">()</span>
+
+<span class="c1">// Make sure to assign an app scheme URL that matches the one configured in your info.plist.</span>
+<span class="n">config</span><span class="o">.</span><span class="n">appURLScheme</span> <span class="o">=</span> <span class="s">"filestackdemo"</span>
+
+<span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
 </code></pre>
 <h3 id='uploading-local-files' class='heading'>Uploading Local Files</h3>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">localURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"file:///an-app-sandbox-friendly-local-url"</span><span class="p">)</span><span class="o">!</span>
 
-<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">filestack</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">localURL</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
+<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">localURL</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
     <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
@@ -194,7 +233,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="c1">// The source type (e.g. `.camera`, `.photoLibrary`)</span>
 <span class="k">let</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">UIImagePickerControllerSourceType</span> <span class="o">=</span> <span class="o">.</span><span class="n">camera</span>
 
-<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">filestack</span><span class="o">.</span><span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
+<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
     <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
@@ -210,7 +249,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <p>In both uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code>MultipartUpload</code> object returned by any of the functions above:</p>
 <pre class="highlight swift"><code><span class="n">uploadRequest</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span>
 </code></pre>
-<h3 id='listing-contents-from-a-cloud-provider' class='heading'>Listing contents from a cloud provider</h3>
+<h3 id='listing-contents-from-a-cloud-provider' class='heading'>Listing Contents from a Cloud Provider</h3>
 <pre class="highlight swift"><code><span class="c1">// The cloud provider to use (it may require authentication)</span>
 <span class="k">let</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CloudProvider</span> <span class="o">=</span> <span class="o">.</span><span class="n">googleDrive</span>
 
@@ -220,7 +259,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="c1">// An URL scheme that your app can handle.</span>
 <span class="k">let</span> <span class="nv">appURLScheme</span> <span class="o">=</span> <span class="s">"FilestackDemo"</span>
 
-<span class="n">filestack</span><span class="o">.</span><span class="nf">folderList</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">pageToken</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">appURLScheme</span><span class="p">:</span> <span class="n">appURLScheme</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">folderList</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">pageToken</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
         <span class="c1">// Handle error</span>
         <span class="k">return</span>
@@ -239,29 +278,36 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="p">}</span>
 </code></pre>
 
-<p>Please also make sure to add the following function to your <code>AppDelegate</code> to allow resuming any folder list request after authentication against a cloud provider. Again, the <code>appURLScheme</code> must be set to an URL scheme your app is registered to handle:</p>
+<p>Remember also to add this piece of code to your <code>AppDelegate</code> so the auth flow can complete:</p>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
 
-    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span><span class="p">?</span><span class="o">.</span><span class="nf">lowercased</span><span class="p">()</span> <span class="o">==</span> <span class="n">appURLScheme</span><span class="o">.</span><span class="nf">lowercased</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
-        <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
+            <span class="c1">// NO-OP</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span> 
+                                            <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">true</span>
     <span class="p">}</span>
 
-    <span class="c1">// Your custom handling here.</span>
-
-    <span class="k">return</span> <span class="kc">true</span>
+    <span class="c1">// Here we just state that any other URLs should not be handled by this app.</span>
+    <span class="k">return</span> <span class="kc">false</span>
 <span class="p">}</span>
 </code></pre>
-<h3 id='storing-contents-from-a-cloud-provider-into-a-store-location' class='heading'>Storing contents from a cloud provider into a store location</h3>
+<h3 id='storing-contents-from-a-cloud-provider-into-a-store-location' class='heading'>Storing Contents from a Cloud Provider into a Store Location</h3>
 <pre class="highlight swift"><code><span class="c1">// The cloud provider to use</span>
 <span class="k">let</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CloudProvider</span> <span class="o">=</span> <span class="o">.</span><span class="n">googleDrive</span>
 
 <span class="c1">// A path to a file in the cloud</span>
 <span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="s">"/some-large-image.jpg"</span>
 
-<span class="c1">// The store options representing the store location, region, access, etc. for your file store.</span>
-<span class="k">let</span> <span class="nv">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">dropbox</span><span class="p">)</span>
+<span class="c1">// Store options for your uploaded files.</span>
+<span class="c1">// Here we are saying our storage location is S3 and access for uploaded files should be public.</span>
+<span class="k">let</span> <span class="nv">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
 
-<span class="n">filestack</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
         <span class="c1">// Handle error</span>
         <span class="k">return</span>
@@ -274,11 +320,105 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 </code></pre>
 
 <p>Please make sure to authenticate against the cloud provider first by using the <code>folderList</code> function before calling <code>store</code>.</p>
-<h3 id='notes' class='heading'>Notes</h3>
+<h3 id='launching-picker-ui' class='heading'>Launching Picker UI</h3>
+
+<p>This is a code fragment broken into pieces taken from the <a href="https://github.com/filestack/filestack-ios/tree/master/Demo">Demo app</a> describing the process of launching the picker UI using some of the most relevant config options:</p>
+<h4 id='1-setting-up-policy-and-security-objects' class='heading'>1. Setting up Policy and Security objects</h4>
+<pre class="highlight swift"><code><span class="c1">// In case your Filestack account has security enabled, you will need to instantiate a `Security` object.</span>
+<span class="c1">// We can do this by either configuring a `Policy` and instantiating a `Security` object by passing</span>
+<span class="c1">// the `Policy` and an `appSecret`, or by instantiating a `Security` object directly by passing an already</span>
+<span class="c1">// encoded policy together with its corresponding signature — in this example, we will use the 1st method.</span>
+
+<span class="c1">// Create `Policy` object with an expiry time and call permissions.</span>
+<span class="k">let</span> <span class="nv">policy</span> <span class="o">=</span> <span class="kt">Policy</span><span class="p">(</span><span class="nv">expiry</span><span class="p">:</span> <span class="o">.</span><span class="n">distantFuture</span><span class="p">,</span>
+                    <span class="nv">call</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">pick</span><span class="p">,</span> <span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">stat</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">writeURL</span><span class="p">,</span> <span class="o">.</span><span class="n">store</span><span class="p">,</span> <span class="o">.</span><span class="n">convert</span><span class="p">,</span> <span class="o">.</span><span class="n">remove</span><span class="p">,</span> <span class="o">.</span><span class="n">exif</span><span class="p">])</span>
+
+<span class="c1">// Create `Security` object based on our previously created `Policy` object and app secret obtained from</span>
+<span class="c1">// [Filestack Developer Portal](https://dev.filestack.com/).</span>
+<span class="k">guard</span> <span class="k">let</span> <span class="nv">security</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Security</span><span class="p">(</span><span class="nv">policy</span><span class="p">:</span> <span class="n">policy</span><span class="p">,</span> <span class="nv">appSecret</span><span class="p">:</span> <span class="s">"YOUR-APP-SECRET-HERE"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Unable to instantiate Security object."</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='2-setting-up-config-object' class='heading'>2. Setting up Config object</h4>
+<pre class="highlight swift"><code><span class="c1">// Create `Config` object.</span>
+<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="p">()</span>
+
+<span class="c1">// IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist</span>
+<span class="n">config</span><span class="o">.</span><span class="n">appURLScheme</span> <span class="o">=</span> <span class="s">"YOUR-APP-URL-SCHEME"</span>
+
+<span class="c1">// Video quality for video recording (and sometimes exporting.)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">videoQuality</span> <span class="o">=</span> <span class="o">.</span><span class="n">typeHigh</span>
+
+<span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
+    <span class="c1">// On iOS 11, you can export images in HEIF or JPEG by setting this value to `.current` or `.compatible`</span>
+    <span class="c1">// respectively.</span>
+    <span class="c1">// Here we state we prefer HEIF for image export.</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">imageURLExportPreset</span> <span class="o">=</span> <span class="o">.</span><span class="n">current</span>
+    <span class="c1">// On iOS 11, you can decide what format and quality will be used for exported videos.</span>
+    <span class="c1">// Here we state we want to export HEVC at the highest quality.</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">videoExportPreset</span> <span class="o">=</span> <span class="kt">AVAssetExportPresetHEVCHighestQuality</span>
+<span class="p">}</span>
+
+<span class="c1">// Here you can enumerate the available local sources for the picker.</span>
+<span class="c1">// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would </span>
+<span class="c1">// like to enumerate, let's say the camera source only, you could set it like this:</span>
+<span class="c1">//</span>
+<span class="c1">//   config.availableLocalSources = [.camera]</span>
+<span class="c1">//</span>
+<span class="n">config</span><span class="o">.</span><span class="n">availableLocalSources</span> <span class="o">=</span> <span class="kt">LocalSource</span><span class="o">.</span><span class="nf">all</span><span class="p">()</span>
+
+<span class="c1">// Here you can enumerate the available cloud sources for the picker.</span>
+<span class="c1">// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would </span>
+<span class="c1">// like to enumerate selected cloud sources, you could set these like this: </span>
+<span class="c1">//</span>
+<span class="c1">//   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]</span>
+<span class="c1">//</span>
+<span class="n">config</span><span class="o">.</span><span class="n">availableCloudSources</span> <span class="o">=</span> <span class="kt">CloudSource</span><span class="o">.</span><span class="nf">all</span><span class="p">()</span>
+</code></pre>
+<h4 id='3-setting-up-client-object' class='heading'>3. Setting up Client object</h4>
+<pre class="highlight swift"><code><span class="c1">// Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),</span>
+<span class="c1">// together with a `Security` and `Config` object.</span>
+<span class="c1">// If your account does not have security enabled, then you can omit this parameter or set it to `nil`.</span>
+<span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY-HERE"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+</code></pre>
+<h4 id='4-instantiating-the-picker-with-custom-storage-options' class='heading'>4. Instantiating the Picker with custom Storage Options</h4>
+<pre class="highlight swift"><code><span class="c1">// Store options for your uploaded files.</span>
+<span class="c1">// Here we are saying our storage location is S3 and access for uploaded files should be public.</span>
+<span class="k">let</span> <span class="nv">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
+
+<span class="c1">// Instantiate picker by passing the `StorageOptions` object we just set up.</span>
+<span class="k">let</span> <span class="nv">picker</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">picker</span><span class="p">(</span><span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span>
+</code></pre>
+<h4 id='5-presenting-the-picker-on-the-screen' class='heading'>5. Presenting the Picker on the screen</h4>
+<pre class="highlight swift"><code><span class="n">yourViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre>
+
+<p>Finally, remember that you&rsquo;ll need this piece of code in your <code>AppDelegate</code> for the auth flow to complete:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
+            <span class="c1">// NO-OP</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span> 
+                                            <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Here we just state that any other URLs should not be handled by this app.</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='final-notes-on-usage' class='heading'>Final Notes on Usage</h3>
 
 <ul>
-<li>Some of the functions above support additional optional parameters, consult the <a href="https://filestack.github.io/filestack-ios/Classes/Filestack.html">API Reference</a> for more details.</li>
+<li>Some of the functions and objects used above support additional parameters and properties, consult the <a href="https://filestack.github.io/filestack-ios/Classes/Filestack.html">API Reference</a> for more details.</li>
 </ul>
+<h2 id='demo' class='heading'>Demo</h2>
+
+<p>Check the <a href="https://github.com/filestack/filestack-ios/tree/master/Demo">Demo app</a> for an example on how to launch the picker UI with all the settings and options discussed above.</p>
 <h2 id='versioning' class='heading'>Versioning</h2>
 
 <p>Filestack iOS SDK follows the <a href="http://semver.org/">Semantic Versioning</a>.</p>
@@ -299,7 +439,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-11-06)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-11-23)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
