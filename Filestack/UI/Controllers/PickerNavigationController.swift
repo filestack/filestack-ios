@@ -9,7 +9,8 @@
 import Foundation
 import FilestackSDK
 
-struct PickerNavigationScene: Scene {
+
+internal struct PickerNavigationScene: Scene {
 
     let client: Client
     let storeOptions: StorageOptions
@@ -23,9 +24,12 @@ struct PickerNavigationScene: Scene {
 }
 
 
-@objc(FSPickerNavigationController)
-public class PickerNavigationController: UINavigationController {
+/**
+    This class represents a navigation controller containing UI elements that allow picking files from local and cloud
+    sources.
+ */
+@objc(FSPickerNavigationController) public class PickerNavigationController: UINavigationController {
 
-    var client: Client!
-    var storeOptions: StorageOptions!
+    internal var client: Client!
+    internal var storeOptions: StorageOptions!
 }

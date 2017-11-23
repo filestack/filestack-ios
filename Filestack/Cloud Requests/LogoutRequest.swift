@@ -10,13 +10,18 @@ import Foundation
 import Alamofire
 
 
+/// :nodoc:
 public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
 
+/**
+    This class represents a response obtained from a cloud logout request.
+ */
 public class LogoutResponse: NSObject {
 
 
     // MARK: - Properties
 
+    /// An error response. Optional.
     public let error: Error?
 
 

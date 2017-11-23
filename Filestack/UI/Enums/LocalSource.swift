@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-    Represents a type of local source to be used in the interactive uploader.
+    Represents a type of local source to be used in the picker.
  */
 @objc(FSLocalSource) public enum LocalSource: UInt {
 

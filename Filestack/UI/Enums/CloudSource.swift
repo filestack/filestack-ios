@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-    Represents a type of cloud source to be used in the interactive uploader.
+    Represents a type of cloud source to be used in the picker.
  */
 @objc(FSCloudSource) public enum CloudSource: UInt {
 

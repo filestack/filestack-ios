@@ -25,7 +25,8 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
     // MARK: - Notifications
 
-    /// This notification should be posted after an app receives an URL after authentication against a cloud provider.
+    /// This notification should be posted after an app receives an URL after authentication against a cloud provider
+    /// on iOS versions prior to iOS 11.
     public static let resumeCloudRequestNotification = Notification.Name("resume-filestack-cloud-request")
 
 
@@ -171,6 +172,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
          - Parameter path: The path to list (be sure to include a trailing slash "/".)
          - Parameter pageToken: A token obtained from a previous call to this function. This token is included in every
              `FolderListResponse` returned by this function in a property called `nextToken`.
+         - Parameter queue: The queue on which the completion handler is dispatched.
          - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
              or error response.
      */
@@ -221,6 +223,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
         - Parameter path: The path to a file in the cloud provider.
         - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
              If none given, S3 location with default options is assumed.
+        - Parameter queue: The queue on which the completion handler is dispatched.
         - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
              or error response.
      */
