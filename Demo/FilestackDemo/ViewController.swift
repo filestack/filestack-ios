@@ -61,8 +61,8 @@ class ViewController: UIViewController {
         // Create `Config` object.
         let config = Filestack.Config()
 
-        // Make sure to assign an app scheme URL that matches the one configured in your info.plist, in our demo
-        // this is "filestackdemo".
+        // IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist.
+        // In our demo this is "filestackdemo".
         config.appURLScheme = appURLScheme
 
         // Video quality for video recording (and sometimes exporting.)
@@ -79,13 +79,19 @@ class ViewController: UIViewController {
         }
 
         // Here you can enumerate the available local sources for the picker.
-        // If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would like to
-        // enumerate, let's say the camera source only, you could use `[.camera]` instead.
+        // If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would
+        // like to enumerate, let's say the camera source only, you could set it like this:
+        //
+        //   config.availableLocalSources = [.camera]
+        //
         config.availableLocalSources = LocalSource.all()
+
         // Here you can enumerate the available cloud sources for the picker.
-        // If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would like to
-        // enumerate selected cloud sources, you could use, for instance, `[.dropbox, .googledrive, .googlephotos]` (etc.)
-        // instead.
+        // If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would
+        // like to enumerate selected cloud sources, you could set these like this:
+        //
+        //   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]
+        //
         config.availableCloudSources = CloudSource.all()
 
         // Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),
