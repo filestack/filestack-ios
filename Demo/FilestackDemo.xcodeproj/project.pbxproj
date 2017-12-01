@@ -70,7 +70,6 @@
 		4540548E1F98A69A00C12B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		454054901F98A69A00C12B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45407B421F9E0D62009BC40A /* FilestackSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45407B451F9E0D85009BC40A /* Arcane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Arcane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45407B481F9E0D91009BC40A /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		454157DB1FA759AC00F37C9F /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = ../Filestack.xcodeproj; sourceTree = "<group>"; };
 		45450FE61FC33277008C2404 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				45407B481F9E0D91009BC40A /* Alamofire.framework */,
-				45407B451F9E0D85009BC40A /* Arcane.framework */,
 				45450FE61FC33277008C2404 /* CryptoSwift.framework */,
 				45407B421F9E0D62009BC40A /* FilestackSDK.framework */,
 			);
