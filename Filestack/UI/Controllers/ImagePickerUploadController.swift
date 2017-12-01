@@ -1,5 +1,5 @@
 //
-//  PickerUploadController.swift
+//  ImagePickerUploadController.swift
 //  Filestack
 //
 //  Created by Ruben Nine on 10/23/17.
@@ -11,7 +11,7 @@ import FilestackSDK
 import AVFoundation.AVAssetExportSession
 
 
-internal class PickerUploadController: NSObject {
+internal class ImagePickerUploadController: NSObject {
 
     let multipartUpload: MultipartUpload
     let viewController: UIViewController
@@ -50,7 +50,7 @@ internal class PickerUploadController: NSObject {
     }
 }
 
-extension PickerUploadController: UIImagePickerControllerDelegate {
+extension ImagePickerUploadController: UIImagePickerControllerDelegate {
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 
@@ -133,6 +133,6 @@ extension PickerUploadController: UIImagePickerControllerDelegate {
     }
 }
 
-extension PickerUploadController: UINavigationControllerDelegate {
+extension ImagePickerUploadController: UINavigationControllerDelegate {
 
 }

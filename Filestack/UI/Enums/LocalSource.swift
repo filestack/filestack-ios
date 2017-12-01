@@ -19,6 +19,9 @@ import Foundation
 
     /// Photo Library
     case photoLibrary
+
+    /// Documents
+    case documents
 }
 
 extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
@@ -26,7 +29,7 @@ extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
     /// Returns all the supported sources.
     public static func all() -> [LocalSource] {
 
-        return [.camera, .photoLibrary]
+        return [.camera, .photoLibrary, .documents]
     }
 
     static func title() -> String {
@@ -45,6 +48,10 @@ extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
 
             return "icon-photolibrary"
 
+        case .documents:
+
+            return "icon-documents"
+
         }
     }
 
@@ -62,6 +69,10 @@ extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
         case .photoLibrary:
 
             return "Photo Library"
+
+        case .documents:
+
+            return "Documents"
 
         }
     }

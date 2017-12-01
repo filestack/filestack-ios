@@ -9,6 +9,7 @@
 import UIKit
 import FilestackSDK
 
+
 internal class SourceTableViewController: UITableViewController {
 
     private let defaultSectionHeaderHeight: CGFloat = 32
@@ -162,6 +163,10 @@ internal class SourceTableViewController: UITableViewController {
 
             upload(sourceType: .photoLibrary)
 
+        case LocalSource.documents:
+
+            upload()
+
         case let cloudSource as CloudSource:
 
             // Try to retrieve store view type from user defaults, or default to "list"
@@ -189,7 +194,7 @@ internal class SourceTableViewController: UITableViewController {
 
     // MARK: - Private Functions
 
-    private func upload(sourceType: UIImagePickerControllerSourceType) {
+    private func upload(sourceType: UIImagePickerControllerSourceType? = nil) {
 
         var cancellableRequest: CancellableRequest? = nil
 
@@ -241,11 +246,18 @@ internal class SourceTableViewController: UITableViewController {
             }
         }
 
-        cancellableRequest = client.uploadFromImagePicker(viewController: self,
-                                                          sourceType: sourceType,
-                                                          storeOptions: storeOptions,
-                                                          uploadProgress: uploadProgressHandler,
-                                                          completionHandler: completionHandler)
+        if let sourceType = sourceType {
+            cancellableRequest = client.uploadFromImagePicker(viewController: self,
+                                                              sourceType: sourceType,
+                                                              storeOptions: storeOptions,
+                                                              uploadProgress: uploadProgressHandler,
+                                                              completionHandler: completionHandler)
+        } else {
+            cancellableRequest = client.uploadFromDocumentPicker(viewController: self,
+                                                                 storeOptions: storeOptions,
+                                                                 uploadProgress: uploadProgressHandler,
+                                                                 completionHandler: completionHandler)
+        }
     }
 
     private func source(from indexPath: IndexPath) -> CellDescriptibleSource? {

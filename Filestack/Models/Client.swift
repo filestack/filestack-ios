@@ -142,10 +142,59 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                                          uploadProgress: uploadProgress,
                                          completionHandler: completionHandler)
 
-        let uploadController = PickerUploadController(multipartUpload: mpu,
-                                                      viewController: viewController,
-                                                      sourceType: sourceType,
-                                                      config: config)
+        let uploadController = ImagePickerUploadController(multipartUpload: mpu,
+                                                           viewController: viewController,
+                                                           sourceType: sourceType,
+                                                           config: config)
+
+        uploadController.filePickedCompletionHandler = { (success) in
+            // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
+            uploadController.filePickedCompletionHandler = nil
+
+            if success {
+                // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
+                let progress = Progress(totalUnitCount: 1)
+                progress.completedUnitCount = 0
+
+                uploadProgress?(progress)
+            }
+        }
+
+        uploadController.start()
+
+        return mpu
+    }
+
+    /**
+        Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
+        other third-party cloud services.
+
+        - Parameter viewController: The view controller that will present the picker.
+        - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
+        If none given, S3 location with default options is assumed.
+        - Parameter useIntelligentIngestionIfAvailable: Attempts to use Intelligent Ingestion for file uploading.
+        Defaults to `true`.
+        - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
+        - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
+        as data is uploaded to the server. `nil` by default.
+        - Parameter completionHandler: Adds a handler to be called once the upload has finished.
+     */
+    @discardableResult public func uploadFromDocumentPicker(viewController: UIViewController,
+                                                            storeOptions: StorageOptions = StorageOptions(location: .s3),
+                                                            useIntelligentIngestionIfAvailable: Bool = true,
+                                                            queue: DispatchQueue = .main,
+                                                            uploadProgress: ((Progress) -> Void)? = nil,
+                                                            completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
+
+        let mpu = client.multiPartUpload(storeOptions: storeOptions,
+                                         useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
+                                         queue: queue,
+                                         startUploadImmediately: false,
+                                         uploadProgress: uploadProgress,
+                                         completionHandler: completionHandler)
+
+        let uploadController = DocumentPickerUploadController(multipartUpload: mpu,
+                                                              viewController: viewController)
 
         uploadController.filePickedCompletionHandler = { (success) in
             // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
