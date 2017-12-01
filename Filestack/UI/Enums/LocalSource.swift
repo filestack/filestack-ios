@@ -72,7 +72,7 @@ extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
 
         case .documents:
 
-            return "Documents"
+            return "iOS Files"
 
         }
     }
