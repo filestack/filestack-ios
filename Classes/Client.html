@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Filestack Docs
         </a>
-         (100% documented)
+         (94% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -87,6 +87,14 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/LocalSource.html">LocalSource</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/DocumentPickerUploadController.html">DocumentPickerUploadController</a>
               </li>
             </ul>
           </li>
@@ -596,6 +604,121 @@ as data is uploaded to the server. <code>nil</code> by default.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:9Filestack6ClientC24uploadFromDocumentPickerXeXeF"></a>
+                    <a name="//apple_ref/swift/Method/uploadFromDocumentPicker(viewController:storeOptions:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ClientC24uploadFromDocumentPickerXeXeF">uploadFromDocumentPicker(viewController:storeOptions:useIntelligentIngestionIfAvailable:queue:uploadProgress:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Uploads a file to a given storage location picked interactively from the device&rsquo;s documents, iCloud Drive or
+other third-party cloud services.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">uploadFromDocumentPicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
+                                                            <span class="nv">storeOptions</span><span class="p">:</span> <span class="kt">StorageOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">),</span>
+                                                            <span class="nv">useIntelligentIngestionIfAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                                                            <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
+                                                            <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                                            <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NetworkJSONResponse</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/CancellableRequest.html">CancellableRequest</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view controller that will present the picker.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>storeOptions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object containing the store options (e.g. location, region, container, access, etc.)
+If none given, S3 location with default options is assumed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>useIntelligentIngestionIfAvailable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Attempts to use Intelligent Ingestion for file uploading.
+Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The queue on which the upload progress and completion handlers are dispatched.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>uploadProgress</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets a closure to be called periodically during the lifecycle of the upload process
+as data is uploaded to the server. <code>nil</code> by default.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Adds a handler to be called once the upload has finished.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@Filestack@objc(cs)FSFilestackClient(im)folderListWithProvider:path:pageToken:queue:completionHandler:"></a>
                     <a name="//apple_ref/swift/Method/folderList(provider:path:pageToken:queue:completionHandler:)" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@Filestack@objc(cs)FSFilestackClient(im)folderListWithProvider:path:pageToken:queue:completionHandler:">folderList(provider:path:pageToken:queue:completionHandler:)</a>
@@ -911,7 +1034,7 @@ either contain an error (on failure) or nothing at all (on success.)</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-11-23)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-12-04)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

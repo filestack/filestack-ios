@@ -1,6 +1,33 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Controllers/DocumentPickerUploadController.swift",
+      "line": null,
+      "symbol": "DocumentPickerUploadController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Controllers/DocumentPickerUploadController.swift",
+      "line": 95,
+      "symbol": "DocumentPickerUploadController.documentPickerWasCancelled(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Controllers/DocumentPickerUploadController.swift",
+      "line": 102,
+      "symbol": "DocumentPickerUploadController.documentPicker(_:didPickDocumentsAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Controllers/DocumentPickerUploadController.swift",
+      "line": 112,
+      "symbol": "DocumentPickerUploadController.documentPicker(_:didPickDocumentAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/ruben/src/filestack/filestack-ios"
 }
