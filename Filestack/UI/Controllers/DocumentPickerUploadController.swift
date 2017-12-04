@@ -8,7 +8,12 @@
 
 import Foundation
 import FilestackSDK
-import ZipArchive
+
+#if UseCarthage
+    import ZipArchive
+#else
+    import SSZipArchive
+#endif
 
 
 internal class DocumentPickerUploadController: NSObject {
