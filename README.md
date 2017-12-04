@@ -88,7 +88,7 @@ Repeat the same process for adding `Alamofire`, `CryptoSwift`, and `FilestackSDK
 
 ## Usage
 
-### Importing Required Frameworks
+### Importing required frameworks
 
 Any source files that need to use the Filestack iOS SDK should import the `Filestack` and `FilestackSDK` frameworks:
 
@@ -122,7 +122,7 @@ config.appURLScheme = "filestackdemo"
 let client = Filestack.Client(apiKey: "YOUR-API-KEY", security: security, config: config)
 ```
 
-### Uploading Local Files
+### Uploading local files
 
 ```swift
 let localURL = URL(string: "file:///an-app-sandbox-friendly-local-url")!
@@ -140,7 +140,7 @@ let uploadRequest = client.upload(from: localURL, uploadProgress: { (progress) i
 }
 ```
 
-### Uploading Photos and Videos from the Photo Library or Camera
+### Uploading photos and videos from the Photo Library or Camera
 
 ```swift
 // The view controller that will be presenting the image picker.
@@ -162,13 +162,32 @@ let uploadRequest = client.uploadFromImagePicker(viewController: presentingViewC
 }
 ```
 
-In both uploading examples, an upload may be cancelled at anytime by calling `cancel()` on the `MultipartUpload` object returned by any of the functions above:
+### Uploading files from device, iCloud Drive or another third-party cloud provider
+
+```swift
+// The view controller that will be presenting the image picker.
+let presentingViewController = self
+
+let uploadRequest = client.uploadFromDocumentPicker(viewController: presentingViewController, uploadProgress: { (progress) in
+    // Here you may update the UI to reflect the upload progress.
+    print("progress = \(String(describing: progress))")
+}) { (response) in
+    // Try to obtain Filestack handle
+    if let json = response?.json, let handle = json["handle"] as? String {
+        // Use Filestack handle
+    } else if let error = response?.error {
+        // Handle error
+    }
+}
+```
+
+In all the previous uploading examples, an upload may be cancelled at anytime by calling `cancel()` on the `CancellableRequest` conforming object returned by any of the functions above:
 
 ```swift
 uploadRequest.cancel()
 ```
 
-### Listing Contents from a Cloud Provider
+### Listing contents from a cloud provider
 
 ```swift
 // The cloud provider to use (it may require authentication)
@@ -220,7 +239,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
 }
 ```
 
-### Storing Contents from a Cloud Provider into a Store Location
+### Storing contents from a cloud provider into a store location
 
 ```swift
 // The cloud provider to use
@@ -248,7 +267,7 @@ client.store(provider: provider, path: path, storeOptions: storeOptions) { (resp
 Please make sure to authenticate against the cloud provider first by using the `folderList` function before calling `store`.
 
 
-### Launching Picker UI
+### Launching picker UI
 
 This is a code fragment broken into pieces taken from the [Demo app](https://github.com/filestack/filestack-ios/tree/master/Demo) describing the process of launching the picker UI using some of the most relevant config options:
 
@@ -319,7 +338,7 @@ config.availableCloudSources = CloudSource.all()
 let client = Filestack.Client(apiKey: "YOUR-API-KEY-HERE", security: security, config: config)
 ```
 
-#### 4. Instantiating the Picker with custom Storage Options
+#### 4. Instantiating the picker with custom storage options
 
 ```swift
 // Store options for your uploaded files.
@@ -330,7 +349,7 @@ let storeOptions = StorageOptions(location: .s3, access: .public)
 let picker = client.picker(storeOptions: storeOptions)
 ```
 
-#### 5. Presenting the Picker on the screen
+#### 5. Presenting the picker on the screen
 
 ```swift
 yourViewController.present(picker, animated: true)
@@ -357,7 +376,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
 }
 ```
 
-### Final Notes on Usage
+### Final notes on usage
 
 - Some of the functions and objects used above support additional parameters and properties, consult the [API Reference](https://filestack.github.io/filestack-ios/) for more details.
 

@@ -31,6 +31,10 @@ import AVFoundation.AVAssetExportSession
     /// By default, it contains all the supported local sources.
     public var availableLocalSources: [LocalSource] = LocalSource.all()
 
+    /// This setting determines what document types can be picked when using Apple's document picker.
+    /// By default, this contains `["public.item"]`.
+    public var documentPickerAllowedUTIs: [String] = ["public.item"]
+
     /// This setting determines the format used for exported images (available only in iOS 11.)
     /// Possible values are `.compatible` (for JPEG) and `.current` (for HEIF).
     /// In iOS versions earlier than 11.0, JPEG will always be used.

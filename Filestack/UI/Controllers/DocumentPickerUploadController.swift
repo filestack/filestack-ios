@@ -16,15 +16,17 @@ internal class DocumentPickerUploadController: NSObject {
     let multipartUpload: MultipartUpload
     let viewController: UIViewController
     let picker: UIDocumentPickerViewController
-
+    let config: Config
+    
     var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
 
 
-    init(multipartUpload: MultipartUpload, viewController: UIViewController) {
+    init(multipartUpload: MultipartUpload, viewController: UIViewController, config: Config) {
 
         self.multipartUpload = multipartUpload
         self.viewController = viewController
-        self.picker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
+        self.picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
+        self.config = config
     }
 
 
