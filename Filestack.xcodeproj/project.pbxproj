@@ -45,6 +45,7 @@
 		45A92F161FA0BE3F00FEB611 /* CloudRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */; };
 		45A92F181FA0BE9600FEB611 /* FolderListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A92F171FA0BE9600FEB611 /* FolderListRequest.swift */; };
 		45B603D31FC5B88A006775BF /* ImageURLExportPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B603D21FC5B88A006775BF /* ImageURLExportPreset.swift */; };
+		45C2D5091FD55CC300912749 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C2D5021FD55C5600912749 /* ZipArchive.framework */; };
 		45C47E741FB9B3DC009B8248 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */; };
 		45C47E7E1FB9F08A009B8248 /* Storyboard+Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E7D1FB9F08A009B8248 /* Storyboard+Scenes.swift */; };
 		45C47E801FB9F0C6009B8248 /* Scene+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E7F1FB9F0C6009B8248 /* Scene+Defaults.swift */; };
@@ -154,6 +155,34 @@
 			remoteGlobalIDString = 457084FE1F975C6C00991340;
 			remoteInfo = Filestack;
 		};
+		45C2D5011FD55C5600912749 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B423AE1A1C0DF76A0004A2F1;
+			remoteInfo = "ZipArchive-iOS";
+		};
+		45C2D5031FD55C5600912749 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AFF75A241C37279600F450AC;
+			remoteInfo = "ZipArchive-Mac";
+		};
+		45C2D5051FD55C5600912749 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37952C261F63B50D00DD6677;
+			remoteInfo = "ZipArchive-tvos";
+		};
+		45C2D5071FD55C5600912749 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37952C5E1F63BB7100DD6677;
+			remoteInfo = "ZipArchive-watchos";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +227,7 @@
 		45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudRequest.swift; sourceTree = "<group>"; };
 		45A92F171FA0BE9600FEB611 /* FolderListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListRequest.swift; sourceTree = "<group>"; };
 		45B603D21FC5B88A006775BF /* ImageURLExportPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLExportPreset.swift; sourceTree = "<group>"; };
+		45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipArchive.xcodeproj; path = Carthage/Checkouts/ZipArchive/ZipArchive.xcodeproj; sourceTree = "<group>"; };
 		45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
 		45C47E7D1FB9F08A009B8248 /* Storyboard+Scenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Scenes.swift"; sourceTree = "<group>"; };
 		45C47E7F1FB9F0C6009B8248 /* Scene+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scene+Defaults.swift"; sourceTree = "<group>"; };
@@ -220,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C2D5091FD55CC300912749 /* ZipArchive.framework in Frameworks */,
 				454157D51FA7593C00F37C9F /* FilestackSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +480,7 @@
 			children = (
 				4541577F1FA7591F00F37C9F /* FilestackSDK.xcodeproj */,
 				454157B81FA7592F00F37C9F /* OHHTTPStubs.xcodeproj */,
+				45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */,
 			);
 			name = "External Dependencies";
 			sourceTree = "<group>";
@@ -479,6 +511,17 @@
 				4587330C1FA32B66002DAA9D /* StoreRequest.swift */,
 			);
 			path = "Cloud Requests";
+			sourceTree = "<group>";
+		};
+		45C2D4FB1FD55C5600912749 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45C2D5021FD55C5600912749 /* ZipArchive.framework */,
+				45C2D5041FD55C5600912749 /* ZipArchive.framework */,
+				45C2D5061FD55C5600912749 /* ZipArchive.framework */,
+				45C2D5081FD55C5600912749 /* ZipArchive.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		45DEBA471FBAE60300A267E7 /* Protocols */ = {
@@ -591,6 +634,10 @@
 					ProductGroup = 454157B91FA7592F00F37C9F /* Products */;
 					ProjectRef = 454157B81FA7592F00F37C9F /* OHHTTPStubs.xcodeproj */;
 				},
+				{
+					ProductGroup = 45C2D4FB1FD55C5600912749 /* Products */;
+					ProjectRef = 45C2D4FA1FD55C5600912749 /* ZipArchive.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -669,6 +716,34 @@
 			fileType = wrapper.cfbundle;
 			path = "OHHTTPStubs tvOS Fmk Tests.xctest";
 			remoteRef = 454157D11FA7592F00F37C9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		45C2D5021FD55C5600912749 /* ZipArchive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZipArchive.framework;
+			remoteRef = 45C2D5011FD55C5600912749 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		45C2D5041FD55C5600912749 /* ZipArchive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZipArchive.framework;
+			remoteRef = 45C2D5031FD55C5600912749 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		45C2D5061FD55C5600912749 /* ZipArchive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZipArchive.framework;
+			remoteRef = 45C2D5051FD55C5600912749 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		45C2D5081FD55C5600912749 /* ZipArchive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZipArchive.framework;
+			remoteRef = 45C2D5071FD55C5600912749 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

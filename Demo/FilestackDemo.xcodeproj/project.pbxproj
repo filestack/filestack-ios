@@ -18,6 +18,8 @@
 		45450FE71FC3328D008C2404 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45450FE61FC33277008C2404 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4585BB531FA8BC5A00DD3AA7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45407B481F9E0D91009BC40A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4585BB551FA8BC5A00DD3AA7 /* FilestackSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45407B421F9E0D62009BC40A /* FilestackSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45C2D50D1FD55F6000912749 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C2D50B1FD55F4F00912749 /* ZipArchive.framework */; };
+		45C2D50E1FD55F6000912749 /* ZipArchive.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45C2D50B1FD55F4F00912749 /* ZipArchive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,7 @@
 				4585BB551FA8BC5A00DD3AA7 /* FilestackSDK.framework in Embed Frameworks */,
 				45450FE71FC3328D008C2404 /* CryptoSwift.framework in Embed Frameworks */,
 				454157EC1FA759BE00F37C9F /* Filestack.framework in Embed Frameworks */,
+				45C2D50E1FD55F6000912749 /* ZipArchive.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +76,7 @@
 		45407B481F9E0D91009BC40A /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		454157DB1FA759AC00F37C9F /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = ../Filestack.xcodeproj; sourceTree = "<group>"; };
 		45450FE61FC33277008C2404 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45C2D50B1FD55F4F00912749 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C2D50D1FD55F6000912749 /* ZipArchive.framework in Frameworks */,
 				45450FE51FC33277008C2404 /* CryptoSwift.framework in Frameworks */,
 				454157EB1FA759B900F37C9F /* Filestack.framework in Frameworks */,
 			);
@@ -122,6 +127,7 @@
 		45407B3A1F9E0D35009BC40A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45C2D50B1FD55F4F00912749 /* ZipArchive.framework */,
 				45407B481F9E0D91009BC40A /* Alamofire.framework */,
 				45450FE61FC33277008C2404 /* CryptoSwift.framework */,
 				45407B421F9E0D62009BC40A /* FilestackSDK.framework */,

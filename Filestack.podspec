@@ -13,4 +13,5 @@ Pod::Spec.new do |spec|
 
   spec.dependency 'Alamofire', '~> 4.5'
   spec.dependency 'FilestackSDK', '~> 1.2'
+  spec.dependency 'ZipArchive', '~> 2.1'
 end

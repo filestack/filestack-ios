@@ -8,6 +8,7 @@
 
 import Foundation
 import FilestackSDK
+import ZipArchive
 
 
 internal class DocumentPickerUploadController: NSObject {
@@ -23,7 +24,7 @@ internal class DocumentPickerUploadController: NSObject {
 
         self.multipartUpload = multipartUpload
         self.viewController = viewController
-        self.picker = UIDocumentPickerViewController(documentTypes: ["public.content"], in: .import)
+        self.picker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
     }
 
 
@@ -44,7 +45,27 @@ internal class DocumentPickerUploadController: NSObject {
 
     fileprivate func upload(url: URL) {
 
-        multipartUpload.localURL = url
+        if url.hasDirectoryPath {
+            // Likely a bundle — let's attempt to zip it.
+            let tmpFilePath = tempZipPath(filename: url.lastPathComponent)
+
+            let success = SSZipArchive.createZipFile(atPath: tmpFilePath,
+                                                     withContentsOfDirectory: url.path,
+                                                     keepParentDirectory: true)
+
+            if success {
+                multipartUpload.localURL = URL(fileURLWithPath: tmpFilePath)
+            } else {
+                multipartUpload.cancel()
+                filePickedCompletionHandler?(false)
+
+                return
+            }
+        } else {
+            // Regular file
+            multipartUpload.localURL = url
+        }
+
         multipartUpload.uploadFile()
         filePickedCompletionHandler?(true)
     }
@@ -53,6 +74,16 @@ internal class DocumentPickerUploadController: NSObject {
 
         multipartUpload.cancel()
         filePickedCompletionHandler?(false)
+    }
+
+    private func tempZipPath(filename: String) -> String {
+
+        let uuid = UUID().uuidString
+        var path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+
+        path += "/\(uuid)_\(filename).zip"
+
+        return path
     }
 }
 
