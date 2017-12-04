@@ -92,14 +92,14 @@ internal class DocumentPickerUploadController: NSObject {
 extension DocumentPickerUploadController: UIDocumentPickerDelegate {
 
     // called if the user dismisses the document picker without selecting a document (using the Cancel button)
-    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
 
         cancel()
     }
 
     // Required
     @available(iOS 11.0, *)
-    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
 
         if let url = urls.first {
             upload(url: url)
@@ -109,7 +109,7 @@ extension DocumentPickerUploadController: UIDocumentPickerDelegate {
     }
 
     @available(iOS, introduced: 8.0, deprecated: 11.0)
-    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
 
         upload(url: url)
     }
