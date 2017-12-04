@@ -54,7 +54,7 @@ To integrate Filestack into your Xcode project using Carthage, specify it in you
 
 `github "filestack/filestack-ios" ~> 1.0`
 
-Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `CryptoSwift.framework` to the embedded frameworks build phase of your app's target.
+Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, `CryptoSwift.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
 
 ### Manually
 
@@ -71,6 +71,7 @@ $ git submodule add https://github.com/filestack/filestack-ios.git
 $ git submodule add https://github.com/filestack/filestack-swift.git
 $ git submodule add https://github.com/Alamofire/Alamofire.git
 $ git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
+$ git submodule add https://github.com/ZipArchive/ZipArchive.git
 ```
 
 Open the new `filestack-ios` folder, and drag the `Filestack.xcodeproj` into the Project Navigator of your application's Xcode project.
@@ -84,7 +85,7 @@ In the tab bar at the top of that window, open the "General" panel.
 
 Click on the + button under the "Embedded Binaries" section and choose the `Filestack.framework` for iOS.
 
-Repeat the same process for adding `Alamofire`, `CryptoSwift`, and `FilestackSDK` dependent frameworks.
+Repeat the same process for adding `Alamofire`, `CryptoSwift`, `FilestackSDK`, and `ZipArchive` dependent frameworks.
 
 ## Usage
 
