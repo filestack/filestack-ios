@@ -18,7 +18,7 @@ internal extension UIImage {
         var imageData: Data? = nil
         let destinationData = NSMutableData()
 
-        if let destination = CGImageDestinationCreateWithData(destinationData, AVFileTypeHEIC as CFString, 1, nil),
+        if let destination = CGImageDestinationCreateWithData(destinationData, AVFileType.heic as CFString, 1, nil),
            let cgImage = cgImage {
             let options = [kCGImageDestinationLossyCompressionQuality: quality]
             CGImageDestinationAddImage(destination, cgImage, options as CFDictionary)

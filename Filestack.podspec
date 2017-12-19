@@ -10,8 +10,9 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target  = '9.0'
 
   spec.source_files = 'Filestack/**/*.{h,swift}'
+  spec.resources = ["Filestack/UI/*.storyboard", "Filestack/Resources/*.xcassets"]
 
-  spec.dependency 'Alamofire', '~> 4.5'
-  spec.dependency 'FilestackSDK', '~> 1.2'
+  spec.dependency 'Alamofire', '~> 4.6'
+  spec.dependency 'FilestackSDK', '~> 1.2.2'
   spec.dependency 'SSZipArchive', '~> 2.1'
 end

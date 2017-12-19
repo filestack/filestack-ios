@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.2 *(2017-12-19)*
+----------------------------
+
+- Updated code to Swift 4.0.
+- Updated FilestackSDK dependency.
+- Added storyboard and xcasset resources to podspec.
+
 Version 1.1 *(2017-12-04)*
 ----------------------------
 

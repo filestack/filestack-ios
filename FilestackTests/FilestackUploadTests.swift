@@ -34,7 +34,7 @@ class FilestackUploadTests: XCTestCase {
         stubMultipartCompleteRequest()
 
         let security = Seeds.Securities.basic
-        let filestack = Filestack(apiKey: "MY-OTHER-API-KEY", security: security)
+        let filestack = Filestack.Client(apiKey: "MY-OTHER-API-KEY", security: security)
         let localURL = Bundle(for: type(of: self)).url(forResource: "large", withExtension: "jpg")!
         let expectation = self.expectation(description: "request should succeed")
 
@@ -102,7 +102,7 @@ class FilestackUploadTests: XCTestCase {
         stubMultipartCompleteRequest()
 
         let security = Seeds.Securities.basic
-        let filestack = Filestack(apiKey: "MY-OTHER-API-KEY", security: security)
+        let filestack = Filestack.Client(apiKey: "MY-OTHER-API-KEY", security: security)
         let localURL = Bundle(for: type(of: self)).url(forResource: "large", withExtension: "jpg")!
         let expectation = self.expectation(description: "request should succeed")
         let progressExpectation = self.expectation(description: "request should succeed")
@@ -178,7 +178,7 @@ class FilestackUploadTests: XCTestCase {
         stubMultipartCompleteRequest(requestTime: 1.0, responseTime: 5.0)
 
         let security = Seeds.Securities.basic
-        let filestack = Filestack(apiKey: "MY-OTHER-API-KEY", security: security)
+        let filestack = Filestack.Client(apiKey: "MY-OTHER-API-KEY", security: security)
         let localURL = Bundle(for: type(of: self)).url(forResource: "large", withExtension: "jpg")!
         let expectation = self.expectation(description: "request should succeed")
         let progressExpectation = self.expectation(description: "request should succeed")
@@ -225,7 +225,7 @@ class FilestackUploadTests: XCTestCase {
         }
 
         let security = Seeds.Securities.basic
-        let filestack = Filestack(apiKey: "MY-OTHER-API-KEY", security: security)
+        let filestack = Filestack.Client(apiKey: "MY-OTHER-API-KEY", security: security)
         let localURL = Bundle(for: type(of: self)).url(forResource: "large", withExtension: "jpg")!
         let expectation = self.expectation(description: "request should succeed")
 
@@ -296,7 +296,7 @@ class FilestackUploadTests: XCTestCase {
         }
 
         let security = Seeds.Securities.basic
-        let filestack = Filestack(apiKey: "MY-OTHER-API-KEY", security: security)
+        let filestack = Filestack.Client(apiKey: "MY-OTHER-API-KEY", security: security)
         let localURL = Bundle(for: type(of: self)).url(forResource: "large", withExtension: "jpg")!
         let expectation = self.expectation(description: "request should succeed")
 
