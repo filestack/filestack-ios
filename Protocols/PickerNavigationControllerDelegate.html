@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ImageURLExportPreset Enum Reference</title>
+    <title>PickerNavigationControllerDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/ImageURLExportPreset" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/PickerNavigationControllerDelegate" class="dashAnchor"></a>
 
-    <a title="ImageURLExportPreset Enum Reference"></a>
+    <a title="PickerNavigationControllerDelegate Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Filestack Reference</a>
       <img class="carat" src="../img/carat.png" />
-      ImageURLExportPreset Enum Reference
+      PickerNavigationControllerDelegate Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -107,14 +107,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>ImageURLExportPreset</h1>
+            <h1>PickerNavigationControllerDelegate</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">@objc(FSImageURLExportPreset)</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ImageURLExportPreset</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">@objc(FSPickerNavigationControllerDelegate)</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PickerNavigationControllerDelegate</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents an image URL export preset.</p>
+            <p>This protocol contains the function signatures any <code><a href="../Classes/PickerNavigationController.html">PickerNavigationController</a></code> delegate should conform to.</p>
 
           </div>
         </section>
@@ -126,9 +126,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@E@FSImageURLExportPreset@FSImageURLExportPresetCompatible"></a>
-                    <a name="//apple_ref/swift/Element/compatible" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@E@FSImageURLExportPreset@FSImageURLExportPresetCompatible">compatible</a>
+                    <a name="/c:@M@Filestack@objc(pl)FSPickerNavigationControllerDelegate(im)pickerStoredFileWithPicker:response:"></a>
+                    <a name="//apple_ref/swift/Method/pickerStoredFile(picker:response:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(pl)FSPickerNavigationControllerDelegate(im)pickerStoredFileWithPicker:response:">pickerStoredFile(picker:response:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -136,30 +136,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A preset for converting HEIF formatted images to JPEG.</p>
+                        <p>Called when the picker finishes storing a file originating from a cloud source in the destination storage location.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">compatible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">pickerStoredFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt"><a href="../Classes/PickerNavigationController.html">PickerNavigationController</a></span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt"><a href="../Classes/StoreResponse.html">StoreResponse</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@E@FSImageURLExportPreset@FSImageURLExportPresetCurrent"></a>
-                    <a name="//apple_ref/swift/Element/current" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@E@FSImageURLExportPreset@FSImageURLExportPresetCurrent">current</a>
+                    <a name="/s:9Filestack34PickerNavigationControllerDelegateP18pickerUploadedFileXeXeF"></a>
+                    <a name="//apple_ref/swift/Method/pickerUploadedFile(picker:response:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack34PickerNavigationControllerDelegateP18pickerUploadedFileXeXeF">pickerUploadedFile(picker:response:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -167,14 +163,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A preset for passing image data as-is to the client.</p>
+                        <p>Called when the picker finishes uploading a file originating from the local device in the destination storage location.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">current</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">pickerUploadedFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt"><a href="../Classes/PickerNavigationController.html">PickerNavigationController</a></span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">NetworkJSONResponse</span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>

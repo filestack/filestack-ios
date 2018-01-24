@@ -65,7 +65,7 @@
                 <a class="nav-group-task-link" href="Classes/LogoutResponse.html">LogoutResponse</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes.html#/c:@M@Filestack@objc(cs)FSPickerNavigationController">PickerNavigationController</a>
+                <a class="nav-group-task-link" href="Classes/PickerNavigationController.html">PickerNavigationController</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/StoreResponse.html">StoreResponse</a>
@@ -94,6 +94,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/CancellableRequest.html">CancellableRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a>
               </li>
             </ul>
           </li>
@@ -135,7 +138,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 1.1'
+    pod 'Filestack', '~&gt; 1.3'
 end
 </code></pre>
 
@@ -153,7 +156,7 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 1.1</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 1.3</code></p>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, <code>CryptoSwift.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -406,7 +409,38 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="c1">// Instantiate picker by passing the `StorageOptions` object we just set up.</span>
 <span class="k">let</span> <span class="nv">picker</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">picker</span><span class="p">(</span><span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span>
 </code></pre>
-<h4 id='5-presenting-the-picker-on-the-screen' class='heading'>5. Presenting the picker on the screen</h4>
+<h4 id='5-setting-the-picker-39-s-delegate' class='heading'>5. Setting the picker&rsquo;s delegate</h4>
+<pre class="highlight swift"><code><span class="c1">// Optional. Set the picker's delegate.</span>
+<span class="n">picker</span><span class="o">.</span><span class="n">pickerDelegate</span> <span class="o">=</span> <span class="k">self</span>
+</code></pre>
+
+<p>And implement the <code>PickerNavigationControllerDelegate</code> protocol in your view controller, i.e.:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">PickerNavigationControllerDelegate</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">pickerStoredFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">StoreResponse</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">contents</span> <span class="p">{</span>
+            <span class="c1">// Our cloud file was stored into the destination location.</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Stored file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
+            <span class="c1">// The store operation failed.</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Error storing file: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">pickerUploadedFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">NetworkJSONResponse</span><span class="p">?)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span>
+            <span class="c1">// Our local file was stored into the destination location.</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Uploaded file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
+            <span class="c1">// The upload operation failed.</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Error uploading file: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='6-presenting-the-picker-on-the-screen' class='heading'>6. Presenting the picker on the screen</h4>
 <pre class="highlight swift"><code><span class="n">yourViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
 </code></pre>
 
@@ -456,7 +490,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2017-12-19)</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2018-01-24)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
