@@ -202,6 +202,10 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                     }
                 }
             }
+
+            if let picker = self.navigationController as? PickerNavigationController {
+                picker.pickerDelegate?.pickerStoredFile(picker: picker, response: response)
+            }
         }
 
         cancellableRequest = client.store(provider: source.provider,

@@ -244,6 +244,10 @@ internal class SourceTableViewController: UITableViewController {
                     self.uploadMonitorViewController = nil
                 }
             }
+
+            if let picker = self.navigationController as? PickerNavigationController {
+                picker.pickerDelegate?.pickerUploadedFile(picker: picker, response: response)
+            }
         }
 
         if let sourceType = sourceType {
