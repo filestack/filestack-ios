@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.3 *(2018-01-24)*
+----------------------------
+
+- Added the ability to notify the picker's delegate every time a cloud file is stored or a local file is uploaded into the destination storage location.
+
 Version 1.2 *(2017-12-19)*
 ----------------------------
 

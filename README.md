@@ -31,7 +31,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 1.1'
+    pod 'Filestack', '~> 1.3'
 end
 ```
 
@@ -52,7 +52,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 1.1`
+`github "filestack/filestack-ios" ~> 1.3`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, `CryptoSwift.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
 
@@ -350,7 +350,43 @@ let storeOptions = StorageOptions(location: .s3, access: .public)
 let picker = client.picker(storeOptions: storeOptions)
 ```
 
-#### 5. Presenting the picker on the screen
+#### 5. Setting the picker's delegate
+
+```swift
+// Optional. Set the picker's delegate.
+picker.pickerDelegate = self
+```
+
+And implement the `PickerNavigationControllerDelegate` protocol in your view controller, i.e.:
+
+```swift
+extension ViewController: PickerNavigationControllerDelegate {
+
+    func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
+
+        if let contents = response.contents {
+            // Our cloud file was stored into the destination location.
+            print("Stored file response: \(contents)")
+        } else if let error = response.error {
+            // The store operation failed.
+            print("Error storing file: \(error)")
+        }
+    }
+
+    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
+
+        if let contents = response?.json {
+            // Our local file was stored into the destination location.
+            print("Uploaded file response: \(contents)")
+        } else if let error = response?.error {
+            // The upload operation failed.
+            print("Error uploading file: \(error)")
+        }
+    }
+}
+```
+
+#### 6. Presenting the picker on the screen
 
 ```swift
 yourViewController.present(picker, animated: true)
