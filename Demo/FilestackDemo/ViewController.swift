@@ -113,7 +113,35 @@ class ViewController: UIViewController {
         // Instantiate picker by passing the `StorageOptions` object we just set up.
         let picker = client.picker(storeOptions: storeOptions)
 
+        // Optional. Set the picker's delegate.
+        picker.pickerDelegate = self
+
         // Finally, present the picker on the screen.
         present(picker, animated: true)
+    }
+}
+
+extension ViewController: PickerNavigationControllerDelegate {
+
+    func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
+
+        if let contents = response.contents {
+            // Our cloud file was stored into the destination location.
+            print("Stored file response: \(contents)")
+        } else if let error = response.error {
+            // The store operation failed.
+            print("Error storing file: \(error)")
+        }
+    }
+
+    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
+
+        if let contents = response?.json {
+            // Our local file was stored into the destination location.
+            print("Uploaded file response: \(contents)")
+        } else if let error = response?.error {
+            // The upload operation failed.
+            print("Error uploading file: \(error)")
+        }
     }
 }
