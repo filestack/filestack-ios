@@ -32,4 +32,19 @@ internal struct PickerNavigationScene: Scene {
 
     internal var client: Client!
     internal var storeOptions: StorageOptions!
+
+    /// The picker delegate. Optional
+    public weak var pickerDelegate: PickerNavigationControllerDelegate?
+}
+
+/**
+    This protocol contains the function signatures any `PickerNavigationController` delegate should conform to.
+ */
+@objc(FSPickerNavigationControllerDelegate) public protocol PickerNavigationControllerDelegate : class {
+
+    /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
+    func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse)
+
+    /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
+    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?)
 }
