@@ -46,5 +46,5 @@ internal struct PickerNavigationScene: Scene {
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse)
 
     /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
-    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?)
+    func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse])
 }

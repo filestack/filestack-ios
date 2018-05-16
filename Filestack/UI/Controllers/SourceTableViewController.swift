@@ -76,74 +76,41 @@ internal class SourceTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-
         return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         switch section {
-        case 0:
-
-            return localSources.count
-
-        case 1:
-
-            return cloudSources.count
-
-        default:
-
-            return 0
+        case 0: return localSources.count
+        case 1: return cloudSources.count
+        default: return 0
         }
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
         switch section {
-        case 0:
-
-            return localSources.count > 0 ? defaultSectionHeaderHeight : 0
-
-        case 1:
-
-            return cloudSources.count > 0 ? defaultSectionHeaderHeight : 0
-
-        default:
-
-            return 0
+        case 0: return localSources.count > 0 ? defaultSectionHeaderHeight : 0
+        case 1: return cloudSources.count > 0 ? defaultSectionHeaderHeight : 0
+        default: return 0
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
         switch section {
-        case 0:
-
-            return LocalSource.title()
-
-        case 1:
-
-            return CloudSource.title()
-
-        default:
-
-            return nil
+        case 0: return LocalSource.title()
+        case 1: return CloudSource.title()
+        default: return nil
         }
-
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "sourceTVC", for: indexPath)
-
         guard let source = source(from: indexPath) else { return cell }
-
         if source == CloudSource.customSource && useCustomSource {
             cell.textLabel?.text = customSourceName ?? source.description
         } else {
             cell.textLabel?.text = source.description
         }
-
         cell.accessoryType = .disclosureIndicator
         cell.imageView?.image = UIImage(named: source.iconName, in: Bundle(for: type(of: self)), compatibleWith: nil)
 
@@ -151,27 +118,18 @@ internal class SourceTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         guard let source = source(from: indexPath) else { return }
 
         switch source {
         case LocalSource.camera:
-
             upload(sourceType: .camera)
-
         case LocalSource.photoLibrary:
-
             upload(sourceType: .photoLibrary)
-
         case LocalSource.documents:
-
             upload()
-
         case let cloudSource as CloudSource:
-
             // Try to retrieve store view type from user defaults, or default to "list"
             let viewType = UserDefaults.standard.cloudSourceViewType() ?? .list
-
             // Navigate to given cloud's "/" path
             let scene = CloudSourceTabBarScene(client: client,
                                                storeOptions: storeOptions,
@@ -184,18 +142,23 @@ internal class SourceTableViewController: UITableViewController {
             if let vc = storyboard?.instantiateViewController(for: scene) {
                 navigationController?.pushViewController(vc, animated: true)
             }
-
         default:
-
             break
         }
     }
 
-
+    // MARK: - Actions
+    
+    @IBAction func cancel(_ sender: AnyObject?) {
+        
+        dismiss(animated: true)
+    }
+    
     // MARK: - Private Functions
+}
 
-    private func upload(sourceType: UIImagePickerControllerSourceType? = nil) {
-
+private extension SourceTableViewController {
+    func upload(sourceType: UIImagePickerControllerSourceType? = nil) {
         var cancellableRequest: CancellableRequest? = nil
 
         // Disable user interaction on this view until the file is picked and uploaded.
@@ -207,7 +170,6 @@ internal class SourceTableViewController: UITableViewController {
             // Present upload monitor (if not already presented)
             if self.uploadMonitorViewController == nil {
                 let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
-
                 if let vc = self.storyboard?.instantiateViewController(for: scene) {
                     self.uploadMonitorViewController = vc
                     self.present(vc, animated: true, completion: nil)
@@ -219,34 +181,21 @@ internal class SourceTableViewController: UITableViewController {
             self.uploadMonitorViewController?.updateProgress(value: fractionCompleted)
         }
 
-        let completionHandler: ((NetworkJSONResponse?) -> Void) = { (response) in
+        let completionHandler: (([NetworkJSONResponse]) -> Void) = { (responses) in
             // Nil the reference to the request object, so the object can be properly deallocated.
             cancellableRequest = nil
             // Re-enable user interaction.
             self.view.isUserInteractionEnabled = true
 
-            if let error = response?.error {
-                let alert = UIAlertController(title: "Upload Failed",
-                                              message: error.localizedDescription,
-                                              preferredStyle: .alert)
-
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    // Dismiss monitor view controller, and remove strong reference to it
-                    self.uploadMonitorViewController?.dismiss(animated: true) {
-                        self.uploadMonitorViewController = nil
-                    }
-                }))
-
-                self.uploadMonitorViewController?.present(alert, animated: true)
+            let errors = responses.compactMap { $0.error }
+            if let error = errors.first {
+                self.showErrorAlert(message: error.localizedDescription)
             } else {
-                // Dismiss monitor view controller, and remove strong reference to it
-                self.uploadMonitorViewController?.dismiss(animated: true) {
-                    self.uploadMonitorViewController = nil
-                }
+                self.dismissMonitorViewController()
             }
 
             if let picker = self.navigationController as? PickerNavigationController {
-                picker.pickerDelegate?.pickerUploadedFile(picker: picker, response: response)
+                picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
             }
         }
 
@@ -264,28 +213,26 @@ internal class SourceTableViewController: UITableViewController {
         }
     }
 
-    private func source(from indexPath: IndexPath) -> CellDescriptibleSource? {
-
+    func source(from indexPath: IndexPath) -> CellDescriptibleSource? {
         switch indexPath.section {
-        case 0:
-
-            return localSources[indexPath.row]
-
-        case 1:
-
-            return cloudSources[indexPath.row]
-
-        default:
-
-            return nil
+        case 0: return localSources[indexPath.row]
+        case 1: return cloudSources[indexPath.row]
+        default: return nil
         }
     }
 
-
-    // MARK: - Actions
-
-    @IBAction func cancel(_ sender: AnyObject?) {
-
-        dismiss(animated: true)
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Upload Failed", message: description, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.dismissMonitorViewController()
+        }))
+        uploadMonitorViewController?.present(alert, animated: true)
     }
+    
+    func dismissMonitorViewController() {
+        uploadMonitorViewController?.dismiss(animated: true) {
+            self.uploadMonitorViewController = nil
+        }
+    }
+
 }

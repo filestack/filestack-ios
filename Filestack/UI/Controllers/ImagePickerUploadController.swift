@@ -13,7 +13,7 @@ import AVFoundation.AVAssetExportSession
 
 internal class ImagePickerUploadController: NSObject {
 
-    let multipartUpload: MultipartUpload
+    let multifileUpload: MultifileUpload
     let viewController: UIViewController
     let picker: UIImagePickerController
     let sourceType: UIImagePickerControllerSourceType
@@ -22,9 +22,11 @@ internal class ImagePickerUploadController: NSObject {
     var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
 
 
-    init(multipartUpload: MultipartUpload, viewController: UIViewController, sourceType: UIImagePickerControllerSourceType, config: Config) {
-
-        self.multipartUpload = multipartUpload
+    init(multifileUpload: MultifileUpload,
+         viewController: UIViewController,
+         sourceType: UIImagePickerControllerSourceType,
+         config: Config) {
+        self.multifileUpload = multifileUpload
         self.viewController = viewController
         self.sourceType = sourceType
         self.picker = UIImagePickerController()
@@ -55,7 +57,7 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 
         picker.dismiss(animated: true) {
-            self.multipartUpload.cancel()
+            self.multifileUpload.cancel()
             self.filePickedCompletionHandler?(false)
         }
     }
@@ -65,12 +67,12 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true) {
             if let imageURL = info["UIImagePickerControllerImageURL"] as? URL {
                 // Upload image from camera roll
-                self.multipartUpload.localURL = imageURL
-                self.multipartUpload.uploadFile()
+                self.multifileUpload.uploadURLs = [imageURL]
+                self.multifileUpload.uploadFiles()
             } else if let mediaURL = info["UIImagePickerControllerMediaURL"] as? URL {
                 // Upload media (typically video) from camera roll
-                self.multipartUpload.localURL = mediaURL
-                self.multipartUpload.uploadFile()
+                self.multifileUpload.uploadURLs = [mediaURL]
+                self.multifileUpload.uploadFiles()
             } else if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
                 var exportedURL: URL?
                 // Export to HEIC or JPEG following according to the image export preset.
@@ -82,10 +84,10 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
                 }
 
                 if let url = exportedURL {
-                    self.multipartUpload.localURL = url
-                    self.multipartUpload.uploadFile()
+                    self.multifileUpload.uploadURLs = [url]
+                    self.multifileUpload.uploadFiles()
                 } else {
-                    self.multipartUpload.cancel()
+                    self.multifileUpload.cancel()
                 }
             }
 

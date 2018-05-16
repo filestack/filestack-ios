@@ -133,16 +133,16 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                                                          useIntelligentIngestionIfAvailable: Bool = true,
                                                          queue: DispatchQueue = .main,
                                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                                         completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
+                                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
 
-        let mpu = client.multiPartUpload(storeOptions: storeOptions,
+        let mfu = client.multiFileUpload(storeOptions: storeOptions,
                                          useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
                                          queue: queue,
                                          startUploadImmediately: false,
                                          uploadProgress: uploadProgress,
                                          completionHandler: completionHandler)
 
-        let uploadController = ImagePickerUploadController(multipartUpload: mpu,
+        let uploadController = ImagePickerUploadController(multifileUpload: mfu,
                                                            viewController: viewController,
                                                            sourceType: sourceType,
                                                            config: config)
@@ -162,7 +162,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
         uploadController.start()
 
-        return mpu
+        return mfu
     }
 
     /**
@@ -184,16 +184,17 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                                                             useIntelligentIngestionIfAvailable: Bool = true,
                                                             queue: DispatchQueue = .main,
                                                             uploadProgress: ((Progress) -> Void)? = nil,
-                                                            completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
+                                                            completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
 
-        let mpu = client.multiPartUpload(storeOptions: storeOptions,
+        
+        let mfu = client.multiFileUpload(storeOptions: storeOptions,
                                          useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
                                          queue: queue,
                                          startUploadImmediately: false,
                                          uploadProgress: uploadProgress,
                                          completionHandler: completionHandler)
-
-        let uploadController = DocumentPickerUploadController(multipartUpload: mpu,
+        
+        let uploadController = DocumentPickerUploadController(multifileUpload: mfu,
                                                               viewController: viewController,
                                                               config: config)
 
@@ -212,7 +213,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
 
         uploadController.start()
 
-        return mpu
+        return mfu
     }
 
     /**
