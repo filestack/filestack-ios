@@ -84,7 +84,7 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
                 }
 
                 if let url = exportedURL {
-                    self.multifileUpload.uploadURLs = [url]
+                    self.multifileUpload.uploadURLs.append(url)
                     self.multifileUpload.uploadFiles()
                 } else {
                     self.multifileUpload.cancel()

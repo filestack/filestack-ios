@@ -61,6 +61,7 @@
 		45E539E11F98D363003863BA /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E539E01F98D362003863BA /* Seeds.swift */; };
 		45E8D1971FBDA16700DC2111 /* CloudSourceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */; };
 		45E8D1A11FBDA21200DC2111 /* CloudSourceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */; };
+		BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +244,7 @@
 		45E539E01F98D362003863BA /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceDataSource.swift; sourceTree = "<group>"; };
 		45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceTabBarController.swift; sourceTree = "<group>"; };
+		BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultifileUpload+Cancellable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +353,7 @@
 				45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */,
 				45A48C1F1FB317F100356BC6 /* Data+JSON.swift */,
 				45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */,
+				BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */,
 				455804A91F9F448C007C694C /* SessionManager+FilestackDefault.swift */,
 				45E2B7B01FC2FEB500448ED2 /* UIImage+HEIC.swift */,
 			);
@@ -810,6 +813,7 @@
 				455804AA1F9F448C007C694C /* SessionManager+FilestackDefault.swift in Sources */,
 				45C47E801FB9F0C6009B8248 /* Scene+Defaults.swift in Sources */,
 				459ADA0A1FB9FB050087698A /* ActivityIndicatorTableViewCell.swift in Sources */,
+				BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */,
 				4587330D1FA32B66002DAA9D /* StoreRequest.swift in Sources */,
 				4569C7A61FB1F85800DE990E /* LocalSource.swift in Sources */,
 				45DEBA511FBAE61000A267E7 /* CancellableRequest.swift in Sources */,

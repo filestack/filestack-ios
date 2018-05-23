@@ -48,9 +48,7 @@ internal class DocumentPickerUploadController: NSObject {
 private extension DocumentPickerUploadController {
     func upload(urls: [URL]) {
         multifileUpload.uploadURLs = urls.compactMap { validUrl(from: $0) }
-        guard
-            let urls = multifileUpload.uploadURLs,
-            urls.count > 0 else {
+        guard multifileUpload.uploadURLs.count > 0 else {
             cancel()
             return
         }
