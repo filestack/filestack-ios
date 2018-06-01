@@ -61,7 +61,12 @@
 		45E539E11F98D363003863BA /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E539E01F98D362003863BA /* Seeds.swift */; };
 		45E8D1971FBDA16700DC2111 /* CloudSourceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */; };
 		45E8D1A11FBDA21200DC2111 /* CloudSourceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */; };
+		BC1E4CA520B5B14D00345FF5 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */; };
+		BC1E4CA720B5B1C300345FF5 /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */; };
+		BC1E4CA920B5E4AA00345FF5 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */; };
+		BC1E4CAC20B5E68700345FF5 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CAB20B5E68700345FF5 /* AlbumCell.swift */; };
 		BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */; };
+		BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */; };
 		BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */; };
 /* End PBXBuildFile section */
 
@@ -547,6 +552,19 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		BC1E4C7520B5979100345FF5 /* PhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BC08F22020C0344A0046FF3C /* AssetCollection */,
+				BC1E4CAA20B5E66F00345FF5 /* AlbumList */,
+				BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */,
+				BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */,
+				BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */,
+				BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */,
+			);
+			path = PhotoPicker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -829,6 +847,7 @@
 				BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */,
 				4546628E1FB6063F00260033 /* CloudItem.swift in Sources */,
 				45786D5C1FB3202B00478545 /* PickerNavigationController.swift in Sources */,
+				BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */,
 				45CBF4891FBF6D7700891BBD /* CloudItemTableViewCell.swift in Sources */,
 				45DEBA571FBB05F600A267E7 /* UIImage+Squared.swift in Sources */,
 				4565CEED1FBEE5940043BFBB /* CloudSourceCollectionViewController.swift in Sources */,
