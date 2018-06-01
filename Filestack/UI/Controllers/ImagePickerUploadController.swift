@@ -35,7 +35,8 @@ internal class ImagePickerUploadController: NSObject {
 
 
     func start() {
-
+      showNewPickerTest()
+      return
         picker.delegate = self
         picker.modalPresentationStyle = .currentContext
         picker.sourceType = sourceType
@@ -50,6 +51,11 @@ internal class ImagePickerUploadController: NSObject {
 
         viewController.present(picker, animated: true, completion: nil)
     }
+  
+  func showNewPickerTest() {
+    let nav = PhotoPickerController().navigation
+    viewController.present(nav, animated: true, completion: nil)
+  }
 }
 
 extension ImagePickerUploadController: UIImagePickerControllerDelegate {

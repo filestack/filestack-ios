@@ -65,6 +65,8 @@
 		BC1E4CA720B5B1C300345FF5 /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */; };
 		BC1E4CA920B5E4AA00345FF5 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */; };
 		BC1E4CAC20B5E68700345FF5 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CAB20B5E68700345FF5 /* AlbumCell.swift */; };
+		BC27B70220C582C9009D7578 /* AssetCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27B70120C582C9009D7578 /* AssetCollectionViewController.swift */; };
+		BC27B71020C58B86009D7578 /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27B70F20C58B86009D7578 /* AssetCell.swift */; };
 		BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */; };
 		BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */; };
 		BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */; };
@@ -250,7 +252,14 @@
 		45E539E01F98D362003863BA /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceDataSource.swift; sourceTree = "<group>"; };
 		45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceTabBarController.swift; sourceTree = "<group>"; };
+		BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
+		BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerController.swift; sourceTree = "<group>"; };
+		BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
+		BC1E4CAB20B5E68700345FF5 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		BC27B70120C582C9009D7578 /* AssetCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewController.swift; sourceTree = "<group>"; };
+		BC27B70F20C58B86009D7578 /* AssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosExtensions.swift; sourceTree = "<group>"; };
+		BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumRepository.swift; sourceTree = "<group>"; };
 		BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultifileUpload+Cancellable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -552,6 +561,15 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		BC08F22020C0344A0046FF3C /* AssetCollection */ = {
+			isa = PBXGroup;
+			children = (
+				BC27B70120C582C9009D7578 /* AssetCollectionViewController.swift */,
+				BC27B70F20C58B86009D7578 /* AssetCell.swift */,
+			);
+			path = AssetCollection;
+			sourceTree = "<group>";
+		};
 		BC1E4C7520B5979100345FF5 /* PhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +581,15 @@
 				BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */,
 			);
 			path = PhotoPicker;
+			sourceTree = "<group>";
+		};
+		BC1E4CAA20B5E66F00345FF5 /* AlbumList */ = {
+			isa = PBXGroup;
+			children = (
+				BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */,
+				BC1E4CAB20B5E68700345FF5 /* AlbumCell.swift */,
+			);
+			path = AlbumList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -779,6 +806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4518BDFE1FC6DE0400FB7D9D /* README.md in Resources */,
+				BC1E4CA920B5E4AA00345FF5 /* PhotoPicker.storyboard in Resources */,
 				4569C7881FB1C35600DE990E /* Icons.xcassets in Resources */,
 				4569C79D1FB1CFC000DE990E /* Picker.storyboard in Resources */,
 			);
@@ -817,6 +845,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC27B70220C582C9009D7578 /* AssetCollectionViewController.swift in Sources */,
 				452B77BE1FB45EF9000F3FAE /* UploadMonitorViewController.swift in Sources */,
 				45A92F161FA0BE3F00FEB611 /* CloudRequest.swift in Sources */,
 				4565CEFB1FBF50010043BFBB /* CloudSourceDataSourceConsumer.swift in Sources */,
@@ -841,10 +870,14 @@
 				4565CEF51FBEF5AE0043BFBB /* ActivityIndicatorCollectionViewCell.swift in Sources */,
 				45A48C201FB317F100356BC6 /* Data+JSON.swift in Sources */,
 				4565CEF31FBEEC2F0043BFBB /* CloudItemCollectionViewCell.swift in Sources */,
+				BC1E4CA720B5B1C300345FF5 /* PhotoPickerController.swift in Sources */,
+				BC1E4CA520B5B14D00345FF5 /* AlbumListViewController.swift in Sources */,
 				45C47E741FB9B3DC009B8248 /* Array+SafeIndex.swift in Sources */,
 				452DCF6D1FA1E1E30033B75D /* CloudProvider.swift in Sources */,
 				4500C5731FC46A9200B17485 /* LogoutRequest.swift in Sources */,
+				BC1E4CAC20B5E68700345FF5 /* AlbumCell.swift in Sources */,
 				BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */,
+				BC27B71020C58B86009D7578 /* AssetCell.swift in Sources */,
 				4546628E1FB6063F00260033 /* CloudItem.swift in Sources */,
 				45786D5C1FB3202B00478545 /* PickerNavigationController.swift in Sources */,
 				BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */,
