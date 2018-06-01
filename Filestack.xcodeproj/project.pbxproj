@@ -61,6 +61,7 @@
 		45E539E11F98D363003863BA /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E539E01F98D362003863BA /* Seeds.swift */; };
 		45E8D1971FBDA16700DC2111 /* CloudSourceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */; };
 		45E8D1A11FBDA21200DC2111 /* CloudSourceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */; };
+		BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */; };
 		BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +245,7 @@
 		45E539E01F98D362003863BA /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceDataSource.swift; sourceTree = "<group>"; };
 		45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceTabBarController.swift; sourceTree = "<group>"; };
+		BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosExtensions.swift; sourceTree = "<group>"; };
 		BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultifileUpload+Cancellable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -395,6 +397,7 @@
 		4569C78F1FB1CF1800DE990E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BC1E4C7520B5979100345FF5 /* PhotoPicker */,
 				4569C79C1FB1CFC000DE990E /* Picker.storyboard */,
 				4565CEF11FBEEC140043BFBB /* Collection View Cells */,
 				4569C77B1FB1B6A100DE990E /* Controllers */,
@@ -823,6 +826,7 @@
 				45C47E741FB9B3DC009B8248 /* Array+SafeIndex.swift in Sources */,
 				452DCF6D1FA1E1E30033B75D /* CloudProvider.swift in Sources */,
 				4500C5731FC46A9200B17485 /* LogoutRequest.swift in Sources */,
+				BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */,
 				4546628E1FB6063F00260033 /* CloudItem.swift in Sources */,
 				45786D5C1FB3202B00478545 /* PickerNavigationController.swift in Sources */,
 				45CBF4891FBF6D7700891BBD /* CloudItemTableViewCell.swift in Sources */,
