@@ -30,7 +30,7 @@ class PhotoAlbumRepository {
   
   private func fetchAndCacheAlbums(completion: (([Album]) -> Void)?) {
     DispatchQueue.global(qos: .default).async {
-      let collections = PHAssetCollection.allCollections(types: [.album, .smartAlbum])
+      let collections = PHAssetCollection.allCollections(types: [.smartAlbum, .album])
       let allAlbums = collections.map { Album(title: $0.localizedTitle ?? "", elements: $0.allAssets) }
       let nonEmptyAlbums = allAlbums.filter { $0.elements.count > 0 }
       self.cachedAlbums = nonEmptyAlbums

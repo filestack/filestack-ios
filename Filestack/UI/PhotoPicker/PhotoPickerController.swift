@@ -18,27 +18,34 @@ class PhotoPickerController {
   let albumRepository = PhotoAlbumRepository()
   var selectedAssets = Set<PHAsset>()
   
+  let maximumSelectionCount: UInt
+  
   weak var delegate: PhotoPickerControllerDelegate?
   
-  init() {
+  init(maximumSelection: UInt) {
+    self.maximumSelectionCount = maximumSelection
     albumRepository.getAlbums() { _ in }
   }
   
-  var assetCollection: AssetCollectionViewController {
+  lazy var assetCollection: AssetCollectionViewController = {
     let vc = viewController(with: "AssetCollectionViewController")
     guard let assetCollection = vc as? AssetCollectionViewController else {
       fatalError("AssetCollectionViewController type is corrupted")
     }
     assetCollection.pickerController = self
     return assetCollection
-  }
+  }()
   
-  lazy var navigation: UINavigationController = {
+  lazy var albumList: AlbumListViewController = {
     let vc = viewController(with: "AlbumListViewController")
     guard let albumList = vc as? AlbumListViewController else {
       fatalError("AlbumListViewController type is corrupted")
     }
     albumList.pickerController = self
+    return albumList
+  }()
+  
+  lazy var navigation: UINavigationController = {
     return UINavigationController(rootViewController: albumList)
   }()
   
@@ -58,7 +65,8 @@ class PhotoPickerController {
   }
 
   var selectionCountBarButton: UIBarButtonItem {
-    let title = "(\(selectedAssets.count))"
+    let maximum = isMaximumLimitSet ? "/\(maximumSelectionCount)" : ""
+    let title = "(\(selectedAssets.count)\(maximum))"
     return UIBarButtonItem(title: title, style: .done, target: self, action: #selector(dismissWithSelection))
   }
   
@@ -77,6 +85,10 @@ private extension PhotoPickerController {
   func viewController(with name: String) -> UIViewController {
     let storyboard = UIStoryboard(name: "PhotoPicker", bundle: Bundle(for: type(of: self)))
     return storyboard.instantiateViewController(withIdentifier: name)
+  }
+  
+  var isMaximumLimitSet: Bool {
+    return maximumSelectionCount != 0
   }
 }
 

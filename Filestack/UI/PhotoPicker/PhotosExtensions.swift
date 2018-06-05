@@ -10,9 +10,10 @@ import Photos
 
 extension PHAsset {
   func fetchImage(forSize size: CGSize, completion: @escaping (UIImage?) -> Void) {
-    let scaledSize = adjustToScreenScale(size: size)
+    let getMaximumSize = (size == PHImageManagerMaximumSize)
+    let scaledSize = getMaximumSize ? PHImageManagerMaximumSize : adjustToScreenScale(size: size)
     let manager = PHImageManager.default()
-    manager.requestImage(for: self, targetSize: scaledSize, contentMode: .aspectFit, options: requestOption) { image, _ in
+    manager.requestImage(for: self, targetSize: scaledSize, contentMode: .aspectFit, options: requestOption(isSynchronous: getMaximumSize)) { image, _ in
       completion(image)
     }
   }
@@ -22,9 +23,10 @@ extension PHAsset {
     return CGSize(width: size.width * scale, height: size.height * scale)
   }
   
-  private var requestOption: PHImageRequestOptions {
+  private func requestOption(isSynchronous: Bool = false) -> PHImageRequestOptions {
     let option = PHImageRequestOptions()
     option.isNetworkAccessAllowed = true
+    option.isSynchronous = isSynchronous
     return option
   }
 }

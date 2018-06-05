@@ -21,6 +21,12 @@ import AVFoundation.AVAssetExportSession
     /// This policy controls the thumbnail's caching behavior when browsing cloud contents in the picker.
     public var cloudThumbnailCachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
 
+    /// This controls if user can select more than one image/document for upload.
+    /// Set this value to 0 if you want to remove this limit.
+    /// Setting more then one will use custom ImagePicker in case of LocalSource.photoLibrary.
+    /// The default value is 1.
+    public var maximumSelectionCount: UInt = 1
+
     /// This setting determines what cloud sources are available when using the picker.
     /// By default, it contains all the supported cloud sources.
     /// - Note: Please notice that a custom source will only be displayed if enabled on Filestack's
