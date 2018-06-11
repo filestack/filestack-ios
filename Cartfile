@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire" ~> 4.6
 github "AliSoftware/OHHTTPStubs" ~> 6.0
-github "filestack/filestack-swift" ~> 1.2.1
+github "filestack/filestack-swift" ~> 1.2.4
 github "ZipArchive/ZipArchive" ~> 2.1
