@@ -103,6 +103,6 @@ private extension AssetCollectionViewController {
   }
   
   var maximumReached: Bool {
-    return selectedAssets.count >= pickerController.maximumSelectionCount
+    return pickerController.isMaximumLimitSet && selectedAssets.count >= pickerController.maximumSelectionCount
   }
 }

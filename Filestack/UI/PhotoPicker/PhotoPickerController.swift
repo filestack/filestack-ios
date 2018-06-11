@@ -19,6 +19,9 @@ class PhotoPickerController {
   var selectedAssets = Set<PHAsset>()
   
   let maximumSelectionCount: UInt
+  var isMaximumLimitSet: Bool {
+    return maximumSelectionCount != 0
+  }
   
   weak var delegate: PhotoPickerControllerDelegate?
   
@@ -87,9 +90,6 @@ private extension PhotoPickerController {
     return storyboard.instantiateViewController(withIdentifier: name)
   }
   
-  var isMaximumLimitSet: Bool {
-    return maximumSelectionCount != 0
-  }
 }
 
 extension PhotoPickerController: AssetSelectionDelegate {
