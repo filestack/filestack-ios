@@ -27,14 +27,14 @@ class PhotoPickerController {
     albumRepository.getAlbums() { _ in }
   }
   
-  lazy var assetCollection: AssetCollectionViewController = {
+  var assetCollection: AssetCollectionViewController {
     let vc = viewController(with: "AssetCollectionViewController")
     guard let assetCollection = vc as? AssetCollectionViewController else {
       fatalError("AssetCollectionViewController type is corrupted")
     }
     assetCollection.pickerController = self
     return assetCollection
-  }()
+  }
   
   lazy var albumList: AlbumListViewController = {
     let vc = viewController(with: "AlbumListViewController")

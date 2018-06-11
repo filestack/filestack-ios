@@ -66,6 +66,9 @@ extension AssetCollectionViewController {
     let asset = elements![indexPath.row]
     let isSelecting = !selectedAssets.contains(asset)
     let cell = collectionView.cellForItem(at: indexPath) as! AssetCell
+    if isSelecting && maximumReached {
+      return
+    }
     cell.set(selected: isSelecting)
     isSelecting ? pickerController.add(asset: asset) : pickerController.remove(asset: asset)
   }
@@ -97,5 +100,9 @@ private extension AssetCollectionViewController {
   
   var cellSpacing: CGFloat {
     return 2
+  }
+  
+  var maximumReached: Bool {
+    return selectedAssets.count >= pickerController.maximumSelectionCount
   }
 }
