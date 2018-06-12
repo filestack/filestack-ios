@@ -125,7 +125,7 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
             } else if let results = self.getResults(from: json) {
                 // Results received — return response with contents, and, optionally next token
                 let contents = results["contents"] as? [[String: Any]]
-                let nextToken: String? = (results["next"] as? String).flatMap { $0.count > 0 ? $0 : nil }
+                let nextToken: String? = self.token(from: (results["next"] as? String))
                 let response = FolderListResponse(contents: contents, nextToken: nextToken, error: dataResponse.error)
 
                 completionBlock(nil, response)
@@ -137,6 +137,10 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
         }
     }
 
+    private func token(from string: String?) -> String? {
+        guard let string = string, !string.isEmpty else { return nil }
+        return string
+    }
 
     // MARK: - Private Functions
 

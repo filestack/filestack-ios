@@ -132,7 +132,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             // Ensure we got contents or return early
             guard let contents = response.contents else { return }
             // Flat map JSON array into CloudItem array.
-            let items = contents.flatMap { CloudItem(dictionary: $0) }
+            let items = contents.compactMap { CloudItem(dictionary: $0) }
 
             // Store next page token (or nil, if none)
             self.nextPageToken = response.nextToken
@@ -225,7 +225,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
 
                                             guard let contents = response.contents else { return }
 
-                                            let items = contents.flatMap { CloudItem(dictionary: $0) }
+                                            let items = contents.compactMap { CloudItem(dictionary: $0) }
 
                                             self.nextPageToken = response.nextToken
                                             self.items?.append(contentsOf: items)
@@ -244,7 +244,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             self.currentRequest = nil
 
             guard let contents = response.contents else { return }
-            let items = contents.flatMap { CloudItem(dictionary: $0) }
+            let items = contents.compactMap { CloudItem(dictionary: $0) }
 
             self.nextPageToken = response.nextToken
             self.items = items
