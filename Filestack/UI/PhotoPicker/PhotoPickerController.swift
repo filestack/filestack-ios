@@ -18,15 +18,15 @@ class PhotoPickerController {
   let albumRepository = PhotoAlbumRepository()
   var selectedAssets = Set<PHAsset>()
   
-  let maximumSelectionCount: UInt
+  let maximumSelectionAllowed: UInt
   var isMaximumLimitSet: Bool {
-    return maximumSelectionCount != 0
+    return maximumSelectionAllowed != Config.kMaximumSelectionNoLimit
   }
   
   weak var delegate: PhotoPickerControllerDelegate?
   
   init(maximumSelection: UInt) {
-    self.maximumSelectionCount = maximumSelection
+    self.maximumSelectionAllowed = maximumSelection
     albumRepository.getAlbums() { _ in }
   }
   
@@ -68,7 +68,7 @@ class PhotoPickerController {
   }
 
   var selectionCountBarButton: UIBarButtonItem {
-    let maximum = isMaximumLimitSet ? "/\(maximumSelectionCount)" : ""
+    let maximum = isMaximumLimitSet ? "/\(maximumSelectionAllowed)" : ""
     let title = "(\(selectedAssets.count)\(maximum))"
     return UIBarButtonItem(title: title, style: .done, target: self, action: #selector(dismissWithSelection))
   }

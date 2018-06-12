@@ -14,18 +14,21 @@ import AVFoundation.AVAssetExportSession
     The `Config` class is used together with `Client` to configure certain aspects of the API.
  */
 @objc(FSConfig) public class Config: NSObject {
-
+  
     /// An URL scheme supported by the app. This is required to complete the cloud provider's authentication flow.
     public var appURLScheme: String? = nil
 
     /// This policy controls the thumbnail's caching behavior when browsing cloud contents in the picker.
     public var cloudThumbnailCachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
 
+    /// Use this value if you want to allow user for selecting unlimited number of assets to upload.
+    public static let kMaximumSelectionNoLimit: UInt = 0
+
     /// This controls if user can select more than one image/document for upload.
-    /// Set this value to 0 if you want to remove this limit.
+    /// Set this value to `kMaximumSelectionNoLimit` if you want to remove this limit.
     /// Setting more then one will use custom ImagePicker in case of LocalSource.photoLibrary.
     /// The default value is 1.
-    public var maximumSelectionCount: UInt = 1
+    public var maximumSelectionAllowed: UInt = 1
 
     /// This setting determines what cloud sources are available when using the picker.
     /// By default, it contains all the supported cloud sources.

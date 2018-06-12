@@ -38,7 +38,7 @@ internal class ImagePickerUploadController: NSObject {
   
   
   func start() {
-    if config.maximumSelectionCount == 1 {
+    if config.maximumSelectionAllowed == 1 {
       showNativePicker()
     }
     showCustomPicker()
@@ -61,7 +61,7 @@ internal class ImagePickerUploadController: NSObject {
   }
   
   func showCustomPicker() {
-    let picker = PhotoPickerController(maximumSelection: config.maximumSelectionCount)
+    let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
     picker.delegate = self
     let navigation = picker.navigation
     viewController.present(navigation, animated: true, completion: nil)
