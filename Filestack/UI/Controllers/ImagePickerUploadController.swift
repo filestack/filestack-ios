@@ -46,15 +46,13 @@ internal class ImagePickerUploadController: NSObject {
   
   func showNativePicker() {
     picker.delegate = self
-    picker.modalPresentationStyle = .currentContext
+    picker.modalPresentationStyle = config.modalPresentationStyle
     picker.sourceType = sourceType
     picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: sourceType)!
-    
     if #available(iOS 11.0, *) {
       picker.imageExportPreset = config.imageURLExportPreset.asImagePickerControllerImageURLExportPreset
       picker.videoExportPreset = config.videoExportPreset
     }
-    
     picker.videoQuality = config.videoQuality
     
     viewController.present(picker, animated: true, completion: nil)
@@ -64,6 +62,7 @@ internal class ImagePickerUploadController: NSObject {
     let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
     picker.delegate = self
     let navigation = picker.navigation
+    navigation.modalPresentationStyle = config.modalPresentationStyle
     viewController.present(navigation, animated: true, completion: nil)
   }
 }

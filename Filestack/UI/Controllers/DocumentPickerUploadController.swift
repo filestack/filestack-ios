@@ -36,7 +36,7 @@ internal class DocumentPickerUploadController: NSObject {
 
     func start() {
         picker.delegate = self
-        picker.modalPresentationStyle = .currentContext
+        picker.modalPresentationStyle = config.modalPresentationStyle
         if #available(iOS 11.0, *) {
             picker.allowsMultipleSelection = (config.maximumSelectionAllowed != 1)
         }

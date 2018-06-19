@@ -169,6 +169,7 @@ private extension SourceTableViewController {
             if self.uploadMonitorViewController == nil {
                 let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
                 if let vc = self.storyboard?.instantiateViewController(for: scene) {
+                    vc.modalPresentationStyle = self.client.config.modalPresentationStyle
                     self.uploadMonitorViewController = vc
                     self.present(vc, animated: true, completion: nil)
                 }

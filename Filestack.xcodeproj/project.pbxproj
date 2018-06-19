@@ -254,7 +254,7 @@
 		45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceTabBarController.swift; sourceTree = "<group>"; };
 		BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
 		BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerController.swift; sourceTree = "<group>"; };
-		BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
+		BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = PhotoPicker.storyboard; path = ../PhotoPicker.storyboard; sourceTree = "<group>"; };
 		BC1E4CAB20B5E68700345FF5 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		BC27B70120C582C9009D7578 /* AssetCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewController.swift; sourceTree = "<group>"; };
 		BC27B70F20C58B86009D7578 /* AssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
@@ -573,9 +573,9 @@
 		BC1E4C7520B5979100345FF5 /* PhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
+				BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */,
 				BC08F22020C0344A0046FF3C /* AssetCollection */,
 				BC1E4CAA20B5E66F00345FF5 /* AlbumList */,
-				BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */,
 				BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */,
 				BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */,
 				BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */,
