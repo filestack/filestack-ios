@@ -4,6 +4,11 @@ Change Log
 Version 1.4 *(2018-06-12)*
 ----------------------------
 
+- Added possibility to change modalPresentationStyle of picker.
+
+Version 1.4 *(2018-06-12)*
+----------------------------
+
 - Added possibility to upload multiple files at once.
 - Create custom photo picker.
 - Updated FilestackSDK dependency.
