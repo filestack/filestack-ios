@@ -1,7 +1,12 @@
 Change Log
 ==========
 
-Version 1.4 *(2018-06-12)*
+Version 1.4.2 *(2018-06-17)*
+----------------------------
+
+- Moved OHHTTPStubs to Cartfile.private.
+
+Version 1.4.1 *(2018-06-12)*
 ----------------------------
 
 - Added possibility to change modalPresentationStyle of picker.
