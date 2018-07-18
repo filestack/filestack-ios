@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The demo needs access to the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The demo needs access to the photo library.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>The demo needs access to the microphone for video recording.</string>
 	<key>UILaunchStoryboardName</key>
