@@ -180,12 +180,16 @@ private extension SourceTableViewController {
             self.uploadMonitorViewController?.updateProgress(value: fractionCompleted)
         }
 
-        let completionHandler: (([NetworkJSONResponse]) -> Void) = { (responses) in
+        let completionHandler: (([NetworkJSONResponse]?) -> Void) = { (responses) in
             // Nil the reference to the request object, so the object can be properly deallocated.
             cancellableRequest = nil
             // Re-enable user interaction.
             self.view.isUserInteractionEnabled = true
-
+            // Verify responses are available
+            guard let responses = responses else {
+                // Responses are unavailable (Cancel-Action)
+                return
+            }
             let errors = responses.compactMap { $0.error }
             if let error = errors.first {
                 self.showErrorAlert(message: error.localizedDescription)

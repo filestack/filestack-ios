@@ -133,7 +133,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                                                          useIntelligentIngestionIfAvailable: Bool = true,
                                                          queue: DispatchQueue = .main,
                                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
+                                                         completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
 
         let mfu = client.multiFileUpload(storeOptions: storeOptions,
                                          useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
@@ -157,6 +157,9 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                 progress.completedUnitCount = 0
 
                 uploadProgress?(progress)
+            } else {
+                // Picking from ImagePicker has been cancelled
+                completionHandler(nil)
             }
         }
 
@@ -184,7 +187,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                                                             useIntelligentIngestionIfAvailable: Bool = true,
                                                             queue: DispatchQueue = .main,
                                                             uploadProgress: ((Progress) -> Void)? = nil,
-                                                            completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
+                                                            completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
 
         
         let mfu = client.multiFileUpload(storeOptions: storeOptions,
@@ -208,6 +211,9 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
                 progress.completedUnitCount = 0
 
                 uploadProgress?(progress)
+            } else {
+                // Picking from DocumentPicker has been cancelled
+                completionHandler(nil)
             }
         }
 
