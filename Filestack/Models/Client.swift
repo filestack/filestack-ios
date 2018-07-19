@@ -135,7 +135,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
                                     useIntelligentIngestionIfAvailable: Bool = true,
                                     queue: DispatchQueue = .main,
                                     uploadProgress: ((Progress) -> Void)? = nil,
-                                    completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
+                                    completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
     
     let mfu = client.multiFileUpload(storeOptions: storeOptions,
                                      useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
@@ -153,16 +153,17 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
       // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
       uploadController.filePickedCompletionHandler = nil
       
-      if success {
-        // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
-        let progress = Progress(totalUnitCount: 1)
-        progress.completedUnitCount = 0
-        
-        uploadProgress?(progress)
-      } else {
+      guard success else {
         // Picking from ImagePicker has been cancelled
-        completionHandler(nil)
+        completionHandler([])
+        return
       }
+      
+      // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
+      let progress = Progress(totalUnitCount: 1)
+      progress.completedUnitCount = 0
+      
+      uploadProgress?(progress)
     }
     
     uploadController.start()
@@ -190,7 +191,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
                                        useIntelligentIngestionIfAvailable: Bool = true,
                                        queue: DispatchQueue = .main,
                                        uploadProgress: ((Progress) -> Void)? = nil,
-                                       completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
+                                       completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
     
     
     let mfu = client.multiFileUpload(storeOptions: storeOptions,
@@ -208,16 +209,17 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
       // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
       uploadController.filePickedCompletionHandler = nil
       
-      if success {
-        // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
-        let progress = Progress(totalUnitCount: 1)
-        progress.completedUnitCount = 0
-        
-        uploadProgress?(progress)
-      } else {
+      guard success else {
         // Picking from DocumentPicker has been cancelled
-        completionHandler(nil)
+        completionHandler([])
+        return
       }
+
+      // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
+      let progress = Progress(totalUnitCount: 1)
+      progress.completedUnitCount = 0
+      
+      uploadProgress?(progress)
     }
     
     uploadController.start()
