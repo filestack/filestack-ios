@@ -14,7 +14,7 @@ import SafariServices
 public typealias FolderListCompletionHandler = (_ response: FolderListResponse) -> Swift.Void
 public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Swift.Void
 
-internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
+typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
 
 
 /**
@@ -353,7 +353,7 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
   
   // MARK: - Internal Functions
   
-  internal func prefetch(completionBlock: @escaping PrefetchCompletionHandler) {
+  func prefetch(completionBlock: @escaping PrefetchCompletionHandler) {
     
     let prefetchRequest = PrefetchRequest(apiKey: apiKey)
     
