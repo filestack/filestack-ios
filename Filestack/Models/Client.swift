@@ -93,12 +93,13 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
    as data is uploaded to the server. `nil` by default.
    - Parameter completionHandler: Adds a handler to be called once the upload has finished.
    */
-  @discardableResult public func upload(from localURL: URL,
-                                        storeOptions: StorageOptions = StorageOptions(location: .s3),
-                                        useIntelligentIngestionIfAvailable: Bool = true,
-                                        queue: DispatchQueue = .main,
-                                        uploadProgress: ((Progress) -> Void)? = nil,
-                                        completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
+  @discardableResult
+  public func upload(from localURL: URL,
+                     storeOptions: StorageOptions = StorageOptions(location: .s3),
+                     useIntelligentIngestionIfAvailable: Bool = true,
+                     queue: DispatchQueue = .main,
+                     uploadProgress: ((Progress) -> Void)? = nil,
+                     completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> CancellableRequest {
     
     let mpu = client.multiPartUpload(from: localURL,
                                      storeOptions: storeOptions,
@@ -127,13 +128,14 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
    as data is uploaded to the server. `nil` by default.
    - Parameter completionHandler: Adds a handler to be called once the upload has finished.
    */
-  @discardableResult public func uploadFromImagePicker(viewController: UIViewController,
-                                                       sourceType: UIImagePickerControllerSourceType,
-                                                       storeOptions: StorageOptions = StorageOptions(location: .s3),
-                                                       useIntelligentIngestionIfAvailable: Bool = true,
-                                                       queue: DispatchQueue = .main,
-                                                       uploadProgress: ((Progress) -> Void)? = nil,
-                                                       completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
+  @discardableResult
+  public func uploadFromImagePicker(viewController: UIViewController,
+                                    sourceType: UIImagePickerControllerSourceType,
+                                    storeOptions: StorageOptions = StorageOptions(location: .s3),
+                                    useIntelligentIngestionIfAvailable: Bool = true,
+                                    queue: DispatchQueue = .main,
+                                    uploadProgress: ((Progress) -> Void)? = nil,
+                                    completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
     
     let mfu = client.multiFileUpload(storeOptions: storeOptions,
                                      useIntelligentIngestionIfAvailable: useIntelligentIngestionIfAvailable,
@@ -182,12 +184,13 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
    as data is uploaded to the server. `nil` by default.
    - Parameter completionHandler: Adds a handler to be called once the upload has finished.
    */
-  @discardableResult public func uploadFromDocumentPicker(viewController: UIViewController,
-                                                          storeOptions: StorageOptions = StorageOptions(location: .s3),
-                                                          useIntelligentIngestionIfAvailable: Bool = true,
-                                                          queue: DispatchQueue = .main,
-                                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                                          completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
+  @discardableResult
+  public func uploadFromDocumentPicker(viewController: UIViewController,
+                                       storeOptions: StorageOptions = StorageOptions(location: .s3),
+                                       useIntelligentIngestionIfAvailable: Bool = true,
+                                       queue: DispatchQueue = .main,
+                                       uploadProgress: ((Progress) -> Void)? = nil,
+                                       completionHandler: @escaping ([NetworkJSONResponse]?) -> Void) -> CancellableRequest {
     
     
     let mfu = client.multiFileUpload(storeOptions: storeOptions,
@@ -233,11 +236,12 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
    - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
    or error response.
    */
-  @discardableResult public func folderList(provider: CloudProvider,
-                                            path: String,
-                                            pageToken: String? = nil,
-                                            queue: DispatchQueue = .main,
-                                            completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
+  @discardableResult
+  public func folderList(provider: CloudProvider,
+                         path: String,
+                         pageToken: String? = nil,
+                         queue: DispatchQueue = .main,
+                         completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
     
     guard let appURLScheme = config.appURLScheme else {
       fatalError("Please make sure your Filestack config object has an appURLScheme set.")
@@ -284,11 +288,12 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
    - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
    or error response.
    */
-  @discardableResult public func store(provider: CloudProvider,
-                                       path: String,
-                                       storeOptions: StorageOptions = StorageOptions(location: .s3),
-                                       queue: DispatchQueue = .main,
-                                       completionHandler: @escaping StoreCompletionHandler) -> CancellableRequest {
+  @discardableResult
+  public func store(provider: CloudProvider,
+                    path: String,
+                    storeOptions: StorageOptions = StorageOptions(location: .s3),
+                    queue: DispatchQueue = .main,
+                    completionHandler: @escaping StoreCompletionHandler) -> CancellableRequest {
     
     let request = StoreRequest(apiKey: apiKey,
                                security: security,
@@ -433,7 +438,8 @@ internal typealias CompletionHandler = (_ response: CloudResponse, _ safariError
     }
   }
   
-  @discardableResult private func resumeCloudRequest(using url: URL) -> Bool {
+  @discardableResult
+  private func resumeCloudRequest(using url: URL) -> Bool {
     
     // Find pending request identified by `requestUUID` or return early.
     let matchingRequests = pendingRequests.filter { url.absoluteString.starts(with: $0.key.absoluteString) }
