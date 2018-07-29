@@ -22,7 +22,6 @@ internal class ImagePickerUploadController: NSObject {
   
   var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
   
-  
   let imageManager = PHCachingImageManager.default()
   
   init(multifileUpload: MultifileUpload,
@@ -75,8 +74,11 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   
   func photoPickerControllerFinish(with assets: [PHAsset]) {
     let urlList = fetchUrl(assets: assets)
-    multifileUpload.uploadURLs.append(contentsOf: urlList)
-    multifileUpload.uploadFiles()
+    let images = urlList.compactMap { UIImage(data: try! Data(contentsOf: $0)) }
+    let selection = SelectionListViewController(images: images)
+    viewController.present(UINavigationController(rootViewController: selection), animated: true)
+//    multifileUpload.uploadURLs.append(contentsOf: urlList)
+//    multifileUpload.uploadFiles()
   }
   
   func fetchUrl(assets: [PHAsset]) -> [URL] {

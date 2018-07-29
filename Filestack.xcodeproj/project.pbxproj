@@ -61,6 +61,13 @@
 		45E539E11F98D363003863BA /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E539E01F98D362003863BA /* Seeds.swift */; };
 		45E8D1971FBDA16700DC2111 /* CloudSourceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */; };
 		45E8D1A11FBDA21200DC2111 /* CloudSourceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */; };
+		BC0D160A210DAED700A88F30 /* SelectionListViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1606210DAED700A88F30 /* SelectionListViewController+UICollectionView.swift */; };
+		BC0D160B210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1607210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift */; };
+		BC0D160C210DAED700A88F30 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1608210DAED700A88F30 /* SelectionCell.swift */; };
+		BC0D160D210DAED700A88F30 /* SelectionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1609210DAED700A88F30 /* SelectionListViewController.swift */; };
+		BC0D1611210DAF6100A88F30 /* Math+Clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D160E210DAF6000A88F30 /* Math+Clamp.swift */; };
+		BC0D1612210DAF6100A88F30 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D160F210DAF6000A88F30 /* UICollectionView+Reusable.swift */; };
+		BC0D1613210DAF6100A88F30 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1610210DAF6000A88F30 /* UIView+Constraints.swift */; };
 		BC1E4CA520B5B14D00345FF5 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */; };
 		BC1E4CA720B5B1C300345FF5 /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */; };
 		BC1E4CA920B5E4AA00345FF5 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */; };
@@ -252,6 +259,13 @@
 		45E539E01F98D362003863BA /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		45E8D1961FBDA16700DC2111 /* CloudSourceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceDataSource.swift; sourceTree = "<group>"; };
 		45E8D1A01FBDA21200DC2111 /* CloudSourceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceTabBarController.swift; sourceTree = "<group>"; };
+		BC0D1606210DAED700A88F30 /* SelectionListViewController+UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SelectionListViewController+UICollectionView.swift"; sourceTree = "<group>"; };
+		BC0D1607210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SelectionListViewController+FlowLayout.swift"; sourceTree = "<group>"; };
+		BC0D1608210DAED700A88F30 /* SelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
+		BC0D1609210DAED700A88F30 /* SelectionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionListViewController.swift; sourceTree = "<group>"; };
+		BC0D160E210DAF6000A88F30 /* Math+Clamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math+Clamp.swift"; sourceTree = "<group>"; };
+		BC0D160F210DAF6000A88F30 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		BC0D1610210DAF6000A88F30 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
 		BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerController.swift; sourceTree = "<group>"; };
 		BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = PhotoPicker.storyboard; path = ../PhotoPicker.storyboard; sourceTree = "<group>"; };
@@ -366,6 +380,9 @@
 		455804A81F9F4478007C694C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BC0D160E210DAF6000A88F30 /* Math+Clamp.swift */,
+				BC0D160F210DAF6000A88F30 /* UICollectionView+Reusable.swift */,
+				BC0D1610210DAF6000A88F30 /* UIView+Constraints.swift */,
 				45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */,
 				45A48C1F1FB317F100356BC6 /* Data+JSON.swift */,
 				45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */,
@@ -411,6 +428,7 @@
 		4569C78F1FB1CF1800DE990E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BC0D15F7210DAE6000A88F30 /* PhotoEditor */,
 				BC1E4C7520B5979100345FF5 /* PhotoPicker */,
 				4569C79C1FB1CFC000DE990E /* Picker.storyboard */,
 				4565CEF11FBEEC140043BFBB /* Collection View Cells */,
@@ -568,6 +586,33 @@
 				BC27B70F20C58B86009D7578 /* AssetCell.swift */,
 			);
 			path = AssetCollection;
+			sourceTree = "<group>";
+		};
+		BC0D15F7210DAE6000A88F30 /* PhotoEditor */ = {
+			isa = PBXGroup;
+			children = (
+				BC0D1605210DAE8D00A88F30 /* EditionController */,
+				BC0D1604210DAE7E00A88F30 /* SelectionList */,
+			);
+			path = PhotoEditor;
+			sourceTree = "<group>";
+		};
+		BC0D1604210DAE7E00A88F30 /* SelectionList */ = {
+			isa = PBXGroup;
+			children = (
+				BC0D1608210DAED700A88F30 /* SelectionCell.swift */,
+				BC0D1609210DAED700A88F30 /* SelectionListViewController.swift */,
+				BC0D1607210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift */,
+				BC0D1606210DAED700A88F30 /* SelectionListViewController+UICollectionView.swift */,
+			);
+			path = SelectionList;
+			sourceTree = "<group>";
+		};
+		BC0D1605210DAE8D00A88F30 /* EditionController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EditionController;
 			sourceTree = "<group>";
 		};
 		BC1E4C7520B5979100345FF5 /* PhotoPicker */ = {
@@ -850,6 +895,8 @@
 				45A92F161FA0BE3F00FEB611 /* CloudRequest.swift in Sources */,
 				4565CEFB1FBF50010043BFBB /* CloudSourceDataSourceConsumer.swift in Sources */,
 				45C47E841FB9F0DF009B8248 /* Scene.swift in Sources */,
+				BC0D1612210DAF6100A88F30 /* UICollectionView+Reusable.swift in Sources */,
+				BC0D160D210DAED700A88F30 /* SelectionListViewController.swift in Sources */,
 				45E8D1971FBDA16700DC2111 /* CloudSourceDataSource.swift in Sources */,
 				4565CEF71FBF3F400043BFBB /* UserDefaults+State.swift in Sources */,
 				4568DCD01F9DFD7300F29923 /* ImagePickerUploadController.swift in Sources */,
@@ -864,7 +911,9 @@
 				45C47E801FB9F0C6009B8248 /* Scene+Defaults.swift in Sources */,
 				459ADA0A1FB9FB050087698A /* ActivityIndicatorTableViewCell.swift in Sources */,
 				BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */,
+				BC0D160A210DAED700A88F30 /* SelectionListViewController+UICollectionView.swift in Sources */,
 				4587330D1FA32B66002DAA9D /* StoreRequest.swift in Sources */,
+				BC0D160B210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift in Sources */,
 				4569C7A61FB1F85800DE990E /* LocalSource.swift in Sources */,
 				45DEBA511FBAE61000A267E7 /* CancellableRequest.swift in Sources */,
 				4565CEF51FBEF5AE0043BFBB /* ActivityIndicatorCollectionViewCell.swift in Sources */,
@@ -880,9 +929,11 @@
 				BC27B71020C58B86009D7578 /* AssetCell.swift in Sources */,
 				4546628E1FB6063F00260033 /* CloudItem.swift in Sources */,
 				45786D5C1FB3202B00478545 /* PickerNavigationController.swift in Sources */,
+				BC0D1611210DAF6100A88F30 /* Math+Clamp.swift in Sources */,
 				BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */,
 				45CBF4891FBF6D7700891BBD /* CloudItemTableViewCell.swift in Sources */,
 				45DEBA571FBB05F600A267E7 /* UIImage+Squared.swift in Sources */,
+				BC0D160C210DAED700A88F30 /* SelectionCell.swift in Sources */,
 				4565CEED1FBEE5940043BFBB /* CloudSourceCollectionViewController.swift in Sources */,
 				454054741F98A30F00C12B2F /* Client.swift in Sources */,
 				45DEBA551FBAF48000A267E7 /* Config.swift in Sources */,
@@ -893,6 +944,7 @@
 				4569C7A41FB1F84500DE990E /* CellDescriptibleSource.swift in Sources */,
 				4565CEF91FBF4FE60043BFBB /* CloudSourceViewType.swift in Sources */,
 				45A92F181FA0BE9600FEB611 /* FolderListRequest.swift in Sources */,
+				BC0D1613210DAF6100A88F30 /* UIView+Constraints.swift in Sources */,
 				454662831FB5BBEB00260033 /* CloudSourceTableViewController.swift in Sources */,
 				45648CC21FD15DD400281653 /* DocumentPickerUploadController.swift in Sources */,
 			);

@@ -76,10 +76,10 @@ extension AssetCollectionViewController {
 
 extension AssetCollectionViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAt indexPath: IndexPath) -> CGSize {
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
     return cellSize
-  }
+  }  
 }
 
 private extension AssetCollectionViewController {

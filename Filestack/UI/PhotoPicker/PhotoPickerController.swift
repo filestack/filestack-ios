@@ -74,13 +74,15 @@ class PhotoPickerController {
   }
   
   @objc func dismissWithSelection() {
-    delegate?.photoPickerControllerFinish(with: Array(selectedAssets))
-    navigation.dismiss(animated: true, completion: nil)
+    navigation.dismiss(animated: true) {
+      self.delegate?.photoPickerControllerFinish(with: Array(self.selectedAssets))
+    }
   }
 
   @objc func dismissWithoutSelection() {
-    delegate?.photoPickerControllerDidCancel()
-    navigation.dismiss(animated: true, completion: nil)
+    navigation.dismiss(animated: true) {
+      self.delegate?.photoPickerControllerDidCancel()
+    }
   }
 }
 
