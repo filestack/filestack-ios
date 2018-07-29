@@ -72,13 +72,16 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
     filePickedCompletionHandler?(false)
   }
   
-  func photoPickerControllerFinish(with assets: [PHAsset]) {
-    let urlList = fetchUrl(assets: assets)
-    let images = urlList.compactMap { UIImage(data: try! Data(contentsOf: $0)) }
-    let selection = SelectionListViewController(images: images)
-    viewController.present(UINavigationController(rootViewController: selection), animated: true)
+  func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset]) {
+    controller.pushViewController(uploadListController(with: assets), animated: true)
 //    multifileUpload.uploadURLs.append(contentsOf: urlList)
 //    multifileUpload.uploadFiles()
+  }
+  
+  func uploadListController(with assets: [PHAsset]) -> UIViewController {
+    let urlList = fetchUrl(assets: assets)
+    let images = urlList.compactMap { UIImage(data: try! Data(contentsOf: $0)) }
+    return SelectionListViewController(images: images, delegate: self)
   }
   
   func fetchUrl(assets: [PHAsset]) -> [URL] {
@@ -160,10 +163,19 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   }
 }
 
-extension ImagePickerUploadController: UIImagePickerControllerDelegate {
+extension ImagePickerUploadController: UploadListDelegate {
+  func resignFromUpload() {
+    self.multifileUpload.cancel()
+    self.filePickedCompletionHandler?(false)
+  }
   
+  func uploadImages(_ images: UIImage) {
+    //TODO: upload
+  }
+}
+
+extension ImagePickerUploadController: UIImagePickerControllerDelegate {
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    
     picker.dismiss(animated: true) {
       self.multifileUpload.cancel()
       self.filePickedCompletionHandler?(false)

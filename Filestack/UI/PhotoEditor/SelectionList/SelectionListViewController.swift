@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol UploadListDelegate: class {
+  func resignFromUpload()
+  func uploadImages(_ images: UIImage)
+}
+
 class SelectionListViewController: UICollectionViewController {
   
   enum Mode {
@@ -18,9 +23,11 @@ class SelectionListViewController: UICollectionViewController {
   private var images: [UIImage]
   private var mode: Mode = .edition
   private var markedToDelete: Set<Int> = []
+  private weak var delegate: UploadListDelegate?
   
-  init(images: [UIImage]) {
+  init(images: [UIImage], delegate: UploadListDelegate) {
     self.images = images
+    self.delegate = delegate
     super.init(collectionViewLayout: UICollectionViewFlowLayout())
     setup()
   }
@@ -111,8 +118,16 @@ private extension SelectionListViewController {
   
   @objc func cancelButtonPressed() {
     switch mode {
-    case .edition: break //TODO: dismiss all
+    case .edition: dismissAll()
     case .deletion: stopDeleteMode()
+    }
+  }
+}
+
+private extension SelectionListViewController {
+  func dismissAll() {
+    dismiss(animated: true) {
+      self.delegate?.resignFromUpload()
     }
   }
 }
@@ -133,7 +148,7 @@ private extension SelectionListViewController {
     }
   }
   
-  @objc func deleteAndRefresh() {
+  func deleteAndRefresh() {
     deleteSelected()
     UIView.animate(withDuration: 0.5, animations: {
       self.visibleCellsToDelete().forEach({ (cell) in

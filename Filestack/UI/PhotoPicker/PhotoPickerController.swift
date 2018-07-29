@@ -10,7 +10,7 @@ import Photos
 
 protocol PhotoPickerControllerDelegate: class {
   func photoPickerControllerDidCancel()
-  func photoPickerControllerFinish(with assets: [PHAsset])
+  func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset])
 }
 
 class PhotoPickerController {
@@ -74,9 +74,7 @@ class PhotoPickerController {
   }
   
   @objc func dismissWithSelection() {
-    navigation.dismiss(animated: true) {
-      self.delegate?.photoPickerControllerFinish(with: Array(self.selectedAssets))
-    }
+    delegate?.photoPicker(navigation, didSelectAssets: Array(selectedAssets))
   }
 
   @objc func dismissWithoutSelection() {
