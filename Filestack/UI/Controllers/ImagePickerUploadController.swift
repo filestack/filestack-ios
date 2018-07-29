@@ -165,12 +165,13 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
 
 extension ImagePickerUploadController: UploadListDelegate {
   func resignFromUpload() {
-    self.multifileUpload.cancel()
-    self.filePickedCompletionHandler?(false)
+    multifileUpload.cancel()
+    filePickedCompletionHandler?(false)
   }
   
-  func uploadImages(_ images: UIImage) {
-    //TODO: upload
+  func uploadImages(_ images: [UIImage]) {
+    multifileUpload.uploadURLs.append(contentsOf: images.compactMap { exportedUrl(from: $0) })
+    multifileUpload.uploadFiles()
   }
 }
 
@@ -194,27 +195,24 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
         self.multifileUpload.uploadURLs = [mediaURL]
         self.multifileUpload.uploadFiles()
       } else if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-        var exportedURL: URL?
-        // Export to HEIC or JPEG following according to the image export preset.
-        // On iOS versions before 11, this defaults always to JPEG.
-        if #available(iOS 11.0, *), picker.imageExportPreset == .current {
-          exportedURL = self.exportedHEICImageURL(image: image) ?? self.exportedJPEGImageURL(image: image)
-        } else {
-          exportedURL = self.exportedJPEGImageURL(image: image)
-        }
-        
-        if let url = exportedURL {
+        if let url = self.exportedUrl(from: image) {
           self.multifileUpload.uploadURLs.append(url)
           self.multifileUpload.uploadFiles()
         } else {
           self.multifileUpload.cancel()
         }
       }
-      
       self.filePickedCompletionHandler?(true)
     }
   }
   
+  private func exportedUrl(from image: UIImage) -> URL? {
+    if #available(iOS 11.0, *), picker.imageExportPreset == .current {
+      return exportedHEICImageURL(image: image) ?? exportedJPEGImageURL(image: image)
+    } else {
+      return exportedJPEGImageURL(image: image)
+    }
+  }
   
   // MARK: - Private Functions
   

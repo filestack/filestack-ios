@@ -103,7 +103,7 @@ private extension SelectionCell {
   }
   
   func setupSelectionIcon() {
-    selectionIcon.image = UIImage(named: "icon-selected", in: Bundle(for: type(of: self)), compatibleWith: nil)
+    selectionIcon.image = .fromFilestackBundle("icon-selected")
     selectionIcon.isHidden = true
     selectionDim.fill(with: selectionIcon, connectingEdges: [.bottom, .right], inset: 6, withSafeAreaRespecting: false)
     selectionIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true

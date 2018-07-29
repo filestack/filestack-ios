@@ -10,11 +10,10 @@ import UIKit
 
 protocol UploadListDelegate: class {
   func resignFromUpload()
-  func uploadImages(_ images: UIImage)
+  func uploadImages(_ images: [UIImage])
 }
 
 class SelectionListViewController: UICollectionViewController {
-  
   enum Mode {
     case edition
     case deletion
@@ -70,10 +69,8 @@ extension SelectionListViewController {
     switch mode {
     case .edition:
       cell.mode = .standard
-      print("row: \(row) .standard")
     case .deletion:
       cell.mode = .deletion(markedToDelete: isMarketToDelete(row))
-      print("row: \(row) .deletion(\(isMarketToDelete(row)))")
 
     }
   }
@@ -87,29 +84,25 @@ private extension SelectionListViewController {
   }
   
   var cancelItem: UIBarButtonItem {
-    return UIBarButtonItem(barButtonSystemItem: .cancel,
-                           target: self,
-                           action: #selector(cancelButtonPressed))
+    return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
   }
   
   var deleteItem: UIBarButtonItem {
-    let item = UIBarButtonItem(barButtonSystemItem: .trash,
-                               target: self,
-                               action: #selector(deleteButtonPressed))
+    let item = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonPressed))
     item.tintColor = .red
     item.isEnabled = false
     return item
   }
   
   var uploadItem: UIBarButtonItem {
-    return UIBarButtonItem(image: UIImage(named: "icon-upload", in: Bundle(for: type(of: self)), compatibleWith: nil),
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(uploadButtonPressed))
+    return UIBarButtonItem(image: .fromFilestackBundle("icon-upload"),
+                           style: .plain,
+                           target: self,
+                           action: #selector(uploadButtonPressed))
   }
   
   @objc func uploadButtonPressed() {
-    //TODO: upload
+    uploadAll()
   }
   
   @objc func deleteButtonPressed() {
@@ -125,6 +118,10 @@ private extension SelectionListViewController {
 }
 
 private extension SelectionListViewController {
+  func uploadAll() {
+    delegate?.uploadImages(images)
+  }
+  
   func dismissAll() {
     dismiss(animated: true) {
       self.delegate?.resignFromUpload()
@@ -172,11 +169,11 @@ private extension SelectionListViewController {
 private extension SelectionListViewController {
   func edition(with row: Int) {
     let image = images[row]
-//    let editor = EditorViewController(image: image) { editedImage in
-//      self.images[row] = editedImage
-//      self.collectionView?.reloadData()
-//    }
-//    present(editor, animated: true)
+    let editor = EditorViewController(image: image) { editedImage in
+      self.images[row] = editedImage
+      self.collectionView?.reloadData()
+    }
+    present(editor, animated: true)
   }
   
   func deletion(with row: Int) {
@@ -194,12 +191,15 @@ private extension SelectionListViewController {
   
   func addToMarkedToDelete(_ row: Int) {
     markedToDelete.insert(row)
-    let cell = collectionView?.cellForItem(at: IndexPath(row: row, section: 0)) as? SelectionCell
-    setMode(for: cell)
+    setMode(for: row)
   }
   
   func removeFromMarkedToDelete(_ row: Int) {
     markedToDelete.remove(row)
+    setMode(for: row)
+  }
+  
+  func setMode(for row: Int) {
     let cell = collectionView?.cellForItem(at: IndexPath(row: row, section: 0)) as? SelectionCell
     setMode(for: cell)
   }
