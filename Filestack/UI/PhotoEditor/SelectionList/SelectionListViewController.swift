@@ -19,13 +19,15 @@ class SelectionListViewController: UICollectionViewController {
     case deletion
   }
   
-  private var images: [UIImage]
+  private var elements: [Uploadable]
+  
+//  private var images: [UIImage]
   private var mode: Mode = .edition
   private var markedToDelete: Set<Int> = []
   private weak var delegate: UploadListDelegate?
   
-  init(images: [UIImage], delegate: UploadListDelegate) {
-    self.images = images
+  init(elements: [Uploadable], delegate: UploadListDelegate) {
+    self.elements = elements
     self.delegate = delegate
     super.init(collectionViewLayout: UICollectionViewFlowLayout())
     setup()
@@ -46,7 +48,7 @@ class SelectionListViewController: UICollectionViewController {
 // MARK: CollectionView User Triggered Events
 extension SelectionListViewController {
   var numberOfCells: Int {
-    return images.count
+    return elements.count
   }
   
   func cellWasPressed(on row: Int) {
@@ -65,7 +67,7 @@ extension SelectionListViewController {
   }
 
   func cellWasDisplayed(_ cell: SelectionCell, on row: Int) {
-    cell.imageView.image = images[row]
+    cell.imageView.image = elements[row].associatedImage
     switch mode {
     case .edition:
       cell.mode = .standard
@@ -119,7 +121,7 @@ private extension SelectionListViewController {
 
 private extension SelectionListViewController {
   func uploadAll() {
-    delegate?.uploadImages(images)
+    delegate?.uploadImages([])
   }
   
   func dismissAll() {
@@ -158,19 +160,19 @@ private extension SelectionListViewController {
   }
   
   func deleteSelected() {
-    images = images.enumerated().filter { (index, _) -> Bool in
+    elements = elements.enumerated().filter { (index, _) -> Bool in
       !markedToDelete.contains(index)
-      }.map { (_, image) -> UIImage in
-        return image
+      }.map { (_, element) -> Uploadable in
+        return element
       }
   }
 }
 
 private extension SelectionListViewController {
   func edition(with row: Int) {
-    let image = images[row]
+    let image = elements[row].associatedImage
     let editor = EditorViewController(image: image) { editedImage in
-      self.images[row] = editedImage
+      self.elements[row] = editedImage
       self.collectionView?.reloadData()
     }
     present(editor, animated: true)

@@ -81,7 +81,7 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   func uploadListController(with assets: [PHAsset]) -> UIViewController {
     let urlList = fetchUrl(assets: assets)
     let images = urlList.compactMap { UIImage(data: try! Data(contentsOf: $0)) }
-    return SelectionListViewController(images: images, delegate: self)
+    return SelectionListViewController(elements: images, delegate: self)
   }
   
   func fetchUrl(assets: [PHAsset]) -> [URL] {
