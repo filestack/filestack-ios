@@ -20,8 +20,6 @@ class SelectionListViewController: UICollectionViewController {
   }
   
   private var elements: [Uploadable]
-  
-//  private var images: [UIImage]
   private var mode: Mode = .edition
   private var markedToDelete: Set<Int> = []
   private weak var delegate: UploadListDelegate?
@@ -67,13 +65,10 @@ extension SelectionListViewController {
   }
 
   func cellWasDisplayed(_ cell: SelectionCell, on row: Int) {
-    cell.imageView.image = elements[row].associatedImage
+    cell.element = elements[row]
     switch mode {
-    case .edition:
-      cell.mode = .standard
-    case .deletion:
-      cell.mode = .deletion(markedToDelete: isMarketToDelete(row))
-
+    case .edition: cell.mode = .standard
+    case .deletion: cell.mode = .deletion(markedToDelete: isMarketToDelete(row))
     }
   }
 }
