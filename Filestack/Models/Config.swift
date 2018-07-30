@@ -15,6 +15,92 @@ import AVFoundation.AVAssetExportSession
  */
 @objc(FSConfig) public class Config: NSObject {
   
+  public static var builder: Builder {
+    return Builder()
+  }
+  
+  @objc(FSConfigBuilder) public class Builder: NSObject {
+    private var appUrlScheme: String? = nil
+    private var maximumSelectionAllowed: UInt = 1
+    private var modalPresentationStyle: UIModalPresentationStyle = .currentContext
+    private var availableCloudSources: [CloudSource] = CloudSource.all()
+    private var availableLocalSources: [LocalSource] = LocalSource.all()
+    private var documentPickerAllowedUTIs: [String] = ["public.item"]
+    private var imageUrlExportPreset: ImageURLExportPreset?
+    private var imageExportQuality: Float = 0.85
+    private var videoExportPreset: String?
+    private var videoQuality: UIImagePickerControllerQualityType = .typeMedium
+    
+    public func with(appUrlScheme: String) -> Self {
+      self.appUrlScheme = appUrlScheme
+      return self
+    }
+    
+    public func with(maximumSelectionLimit: UInt) -> Self {
+      self.maximumSelectionAllowed = maximumSelectionLimit
+      return self
+    }
+
+    public func withNoSelectionLimit() -> Self {
+      self.maximumSelectionAllowed = Config.kMaximumSelectionNoLimit
+      return self
+    }
+
+    public func with(modalPresentationStyle: UIModalPresentationStyle) -> Self {
+      self.modalPresentationStyle = modalPresentationStyle
+      return self
+    }
+
+    public func with(availableCloudSources: [CloudSource]) -> Self {
+      self.availableCloudSources = availableCloudSources
+      return self
+    }
+
+    public func with(availableLocalSources: [LocalSource]) -> Self {
+      self.availableLocalSources = availableLocalSources
+      return self
+    }
+
+    public func with(documentPickerAllowedUTIs: [String]) -> Self {
+      self.documentPickerAllowedUTIs = documentPickerAllowedUTIs
+      return self
+    }
+    public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
+      self.imageUrlExportPreset = imageUrlExportPreset
+      return self
+    }
+
+    public func with(imageExportQuality: Float) -> Self {
+      self.imageExportQuality = imageExportQuality
+      return self
+    }
+
+    public func with(videoExportPreset: String) -> Self {
+      self.videoExportPreset = videoExportPreset
+      return self
+    }
+
+    public func with(videoQuality: UIImagePickerControllerQualityType) -> Self {
+      self.videoQuality = videoQuality
+      return self
+    }
+
+    public func build() -> Config {
+      let config = Config()
+      config.appURLScheme = appUrlScheme
+      config.maximumSelectionAllowed = maximumSelectionAllowed
+      config.modalPresentationStyle = modalPresentationStyle
+      config.availableCloudSources = availableCloudSources
+      config.availableLocalSources = availableLocalSources
+      config.documentPickerAllowedUTIs = documentPickerAllowedUTIs
+      config._imageURLExportPreset = imageUrlExportPreset
+      config.imageExportQuality = imageExportQuality
+      config._videoExportPreset = videoExportPreset
+      config.videoQuality = videoQuality
+      return config
+    }
+  }
+  
   /// An URL scheme supported by the app. This is required to complete the cloud provider's authentication flow.
   public var appURLScheme: String? = nil
   
@@ -53,12 +139,9 @@ import AVFoundation.AVAssetExportSession
   /// In iOS versions earlier than 11.0, JPEG will always be used.
   @available(iOS 11.0, *)
   public var imageURLExportPreset: ImageURLExportPreset {
-    // This ugly workaround is required because Swift does not currently allow marking stored properties'
-    // availability.
     get {
       return _imageURLExportPreset ?? .compatible
     }
-    
     set {
       _imageURLExportPreset = newValue
     }
@@ -81,12 +164,9 @@ import AVFoundation.AVAssetExportSession
   /// The default value is `AVAssetExportPresetHEVCHighestQuality`
   @available(iOS 11.0, *)
   public var videoExportPreset: String {
-    // This ugly workaround is required because Swift does not currently allow marking stored properties'
-    // availability.
     get {
       return _videoExportPreset ?? AVAssetExportPresetHEVCHighestQuality
     }
-    
     set {
       _videoExportPreset = newValue
     }
