@@ -54,7 +54,6 @@ class SelectionCell: UICollectionViewCell {
     additionalLabel.isHidden = (element.additionalInfo == nil)
     additionalLabel.text = element.additionalInfo
     typeView.image = element.typeIcon
-    typeView.isHidden = false
     editableView.isHidden = !element.isEditable
   }
   
@@ -82,8 +81,6 @@ class SelectionCell: UICollectionViewCell {
 
 private extension SelectionCell {
   func wobble() {
-    editableView.isHidden = true
-    typeView.isHidden = true
     let scale: CGFloat = 0.92
     let degrees = CGFloat.pi * 0.5 / 180
     let leftWobble = CGAffineTransform(rotationAngle: degrees)
@@ -120,9 +117,9 @@ private extension SelectionCell {
     setupImage()
     setupSelectionDim()
     setupSelectionIcon()
+    setupAdditionalLabel()
     setupTypeView()
     setupEditableView()
-    setupAdditionalLabel()
     setupGradientLayer()
   }
   
@@ -153,39 +150,33 @@ private extension SelectionCell {
   func setupEditableView() {
     editableView.image = UIImage.fromFilestackBundle("icon-edit").withRenderingMode(.alwaysTemplate)
     editableView.tintColor = .white
-    editableView.backgroundColor = .init(white: 0.3, alpha: 0.8)
-    let mask = CAShapeLayer()
-    mask.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 32, height: 32),
-                             byRoundingCorners: UIRectCorner.bottomRight,
-                             cornerRadii: CGSize(width: 4, height: 4)).cgPath
-    editableView.layer.mask = mask
-    editableView.isHidden = true
-    imageView.fill(with: editableView, connectingEdges: [.top, .left], inset: 0, withSafeAreaRespecting: false)
-    editableView.widthAnchor.constraint(equalToConstant: 32).isActive = true
-    editableView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    editableView.backgroundColor = .clear
+    imageView.fill(with: editableView, connectingEdges: [.left], inset: 10, withSafeAreaRespecting: false)
+    editableView.bottomAnchor.constraint(equalTo: typeView.topAnchor, constant: -4).isActive = true
+    editableView.widthAnchor.constraint(equalToConstant: 14).isActive = true
+    editableView.heightAnchor.constraint(equalToConstant: 14).isActive = true
+  }
+  
+  func setupAdditionalLabel() {
+    additionalLabel.textColor = .white
+    additionalLabel.font = .systemFont(ofSize: 11)
+    additionalLabel.isHidden = true
+    additionalLabel.backgroundColor = .clear
+    imageView.fill(with: additionalLabel, connectingEdges: [.bottom, .left], inset: 6, withSafeAreaRespecting: false)
   }
   
   func setupTypeView() {
     typeView.tintColor = .white
-    typeView.isHidden = true
     typeView.backgroundColor = .clear
-    imageView.fill(with: typeView, connectingEdges: [.bottom, .left], inset: 0, withSafeAreaRespecting: false)
-    typeView.widthAnchor.constraint(equalToConstant: 32).isActive = true
-    typeView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    imageView.fill(with: typeView, connectingEdges: [.bottom], inset: 8, withSafeAreaRespecting: false)
+    typeView.leftAnchor.constraint(equalTo: additionalLabel.rightAnchor, constant: 4).isActive = true
+    typeView.widthAnchor.constraint(equalToConstant: 14).isActive = true
+    typeView.heightAnchor.constraint(equalToConstant: 14).isActive = true
   }
 
-  func setupAdditionalLabel() {
-    additionalLabel.textColor = .white
-    additionalLabel.font = .systemFont(ofSize: 12)
-    additionalLabel.isHidden = true
-    additionalLabel.backgroundColor = .clear
-    imageView.fill(with: additionalLabel, connectingEdges: [.bottom, .right], inset: 8, withSafeAreaRespecting: false)
-    typeView.heightAnchor.constraint(equalToConstant: 32).isActive = true
-  }
-  
   func setupGradientLayer() {
     imageView.layer.insertSublayer(gradientLayer, at: 0)
-    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor(white: 0.6, alpha: 0.6).cgColor]
+    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor(white: 0.55, alpha: 0.6).cgColor]
     gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.6), NSNumber(value: 1)]
     gradientLayer.startPoint = CGPoint(x: 1, y: 0)
     gradientLayer.endPoint = CGPoint(x: 0, y: 1)

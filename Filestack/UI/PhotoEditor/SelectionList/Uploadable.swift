@@ -50,7 +50,7 @@ extension AVAsset: Uploadable {
   }
   
   var typeIcon: UIImage {
-    return UIImage.fromFilestackBundle("icon-video")
+    return UIImage.fromFilestackBundle("icon-file-video")
       .withRenderingMode(.alwaysTemplate)
   }
   
