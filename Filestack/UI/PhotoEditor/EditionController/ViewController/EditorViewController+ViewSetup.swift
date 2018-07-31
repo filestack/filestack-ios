@@ -37,6 +37,9 @@ private extension EditorViewController {
   func setupImageView() {
     imageView.image = originalImage
     imageView.contentMode = .scaleAspectFit
+    preview.addSubview(imageClearBackground)
+    imageClearBackground.backgroundColor = UIColor(patternImage: .fromFilestackBundle("clear-pattern"))
+    imageClearBackground.frame = imageFrame.applying(CGAffineTransform.init(translationX: 4, y: 4))
   }
   
   func setupPreview() {

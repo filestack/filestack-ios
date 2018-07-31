@@ -36,6 +36,7 @@ final class EditorViewController: UIViewController, UIGestureRecognizerDelegate 
   let topToolbar = TopEditorToolbar()
   let preview = UIView()
   let imageView = UIImageView()
+  let imageClearBackground = UIView()
   
   private let cropLayer = CropLayer()
   private let circleLayer = CircleLayer()
@@ -65,6 +66,7 @@ extension EditorViewController {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     updatePaths()
+    imageClearBackground.frame = imageFrame.applying(CGAffineTransform.init(translationX: 4, y: 4))
   }
 }
 
