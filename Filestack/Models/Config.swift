@@ -20,6 +20,7 @@ import AVFoundation.AVAssetExportSession
   }
   
   @objc(FSConfigBuilder) public class Builder: NSObject {
+    private var showEditorBeforeUpload: Bool = false
     private var appUrlScheme: String? = nil
     private var maximumSelectionAllowed: UInt = 1
     private var modalPresentationStyle: UIModalPresentationStyle = .currentContext
@@ -84,9 +85,15 @@ import AVFoundation.AVAssetExportSession
       self.videoQuality = videoQuality
       return self
     }
+    
+    public func withEditorEnabled() -> Self {
+      self.showEditorBeforeUpload = true
+      return self
+    }
 
     public func build() -> Config {
       let config = Config()
+      config.showEditorBeforeUpload = showEditorBeforeUpload
       config.appURLScheme = appUrlScheme
       config.maximumSelectionAllowed = maximumSelectionAllowed
       config.modalPresentationStyle = modalPresentationStyle
@@ -100,6 +107,9 @@ import AVFoundation.AVAssetExportSession
       return config
     }
   }
+  
+  /// Change this flag to true if you want to allow user to edit photos before the upload.
+  public var showEditorBeforeUpload: Bool = false
   
   /// An URL scheme supported by the app. This is required to complete the cloud provider's authentication flow.
   public var appURLScheme: String? = nil

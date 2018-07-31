@@ -7,18 +7,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol Uploadable: class {
   var isEditable: Bool {get}
   var associatedImage: UIImage {get}
-  var smallDecsriptor: TypeDescriptor {get}
+  var typeIcon: UIImage {get}
+  var additionalInfo: String? {get}
 }
-
-enum TypeDescriptor {
-  case text(String)
-  case image(UIImage)
-}
-
 
 extension UIImage: Uploadable {
   var isEditable: Bool {
@@ -29,7 +25,47 @@ extension UIImage: Uploadable {
     return self
   }
   
-  var smallDecsriptor: TypeDescriptor {
-    return .image(UIImage.fromFilestackBundle("icon-upload"))
+  var typeIcon: UIImage {
+    return UIImage.fromFilestackBundle("icon-image").withRenderingMode(.alwaysTemplate)
+  }
+  
+  var additionalInfo: String? {
+    return nil
+  }
+}
+
+extension AVAsset: Uploadable {
+  var isEditable: Bool {
+    return false
+  }
+  
+  var associatedImage: UIImage {
+    let beginning = CMTime(seconds: 0, preferredTimescale: 1)
+    do {
+      let cgImage = try AVAssetImageGenerator(asset: self).copyCGImage(at: beginning, actualTime: nil)
+      return UIImage(cgImage: cgImage)
+    } catch _ {
+      return UIImage() //TODO: return placeholder
+    }
+  }
+  
+  var typeIcon: UIImage {
+    return UIImage.fromFilestackBundle("icon-video")
+      .withRenderingMode(.alwaysTemplate)
+  }
+  
+  private func string(from durationInSeconds: Double) -> String {
+    let hours = Int(durationInSeconds / 3600)
+    let minutes = Int(durationInSeconds.truncatingRemainder(dividingBy: 3600) / 60)
+    let seconds = Int(durationInSeconds.truncatingRemainder(dividingBy: 60))
+    if hours > 0 {
+      return String(format: "%i:%02i:%02i", hours, minutes, seconds)
+    } else {
+      return String(format: "%i:%02i", minutes, seconds)
+    }
+  }
+  
+  var additionalInfo: String? {
+    return string(from: duration.seconds)
   }
 }

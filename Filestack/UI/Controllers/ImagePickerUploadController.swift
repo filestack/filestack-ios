@@ -73,15 +73,66 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   }
   
   func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset]) {
-    controller.pushViewController(uploadListController(with: assets), animated: true)
-//    multifileUpload.uploadURLs.append(contentsOf: urlList)
-//    multifileUpload.uploadFiles()
+    if config.showEditorBeforeUpload {
+      showEditor(with: assets, on: controller)
+    } else {
+      upload(assets: assets)
+    }
   }
   
-  func uploadListController(with assets: [PHAsset]) -> UIViewController {
+  func upload(assets: [PHAsset]) {
     let urlList = fetchUrl(assets: assets)
-    let images = urlList.compactMap { UIImage(data: try! Data(contentsOf: $0)) }
-    return SelectionListViewController(elements: images, delegate: self)
+    multifileUpload.uploadURLs.append(contentsOf: urlList)
+    multifileUpload.uploadFiles()
+  }
+  
+  func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
+    let elements = fetchUploadables(from: assets)
+    let editor = SelectionListViewController(elements: elements, delegate: self)
+    navigationController.pushViewController(editor, animated: true)
+  }
+  
+  func fetchUploadables(from assets: [PHAsset]) -> [Uploadable] {
+    let dispatchGroup = DispatchGroup()
+    let serialQueue = DispatchQueue(label: "serialQueue")
+    var elements = [Uploadable]()
+    for asset in assets {
+      fetchUploadable(of: asset, inside: dispatchGroup) { (element) in
+        guard let element = element else { return }
+        serialQueue.sync { elements.append(element) }
+      }
+    }
+    dispatchGroup.wait()
+    return elements
+  }
+  
+  func fetchUploadable(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (Uploadable?) -> Void) {
+    dispatchGroup.enter()
+    fetchUploadable(of: asset) { (url) in
+      completion(url)
+      dispatchGroup.leave()
+    }
+  }
+  
+  func fetchUploadable(of asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
+    switch asset.mediaType {
+    case .image: fetchImage(for: asset, completion: completion)
+    case .video: fetchVideo(for: asset, completion: completion)
+    case .unknown,
+         .audio: completion(nil)
+    }
+  }
+  
+  func fetchImage(for asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
+    asset.fetchImage(forSize: PHImageManagerMaximumSize) { (image) in
+      completion(image)
+    }
+  }
+
+  func fetchVideo(for asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
+    imageManager.requestAVAsset(forVideo: asset, options: videoRequestOptions) { (avAsset, _, _) in
+      completion(avAsset)
+    }
   }
   
   func fetchUrl(assets: [PHAsset]) -> [URL] {
@@ -89,7 +140,7 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
     var urlList = [URL]()
     for asset in assets {
       fetchUrl(of: asset, inside: dispatchGroup) { (url) in
-        guard let url = url else {  return }
+        guard let url = url else { return }
         urlList.append(url)
       }
     }

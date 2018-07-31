@@ -46,12 +46,23 @@ class SelectionCell: UICollectionViewCell {
   private func configure(for element: Uploadable?) {
     guard let element = element else { return }
     imageView.image = element.associatedImage
+    if element.isEditable {
+      imageView.contentMode = .scaleAspectFit
+    } else {
+      imageView.contentMode = .scaleAspectFill
+    }
+    additionalLabel.isHidden = (element.additionalInfo == nil)
+    additionalLabel.text = element.additionalInfo
+    typeView.image = element.typeIcon
+    typeView.isHidden = false
     editableView.isHidden = !element.isEditable
-
   }
   
   private var imageView = UIImageView()
   private var editableView = UIImageView()
+  private var typeView = UIImageView()
+  private var gradientLayer = CAGradientLayer()
+  private var additionalLabel = UILabel()
   private var selectionDim = UIView()
   private var selectionIcon = UIImageView()
   override init(frame: CGRect) {
@@ -62,11 +73,17 @@ class SelectionCell: UICollectionViewCell {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    gradientLayer.frame = imageView.frame
+  }
 }
 
 private extension SelectionCell {
   func wobble() {
     editableView.isHidden = true
+    typeView.isHidden = true
     let scale: CGFloat = 0.92
     let degrees = CGFloat.pi * 0.5 / 180
     let leftWobble = CGAffineTransform(rotationAngle: degrees)
@@ -92,6 +109,7 @@ private extension SelectionCell {
     let scaleFactor: CGFloat = 0.9
     selectionDim.isHidden = !isMarkedToDelete
     selectionIcon.isHidden = !isMarkedToDelete
+    additionalLabel.isHidden = isMarkedToDelete
     let scale: CGFloat = isMarkedToDelete ? scaleFactor : 1/scaleFactor
     transform = transform.concatenating(CGAffineTransform(scaleX: scale, y: scale))
   }
@@ -102,13 +120,16 @@ private extension SelectionCell {
     setupImage()
     setupSelectionDim()
     setupSelectionIcon()
+    setupTypeView()
     setupEditableView()
+    setupAdditionalLabel()
+    setupGradientLayer()
   }
   
   func setupImage() {
     imageView.layer.cornerRadius = 6
-    imageView.layer.borderColor = UIColor(white: 0.25, alpha: 1).cgColor
-    imageView.layer.borderWidth = 0.3
+    imageView.layer.borderColor = UIColor(red: 202/255, green: 206/255, blue: 216/255, alpha: 1).cgColor
+    imageView.layer.borderWidth = 0.5
     imageView.contentMode = .scaleAspectFit
     imageView.backgroundColor = .white
     imageView.clipsToBounds = true
@@ -142,5 +163,32 @@ private extension SelectionCell {
     imageView.fill(with: editableView, connectingEdges: [.top, .left], inset: 0, withSafeAreaRespecting: false)
     editableView.widthAnchor.constraint(equalToConstant: 32).isActive = true
     editableView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+  }
+  
+  func setupTypeView() {
+    typeView.tintColor = .white
+    typeView.isHidden = true
+    typeView.backgroundColor = .clear
+    imageView.fill(with: typeView, connectingEdges: [.bottom, .left], inset: 0, withSafeAreaRespecting: false)
+    typeView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+    typeView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+  }
+
+  func setupAdditionalLabel() {
+    additionalLabel.textColor = .white
+    additionalLabel.font = .systemFont(ofSize: 12)
+    additionalLabel.isHidden = true
+    additionalLabel.backgroundColor = .clear
+    imageView.fill(with: additionalLabel, connectingEdges: [.bottom, .right], inset: 8, withSafeAreaRespecting: false)
+    typeView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+  }
+  
+  func setupGradientLayer() {
+    imageView.layer.insertSublayer(gradientLayer, at: 0)
+    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor(white: 0.6, alpha: 0.6).cgColor]
+    gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.6), NSNumber(value: 1)]
+    gradientLayer.startPoint = CGPoint(x: 1, y: 0)
+    gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+    gradientLayer.frame = imageView.frame
   }
 }

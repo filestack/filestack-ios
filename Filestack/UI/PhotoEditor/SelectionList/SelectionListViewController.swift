@@ -165,7 +165,11 @@ private extension SelectionListViewController {
 
 private extension SelectionListViewController {
   func edition(with row: Int) {
-    let image = elements[row].associatedImage
+    let element = elements[row]
+    if !element.isEditable {
+      return
+    }
+    let image = element.associatedImage
     let editor = EditorViewController(image: image) { editedImage in
       self.elements[row] = editedImage
       self.collectionView?.reloadData()
