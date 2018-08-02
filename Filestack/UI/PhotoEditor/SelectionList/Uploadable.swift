@@ -54,18 +54,7 @@ extension AVAsset: Uploadable {
       .withRenderingMode(.alwaysTemplate)
   }
   
-  private func string(from durationInSeconds: Double) -> String {
-    let hours = Int(durationInSeconds / 3600)
-    let minutes = Int(durationInSeconds.truncatingRemainder(dividingBy: 3600) / 60)
-    let seconds = Int(durationInSeconds.truncatingRemainder(dividingBy: 60))
-    if hours > 0 {
-      return String(format: "%i:%02i:%02i", hours, minutes, seconds)
-    } else {
-      return String(format: "%i:%02i", minutes, seconds)
-    }
-  }
-  
   var additionalInfo: String? {
-    return string(from: duration.seconds)
+    return DurationFormatter().string(from: duration.seconds)
   }
 }

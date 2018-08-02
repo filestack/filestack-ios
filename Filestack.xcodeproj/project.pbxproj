@@ -87,6 +87,9 @@
 		BC0D163C210E81DD00A88F30 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1635210E81DD00A88F30 /* UIImage+Rotation.swift */; };
 		BC0D163E210F422400A88F30 /* Uploadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D163D210F422400A88F30 /* Uploadable.swift */; };
 		BC0D164021108B3000A88F30 /* UIImage+Write.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D163F21108B3000A88F30 /* UIImage+Write.swift */; };
+		BC0D16552113277D00A88F30 /* DurationNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D16542113277D00A88F30 /* DurationNumberFormatter.swift */; };
+		BC0D1657211329FE00A88F30 /* UploadableExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D1656211329FE00A88F30 /* UploadableExtractor.swift */; };
+		BC0D165921132DD800A88F30 /* UrlExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D165821132DD800A88F30 /* UrlExtractor.swift */; };
 		BC1E4CA520B5B14D00345FF5 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */; };
 		BC1E4CA720B5B1C300345FF5 /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */; };
 		BC1E4CA920B5E4AA00345FF5 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */; };
@@ -304,6 +307,9 @@
 		BC0D1635210E81DD00A88F30 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		BC0D163D210F422400A88F30 /* Uploadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploadable.swift; sourceTree = "<group>"; };
 		BC0D163F21108B3000A88F30 /* UIImage+Write.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Write.swift"; sourceTree = "<group>"; };
+		BC0D16542113277D00A88F30 /* DurationNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationNumberFormatter.swift; sourceTree = "<group>"; };
+		BC0D1656211329FE00A88F30 /* UploadableExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadableExtractor.swift; sourceTree = "<group>"; };
+		BC0D165821132DD800A88F30 /* UrlExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlExtractor.swift; sourceTree = "<group>"; };
 		BC1E4CA420B5B14D00345FF5 /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
 		BC1E4CA620B5B1C300345FF5 /* PhotoPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerController.swift; sourceTree = "<group>"; };
 		BC1E4CA820B5E4AA00345FF5 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = PhotoPicker.storyboard; path = ../PhotoPicker.storyboard; sourceTree = "<group>"; };
@@ -531,6 +537,7 @@
 				457085021F975C6C00991340 /* Filestack.h */,
 				457085031F975C6C00991340 /* Info.plist */,
 				45A92F0C1FA0BE3500FEB611 /* Cloud Requests */,
+				BC0D16472113276400A88F30 /* CommonControllers */,
 				452DCF631FA1E1CA0033B75D /* Enums */,
 				455804A81F9F4478007C694C /* Extensions */,
 				455804A31F9F4418007C694C /* Misc */,
@@ -702,6 +709,16 @@
 				BC0D1635210E81DD00A88F30 /* UIImage+Rotation.swift */,
 			);
 			path = ImageEdition;
+			sourceTree = "<group>";
+		};
+		BC0D16472113276400A88F30 /* CommonControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC0D16542113277D00A88F30 /* DurationNumberFormatter.swift */,
+				BC0D1656211329FE00A88F30 /* UploadableExtractor.swift */,
+				BC0D165821132DD800A88F30 /* UrlExtractor.swift */,
+			);
+			path = CommonControllers;
 			sourceTree = "<group>";
 		};
 		BC1E4C7520B5979100345FF5 /* PhotoPicker */ = {
@@ -992,12 +1009,14 @@
 				45E8D1971FBDA16700DC2111 /* CloudSourceDataSource.swift in Sources */,
 				4565CEF71FBF3F400043BFBB /* UserDefaults+State.swift in Sources */,
 				4568DCD01F9DFD7300F29923 /* ImagePickerUploadController.swift in Sources */,
+				BC0D1657211329FE00A88F30 /* UploadableExtractor.swift in Sources */,
 				BC0D1629210E7A2500A88F30 /* CircleGesturesHandler.swift in Sources */,
 				45DEBA531FBAE63700A267E7 /* MultipartUpload+Cancellable.swift in Sources */,
 				4569C7851FB1B6C500DE990E /* SourceTableViewController.swift in Sources */,
 				BC0D1623210E7A2500A88F30 /* EditorViewController+ViewSetup.swift in Sources */,
 				BC0D1624210E7A2500A88F30 /* EditorViewController.swift in Sources */,
 				45E2B7B11FC2FEB500448ED2 /* UIImage+HEIC.swift in Sources */,
+				BC0D165921132DD800A88F30 /* UrlExtractor.swift in Sources */,
 				455804A71F9F445F007C694C /* BundleInfo.swift in Sources */,
 				45E8D1A11FBDA21200DC2111 /* CloudSourceTabBarController.swift in Sources */,
 				455804A51F9F4420007C694C /* Constants.swift in Sources */,
@@ -1022,6 +1041,7 @@
 				4565CEF31FBEEC2F0043BFBB /* CloudItemCollectionViewCell.swift in Sources */,
 				BC1E4CA720B5B1C300345FF5 /* PhotoPickerController.swift in Sources */,
 				BC1E4CA520B5B14D00345FF5 /* AlbumListViewController.swift in Sources */,
+				BC0D16552113277D00A88F30 /* DurationNumberFormatter.swift in Sources */,
 				45C47E741FB9B3DC009B8248 /* Array+SafeIndex.swift in Sources */,
 				BC0D1626210E7A2500A88F30 /* CropLayer.swift in Sources */,
 				452DCF6D1FA1E1E30033B75D /* CloudProvider.swift in Sources */,

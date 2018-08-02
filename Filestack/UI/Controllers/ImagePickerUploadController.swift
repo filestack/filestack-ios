@@ -20,6 +20,19 @@ internal class ImagePickerUploadController: NSObject {
   let sourceType: UIImagePickerControllerSourceType
   let config: Config
   
+  private lazy var urlExtractor: UrlExtractor = {
+    var imagePreset = ImageURLExportPreset.compatible
+    var videoPreset: String = AVAssetExportPresetPassthrough
+    if #available(iOS 11.0, *) {
+      imagePreset = config.imageURLExportPreset
+      videoPreset = config.videoExportPreset
+    }
+    return UrlExtractor(imageExportPreset: imagePreset,
+                        videoExportPreset: videoPreset,
+                        cameraImageQuality: config.imageExportQuality)
+  }()
+  private lazy var uploadableExtractor = UploadableExtractor()
+  
   var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
   
   let imageManager = PHCachingImageManager.default()
@@ -81,136 +94,15 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   }
   
   func upload(assets: [PHAsset]) {
-    let urlList = fetchUrl(assets: assets)
+    let urlList = urlExtractor.fetchUrl(assets: assets)
     multifileUpload.uploadURLs.append(contentsOf: urlList)
     multifileUpload.uploadFiles()
   }
   
   func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
-    let elements = fetchUploadables(from: assets)
+    let elements = UploadableExtractor().fetch(from: assets)
     let editor = SelectionListViewController(elements: elements, delegate: self)
     navigationController.pushViewController(editor, animated: true)
-  }
-  
-  func fetchUploadables(from assets: [PHAsset]) -> [Uploadable] {
-    let dispatchGroup = DispatchGroup()
-    let serialQueue = DispatchQueue(label: "serialQueue")
-    var elements = [Uploadable]()
-    for asset in assets {
-      fetchUploadable(of: asset, inside: dispatchGroup) { (element) in
-        guard let element = element else { return }
-        serialQueue.sync { elements.append(element) }
-      }
-    }
-    dispatchGroup.wait()
-    return elements
-  }
-  
-  func fetchUploadable(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (Uploadable?) -> Void) {
-    dispatchGroup.enter()
-    fetchUploadable(of: asset) { (url) in
-      completion(url)
-      dispatchGroup.leave()
-    }
-  }
-  
-  func fetchUploadable(of asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
-    switch asset.mediaType {
-    case .image: fetchImage(for: asset, completion: completion)
-    case .video: fetchVideo(for: asset, completion: completion)
-    case .unknown,
-         .audio: completion(nil)
-    }
-  }
-  
-  func fetchImage(for asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
-    asset.fetchImage(forSize: PHImageManagerMaximumSize) { (image) in
-      completion(image)
-    }
-  }
-
-  func fetchVideo(for asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
-    imageManager.requestAVAsset(forVideo: asset, options: videoRequestOptions) { (avAsset, _, _) in
-      completion(avAsset)
-    }
-  }
-  
-  func fetchUrl(assets: [PHAsset]) -> [URL] {
-    let dispatchGroup = DispatchGroup()
-    var urlList = [URL]()
-    for asset in assets {
-      fetchUrl(of: asset, inside: dispatchGroup) { (url) in
-        guard let url = url else { return }
-        urlList.append(url)
-      }
-    }
-    dispatchGroup.wait()
-    return urlList
-  }
-  
-  func fetchUrl(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
-    dispatchGroup.enter()
-    fetchUrl(of: asset) { (url) in
-      completion(url)
-      dispatchGroup.leave()
-    }
-  }
-  
-  func fetchUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-    switch asset.mediaType {
-    case .image: fetchImageUrl(of: asset, completion: completion)
-    case .video: fetchVideoUrl(of: asset, completion: completion)
-    case .unknown,
-         .audio: completion(nil)
-    }
-  }
-  
-  func fetchVideoUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-    imageManager.requestAVAsset(forVideo: asset, options: videoRequestOptions) { (element, _, _) in
-      guard let element = element, let export = self.videoExportSession(for: element) else {
-        completion(nil)
-        return
-      }
-      export.exportAsynchronously { completion(export.outputURL) }
-    }
-  }
-  
-  var videoRequestOptions: PHVideoRequestOptions {
-    let options = PHVideoRequestOptions()
-    options.version = PHVideoRequestOptionsVersion.current
-    options.deliveryMode = PHVideoRequestOptionsDeliveryMode.highQualityFormat
-    return options
-  }
-  
-  func preferedVideoPreset(for asset: AVAsset) -> String {
-    let compatibilePresets = AVAssetExportSession.exportPresets(compatibleWith: asset)
-    if #available(iOS 11.0, *), compatibilePresets.contains(self.config.videoExportPreset) {
-      return config.videoExportPreset
-    }
-    return AVAssetExportPresetPassthrough
-  }
-  
-  func videoExportSession(for asset: AVAsset) -> AVAssetExportSession? {
-    let export = AVAssetExportSession(asset: asset, presetName: preferedVideoPreset(for: asset))
-    export?.outputURL = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".mov")
-    export?.outputFileType = .mov
-    return export
-  }
-  
-  func fetchImageUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-    asset.fetchImage(forSize: PHImageManagerMaximumSize) { (image) in
-      guard let image = image else {
-        completion(nil)
-        return
-      }
-      var exportedUrl: URL?
-      if #available(iOS 11.0, *), self.config.imageURLExportPreset == .current {
-        exportedUrl = self.exportedHEICImageURL(image: image) ?? self.exportedJPEGImageURL(image: image)
-      } else {
-        exportedUrl = self.exportedJPEGImageURL(image: image)
-      }
-      completion(exportedUrl)
-    }
   }
 }
 
@@ -221,7 +113,7 @@ extension ImagePickerUploadController: UploadListDelegate {
   }
   
   func uploadImages(_ images: [UIImage]) {
-    multifileUpload.uploadURLs.append(contentsOf: images.compactMap { exportedUrl(from: $0) })
+    multifileUpload.uploadURLs.append(contentsOf: images.compactMap { urlExtractor.fetchUrl(image: $0) })
     multifileUpload.uploadFiles()
   }
 }
@@ -235,7 +127,6 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    
     picker.dismiss(animated: true) {
       if let imageURL = info["UIImagePickerControllerImageURL"] as? URL {
         // Upload image from camera roll
@@ -246,7 +137,7 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
         self.multifileUpload.uploadURLs = [mediaURL]
         self.multifileUpload.uploadFiles()
       } else if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-        if let url = self.exportedUrl(from: image) {
+        if let url = self.urlExtractor.fetchUrl(image: image) {
           self.multifileUpload.uploadURLs.append(url)
           self.multifileUpload.uploadFiles()
         } else {
@@ -257,53 +148,7 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
     }
   }
   
-  private func exportedUrl(from image: UIImage) -> URL? {
-    if #available(iOS 11.0, *), picker.imageExportPreset == .current {
-      return exportedHEICImageURL(image: image) ?? exportedJPEGImageURL(image: image)
-    } else {
-      return exportedJPEGImageURL(image: image)
-    }
-  }
   
-  // MARK: - Private Functions
-  
-  @available(iOS 11.0, *)
-  private func exportedHEICImageURL(image: UIImage) -> URL? {
-    
-    // Save picture as a temporary HEIC file
-    if let imageData = image.heicRepresentation(quality: config.imageExportQuality) {
-      let filename = UUID().uuidString + ".heic"
-      return writeImageDataToURL(imageData: imageData, filename: filename)
-    }
-    
-    return nil
-  }
-  
-  private func exportedJPEGImageURL(image: UIImage) -> URL? {
-    
-    // Save picture as a temporary JPEG file
-    if let imageData = UIImageJPEGRepresentation(image, CGFloat(config.imageExportQuality)) {
-      let filename = UUID().uuidString + ".jpeg"
-      return writeImageDataToURL(imageData: imageData, filename: filename)
-    }
-    
-    return nil
-  }
-  
-  private func writeImageDataToURL(imageData: Data, filename: String) -> URL? {
-    
-    do {
-      let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory() + filename)
-      try imageData.write(to: tmpURL)
-      
-      return tmpURL
-    } catch {
-      // NO-OP
-      return nil
-    }
-  }
 }
 
-extension ImagePickerUploadController: UINavigationControllerDelegate {
-  
-}
+extension ImagePickerUploadController: UINavigationControllerDelegate {}
