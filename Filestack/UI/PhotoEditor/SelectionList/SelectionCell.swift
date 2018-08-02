@@ -124,7 +124,7 @@ private extension SelectionCell {
   }
   
   func setupImage() {
-    imageView.layer.cornerRadius = 6
+    imageView.layer.cornerRadius = 5
     imageView.layer.borderColor = UIColor(red: 202/255, green: 206/255, blue: 216/255, alpha: 1).cgColor
     imageView.layer.borderWidth = 0.5
     imageView.contentMode = .scaleAspectFit

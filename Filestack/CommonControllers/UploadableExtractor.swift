@@ -27,14 +27,6 @@ class UploadableExtractor {
     return elements
   }
   
-  func fetchUploadable(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (Uploadable?) -> Void) {
-    dispatchGroup.enter()
-    fetchUploadable(of: asset) { (url) in
-      completion(url)
-      dispatchGroup.leave()
-    }
-  }
-  
   func fetchUploadable(of asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
     switch asset.mediaType {
     case .image: fetchImage(for: asset, completion: completion)
@@ -43,7 +35,17 @@ class UploadableExtractor {
          .audio: completion(nil)
     }
   }
-  
+}
+
+private extension UploadableExtractor {
+  func fetchUploadable(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (Uploadable?) -> Void) {
+    dispatchGroup.enter()
+    fetchUploadable(of: asset) { (url) in
+      completion(url)
+      dispatchGroup.leave()
+    }
+  }
+
   func fetchImage(for asset: PHAsset, completion: @escaping (Uploadable?) -> Void) {
     asset.fetchImage(forSize: PHImageManagerMaximumSize) { (image) in
       completion(image)
@@ -62,5 +64,4 @@ class UploadableExtractor {
     options.deliveryMode = PHVideoRequestOptionsDeliveryMode.fastFormat
     return options
   }
-
 }
