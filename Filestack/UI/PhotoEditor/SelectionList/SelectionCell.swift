@@ -106,7 +106,6 @@ private extension SelectionCell {
     let scaleFactor: CGFloat = 0.9
     selectionDim.isHidden = !isMarkedToDelete
     selectionIcon.isHidden = !isMarkedToDelete
-    additionalLabel.isHidden = isMarkedToDelete
     let scale: CGFloat = isMarkedToDelete ? scaleFactor : 1/scaleFactor
     transform = transform.concatenating(CGAffineTransform(scaleX: scale, y: scale))
   }
