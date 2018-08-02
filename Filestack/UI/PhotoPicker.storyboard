@@ -89,6 +89,12 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="woD-XR-u9O">
                                             <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="490-ia-Xd0">
+                                            <rect key="frame" x="6" y="72" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <view hidden="YES" alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXl-Nd-hWy">
                                             <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -103,19 +109,22 @@
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="490-ia-Xd0" secondAttribute="bottom" constant="6" id="1ry-hb-nqn"/>
                                     <constraint firstItem="woD-XR-u9O" firstAttribute="top" secondItem="hA6-qt-0Tm" secondAttribute="topMargin" constant="-8" id="BPA-op-vWZ"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="woD-XR-u9O" secondAttribute="trailing" constant="-8" id="IME-in-4Af"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="lXl-Nd-hWy" secondAttribute="trailing" constant="-8" id="h1t-I2-fhq"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="lXl-Nd-hWy" secondAttribute="bottom" constant="-8" id="h3W-5s-YIn"/>
+                                    <constraint firstAttribute="trailing" secondItem="lXl-Nd-hWy" secondAttribute="trailing" id="h1t-I2-fhq"/>
+                                    <constraint firstAttribute="bottom" secondItem="lXl-Nd-hWy" secondAttribute="bottom" id="h3W-5s-YIn"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="woD-XR-u9O" secondAttribute="bottom" constant="-8" id="mzh-wp-BPQ"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="ddQ-Oz-CLj" secondAttribute="trailing" constant="-2" id="q3L-LU-hxS"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="ddQ-Oz-CLj" secondAttribute="bottom" constant="-2" id="stF-n4-05Q"/>
-                                    <constraint firstItem="lXl-Nd-hWy" firstAttribute="top" secondItem="hA6-qt-0Tm" secondAttribute="topMargin" constant="-8" id="v5I-sc-CUh"/>
+                                    <constraint firstItem="lXl-Nd-hWy" firstAttribute="top" secondItem="hA6-qt-0Tm" secondAttribute="top" id="v5I-sc-CUh"/>
                                     <constraint firstItem="woD-XR-u9O" firstAttribute="leading" secondItem="hA6-qt-0Tm" secondAttribute="leadingMargin" constant="-8" id="vfl-uA-maL"/>
-                                    <constraint firstItem="lXl-Nd-hWy" firstAttribute="leading" secondItem="hA6-qt-0Tm" secondAttribute="leadingMargin" constant="-8" id="x6h-NJ-vIQ"/>
+                                    <constraint firstItem="490-ia-Xd0" firstAttribute="leading" secondItem="hA6-qt-0Tm" secondAttribute="leading" constant="6" id="x54-Fc-uEj"/>
+                                    <constraint firstItem="lXl-Nd-hWy" firstAttribute="leading" secondItem="hA6-qt-0Tm" secondAttribute="leading" id="x6h-NJ-vIQ"/>
                                 </constraints>
                                 <size key="customSize" width="78" height="78"/>
                                 <connections>
+                                    <outlet property="additionalInfoLabel" destination="490-ia-Xd0" id="Sr0-xe-6H1"/>
                                     <outlet property="dimView" destination="lXl-Nd-hWy" id="olB-Ao-lNq"/>
                                     <outlet property="image" destination="woD-XR-u9O" id="cAM-gR-TTY"/>
                                     <outlet property="selectedCheckbox" destination="ddQ-Oz-CLj" id="etV-ul-jv7"/>
