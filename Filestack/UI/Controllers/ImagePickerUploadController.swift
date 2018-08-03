@@ -94,7 +94,7 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   }
   
   func upload(assets: [PHAsset]) {
-    let urlList = urlExtractor.fetchUrl(assets: assets)
+    let urlList = urlExtractor.fetchUrls(assets)
     multifileUpload.uploadURLs.append(contentsOf: urlList)
     multifileUpload.uploadFiles()
   }
@@ -112,9 +112,13 @@ extension ImagePickerUploadController: UploadListDelegate {
     filePickedCompletionHandler?(false)
   }
   
-  func uploadImages(_ images: [UIImage]) {
-    multifileUpload.uploadURLs.append(contentsOf: images.compactMap { urlExtractor.fetchUrl(image: $0) })
+  func upload(_ elements: [Uploadable]) {
+    multifileUpload.uploadURLs = urlExtractor.fetchUrls(elements)
     multifileUpload.uploadFiles()
+    viewController.dismiss(animated: true) {
+      //TODO: show upload monitor
+    }
+    
   }
 }
 

@@ -28,7 +28,9 @@ class PhotoPickerController {
   init(maximumSelection: UInt) {
     self.maximumSelectionAllowed = maximumSelection
     albumRepository.getAlbums() { _ in
-      self.albumList.tableView.reloadData()
+      DispatchQueue.main.async {
+        self.albumList.tableView.reloadData()
+      }
     }
   }
   

@@ -10,7 +10,7 @@ import UIKit
 
 protocol UploadListDelegate: class {
   func resignFromUpload()
-  func uploadImages(_ images: [UIImage])
+  func upload(_ elements: [Uploadable])
 }
 
 class SelectionListViewController: UICollectionViewController {
@@ -116,7 +116,7 @@ private extension SelectionListViewController {
 
 private extension SelectionListViewController {
   func uploadAll() {
-    delegate?.uploadImages([])
+    delegate?.upload(elements)
   }
   
   func dismissAll() {
@@ -149,8 +149,10 @@ private extension SelectionListViewController {
         cell.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
       })
     }, completion: { _ in
-      self.stopDeleteMode()
-      self.collectionView?.reloadData()
+      DispatchQueue.main.async {
+        self.stopDeleteMode()
+        self.collectionView?.reloadData()
+      }
     })
   }
   
@@ -171,8 +173,10 @@ private extension SelectionListViewController {
     }
     let image = element.associatedImage
     let editor = EditorViewController(image: image) { editedImage in
-      self.elements[row] = editedImage
-      self.collectionView?.reloadData()
+      DispatchQueue.main.async {
+        self.elements[row] = editedImage
+        self.collectionView?.reloadData()
+      }
     }
     present(editor, animated: true)
   }

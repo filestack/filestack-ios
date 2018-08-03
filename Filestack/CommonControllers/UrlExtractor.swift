@@ -23,13 +23,28 @@ class UrlExtractor {
     self.cameraImageQuality = cameraImageQuality
   }
   
-  func fetchUrl(assets: [PHAsset]) -> [URL] {
+  func fetchUrls(_ elements: [Uploadable]) -> [URL] {
     let dispatchGroup = DispatchGroup()
     var urlList = [URL]()
+    let serialQueue = DispatchQueue(label: "serialQueue")
+    for element in elements {
+      fetchUrl(of: element, inside: dispatchGroup) { (url) in
+        guard let url = url else { return }
+        serialQueue.sync { urlList.append(url) }
+      }
+    }
+    dispatchGroup.wait()
+    return urlList
+  }
+  
+  func fetchUrls(_ assets: [PHAsset]) -> [URL] {
+    let dispatchGroup = DispatchGroup()
+    var urlList = [URL]()
+    let serialQueue = DispatchQueue(label: "serialQueue")
     for asset in assets {
       fetchUrl(of: asset, inside: dispatchGroup) { (url) in
         guard let url = url else { return }
-        urlList.append(url)
+        serialQueue.sync { urlList.append(url) }
       }
     }
     dispatchGroup.wait()
@@ -46,6 +61,14 @@ class UrlExtractor {
 }
 
 private extension UrlExtractor {
+  func fetchUrl(of element: Uploadable, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
+    dispatchGroup.enter()
+    fetchUrl(of: element) { (url) in
+      completion(url)
+      dispatchGroup.leave()
+    }
+  }
+
   func fetchUrl(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
     dispatchGroup.enter()
     fetchUrl(of: asset) { (url) in
@@ -54,6 +77,17 @@ private extension UrlExtractor {
     }
   }
   
+  func fetchUrl(of element: Uploadable, completion: @escaping (URL?) -> Void) {
+    if let image = element as? UIImage {
+      completion(fetchUrl(image: image))
+      return
+    } else if let video = element as? AVAsset {
+      fetchVideoUrl(of: video, completion: completion)
+      return
+    }
+    completion(nil)
+  }
+
   func fetchUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
     switch asset.mediaType {
     case .image: fetchImageUrl(of: asset, completion: completion)
@@ -65,13 +99,22 @@ private extension UrlExtractor {
   
   func fetchVideoUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
     imageManager.requestAVAsset(forVideo: asset, options: videoRequestOptions) { (element, _, _) in
-      guard let element = element, let export = self.videoExportSession(for: element) else {
+      guard let element = element else {
         completion(nil)
         return
       }
-      export.exportAsynchronously { completion(export.outputURL) }
+      self.fetchVideoUrl(of: element, completion: completion)
     }
   }
+  
+  func fetchVideoUrl(of asset: AVAsset, completion: @escaping (URL?) -> Void) {
+    guard let export = self.videoExportSession(for: asset) else {
+      completion(nil)
+      return
+    }
+    export.exportAsynchronously { completion(export.outputURL) }
+  }
+  
   
   var videoRequestOptions: PHVideoRequestOptions {
     let options = PHVideoRequestOptions()
