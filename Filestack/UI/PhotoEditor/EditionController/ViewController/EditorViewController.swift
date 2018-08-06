@@ -46,9 +46,9 @@ final class EditorViewController: UIViewController, UIGestureRecognizerDelegate 
   lazy var cropHandler = CropGesturesHandler(delegate: self)
   lazy var circleHandler = CircleGesturesHandler(delegate: self)
   
-  let completion: (UIImage) -> Void
+  let completion: (UIImage?) -> Void
   
-  init(image: UIImage, completion: @escaping (UIImage) -> Void) {
+  init(image: UIImage, completion: @escaping (UIImage?) -> Void) {
     self.images = [image]
     self.currentImageIndex = 0
     self.completion = completion

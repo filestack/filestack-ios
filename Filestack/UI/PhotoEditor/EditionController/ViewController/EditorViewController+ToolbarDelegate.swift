@@ -10,7 +10,9 @@ import Foundation
 
 extension EditorViewController: EditorToolbarDelegate {
   func cancelSelected() {
-    dismiss(animated: true)
+    dismiss(animated: true) {
+      self.completion(nil)
+    }
   }
   
   func rotateSelected() {
@@ -43,8 +45,9 @@ extension EditorViewController: EditorToolbarDelegate {
   }
   
   func doneSelected() {
-    completion(currentImage)
-    dismiss(animated: true)
+    dismiss(animated: true) {
+      self.completion(self.currentImage)
+    }
   }
   
   func undoSelected() {

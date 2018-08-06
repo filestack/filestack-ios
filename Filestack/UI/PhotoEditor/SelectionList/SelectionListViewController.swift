@@ -116,7 +116,9 @@ private extension SelectionListViewController {
 
 private extension SelectionListViewController {
   func uploadAll() {
-    delegate?.upload(elements)
+    dismiss(animated: true) {
+      self.delegate?.upload(self.elements)
+    }
   }
   
   func dismissAll() {
@@ -173,6 +175,7 @@ private extension SelectionListViewController {
     }
     let image = element.associatedImage
     let editor = EditorViewController(image: image) { editedImage in
+      guard let editedImage = editedImage else { return }
       DispatchQueue.main.async {
         self.elements[row] = editedImage
         self.collectionView?.reloadData()
