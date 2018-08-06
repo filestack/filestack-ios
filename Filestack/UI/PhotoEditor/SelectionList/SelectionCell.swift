@@ -9,6 +9,22 @@
 import UIKit
 
 class SelectionCell: UICollectionViewCell {
+  private struct Consts {
+    static let imageBorderColor = UIColor(red: 202/255, green: 206/255, blue: 216/255, alpha: 1).cgColor
+    static let imageBorderWidth: CGFloat = 0.5
+    static let imageBorderCornerRadius: CGFloat = 5
+    static let selectionIconEdgeSize: CGFloat = 30
+    static let selectionIconInset: CGFloat = 6
+    static let selectionDimColor = UIColor(white: 1, alpha: 0.3)
+    static let smallIconEdgeSize: CGFloat = 14
+    static let smallIconSpacing: CGFloat = 4
+    static let editIconInset: CGFloat = 10
+    static let typeIconInset: CGFloat = 8
+    static let labelInset: CGFloat = 6
+    static let editionScale: CGFloat = 0.92
+    static let selectionScale: CGFloat = 0.9
+  }
+  
   enum Mode {
     case standard
     case deletion(markedToDelete: Bool)
@@ -81,7 +97,7 @@ class SelectionCell: UICollectionViewCell {
 
 private extension SelectionCell {
   func wobble() {
-    let scale: CGFloat = 0.92
+    let scale: CGFloat = Consts.editionScale
     let degrees = CGFloat.pi * 0.5 / 180
     let leftWobble = CGAffineTransform(rotationAngle: degrees)
     let rightWobble = CGAffineTransform(rotationAngle: -degrees).scaledBy(x: scale, y: scale)
@@ -103,7 +119,7 @@ private extension SelectionCell {
   }
   
   func set(isMarkedToDelete: Bool) {
-    let scaleFactor: CGFloat = 0.9
+    let scaleFactor: CGFloat = Consts.selectionScale
     selectionDim.isHidden = !isMarkedToDelete
     selectionIcon.isHidden = !isMarkedToDelete
     let scale: CGFloat = isMarkedToDelete ? scaleFactor : 1/scaleFactor
@@ -123,9 +139,9 @@ private extension SelectionCell {
   }
   
   func setupImage() {
-    imageView.layer.cornerRadius = 5
-    imageView.layer.borderColor = UIColor(red: 202/255, green: 206/255, blue: 216/255, alpha: 1).cgColor
-    imageView.layer.borderWidth = 0.5
+    imageView.layer.cornerRadius = Consts.imageBorderCornerRadius
+    imageView.layer.borderColor = Consts.imageBorderColor
+    imageView.layer.borderWidth = Consts.imageBorderWidth
     imageView.contentMode = .scaleAspectFit
     imageView.backgroundColor = .white
     imageView.clipsToBounds = true
@@ -135,14 +151,17 @@ private extension SelectionCell {
   func setupSelectionIcon() {
     selectionIcon.image = .fromFilestackBundle("icon-selected")
     selectionIcon.isHidden = true
-    selectionDim.fill(with: selectionIcon, connectingEdges: [.right, .bottom], inset: 6, withSafeAreaRespecting: false)
-    selectionIcon.widthAnchor.constraint(equalToConstant: 30).isActive = true
-    selectionIcon.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    selectionDim.fill(with: selectionIcon,
+                      connectingEdges: [.right, .bottom],
+                      inset: Consts.selectionIconInset,
+                      withSafeAreaRespecting: false)
+    selectionIcon.widthAnchor.constraint(equalToConstant: Consts.selectionIconEdgeSize).isActive = true
+    selectionIcon.heightAnchor.constraint(equalToConstant: Consts.selectionIconEdgeSize).isActive = true
   }
   
   func setupSelectionDim() {
     selectionDim.isHidden = true
-    selectionDim.backgroundColor = UIColor(white: 1, alpha: 0.3)
+    selectionDim.backgroundColor = Consts.selectionDimColor
     imageView.fill(with: selectionDim)
   }
   
@@ -150,10 +169,13 @@ private extension SelectionCell {
     editableView.image = UIImage.fromFilestackBundle("icon-edit").withRenderingMode(.alwaysTemplate)
     editableView.tintColor = .white
     editableView.backgroundColor = .clear
-    imageView.fill(with: editableView, connectingEdges: [.left], inset: 10, withSafeAreaRespecting: false)
-    editableView.bottomAnchor.constraint(equalTo: typeView.topAnchor, constant: -4).isActive = true
-    editableView.widthAnchor.constraint(equalToConstant: 14).isActive = true
-    editableView.heightAnchor.constraint(equalToConstant: 14).isActive = true
+    imageView.fill(with: editableView,
+                   connectingEdges: [.left],
+                   inset: Consts.editIconInset,
+                   withSafeAreaRespecting: false)
+    editableView.bottomAnchor.constraint(equalTo: typeView.topAnchor, constant: -Consts.smallIconSpacing).isActive = true
+    editableView.widthAnchor.constraint(equalToConstant: Consts.smallIconEdgeSize).isActive = true
+    editableView.heightAnchor.constraint(equalToConstant: Consts.smallIconEdgeSize).isActive = true
   }
   
   func setupAdditionalLabel() {
@@ -161,16 +183,22 @@ private extension SelectionCell {
     additionalLabel.font = .systemFont(ofSize: 11)
     additionalLabel.isHidden = true
     additionalLabel.backgroundColor = .clear
-    imageView.fill(with: additionalLabel, connectingEdges: [.bottom, .left], inset: 6, withSafeAreaRespecting: false)
+    imageView.fill(with: additionalLabel,
+                   connectingEdges: [.bottom, .left],
+                   inset: Consts.labelInset,
+                   withSafeAreaRespecting: false)
   }
   
   func setupTypeView() {
     typeView.tintColor = .white
     typeView.backgroundColor = .clear
-    imageView.fill(with: typeView, connectingEdges: [.bottom], inset: 8, withSafeAreaRespecting: false)
-    typeView.leftAnchor.constraint(equalTo: additionalLabel.rightAnchor, constant: 4).isActive = true
-    typeView.widthAnchor.constraint(equalToConstant: 14).isActive = true
-    typeView.heightAnchor.constraint(equalToConstant: 14).isActive = true
+    imageView.fill(with: typeView,
+                   connectingEdges: [.bottom],
+                   inset: Consts.typeIconInset,
+                   withSafeAreaRespecting: false)
+    typeView.leftAnchor.constraint(equalTo: additionalLabel.rightAnchor, constant: Consts.smallIconSpacing).isActive = true
+    typeView.widthAnchor.constraint(equalToConstant: Consts.smallIconEdgeSize).isActive = true
+    typeView.heightAnchor.constraint(equalToConstant: Consts.smallIconEdgeSize).isActive = true
   }
 
   func setupGradientLayer() {

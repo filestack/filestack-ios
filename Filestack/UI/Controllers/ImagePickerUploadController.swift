@@ -107,49 +107,6 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
       upload(assets: assets)
     }
   }
-  
-  func upload(assets: [PHAsset]) {
-    viewController.dismiss(animated: true) {
-      let urlList = self.urlExtractor.fetchUrls(assets)
-      self.multifileUpload.uploadURLs.append(contentsOf: urlList)
-      self.multifileUpload.uploadFiles()
-    }
-  }
-  
-  func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
-    if assets.count == 1 {
-      handleSingleSelection(of: assets[0], on: navigationController)
-    } else {
-      showSelectionList(with: assets, on: navigationController)
-    }
-  }
-
-  func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
-    let elements = UploadableExtractor().fetch(from: assets)
-    let editor = SelectionListViewController(elements: elements, delegate: self)
-    navigationController.pushViewController(editor, animated: true)
-  }
-  
-  func handleSingleSelection(of asset: PHAsset, on navigationController: UINavigationController) {
-    if asset.mediaType == .image {
-      showEditor(with: asset, on: navigationController)
-    } else {
-      upload(assets: [asset])
-    }
-  }
-  
-  func showEditor(with singleImageAsset: PHAsset, on navigationController: UINavigationController) {
-    UploadableExtractor().fetchUploadable(of: singleImageAsset) { (uploadable) in
-      guard let image = uploadable as? UIImage else {
-        self.upload(assets: [singleImageAsset])
-        return
-      }
-      navigationController.dismiss(animated: false) {
-        self.viewController.present(self.editor(with: image), animated: false)
-      }
-    }
-  }
-
 }
 
 extension ImagePickerUploadController: UploadListDelegate {
@@ -188,19 +145,64 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
     }
   }
   
-  private func upload(url: URL) {
+  private struct PickerKeys {
+    static let cameraUrl = "UIImagePickerControllerImageURL"
+    static let cameraMediaUrl = "UIImagePickerControllerMediaURL"
+    static let pickerImage = "UIImagePickerControllerOriginalImage"
+  }
+}
+
+private extension ImagePickerUploadController {
+  func upload(assets: [PHAsset]) {
+    viewController.dismiss(animated: true) {
+      let urlList = self.urlExtractor.fetchUrls(assets)
+      self.multifileUpload.uploadURLs.append(contentsOf: urlList)
+      self.multifileUpload.uploadFiles()
+    }
+  }
+  
+  func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
+    if assets.count == 1 {
+      handleSingleSelection(of: assets[0], on: navigationController)
+    } else {
+      showSelectionList(with: assets, on: navigationController)
+    }
+  }
+  
+  func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
+    let elements = UploadableExtractor().fetch(from: assets)
+    let editor = SelectionListViewController(elements: elements, delegate: self)
+    navigationController.pushViewController(editor, animated: true)
+  }
+  
+  func handleSingleSelection(of asset: PHAsset, on navigationController: UINavigationController) {
+    if asset.mediaType == .image {
+      showEditor(with: asset, on: navigationController)
+    } else {
+      upload(assets: [asset])
+    }
+  }
+  
+  func showEditor(with singleImageAsset: PHAsset, on navigationController: UINavigationController) {
+    UploadableExtractor().fetchUploadable(of: singleImageAsset) { (uploadable) in
+      guard let image = uploadable as? UIImage else {
+        self.upload(assets: [singleImageAsset])
+        return
+      }
+      navigationController.dismiss(animated: false) {
+        self.viewController.present(self.editor(with: image), animated: false)
+      }
+    }
+  }
+
+  func upload(url: URL) {
     multifileUpload.uploadURLs = [url]
     multifileUpload.uploadFiles()
     filePickedCompletionHandler?(true)
   }
   
-  private func cancelUpload() {
+  func cancelUpload() {
     multifileUpload.cancel()
     filePickedCompletionHandler?(false)
-  }
-  private struct PickerKeys {
-    static let cameraUrl = "UIImagePickerControllerImageURL"
-    static let cameraMediaUrl = "UIImagePickerControllerMediaURL"
-    static let pickerImage = "UIImagePickerControllerOriginalImage"
   }
 }

@@ -13,12 +13,6 @@ extension SelectionListViewController {
     return numberOfCells
   }
   
-//  override func collectionView(_ collectionView: UICollectionView,
-//                               willDisplay cell: UICollectionViewCell,
-//                               forItemAt indexPath: IndexPath) {
-//    guard let cell = collectionView.reuse(SelectionCell.self, for: indexPath) else { return }
-//  }
-  
   override func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = collectionView.reuse(SelectionCell.self, for: indexPath) else { return UICollectionViewCell() }

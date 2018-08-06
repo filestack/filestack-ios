@@ -136,7 +136,7 @@ class BottomEditorToolbar: EditorToolbar {
   }
   
   private func setupItems() {
-    setItems([space, cancel, space, rotate, crop, circle, space, finish, space], animated: false)
+    setItems([cancel, space, rotate, crop, circle, space, finish], animated: false)
   }
   
   var finish: UIBarButtonItem {
