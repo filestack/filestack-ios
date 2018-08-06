@@ -89,14 +89,17 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
     if config.showEditorBeforeUpload {
       showEditor(with: assets, on: controller)
     } else {
+      
       upload(assets: assets)
     }
   }
   
   func upload(assets: [PHAsset]) {
-    let urlList = urlExtractor.fetchUrls(assets)
-    multifileUpload.uploadURLs.append(contentsOf: urlList)
-    multifileUpload.uploadFiles()
+    viewController.dismiss(animated: true) {
+      let urlList = self.urlExtractor.fetchUrls(assets)
+      self.multifileUpload.uploadURLs.append(contentsOf: urlList)
+      self.multifileUpload.uploadFiles()
+    }
   }
   
   func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
@@ -113,46 +116,53 @@ extension ImagePickerUploadController: UploadListDelegate {
   }
   
   func upload(_ elements: [Uploadable]) {
-    multifileUpload.uploadURLs = urlExtractor.fetchUrls(elements)
-    multifileUpload.uploadFiles()
     viewController.dismiss(animated: true) {
-      //TODO: show upload monitor
+      self.multifileUpload.uploadURLs = self.urlExtractor.fetchUrls(elements)
+      self.multifileUpload.uploadFiles()
     }
-    
   }
 }
 
 extension ImagePickerUploadController: UIImagePickerControllerDelegate {
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true) {
-      self.multifileUpload.cancel()
-      self.filePickedCompletionHandler?(false)
+      self.cancelUpload()
     }
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    picker.dismiss(animated: true) {
-      if let imageURL = info["UIImagePickerControllerImageURL"] as? URL {
-        // Upload image from camera roll
-        self.multifileUpload.uploadURLs = [imageURL]
-        self.multifileUpload.uploadFiles()
-      } else if let mediaURL = info["UIImagePickerControllerMediaURL"] as? URL {
-        // Upload media (typically video) from camera roll
-        self.multifileUpload.uploadURLs = [mediaURL]
-        self.multifileUpload.uploadFiles()
-      } else if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-        if let url = self.urlExtractor.fetchUrl(image: image) {
-          self.multifileUpload.uploadURLs.append(url)
-          self.multifileUpload.uploadFiles()
-        } else {
-          self.multifileUpload.cancel()
-        }
-      }
-      self.filePickedCompletionHandler?(true)
+    picker.dismiss(animated: true) { [unowned self] in
+      self.upload(with: info)
     }
   }
   
+  private func upload(with info: [String : Any]) {
+    if let imageURL = info[PickerKeys.cameraUrl] as? URL {
+      upload(url: imageURL)
+    } else if let mediaURL = info[PickerKeys.cameraMediaUrl] as? URL {
+      upload(url: mediaURL)
+    } else if let image = info[PickerKeys.pickerImage] as? UIImage, let url = self.urlExtractor.fetchUrl(image: image) {
+      upload(url: url)
+    } else {
+      cancelUpload()
+    }
+  }
   
+  private func upload(url: URL) {
+    multifileUpload.uploadURLs = [url]
+    multifileUpload.uploadFiles()
+    filePickedCompletionHandler?(true)
+  }
+  
+  private func cancelUpload() {
+    multifileUpload.cancel()
+    filePickedCompletionHandler?(true)
+  }
+  private struct PickerKeys {
+    static let cameraUrl = "UIImagePickerControllerImageURL"
+    static let cameraMediaUrl = "UIImagePickerControllerMediaURL"
+    static let pickerImage = "UIImagePickerControllerOriginalImage"
+  }
 }
 
 extension ImagePickerUploadController: UINavigationControllerDelegate {}

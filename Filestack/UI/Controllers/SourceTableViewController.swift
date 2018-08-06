@@ -187,9 +187,7 @@ private extension SourceTableViewController {
             self.view.isUserInteractionEnabled = true
           
           // Verify responses are available
-          guard responses.count > 0 else {
-              return
-          }
+          guard responses.count > 0 else { return }
 
           let errors = responses.compactMap { $0.error }
           if let error = errors.first {
