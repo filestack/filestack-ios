@@ -16,7 +16,6 @@ internal class ImagePickerUploadController: NSObject {
   
   let multifileUpload: MultifileUpload
   let viewController: UIViewController
-  let picker: UIImagePickerController
   let sourceType: UIImagePickerControllerSourceType
   let config: Config
   
@@ -44,19 +43,27 @@ internal class ImagePickerUploadController: NSObject {
     self.multifileUpload = multifileUpload
     self.viewController = viewController
     self.sourceType = sourceType
-    self.picker = UIImagePickerController()
     self.config = config
   }
   
-  
   func start() {
-    if config.maximumSelectionAllowed == 1 {
-      showNativePicker()
+    if shouldUseCustomPicker {
+      viewController.present(customPicker, animated: true, completion: nil)
+    } else {
+      viewController.present(nativePicker, animated: true, completion: nil)
     }
-    showCustomPicker()
+  }
+}
+
+private extension ImagePickerUploadController {
+  var shouldUseCustomPicker: Bool {
+    let multipleSelectionAllowed = config.maximumSelectionAllowed != 1
+    let editingEnabled = config.showEditorBeforeUpload
+    return multipleSelectionAllowed || editingEnabled
   }
   
-  func showNativePicker() {
+  var nativePicker: UINavigationController  {
+    let picker = UIImagePickerController()
     picker.delegate = self
     picker.modalPresentationStyle = config.modalPresentationStyle
     picker.sourceType = sourceType
@@ -66,16 +73,15 @@ internal class ImagePickerUploadController: NSObject {
       picker.videoExportPreset = config.videoExportPreset
     }
     picker.videoQuality = config.videoQuality
-    
-    viewController.present(picker, animated: true, completion: nil)
+    return picker
   }
-  
-  func showCustomPicker() {
+
+  var customPicker: UINavigationController {
     let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
     picker.delegate = self
     let navigation = picker.navigation
     navigation.modalPresentationStyle = config.modalPresentationStyle
-    viewController.present(navigation, animated: true, completion: nil)
+    return navigation
   }
 }
 
@@ -123,7 +129,7 @@ extension ImagePickerUploadController: UploadListDelegate {
   }
 }
 
-extension ImagePickerUploadController: UIImagePickerControllerDelegate {
+extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true) {
       self.cancelUpload()
@@ -164,5 +170,3 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate {
     static let pickerImage = "UIImagePickerControllerOriginalImage"
   }
 }
-
-extension ImagePickerUploadController: UINavigationControllerDelegate {}

@@ -99,7 +99,11 @@ private extension PhotoPickerController {
 extension PhotoPickerController: AssetSelectionDelegate {
   func add(asset: PHAsset) {
     selectedAssets.insert(asset)
-    updateNavBar()
+    if maximumSelectionAllowed == 1 {
+      dismissWithSelection()
+    } else {
+      updateNavBar()
+    }
   }
   
   func remove(asset: PHAsset) {
