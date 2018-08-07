@@ -10,7 +10,7 @@ import Photos
 
 protocol PhotoPickerControllerDelegate: class {
   func photoPickerControllerDidCancel()
-  func photoPickerControllerFinish(with assets: [PHAsset])
+  func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset])
 }
 
 class PhotoPickerController {
@@ -27,7 +27,11 @@ class PhotoPickerController {
   
   init(maximumSelection: UInt) {
     self.maximumSelectionAllowed = maximumSelection
-    albumRepository.getAlbums() { _ in }
+    albumRepository.getAlbums() { _ in
+      DispatchQueue.main.async {
+        self.albumList.tableView.reloadData()
+      }
+    }
   }
   
   var assetCollection: AssetCollectionViewController {
@@ -74,13 +78,13 @@ class PhotoPickerController {
   }
   
   @objc func dismissWithSelection() {
-    delegate?.photoPickerControllerFinish(with: Array(selectedAssets))
-    navigation.dismiss(animated: true, completion: nil)
+    delegate?.photoPicker(navigation, didSelectAssets: Array(selectedAssets))
   }
 
   @objc func dismissWithoutSelection() {
-    delegate?.photoPickerControllerDidCancel()
-    navigation.dismiss(animated: true, completion: nil)
+    navigation.dismiss(animated: true) {
+      self.delegate?.photoPickerControllerDidCancel()
+    }
   }
 }
 
@@ -95,7 +99,11 @@ private extension PhotoPickerController {
 extension PhotoPickerController: AssetSelectionDelegate {
   func add(asset: PHAsset) {
     selectedAssets.insert(asset)
-    updateNavBar()
+    if maximumSelectionAllowed == 1 {
+      dismissWithSelection()
+    } else {
+      updateNavBar()
+    }
   }
   
   func remove(asset: PHAsset) {

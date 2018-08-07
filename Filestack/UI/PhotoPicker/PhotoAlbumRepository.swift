@@ -36,7 +36,6 @@ class PhotoAlbumRepository {
       self.cachedAlbums = nonEmptyAlbums
       completion?(nonEmptyAlbums)
     }
-
   }
 }
 

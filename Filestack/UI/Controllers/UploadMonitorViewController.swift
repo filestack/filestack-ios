@@ -21,7 +21,7 @@ struct UploadMonitorScene: Scene {
     }
 }
 
-internal class UploadMonitorViewController: UIViewController {
+class UploadMonitorViewController: UIViewController {
 
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -40,7 +40,7 @@ internal class UploadMonitorViewController: UIViewController {
     // MARK: - Internal Functions
 
     func updateProgress(value: Float) {
-
+      
         progressView.progress = value
         cancelButton.isEnabled = progressView.progress < 1.0
     }
