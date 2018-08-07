@@ -13,7 +13,7 @@ final internal class BundleInfo {
 
     private init() {}
 
-    private static let thisBundle = Bundle(for: BundleInfo.self)
+    static let thisBundle = Bundle(for: BundleInfo.self)
 
     /// Returns this bundle's build date
     static let buildDate: String? = thisBundle.infoDictionary?["BuildDate"] as? String

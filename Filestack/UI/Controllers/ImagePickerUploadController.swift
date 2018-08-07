@@ -16,12 +16,23 @@ internal class ImagePickerUploadController: NSObject {
   
   let multifileUpload: MultifileUpload
   let viewController: UIViewController
-  let picker: UIImagePickerController
   let sourceType: UIImagePickerControllerSourceType
   let config: Config
   
-  var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
+  private lazy var urlExtractor: UrlExtractor = {
+    var imagePreset = ImageURLExportPreset.compatible
+    var videoPreset: String = AVAssetExportPresetPassthrough
+    if #available(iOS 11.0, *) {
+      imagePreset = config.imageURLExportPreset
+      videoPreset = config.videoExportPreset
+    }
+    return UrlExtractor(imageExportPreset: imagePreset,
+                        videoExportPreset: videoPreset,
+                        cameraImageQuality: config.imageExportQuality)
+  }()
+  private lazy var uploadableExtractor = UploadableExtractor()
   
+  var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)? = nil
   
   let imageManager = PHCachingImageManager.default()
   
@@ -32,19 +43,27 @@ internal class ImagePickerUploadController: NSObject {
     self.multifileUpload = multifileUpload
     self.viewController = viewController
     self.sourceType = sourceType
-    self.picker = UIImagePickerController()
     self.config = config
   }
   
-  
   func start() {
-    if config.maximumSelectionAllowed == 1 {
-      showNativePicker()
+    if shouldUseCustomPicker {
+      viewController.present(customPicker, animated: true, completion: nil)
+    } else {
+      viewController.present(nativePicker, animated: true, completion: nil)
     }
-    showCustomPicker()
+  }
+}
+
+private extension ImagePickerUploadController {
+  var shouldUseCustomPicker: Bool {
+    let multipleSelectionAllowed = config.maximumSelectionAllowed != 1
+    let editingEnabled = config.showEditorBeforeUpload
+    return multipleSelectionAllowed || editingEnabled
   }
   
-  func showNativePicker() {
+  var nativePicker: UINavigationController  {
+    let picker = UIImagePickerController()
     picker.delegate = self
     picker.modalPresentationStyle = config.modalPresentationStyle
     picker.sourceType = sourceType
@@ -54,193 +73,136 @@ internal class ImagePickerUploadController: NSObject {
       picker.videoExportPreset = config.videoExportPreset
     }
     picker.videoQuality = config.videoQuality
-    
-    viewController.present(picker, animated: true, completion: nil)
+    return picker
   }
-  
-  func showCustomPicker() {
+
+  var customPicker: UINavigationController {
     let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
     picker.delegate = self
     let navigation = picker.navigation
     navigation.modalPresentationStyle = config.modalPresentationStyle
-    viewController.present(navigation, animated: true, completion: nil)
+    return navigation
+  }
+  
+  func editor(with image: UIImage) -> UIViewController {
+    return EditorViewController(image: image, completion: { (image) in
+      guard let image = image, let url = self.urlExtractor.fetchUrl(image: image) else {
+        self.cancelUpload()
+        return
+      }
+      self.upload(url: url)
+    })
   }
 }
 
 extension ImagePickerUploadController: PhotoPickerControllerDelegate {
   func photoPickerControllerDidCancel() {
-    multifileUpload.cancel()
-    filePickedCompletionHandler?(false)
+    cancelUpload()
   }
   
-  func photoPickerControllerFinish(with assets: [PHAsset]) {
-    let urlList = fetchUrl(assets: assets)
-    multifileUpload.uploadURLs.append(contentsOf: urlList)
-    multifileUpload.uploadFiles()
-  }
-  
-  func fetchUrl(assets: [PHAsset]) -> [URL] {
-    let dispatchGroup = DispatchGroup()
-    var urlList = [URL]()
-    for asset in assets {
-      fetchUrl(of: asset, inside: dispatchGroup) { (url) in
-        guard let url = url else {  return }
-        urlList.append(url)
-      }
-    }
-    dispatchGroup.wait()
-    return urlList
-  }
-  
-  func fetchUrl(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
-    dispatchGroup.enter()
-    fetchUrl(of: asset) { (url) in
-      completion(url)
-      dispatchGroup.leave()
-    }
-  }
-  
-  func fetchUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-    switch asset.mediaType {
-    case .image: fetchImageUrl(of: asset, completion: completion)
-    case .video: fetchVideoUrl(of: asset, completion: completion)
-    case .unknown,
-         .audio: completion(nil)
-    }
-  }
-  
-  func fetchVideoUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-    imageManager.requestAVAsset(forVideo: asset, options: videoRequestOptions) { (element, _, _) in
-      guard let element = element, let export = self.videoExportSession(for: element) else {
-        completion(nil)
-        return
-      }
-      export.exportAsynchronously { completion(export.outputURL) }
-    }
-  }
-  
-  var videoRequestOptions: PHVideoRequestOptions {
-    let options = PHVideoRequestOptions()
-    options.version = PHVideoRequestOptionsVersion.current
-    options.deliveryMode = PHVideoRequestOptionsDeliveryMode.highQualityFormat
-    return options
-  }
-  
-  func preferedVideoPreset(for asset: AVAsset) -> String {
-    let compatibilePresets = AVAssetExportSession.exportPresets(compatibleWith: asset)
-    if #available(iOS 11.0, *), compatibilePresets.contains(self.config.videoExportPreset) {
-      return config.videoExportPreset
-    }
-    return AVAssetExportPresetPassthrough
-  }
-  
-  func videoExportSession(for asset: AVAsset) -> AVAssetExportSession? {
-    let export = AVAssetExportSession(asset: asset, presetName: preferedVideoPreset(for: asset))
-    export?.outputURL = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".mov")
-    export?.outputFileType = .mov
-    return export
-  }
-  
-  func fetchImageUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-    asset.fetchImage(forSize: PHImageManagerMaximumSize) { (image) in
-      guard let image = image else {
-        completion(nil)
-        return
-      }
-      var exportedUrl: URL?
-      if #available(iOS 11.0, *), self.config.imageURLExportPreset == .current {
-        exportedUrl = self.exportedHEICImageURL(image: image) ?? self.exportedJPEGImageURL(image: image)
-      } else {
-        exportedUrl = self.exportedJPEGImageURL(image: image)
-      }
-      completion(exportedUrl)
+  func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset]) {
+    if config.showEditorBeforeUpload {
+      showEditor(with: assets, on: controller)
+    } else {
+      upload(assets: assets)
     }
   }
 }
 
-extension ImagePickerUploadController: UIImagePickerControllerDelegate {
+extension ImagePickerUploadController: UploadListDelegate {
+  func resignFromUpload() {
+    cancelUpload()
+  }
   
+  func upload(_ elements: [Uploadable]) {
+    multifileUpload.uploadURLs = self.urlExtractor.fetchUrls(elements)
+    multifileUpload.uploadFiles()
+  }
+}
+
+extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    
     picker.dismiss(animated: true) {
-      self.multifileUpload.cancel()
-      self.filePickedCompletionHandler?(false)
+      self.cancelUpload()
     }
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    
-    picker.dismiss(animated: true) {
-      if let imageURL = info["UIImagePickerControllerImageURL"] as? URL {
-        // Upload image from camera roll
-        self.multifileUpload.uploadURLs = [imageURL]
-        self.multifileUpload.uploadFiles()
-      } else if let mediaURL = info["UIImagePickerControllerMediaURL"] as? URL {
-        // Upload media (typically video) from camera roll
-        self.multifileUpload.uploadURLs = [mediaURL]
-        self.multifileUpload.uploadFiles()
-      } else if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-        var exportedURL: URL?
-        // Export to HEIC or JPEG following according to the image export preset.
-        // On iOS versions before 11, this defaults always to JPEG.
-        if #available(iOS 11.0, *), picker.imageExportPreset == .current {
-          exportedURL = self.exportedHEICImageURL(image: image) ?? self.exportedJPEGImageURL(image: image)
-        } else {
-          exportedURL = self.exportedJPEGImageURL(image: image)
-        }
-        
-        if let url = exportedURL {
-          self.multifileUpload.uploadURLs.append(url)
-          self.multifileUpload.uploadFiles()
-        } else {
-          self.multifileUpload.cancel()
-        }
-      }
-      
-      self.filePickedCompletionHandler?(true)
+    picker.dismiss(animated: true) { [unowned self] in
+      self.upload(with: info)
     }
   }
   
-  
-  // MARK: - Private Functions
-  
-  @available(iOS 11.0, *)
-  private func exportedHEICImageURL(image: UIImage) -> URL? {
-    
-    // Save picture as a temporary HEIC file
-    if let imageData = image.heicRepresentation(quality: config.imageExportQuality) {
-      let filename = UUID().uuidString + ".heic"
-      return writeImageDataToURL(imageData: imageData, filename: filename)
+  private func upload(with info: [String : Any]) {
+    if let imageURL = info[PickerKeys.cameraUrl] as? URL {
+      upload(url: imageURL)
+    } else if let mediaURL = info[PickerKeys.cameraMediaUrl] as? URL {
+      upload(url: mediaURL)
+    } else if let image = info[PickerKeys.pickerImage] as? UIImage, let url = self.urlExtractor.fetchUrl(image: image) {
+      upload(url: url)
+    } else {
+      cancelUpload()
     }
-    
-    return nil
   }
   
-  private func exportedJPEGImageURL(image: UIImage) -> URL? {
-    
-    // Save picture as a temporary JPEG file
-    if let imageData = UIImageJPEGRepresentation(image, CGFloat(config.imageExportQuality)) {
-      let filename = UUID().uuidString + ".jpeg"
-      return writeImageDataToURL(imageData: imageData, filename: filename)
-    }
-    
-    return nil
-  }
-  
-  private func writeImageDataToURL(imageData: Data, filename: String) -> URL? {
-    
-    do {
-      let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory() + filename)
-      try imageData.write(to: tmpURL)
-      
-      return tmpURL
-    } catch {
-      // NO-OP
-      return nil
-    }
+  private struct PickerKeys {
+    static let cameraUrl = "UIImagePickerControllerImageURL"
+    static let cameraMediaUrl = "UIImagePickerControllerMediaURL"
+    static let pickerImage = "UIImagePickerControllerOriginalImage"
   }
 }
 
-extension ImagePickerUploadController: UINavigationControllerDelegate {
+private extension ImagePickerUploadController {
+  func upload(assets: [PHAsset]) {
+    viewController.dismiss(animated: true) {
+      let urlList = self.urlExtractor.fetchUrls(assets)
+      self.multifileUpload.uploadURLs.append(contentsOf: urlList)
+      self.multifileUpload.uploadFiles()
+    }
+  }
   
+  func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
+    if assets.count == 1 {
+      handleSingleSelection(of: assets[0], on: navigationController)
+    } else {
+      showSelectionList(with: assets, on: navigationController)
+    }
+  }
+  
+  func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
+    let elements = UploadableExtractor().fetch(from: assets)
+    let editor = SelectionListViewController(elements: elements, delegate: self)
+    navigationController.pushViewController(editor, animated: true)
+  }
+  
+  func handleSingleSelection(of asset: PHAsset, on navigationController: UINavigationController) {
+    if asset.mediaType == .image {
+      showEditor(with: asset, on: navigationController)
+    } else {
+      upload(assets: [asset])
+    }
+  }
+  
+  func showEditor(with singleImageAsset: PHAsset, on navigationController: UINavigationController) {
+    UploadableExtractor().fetchUploadable(of: singleImageAsset) { (uploadable) in
+      guard let image = uploadable as? UIImage else {
+        self.upload(assets: [singleImageAsset])
+        return
+      }
+      navigationController.dismiss(animated: false) {
+        self.viewController.present(self.editor(with: image), animated: false)
+      }
+    }
+  }
+
+  func upload(url: URL) {
+    multifileUpload.uploadURLs = [url]
+    multifileUpload.uploadFiles()
+    filePickedCompletionHandler?(true)
+  }
+  
+  func cancelUpload() {
+    multifileUpload.cancel()
+    filePickedCompletionHandler?(false)
+  }
 }

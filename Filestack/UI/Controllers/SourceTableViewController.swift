@@ -185,17 +185,20 @@ private extension SourceTableViewController {
             cancellableRequest = nil
             // Re-enable user interaction.
             self.view.isUserInteractionEnabled = true
+          
+          // Verify responses are available
+          guard responses.count > 0 else { return }
 
-            let errors = responses.compactMap { $0.error }
-            if let error = errors.first {
-                self.showErrorAlert(message: error.localizedDescription)
-            } else {
-                self.dismissMonitorViewController()
-            }
+          let errors = responses.compactMap { $0.error }
+          if let error = errors.first {
+              self.showErrorAlert(message: error.localizedDescription)
+          } else {
+              self.dismissMonitorViewController()
+          }
 
-            if let picker = self.navigationController as? PickerNavigationController {
-                picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
-            }
+          if let picker = self.navigationController as? PickerNavigationController {
+              picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
+          }
         }
 
         if let sourceType = sourceType {
