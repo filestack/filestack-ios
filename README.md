@@ -31,7 +31,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 1.3'
+    pod 'Filestack', '~> 1.5'
 end
 ```
 
@@ -52,7 +52,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 1.3`
+`github "filestack/filestack-ios" ~> 1.5`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, `CryptoSwift.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
 
@@ -295,39 +295,15 @@ guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET-H
 
 ```swift
 // Create `Config` object.
-let config = Filestack.Config()
-
 // IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist
-config.appURLScheme = "YOUR-APP-URL-SCHEME"
-
-// Video quality for video recording (and sometimes exporting.)
-config.videoQuality = .typeHigh
-
-if #available(iOS 11.0, *) {
-    // On iOS 11, you can export images in HEIF or JPEG by setting this value to `.current` or `.compatible`
-    // respectively.
-    // Here we state we prefer HEIF for image export.
-    config.imageURLExportPreset = .current
-    // On iOS 11, you can decide what format and quality will be used for exported videos.
-    // Here we state we want to export HEVC at the highest quality.
-    config.videoExportPreset = AVAssetExportPresetHEVCHighestQuality
-}
-
-// Here you can enumerate the available local sources for the picker.
-// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would
-// like to enumerate, let's say the camera source only, you could set it like this:
-//
-//   config.availableLocalSources = [.camera]
-//
-config.availableLocalSources = LocalSource.all()
-
-// Here you can enumerate the available cloud sources for the picker.
-// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would
-// like to enumerate selected cloud sources, you could set these like this:
-//
-//   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]
-//
-config.availableCloudSources = CloudSource.all()
+let config = Filestack.Config()
+  .with(appUrlScheme: "YOUR-APP-URL-SCHEME")
+  .with(videoQuality: .typeHigh)
+  .with(imageUrlExportPreset: .current)
+  .with(maximumSelectionLimit: 10)
+  .withEditorEnabled()
+  .with(availableCloudSources: [.dropbox, .googledrive, .googlephotos, .customSource])
+  .with(availableLocalSources: [.camera])
 ```
 
 #### 3. Setting up Client object
