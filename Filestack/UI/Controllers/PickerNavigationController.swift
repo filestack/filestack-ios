@@ -35,6 +35,9 @@ internal struct PickerNavigationScene: Scene {
 
     /// The picker delegate. Optional
     public weak var pickerDelegate: PickerNavigationControllerDelegate?
+    
+    /// The Icon Tint Color
+    public var iconTintColor: UIColor?
 }
 
 /**

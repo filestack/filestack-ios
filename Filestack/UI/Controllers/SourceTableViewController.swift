@@ -110,7 +110,21 @@ internal class SourceTableViewController: UITableViewController {
             cell.textLabel?.text = source.description
         }
         cell.accessoryType = .disclosureIndicator
-        cell.imageView?.image = UIImage(named: source.iconName, in: Bundle(for: type(of: self)), compatibleWith: nil)
+        
+        let image = UIImage(named: source.iconName, in: Bundle(for: type(of: self)), compatibleWith: nil)
+        
+        // Check if a icon tint color is available
+        if let iconTintColor = (self.navigationController as? PickerNavigationController)?.iconTintColor {
+            // Initialize template image with template rendering mode
+            let templateImage = image?.withRenderingMode(.alwaysTemplate)
+            // Set template image
+            cell.imageView?.image = templateImage
+            // Set imageView tint color
+            cell.imageView?.tintColor = iconTintColor
+        } else {
+            // Set plain image
+            cell.imageView?.image = image
+        }
 
         return cell
     }
