@@ -22,6 +22,13 @@ class SourceTableViewController: UITableViewController {
   private var customSourceName: String? = nil
   private var useCustomSource: Bool = false
   
+  private var viewModel = Stylizer.SourceTableViewModel() {
+    didSet {
+      tableView.backgroundColor = viewModel.tableBackground
+      tableView.separatorColor = viewModel.separatorColor
+    }
+  }
+  
   private weak var uploadMonitorViewController: UploadMonitorViewController?
   
   
@@ -30,8 +37,8 @@ class SourceTableViewController: UITableViewController {
     navigationItem.rightBarButtonItem = cancelBarButton
     
     // Try to obtain `Client` object from navigation controller
-    if let navigationController = navigationController as? PickerNavigationController {
-      inject(client: navigationController.client, storageOptions: navigationController.storeOptions)
+    if let picker = navigationController as? PickerNavigationController {
+      inject(client: picker.client, storageOptions: picker.storeOptions, viewModel: picker.stylizer.sourceTable)
     }
   }
   
@@ -70,6 +77,13 @@ extension SourceTableViewController {
     }
   }
   
+  override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    guard let header = view as? UITableViewHeaderFooterView else { return }
+    header.textLabel?.font = viewModel.headerTextFont
+    header.textLabel?.textColor = viewModel.headerTextColor
+    header.backgroundView?.backgroundColor = viewModel.headerBackgroundColor
+  }
+  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "sourceTVC", for: indexPath)
     guard let source = source(from: indexPath) else { return cell }
@@ -79,8 +93,11 @@ extension SourceTableViewController {
       cell.textLabel?.text = source.description
     }
     cell.accessoryType = .disclosureIndicator
-    cell.imageView?.image = UIImage(named: source.iconName, in: Bundle(for: type(of: self)), compatibleWith: nil)
-    
+    cell.imageView?.image = UIImage.fromFilestackBundle(source.iconName).withRenderingMode(.alwaysTemplate)
+    cell.imageView?.tintColor = viewModel.tintColor
+    cell.textLabel?.textColor = viewModel.cellTextColor
+    cell.textLabel?.font = viewModel.cellTextFont
+    cell.backgroundColor = viewModel.cellBackgroundColor
     return cell
   }
   
@@ -113,16 +130,26 @@ extension SourceTableViewController {
       break
     }
   }
+
+  
+  override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return section == 0 ? 0 : 1
+  }
+  override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return section == 0 ? nil : UIView()
+  }
 }
 
 private extension SourceTableViewController {
   
-  func inject(client: Client, storageOptions: StorageOptions) {
+  func inject(client: Client, storageOptions: StorageOptions, viewModel: Stylizer.SourceTableViewModel) {
     // Keep a reference to the `Client` object so we can use it later.
     self.client = client
     // Keep a reference to the `StoreOptions` object so we can use it later.
     self.storeOptions = storageOptions
     
+    self.viewModel = viewModel
+
     // Get available local sources from config
     self.localSources = client.config.availableLocalSources
     

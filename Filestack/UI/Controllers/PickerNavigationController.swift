@@ -28,6 +28,7 @@ struct PickerNavigationScene: Scene {
 
   internal var client: Client!
   internal var storeOptions: StorageOptions!
+  public let stylizer = Stylizer()
 
   /// The picker delegate. Optional
   public weak var pickerDelegate: PickerNavigationControllerDelegate?

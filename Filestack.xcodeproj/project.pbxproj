@@ -99,6 +99,7 @@
 		BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */; };
 		BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */; };
 		BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */; };
+		BCFFE954211C7E2200F7CB49 /* Stylizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFFE953211C7E2200F7CB49 /* Stylizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,6 +320,7 @@
 		BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosExtensions.swift; sourceTree = "<group>"; };
 		BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumRepository.swift; sourceTree = "<group>"; };
 		BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultifileUpload+Cancellable.swift"; sourceTree = "<group>"; };
+		BCFFE953211C7E2200F7CB49 /* Stylizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stylizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				4546628D1FB6063F00260033 /* CloudItem.swift */,
+				BCFFE953211C7E2200F7CB49 /* Stylizer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 				45CBF4891FBF6D7700891BBD /* CloudItemTableViewCell.swift in Sources */,
 				45DEBA571FBB05F600A267E7 /* UIImage+Squared.swift in Sources */,
 				BC0D160C210DAED700A88F30 /* SelectionCell.swift in Sources */,
+				BCFFE954211C7E2200F7CB49 /* Stylizer.swift in Sources */,
 				4565CEED1FBEE5940043BFBB /* CloudSourceCollectionViewController.swift in Sources */,
 				454054741F98A30F00C12B2F /* Client.swift in Sources */,
 				45DEBA551FBAF48000A267E7 /* Config.swift in Sources */,
