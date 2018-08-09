@@ -88,7 +88,7 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler) {
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) {
 
         let appRedirectURL = generateAppRedirectURL(using: UUID())
 
