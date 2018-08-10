@@ -28,7 +28,7 @@ struct PickerNavigationScene: Scene {
 
   internal var client: Client!
   internal var storeOptions: StorageOptions!
-  public let stylizer = Stylizer()
+  public lazy var stylizer = Stylizer(delegate: self)
 
   /// The picker delegate. Optional
   public weak var pickerDelegate: PickerNavigationControllerDelegate?
@@ -44,4 +44,12 @@ struct PickerNavigationScene: Scene {
 
   /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
   func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse])
+}
+
+extension PickerNavigationController: StylizerDelegate {
+  func updateStyle() {
+    navigationBar.tintColor = stylizer.navBar.tintColor
+    navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: stylizer.navBar.titleColor]
+    navigationBar.barStyle = stylizer.navBar.style
+  }
 }

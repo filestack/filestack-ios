@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol StylizerDelegate: class {
+  func updateStyle()
+}
+
 @objc(FSStylizer) public class Stylizer: NSObject {
   
   struct SourceTableViewModel {
@@ -21,12 +25,24 @@ import Foundation
     var headerTextFont = UIFont.boldSystemFont(ofSize: 17)
     var headerBackgroundColor = UIColor(white: 0.97, alpha: 1)
     
-    var separatorColor = UIColor.green
-    var tableBackground = UIColor.blue
+    var separatorColor = UIColor.appleTableSeparator
+    var tableBackground = UIColor.white
+  }
+  
+  struct NavigationBarViewModel {
+    var tintColor = UIColor.appleBlue
+    var titleColor = UIColor.black
+    var style = UIBarStyle.default
   }
   
   private(set) var sourceTable = SourceTableViewModel()
+  private(set) var navBar = NavigationBarViewModel()
+  private weak var delegate: StylizerDelegate?
   
+  init(delegate: StylizerDelegate) {
+    self.delegate = delegate
+  }
+
   @discardableResult
   public func setSourceTable(tintColor: UIColor) -> Stylizer {
     sourceTable.tintColor = tintColor
@@ -66,6 +82,27 @@ import Foundation
   @discardableResult
   public func setSourceTable(headerBackgroundColor: UIColor) -> Stylizer {
     sourceTable.headerBackgroundColor = headerBackgroundColor
+    return self
+  }
+  
+  @discardableResult
+  public func setNavBar(tintColor: UIColor) -> Stylizer {
+    navBar.tintColor = tintColor
+    delegate?.updateStyle()
+    return self
+  }
+
+  @discardableResult
+  public func setNavBar(titleColor: UIColor) -> Stylizer {
+    navBar.titleColor = titleColor
+    delegate?.updateStyle()
+    return self
+  }
+
+  @discardableResult
+  public func setNavBar(style: UIBarStyle) -> Stylizer {
+    navBar.style = style
+    delegate?.updateStyle()
     return self
   }
 }
