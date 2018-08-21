@@ -84,7 +84,19 @@ protocol StylizerDelegate: class {
     sourceTable.headerBackgroundColor = headerBackgroundColor
     return self
   }
-  
+
+  @discardableResult
+  public func setSourceTable(separatorColor: UIColor) -> Stylizer {
+    sourceTable.separatorColor = separatorColor
+    return self
+  }
+
+  @discardableResult
+  public func setSourceTable(tableBackground: UIColor) -> Stylizer {
+    sourceTable.tableBackground = tableBackground
+    return self
+  }
+
   @discardableResult
   public func setNavBar(tintColor: UIColor) -> Stylizer {
     navBar.tintColor = tintColor
