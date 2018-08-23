@@ -27,6 +27,8 @@ protocol StylizerDelegate: class {
     
     var separatorColor = UIColor.appleTableSeparator
     var tableBackground = UIColor.white
+    
+    var title = "Filestack"
   }
   
   struct NavigationBarViewModel {
@@ -94,6 +96,12 @@ protocol StylizerDelegate: class {
   @discardableResult
   public func setSourceTable(tableBackground: UIColor) -> Stylizer {
     sourceTable.tableBackground = tableBackground
+    return self
+  }
+  
+  @discardableResult
+  public func setSourceTable(title: String) -> Stylizer {
+    sourceTable.title = title
     return self
   }
 

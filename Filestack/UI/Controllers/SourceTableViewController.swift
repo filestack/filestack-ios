@@ -26,6 +26,7 @@ class SourceTableViewController: UITableViewController {
     didSet {
       tableView.backgroundColor = viewModel.tableBackground
       tableView.separatorColor = viewModel.separatorColor
+      title = viewModel.title
     }
   }
   
