@@ -28,6 +28,8 @@ struct PickerNavigationScene: Scene {
 
   internal var client: Client!
   internal var storeOptions: StorageOptions!
+  
+  /// Stylizer used for changing default colors and fonts.
   public lazy var stylizer = Stylizer(delegate: self)
 
   /// The picker delegate. Optional
