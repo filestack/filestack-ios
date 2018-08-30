@@ -8,11 +8,8 @@
 
 import Foundation
 
-
-internal protocol CellDescriptibleSource {
-
+protocol CellDescriptibleSource: CustomStringConvertible {
     var iconName: String { get }
-    var description: String { get }
 }
 
 func ==(lhs: CellDescriptibleSource, rhs: CellDescriptibleSource) -> Bool {
