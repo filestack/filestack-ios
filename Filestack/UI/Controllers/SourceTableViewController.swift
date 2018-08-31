@@ -89,12 +89,12 @@ extension SourceTableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "sourceTVC", for: indexPath)
     guard let source = source(from: indexPath) else { return cell }
     if source == CloudSource.customSource && useCustomSource {
-      cell.textLabel?.text = customSourceName ?? source.description
+      cell.textLabel?.text = customSourceName ?? source.textDescription
     } else {
-      cell.textLabel?.text = source.description
+      cell.textLabel?.text = source.textDescription
     }
     cell.accessoryType = .disclosureIndicator
-    cell.imageView?.image = UIImage.fromFilestackBundle(source.iconName).withRenderingMode(.alwaysTemplate)
+    cell.imageView?.image = source.iconImage
     cell.imageView?.tintColor = viewModel.tintColor
     cell.textLabel?.textColor = viewModel.cellTextColor
     cell.textLabel?.font = viewModel.cellTextFont
@@ -102,33 +102,39 @@ extension SourceTableViewController {
     return cell
   }
   
+  
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let source = source(from: indexPath) else { return }
+    if let localSource = source as? LocalSource {
+      sourceWasSelected(localSource)
+    } else if let cloudSource = source as? CloudSource {
+      sourceWasSelected(cloudSource)
+    }
+  }
+  
+  func sourceWasSelected(_ localSource: LocalSource) {
+    switch localSource.provider {
+    case .camera: upload(sourceType: .camera)
+    case .photoLibrary: upload(sourceType: .photoLibrary)
+    case .documents: upload()
+    }
+  }
+
+  func sourceWasSelected(_ cloudSource: CloudSource) {
+    // Try to retrieve store view type from user defaults, or default to "list"
+    let viewType = UserDefaults.standard.cloudSourceViewType() ?? .list
+    // Navigate to given cloud's "/" path
+    let scene = CloudSourceTabBarScene(client: client,
+                                       storeOptions: storeOptions,
+                                       source: cloudSource,
+                                       customSourceName: customSourceName,
+                                       path: nil,
+                                       nextPageToken: nil,
+                                       viewType: viewType)
     
-    switch source {
-    case LocalSource.camera:
-      upload(sourceType: .camera)
-    case LocalSource.photoLibrary:
-      upload(sourceType: .photoLibrary)
-    case LocalSource.documents:
-      upload()
-    case let cloudSource as CloudSource:
-      // Try to retrieve store view type from user defaults, or default to "list"
-      let viewType = UserDefaults.standard.cloudSourceViewType() ?? .list
-      // Navigate to given cloud's "/" path
-      let scene = CloudSourceTabBarScene(client: client,
-                                         storeOptions: storeOptions,
-                                         source: cloudSource,
-                                         customSourceName: customSourceName,
-                                         path: nil,
-                                         nextPageToken: nil,
-                                         viewType: viewType)
-      
-      if let vc = storyboard?.instantiateViewController(for: scene) {
-        navigationController?.pushViewController(vc, animated: true)
-      }
-    default:
-      break
+    if let vc = storyboard?.instantiateViewController(for: scene) {
+      navigationController?.pushViewController(vc, animated: true)
     }
   }
 
@@ -156,27 +162,32 @@ private extension SourceTableViewController {
     
     // Get available cloud sources from config, but discard "custom source" (if present)
     // We will add it later, only if it is actually enabled in the Developer Portal.
-    self.cloudSources = client.config.availableCloudSources.filter { $0 != .customSource }
+    self.cloudSources = client.config.availableCloudSources.filter { $0.provider != .customSource }
     
-    let wantsToPresentCustomSource = client.config.availableCloudSources.contains(.customSource)
-    
+    fetchCustomSourceSettingsIfNeeded()
+  }
+  
+  func fetchCustomSourceSettingsIfNeeded() {
+    if wantToPresentCustomSource {
+      fetchCustomSourceSettings()
+    }
+  }
+  
+  func fetchCustomSourceSettings() {
     // Fetch configuration info from the API — don't care if it fails.
     client.prefetch { (response) in
       guard let contents = response.contents else { return }
-      
-      // Custom source enabled?
       self.useCustomSource = contents["customsource"] as? Bool ?? false
-      // Try to obtain custom source name
       self.customSourceName = contents["customsource_name"] as? String
-      
-      if self.useCustomSource && wantsToPresentCustomSource {
-        self.cloudSources.append(.customSource)
+      if self.useCustomSource && self.wantToPresentCustomSource {
+        self.cloudSources = self.client.config.availableCloudSources
       }
-      
-      // Refresh the table view
       self.tableView.reloadSections([1], with: .automatic)
     }
-
+  }
+  
+  var wantToPresentCustomSource: Bool {
+    return client.config.availableCloudSources.contains(where: { $0.provider == .customSource})
   }
   
   var cancelBarButton: UIBarButtonItem {
