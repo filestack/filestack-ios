@@ -8,72 +8,55 @@
 
 import Foundation
 
-
-/**
-    Represents a type of local source to be used in the picker.
- */
-@objc(FSLocalSource) public enum LocalSource: UInt {
-
-    /// Camera
-    case camera
-
-    /// Photo Library
-    case photoLibrary
-
-    /// Documents
-    case documents
+/// :nodoc:
+@objc(FSLocalProvider) public enum LocalProvider: UInt {
+  
+  /// Camera
+  case camera
+  
+  /// Photo Library
+  case photoLibrary
+  
+  /// Documents
+  case documents
 }
 
-extension LocalSource: CustomStringConvertible, CellDescriptibleSource {
-
-    /// Returns all the supported sources.
-    public static func all() -> [LocalSource] {
-
-        return [.camera, .photoLibrary, .documents]
-    }
-
-    static func title() -> String {
-
-        return "Local"
-    }
-
-    var iconName: String {
-
-        switch self {
-        case .camera:
-
-            return "icon-camera"
-
-        case .photoLibrary:
-
-            return "icon-photolibrary"
-
-        case .documents:
-
-            return "icon-documents"
-
-        }
-    }
-
-
-    // MARK: - CustomStringConvertible
-
-    /// Returns a `String` representation of self.
-    public var description: String {
-
-        switch self {
-        case .camera:
-
-            return "Camera"
-
-        case .photoLibrary:
-
-            return "Photo Library"
-
-        case .documents:
-
-            return "iOS Files"
-
-        }
-    }
+/**
+ Represents a type of local source to be used in the picker.
+ */
+@objc(FSLocalSource) public class LocalSource: NSObject, CellDescriptibleSource {
+  
+  let provider: LocalProvider
+  let iconImage: UIImage
+  let textDescription: String
+  
+  public init(description: String, image: UIImage, provider: LocalProvider) {
+    self.textDescription = description
+    self.iconImage = image
+    self.provider = provider
+  }
+  
+  /// Camera
+  static var camera = LocalSource(description: "Camera",
+                                  image: .templatedFilestackImage("icon-camera"),
+                                  provider: .camera)
+  
+  /// Photo Library
+  static var photoLibrary = LocalSource(description: "Photo Library",
+                                        image: .templatedFilestackImage("icon-photolibrary"),
+                                        provider: .photoLibrary)
+  
+  /// Documents
+  static var documents = LocalSource(description: "iOS Files",
+                                     image: .templatedFilestackImage("icon-documents"),
+                                     provider: .documents)
+  
+  /// Returns all the supported sources.
+  public static func all() -> [LocalSource] {
+    return [.camera, .photoLibrary, .documents]
+  }
+  
+  static func title() -> String {
+    return "Local"
+  }
 }

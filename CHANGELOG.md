@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.5.1 *(2018-09-04)*
+----------------------------
+
+- Added Stylizer that allows changing colors, fonts, texts, and images.
+
 Version 1.5.0 *(2018-08-07)*
 ----------------------------
 

@@ -310,14 +310,10 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     // MARK: - Private Functions
 
     private func alternateIcon() -> UIImage {
-
+      
         let alternateViewtype = viewType.toggle()
 
-        guard let image = UIImage(named: alternateViewtype.iconName, in: Bundle(for: type(of: self)), compatibleWith: nil) else {
-            fatalError("Unable to find icon for view type \(alternateViewtype).")
-        }
-
-        return image
+        return UIImage.fromFilestackBundle(alternateViewtype.iconName)
     }
 
     private func setupViewtypeButton() {

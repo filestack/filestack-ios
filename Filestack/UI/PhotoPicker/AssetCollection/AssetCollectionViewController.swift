@@ -42,6 +42,9 @@ class AssetCollectionViewController: UICollectionViewController {
 extension AssetCollectionViewController {
   func setupView() {
     view.backgroundColor = .white
+    if #available(iOS 11.0, *) {
+      collectionView?.contentInsetAdjustmentBehavior = .always
+    }
   }
 }
 
@@ -88,9 +91,15 @@ private extension AssetCollectionViewController {
   }
   
   var cellEdge: CGFloat {
-    let totalWidth = view.frame.width
     let totalSpacing = cellSpacing * (columnsCount - 1)
     return (totalWidth - totalSpacing) / columnsCount
+  }
+  
+  var totalWidth: CGFloat {
+    if #available(iOS 11.0, *) {
+      return view.safeAreaLayoutGuide.layoutFrame.width
+    }
+    return view.frame.width
   }
   
   var columnsCount: CGFloat {

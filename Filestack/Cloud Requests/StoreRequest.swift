@@ -78,7 +78,7 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletionHandler) {
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) {
 
         let request = cloudService.storeRequest(provider: provider,
                                                 path: path,

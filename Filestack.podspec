@@ -13,6 +13,6 @@ Pod::Spec.new do |spec|
   spec.resources = ["Filestack/UI/*.storyboard", "Filestack/Resources/*.xcassets"]
 
   spec.dependency 'Alamofire', '~> 4.6'
-  spec.dependency 'FilestackSDK', '~> 1.2.4'
+  spec.dependency 'FilestackSDK', '~> 1.2.7'
   spec.dependency 'SSZipArchive', '~> 2.1'
 end

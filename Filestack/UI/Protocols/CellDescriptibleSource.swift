@@ -8,13 +8,11 @@
 
 import Foundation
 
-
-internal protocol CellDescriptibleSource {
-
-    var iconName: String { get }
-    var description: String { get }
+protocol CellDescriptibleSource {
+  var iconImage: UIImage { get }
+  var textDescription: String { get }
 }
 
 func ==(lhs: CellDescriptibleSource, rhs: CellDescriptibleSource) -> Bool {
-    return lhs.description == rhs.description
+  return lhs.textDescription == rhs.textDescription
 }

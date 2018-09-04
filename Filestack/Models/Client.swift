@@ -325,15 +325,9 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
    If none given, S3 location with default options is assumed.
    */
   public func picker(storeOptions: StorageOptions = StorageOptions(location: .s3)) -> PickerNavigationController {
-    
     let storyboard = UIStoryboard(name: "Picker", bundle: Bundle(for: type(of: self)))
-    
-    let scene = PickerNavigationScene(client: self,
-                                      storeOptions: storeOptions)
-    
-    let fsnc = storyboard.instantiateViewController(for: scene)
-    
-    return fsnc
+    let scene = PickerNavigationScene(client: self, storeOptions: storeOptions)
+    return storyboard.instantiateViewController(for: scene)
   }
   
   /**
