@@ -296,7 +296,7 @@ guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET-H
 ```swift
 // Create `Config` object.
 // IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist
-let config = Filestack.Config()
+let config = Filestack.Config.builder
   .with(appUrlScheme: "YOUR-APP-URL-SCHEME")
   .with(videoQuality: .typeHigh)
   .with(imageUrlExportPreset: .current)
@@ -304,6 +304,7 @@ let config = Filestack.Config()
   .withEditorEnabled()
   .with(availableCloudSources: [.dropbox, .googledrive, .googlephotos, .customSource])
   .with(availableLocalSources: [.camera])
+  .build()
 ```
 
 #### 3. Setting up Client object
