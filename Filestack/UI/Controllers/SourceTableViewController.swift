@@ -44,6 +44,7 @@ class SourceTableViewController: UITableViewController {
   }
   
   @IBAction func cancel(_ sender: AnyObject?) {
+    guard view.isUserInteractionEnabled else { return }
     dismiss(animated: true)
   }
 }

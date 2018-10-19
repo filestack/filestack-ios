@@ -40,7 +40,7 @@ class UploadMonitorViewController: UIViewController {
     // MARK: - Internal Functions
 
     func updateProgress(value: Float) {
-      
+        guard isViewLoaded else { return }
         progressView.progress = value
         cancelButton.isEnabled = progressView.progress < 1.0
     }
