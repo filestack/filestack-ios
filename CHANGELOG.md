@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.5.2 *(2018-10-19)*
+----------------------------
+
+- Fixed bug with dismissing picker after selecting assets for upload and before upload view shows up.
+
 Version 1.5.1 *(2018-09-04)*
 ----------------------------
 
