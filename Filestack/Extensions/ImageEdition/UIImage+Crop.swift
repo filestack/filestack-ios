@@ -12,7 +12,7 @@ import UIKit
 extension UIImage {
   func cropped(by insets: UIEdgeInsets) -> UIImage? {
     guard let imageRef = cgImage else { return nil }
-    let intersection = UIEdgeInsetsInsetRect(cgRect, insets)
+    let intersection = cgRect.inset(by: insets)
     let scaledRect = intersection.scaled(by: scale)
     guard let croppedImage = imageRef.cropping(to: scaledRect) else { return nil }
     return UIImage(cgImage: croppedImage, scale: scale, orientation: .up)

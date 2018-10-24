@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
   func fill(with subview: UIView,
-            connectingEdges: [NSLayoutAttribute] = [.top, .bottom, .left, .right],
+            connectingEdges: [NSLayoutConstraint.Attribute] = [.top, .bottom, .left, .right],
             inset: CGFloat = 0,
             withSafeAreaRespecting useSafeArea: Bool = false) {
     subview.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +20,7 @@ extension UIView {
     connect(edges: connectingEdges, of: subview, inset: inset, withSafeAreaRespecting: useSafeArea)
   }
   
-  func connect(edges: [NSLayoutAttribute],
+  func connect(edges: [NSLayoutConstraint.Attribute],
                of subview: UIView,
                inset: CGFloat = 0,
                withSafeAreaRespecting useSafeArea: Bool = false) {
@@ -32,7 +32,7 @@ extension UIView {
       primaryItem = self
     }
     for edge in edges {
-      let reversedEdges: [NSLayoutAttribute] = [.top, .left, .topMargin, .leftMargin]
+      let reversedEdges: [NSLayoutConstraint.Attribute] = [.top, .left, .topMargin, .leftMargin]
       let offset = reversedEdges.contains(edge) ? -inset : inset
       NSLayoutConstraint(item: primaryItem, attribute: edge, relatedBy: .equal,
                          toItem: subview, attribute: edge, multiplier: 1, constant: offset).isActive = true

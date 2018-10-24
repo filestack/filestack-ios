@@ -40,7 +40,7 @@ class CircleLayer: CALayer {
   private lazy var outsideLayer: CAShapeLayer = {
     let layer = CAShapeLayer()
     layer.path = outsidePath
-    layer.fillRule = kCAFillRuleEvenOdd
+    layer.fillRule = .evenOdd
     layer.backgroundColor = UIColor.black.cgColor
     layer.opacity = 0.7
     return layer

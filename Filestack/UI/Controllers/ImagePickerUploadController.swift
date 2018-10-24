@@ -16,7 +16,7 @@ internal class ImagePickerUploadController: NSObject {
   
   let multifileUpload: MultifileUpload
   let viewController: UIViewController
-  let sourceType: UIImagePickerControllerSourceType
+  let sourceType: UIImagePickerController.SourceType
   let config: Config
   
   private lazy var urlExtractor: UrlExtractor = {
@@ -38,7 +38,7 @@ internal class ImagePickerUploadController: NSObject {
   
   init(multifileUpload: MultifileUpload,
        viewController: UIViewController,
-       sourceType: UIImagePickerControllerSourceType,
+       sourceType: UIImagePickerController.SourceType,
        config: Config) {
     self.multifileUpload = multifileUpload
     self.viewController = viewController
@@ -127,13 +127,14 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
     }
   }
   
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     picker.dismiss(animated: true) { [unowned self] in
       self.upload(with: info)
     }
   }
   
-  private func upload(with info: [String : Any]) {
+  private func upload(with info: [UIImagePickerController.InfoKey : Any]) {
     if let imageURL = info[PickerKeys.cameraUrl] as? URL {
       upload(url: imageURL)
     } else if let mediaURL = info[PickerKeys.cameraMediaUrl] as? URL {
@@ -146,9 +147,9 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
   }
   
   private struct PickerKeys {
-    static let cameraUrl = "UIImagePickerControllerImageURL"
-    static let cameraMediaUrl = "UIImagePickerControllerMediaURL"
-    static let pickerImage = "UIImagePickerControllerOriginalImage"
+    static let cameraUrl = UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerImageURL")
+    static let cameraMediaUrl = UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerMediaURL")
+    static let pickerImage = UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")
   }
 }
 

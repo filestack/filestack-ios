@@ -180,7 +180,7 @@ internal class CloudSourceTableViewController: UITableViewController {
         guard refreshControl == nil else { return }
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
 }
 

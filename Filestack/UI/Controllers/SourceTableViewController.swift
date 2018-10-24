@@ -195,7 +195,7 @@ private extension SourceTableViewController {
     return UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
   }
   
-    func upload(sourceType: UIImagePickerControllerSourceType? = nil) {
+    func upload(sourceType: UIImagePickerController.SourceType? = nil) {
         var cancellableRequest: CancellableRequest? = nil
 
         // Disable user interaction on this view until the file is picked and uploaded.

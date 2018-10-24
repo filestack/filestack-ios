@@ -36,7 +36,7 @@ class CropLayer: CALayer {
   private lazy var outsideLayer: CAShapeLayer = {
     let layer = CAShapeLayer()
     layer.path = outsidePath
-    layer.fillRule = kCAFillRuleEvenOdd
+    layer.fillRule = .evenOdd
     layer.backgroundColor = UIColor.black.cgColor
     layer.opacity = 0.5
     return layer
@@ -98,7 +98,7 @@ private extension CropLayer {
     let horizontalWidth = min(lenght, cropRect.size.width) + thickness
     let verticalWidth = min(lenght, cropRect.size.height)
     let margin = UIEdgeInsets(top: -thickness/2, left: -thickness/2, bottom: -thickness/2, right: -thickness/2)
-    let outerRect = UIEdgeInsetsInsetRect(cropRect, margin)
+    let outerRect = cropRect.inset(by: margin)
     let path = UIBezierPath()
     path.move(to: outerRect.origin.movedBy(y: verticalWidth))
     path.addLine(to: path.currentPoint.movedBy(y: -verticalWidth))

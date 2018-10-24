@@ -193,8 +193,7 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         refreshControl = UIRefreshControl()
 
         if let refreshControl = refreshControl {
-            refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
             collectionView!.addSubview(refreshControl)
             collectionView!.alwaysBounceVertical = true
         }

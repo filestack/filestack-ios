@@ -130,7 +130,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
    */
   @discardableResult
   public func uploadFromImagePicker(viewController: UIViewController,
-                                    sourceType: UIImagePickerControllerSourceType,
+                                    sourceType: UIImagePickerController.SourceType,
                                     storeOptions: StorageOptions = StorageOptions(location: .s3),
                                     useIntelligentIngestionIfAvailable: Bool = true,
                                     queue: DispatchQueue = .main,
