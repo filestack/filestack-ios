@@ -164,7 +164,7 @@ private extension UrlExtractor {
   }
   
   func exportedJPEGImageURL(image: UIImage) -> URL? {
-    if let imageData = UIImageJPEGRepresentation(image, CGFloat(cameraImageQuality)) {
+    if let imageData = image.jpegData(compressionQuality: CGFloat(cameraImageQuality)) {
       let filename = UUID().uuidString + ".jpeg"
       return writeImageDataToURL(imageData: imageData, filename: filename)
     }

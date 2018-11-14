@@ -103,7 +103,7 @@ private extension AssetCollectionViewController {
   }
   
   var columnsCount: CGFloat {
-    let isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation)
+    let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
     return isPortrait ? 4 : 7
   }
   

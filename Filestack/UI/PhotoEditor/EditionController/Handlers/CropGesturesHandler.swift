@@ -31,7 +31,7 @@ class CropGesturesHandler {
   }
   
   var croppedRect: CGRect {
-    return UIEdgeInsetsInsetRect(delegate.imageFrame, cropInsets)
+    return delegate.imageFrame.inset(by: cropInsets)
   }
   
   var actualEdgeInsets: UIEdgeInsets {
@@ -97,7 +97,7 @@ private extension CropGesturesHandler {
 }
 
 private extension CropGesturesHandler {
-  func handle(translation: CGPoint, from origin: CGPoint, forState state: UIGestureRecognizerState) {
+  func handle(translation: CGPoint, from origin: CGPoint, forState state: UIGestureRecognizer.State) {
     switch state {
     case .began:
       beginInset = relativeCropInsets

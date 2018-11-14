@@ -47,7 +47,7 @@ private extension SelectionListViewController {
   }
   
   private var columnsCount: CGFloat {
-    let isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation)
+    let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
     return isPortrait ? 3 : 5
   }
   

@@ -51,7 +51,7 @@ struct PickerNavigationScene: Scene {
 extension PickerNavigationController: StylizerDelegate {
   func updateStyle() {
     navigationBar.tintColor = stylizer.navBar.tintColor
-    navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: stylizer.navBar.titleColor]
+    navigationBar.titleTextAttributes = [.foregroundColor: stylizer.navBar.titleColor]
     navigationBar.barStyle = stylizer.navBar.style
   }
 }

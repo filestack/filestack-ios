@@ -30,7 +30,7 @@ import AVFoundation.AVAssetExportSession
     private var imageUrlExportPreset: ImageURLExportPreset?
     private var imageExportQuality: Float = 0.85
     private var videoExportPreset: String?
-    private var videoQuality: UIImagePickerControllerQualityType = .typeMedium
+    private var videoQuality: UIImagePickerController.QualityType = .typeMedium
     
     public func with(appUrlScheme: String) -> Self {
       self.appUrlScheme = appUrlScheme
@@ -81,7 +81,7 @@ import AVFoundation.AVAssetExportSession
       return self
     }
 
-    public func with(videoQuality: UIImagePickerControllerQualityType) -> Self {
+    public func with(videoQuality: UIImagePickerController.QualityType) -> Self {
       self.videoQuality = videoQuality
       return self
     }
@@ -190,5 +190,5 @@ import AVFoundation.AVAssetExportSession
   /// lower quality.
   ///
   /// The default value is `.typeMedium`
-  public var videoQuality: UIImagePickerControllerQualityType = .typeMedium
+  public var videoQuality: UIImagePickerController.QualityType = .typeMedium
 }

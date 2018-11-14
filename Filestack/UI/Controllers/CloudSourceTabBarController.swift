@@ -140,7 +140,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             self.items = items
 
             // Notify any data source consumer childs that the data source (this object) has received initial results.
-            for child in self.childViewControllers {
+            for child in self.children {
                 (child as? CloudSourceDataSourceConsumer)?.dataSourceReceivedInitialResults(dataSource: self)
             }
         }

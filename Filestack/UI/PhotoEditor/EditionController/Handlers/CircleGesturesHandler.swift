@@ -122,7 +122,7 @@ extension CircleGesturesHandler {
 
 // MARK: Translation
 private extension CircleGesturesHandler {
-  func handle(translation: CGPoint, from origin: CGPoint, forState state: UIGestureRecognizerState) {
+  func handle(translation: CGPoint, from origin: CGPoint, forState state: UIGestureRecognizer.State) {
     switch state {
     case .began:
       beginCircle = relativeCircle
@@ -161,7 +161,7 @@ private extension CircleGesturesHandler {
 
 // MARK: Resize
 private extension CircleGesturesHandler {
-  func handle(scaling: CGFloat, center: CGPoint, forState state: UIGestureRecognizerState) {
+  func handle(scaling: CGFloat, center: CGPoint, forState state: UIGestureRecognizer.State) {
     switch state {
     case .began:
       beginCircle = relativeCircle
