@@ -115,8 +115,13 @@ extension ImagePickerUploadController: UploadListDelegate {
   }
   
   func upload(_ elements: [Uploadable]) {
-    multifileUpload.uploadURLs = self.urlExtractor.fetchUrls(elements)
-    multifileUpload.uploadFiles()
+    urlExtractor.fetchUrls(elements) { [weak self] urlList in
+      guard let self = self else {
+        return
+      }
+      self.multifileUpload.uploadURLs = urlList
+      self.multifileUpload.uploadFiles()
+    }
   }
 }
 
@@ -155,10 +160,19 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
 
 private extension ImagePickerUploadController {
   func upload(assets: [PHAsset]) {
-    viewController.dismiss(animated: true) {
-      let urlList = self.urlExtractor.fetchUrls(assets)
-      self.multifileUpload.uploadURLs.append(contentsOf: urlList)
-      self.multifileUpload.uploadFiles()
+    viewController.dismiss(animated: true) { [weak self] in
+      guard let self = self else {
+        return
+      }
+    
+      self.urlExtractor.fetchUrls(assets, completion: { [weak self] (urlList) in
+        guard let self = self else {
+          return
+        }
+        
+        self.multifileUpload.uploadURLs.append(contentsOf: urlList)
+        self.multifileUpload.uploadFiles()
+      })
     }
   }
   

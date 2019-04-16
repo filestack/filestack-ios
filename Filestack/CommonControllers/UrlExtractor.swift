@@ -23,7 +23,7 @@ class UrlExtractor {
     self.cameraImageQuality = cameraImageQuality
   }
   
-  func fetchUrls(_ elements: [Uploadable]) -> [URL] {
+  func fetchUrls(_ elements: [Uploadable], completion: @escaping ([URL]) -> Void) {
     let dispatchGroup = DispatchGroup()
     var urlList = [URL]()
     let serialQueue = DispatchQueue(label: "serialQueue")
@@ -33,11 +33,12 @@ class UrlExtractor {
         serialQueue.sync { urlList.append(url) }
       }
     }
-    dispatchGroup.wait()
-    return urlList
+    dispatchGroup.notify(queue: .main) {
+      completion(urlList)
+    }
   }
-  
-  func fetchUrls(_ assets: [PHAsset]) -> [URL] {
+
+  func fetchUrls(_ assets: [PHAsset], completion: @escaping ([URL]) -> Void) {
     let dispatchGroup = DispatchGroup()
     var urlList = [URL]()
     let serialQueue = DispatchQueue(label: "serialQueue")
@@ -47,8 +48,9 @@ class UrlExtractor {
         serialQueue.sync { urlList.append(url) }
       }
     }
-    dispatchGroup.wait()
-    return urlList
+    dispatchGroup.notify(queue: .main) {
+      completion(urlList)
+    }
   }
   
   func fetchUrl(image: UIImage) -> URL? {
