@@ -10,7 +10,7 @@ import Foundation
 import FilestackSDK
 import AVFoundation.AVAssetExportSession
 import Photos
-
+import SVProgressHUD
 
 internal class ImagePickerUploadController: NSObject {
   
@@ -160,20 +160,24 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
 
 private extension ImagePickerUploadController {
   func upload(assets: [PHAsset]) {
-    viewController.dismiss(animated: true) { [weak self] in
+    SVProgressHUD.show(withStatus: "Preparing")
+    
+    self.urlExtractor.fetchUrls(assets, completion: { [weak self] (urlList) in
       guard let self = self else {
         return
       }
-    
-      self.urlExtractor.fetchUrls(assets, completion: { [weak self] (urlList) in
+      
+      SVProgressHUD.dismiss()
+
+      self.viewController.dismiss(animated: true) { [weak self] in
         guard let self = self else {
           return
         }
         
         self.multifileUpload.uploadURLs.append(contentsOf: urlList)
         self.multifileUpload.uploadFiles()
-      })
-    }
+      }
+    })
   }
   
   func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {

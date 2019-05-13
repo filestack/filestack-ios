@@ -15,4 +15,5 @@ Pod::Spec.new do |spec|
   spec.dependency 'Alamofire', '<5.0'
   spec.dependency 'FilestackSDK'
   spec.dependency 'SSZipArchive'
+  spec.dependency 'SVProgressHUD'
 end
