@@ -6,7 +6,7 @@
 	url = https://github.com/Alamofire/Alamofire.git
 [submodule "Carthage/Checkouts/filestack-swift"]
 	path = Carthage/Checkouts/filestack-swift
-	url = https://github.com/filestack/filestack-swift.git
+	url = https://github.com/edcast/filestack-swift.git
 [submodule "Carthage/Checkouts/CryptoSwift"]
 	path = Carthage/Checkouts/CryptoSwift
 	url = https://github.com/krzyzanowskim/CryptoSwift.git
