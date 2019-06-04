@@ -1,0 +1,5 @@
+git "file:///Users/ruben/src/fs2019/filestack-swift" "3dd22af584d9b2bc71d8b623d39de29066044670"
+github "Alamofire/Alamofire" "4.8.2"
+github "AliSoftware/OHHTTPStubs" "7.0.0"
+github "ZipArchive/ZipArchive" "v2.2.2"
+github "krzyzanowskim/CryptoSwift" "0.15.0"

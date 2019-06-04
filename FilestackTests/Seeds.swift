@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import FilestackSDK
+import FilestackSDK
 
 struct Seeds {
 
