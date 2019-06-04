@@ -7,12 +7,12 @@ Pod::Spec.new do |spec|
   spec.summary      = 'Official iOS SDK for Filestack.'
   spec.source       = { :git => 'https://github.com/filestack/filestack-ios.git', :tag => spec.version }
 
-  spec.ios.deployment_target  = '9.0'
+  spec.ios.deployment_target  = '11.0'
 
   spec.source_files = 'Filestack/**/*.{h,swift}'
   spec.resources = ["Filestack/UI/*.storyboard", "Filestack/Resources/*.xcassets"]
-  
-  spec.dependency 'Alamofire', '4.7.3'
+
+  spec.dependency 'Alamofire', '~> 4.8'
   spec.dependency 'FilestackSDK', '1.3.0'
-  spec.dependency 'SSZipArchive', '2.1.4'
+  spec.dependency 'SSZipArchive', '2.2.2'
 end
