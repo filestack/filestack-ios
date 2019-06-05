@@ -123,6 +123,7 @@ class ViewController: UIViewController {
 
 extension ViewController: PickerNavigationControllerDelegate {
 
+    /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
 
         if let contents = response.contents {
@@ -134,14 +135,16 @@ extension ViewController: PickerNavigationControllerDelegate {
         }
     }
 
-    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
-
-        if let contents = response?.json {
-            // Our local file was stored into the destination location.
-            print("Uploaded file response: \(contents)")
-        } else if let error = response?.error {
-            // The upload operation failed.
-            print("Error uploading file: \(error)")
+    /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
+    func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse]) {
+        for response in responses {
+            if let contents = response.json {
+                // Our local file was stored into the destination location.
+                print("Uploaded file response: \(contents)")
+            } else if let error = response.error {
+                // The upload operation failed.
+                print("Error uploading file: \(error)")
+            }
         }
     }
 }
