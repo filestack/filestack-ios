@@ -1,3 +1,3 @@
 github "Alamofire/Alamofire" ~> 4.8
 github "ZipArchive/ZipArchive" "v2.2.2"
-github "filestack/filestack-swift" "review-0609"
+github "filestack/filestack-swift" "develop"

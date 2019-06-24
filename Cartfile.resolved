@@ -1,5 +1,5 @@
 github "Alamofire/Alamofire" "4.8.2"
 github "AliSoftware/OHHTTPStubs" "7.0.0"
 github "ZipArchive/ZipArchive" "v2.2.2"
-github "filestack/filestack-swift" "405f561096fb1a32da9c0f59b6ce28ab16bdf3e6"
+github "filestack/filestack-swift" "3d1222fa7e282474db52020da1195e014a7e774b"
 github "krzyzanowskim/CryptoSwift" "0.15.0"
