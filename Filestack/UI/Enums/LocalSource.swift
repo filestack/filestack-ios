@@ -37,17 +37,17 @@ import Foundation
   }
   
   /// Camera
-  static var camera = LocalSource(description: "Camera",
+  public static var camera = LocalSource(description: "Camera",
                                   image: .templatedFilestackImage("icon-camera"),
                                   provider: .camera)
   
   /// Photo Library
-  static var photoLibrary = LocalSource(description: "Photo Library",
+  public static var photoLibrary = LocalSource(description: "Photo Library",
                                         image: .templatedFilestackImage("icon-photolibrary"),
                                         provider: .photoLibrary)
   
   /// Documents
-  static var documents = LocalSource(description: "iOS Files",
+  public static var documents = LocalSource(description: "iOS Files",
                                      image: .templatedFilestackImage("icon-documents"),
                                      provider: .documents)
   

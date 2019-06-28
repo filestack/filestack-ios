@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import Filestack
-@testable import FilestackSDK
+import FilestackSDK
 import OHHTTPStubs
 
 

@@ -392,15 +392,6 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
             self.safariAuthSession = safariAuthSession
             
             safariAuthSession.start()
-          } else if #available(iOS 10, *) {
-            UIApplication.shared.open(authURL) { success in
-              if success {
-                self.addPendingRequest(appRedirectURL: authRedirectURL,
-                                       request: request,
-                                       queue: queue,
-                                       completionBlock: completionBlock)
-              }
-            }
           } else {
             if UIApplication.shared.openURL(authURL) {
               self.addPendingRequest(appRedirectURL: authRedirectURL,

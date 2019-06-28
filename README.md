@@ -1,6 +1,6 @@
 # Filestack iOS SDK
 
-<a href="https://www.filestack.com"><img src="https://filestack.com/themes/filestack/assets/images/press-articles/color.svg" align="left" hspace="10" vspace="6"></a>
+<a href="https://www.filestack.com"><img src="https://www.filestack.com/docs/images/fs-logo-dark.svg" align="left" hspace="10" vspace="6"></a>
 This is the official Swift iOS for Filestack — API and content management system that makes it easy to add powerful file uploading and transformation capabilities to any web or mobile application.
 
 ## Resources
@@ -11,9 +11,9 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 ## Requirements
 
-* Xcode 8.3 or later
-* Swift 3.2 / Objective-C
-* iOS 9 or later
+* Xcode 10.2 or later
+* Swift 4.2 / Objective-C
+* iOS 11 or later
 
 ## Installing
 
@@ -27,7 +27,7 @@ To integrate Filestack into your Xcode project using CocoaPods, specify it in yo
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
