@@ -6,27 +6,21 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import FilestackSDK
-
+import UIKit
 
 private extension String {
-
     static let cloudItemReuseIdentifier = "CloudItemTableViewCell"
     static let activityIndicatorReuseIdentifier = "ActivityIndicatorTableViewCell"
 }
 
-
 internal class CloudSourceTableViewController: UITableViewController {
-
     private weak var dataSource: (CloudSourceDataSource)!
-
 
     // MARK: - View Overrides
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
 
         // Get reference to data source
@@ -44,29 +38,24 @@ internal class CloudSourceTableViewController: UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-
         super.viewDidAppear(animated)
 
         tableView.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-
         refreshControl?.endRefreshing()
 
         super.viewWillDisappear(animated)
     }
 
-
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-
+    override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
 
@@ -83,7 +72,6 @@ internal class CloudSourceTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         var cell: UITableViewCell
 
         // If there's no items, or we are one past the item count, then dequeue an activity indicator cell,
@@ -115,7 +103,7 @@ internal class CloudSourceTableViewController: UITableViewController {
                 // Use a placeholder until we get the real thumbnail
                 cell.imageView?.image = UIImage(named: "placeholder", in: Bundle(for: type(of: self)), compatibleWith: nil)
 
-                dataSource.cacheThumbnail(for: item, completionHandler: { (image) in
+                dataSource.cacheThumbnail(for: item, completionHandler: { image in
                     // Update the cell's thumbnail picture.
                     // To find the right cell to update, first we try using table view's `cellForRow(at:)`, which may
                     // or not return a cell. If it doesn't, we use collection view's `reloadRows(at:)` passing the index path
@@ -142,8 +130,7 @@ internal class CloudSourceTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return }
 
         if item.isFolder {
@@ -153,10 +140,9 @@ internal class CloudSourceTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+    override func tableView(_: UITableView, willDisplay _: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == dataSource.items?.count {
-            dataSource.loadNextPage() {
+            dataSource.loadNextPage {
                 self.tableView.reloadData()
             }
         }
@@ -164,19 +150,16 @@ internal class CloudSourceTableViewController: UITableViewController {
 
     // MARK: - Actions
 
-    @IBAction func refresh(_ sender: Any) {
-
+    @IBAction func refresh(_: Any) {
         dataSource.refresh {
             self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
         }
     }
 
-    
-    // MARK - Private Functions
+    // MARK: - Private Functions
 
     fileprivate func setupRefreshControl() {
-
         guard refreshControl == nil else { return }
 
         refreshControl = UIRefreshControl()
@@ -185,9 +168,7 @@ internal class CloudSourceTableViewController: UITableViewController {
 }
 
 extension CloudSourceTableViewController: CloudSourceDataSourceConsumer {
-
-    func dataSourceReceivedInitialResults(dataSource: CloudSourceDataSource) {
-
+    func dataSourceReceivedInitialResults(dataSource _: CloudSourceDataSource) {
         // Reload table view's data
         tableView.reloadData()
         // Setup refresh control

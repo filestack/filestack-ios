@@ -8,7 +8,4 @@
 
 import UIKit
 
-
-class CloudItemTableViewCell : UITableViewCell {
-
-}
+class CloudItemTableViewCell: UITableViewCell {}

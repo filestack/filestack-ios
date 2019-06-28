@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIImage {
-  var cgRect: CGRect {
-    return CGRect(origin: .zero, size: size)
-  }
+    var cgRect: CGRect {
+        return CGRect(origin: .zero, size: size)
+    }
 }

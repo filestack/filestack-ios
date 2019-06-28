@@ -9,29 +9,29 @@
 import UIKit
 
 extension CGPoint {
-  enum Metric {
-    case euclidean
-    case manhattan
-    case maximum
-  }
-  
-  func distance(to point: CGPoint, metric: Metric = .euclidean) -> CGFloat {
-    switch metric {
-    case .euclidean: return euclideanDistance(to: point)
-    case .manhattan: return manhattanDistance(to: point)
-    case .maximum: return maximumDistance(to: point)
+    enum Metric {
+        case euclidean
+        case manhattan
+        case maximum
     }
-  }
-  
-  func euclideanDistance(to point: CGPoint) -> CGFloat {
-    return sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
-  }
-  
-  func manhattanDistance(to point: CGPoint) -> CGFloat {
-    return abs(x - point.x) + abs(y - point.y)
-  }
-  
-  func maximumDistance(to point: CGPoint) -> CGFloat {
-    return max(abs(x - point.x), abs(y - point.y))
-  }
+
+    func distance(to point: CGPoint, metric: Metric = .euclidean) -> CGFloat {
+        switch metric {
+        case .euclidean: return euclideanDistance(to: point)
+        case .manhattan: return manhattanDistance(to: point)
+        case .maximum: return maximumDistance(to: point)
+        }
+    }
+
+    func euclideanDistance(to point: CGPoint) -> CGFloat {
+        return sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
+    }
+
+    func manhattanDistance(to point: CGPoint) -> CGFloat {
+        return abs(x - point.x) + abs(y - point.y)
+    }
+
+    func maximumDistance(to point: CGPoint) -> CGFloat {
+        return max(abs(x - point.x), abs(y - point.y))
+    }
 }

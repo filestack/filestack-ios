@@ -8,12 +8,10 @@
 
 import Foundation
 
-
 /**
-    Represents a cloud provider.
+ Represents a cloud provider.
  */
 @objc(FSCloudProvider) public enum CloudProvider: UInt, CustomStringConvertible {
-
     /// Facebook
     case facebook
 
@@ -47,12 +45,10 @@ import Foundation
     /// Custom Source
     case customSource
 
-
     // MARK: - CustomStringConvertible
 
     /// Returns a `String` representation of self.
     public var description: String {
-
         switch self {
         case .facebook:
 

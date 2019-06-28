@@ -9,18 +9,18 @@
 import UIKit
 
 private extension UICollectionViewCell {
-  class var reuseIdentifier: String {
-    return String(describing: self)
-  }
+    class var reuseIdentifier: String {
+        return String(describing: self)
+    }
 }
 
 extension UICollectionView {
-  func register<Cell: UICollectionViewCell>(_ cell: Cell.Type) {
-    register(cell, forCellWithReuseIdentifier: cell.reuseIdentifier)
-  }
-  
-  func reuse<Cell: UICollectionViewCell>(_ cell: Cell.Type, for indexPath: IndexPath) -> Cell? {
-    let reusable = dequeueReusableCell(withReuseIdentifier: cell.reuseIdentifier, for: indexPath)
-    return reusable as? Cell
-  }  
+    func register<Cell: UICollectionViewCell>(_ cell: Cell.Type) {
+        register(cell, forCellWithReuseIdentifier: cell.reuseIdentifier)
+    }
+
+    func reuse<Cell: UICollectionViewCell>(_ cell: Cell.Type, for indexPath: IndexPath) -> Cell? {
+        let reusable = dequeueReusableCell(withReuseIdentifier: cell.reuseIdentifier, for: indexPath)
+        return reusable as? Cell
+    }
 }

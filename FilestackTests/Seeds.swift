@@ -6,13 +6,11 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Foundation
 import FilestackSDK
+import Foundation
 
 struct Seeds {
-
     struct Policies {
-
         static let minimal = Policy(
             expiry: Date(timeIntervalSince1970: 12345)
         )
@@ -30,7 +28,6 @@ struct Seeds {
     }
 
     struct Securities {
-
         static let basic = try! Security(
             policy: Seeds.Policies.basic,
             appSecret: "APP-SECRET"

@@ -9,10 +9,10 @@
 import Foundation
 
 protocol CellDescriptibleSource {
-  var iconImage: UIImage { get }
-  var textDescription: String { get }
+    var iconImage: UIImage { get }
+    var textDescription: String { get }
 }
 
-func ==(lhs: CellDescriptibleSource, rhs: CellDescriptibleSource) -> Bool {
-  return lhs.textDescription == rhs.textDescription
+func == (lhs: CellDescriptibleSource, rhs: CellDescriptibleSource) -> Bool {
+    return lhs.textDescription == rhs.textDescription
 }

@@ -6,24 +6,21 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import FilestackSDK
-
+import UIKit
 
 internal struct CloudSourceTabBarScene: Scene {
-
     let client: Client
     let storeOptions: StorageOptions
     let source: CloudSource
 
-    var customSourceName: String? = nil
-    var path: String? = nil
-    var nextPageToken: String? = nil
+    var customSourceName: String?
+    var path: String?
+    var nextPageToken: String?
     var viewType: CloudSourceViewType
 
     func configureViewController(_ viewController: CloudSourceTabBarController) {
-
         // Inject the dependencies
         viewController.client = client
         viewController.storeOptions = storeOptions
@@ -35,19 +32,16 @@ internal struct CloudSourceTabBarScene: Scene {
     }
 }
 
-
 internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
-
     var client: Client!
     var storeOptions: StorageOptions!
     var source: CloudSource!
     var path: String!
     var nextPageToken: String?
 
-    internal private(set) var items: [CloudItem]? = nil
+    internal private(set) var items: [CloudItem]?
 
     let thumbnailCache: NSCache<NSURL, UIImage> = {
-
         let cache = NSCache<NSURL, UIImage>()
 
         cache.countLimit = 1000
@@ -58,7 +52,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     var viewType: CloudSourceViewType!
 
     private var requestInProgress: Bool {
-
         return currentRequest != nil
     }
 
@@ -68,18 +61,16 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     private var thumbnailRequests: [DataRequest] = [DataRequest]()
     private weak var uploadMonitorViewController: UploadMonitorViewController?
 
-    fileprivate var customSourceName: String? = nil
-
+    fileprivate var customSourceName: String?
 
     // MARK: - View Overrides
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
 
         // For all the sources except the custom source, we obtain its name by asking about its description,
         // however, for the custom source name we obtain this value separately.
-        if source == .customSource && customSourceName != nil {
+        if source == .customSource, customSourceName != nil {
             title = customSourceName
         } else {
             title = source.description
@@ -93,7 +84,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             let logoutImage = UIImage(named: "icon-logout", in: Bundle(for: type(of: self)), compatibleWith: nil)
 
             navigationItem.rightBarButtonItems = [
-                UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(logout))
+                UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(logout)),
             ]
         } else {
             navigationItem.rightBarButtonItems = []
@@ -101,7 +92,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     }
 
     override func viewWillAppear(_ animated: Bool) {
-
         super.viewWillAppear(animated)
 
         selectedIndex = viewType.rawValue
@@ -110,7 +100,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         guard items == nil else { return }
 
         // Request folder list, and notify the selected view controller when done.
-        currentRequest = requestFolderList(source: source, path: path) { (response) in
+        currentRequest = requestFolderList(source: source, path: path) { response in
             self.currentRequest = nil
 
             // Got an error, present error and pop to root view controller (i.e., source list selection)
@@ -119,7 +109,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                                               message: error.localizedDescription,
                                               preferredStyle: .alert)
 
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                     // Dismiss monitor view controller, and remove strong reference to it
                     self.navigationController?.popToRootViewController(animated: true)
                 }))
@@ -147,7 +137,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-
         currentRequest?.cancel()
         cancelPendingThumbnailRequests()
 
@@ -157,8 +146,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     // MARK: - CloudSourceDataSource Protocol Functions
 
     func store(item: CloudItem) {
-
-        var cancellableRequest: CancellableRequest? = nil
+        var cancellableRequest: CancellableRequest?
 
         // Instantiate upload monitor controller
         let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
@@ -175,7 +163,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             }
         }
 
-        let completionHandler: ((StoreResponse) -> Void) = { (response) in
+        let completionHandler: ((StoreResponse) -> Void) = { response in
             // Nil the reference to the request object, so it can be properly deallocated.
             cancellableRequest = nil
 
@@ -184,7 +172,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                                               message: error.localizedDescription,
                                               preferredStyle: .alert)
 
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                     // Dismiss monitor view controller, and remove strong reference to it
                     uploadMonitorViewController.dismiss(animated: true) {
                         self.uploadMonitorViewController = nil
@@ -215,32 +203,30 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     }
 
     func loadNextPage(completionHandler: @escaping (() -> Void)) {
-
         guard let nextPageToken = nextPageToken, !requestInProgress else { return }
 
         currentRequest = requestFolderList(source: source,
                                            path: path,
-                                           pageToken: nextPageToken) { (response) in
-                                            self.currentRequest = nil
+                                           pageToken: nextPageToken) { response in
+            self.currentRequest = nil
 
-                                            guard let contents = response.contents else { return }
+            guard let contents = response.contents else { return }
 
-                                            let items = contents.compactMap { CloudItem(dictionary: $0) }
+            let items = contents.compactMap { CloudItem(dictionary: $0) }
 
-                                            self.nextPageToken = response.nextToken
-                                            self.items?.append(contentsOf: items)
+            self.nextPageToken = response.nextToken
+            self.items?.append(contentsOf: items)
 
-                                            completionHandler()
+            completionHandler()
         }
     }
 
     func refresh(completionHandler: @escaping (() -> Void)) {
-
-        guard !requestInProgress && items != nil else { return }
+        guard !requestInProgress, items != nil else { return }
 
         cancelPendingThumbnailRequests()
 
-        currentRequest = requestFolderList(source: source, path: path) { (response) in
+        currentRequest = requestFolderList(source: source, path: path) { response in
             self.currentRequest = nil
 
             guard let contents = response.contents else { return }
@@ -254,17 +240,16 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     }
 
     func cacheThumbnail(for item: CloudItem, completionHandler: @escaping ((UIImage) -> Void)) {
-
         let cachePolicy = client.config.cloudThumbnailCachePolicy
         let urlRequest = URLRequest(url: item.thumbnailURL, cachePolicy: cachePolicy)
 
-        var request: DataRequest! = nil
+        var request: DataRequest!
 
         // Request thumbnail
 
         request = sessionManager.request(urlRequest)
             .validate(contentType: ["image/*"])
-            .responseData(completionHandler: { (response) in
+            .responseData(completionHandler: { response in
                 // Remove request from thumbnail requests
                 if let idx = (self.thumbnailRequests.index { $0.task == request.task }) {
                     self.thumbnailRequests.remove(at: idx)
@@ -292,7 +277,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     }
 
     func navigate(to item: CloudItem) {
-
         let scene = CloudSourceTabBarScene(client: client,
                                            storeOptions: storeOptions,
                                            source: source,
@@ -306,18 +290,15 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         }
     }
 
-    
     // MARK: - Private Functions
 
     private func alternateIcon() -> UIImage {
-      
         let alternateViewtype = viewType.toggle()
 
         return UIImage.fromFilestackBundle(alternateViewtype.iconName)
     }
 
     private func setupViewtypeButton() {
-
         if toggleViewTypeButton == nil {
             toggleViewTypeButton = UIBarButtonItem(image: alternateIcon(), style: .plain, target: self, action: #selector(toggleViewType))
             navigationItem.rightBarButtonItems?.append(toggleViewTypeButton!)
@@ -330,7 +311,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                                    path: String,
                                    pageToken: String? = nil,
                                    completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
-
         return client.folderList(provider: source.provider,
                                  path: path,
                                  pageToken: pageToken,
@@ -339,7 +319,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     }
 
     private func cancelPendingThumbnailRequests() {
-
         for request in thumbnailRequests {
             request.cancel()
         }
@@ -347,11 +326,9 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         thumbnailRequests.removeAll()
     }
 
-
     // MARK: - Actions
 
-    @IBAction func toggleViewType(_ sender: Any) {
-
+    @IBAction func toggleViewType(_: Any) {
         viewType = viewType.toggle()
         selectedIndex = viewType.rawValue
         setupViewtypeButton()
@@ -359,9 +336,8 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         UserDefaults.standard.set(cloudSourceViewType: viewType)
     }
 
-    @IBAction func logout(_ sender: Any) {
-
-        client.logout(provider: source.provider) { (response) in
+    @IBAction func logout(_: Any) {
+        client.logout(provider: source.provider) { response in
             if let error = response.error {
                 let alert = UIAlertController(title: "Logout Failed",
                                               message: error.localizedDescription,

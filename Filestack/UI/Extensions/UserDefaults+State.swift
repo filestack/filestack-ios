@@ -8,21 +8,16 @@
 
 import Foundation
 
-
 private extension String {
-
     static let cloudSourceViewType = "FSCloudSourceViewType"
 }
 
 extension UserDefaults {
-
     func cloudSourceViewType() -> CloudSourceViewType? {
-
         return CloudSourceViewType(rawValue: integer(forKey: .cloudSourceViewType))
     }
 
     func set(cloudSourceViewType: CloudSourceViewType) {
-
         setValue(cloudSourceViewType.rawValue, forKeyPath: .cloudSourceViewType)
     }
 }

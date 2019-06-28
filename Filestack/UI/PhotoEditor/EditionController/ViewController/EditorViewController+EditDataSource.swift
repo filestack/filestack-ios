@@ -6,30 +6,30 @@
 //  Copyright © 2018 Mihály Papp. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
+import UIKit
 
-protocol EditDataSource: class {
-  var imageFrame: CGRect {get}
-  var imageSize: CGSize {get}
-  var imageOrigin: CGPoint {get}
-  var imageActualSize: CGSize {get}
+protocol EditDataSource: AnyObject {
+    var imageFrame: CGRect { get }
+    var imageSize: CGSize { get }
+    var imageOrigin: CGPoint { get }
+    var imageActualSize: CGSize { get }
 }
 
 extension EditorViewController: EditDataSource {
-  var imageFrame: CGRect {
-    return AVMakeRect(aspectRatio: currentImage.size, insideRect: imageView.bounds)
-  }
+    var imageFrame: CGRect {
+        return AVMakeRect(aspectRatio: currentImage.size, insideRect: imageView.bounds)
+    }
 
-  var imageSize: CGSize {
-    return imageFrame.size
-  }
-  
-  var imageOrigin: CGPoint {
-    return imageFrame.origin
-  }
-  
-  var imageActualSize: CGSize {
-    return currentImage.size
-  }
+    var imageSize: CGSize {
+        return imageFrame.size
+    }
+
+    var imageOrigin: CGPoint {
+        return imageFrame.origin
+    }
+
+    var imageActualSize: CGSize {
+        return currentImage.size
+    }
 }

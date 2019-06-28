@@ -9,9 +9,7 @@
 import Foundation
 
 extension Data {
-
     internal func parseJSON() -> [String: Any]? {
-
         return (try? JSONSerialization.jsonObject(with: self)) as? [String: Any]
     }
 }

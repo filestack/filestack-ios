@@ -8,23 +8,19 @@
 
 import Foundation
 
-
 internal struct CloudItem {
-
     let isFolder: Bool
     let name: String
     let path: String
     let thumbnailURL: URL
 
     init?(dictionary: [String: Any]) {
-
         guard let isFolder = dictionary["folder"] as? Bool,
             let name = dictionary["name"] as? String,
             let path = dictionary["path"] as? String,
             let thumbnailURLString = dictionary["thumbnail"] as? String,
             let thumbnailURL = URL(string: thumbnailURLString) else {
-
-                return nil
+            return nil
         }
 
         self.isFolder = isFolder

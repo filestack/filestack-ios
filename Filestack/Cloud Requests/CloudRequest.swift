@@ -6,8 +6,8 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Foundation
 import FilestackSDK
+import Foundation
 
 /// :nodoc:
 @objc(FSCloudResponse) public protocol CloudResponse {
@@ -18,7 +18,6 @@ import FilestackSDK
 typealias CloudRequestCompletion = (_ appRedirectURL: URL?, _ response: CloudResponse) -> Swift.Void
 
 protocol CloudRequest {
-
     var token: String? { get }
     var provider: CloudProvider { get }
     var apiKey: String { get }
@@ -29,7 +28,7 @@ protocol CloudRequest {
 }
 
 extension CloudRequest {
-  func getResults(from json: [String: Any]) -> [String: Any]? {
-    return json[provider.description] as? [String: Any]
-  }
+    func getResults(from json: [String: Any]) -> [String: Any]? {
+        return json[provider.description] as? [String: Any]
+    }
 }

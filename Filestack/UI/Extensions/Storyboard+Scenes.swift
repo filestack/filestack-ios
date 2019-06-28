@@ -8,11 +8,8 @@
 
 import UIKit
 
-
 extension UIStoryboard {
-
     func instantiateViewController<S: Scene>(for scene: S) -> S.ViewController {
-
         guard let viewController = instantiateViewController(withIdentifier: scene.identifier) as? S.ViewController else {
             fatalError("expected view controller with identifier '\(scene.identifier)' to be of type '\(String(describing: S.ViewController.self))'")
         }

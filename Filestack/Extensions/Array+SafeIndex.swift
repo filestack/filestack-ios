@@ -8,14 +8,11 @@
 
 import Foundation
 
-
 extension Array {
-
     //  Originally written by Erica Sadun, and Mike Ash
     //  Source: http://ericasadun.com/2015/06/01/swift-safe-array-indexing-my-favorite-thing-of-the-new-week/
 
-    public subscript (safe index: UInt) -> Element? {
-
+    public subscript(safe index: UInt) -> Element? {
         return Int(index) < count ? self[Int(index)] : nil
     }
 }

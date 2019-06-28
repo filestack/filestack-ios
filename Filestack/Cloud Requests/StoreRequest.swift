@@ -6,17 +6,14 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Foundation
-import FilestackSDK
 import Alamofire
-
+import FilestackSDK
+import Foundation
 
 /**
-     This class represents a response obtained from a cloud store request.
+ This class represents a response obtained from a cloud store request.
  */
 @objc(FSStoreResponse) public class StoreResponse: NSObject, CloudResponse {
-
-
     // MARK: - Properties
 
     /// The contents payload as a dictionary containing details about the operation response.
@@ -28,20 +25,15 @@ import Alamofire
     /// An error response. Optional.
     public let error: Error?
 
-
     // MARK: - Lifecyle Functions
 
     internal init(contents: [String: Any]? = nil, error: Error? = nil) {
-
         self.contents = contents
         self.error = error
     }
 }
 
-
 internal final class StoreRequest: CloudRequest, CancellableRequest {
-
-
     // MARK: - Properties
 
     let apiKey: String
@@ -53,7 +45,6 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
     private(set) var token: String?
     private weak var dataRequest: DataRequest?
 
-
     // MARK: - Lifecyle Functions
 
     init(apiKey: String,
@@ -62,7 +53,6 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
          provider: CloudProvider,
          path: String,
          storeOptions: StorageOptions) {
-
         self.apiKey = apiKey
         self.security = security
         self.token = token
@@ -72,14 +62,12 @@ internal final class StoreRequest: CloudRequest, CancellableRequest {
     }
 
     func cancel() {
-
         dataRequest?.cancel()
     }
 
     // MARK: - Internal Functions
 
     func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) {
-
         let request = cloudService.storeRequest(provider: provider,
                                                 path: path,
                                                 apiKey: apiKey,

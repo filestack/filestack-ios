@@ -6,14 +6,11 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Foundation
 import Alamofire
-
+import Foundation
 
 internal extension SessionManager {
-
     static var filestackDefault: SessionManager {
-
         let configuration = URLSessionConfiguration.default
         var defaultHeaders = SessionManager.defaultHTTPHeaders
 

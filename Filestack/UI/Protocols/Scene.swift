@@ -8,9 +8,7 @@
 
 import Foundation
 
-
 protocol Scene {
-
     associatedtype ViewController
 
     var identifier: String { get }

@@ -6,15 +6,13 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Foundation
 import FilestackSDK
+import Foundation
 
-
-protocol CloudSourceDataSource: class {
-
+protocol CloudSourceDataSource: AnyObject {
     var client: Client! { get }
     var storeOptions: StorageOptions! { get }
-    var source: CloudSource!  { get }
+    var source: CloudSource! { get }
     var path: String! { get set }
     var nextPageToken: String? { get set }
     var items: [CloudItem]? { get }

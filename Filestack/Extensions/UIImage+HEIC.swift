@@ -6,20 +6,17 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
-
+import UIKit
 
 internal extension UIImage {
-
     @available(iOS 11.0, *)
     func heicRepresentation(quality: Float) -> Data? {
-
-        var imageData: Data? = nil
+        var imageData: Data?
         let destinationData = NSMutableData()
 
         if let destination = CGImageDestinationCreateWithData(destinationData, AVFileType.heic as CFString, 1, nil),
-           let cgImage = cgImage {
+            let cgImage = cgImage {
             let options = [kCGImageDestinationLossyCompressionQuality: quality]
             CGImageDestinationAddImage(destination, cgImage, options as CFDictionary)
             CGImageDestinationFinalize(destination)
@@ -32,4 +29,3 @@ internal extension UIImage {
         return nil
     }
 }
-

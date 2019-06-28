@@ -6,13 +6,11 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import FilestackSDK
-
+import Foundation
 
 internal class CloudService {
-
     let sessionManager = SessionManager.filestackDefault
     let baseURL = Constants.cloudURL
 
@@ -23,7 +21,6 @@ internal class CloudService {
                            security: Security? = nil,
                            token: String? = nil,
                            pageToken: String? = nil) -> DataRequest {
-
         let url = baseURL.appendingPathComponent("folder/list")
 
         var params: [String: Any] = [
@@ -40,14 +37,14 @@ internal class CloudService {
             params["clouds"] = [
                 provider.description: [
                     "path": path,
-                    "next": pageToken
-                ]
+                    "next": pageToken,
+                ],
             ]
         } else {
             params["clouds"] = [
                 provider.description: [
-                    "path": path
-                ]
+                    "path": path,
+                ],
             ]
         }
 
@@ -65,7 +62,6 @@ internal class CloudService {
                       security: Security? = nil,
                       token: String? = nil,
                       storeOptions: StorageOptions) -> DataRequest {
-
         let url = baseURL.appendingPathComponent("store/")
 
         var params: [String: Any] = [
@@ -78,7 +74,7 @@ internal class CloudService {
         }
 
         var storeOptionsJSON: [String: Any] = [
-            "location": storeOptions.location.description.lowercased()
+            "location": storeOptions.location.description.lowercased(),
         ]
 
         if let storeRegion = storeOptions.region {
@@ -104,8 +100,8 @@ internal class CloudService {
         params["clouds"] = [
             provider.description: [
                 "path": path,
-                "store": storeOptionsJSON
-            ]
+                "store": storeOptionsJSON,
+            ],
         ]
 
         if let security = security {
@@ -117,7 +113,6 @@ internal class CloudService {
     }
 
     func prefetchRequest(apiKey: String) -> DataRequest {
-
         let url = baseURL.appendingPathComponent("prefetch")
         let params: [String: Any] = ["apikey": apiKey]
 
@@ -125,7 +120,6 @@ internal class CloudService {
     }
 
     func logoutRequest(provider: CloudProvider, apiKey: String, token: String) -> DataRequest {
-
         let url = baseURL.appendingPathComponent("auth/logout")
 
         let params: [String: Any] = [
@@ -133,8 +127,8 @@ internal class CloudService {
             "token": token,
             "flow": "mobile",
             "clouds": [
-                provider.description: [:]
-            ]
+                provider.description: [:],
+            ],
         ]
 
         return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)

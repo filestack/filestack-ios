@@ -8,17 +8,13 @@
 
 import Foundation
 
-
 internal enum CloudSourceViewType: Int {
-
     case list = 0
     case grid = 1
 }
 
 extension CloudSourceViewType {
-
     var iconName: String {
-
         switch self {
         case .list:
 
@@ -31,7 +27,6 @@ extension CloudSourceViewType {
     }
 
     func toggle() -> CloudSourceViewType {
-
         switch self {
         case .list:
 

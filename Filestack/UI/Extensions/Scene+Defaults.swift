@@ -8,11 +8,8 @@
 
 import Foundation
 
-
 extension Scene {
-
     var identifier: String {
-
         return String(describing: ViewController.self)
     }
 }

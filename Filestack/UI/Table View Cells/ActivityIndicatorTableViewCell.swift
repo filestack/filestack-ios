@@ -8,8 +8,6 @@
 
 import UIKit
 
-
 class ActivityIndicatorTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
 }

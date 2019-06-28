@@ -8,9 +8,7 @@
 
 import Foundation
 
-
-final internal class BundleInfo {
-
+internal final class BundleInfo {
     private init() {}
 
     static let thisBundle = Bundle(for: BundleInfo.self)
@@ -29,7 +27,6 @@ final internal class BundleInfo {
 
     /// Returns this bundle's build information
     static func buildInfo() -> String? {
-
         guard let buildDate = buildDate, let name = name, let version = version, let buildNumber = buildNumber else {
             return nil
         }

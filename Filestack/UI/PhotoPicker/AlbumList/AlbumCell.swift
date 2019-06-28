@@ -9,16 +9,16 @@
 import Foundation
 
 class AlbumCell: UITableViewCell {
-  @IBOutlet weak var coverImage: UIImageView!
-  @IBOutlet weak var titleLabel: UILabel!
-  
-  func configure(for album: Album) {
-    selectionStyle = .none
-    titleLabel.text = album.title
-    coverImage.contentMode = .scaleAspectFill
-    coverImage.clipsToBounds = true
-    album.elements.last?.fetchImage(forSize: coverImage.frame.size) { image in
-      DispatchQueue.main.async { self.coverImage.image = image }
+    @IBOutlet var coverImage: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+
+    func configure(for album: Album) {
+        selectionStyle = .none
+        titleLabel.text = album.title
+        coverImage.contentMode = .scaleAspectFill
+        coverImage.clipsToBounds = true
+        album.elements.last?.fetchImage(forSize: coverImage.frame.size) { image in
+            DispatchQueue.main.async { self.coverImage.image = image }
+        }
     }
-  }
 }

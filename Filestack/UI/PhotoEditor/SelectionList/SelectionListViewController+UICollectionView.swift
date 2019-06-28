@@ -9,41 +9,42 @@
 import UIKit
 
 extension SelectionListViewController {
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return numberOfCells
-  }
-  
-  override func collectionView(_ collectionView: UICollectionView,
-                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.reuse(SelectionCell.self, for: indexPath) else { return UICollectionViewCell() }
-    cellWasDisplayed(cell, on: indexPath.row)
-    return cell
-  }
-  
-  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    cellWasPressed(on: indexPath.row)
-  }  
+    override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        return numberOfCells
+    }
+
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.reuse(SelectionCell.self, for: indexPath) else { return UICollectionViewCell() }
+        cellWasDisplayed(cell, on: indexPath.row)
+        return cell
+    }
+
+    override func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        cellWasPressed(on: indexPath.row)
+    }
 }
 
 // MARK: LongPress handling
+
 extension SelectionListViewController {
-  override func collectionView(_ collectionView: UICollectionView,
-                               shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-    cellWasLongPressed(on: indexPath.row)
-    return true
-  }
-  
-  override func collectionView(_ collectionView: UICollectionView,
-                               canPerformAction action: Selector,
-                               forItemAt indexPath: IndexPath,
-                               withSender sender: Any?) -> Bool {
-    return false
-  }
-  
-  override func collectionView(_ collectionView: UICollectionView,
-                               performAction action: Selector,
-                               forItemAt indexPath: IndexPath,
-                               withSender sender: Any?) {
-    return
-  }
+    override func collectionView(_: UICollectionView,
+                                 shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        cellWasLongPressed(on: indexPath.row)
+        return true
+    }
+
+    override func collectionView(_: UICollectionView,
+                                 canPerformAction _: Selector,
+                                 forItemAt _: IndexPath,
+                                 withSender _: Any?) -> Bool {
+        return false
+    }
+
+    override func collectionView(_: UICollectionView,
+                                 performAction _: Selector,
+                                 forItemAt _: IndexPath,
+                                 withSender _: Any?) {
+        return
+    }
 }

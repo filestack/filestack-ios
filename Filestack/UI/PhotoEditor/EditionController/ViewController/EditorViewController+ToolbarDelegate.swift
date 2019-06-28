@@ -9,52 +9,52 @@
 import Foundation
 
 extension EditorViewController: EditorToolbarDelegate {
-  func cancelSelected() {
-    dismiss(animated: true) {
-      self.completion(nil)
+    func cancelSelected() {
+        dismiss(animated: true) {
+            self.completion(nil)
+        }
     }
-  }
-  
-  func rotateSelected() {
-    editImage(to: currentImage.rotated(clockwise: false))
-    cropHandler.rotateCounterClockwise()
-    circleHandler.rotateCounterClockwise()
-  }
-  
-  func cropSelected() {
-    switch editMode {
-    case .crop: editMode = .none
-    case .circle, .none: editMode = .crop
+
+    func rotateSelected() {
+        editImage(to: currentImage.rotated(clockwise: false))
+        cropHandler.rotateCounterClockwise()
+        circleHandler.rotateCounterClockwise()
     }
-  }
-  
-  func circleSelected() {
-    switch editMode {
-    case .circle: editMode = .none
-    case .crop, .none: editMode = .circle
+
+    func cropSelected() {
+        switch editMode {
+        case .crop: editMode = .none
+        case .circle, .none: editMode = .crop
+        }
     }
-  }
-  
-  func saveSelected() {
-    switch editMode {
-    case .crop: editImage(to: currentImage.cropped(by: cropHandler.actualEdgeInsets))
-    case .circle: editImage(to: currentImage.circled(center: circleHandler.actualCenter, radius: circleHandler.actualRadius))
-    case .none: return
+
+    func circleSelected() {
+        switch editMode {
+        case .circle: editMode = .none
+        case .crop, .none: editMode = .circle
+        }
     }
-    editMode = .none
-  }
-  
-  func doneSelected() {
-    dismiss(animated: true) {
-      self.completion(self.currentImage)
+
+    func saveSelected() {
+        switch editMode {
+        case .crop: editImage(to: currentImage.cropped(by: cropHandler.actualEdgeInsets))
+        case .circle: editImage(to: currentImage.circled(center: circleHandler.actualCenter, radius: circleHandler.actualRadius))
+        case .none: return
+        }
+        editMode = .none
     }
-  }
-  
-  func undoSelected() {
-    changeImage(to: currentImageIndex - 1)
-  }
-  
-  func redoSelected() {
-    changeImage(to: currentImageIndex + 1)
-  }
+
+    func doneSelected() {
+        dismiss(animated: true) {
+            self.completion(self.currentImage)
+        }
+    }
+
+    func undoSelected() {
+        changeImage(to: currentImageIndex - 1)
+    }
+
+    func redoSelected() {
+        changeImage(to: currentImageIndex + 1)
+    }
 }

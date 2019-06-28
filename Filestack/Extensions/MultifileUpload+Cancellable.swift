@@ -6,10 +6,7 @@
 //  Copyright © 2018 Filestack. All rights reserved.
 //
 
-import Foundation
 import FilestackSDK
+import Foundation
 
-
-extension MultifileUpload: CancellableRequest {
-    
-}
+extension MultifileUpload: CancellableRequest {}

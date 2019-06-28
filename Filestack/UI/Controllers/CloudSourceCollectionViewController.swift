@@ -6,27 +6,22 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import FilestackSDK
-
+import UIKit
 
 private extension String {
-
     static let cloudItemReuseIdentifier = "CloudItemCollectionViewCell"
     static let activityIndicatorReuseIdentifier = "ActivityIndicatorCollectionViewCell"
 }
 
 class CloudSourceCollectionViewController: UICollectionViewController {
-
     private weak var dataSource: (CloudSourceDataSource)!
-    private var refreshControl: UIRefreshControl? = nil
-
+    private var refreshControl: UIRefreshControl?
 
     // MARK: - View Overrides
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
 
         // Get reference to data source
@@ -43,30 +38,24 @@ class CloudSourceCollectionViewController: UICollectionViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-
         super.viewDidAppear(animated)
 
         collectionView!.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-
         refreshControl?.endRefreshing()
 
         super.viewWillDisappear(animated)
     }
 
-
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-
+    override func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
 
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+    override func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
 
@@ -83,7 +72,6 @@ class CloudSourceCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         var cell: UICollectionViewCell
 
         // If there's no items, or we are one past the item count, then dequeue an activity indicator cell,
@@ -93,7 +81,7 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: .cloudItemReuseIdentifier, for: indexPath)
         }
-    
+
         switch cell {
         case let cell as ActivityIndicatorCollectionViewCell:
 
@@ -112,7 +100,7 @@ class CloudSourceCollectionViewController: UICollectionViewController {
                                                 in: Bundle(for: type(of: self)),
                                                 compatibleWith: nil)
 
-                dataSource.cacheThumbnail(for: item) { (image) in
+                dataSource.cacheThumbnail(for: item) { image in
                     // Update the cell's thumbnail picture.
                     // To find the right cell to update, first we try using collection view's `cellForItem(at:)`,
                     // which may or not return a cell. If it doesn't, we use collection view's `reloadItems(at:)`
@@ -139,17 +127,15 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         return cell
     }
 
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
+    override func collectionView(_: UICollectionView, willDisplay _: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == dataSource.items?.count {
-            dataSource.loadNextPage() {
+            dataSource.loadNextPage {
                 self.collectionView!.reloadData()
             }
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    override func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return }
 
         if item.isFolder {
@@ -159,35 +145,28 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         }
     }
 
-
     // MARK: UICollectionViewDelegate
 
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-
+    override func collectionView(_: UICollectionView, shouldHighlightItemAt _: IndexPath) -> Bool {
         return true
     }
 
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-
+    override func collectionView(_: UICollectionView, shouldSelectItemAt _: IndexPath) -> Bool {
         return true
     }
 
+    // MARK: - Actions
 
-    // MARK - Actions
-
-    @IBAction func refresh(_ sender: Any) {
-
+    @IBAction func refresh(_: Any) {
         dataSource.refresh {
             self.refreshControl?.endRefreshing()
             self.collectionView!.reloadData()
         }
     }
 
-
-    // MARK - Private Functions
+    // MARK: - Private Functions
 
     fileprivate func setupRefreshControl() {
-
         guard refreshControl == nil else { return }
 
         refreshControl = UIRefreshControl()
@@ -201,9 +180,7 @@ class CloudSourceCollectionViewController: UICollectionViewController {
 }
 
 extension CloudSourceCollectionViewController: CloudSourceDataSourceConsumer {
-
-    func dataSourceReceivedInitialResults(dataSource: CloudSourceDataSource) {
-
+    func dataSourceReceivedInitialResults(dataSource _: CloudSourceDataSource) {
         // Reload collection view's data
         collectionView!.reloadData()
         // Setup refresh control
