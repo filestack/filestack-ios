@@ -15,6 +15,8 @@
 		4523544E22A7CEA100E8D5DA /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4523544222A7CE9600E8D5DA /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4523545A22A7CED200E8D5DA /* FilestackSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4523545522A7CEC700E8D5DA /* FilestackSDK.framework */; };
 		4523545B22A7CED900E8D5DA /* FilestackSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4523545522A7CEC700E8D5DA /* FilestackSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45340F9922C6176100A62562 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45340F9622C6175300A62562 /* SVProgressHUD.framework */; };
+		45340F9A22C6176100A62562 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45340F9622C6175300A62562 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		454054851F98A69A00C12B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054841F98A69A00C12B2F /* AppDelegate.swift */; };
 		454054871F98A69A00C12B2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054861F98A69A00C12B2F /* ViewController.swift */; };
 		4540548A1F98A69A00C12B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454054881F98A69A00C12B2F /* Main.storyboard */; };
@@ -179,6 +181,27 @@
 			remoteGlobalIDString = 45B8309A1F03B27A0053742A;
 			remoteInfo = FilestackSDK;
 		};
+		45340F9522C6175300A62562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45340F9022C6175300A62562 /* SVProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4A9D7DD81AB345980039B273;
+			remoteInfo = "SVProgressHUD-Framework";
+		};
+		45340F9722C6175300A62562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45340F9022C6175300A62562 /* SVProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65F021FC15C857EF0030BBEF;
+			remoteInfo = SVProgressHUD;
+		};
+		45340F9B22C6176100A62562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45340F9022C6175300A62562 /* SVProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A9D7DD71AB345980039B273;
+			remoteInfo = "SVProgressHUD-Framework";
+		};
 		454157E51FA759AC00F37C9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 454157DB1FA759AC00F37C9F /* Filestack.xcodeproj */;
@@ -209,6 +232,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				45340F9A22C6176100A62562 /* SVProgressHUD.framework in Embed Frameworks */,
 				4523545B22A7CED900E8D5DA /* FilestackSDK.framework in Embed Frameworks */,
 				4523544E22A7CEA100E8D5DA /* CryptoSwift.framework in Embed Frameworks */,
 				4523543722A7CE7B00E8D5DA /* Alamofire.framework in Embed Frameworks */,
@@ -225,6 +249,7 @@
 		4523541A22A7CE6900E8D5DA /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Carthage/Checkouts/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		4523543922A7CE9600E8D5DA /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = ../Carthage/Checkouts/CryptoSwift/CryptoSwift.xcodeproj; sourceTree = "<group>"; };
 		4523544F22A7CEC700E8D5DA /* FilestackSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilestackSDK.xcodeproj; path = "../Carthage/Checkouts/filestack-swift/FilestackSDK.xcodeproj"; sourceTree = "<group>"; };
+		45340F9022C6175300A62562 /* SVProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SVProgressHUD.xcodeproj; path = ../Carthage/Checkouts/SVProgressHUD/SVProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		454054811F98A69A00C12B2F /* FilestackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilestackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		454054841F98A69A00C12B2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		454054861F98A69A00C12B2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45340F9922C6176100A62562 /* SVProgressHUD.framework in Frameworks */,
 				4523543522A7CE7100E8D5DA /* Alamofire.framework in Frameworks */,
 				4523544D22A7CE9E00E8D5DA /* CryptoSwift.framework in Frameworks */,
 				454157EB1FA759B900F37C9F /* Filestack.framework in Frameworks */,
@@ -301,6 +327,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		45340F9122C6175300A62562 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45340F9622C6175300A62562 /* SVProgressHUD.framework */,
+				45340F9822C6175300A62562 /* libSVProgressHUD.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		454054781F98A69A00C12B2F = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +385,7 @@
 				4523543922A7CE9600E8D5DA /* CryptoSwift.xcodeproj */,
 				454157DB1FA759AC00F37C9F /* Filestack.xcodeproj */,
 				4523544F22A7CEC700E8D5DA /* FilestackSDK.xcodeproj */,
+				45340F9022C6175300A62562 /* SVProgressHUD.xcodeproj */,
 				4523540522A7CE0E00E8D5DA /* ZipArchive.xcodeproj */,
 			);
 			name = "External Dependencies";
@@ -384,6 +420,7 @@
 				454157EA1FA759B200F37C9F /* PBXTargetDependency */,
 				4523545922A7CECF00E8D5DA /* PBXTargetDependency */,
 				4523541922A7CE5900E8D5DA /* PBXTargetDependency */,
+				45340F9C22C6176100A62562 /* PBXTargetDependency */,
 			);
 			name = FilestackDemo;
 			productName = FilestackDemo;
@@ -434,6 +471,10 @@
 				{
 					ProductGroup = 4523545022A7CEC700E8D5DA /* Products */;
 					ProjectRef = 4523544F22A7CEC700E8D5DA /* FilestackSDK.xcodeproj */;
+				},
+				{
+					ProductGroup = 45340F9122C6175300A62562 /* Products */;
+					ProjectRef = 45340F9022C6175300A62562 /* SVProgressHUD.xcodeproj */;
 				},
 				{
 					ProductGroup = 4523540622A7CE0E00E8D5DA /* Products */;
@@ -574,6 +615,20 @@
 			remoteRef = 4523545622A7CEC700E8D5DA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		45340F9622C6175300A62562 /* SVProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SVProgressHUD.framework;
+			remoteRef = 45340F9522C6175300A62562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		45340F9822C6175300A62562 /* libSVProgressHUD.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSVProgressHUD.a;
+			remoteRef = 45340F9722C6175300A62562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		454157E61FA759AC00F37C9F /* Filestack.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -635,6 +690,11 @@
 			isa = PBXTargetDependency;
 			name = FilestackSDK;
 			targetProxy = 4523545822A7CECF00E8D5DA /* PBXContainerItemProxy */;
+		};
+		45340F9C22C6176100A62562 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SVProgressHUD-Framework";
+			targetProxy = 45340F9B22C6176100A62562 /* PBXContainerItemProxy */;
 		};
 		454157EA1FA759B200F37C9F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

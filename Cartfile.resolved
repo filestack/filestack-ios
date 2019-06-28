@@ -1,5 +1,6 @@
 github "Alamofire/Alamofire" "4.8.2"
 github "AliSoftware/OHHTTPStubs" "7.0.0"
+github "SVProgressHUD/SVProgressHUD" "2.2.5"
 github "ZipArchive/ZipArchive" "v2.2.2"
 github "filestack/filestack-swift" "3d1222fa7e282474db52020da1195e014a7e774b"
 github "krzyzanowskim/CryptoSwift" "0.15.0"
