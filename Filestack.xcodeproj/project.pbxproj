@@ -56,6 +56,7 @@
 		45B603D31FC5B88A006775BF /* ImageURLExportPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B603D21FC5B88A006775BF /* ImageURLExportPreset.swift */; };
 		45C142CC22C9FBAD007B4EDA /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45340F7E22C616E100A62562 /* SVProgressHUD.framework */; };
 		45C142CD22C9FBB7007B4EDA /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45340F7E22C616E100A62562 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45C142E622CA4B25007B4EDA /* String+UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C142E522CA4B25007B4EDA /* String+UTI.swift */; };
 		45C47E741FB9B3DC009B8248 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */; };
 		45C47E7E1FB9F08A009B8248 /* Storyboard+Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E7D1FB9F08A009B8248 /* Storyboard+Scenes.swift */; };
 		45C47E801FB9F0C6009B8248 /* Scene+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E7F1FB9F0C6009B8248 /* Scene+Defaults.swift */; };
@@ -189,6 +190,7 @@
 		45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudRequest.swift; sourceTree = "<group>"; };
 		45A92F171FA0BE9600FEB611 /* FolderListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListRequest.swift; sourceTree = "<group>"; };
 		45B603D21FC5B88A006775BF /* ImageURLExportPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLExportPreset.swift; sourceTree = "<group>"; };
+		45C142E522CA4B25007B4EDA /* String+UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UTI.swift"; sourceTree = "<group>"; };
 		45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
 		45C47E7D1FB9F08A009B8248 /* Storyboard+Scenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Scenes.swift"; sourceTree = "<group>"; };
 		45C47E7F1FB9F0C6009B8248 /* Scene+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scene+Defaults.swift"; sourceTree = "<group>"; };
@@ -330,19 +332,20 @@
 		455804A81F9F4478007C694C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BC0D162E210E81DD00A88F30 /* ImageEdition */,
-				BC0D160E210DAF6000A88F30 /* Math+Clamp.swift */,
-				BC0D160F210DAF6000A88F30 /* UICollectionView+Reusable.swift */,
-				BC0D1610210DAF6000A88F30 /* UIView+Constraints.swift */,
 				45C47E731FB9B3DC009B8248 /* Array+SafeIndex.swift */,
 				45A48C1F1FB317F100356BC6 /* Data+JSON.swift */,
-				45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */,
+				BC0D160E210DAF6000A88F30 /* Math+Clamp.swift */,
 				BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */,
+				45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */,
 				455804A91F9F448C007C694C /* SessionManager+FilestackDefault.swift */,
-				45E2B7B01FC2FEB500448ED2 /* UIImage+HEIC.swift */,
-				BC0D162A210E7A5F00A88F30 /* UIImage+Bundle.swift */,
-				BC0D163F21108B3000A88F30 /* UIImage+Write.swift */,
+				45C142E522CA4B25007B4EDA /* String+UTI.swift */,
+				BC0D160F210DAF6000A88F30 /* UICollectionView+Reusable.swift */,
 				BC5A829F211DC2C500960F4B /* UIColor+Predefined.swift */,
+				BC0D162A210E7A5F00A88F30 /* UIImage+Bundle.swift */,
+				45E2B7B01FC2FEB500448ED2 /* UIImage+HEIC.swift */,
+				BC0D163F21108B3000A88F30 /* UIImage+Write.swift */,
+				BC0D1610210DAF6000A88F30 /* UIView+Constraints.swift */,
+				BC0D162E210E81DD00A88F30 /* ImageEdition */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */,
 				BC0D160A210DAED700A88F30 /* SelectionListViewController+UICollectionView.swift in Sources */,
 				4587330D1FA32B66002DAA9D /* StoreRequest.swift in Sources */,
+				45C142E622CA4B25007B4EDA /* String+UTI.swift in Sources */,
 				BC0D160B210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift in Sources */,
 				4569C7A61FB1F85800DE990E /* LocalSource.swift in Sources */,
 				45DEBA511FBAE61000A267E7 /* CancellableRequest.swift in Sources */,

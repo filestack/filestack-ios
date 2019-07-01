@@ -87,11 +87,10 @@ class ViewController: UIViewController {
         config.availableCloudSources = CloudSource.all()
 
         // Here you can decide what document types can be picked when using Apple's document picker.
-        // In our example we use ["public.item"], which means we allow picking any files or bundles.
-        // Please notice that this is already the default value in the client's config object.
-        //
-        // For a comprehensive list of UTIs, please consult [System-Declared Uniform Type Identifiers](https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259-SW1)
         config.documentPickerAllowedUTIs = ["public.item"]
+        // In the same fashion, you can decide what document types can be picked from cloud sources.
+        config.cloudSourceAllowedUTIs = ["public.item"]
+        // In both cases we have used ["public.item"], which means we allow picking any files or bundles.
 
         // Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),
         // together with a `Security` and `Config` object.

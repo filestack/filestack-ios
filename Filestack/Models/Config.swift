@@ -144,6 +144,10 @@ import UIKit.UIImagePickerController
     /// By default, this contains `["public.item"]`.
     public var documentPickerAllowedUTIs: [String] = ["public.item"]
 
+    /// This setting determines what document types can be picked from a cloud source.
+    /// By default, this contains `["public.item"]`.
+    public var cloudSourceAllowedUTIs: [String] = ["public.item"]
+
     /// This setting determines the format used for exported images (available only in iOS 11.)
     /// Possible values are `.compatible` (for JPEG) and `.current` (for HEIF).
     /// In iOS versions earlier than 11.0, JPEG will always be used.

@@ -93,6 +93,9 @@ class CloudSourceCollectionViewController: UICollectionViewController {
 
             // Configure the cell
             cell.label.text = item.name
+            cell.label.isEnabled = dataSource.canSelect(item: item)
+
+            cell.imageView?.alpha = dataSource.canSelect(item: item) ? 1 : 0.25
 
             guard let cachedImage = dataSource.thumbnailCache.object(forKey: item.thumbnailURL as NSURL) else {
                 // Use a placeholder until we get the real thumbnail
@@ -151,8 +154,14 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         return true
     }
 
-    override func collectionView(_: UICollectionView, shouldSelectItemAt _: IndexPath) -> Bool {
-        return true
+    override func collectionView(_: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return false }
+
+        if dataSource.canSelect(item: item) {
+            return true
+        } else {
+            return false
+        }
     }
 
     // MARK: - Actions

@@ -92,12 +92,15 @@ internal class CloudSourceTableViewController: UITableViewController {
             guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return cell }
 
             cell.textLabel?.text = item.name
+            cell.textLabel?.isEnabled = dataSource.canSelect(item: item)
 
             if item.isFolder {
                 cell.accessoryType = .disclosureIndicator
             } else {
                 cell.accessoryType = .none
             }
+
+            cell.imageView?.alpha = dataSource.canSelect(item: item) ? 1 : 0.25
 
             guard let cachedImage = dataSource.thumbnailCache.object(forKey: item.thumbnailURL as NSURL) else {
                 // Use a placeholder until we get the real thumbnail
@@ -128,6 +131,12 @@ internal class CloudSourceTableViewController: UITableViewController {
         }
 
         return cell
+    }
+
+    override func tableView(_: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return false }
+
+        return dataSource.canSelect(item: item)
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
