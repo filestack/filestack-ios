@@ -167,6 +167,12 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             // Nil the reference to the request object, so it can be properly deallocated.
             cancellableRequest = nil
 
+            let callPickerStoredFileOnDelegate: () -> Void = {
+                if let picker = self.navigationController as? PickerNavigationController {
+                    picker.pickerDelegate?.pickerStoredFile(picker: picker, response: response)
+                }
+            }
+
             if let error = response.error {
                 let alert = UIAlertController(title: "Upload Failed",
                                               message: error.localizedDescription,
@@ -176,6 +182,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                     // Dismiss monitor view controller, and remove strong reference to it
                     uploadMonitorViewController.dismiss(animated: true) {
                         self.uploadMonitorViewController = nil
+                        callPickerStoredFileOnDelegate()
                     }
                 }))
 
@@ -187,12 +194,9 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     uploadMonitorViewController.dismiss(animated: true) {
                         self.uploadMonitorViewController = nil
+                        callPickerStoredFileOnDelegate()
                     }
                 }
-            }
-
-            if let picker = self.navigationController as? PickerNavigationController {
-                picker.pickerDelegate?.pickerStoredFile(picker: picker, response: response)
             }
         }
 
