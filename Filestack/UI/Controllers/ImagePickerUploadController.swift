@@ -56,10 +56,14 @@ internal class ImagePickerUploadController: NSObject {
 }
 
 private extension ImagePickerUploadController {
+    var sourceTypeSupportsMultipleSelection: Bool {
+        return sourceType == .camera ? false : true
+    }
+
     var shouldUseCustomPicker: Bool {
         let multipleSelectionAllowed = config.maximumSelectionAllowed != 1
         let editingEnabled = config.showEditorBeforeUpload
-        return multipleSelectionAllowed || editingEnabled
+        return sourceTypeSupportsMultipleSelection && (multipleSelectionAllowed || editingEnabled)
     }
 
     var nativePicker: UINavigationController {
