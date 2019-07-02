@@ -19,12 +19,6 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
  The `Client` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
  */
 @objc(FSFilestackClient) public class Client: NSObject {
-    // MARK: - Notifications
-
-    /// This notification should be posted after an app receives an URL after authentication against a cloud provider
-    /// on iOS versions prior to iOS 11.
-    public static let resumeCloudRequestNotification = Notification.Name("resume-filestack-cloud-request")
-
     // MARK: - Properties
 
     /// An API key obtained from the [Developer Portal](http://dev.filestack.com).
@@ -41,7 +35,6 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
     private let client: FilestackSDK.Client
     private let cloudService = CloudService()
 
-    private var pendingRequests: [URL: (CloudRequest, DispatchQueue, CompletionHandler)]
     private var lastToken: String?
     private var resumeCloudRequestNotificationObserver: NSObjectProtocol!
     private var safariAuthSession: AnyObject?
@@ -62,7 +55,6 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
         self.security = security
         lastToken = token
         client = FilestackSDK.Client(apiKey: apiKey, security: security)
-        pendingRequests = [:]
         self.config = config ?? Config()
 
         super.init()
@@ -350,106 +342,32 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
 
             if let authURL = response.authURL, let authRedirectURL = authRedirectURL {
                 DispatchQueue.main.async {
-                    if #available(iOS 11, *) {
-                        let safariAuthSession = SFAuthenticationSession(url: authURL,
-                                                                        callbackURLScheme: self.config.appURLScheme,
-                                                                        completionHandler: { url, error in
-                                                                            // Remove strong reference,
-                                                                            // so object can be deallocated.
-                                                                            self.safariAuthSession = nil
+                    let completion: SFAuthenticationSession.CompletionHandler = { url, error in
+                        // Remove strong reference,
+                        // so object can be deallocated.
+                        self.safariAuthSession = nil
 
-                                                                            if let safariError = error {
-                                                                                completionBlock(response, safariError)
-                                                                            } else if let url = url, url.absoluteString.starts(with: authRedirectURL.absoluteString) {
-                                                                                self.perform(request: request,
-                                                                                             queue: queue,
-                                                                                             completionBlock: completionBlock)
-                                                                            }
-                        })
-
-                        // Keep a strong reference to the auth session.
-                        self.safariAuthSession = safariAuthSession
-
-                        safariAuthSession.start()
-                    } else {
-                        if UIApplication.shared.openURL(authURL) {
-                            self.addPendingRequest(appRedirectURL: authRedirectURL,
-                                                   request: request,
-                                                   queue: queue,
-                                                   completionBlock: completionBlock)
+                        if let safariError = error {
+                            completionBlock(response, safariError)
+                        } else if let url = url, url.absoluteString.starts(with: authRedirectURL.absoluteString) {
+                            self.perform(request: request,
+                                         queue: queue,
+                                         completionBlock: completionBlock)
                         }
                     }
+
+                    let safariAuthSession = SFAuthenticationSession(url: authURL,
+                                                                    callbackURLScheme: self.config.appURLScheme,
+                                                                    completionHandler: completion)
+
+                    // Keep a strong reference to the auth session.
+                    self.safariAuthSession = safariAuthSession
+
+                    safariAuthSession.start()
                 }
             } else {
                 completionBlock(response, nil)
             }
         }
-    }
-
-    private func addPendingRequest(appRedirectURL: URL, request: CloudRequest, queue: DispatchQueue, completionBlock: @escaping CompletionHandler) {
-        pendingRequests[appRedirectURL] = (request, queue, completionBlock)
-
-        if resumeCloudRequestNotificationObserver == nil {
-            addResumeCloudRequestNotificationObserver()
-        }
-    }
-
-    private func removePendingRequest(appRedirectURL: URL) {
-        pendingRequests.removeValue(forKey: appRedirectURL)
-
-        if pendingRequests.isEmpty {
-            removeResumeCloudRequestNotificationObserver()
-        }
-    }
-
-    @discardableResult
-    private func resumeCloudRequest(using url: URL) -> Bool {
-        // Find pending request identified by `requestUUID` or return early.
-        let matchingRequests = pendingRequests.filter { url.absoluteString.starts(with: $0.key.absoluteString) }
-
-        guard let (request, queue, completionBlock) = matchingRequests.first?.value else {
-            return false
-        }
-
-        // Perform pending request.
-        // On success, store last token, remove pending request, and call completion block.
-        // Else, if auth is still required, open Safari and request authentication.
-        request.perform(cloudService: cloudService, queue: queue) { _, response in
-            if let token = request.token {
-                self.lastToken = token
-            }
-
-            if let authURL = response.authURL {
-                if #available(iOS 10, *) {
-                    UIApplication.shared.open(authURL)
-                } else {
-                    UIApplication.shared.openURL(authURL)
-                }
-            } else {
-                self.removePendingRequest(appRedirectURL: url)
-                completionBlock(response, nil)
-            }
-        }
-
-        return true
-    }
-
-    private func addResumeCloudRequestNotificationObserver() {
-        resumeCloudRequestNotificationObserver =
-            NotificationCenter.default.addObserver(forName: Client.resumeCloudRequestNotification,
-                                                   object: nil,
-                                                   queue: .main) { notification in
-                if let url = notification.object as? URL {
-                    self.resumeCloudRequest(using: url)
-                }
-            }
-    }
-
-    private func removeResumeCloudRequestNotificationObserver() {
-        if let resumeCloudRequestNotificationObserver = resumeCloudRequestNotificationObserver {
-            NotificationCenter.default.removeObserver(resumeCloudRequestNotificationObserver)
-        }
-
-        resumeCloudRequestNotificationObserver = nil
     }
 }

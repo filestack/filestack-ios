@@ -18,12 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == appURLScheme, url.host == "Filestack" {
-            if #available(iOS 11.0, *) {
-                // NO-OP
-            } else {
-                NotificationCenter.default.post(name: Filestack.Client.resumeCloudRequestNotification, object: url)
-            }
-
             return true
         }
 
