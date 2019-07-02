@@ -334,7 +334,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
     private func perform(request: CloudRequest, queue: DispatchQueue = .main, completionBlock: @escaping CompletionHandler) {
         // Perform request.
         // On success, store last token and call completion block.
-        // Else, if auth is required, add request to pending requests, open Safari and request authentication.
+        // Else, if auth is required, authenticate against web service.
         request.perform(cloudService: cloudService, queue: queue) { authRedirectURL, response in
             if let token = request.token {
                 self.lastToken = token
@@ -343,8 +343,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
             if let authURL = response.authURL, let authRedirectURL = authRedirectURL {
                 DispatchQueue.main.async {
                     let completion: SFAuthenticationSession.CompletionHandler = { url, error in
-                        // Remove strong reference,
-                        // so object can be deallocated.
+                        // Remove strong reference, so object can be deallocated.
                         self.safariAuthSession = nil
 
                         if let safariError = error {
