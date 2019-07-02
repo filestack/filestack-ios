@@ -146,17 +146,15 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     // MARK: - CloudSourceDataSource Protocol Functions
 
     func store(item: CloudItem) {
-        var cancellableRequest: CancellableRequest?
-
-        // Instantiate upload monitor controller
-        let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
+        // Instantiate upload monitor  controller
+        let scene = UploadMonitorScene()
 
         guard let uploadMonitorViewController = storyboard?.instantiateViewController(for: scene) else { return }
 
         uploadMonitorViewController.modalPresentationStyle = client.config.modalPresentationStyle
         self.uploadMonitorViewController = uploadMonitorViewController
 
-        present(uploadMonitorViewController, animated: true) {
+        (navigationController ?? self).present(uploadMonitorViewController, animated: true) {
             // Since we can not measure progress here, we will have to fake it.
             // Set progress to 50% after 0.25 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
@@ -165,9 +163,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         }
 
         let completionHandler: ((StoreResponse) -> Void) = { response in
-            // Nil the reference to the request object, so it can be properly deallocated.
-            cancellableRequest = nil
-
             let callPickerStoredFileOnDelegate: () -> Void = {
                 if let picker = self.navigationController as? PickerNavigationController {
                     picker.pickerDelegate?.pickerStoredFile(picker: picker, response: response)
@@ -175,19 +170,16 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             }
 
             if let error = response.error {
-                let alert = UIAlertController(title: "Upload Failed",
-                                              message: error.localizedDescription,
-                                              preferredStyle: .alert)
+                uploadMonitorViewController.dismiss(animated: true) {
+                    self.uploadMonitorViewController = nil
 
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                    // Dismiss monitor view controller, and remove strong reference to it
-                    uploadMonitorViewController.dismiss(animated: true) {
-                        self.uploadMonitorViewController = nil
+                    let alert = UIAlertController(title: "Upload Failed", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                         callPickerStoredFileOnDelegate()
-                    }
-                }))
+                    }))
 
-                uploadMonitorViewController.present(alert, animated: true)
+                    self.present(alert, animated: true)
+                }
             } else {
                 // Set progress to 100%
                 uploadMonitorViewController.updateProgress(value: 1.0)
@@ -201,10 +193,12 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             }
         }
 
-        cancellableRequest = client.store(provider: source.provider,
-                                          path: item.path,
-                                          storeOptions: storeOptions,
-                                          completionHandler: completionHandler)
+        let cancellableRequest = client.store(provider: source.provider,
+                                              path: item.path,
+                                              storeOptions: storeOptions,
+                                              completionHandler: completionHandler)
+
+        uploadMonitorViewController.cancellableRequest = cancellableRequest
     }
 
     func loadNextPage(completionHandler: @escaping (() -> Void)) {

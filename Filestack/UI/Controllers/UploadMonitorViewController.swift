@@ -36,6 +36,5 @@ final class UploadMonitorViewController: UIViewController {
 
     @IBAction func cancel(_: AnyObject) {
         cancellableRequest?.cancel()
-        dismiss(animated: true, completion: nil)
     }
 }

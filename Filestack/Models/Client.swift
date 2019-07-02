@@ -130,12 +130,12 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
                                                            config: config)
 
         uploadController.filePickedCompletionHandler = { success in
-            // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
+            // Remove completion handler, so this `ImagePickerUploadController` object can be properly deallocated.
             uploadController.filePickedCompletionHandler = nil
 
             guard success else {
-                // Picking from ImagePicker has been cancelled
-                completionHandler([])
+                // Picking from image picker was cancelled
+                mfu.cancel()
                 return
             }
 
@@ -184,12 +184,12 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
                                                               config: config)
 
         uploadController.filePickedCompletionHandler = { success in
-            // Remove completion handler, so this `PickerUploadController` object can be properly deallocated.
+            // Remove completion handler, so this `DocumentPickerUploadController` object can be properly deallocated.
             uploadController.filePickedCompletionHandler = nil
 
             guard success else {
-                // Picking from DocumentPicker has been cancelled
-                completionHandler([])
+                // Picking from document picker was cancelled
+                mfu.cancel()
                 return
             }
 

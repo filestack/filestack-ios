@@ -215,8 +215,6 @@ private extension SourceTableViewController {
         }
 
         let completionHandler: (([NetworkJSONResponse]) -> Void) = { responses in
-            // Nil the reference to the request object, so the object can be properly deallocated.
-            cancellableRequest = nil
             // Re-enable user interaction.
             self.view.isUserInteractionEnabled = true
 
@@ -224,8 +222,9 @@ private extension SourceTableViewController {
             guard !responses.isEmpty else { return }
 
             let errors = responses.compactMap { $0.error }
+
             if let error = errors.first {
-                self.showErrorAlert(message: error.localizedDescription)
+                self.dismissMonitorViewController(with: error)
             } else {
                 self.dismissMonitorViewController()
             }
@@ -257,17 +256,16 @@ private extension SourceTableViewController {
         }
     }
 
-    func showErrorAlert(message _: String) {
-        let alert = UIAlertController(title: "Upload Failed", message: description, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.dismissMonitorViewController()
-        }))
-        uploadMonitorViewController?.present(alert, animated: true)
-    }
-
-    func dismissMonitorViewController() {
+    private func dismissMonitorViewController(with error: Error? = nil) {
         uploadMonitorViewController?.dismiss(animated: true) {
             self.uploadMonitorViewController = nil
+
+            if let error = error {
+                let alert = UIAlertController(title: "Upload Failed", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                self.present(alert, animated: true)
+            }
         }
     }
 }
