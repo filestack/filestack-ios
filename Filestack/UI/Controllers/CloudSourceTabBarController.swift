@@ -153,6 +153,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
 
         guard let uploadMonitorViewController = storyboard?.instantiateViewController(for: scene) else { return }
 
+        uploadMonitorViewController.modalPresentationStyle = client.config.modalPresentationStyle
         self.uploadMonitorViewController = uploadMonitorViewController
 
         present(uploadMonitorViewController, animated: true) {
