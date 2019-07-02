@@ -392,14 +392,14 @@
 		4569C78F1FB1CF1800DE990E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				BC0D15F7210DAE6000A88F30 /* PhotoEditor */,
-				BC1E4C7520B5979100345FF5 /* PhotoPicker */,
 				4569C79C1FB1CFC000DE990E /* Picker.storyboard */,
 				4565CEF11FBEEC140043BFBB /* Collection View Cells */,
 				4569C77B1FB1B6A100DE990E /* Controllers */,
 				4569C7A11FB1F80A00DE990E /* Enums */,
 				452DA7F91FB6235D0082E52D /* Extensions */,
 				4546628C1FB6063500260033 /* Models */,
+				BC0D15F7210DAE6000A88F30 /* PhotoEditor */,
+				BC1E4C7520B5979100345FF5 /* PhotoPicker */,
 				4569C7A21FB1F81300DE990E /* Protocols */,
 				459ADA001FB9FAE50087698A /* Table View Cells */,
 			);
