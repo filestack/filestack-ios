@@ -12,9 +12,10 @@ class AlbumListViewController: UITableViewController {
     private var activityIndicator: UIActivityIndicatorView?
 
     private var albumList = [Album]()
-    var pickerController: PhotoPickerController!
-    var repository: PhotoAlbumRepository {
-        return pickerController.albumRepository
+    var pickerController: PhotoPickerController?
+
+    var repository: PhotoAlbumRepository? {
+        return pickerController?.albumRepository
     }
 
     override func viewDidLoad() {
@@ -32,8 +33,10 @@ private extension AlbumListViewController {
     }
 
     func setupNavigation() {
-        navigationItem.leftBarButtonItem = pickerController.cancelBarButton
-        navigationItem.rightBarButtonItems = pickerController.rightBarItems
+        if let pickerController = pickerController {
+            navigationItem.leftBarButtonItem = pickerController.cancelBarButton
+            navigationItem.rightBarButtonItems = pickerController.rightBarItems
+        }
     }
 }
 
@@ -50,7 +53,7 @@ extension AlbumListViewController {
     }
 
     func fetchData() {
-        repository.getAlbums { albums in self.set(albums) }
+        repository?.getAlbums { albums in self.set(albums) }
     }
 }
 
@@ -120,8 +123,10 @@ extension AlbumListViewController {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let album = albumList[indexPath.row]
-        let collectionView = pickerController.assetCollection
-        collectionView.configure(with: album)
-        navigationController?.pushViewController(collectionView, animated: true)
+
+        if let collectionView = pickerController?.assetCollection {
+            collectionView.configure(with: album)
+            navigationController?.pushViewController(collectionView, animated: true)
+        }
     }
 }

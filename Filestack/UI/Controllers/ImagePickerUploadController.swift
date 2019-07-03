@@ -15,19 +15,14 @@ import SVProgressHUD
 internal class ImagePickerUploadController: NSObject {
     let multifileUpload: MultifileUpload
     let viewController: UIViewController
+
     let sourceType: UIImagePickerController.SourceType
     let config: Config
 
     private lazy var urlExtractor: UrlExtractor = {
-        var imagePreset = ImageURLExportPreset.compatible
-        var videoPreset: String = AVAssetExportPresetPassthrough
-        if #available(iOS 11.0, *) {
-            imagePreset = config.imageURLExportPreset
-            videoPreset = config.videoExportPreset
-        }
-        return UrlExtractor(imageExportPreset: imagePreset,
-                            videoExportPreset: videoPreset,
-                            cameraImageQuality: config.imageExportQuality)
+        UrlExtractor(imageExportPreset: config.imageURLExportPreset,
+                     videoExportPreset: config.videoExportPreset,
+                     cameraImageQuality: config.imageExportQuality)
     }()
 
     private lazy var uploadableExtractor = UploadableExtractor()
@@ -123,8 +118,10 @@ extension ImagePickerUploadController: UploadListDelegate {
             guard let self = self else {
                 return
             }
+
             self.multifileUpload.uploadURLs = urlList
             self.multifileUpload.uploadFiles()
+            self.filePickedCompletionHandler?(true)
         }
     }
 }
@@ -167,19 +164,16 @@ private extension ImagePickerUploadController {
         SVProgressHUD.show(withStatus: "Preparing")
 
         urlExtractor.fetchUrls(assets, completion: { [weak self] urlList in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
 
             SVProgressHUD.dismiss()
 
             self.viewController.dismiss(animated: true) { [weak self] in
-                guard let self = self else {
-                    return
-                }
+                guard let self = self else { return }
 
                 self.multifileUpload.uploadURLs.append(contentsOf: urlList)
                 self.multifileUpload.uploadFiles()
+                self.filePickedCompletionHandler?(true)
             }
         })
     }
@@ -212,6 +206,7 @@ private extension ImagePickerUploadController {
                 self.upload(assets: [singleImageAsset])
                 return
             }
+
             navigationController.dismiss(animated: false) {
                 self.viewController.present(self.editor(with: image), animated: false)
             }

@@ -15,11 +15,11 @@ protocol AssetSelectionDelegate {
 }
 
 class AssetCollectionViewController: UICollectionViewController {
-    var pickerController: PhotoPickerController!
+    var pickerController: PhotoPickerController?
     var elements: [PHAsset]?
 
-    var selectedAssets: Set<PHAsset> {
-        return pickerController.selectedAssets
+    var selectedAssets: Set<PHAsset>? {
+        return pickerController?.selectedAssets
     }
 
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class AssetCollectionViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.rightBarButtonItems = pickerController.rightBarItems
+        navigationItem.rightBarButtonItems = pickerController?.rightBarItems
     }
 
     func configure(with album: Album) {
@@ -59,20 +59,23 @@ extension AssetCollectionViewController {
             return UICollectionViewCell()
         }
         let asset = elements![indexPath.row]
-        let isSelected = selectedAssets.contains(asset)
+        let isSelected = selectedAssets?.contains(asset) ?? false
         cell.configure(for: asset, isSelected: isSelected)
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let asset = elements![indexPath.row]
-        let isSelecting = !selectedAssets.contains(asset)
+        let isSelecting = !(selectedAssets?.contains(asset) ?? true)
         let cell = collectionView.cellForItem(at: indexPath) as! AssetCell
         if isSelecting, maximumReached {
             return
         }
         cell.set(selected: isSelecting)
-        isSelecting ? pickerController.add(asset: asset) : pickerController.remove(asset: asset)
+
+        if let pickerController = pickerController {
+            isSelecting ? pickerController.add(asset: asset) : pickerController.remove(asset: asset)
+        }
     }
 }
 
@@ -111,6 +114,10 @@ private extension AssetCollectionViewController {
     }
 
     var maximumReached: Bool {
-        return pickerController.isMaximumLimitSet && selectedAssets.count >= pickerController.maximumSelectionAllowed
+        if let pickerController = pickerController, let selectedAssets = selectedAssets {
+            return pickerController.isMaximumLimitSet && selectedAssets.count >= pickerController.maximumSelectionAllowed
+        } else {
+            return true
+        }
     }
 }
