@@ -21,20 +21,12 @@ final class EditorViewController: UIViewController, UIGestureRecognizerDelegate 
         }
     }
 
-    private var images: [UIImage]
-    private(set) var currentImageIndex: Int
-    var currentImage: UIImage {
-        return images[currentImageIndex]
-    }
-
-    var originalImage: UIImage {
-        return images.first ?? UIImage()
-    }
+    var editor: ImageEditor?
 
     let bottomToolbar = BottomEditorToolbar()
     let topToolbar = TopEditorToolbar()
     let preview = UIView()
-    let imageView = UIImageView()
+    let imageView = ImageEditorView()
     let imageClearBackground = UIView()
 
     private let cropLayer = CropLayer()
@@ -45,13 +37,14 @@ final class EditorViewController: UIViewController, UIGestureRecognizerDelegate 
     lazy var cropHandler = CropGesturesHandler(delegate: self)
     lazy var circleHandler = CircleGesturesHandler(delegate: self)
 
-    let completion: (UIImage?) -> Void
+    var completion: ((UIImage?) -> Void)?
 
     init(image: UIImage, completion: @escaping (UIImage?) -> Void) {
-        images = [image]
-        currentImageIndex = 0
+        self.editor = ImageEditor(image: image)
         self.completion = completion
+
         super.init(nibName: nil, bundle: nil)
+
         setupGestureRecognizer()
         setupView()
     }
@@ -153,25 +146,5 @@ extension EditorViewController: EditCropDelegate {
 extension EditorViewController: EditCircleDelegate {
     func updateCircle(_: CGPoint, radius _: CGFloat) {
         updateCirclePaths()
-    }
-}
-
-extension EditorViewController {
-    func editImage(to newImage: UIImage?) {
-        guard let editedImage = newImage else { return }
-        var imagesHistory = Array(images.prefix(through: currentImageIndex))
-        imagesHistory.append(editedImage)
-        images = imagesHistory
-        changeImage(to: currentImageIndex + 1)
-    }
-
-    func changeImage(to historyIndex: Int) {
-        guard images.indices.contains(historyIndex) else { return }
-        currentImageIndex = historyIndex
-        imageView.image = images[historyIndex]
-        editMode = .none
-        cropHandler.reset()
-        circleHandler.reset()
-        topToolbar.setUndo(hidden: historyIndex == images.startIndex)
     }
 }

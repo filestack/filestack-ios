@@ -77,23 +77,13 @@ class PhotoPickerController {
     }
 
     @objc func dismissWithSelection() {
-        navigation.popViewController(animated: true)
-        delegate?.photoPicker(navigation, didSelectAssets: Array(selectedAssets))
-        afterDismiss()
+        self.delegate?.photoPicker(self.navigation, didSelectAssets: Array(self.selectedAssets))
     }
 
     @objc func dismissWithoutSelection() {
         navigation.dismiss(animated: true) {
             self.delegate?.photoPickerControllerDidCancel()
-            self.afterDismiss()
         }
-    }
-
-    private func afterDismiss() {
-        // Cleanup strong references to self in `albumList` and `assetCollection` so this object can be properly
-        // deallocated.
-        albumList.pickerController = nil
-        assetCollection.pickerController = nil
     }
 }
 

@@ -18,7 +18,7 @@ protocol EditDataSource: AnyObject {
 
 extension EditorViewController: EditDataSource {
     var imageFrame: CGRect {
-        return AVMakeRect(aspectRatio: currentImage.size, insideRect: imageView.bounds)
+        return AVMakeRect(aspectRatio: imageActualSize, insideRect: imageView.bounds)
     }
 
     var imageSize: CGSize {
@@ -30,6 +30,6 @@ extension EditorViewController: EditDataSource {
     }
 
     var imageActualSize: CGSize {
-        return currentImage.size
+        return editor?.editedImage.size ?? .zero
     }
 }

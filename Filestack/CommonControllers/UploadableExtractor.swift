@@ -10,7 +10,7 @@ import Foundation
 import Photos
 
 class UploadableExtractor {
-    let imageManager = PHCachingImageManager.default()
+    private let imageManager = PHCachingImageManager.default()
 
     func fetch(from assets: [PHAsset]) -> [Uploadable] {
         let dispatchGroup = DispatchGroup()

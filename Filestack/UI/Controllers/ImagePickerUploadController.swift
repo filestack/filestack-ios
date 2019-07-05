@@ -27,9 +27,9 @@ internal class ImagePickerUploadController: NSObject {
 
     private lazy var uploadableExtractor = UploadableExtractor()
 
-    var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)?
+    private var photoPickerController: PhotoPickerController?
 
-    let imageManager = PHCachingImageManager.default()
+    var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)?
 
     init(multifileUpload: MultifileUpload,
          viewController: UIViewController,
@@ -77,6 +77,10 @@ private extension ImagePickerUploadController {
 
     var customPicker: UINavigationController {
         let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
+
+        // Keep a strong reference to the picker, so it does not go away while we still need it.
+        photoPickerController = picker
+
         picker.delegate = self
         let navigation = picker.navigation
         navigation.modalPresentationStyle = config.modalPresentationStyle

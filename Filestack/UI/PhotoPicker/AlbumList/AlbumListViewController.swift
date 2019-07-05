@@ -9,10 +9,10 @@
 import UIKit
 
 class AlbumListViewController: UITableViewController {
-    private var activityIndicator: UIActivityIndicatorView?
+    weak var pickerController: PhotoPickerController?
 
+    private var activityIndicator: UIActivityIndicatorView?
     private var albumList = [Album]()
-    var pickerController: PhotoPickerController?
 
     var repository: PhotoAlbumRepository? {
         return pickerController?.albumRepository

@@ -15,7 +15,8 @@ protocol AssetSelectionDelegate {
 }
 
 class AssetCollectionViewController: UICollectionViewController {
-    var pickerController: PhotoPickerController?
+    weak var pickerController: PhotoPickerController?
+
     var elements: [PHAsset]?
 
     var selectedAssets: Set<PHAsset>? {
