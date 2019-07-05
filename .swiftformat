@@ -40,3 +40,4 @@
 --enable spaceInsideComments
 --enable linebreakAtEndOfFile
 --enable typeSugar
+--disable redundantSelf
