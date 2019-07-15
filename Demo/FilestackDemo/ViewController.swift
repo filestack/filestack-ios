@@ -144,4 +144,9 @@ extension ViewController: PickerNavigationControllerDelegate {
             }
         }
     }
+
+    /// Called when the picker reports progress during a file or set of files being uploaded.
+    func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float) {
+        print("Picker \(picker) reported upload progress: \(progress)")
+    }
 }
