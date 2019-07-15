@@ -191,6 +191,8 @@ private extension SourceTableViewController {
     }
 
     func upload(sourceType: UIImagePickerController.SourceType? = nil) {
+        guard let picker = self.navigationController as? PickerNavigationController else { return }
+
         var cancellableRequest: CancellableRequest?
 
         // Disable user interaction on this view until the file is picked and uploaded.
@@ -212,6 +214,8 @@ private extension SourceTableViewController {
             // Send progress update to upload monitor
             let fractionCompleted = Float(progress.fractionCompleted)
             self.uploadMonitorViewController?.updateProgress(value: fractionCompleted)
+            // Notify delegate
+            picker.pickerDelegate?.pickerReportedUploadProgress?(picker: picker, progress: fractionCompleted)
         }
 
         let completionHandler: (([NetworkJSONResponse]) -> Void) = { responses in
@@ -229,9 +233,7 @@ private extension SourceTableViewController {
                 self.dismissMonitorViewController()
             }
 
-            if let picker = self.navigationController as? PickerNavigationController {
-                picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
-            }
+            picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
         }
 
         if let sourceType = sourceType {

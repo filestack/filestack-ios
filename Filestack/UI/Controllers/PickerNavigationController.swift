@@ -43,6 +43,9 @@ struct PickerNavigationScene: Scene {
 
     /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
     func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse])
+
+    /// Called when the picker reports progress during a file or set of files being uploaded.
+    @objc optional func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float)
 }
 
 extension PickerNavigationController: StylizerDelegate {
