@@ -14,6 +14,7 @@
   </head>
   <body>
 
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
 
     <a title="Classes  Reference"></a>
 
@@ -22,7 +23,7 @@
         <a class="header-link" href="index.html">
           Filestack Docs
         </a>
-         (100% documented)
+         (77% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -56,10 +57,19 @@
                 <a class="nav-group-task-link" href="Classes/Client.html">Client</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/CloudSource.html">CloudSource</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Config.html">Config</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Config/Builder.html">– Builder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/FolderListResponse.html">FolderListResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/LocalSource.html">LocalSource</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/LogoutResponse.html">LogoutResponse</a>
@@ -70,22 +80,35 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/StoreResponse.html">StoreResponse</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stylizer.html">Stylizer</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Enums.html">Enums</a>
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/CloudProvider.html">CloudProvider</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/CloudSource.html">CloudSource</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/LocalSource.html">LocalSource</a>
+                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Functions.html#/s:9Filestack5clamp_3min3maxxx_xxtSLRzlF">clamp(_:min:max:)</a>
               </li>
             </ul>
           </li>
@@ -97,6 +120,17 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:9Filestack27FolderListCompletionHandlera">FolderListCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:9Filestack22StoreCompletionHandlera">StoreCompletionHandler</a>
               </li>
             </ul>
           </li>
@@ -119,9 +153,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@objc(cs)FSStoreResponse"></a>
-                    <a name="//apple_ref/swift/Class/StoreResponse" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSStoreResponse">StoreResponse</a>
+                    <a name="/c:@M@Filestack@objc(cs)FSFolderListResponse"></a>
+                    <a name="//apple_ref/swift/Class/FolderListResponse" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSFolderListResponse">FolderListResponse</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -129,15 +163,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This class represents a response obtained from a cloud store request.</p>
+                        <p>This class represents a response obtained from a cloud folder list request.</p>
 
-                        <a href="Classes/StoreResponse.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FolderListResponse.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc(FSStoreResponse)</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">StoreResponse</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CloudResponse</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSFolderListResponse)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">FolderListResponse</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CloudResponse</span></code></pre>
 
                         </div>
                       </div>
@@ -169,7 +204,106 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LogoutResponse</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LogoutResponse</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Filestack@objc(cs)FSStoreResponse"></a>
+                    <a name="//apple_ref/swift/Class/StoreResponse" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSStoreResponse">StoreResponse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This class represents a response obtained from a cloud store request.</p>
+
+                        <a href="Classes/StoreResponse.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSStoreResponse)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">StoreResponse</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CloudResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Filestack@objc(cs)FSFilestackClient"></a>
+                    <a name="//apple_ref/swift/Class/Client" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSFilestackClient">Client</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>Client</code> class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.</p>
+
+                        <a href="Classes/Client.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSFilestackClient)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Client</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Filestack@objc(cs)FSConfig"></a>
+                    <a name="//apple_ref/swift/Class/Config" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSConfig">Config</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>Config</code> class is used together with <code><a href="Classes/Client.html">Client</a></code> to configure certain aspects of the API.</p>
+
+                        <a href="Classes/Config.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSConfig)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Config</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -202,7 +336,8 @@ sources.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc(FSPickerNavigationController)</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">PickerNavigationController</span><span class="p">:</span> <span class="kt">UINavigationController</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSPickerNavigationController)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">PickerNavigationController</span> <span class="p">:</span> <span class="kt">UINavigationController</span></code></pre>
 
                         </div>
                       </div>
@@ -216,9 +351,9 @@ sources.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@objc(cs)FSFilestackClient"></a>
-                    <a name="//apple_ref/swift/Class/Client" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSFilestackClient">Client</a>
+                    <a name="/c:@M@Filestack@objc(cs)FSCloudSource"></a>
+                    <a name="//apple_ref/swift/Class/CloudSource" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSCloudSource">CloudSource</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,15 +361,16 @@ sources.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>Client</code> class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.</p>
+                        <p>Represents a type of cloud source to be used in the picker.</p>
 
-                        <a href="Classes/Client.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/CloudSource.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc(FSFilestackClient)</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">Client</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSCloudSource)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">CloudSource</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CellDescriptibleSource</span></code></pre>
 
                         </div>
                       </div>
@@ -248,9 +384,9 @@ sources.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@objc(cs)FSConfig"></a>
-                    <a name="//apple_ref/swift/Class/Config" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSConfig">Config</a>
+                    <a name="/c:@M@Filestack@objc(cs)FSLocalSource"></a>
+                    <a name="//apple_ref/swift/Class/LocalSource" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSLocalSource">LocalSource</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -258,15 +394,16 @@ sources.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>Config</code> class is used together with <code><a href="Classes/Client.html">Client</a></code> to configure certain aspects of the API.</p>
+                        <p>Represents a type of local source to be used in the picker.</p>
 
-                        <a href="Classes/Config.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/LocalSource.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc(FSConfig)</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">Config</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSLocalSource)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">LocalSource</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CellDescriptibleSource</span></code></pre>
 
                         </div>
                       </div>
@@ -280,9 +417,9 @@ sources.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@objc(cs)FSFolderListResponse"></a>
-                    <a name="//apple_ref/swift/Class/FolderListResponse" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSFolderListResponse">FolderListResponse</a>
+                    <a name="/c:@M@Filestack@objc(cs)FSStylizer"></a>
+                    <a name="//apple_ref/swift/Class/Stylizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSStylizer">Stylizer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -290,15 +427,16 @@ sources.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This class represents a response obtained from a cloud folder list request.</p>
+                        <p>Object used to pass set colors, fonts and defaults style of Picker.</p>
 
-                        <a href="Classes/FolderListResponse.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/Stylizer.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc(FSFolderListResponse)</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">FolderListResponse</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CloudResponse</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSStylizer)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Stylizer</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -313,8 +451,8 @@ sources.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2018-01-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

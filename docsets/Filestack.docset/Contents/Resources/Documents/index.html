@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           Filestack Docs
         </a>
-         (100% documented)
+         (77% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -56,10 +56,19 @@
                 <a class="nav-group-task-link" href="Classes/Client.html">Client</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/CloudSource.html">CloudSource</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Config.html">Config</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Config/Builder.html">– Builder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/FolderListResponse.html">FolderListResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/LocalSource.html">LocalSource</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/LogoutResponse.html">LogoutResponse</a>
@@ -70,22 +79,35 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/StoreResponse.html">StoreResponse</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stylizer.html">Stylizer</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Enums.html">Enums</a>
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/CloudProvider.html">CloudProvider</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/CloudSource.html">CloudSource</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/LocalSource.html">LocalSource</a>
+                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Functions.html#/s:9Filestack5clamp_3min3maxxx_xxtSLRzlF">clamp(_:min:max:)</a>
               </li>
             </ul>
           </li>
@@ -100,6 +122,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:9Filestack27FolderListCompletionHandlera">FolderListCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:9Filestack22StoreCompletionHandlera">StoreCompletionHandler</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -109,7 +142,7 @@
             
             <h1 id='filestack-ios-sdk' class='heading'>Filestack iOS SDK</h1>
 
-<p><a href="https://www.filestack.com"><img src="https://filestack.com/themes/filestack/assets/images/press-articles/color.svg" align="left" hspace="10" vspace="6"></a>
+<p><a href="https://www.filestack.com"><img src="https://www.filestack.com/docs/images/fs-logo-dark.svg" align="left" hspace="10" vspace="6"></a>
 This is the official Swift iOS for Filestack — API and content management system that makes it easy to add powerful file uploading and transformation capabilities to any web or mobile application.</p>
 <h2 id='resources' class='heading'>Resources</h2>
 
@@ -121,9 +154,9 @@ This is the official Swift iOS for Filestack — API and content management syst
 <h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
-<li>Xcode 8.3 or later</li>
-<li>Swift 3.2 / Objective-C</li>
-<li>iOS 9 or later</li>
+<li>Xcode 10.2 or later</li>
+<li>Swift 4.2 / Objective-C</li>
+<li>iOS 11 or later</li>
 </ul>
 <h2 id='installing' class='heading'>Installing</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
@@ -134,11 +167,11 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 <p>To integrate Filestack into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
 <pre class="highlight plaintext"><code>source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 1.3'
+    pod 'Filestack', '~&gt; 1.5'
 end
 </code></pre>
 
@@ -156,9 +189,9 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 1.3</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 1.5</code></p>
 
-<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, <code>CryptoSwift.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
+<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, <code>CryptoSwift.framework</code>, <code>SVProgressHUD.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
 <h4 id='embedded-framework' class='heading'>Embedded Framework</h4>
 
@@ -167,11 +200,12 @@ $ brew install carthage
 <p><code>$ git init</code></p>
 
 <p>Add Filestack and its dependencies as git submodules by running the following commands:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
-<span class="gp">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
-<span class="gp">$ </span>git submodule add https://github.com/Alamofire/Alamofire.git
-<span class="gp">$ </span>git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
-<span class="gp">$ </span>git submodule add https://github.com/ZipArchive/ZipArchive.git
+<pre class="highlight shell"><code><span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
+<span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
+<span class="nv">$ </span>git submodule add https://github.com/Alamofire/Alamofire.git
+<span class="nv">$ </span>git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
+<span class="nv">$ </span>git submodule add https://github.com/ZipArchive/ZipArchive.git
+<span class="nv">$ </span>git submodule add https://github.com/SVProgressHUD/SVProgressHUD.git
 </code></pre>
 
 <p>Open the new <code>filestack-ios</code> folder, and drag the <code>Filestack.xcodeproj</code> into the Project Navigator of your application&rsquo;s Xcode project.</p>
@@ -185,7 +219,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <p>Click on the + button under the <q>Embedded Binaries</q> section and choose the <code>Filestack.framework</code> for iOS.</p>
 
-<p>Repeat the same process for adding <code>Alamofire</code>, <code>CryptoSwift</code>, <code>FilestackSDK</code>, and <code>ZipArchive</code> dependent frameworks.</p>
+<p>Repeat the same process for adding <code>Alamofire</code>, <code>CryptoSwift</code>, <code>FilestackSDK</code>, <code>SVProgressHUD</code>, and <code>ZipArchive</code> dependent frameworks.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='importing-required-frameworks' class='heading'>Importing required frameworks</h3>
 
@@ -266,7 +300,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="p">}</span>
 </code></pre>
 
-<p>In all the previous uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code>CancellableRequest</code> conforming object returned by any of the functions above:</p>
+<p>In all the previous uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code><a href="Protocols/CancellableRequest.html">CancellableRequest</a></code> conforming object returned by any of the functions above:</p>
 <pre class="highlight swift"><code><span class="n">uploadRequest</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span>
 </code></pre>
 <h3 id='listing-contents-from-a-cloud-provider' class='heading'>Listing contents from a cloud provider</h3>
@@ -299,7 +333,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 </code></pre>
 
 <p>Remember also to add this piece of code to your <code>AppDelegate</code> so the auth flow can complete:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
 
     <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
         <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
@@ -361,39 +395,16 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 </code></pre>
 <h4 id='2-setting-up-config-object' class='heading'>2. Setting up Config object</h4>
 <pre class="highlight swift"><code><span class="c1">// Create `Config` object.</span>
-<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="p">()</span>
-
 <span class="c1">// IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist</span>
-<span class="n">config</span><span class="o">.</span><span class="n">appURLScheme</span> <span class="o">=</span> <span class="s">"YOUR-APP-URL-SCHEME"</span>
-
-<span class="c1">// Video quality for video recording (and sometimes exporting.)</span>
-<span class="n">config</span><span class="o">.</span><span class="n">videoQuality</span> <span class="o">=</span> <span class="o">.</span><span class="n">typeHigh</span>
-
-<span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
-    <span class="c1">// On iOS 11, you can export images in HEIF or JPEG by setting this value to `.current` or `.compatible`</span>
-    <span class="c1">// respectively.</span>
-    <span class="c1">// Here we state we prefer HEIF for image export.</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">imageURLExportPreset</span> <span class="o">=</span> <span class="o">.</span><span class="n">current</span>
-    <span class="c1">// On iOS 11, you can decide what format and quality will be used for exported videos.</span>
-    <span class="c1">// Here we state we want to export HEVC at the highest quality.</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">videoExportPreset</span> <span class="o">=</span> <span class="kt">AVAssetExportPresetHEVCHighestQuality</span>
-<span class="p">}</span>
-
-<span class="c1">// Here you can enumerate the available local sources for the picker.</span>
-<span class="c1">// If you simply want to enumerate all the local sources, you may use `LocalSource.all()`, but if you would</span>
-<span class="c1">// like to enumerate, let's say the camera source only, you could set it like this:</span>
-<span class="c1">//</span>
-<span class="c1">//   config.availableLocalSources = [.camera]</span>
-<span class="c1">//</span>
-<span class="n">config</span><span class="o">.</span><span class="n">availableLocalSources</span> <span class="o">=</span> <span class="kt">LocalSource</span><span class="o">.</span><span class="nf">all</span><span class="p">()</span>
-
-<span class="c1">// Here you can enumerate the available cloud sources for the picker.</span>
-<span class="c1">// If you simply want to enumerate all the cloud sources, you may use `CloudSource.all()`, but if you would</span>
-<span class="c1">// like to enumerate selected cloud sources, you could set these like this:</span>
-<span class="c1">//</span>
-<span class="c1">//   config.availableCloudSources = [.dropbox, .googledrive, .googlephotos, .customSource]</span>
-<span class="c1">//</span>
-<span class="n">config</span><span class="o">.</span><span class="n">availableCloudSources</span> <span class="o">=</span> <span class="kt">CloudSource</span><span class="o">.</span><span class="nf">all</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="o">.</span><span class="n">builder</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">appUrlScheme</span><span class="p">:</span> <span class="s">"YOUR-APP-URL-SCHEME"</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">videoQuality</span><span class="p">:</span> <span class="o">.</span><span class="n">typeHigh</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">imageUrlExportPreset</span><span class="p">:</span> <span class="o">.</span><span class="n">current</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">maximumSelectionLimit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">withEditorEnabled</span><span class="p">()</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">availableCloudSources</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">dropbox</span><span class="p">,</span> <span class="o">.</span><span class="n">googledrive</span><span class="p">,</span> <span class="o">.</span><span class="n">googlephotos</span><span class="p">,</span> <span class="o">.</span><span class="n">customSource</span><span class="p">])</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">availableLocalSources</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">camera</span><span class="p">])</span>
+  <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
 </code></pre>
 <h4 id='3-setting-up-client-object' class='heading'>3. Setting up Client object</h4>
 <pre class="highlight swift"><code><span class="c1">// Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),</span>
@@ -414,7 +425,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="n">picker</span><span class="o">.</span><span class="n">pickerDelegate</span> <span class="o">=</span> <span class="k">self</span>
 </code></pre>
 
-<p>And implement the <code>PickerNavigationControllerDelegate</code> protocol in your view controller, i.e.:</p>
+<p>And implement the <code><a href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a></code> protocol in your view controller, i.e.:</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">PickerNavigationControllerDelegate</span> <span class="p">{</span>
 
     <span class="kd">func</span> <span class="nf">pickerStoredFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">StoreResponse</span><span class="p">)</span> <span class="p">{</span>
@@ -445,7 +456,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 </code></pre>
 
 <p>Finally, remember that you&rsquo;ll need this piece of code in your <code>AppDelegate</code> for the auth flow to complete:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
 
     <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
         <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
@@ -490,8 +501,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2018-01-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

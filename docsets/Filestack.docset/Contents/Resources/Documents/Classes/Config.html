@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Filestack Docs
         </a>
-         (100% documented)
+         (77% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -57,10 +57,19 @@
                 <a class="nav-group-task-link" href="../Classes/Client.html">Client</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CloudSource.html">CloudSource</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Config.html">Config</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Config/Builder.html">– Builder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/FolderListResponse.html">FolderListResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/LocalSource.html">LocalSource</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/LogoutResponse.html">LogoutResponse</a>
@@ -71,22 +80,35 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/StoreResponse.html">StoreResponse</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Stylizer.html">Stylizer</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/CloudProvider.html">CloudProvider</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/CloudSource.html">CloudSource</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/LocalSource.html">LocalSource</a>
+                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:9Filestack5clamp_3min3maxxx_xxtSLRzlF">clamp(_:min:max:)</a>
               </li>
             </ul>
           </li>
@@ -101,6 +123,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Filestack27FolderListCompletionHandlera">FolderListCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Filestack22StoreCompletionHandlera">StoreCompletionHandler</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -110,7 +143,8 @@
             <h1>Config</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">@objc(FSConfig)</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">Config</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc(FSConfig)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Config</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
@@ -126,9 +160,92 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC12appURLSchemeSSSgv"></a>
+                    <a name="/s:9Filestack6ConfigC7builderAC7BuilderCvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/builder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC7builderAC7BuilderCvpZ">builder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">builder</span><span class="p">:</span> <span class="kt"><a href="../Classes/Config/Builder.html">Builder</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC7BuilderC"></a>
+                    <a name="//apple_ref/swift/Class/Builder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC7BuilderC">Builder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Config/Builder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSConfigBuilder)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Builder</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC22showEditorBeforeUploadSbvp"></a>
+                    <a name="//apple_ref/swift/Property/showEditorBeforeUpload" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC22showEditorBeforeUploadSbvp">showEditorBeforeUpload</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Change this flag to true if you want to allow user to edit photos before the upload.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">showEditorBeforeUpload</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC12appURLSchemeSSSgvp"></a>
                     <a name="//apple_ref/swift/Property/appURLScheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC12appURLSchemeSSSgv">appURLScheme</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC12appURLSchemeSSSgvp">appURLScheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -143,7 +260,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">appURLScheme</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">appURLScheme</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -153,9 +270,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC25cloudThumbnailCachePolicySo12NSURLRequestC0eF0Ov"></a>
+                    <a name="/s:9Filestack6ConfigC25cloudThumbnailCachePolicySo012NSURLRequesteF0Vvp"></a>
                     <a name="//apple_ref/swift/Property/cloudThumbnailCachePolicy" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC25cloudThumbnailCachePolicySo12NSURLRequestC0eF0Ov">cloudThumbnailCachePolicy</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC25cloudThumbnailCachePolicySo012NSURLRequesteF0Vvp">cloudThumbnailCachePolicy</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -170,7 +287,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cloudThumbnailCachePolicy</span><span class="p">:</span> <span class="kt">URLRequest</span><span class="o">.</span><span class="kt">CachePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">reloadIgnoringLocalCacheData</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cloudThumbnailCachePolicy</span><span class="p">:</span> <span class="kt">URLRequest</span><span class="o">.</span><span class="kt">CachePolicy</span></code></pre>
 
                         </div>
                       </div>
@@ -180,9 +297,94 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC21availableCloudSourcesSayAA0D6SourceOGv"></a>
+                    <a name="/s:9Filestack6ConfigC24kMaximumSelectionNoLimitSuvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/kMaximumSelectionNoLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC24kMaximumSelectionNoLimitSuvpZ">kMaximumSelectionNoLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this value if you want to allow user for selecting unlimited number of assets to upload.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">kMaximumSelectionNoLimit</span><span class="p">:</span> <span class="kt">UInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC23maximumSelectionAllowedSuvp"></a>
+                    <a name="//apple_ref/swift/Property/maximumSelectionAllowed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC23maximumSelectionAllowedSuvp">maximumSelectionAllowed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This controls if user can select more than one image/document for upload.
+Set this value to <code><a href="../Classes/Config.html#/s:9Filestack6ConfigC24kMaximumSelectionNoLimitSuvpZ">kMaximumSelectionNoLimit</a></code> if you want to remove this limit.
+Setting more then one will use custom ImagePicker in case of LocalSource.photoLibrary.
+The default value is 1.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maximumSelectionAllowed</span><span class="p">:</span> <span class="kt">UInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC22modalPresentationStyleSo07UIModaldE0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/modalPresentationStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC22modalPresentationStyleSo07UIModaldE0Vvp">modalPresentationStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This settings determines the way we want to present document picker, image pickers and upload monitor.
+The default presentation style is <code>.currentContext</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">modalPresentationStyle</span><span class="p">:</span> <span class="kt">UIModalPresentationStyle</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC21availableCloudSourcesSayAA0D6SourceCGvp"></a>
                     <a name="//apple_ref/swift/Property/availableCloudSources" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC21availableCloudSourcesSayAA0D6SourceOGv">availableCloudSources</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC21availableCloudSourcesSayAA0D6SourceCGvp">availableCloudSources</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -204,7 +406,7 @@ By default, it contains all the supported cloud sources.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">availableCloudSources</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/CloudSource.html">CloudSource</a></span><span class="p">]</span> <span class="o">=</span> <span class="kt"><a href="../Enums/CloudSource.html">CloudSource</a></span><span class="o">.</span><span class="nf">all</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">availableCloudSources</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/CloudSource.html">CloudSource</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -214,9 +416,9 @@ By default, it contains all the supported cloud sources.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC21availableLocalSourcesSayAA0D6SourceOGv"></a>
+                    <a name="/s:9Filestack6ConfigC21availableLocalSourcesSayAA0D6SourceCGvp"></a>
                     <a name="//apple_ref/swift/Property/availableLocalSources" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC21availableLocalSourcesSayAA0D6SourceOGv">availableLocalSources</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC21availableLocalSourcesSayAA0D6SourceCGvp">availableLocalSources</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -232,7 +434,7 @@ By default, it contains all the supported local sources.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">availableLocalSources</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/LocalSource.html">LocalSource</a></span><span class="p">]</span> <span class="o">=</span> <span class="kt"><a href="../Enums/LocalSource.html">LocalSource</a></span><span class="o">.</span><span class="nf">all</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">availableLocalSources</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/LocalSource.html">LocalSource</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -242,9 +444,9 @@ By default, it contains all the supported local sources.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC25documentPickerAllowedUTIsSaySSGv"></a>
+                    <a name="/s:9Filestack6ConfigC25documentPickerAllowedUTIsSaySSGvp"></a>
                     <a name="//apple_ref/swift/Property/documentPickerAllowedUTIs" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC25documentPickerAllowedUTIsSaySSGv">documentPickerAllowedUTIs</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC25documentPickerAllowedUTIsSaySSGvp">documentPickerAllowedUTIs</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -260,7 +462,7 @@ By default, this contains <code>[&quot;public.item&quot;]</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">documentPickerAllowedUTIs</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">"public.item"</span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">documentPickerAllowedUTIs</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -270,9 +472,37 @@ By default, this contains <code>[&quot;public.item&quot;]</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC20imageURLExportPresetAA05ImagedE0Ov"></a>
+                    <a name="/s:9Filestack6ConfigC22cloudSourceAllowedUTIsSaySSGvp"></a>
+                    <a name="//apple_ref/swift/Property/cloudSourceAllowedUTIs" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC22cloudSourceAllowedUTIsSaySSGvp">cloudSourceAllowedUTIs</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This setting determines what document types can be picked from a cloud source.
+By default, this contains <code>[&quot;public.item&quot;]</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cloudSourceAllowedUTIs</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC20imageURLExportPresetAA05ImagedE0Ovp"></a>
                     <a name="//apple_ref/swift/Property/imageURLExportPreset" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC20imageURLExportPresetAA05ImagedE0Ov">imageURLExportPreset</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC20imageURLExportPresetAA05ImagedE0Ovp">imageURLExportPreset</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -289,7 +519,8 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageURLExportPreset.html">ImageURLExportPreset</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageURLExportPreset.html">ImageURLExportPreset</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -299,9 +530,9 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC18imageExportQualitySfv"></a>
+                    <a name="/s:9Filestack6ConfigC18imageExportQualitySfvp"></a>
                     <a name="//apple_ref/swift/Property/imageExportQuality" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC18imageExportQualitySfv">imageExportQuality</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC18imageExportQualitySfvp">imageExportQuality</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -321,7 +552,7 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">imageExportQuality</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mf">0.85</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">imageExportQuality</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -331,9 +562,9 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC17videoExportPresetSSv"></a>
+                    <a name="/s:9Filestack6ConfigC17videoExportPresetSSvp"></a>
                     <a name="//apple_ref/swift/Property/videoExportPreset" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC17videoExportPresetSSv">videoExportPreset</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC17videoExportPresetSSvp">videoExportPreset</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -359,7 +590,8 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">videoExportPreset</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">videoExportPreset</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -369,9 +601,9 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ConfigC12videoQualitySC023UIImagePickerControllerD4TypeOv"></a>
+                    <a name="/s:9Filestack6ConfigC12videoQualitySo023UIImagePickerControllerD4TypeVvp"></a>
                     <a name="//apple_ref/swift/Property/videoQuality" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC12videoQualitySC023UIImagePickerControllerD4TypeOv">videoQuality</a>
+                    <a class="token" href="#/s:9Filestack6ConfigC12videoQualitySo023UIImagePickerControllerD4TypeVvp">videoQuality</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,7 +623,7 @@ lower quality.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">videoQuality</span><span class="p">:</span> <span class="kt">UIImagePickerControllerQualityType</span> <span class="o">=</span> <span class="o">.</span><span class="n">typeMedium</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">videoQuality</span><span class="p">:</span> <span class="kt">UIImagePickerController</span><span class="o">.</span><span class="kt">QualityType</span></code></pre>
 
                         </div>
                       </div>
@@ -406,8 +638,8 @@ lower quality.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2018-01-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
