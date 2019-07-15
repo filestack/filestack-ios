@@ -26,8 +26,9 @@ extension UIImage {
     /// Returns a cropped image with a `CIImage` as the backing image.
     ///
     /// - Parameter insets: Specifies how much should be inset on each side of the rect.
+    /// - Parameter transformed: Whether to transform UIKit coordinates into Core Image coordinates. Defaults to false.
     ///
-    func cropped(by insets: UIEdgeInsets) -> UIImage? {
+    func cropped(by insets: UIEdgeInsets, transformed: Bool = false) -> UIImage? {
         guard let ciImage = ciImage ?? CIImage(image: self) else { return nil }
 
         let roundedInsets = UIEdgeInsets(top: insets.top.rounded(),
@@ -35,7 +36,16 @@ extension UIImage {
                                          bottom: insets.bottom.rounded(),
                                          right: insets.right.rounded())
 
-        let rect = ciImage.extent.inset(by: roundedInsets)
+        let extent = ciImage.extent
+        var rect: CGRect!
+
+        if transformed {
+            let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -extent.height)
+            rect = extent.applying(transform).inset(by: roundedInsets).applying(transform)
+        } else {
+            rect = extent.inset(by: roundedInsets)
+        }
+
         let outputImage = ciImage.cropped(to: rect)
 
         return UIImage(ciImage: outputImage)
@@ -45,12 +55,18 @@ extension UIImage {
     ///
     /// - Parameter center: Circle's center point.
     /// - Parameter radius: Circle's radius.
+    /// - Parameter transformed: Whether to transform UIKit coordinates into Core Image coordinates. Defaults to false.
     ///
-    func circled(center: CGPoint, radius: CGFloat) -> UIImage? {
+    func circled(center: CGPoint, radius: CGFloat, transformed: Bool = false) -> UIImage? {
         guard let ciImage = ciImage ?? CIImage(image: self) else { return nil }
 
         let extent = ciImage.extent
-        let origin = CGPoint(x: (extent.minX + (center.x - radius)).rounded(), y: (extent.minY + (center.y - radius)).rounded())
+        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -extent.height)
+        let tCenter = transformed ? center.applying(transform) : center
+
+        let origin = CGPoint(x: (extent.minX + (tCenter.x - radius)).rounded(),
+                             y: (extent.minY + (tCenter.y - radius)).rounded())
+
         let rect = CGRect(origin: origin, size: CGSize(width: radius.rounded() * 2, height: radius.rounded() * 2))
 
         let transformedCIImage = ciImage.cropped(to: rect)

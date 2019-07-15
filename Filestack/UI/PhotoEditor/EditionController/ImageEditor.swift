@@ -35,13 +35,13 @@ extension ImageEditor {
     }
 
     func crop(insets: UIEdgeInsets) {
-        if let croppedImage = editedImage.cropped(by: insets) {
+        if let croppedImage = editedImage.cropped(by: insets, transformed: true) {
             editedImages.append(croppedImage)
         }
     }
 
     func cropCircled(center: CGPoint, radius: CGFloat) {
-        if let cropCircledImage = editedImage.circled(center: center, radius: radius) {
+        if let cropCircledImage = editedImage.circled(center: center, radius: radius, transformed: true) {
             editedImages.append(cropCircledImage)
         }
     }

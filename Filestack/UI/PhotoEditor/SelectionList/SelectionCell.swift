@@ -53,24 +53,22 @@ class SelectionCell: UICollectionViewCell {
         }
     }
 
-    var element: Uploadable? {
+    var element: SelectableElement? {
         didSet {
+            element?.delegate = self
             configure(for: element)
         }
     }
 
-    private func configure(for element: Uploadable?) {
+    private func configure(for element: SelectableElement?) {
         guard let element = element else { return }
-        imageView.image = element.associatedImage
-        if element.isEditable {
-            imageView.contentMode = .scaleAspectFit
-        } else {
-            imageView.contentMode = .scaleAspectFill
-        }
+
+        imageView.image = element.thumbnail
+        imageView.contentMode = .scaleAspectFit
+        editableView.isHidden = !element.isEditable
+        typeView.image = element.mediaTypeImage
         additionalLabel.isHidden = (element.additionalInfo == nil)
         additionalLabel.text = element.additionalInfo
-        typeView.image = element.typeIcon
-        editableView.isHidden = !element.isEditable
     }
 
     private var imageView = UIImageView()
@@ -80,6 +78,7 @@ class SelectionCell: UICollectionViewCell {
     private var additionalLabel = UILabel()
     private var selectionDim = UIView()
     private var selectionIcon = UIImageView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -107,6 +106,7 @@ private extension SelectionCell {
         UIView.animate(withDuration: 0.8) {
             self.transform = rightWobble
         }
+
         UIView.animate(withDuration: 0.12, delay: 0.08,
                        options: [.allowUserInteraction, .repeat, .autoreverse],
                        animations: { self.transform = conCat })
@@ -208,5 +208,12 @@ private extension SelectionCell {
         gradientLayer.startPoint = CGPoint(x: 1, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
         gradientLayer.frame = imageView.frame
+    }
+}
+
+extension SelectionCell: SelectableElementDelegate {
+    func selectableElementThumbnailChanged(selectableElement _: SelectableElement) {
+        configure(for: element)
+        setNeedsDisplay()
     }
 }

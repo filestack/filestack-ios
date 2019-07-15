@@ -117,16 +117,12 @@ extension ImagePickerUploadController: UploadListDelegate {
         cancelUpload()
     }
 
-    func upload(_ elements: [Uploadable]) {
-        urlExtractor.fetchUrls(elements) { [weak self] urlList in
-            guard let self = self else {
-                return
-            }
+    func upload(_ elements: [SelectableElement]) {
+        let urlList = elements.compactMap { $0.localURL }
 
-            self.multifileUpload.uploadURLs = urlList
-            self.multifileUpload.uploadFiles()
-            self.filePickedCompletionHandler?(true)
-        }
+        multifileUpload.uploadURLs = urlList
+        multifileUpload.uploadFiles()
+        filePickedCompletionHandler?(true)
     }
 }
 
@@ -145,21 +141,15 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
     }
 
     private func upload(with info: [UIImagePickerController.InfoKey: Any]) {
-        if let imageURL = info[PickerKeys.cameraUrl] as? URL {
+        if let imageURL = info[.imageURL] as? URL {
             upload(url: imageURL)
-        } else if let mediaURL = info[PickerKeys.cameraMediaUrl] as? URL {
+        } else if let mediaURL = info[.mediaURL] as? URL {
             upload(url: mediaURL)
-        } else if let image = info[PickerKeys.pickerImage] as? UIImage, let url = self.urlExtractor.fetchUrl(image: image) {
+        } else if let image = info[.originalImage] as? UIImage, let url = self.urlExtractor.fetchUrl(image: image) {
             upload(url: url)
         } else {
             cancelUpload()
         }
-    }
-
-    private struct PickerKeys {
-        static let cameraUrl = UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerImageURL")
-        static let cameraMediaUrl = UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerMediaURL")
-        static let pickerImage = UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")
     }
 }
 
@@ -191,8 +181,7 @@ private extension ImagePickerUploadController {
     }
 
     func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
-        let elements = UploadableExtractor().fetch(from: assets)
-        let editor = SelectionListViewController(elements: elements, delegate: self)
+        let editor = SelectionListViewController(assets: assets, config: config, delegate: self)
         navigationController.pushViewController(editor, animated: true)
     }
 

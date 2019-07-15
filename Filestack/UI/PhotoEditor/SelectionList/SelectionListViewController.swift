@@ -6,11 +6,12 @@
 //  Copyright © 2018 Mihály Papp. All rights reserved.
 //
 
+import Photos
 import UIKit
 
 protocol UploadListDelegate: AnyObject {
     func resignFromUpload()
-    func upload(_ elements: [Uploadable])
+    func upload(_ elements: [SelectableElement])
 }
 
 class SelectionListViewController: UICollectionViewController {
@@ -19,13 +20,25 @@ class SelectionListViewController: UICollectionViewController {
         case deletion
     }
 
-    private var elements: [Uploadable]
+    private var elements: [SelectableElement] = []
+    private var config: Config
     private var mode: Mode = .edition
     private var markedToDelete: Set<Int> = []
     private weak var delegate: UploadListDelegate?
 
-    init(elements: [Uploadable], delegate: UploadListDelegate) {
-        self.elements = elements
+    init(assets: [PHAsset], config: Config, delegate: UploadListDelegate) {
+        self.config = config
+
+        for asset in assets {
+            let element: SelectableElement = SelectableElement(asset: asset)
+
+            element.imageExportQuality = config.imageExportQuality
+            element.imageExportPreset = config.imageURLExportPreset
+            element.videoExportPreset = config.videoExportPreset
+
+            self.elements.append(element)
+        }
+
         self.delegate = delegate
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         setup()
@@ -38,8 +51,10 @@ class SelectionListViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+
         collectionView?.register(SelectionCell.self)
         collectionView?.backgroundColor = .white
+        collectionView?.reloadData()
     }
 }
 
@@ -62,11 +77,13 @@ extension SelectionListViewController {
         case .deletion: break
         case .edition: startDeleteMode()
         }
+
         deletion(with: row)
     }
 
     func cellWasDisplayed(_ cell: SelectionCell, on row: Int) {
         cell.element = elements[row]
+
         switch mode {
         case .edition: cell.mode = .standard
         case .deletion: cell.mode = .deletion(markedToDelete: isMarketToDelete(row))
@@ -90,6 +107,7 @@ private extension SelectionListViewController {
         let item = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonPressed))
         item.tintColor = .red
         item.isEnabled = false
+
         return item
     }
 
@@ -141,6 +159,7 @@ private extension SelectionListViewController {
     func startDeleteMode() {
         mode = .deletion
         navigationItem.rightBarButtonItem = deleteItem
+
         allSelectionCells.forEach { cell in
             cell.mode = .deletion(markedToDelete: false)
         }
@@ -148,6 +167,7 @@ private extension SelectionListViewController {
 
     func deleteAndRefresh() {
         deleteSelected()
+
         UIView.animate(withDuration: 0.5, animations: {
             self.visibleCellsToDelete().forEach { cell in
                 cell.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -163,7 +183,7 @@ private extension SelectionListViewController {
     func deleteSelected() {
         elements = elements.enumerated().filter { (index, _) -> Bool in
             !markedToDelete.contains(index)
-        }.map { (_, element) -> Uploadable in
+        }.map { (_, element) -> SelectableElement in
             element
         }
     }
@@ -172,17 +192,18 @@ private extension SelectionListViewController {
 private extension SelectionListViewController {
     func edition(with row: Int) {
         let element = elements[row]
-        if !element.isEditable {
-            return
-        }
-        let image = element.associatedImage
+
+        guard element.isEditable else { return }
+        guard let image = element.editableImage else { return }
+
         let editor = EditorViewController(image: image) { editedImage in
             guard let editedImage = editedImage else { return }
             DispatchQueue.main.async {
-                self.elements[row] = editedImage
+                element.update(image: editedImage)
                 self.collectionView?.reloadData()
             }
         }
+
         present(editor, animated: true)
     }
 

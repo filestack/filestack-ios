@@ -53,9 +53,10 @@ class UrlExtractor {
     }
 
     func fetchUrl(image: UIImage) -> URL? {
-        if #available(iOS 11.0, *), imageExportPreset == .current {
-            return exportedHEICImageURL(image: image) ?? exportedJPEGImageURL(image: image)
-        } else {
+        switch imageExportPreset {
+        case .current:
+            return exportedHEICImageURL(image: image)
+        case .compatible:
             return exportedJPEGImageURL(image: image)
         }
     }
@@ -139,18 +140,16 @@ private extension UrlExtractor {
     }
 
     func fetchImageUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
-        asset.fetchImage(forSize: PHImageManagerMaximumSize) { image in
-            guard let image = image else {
-                completion(nil)
-                return
-            }
-            var exportedUrl: URL?
-            if #available(iOS 11.0, *), self.imageExportPreset == .current {
-                exportedUrl = self.exportedHEICImageURL(image: image) ?? self.exportedJPEGImageURL(image: image)
+        asset.requestContentEditingInput(with: nil) { editingInput, _ in
+            if let editingInput = editingInput, let fullSizeImageURL = editingInput.fullSizeImageURL {
+                if let outputURL = fullSizeImageURL.copyIntoTemporaryLocation() {
+                    completion(outputURL)
+                } else {
+                    completion(nil)
+                }
             } else {
-                exportedUrl = self.exportedJPEGImageURL(image: image)
+                completion(nil)
             }
-            completion(exportedUrl)
         }
     }
 
