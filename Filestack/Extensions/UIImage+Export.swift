@@ -10,28 +10,25 @@ import UIKit
 
 extension UIImage {
     func exportHEICImage(to destinationURL: URL, quality: Float) -> Bool {
-        if let imageData = heicRepresentation(quality: quality) {
-            do {
-                try imageData.write(to: destinationURL)
-                return true
-            } catch {
-                return false
-            }
-        }
+        guard let imageData = heicRepresentation(quality: quality) else { return false }
 
-        return false
+        return export(data: imageData, to: destinationURL)
     }
 
     func exportJPGImage(to destinationURL: URL, quality: Float) -> Bool {
-        if let imageData = jpegData(compressionQuality: CGFloat(quality)) {
-            do {
-                try imageData.write(to: destinationURL)
-                return true
-            } catch {
-                return false
-            }
-        }
+        guard let imageData = jpegData(compressionQuality: CGFloat(quality)) else { return false }
 
-        return false
+        return export(data: imageData, to: destinationURL)
+    }
+
+    // MARK: - Private Functions
+
+    private func export(data: Data, to destinationURL: URL) -> Bool {
+        do {
+            try data.write(to: destinationURL)
+            return true
+        } catch {
+            return false
+        }
     }
 }
