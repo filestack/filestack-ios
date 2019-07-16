@@ -155,7 +155,7 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 <ul>
 <li>Xcode 10.2 or later</li>
-<li>Swift 4.2 / Objective-C</li>
+<li>Swift 4.2 up to 5.0 / Objective-C</li>
 <li>iOS 11 or later</li>
 </ul>
 <h2 id='installing' class='heading'>Installing</h2>
@@ -171,7 +171,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 1.5'
+    pod 'Filestack', '~&gt; 2.0'
 end
 </code></pre>
 
@@ -189,7 +189,7 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 1.5</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.0</code></p>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, <code>CryptoSwift.framework</code>, <code>SVProgressHUD.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -336,13 +336,6 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
 
     <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
-            <span class="c1">// NO-OP</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span>
-                                            <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
-        <span class="p">}</span>
-
         <span class="k">return</span> <span class="kc">true</span>
     <span class="p">}</span>
 
@@ -459,13 +452,6 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
 
     <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="kd">#available(iOS 11.0, *)</span> <span class="p">{</span>
-            <span class="c1">// NO-OP</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="o">.</span><span class="n">resumeCloudRequestNotification</span><span class="p">,</span>
-                                            <span class="nv">object</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
-        <span class="p">}</span>
-
         <span class="k">return</span> <span class="kc">true</span>
     <span class="p">}</span>
 
@@ -501,7 +487,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-15)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-16)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
