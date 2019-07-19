@@ -150,6 +150,8 @@ private extension CircleGesturesHandler {
              .failed:
             reset(to: beginCircle)
         case .possible:
+            fallthrough
+        @unknown default:
             return
         }
     }
@@ -192,6 +194,8 @@ private extension CircleGesturesHandler {
              .failed:
             reset(to: beginCircle)
         case .possible:
+            fallthrough
+        @unknown default:
             return
         }
     }

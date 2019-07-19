@@ -42,7 +42,7 @@ internal class DocumentPickerUploadController: NSObject {
 
 private extension DocumentPickerUploadController {
     func upload(urls: [URL]) {
-        multifileUpload.uploadURLs = urls.compactMap { validUrl(from: $0) }
+        multifileUpload.uploadURLs = urls.compactMap { validURL(from: $0) }
         guard !multifileUpload.uploadURLs.isEmpty else {
             cancel()
             return
@@ -50,11 +50,11 @@ private extension DocumentPickerUploadController {
         startUpload()
     }
 
-    func validUrl(from url: URL) -> URL? {
-        return url.hasDirectoryPath ? zipUrl(from: url) : url
+    func validURL(from url: URL) -> URL? {
+        return url.hasDirectoryPath ? zipURL(from: url) : url
     }
 
-    func zipUrl(from url: URL) -> URL? {
+    func zipURL(from url: URL) -> URL? {
         let tmpFilePath = tempZipPath(filename: url.lastPathComponent)
         let success = SSZipArchive.createZipFile(atPath: tmpFilePath,
                                                  withContentsOfDirectory: url.path,

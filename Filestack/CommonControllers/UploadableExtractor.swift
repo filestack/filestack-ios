@@ -30,8 +30,10 @@ class UploadableExtractor {
         switch asset.mediaType {
         case .image: fetchImage(for: asset, completion: completion)
         case .video: fetchVideo(for: asset, completion: completion)
-        case .unknown,
-             .audio: completion(nil)
+        case .unknown, .audio:
+            fallthrough
+        @unknown default:
+            completion(nil)
         }
     }
 }

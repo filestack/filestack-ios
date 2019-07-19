@@ -20,20 +20,24 @@ import UIKit.UIImagePickerController
 
     @objc(FSConfigBuilder) public class Builder: NSObject {
         private var showEditorBeforeUpload: Bool = false
-        private var appUrlScheme: String?
+        private var appURLScheme: String?
         private var maximumSelectionAllowed: UInt = 1
         private var modalPresentationStyle: UIModalPresentationStyle = .currentContext
         private var availableCloudSources: [CloudSource] = CloudSource.all()
         private var availableLocalSources: [LocalSource] = LocalSource.all()
         private var documentPickerAllowedUTIs: [String] = ["public.item"]
-        private var imageUrlExportPreset: ImageURLExportPreset?
+        private var imageURLExportPreset: ImageURLExportPreset?
         private var imageExportQuality: Float = 0.85
         private var videoExportPreset: String?
         private var videoQuality: UIImagePickerController.QualityType = .typeMedium
 
-        public func with(appUrlScheme: String) -> Self {
-            self.appUrlScheme = appUrlScheme
+        public func with(appURLScheme: String) -> Self {
+            self.appURLScheme = appURLScheme
             return self
+        }
+
+        @available(*, renamed: "with(appURLScheme:)") public func with(appUrlScheme: String) -> Self {
+            return with(appURLScheme: appUrlScheme)
         }
 
         public func with(maximumSelectionLimit: UInt) -> Self {
@@ -66,9 +70,13 @@ import UIKit.UIImagePickerController
             return self
         }
 
-        public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
-            self.imageUrlExportPreset = imageUrlExportPreset
+        public func with(imageURLExportPreset: ImageURLExportPreset) -> Self {
+            self.imageURLExportPreset = imageURLExportPreset
             return self
+        }
+
+        @available(*, renamed: "with(imageURLExportPreset:)") public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
+            return with(imageURLExportPreset: imageUrlExportPreset)
         }
 
         public func with(imageExportQuality: Float) -> Self {
@@ -94,13 +102,13 @@ import UIKit.UIImagePickerController
         public func build() -> Config {
             let config = Config()
             config.showEditorBeforeUpload = showEditorBeforeUpload
-            config.appURLScheme = appUrlScheme
+            config.appURLScheme = appURLScheme
             config.maximumSelectionAllowed = maximumSelectionAllowed
             config.modalPresentationStyle = modalPresentationStyle
             config.availableCloudSources = availableCloudSources
             config.availableLocalSources = availableLocalSources
             config.documentPickerAllowedUTIs = documentPickerAllowedUTIs
-            config._imageURLExportPreset = imageUrlExportPreset
+            config._imageURLExportPreset = imageURLExportPreset
             config.imageExportQuality = imageExportQuality
             config._videoExportPreset = videoExportPreset
             config.videoQuality = videoQuality

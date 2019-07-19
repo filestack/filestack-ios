@@ -250,7 +250,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
             .validate(contentType: ["image/*"])
             .responseData(completionHandler: { response in
                 // Remove request from thumbnail requests
-                if let idx = (self.thumbnailRequests.index { $0.task == request.task }) {
+                if let idx = (self.thumbnailRequests.firstIndex { $0.task == request.task }) {
                     self.thumbnailRequests.remove(at: idx)
                 }
 

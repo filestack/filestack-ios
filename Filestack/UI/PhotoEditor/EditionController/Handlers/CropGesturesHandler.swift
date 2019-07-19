@@ -119,6 +119,8 @@ private extension CropGesturesHandler {
              .failed:
             resetTranslation(to: edgeInsets(from: beginInset))
         case .possible:
+            fallthrough
+        @unknown default:
             return
         }
     }

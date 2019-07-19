@@ -1,5 +1,5 @@
 //
-//  UrlExtractor.swift
+//  URLExtractor.swift
 //  Filestack
 //
 //  Created by Mihály Papp on 02/08/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import Photos
 
-class UrlExtractor {
+class URLExtractor {
     private let imageManager = PHCachingImageManager.default()
 
     private let videoExportPreset: String
@@ -22,12 +22,12 @@ class UrlExtractor {
         self.cameraImageQuality = cameraImageQuality
     }
 
-    func fetchUrls(_ elements: [Uploadable], completion: @escaping ([URL]) -> Void) {
+    func fetchURLs(_ elements: [Uploadable], completion: @escaping ([URL]) -> Void) {
         let dispatchGroup = DispatchGroup()
         var urlList = [URL]()
         let serialQueue = DispatchQueue(label: "serialQueue")
         for element in elements {
-            fetchUrl(of: element, inside: dispatchGroup) { url in
+            fetchURL(of: element, inside: dispatchGroup) { url in
                 guard let url = url else { return }
                 serialQueue.sync { urlList.append(url) }
             }
@@ -37,12 +37,12 @@ class UrlExtractor {
         }
     }
 
-    func fetchUrls(_ assets: [PHAsset], completion: @escaping ([URL]) -> Void) {
+    func fetchURLs(_ assets: [PHAsset], completion: @escaping ([URL]) -> Void) {
         let dispatchGroup = DispatchGroup()
         var urlList = [URL]()
         let serialQueue = DispatchQueue(label: "serialQueue")
         for asset in assets {
-            fetchUrl(of: asset, inside: dispatchGroup) { url in
+            fetchURL(of: asset, inside: dispatchGroup) { url in
                 guard let url = url else { return }
                 serialQueue.sync { urlList.append(url) }
             }
@@ -52,7 +52,7 @@ class UrlExtractor {
         }
     }
 
-    func fetchUrl(image: UIImage) -> URL? {
+    func fetchURL(image: UIImage) -> URL? {
         switch imageExportPreset {
         case .current:
             return exportedHEICImageURL(image: image)
@@ -62,54 +62,56 @@ class UrlExtractor {
     }
 }
 
-private extension UrlExtractor {
-    func fetchUrl(of element: Uploadable, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
+private extension URLExtractor {
+    func fetchURL(of element: Uploadable, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
         dispatchGroup.enter()
-        fetchUrl(of: element) { url in
+        fetchURL(of: element) { url in
             completion(url)
             dispatchGroup.leave()
         }
     }
 
-    func fetchUrl(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
+    func fetchURL(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
         dispatchGroup.enter()
-        fetchUrl(of: asset) { url in
+        fetchURL(of: asset) { url in
             completion(url)
             dispatchGroup.leave()
         }
     }
 
-    func fetchUrl(of element: Uploadable, completion: @escaping (URL?) -> Void) {
+    func fetchURL(of element: Uploadable, completion: @escaping (URL?) -> Void) {
         if let image = element as? UIImage {
-            completion(fetchUrl(image: image))
+            completion(fetchURL(image: image))
             return
         } else if let video = element as? AVAsset {
-            fetchVideoUrl(of: video, completion: completion)
+            fetchVideoURL(of: video, completion: completion)
             return
         }
         completion(nil)
     }
 
-    func fetchUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
+    func fetchURL(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
         switch asset.mediaType {
-        case .image: fetchImageUrl(of: asset, completion: completion)
-        case .video: fetchVideoUrl(of: asset, completion: completion)
-        case .unknown,
-             .audio: completion(nil)
+        case .image: fetchImageURL(of: asset, completion: completion)
+        case .video: fetchVideoURL(of: asset, completion: completion)
+        case .unknown, .audio:
+            fallthrough
+        @unknown default:
+            completion(nil)
         }
     }
 
-    func fetchVideoUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
+    func fetchVideoURL(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
         imageManager.requestAVAsset(forVideo: asset, options: videoRequestOptions) { element, _, _ in
             guard let element = element else {
                 completion(nil)
                 return
             }
-            self.fetchVideoUrl(of: element, completion: completion)
+            self.fetchVideoURL(of: element, completion: completion)
         }
     }
 
-    func fetchVideoUrl(of asset: AVAsset, completion: @escaping (URL?) -> Void) {
+    func fetchVideoURL(of asset: AVAsset, completion: @escaping (URL?) -> Void) {
         guard let export = self.videoExportSession(for: asset) else {
             completion(nil)
             return
@@ -139,7 +141,7 @@ private extension UrlExtractor {
         return export
     }
 
-    func fetchImageUrl(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
+    func fetchImageURL(of asset: PHAsset, completion: @escaping (URL?) -> Void) {
         asset.requestContentEditingInput(with: nil) { editingInput, _ in
             if let editingInput = editingInput, let fullSizeImageURL = editingInput.fullSizeImageURL {
                 if let outputURL = fullSizeImageURL.copyIntoTemporaryLocation() {

@@ -291,9 +291,9 @@ guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET-H
 // Create `Config` object.
 // IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist
 let config = Filestack.Config.builder
-  .with(appUrlScheme: "YOUR-APP-URL-SCHEME")
+  .with(appURLScheme: "YOUR-APP-URL-SCHEME")
   .with(videoQuality: .typeHigh)
-  .with(imageUrlExportPreset: .current)
+  .with(imageURLExportPreset: .current)
   .with(maximumSelectionLimit: 10)
   .withEditorEnabled()
   .with(availableCloudSources: [.dropbox, .googledrive, .googlephotos, .customSource])

@@ -19,8 +19,8 @@ internal class ImagePickerUploadController: NSObject {
     let sourceType: UIImagePickerController.SourceType
     let config: Config
 
-    private lazy var urlExtractor: UrlExtractor = {
-        UrlExtractor(imageExportPreset: config.imageURLExportPreset,
+    private lazy var urlExtractor: URLExtractor = {
+        URLExtractor(imageExportPreset: config.imageURLExportPreset,
                      videoExportPreset: config.videoExportPreset,
                      cameraImageQuality: config.imageExportQuality)
     }()
@@ -89,7 +89,7 @@ private extension ImagePickerUploadController {
 
     func editor(with image: UIImage) -> UIViewController {
         return EditorViewController(image: image, completion: { image in
-            guard let image = image, let url = self.urlExtractor.fetchUrl(image: image) else {
+            guard let image = image, let url = self.urlExtractor.fetchURL(image: image) else {
                 self.cancelUpload()
                 return
             }
@@ -145,7 +145,7 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
             upload(url: imageURL)
         } else if let mediaURL = info[.mediaURL] as? URL {
             upload(url: mediaURL)
-        } else if let image = info[.originalImage] as? UIImage, let url = self.urlExtractor.fetchUrl(image: image) {
+        } else if let image = info[.originalImage] as? UIImage, let url = self.urlExtractor.fetchURL(image: image) {
             upload(url: url)
         } else {
             cancelUpload()
@@ -157,7 +157,7 @@ private extension ImagePickerUploadController {
     func upload(assets: [PHAsset]) {
         SVProgressHUD.show(withStatus: "Preparing")
 
-        urlExtractor.fetchUrls(assets, completion: { [weak self] urlList in
+        urlExtractor.fetchURLs(assets, completion: { [weak self] urlList in
             guard let self = self else { return }
 
             SVProgressHUD.dismiss()
