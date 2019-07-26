@@ -279,7 +279,7 @@ let policy = Policy(expiry: .distantFuture,
                     call: [.pick, .read, .stat, .write, .writeURL, .store, .convert, .remove, .exif])
 
 // Create `Security` object based on our previously created `Policy` object and app secret obtained from
-// [Filestack Developer Portal](https://dev.filestack.com/).
+// https://dev.filestack.com/.
 guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET-HERE") else {
     fatalError("Unable to instantiate Security object.")
 }
@@ -304,7 +304,7 @@ let config = Filestack.Config.builder
 #### 3. Setting up Client object
 
 ```swift
-// Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),
+// Instantiate the Filestack `Client` by passing an API key obtained from https://dev.filestack.com/,
 // together with a `Security` and `Config` object.
 // If your account does not have security enabled, then you can omit this parameter or set it to `nil`.
 let client = Filestack.Client(apiKey: "YOUR-API-KEY-HERE", security: security, config: config)

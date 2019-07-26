@@ -1,7 +1,16 @@
 Change Log
 ==========
 
-Version 2.0 *(2019-06-15)*
+Version 2.0.1 *(2019-07-25)*
+----------------------------
+
+- Added `sdkClient` to `Client` so the internal FilestackSDK client is exposed.
+- Renamed `UrlExtractor` to `URLExtractor`.
+- Renamed any leftover function names containing `Url` to `URL`.
+- Fixed some Swift 5 warnings.
+- Refactored demo project.
+
+Version 2.0 *(2019-07-15)*
 ----------------------------
 
 - Added upload progress handler to picker. To use it, please implement `pickerReportedUploadProgress(picker:, progress:)` on the picker delegate. (issue #44.)
