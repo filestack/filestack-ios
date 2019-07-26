@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           Filestack Docs
         </a>
-         (77% documented)
+         (75% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -381,7 +381,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
                     <span class="nv">call</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">pick</span><span class="p">,</span> <span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">stat</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">writeURL</span><span class="p">,</span> <span class="o">.</span><span class="n">store</span><span class="p">,</span> <span class="o">.</span><span class="n">convert</span><span class="p">,</span> <span class="o">.</span><span class="n">remove</span><span class="p">,</span> <span class="o">.</span><span class="n">exif</span><span class="p">])</span>
 
 <span class="c1">// Create `Security` object based on our previously created `Policy` object and app secret obtained from</span>
-<span class="c1">// [Filestack Developer Portal](https://dev.filestack.com/).</span>
+<span class="c1">// https://dev.filestack.com/.</span>
 <span class="k">guard</span> <span class="k">let</span> <span class="nv">security</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Security</span><span class="p">(</span><span class="nv">policy</span><span class="p">:</span> <span class="n">policy</span><span class="p">,</span> <span class="nv">appSecret</span><span class="p">:</span> <span class="s">"YOUR-APP-SECRET-HERE"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Unable to instantiate Security object."</span><span class="p">)</span>
 <span class="p">}</span>
@@ -390,9 +390,9 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <pre class="highlight swift"><code><span class="c1">// Create `Config` object.</span>
 <span class="c1">// IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist</span>
 <span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="o">.</span><span class="n">builder</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">appUrlScheme</span><span class="p">:</span> <span class="s">"YOUR-APP-URL-SCHEME"</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">appURLScheme</span><span class="p">:</span> <span class="s">"YOUR-APP-URL-SCHEME"</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">videoQuality</span><span class="p">:</span> <span class="o">.</span><span class="n">typeHigh</span><span class="p">)</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">imageUrlExportPreset</span><span class="p">:</span> <span class="o">.</span><span class="n">current</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="o">.</span><span class="n">current</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">maximumSelectionLimit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">withEditorEnabled</span><span class="p">()</span>
   <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">availableCloudSources</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">dropbox</span><span class="p">,</span> <span class="o">.</span><span class="n">googledrive</span><span class="p">,</span> <span class="o">.</span><span class="n">googlephotos</span><span class="p">,</span> <span class="o">.</span><span class="n">customSource</span><span class="p">])</span>
@@ -400,7 +400,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
   <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
 </code></pre>
 <h4 id='3-setting-up-client-object' class='heading'>3. Setting up Client object</h4>
-<pre class="highlight swift"><code><span class="c1">// Instantiate the Filestack `Client` by passing an API key obtained from [Filestack Developer Portal](https://dev.filestack.com/),</span>
+<pre class="highlight swift"><code><span class="c1">// Instantiate the Filestack `Client` by passing an API key obtained from https://dev.filestack.com/,</span>
 <span class="c1">// together with a `Security` and `Config` object.</span>
 <span class="c1">// If your account does not have security enabled, then you can omit this parameter or set it to `nil`.</span>
 <span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY-HERE"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
@@ -487,8 +487,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-07-26)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

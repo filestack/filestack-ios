@@ -1,16 +1,16 @@
 {
   "warnings": [
     {
-      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/CommonControllers/UploadableExtractor.swift",
-      "line": null,
-      "symbol": "UploadableExtractor",
+      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/CommonControllers/URLExtractor.swift",
+      "line": 65,
+      "symbol": "URLExtractor",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/CommonControllers/UrlExtractor.swift",
-      "line": null,
-      "symbol": "UrlExtractor",
+      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/CommonControllers/UploadableExtractor.swift",
+      "line": 41,
+      "symbol": "UploadableExtractor",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
@@ -58,98 +58,119 @@
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 34,
+      "line": 35,
+      "symbol": "Config.Builder.with(appURLScheme:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
+      "line": 40,
       "symbol": "Config.Builder.with(appUrlScheme:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 39,
+      "line": 44,
       "symbol": "Config.Builder.with(maximumSelectionLimit:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 44,
+      "line": 49,
       "symbol": "Config.Builder.withNoSelectionLimit()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 49,
+      "line": 54,
       "symbol": "Config.Builder.with(modalPresentationStyle:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 54,
+      "line": 59,
       "symbol": "Config.Builder.with(availableCloudSources:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 59,
+      "line": 64,
       "symbol": "Config.Builder.with(availableLocalSources:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 64,
+      "line": 69,
       "symbol": "Config.Builder.with(documentPickerAllowedUTIs:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 69,
-      "symbol": "Config.Builder.with(imageUrlExportPreset:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
       "line": 74,
-      "symbol": "Config.Builder.with(imageExportQuality:)",
+      "symbol": "Config.Builder.with(cloudSourceAllowedUTIs:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
       "line": 79,
-      "symbol": "Config.Builder.with(videoExportPreset:)",
+      "symbol": "Config.Builder.with(imageURLExportPreset:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
       "line": 84,
+      "symbol": "Config.Builder.with(imageUrlExportPreset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
+      "line": 88,
+      "symbol": "Config.Builder.with(imageExportQuality:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
+      "line": 93,
+      "symbol": "Config.Builder.with(videoExportPreset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
+      "line": 98,
       "symbol": "Config.Builder.with(videoQuality:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 89,
+      "line": 103,
       "symbol": "Config.Builder.withEditorEnabled()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/Models/Config.swift",
-      "line": 94,
+      "line": 108,
       "symbol": "Config.Builder.build()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/UI/Controllers/ImagePickerUploadController.swift",
-      "line": null,
+      "line": 53,
       "symbol": "ImagePickerUploadController",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
@@ -170,35 +191,35 @@
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/UI/PhotoEditor/EditionController/Layers/CircleLayer.swift",
-      "line": null,
+      "line": 49,
       "symbol": "CircleLayer",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/UI/PhotoEditor/EditionController/Layers/CropLayer.swift",
-      "line": null,
+      "line": 65,
       "symbol": "CropLayer",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/UI/PhotoEditor/SelectionList/SelectionListViewController.swift",
-      "line": null,
+      "line": 37,
       "symbol": "SelectionListViewController",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/UI/PhotoEditor/SelectionList/SelectionListViewController.swift",
-      "line": null,
+      "line": 96,
       "symbol": "SelectionListViewController",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ruben/src/fs2019/filestack-ios/Filestack/UI/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
-      "line": null,
+      "line": 91,
       "symbol": "AssetCollectionViewController",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
