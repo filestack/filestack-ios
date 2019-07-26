@@ -30,6 +30,11 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
     /// A `Config` object.
     public let config: Config
 
+    /// The Filestack SDK client used for uploads and transformations.
+    public var sdkClient: FilestackSDK.Client {
+        return client
+    }
+
     // MARK: - Private Properties
 
     private let client: FilestackSDK.Client

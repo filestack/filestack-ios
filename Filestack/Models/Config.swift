@@ -26,6 +26,7 @@ import UIKit.UIImagePickerController
         private var availableCloudSources: [CloudSource] = CloudSource.all()
         private var availableLocalSources: [LocalSource] = LocalSource.all()
         private var documentPickerAllowedUTIs: [String] = ["public.item"]
+        private var cloudSourceAllowedUTIs: [String] = ["public.item"]
         private var imageURLExportPreset: ImageURLExportPreset?
         private var imageExportQuality: Float = 0.85
         private var videoExportPreset: String?
@@ -67,6 +68,11 @@ import UIKit.UIImagePickerController
 
         public func with(documentPickerAllowedUTIs: [String]) -> Self {
             self.documentPickerAllowedUTIs = documentPickerAllowedUTIs
+            return self
+        }
+
+        public func with(cloudSourceAllowedUTIs: [String]) -> Self {
+            self.cloudSourceAllowedUTIs = cloudSourceAllowedUTIs
             return self
         }
 
