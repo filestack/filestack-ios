@@ -17,13 +17,13 @@ import Foundation
     // MARK: - Properties
 
     /// The contents payload as a dictionary containing details about the operation response.
-    public let contents: [String: Any]?
+    @objc public let contents: [String: Any]?
 
     /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
-    public let authURL: URL? = nil
+    @objc public let authURL: URL? = nil
 
     /// An error response. Optional.
-    public let error: Error?
+    @objc public let error: Error?
 
     // MARK: - Lifecyle Functions
 

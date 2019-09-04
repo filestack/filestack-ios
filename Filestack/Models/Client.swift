@@ -31,7 +31,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
     public let config: Config
 
     /// The Filestack SDK client used for uploads and transformations.
-    public var sdkClient: FilestackSDK.Client {
+    @objc public var sdkClient: FilestackSDK.Client {
         return client
     }
 
@@ -80,7 +80,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      as data is uploaded to the server. `nil` by default.
      - Parameter completionHandler: Adds a handler to be called once the upload has finished.
      */
-    @discardableResult
+    @objc @discardableResult
     public func upload(from localURL: URL,
                        storeOptions: StorageOptions = StorageOptions(location: .s3),
                        useIntelligentIngestionIfAvailable: Bool = true,
@@ -114,7 +114,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      as data is uploaded to the server. `nil` by default.
      - Parameter completionHandler: Adds a handler to be called once the upload has finished.
      */
-    @discardableResult
+    @objc @discardableResult
     public func uploadFromImagePicker(viewController: UIViewController,
                                       sourceType: UIImagePickerController.SourceType,
                                       storeOptions: StorageOptions = StorageOptions(location: .s3),
@@ -170,7 +170,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      as data is uploaded to the server. `nil` by default.
      - Parameter completionHandler: Adds a handler to be called once the upload has finished.
      */
-    @discardableResult
+    @objc @discardableResult
     public func uploadFromDocumentPicker(viewController: UIViewController,
                                          storeOptions: StorageOptions = StorageOptions(location: .s3),
                                          useIntelligentIngestionIfAvailable: Bool = true,
@@ -221,7 +221,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
      or error response.
      */
-    @discardableResult
+    @objc @discardableResult
     public func folderList(provider: CloudProvider,
                            path: String,
                            pageToken: String? = nil,
@@ -239,24 +239,14 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
                                         provider: provider,
                                         path: path)
 
-        let genericCompletionHandler: CompletionHandler = { response, safariError in
+        perform(request: request, queue: queue) { response, safariError in
             switch (response, safariError) {
             case (let response as FolderListResponse, nil):
-
                 completionHandler(response)
-
             case let (_, error):
-
-                let response = FolderListResponse(contents: nil,
-                                                  nextToken: nil,
-                                                  authURL: nil,
-                                                  error: error)
-
-                completionHandler(response)
+                completionHandler(FolderListResponse(error: error))
             }
         }
-
-        perform(request: request, queue: queue, completionBlock: genericCompletionHandler)
 
         return request
     }
@@ -272,7 +262,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
      or error response.
      */
-    @discardableResult
+    @objc @discardableResult
     public func store(provider: CloudProvider,
                       path: String,
                       storeOptions: StorageOptions = StorageOptions(location: .s3),
@@ -285,12 +275,10 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
                                    path: path,
                                    storeOptions: storeOptions)
 
-        let genericCompletionHandler: CompletionHandler = { response, _ in
+        perform(request: request, queue: queue) { response, _ in
             guard let response = response as? StoreResponse else { return }
             completionHandler(response)
         }
-
-        perform(request: request, queue: queue, completionBlock: genericCompletionHandler)
 
         return request
     }
@@ -305,7 +293,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      - Parameter storeOptions: An object containing the store options (e.g. location, region, container, access, etc.)
      If none given, S3 location with default options is assumed.
      */
-    public func picker(storeOptions: StorageOptions = StorageOptions(location: .s3)) -> PickerNavigationController {
+    @objc public func picker(storeOptions: StorageOptions = StorageOptions(location: .s3)) -> PickerNavigationController {
         let storyboard = UIStoryboard(name: "Picker", bundle: Bundle(for: type(of: self)))
         let scene = PickerNavigationScene(client: self, storeOptions: storeOptions)
         return storyboard.instantiateViewController(for: scene)
@@ -318,7 +306,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
      - Parameter completionHandler: Adds a handler to be called once the request has completed. The response will
      either contain an error (on failure) or nothing at all (on success.)
      */
-    public func logout(provider: CloudProvider, completionHandler: @escaping LogoutCompletionHandler) {
+    @objc public func logout(provider: CloudProvider, completionHandler: @escaping LogoutCompletionHandler) {
         guard let token = lastToken else { return }
 
         let logoutRequest = LogoutRequest(provider: provider, apiKey: apiKey, token: token)

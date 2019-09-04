@@ -32,7 +32,7 @@ import UIKit.UIImagePickerController
         private var videoExportPreset: String?
         private var videoQuality: UIImagePickerController.QualityType = .typeMedium
 
-        public func with(appURLScheme: String) -> Self {
+        @objc public func with(appURLScheme: String) -> Self {
             self.appURLScheme = appURLScheme
             return self
         }
@@ -41,42 +41,42 @@ import UIKit.UIImagePickerController
             return with(appURLScheme: appUrlScheme)
         }
 
-        public func with(maximumSelectionLimit: UInt) -> Self {
+        @objc public func with(maximumSelectionLimit: UInt) -> Self {
             maximumSelectionAllowed = maximumSelectionLimit
             return self
         }
 
-        public func withNoSelectionLimit() -> Self {
+        @objc public func withNoSelectionLimit() -> Self {
             maximumSelectionAllowed = Config.kMaximumSelectionNoLimit
             return self
         }
 
-        public func with(modalPresentationStyle: UIModalPresentationStyle) -> Self {
+        @objc public func with(modalPresentationStyle: UIModalPresentationStyle) -> Self {
             self.modalPresentationStyle = modalPresentationStyle
             return self
         }
 
-        public func with(availableCloudSources: [CloudSource]) -> Self {
+        @objc public func with(availableCloudSources: [CloudSource]) -> Self {
             self.availableCloudSources = availableCloudSources
             return self
         }
 
-        public func with(availableLocalSources: [LocalSource]) -> Self {
+        @objc public func with(availableLocalSources: [LocalSource]) -> Self {
             self.availableLocalSources = availableLocalSources
             return self
         }
 
-        public func with(documentPickerAllowedUTIs: [String]) -> Self {
+        @objc public func with(documentPickerAllowedUTIs: [String]) -> Self {
             self.documentPickerAllowedUTIs = documentPickerAllowedUTIs
             return self
         }
 
-        public func with(cloudSourceAllowedUTIs: [String]) -> Self {
+        @objc public func with(cloudSourceAllowedUTIs: [String]) -> Self {
             self.cloudSourceAllowedUTIs = cloudSourceAllowedUTIs
             return self
         }
 
-        public func with(imageURLExportPreset: ImageURLExportPreset) -> Self {
+        @objc public func with(imageURLExportPreset: ImageURLExportPreset) -> Self {
             self.imageURLExportPreset = imageURLExportPreset
             return self
         }
@@ -85,27 +85,27 @@ import UIKit.UIImagePickerController
             return with(imageURLExportPreset: imageUrlExportPreset)
         }
 
-        public func with(imageExportQuality: Float) -> Self {
+        @objc public func with(imageExportQuality: Float) -> Self {
             self.imageExportQuality = imageExportQuality
             return self
         }
 
-        public func with(videoExportPreset: String) -> Self {
+        @objc public func with(videoExportPreset: String) -> Self {
             self.videoExportPreset = videoExportPreset
             return self
         }
 
-        public func with(videoQuality: UIImagePickerController.QualityType) -> Self {
+        @objc public func with(videoQuality: UIImagePickerController.QualityType) -> Self {
             self.videoQuality = videoQuality
             return self
         }
 
-        public func withEditorEnabled() -> Self {
+        @objc public func withEditorEnabled() -> Self {
             showEditorBeforeUpload = true
             return self
         }
 
-        public func build() -> Config {
+        @objc public func build() -> Config {
             let config = Config()
             config.showEditorBeforeUpload = showEditorBeforeUpload
             config.appURLScheme = appURLScheme
@@ -123,49 +123,49 @@ import UIKit.UIImagePickerController
     }
 
     /// Change this flag to true if you want to allow user to edit photos before the upload.
-    public var showEditorBeforeUpload: Bool = false
+    @objc public var showEditorBeforeUpload: Bool = false
 
     /// An URL scheme supported by the app. This is required to complete the cloud provider's authentication flow.
-    public var appURLScheme: String?
+    @objc public var appURLScheme: String?
 
     /// This policy controls the thumbnail's caching behavior when browsing cloud contents in the picker.
-    public var cloudThumbnailCachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
+    @objc public var cloudThumbnailCachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
 
     /// Use this value if you want to allow user for selecting unlimited number of assets to upload.
-    public static let kMaximumSelectionNoLimit: UInt = 0
+    @objc public static let kMaximumSelectionNoLimit: UInt = 0
 
     /// This controls if user can select more than one image/document for upload.
     /// Set this value to `kMaximumSelectionNoLimit` if you want to remove this limit.
     /// Setting more then one will use custom ImagePicker in case of LocalSource.photoLibrary.
     /// The default value is 1.
-    public var maximumSelectionAllowed: UInt = 1
+    @objc public var maximumSelectionAllowed: UInt = 1
 
     /// This settings determines the way we want to present document picker, image pickers and upload monitor.
     /// The default presentation style is `.currentContext`
-    public var modalPresentationStyle: UIModalPresentationStyle = .currentContext
+    @objc public var modalPresentationStyle: UIModalPresentationStyle = .currentContext
 
     /// This setting determines what cloud sources are available when using the picker.
     /// By default, it contains all the supported cloud sources.
     /// - Note: Please notice that a custom source will only be displayed if enabled on Filestack's
     /// [Developer Portal](http://dev.filestack.com), regardless of whether it is present in this list.
-    public var availableCloudSources: [CloudSource] = CloudSource.all()
+    @objc public var availableCloudSources: [CloudSource] = CloudSource.all()
 
     /// This setting determines what local sources are available when using the picker.
     /// By default, it contains all the supported local sources.
-    public var availableLocalSources: [LocalSource] = LocalSource.all()
+    @objc public var availableLocalSources: [LocalSource] = LocalSource.all()
 
     /// This setting determines what document types can be picked when using Apple's document picker.
     /// By default, this contains `["public.item"]`.
-    public var documentPickerAllowedUTIs: [String] = ["public.item"]
+    @objc public var documentPickerAllowedUTIs: [String] = ["public.item"]
 
     /// This setting determines what document types can be picked from a cloud source.
     /// By default, this contains `["public.item"]`.
-    public var cloudSourceAllowedUTIs: [String] = ["public.item"]
+    @objc public var cloudSourceAllowedUTIs: [String] = ["public.item"]
 
     /// This setting determines the format used for exported images (available only in iOS 11.)
     /// Possible values are `.compatible` (for JPEG) and `.current` (for HEIF).
     /// In iOS versions earlier than 11.0, JPEG will always be used.
-    @available(iOS 11.0, *)
+    @objc @available(iOS 11.0, *)
     public var imageURLExportPreset: ImageURLExportPreset {
         get {
             return _imageURLExportPreset ?? .compatible
@@ -179,7 +179,7 @@ import UIKit.UIImagePickerController
 
     /// This setting determines the quality setting for images taken using the camera and exported either as HEIC or JPEG.
     /// - Note: This setting has no effect on images picked from the photo library.
-    public var imageExportQuality: Float = 0.85
+    @objc public var imageExportQuality: Float = 0.85
 
     /// This setting determines the format used for exported videos (available only in iOS 11.)
     ///
@@ -190,7 +190,7 @@ import UIKit.UIImagePickerController
     /// For more possible values, please consult `AVAssetExportSession`.
     ///
     /// The default value is `AVAssetExportPresetHEVCHighestQuality`
-    @available(iOS 11.0, *)
+    @objc @available(iOS 11.0, *)
     public var videoExportPreset: String {
         get {
             return _videoExportPreset ?? AVAssetExportPresetHEVCHighestQuality
@@ -208,5 +208,5 @@ import UIKit.UIImagePickerController
     /// lower quality.
     ///
     /// The default value is `.typeMedium`
-    public var videoQuality: UIImagePickerController.QualityType = .typeMedium
+    @objc public var videoQuality: UIImagePickerController.QualityType = .typeMedium
 }

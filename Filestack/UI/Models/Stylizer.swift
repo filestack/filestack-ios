@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol StylizerDelegate: AnyObject {
-    func updateStyle()
+@objc(FSStylizerDelegate) protocol StylizerDelegate: AnyObject {
+    @objc func updateStyle()
 }
 
 /**
@@ -43,7 +43,7 @@ protocol StylizerDelegate: AnyObject {
     private(set) var navBar = NavigationBarViewModel()
     private weak var delegate: StylizerDelegate?
 
-    init(delegate: StylizerDelegate) {
+    @objc init(delegate: StylizerDelegate) {
         self.delegate = delegate
     }
 
@@ -51,7 +51,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter tintColor: Color we want to use for icons.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(tintColor: UIColor) -> Stylizer {
         sourceTable.tintColor = tintColor
         return self
@@ -61,7 +61,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter cellTextColor: Color we want to use for sources text.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(cellTextColor: UIColor) -> Stylizer {
         sourceTable.cellTextColor = cellTextColor
         return self
@@ -71,7 +71,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter cellTextFont: Font we want to use for sources text.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(cellTextFont: UIFont) -> Stylizer {
         sourceTable.cellTextFont = cellTextFont
         return self
@@ -81,7 +81,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter cellBackgroundColor: Color we want to use for background of cells.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(cellBackgroundColor: UIColor) -> Stylizer {
         sourceTable.cellBackgroundColor = cellBackgroundColor
         return self
@@ -91,7 +91,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter headerTextColor: Color we want to use for section headers text.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(headerTextColor: UIColor) -> Stylizer {
         sourceTable.headerTextColor = headerTextColor
         return self
@@ -101,7 +101,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter headerTextFont: Font we want to use for section headers text.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(headerTextFont: UIFont) -> Stylizer {
         sourceTable.headerTextFont = headerTextFont
         return self
@@ -111,7 +111,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter headerBackgroundColor: Color we want to use for headers.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(headerBackgroundColor: UIColor) -> Stylizer {
         sourceTable.headerBackgroundColor = headerBackgroundColor
         return self
@@ -121,7 +121,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter separatorColor: Color we want to use for cells separators.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(separatorColor: UIColor) -> Stylizer {
         sourceTable.separatorColor = separatorColor
         return self
@@ -131,7 +131,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter tableBackground: Color we want to use for background of whole table.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(tableBackground: UIColor) -> Stylizer {
         sourceTable.tableBackground = tableBackground
         return self
@@ -141,7 +141,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter title: String we want to use as title of SourceTable.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setSourceTable(title: String) -> Stylizer {
         sourceTable.title = title
         return self
@@ -151,7 +151,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter titleColor: Color we want to use as navigation bar tint color.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setNavBar(tintColor: UIColor) -> Stylizer {
         navBar.tintColor = tintColor
         delegate?.updateStyle()
@@ -162,7 +162,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter titleColor: Color we want to use title displayed on navigation bar.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setNavBar(titleColor: UIColor) -> Stylizer {
         navBar.titleColor = titleColor
         delegate?.updateStyle()
@@ -173,7 +173,7 @@ protocol StylizerDelegate: AnyObject {
     ///
     /// - Parameter style: UIBarStyle we want to use.
     /// - Returns: self
-    @discardableResult
+    @objc @discardableResult
     public func setNavBar(style: UIBarStyle) -> Stylizer {
         navBar.style = style
         delegate?.updateStyle()

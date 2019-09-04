@@ -19,7 +19,7 @@ public class LogoutResponse: NSObject {
     // MARK: - Properties
 
     /// An error response. Optional.
-    public let error: Error?
+    @objc public let error: Error?
 
     // MARK: - Lifecyle Functions
 

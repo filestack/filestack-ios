@@ -17,16 +17,16 @@ import Foundation
     // MARK: - Properties
 
     /// The contents payload as an array of dictionaries, where each dictionary represents an entry in the cloud.
-    public let contents: [[String: Any]]?
+    @objc public let contents: [[String: Any]]?
 
     /// A next token used for pagination purposes. Optional.
-    public let nextToken: String?
+    @objc public let nextToken: String?
 
     /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
-    public let authURL: URL?
+    @objc public let authURL: URL?
 
     /// An error response. Optional.
-    public let error: Error?
+    @objc public let error: Error?
 
     // MARK: - Lifecyle Functions
 

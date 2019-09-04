@@ -11,8 +11,8 @@ import Foundation
 
 /// :nodoc:
 @objc(FSCloudResponse) public protocol CloudResponse {
-    var error: Error? { get }
-    var authURL: URL? { get }
+    @objc var error: Error? { get }
+    @objc var authURL: URL? { get }
 }
 
 typealias CloudRequestCompletion = (_ appRedirectURL: URL?, _ response: CloudResponse) -> Swift.Void

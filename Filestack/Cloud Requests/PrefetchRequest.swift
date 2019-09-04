@@ -14,8 +14,8 @@ internal typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) ->
 internal class PrefetchResponse: NSObject {
     // MARK: - Properties
 
-    public let contents: [String: Any]?
-    public let error: Error?
+    @objc public let contents: [String: Any]?
+    @objc public let error: Error?
 
     // MARK: - Lifecyle Functions
 
