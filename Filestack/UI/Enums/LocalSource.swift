@@ -28,29 +28,29 @@ import Foundation
     let iconImage: UIImage
     let textDescription: String
 
-    public init(description: String, image: UIImage, provider: LocalProvider) {
-        textDescription = description
-        iconImage = image
+    @objc public init(description: String, image: UIImage, provider: LocalProvider) {
+        self.textDescription = description
+        self.iconImage = image
         self.provider = provider
     }
 
     /// Camera
-    public static var camera = LocalSource(description: "Camera",
-                                           image: .templatedFilestackImage("icon-camera"),
-                                           provider: .camera)
+    @objc public static var camera = LocalSource(description: "Camera",
+                                                 image: .templatedFilestackImage("icon-camera"),
+                                                 provider: .camera)
 
     /// Photo Library
-    public static var photoLibrary = LocalSource(description: "Photo Library",
-                                                 image: .templatedFilestackImage("icon-photolibrary"),
-                                                 provider: .photoLibrary)
+    @objc public static var photoLibrary = LocalSource(description: "Photo Library",
+                                                       image: .templatedFilestackImage("icon-photolibrary"),
+                                                       provider: .photoLibrary)
 
     /// Documents
-    public static var documents = LocalSource(description: "iOS Files",
-                                              image: .templatedFilestackImage("icon-documents"),
-                                              provider: .documents)
+    @objc public static var documents = LocalSource(description: "iOS Files",
+                                                    image: .templatedFilestackImage("icon-documents"),
+                                                    provider: .documents)
 
     /// Returns all the supported sources.
-    public static func all() -> [LocalSource] {
+    @objc public static func all() -> [LocalSource] {
         return [.camera, .photoLibrary, .documents]
     }
 

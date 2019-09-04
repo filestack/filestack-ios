@@ -14,7 +14,7 @@ import UIKit.UIImagePickerController
  The `Config` class is used together with `Client` to configure certain aspects of the API.
  */
 @objc(FSConfig) public class Config: NSObject {
-    public static var builder: Builder {
+    @objc public static var builder: Builder {
         return Builder()
     }
 

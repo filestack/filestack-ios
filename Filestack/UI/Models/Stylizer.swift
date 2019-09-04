@@ -149,7 +149,7 @@ import Foundation
 
     /// Used for changing default nacigation bar tint color.
     ///
-    /// - Parameter titleColor: Color we want to use as navigation bar tint color.
+    /// - Parameter tintColor: Color we want to use as navigation bar tint color.
     /// - Returns: self
     @objc @discardableResult
     public func setNavBar(tintColor: UIColor) -> Stylizer {
