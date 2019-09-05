@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 2.1 *(2019-09-05)*
+----------------------------
+
+- Restored Objective-C support.
+- Minor documentation fixes.
+
 Version 2.0.1 *(2019-07-25)*
 ----------------------------
 
