@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.1.1 *(2019-09-06)*
+----------------------------
+
+- Updated Cocoapod and Carthage dependency on `FilestackSDK` to `~> 2.1`.
+
 Version 2.1 *(2019-09-05)*
 ----------------------------
 
