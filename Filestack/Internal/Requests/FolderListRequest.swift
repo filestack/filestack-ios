@@ -10,38 +10,7 @@ import Alamofire
 import FilestackSDK
 import Foundation
 
-/**
- This class represents a response obtained from a cloud folder list request.
- */
-@objc(FSFolderListResponse) public class FolderListResponse: NSObject, CloudResponse {
-    // MARK: - Properties
-
-    /// The contents payload as an array of dictionaries, where each dictionary represents an entry in the cloud.
-    @objc public let contents: [[String: Any]]?
-
-    /// A next token used for pagination purposes. Optional.
-    @objc public let nextToken: String?
-
-    /// A redirect URL to a cloud provider's OAuth page. Typically this is only required internally.
-    @objc public let authURL: URL?
-
-    /// An error response. Optional.
-    @objc public let error: Error?
-
-    // MARK: - Lifecyle Functions
-
-    internal init(contents: [[String: Any]]? = nil,
-                  nextToken: String? = nil,
-                  authURL: URL? = nil,
-                  error: Error? = nil) {
-        self.contents = contents
-        self.nextToken = nextToken
-        self.authURL = authURL
-        self.error = error
-    }
-}
-
-internal final class FolderListRequest: CloudRequest, CancellableRequest {
+final class FolderListRequest: CloudRequest, CancellableRequest {
     // MARK: - Properties
 
     let appURLScheme: String
@@ -72,8 +41,11 @@ internal final class FolderListRequest: CloudRequest, CancellableRequest {
         self.path = path
     }
 
-    func cancel() {
-        dataRequest?.cancel()
+    @discardableResult func cancel() -> Bool {
+        guard let dataRequest = dataRequest else { return false }
+        dataRequest.cancel()
+
+        return true
     }
 
     // MARK: - Internal Functions

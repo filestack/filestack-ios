@@ -42,11 +42,12 @@ internal class DocumentPickerUploadController: NSObject {
 
 private extension DocumentPickerUploadController {
     func upload(urls: [URL]) {
-        multifileUpload.uploadURLs = urls.compactMap { validURL(from: $0) }
-        guard !multifileUpload.uploadURLs.isEmpty else {
-            cancel()
-            return
-        }
+        multifileUpload.add(uploadables: urls.compactMap { validURL(from: $0) })
+        // multifileUpload.uploadURLs = urls.compactMap { validURL(from: $0) }
+//        guard !multifileUpload.uploadURLs.isEmpty else {
+//            cancel()
+//            return
+//        }
         startUpload()
     }
 
@@ -74,7 +75,7 @@ private extension DocumentPickerUploadController {
     }
 
     func startUpload() {
-        multifileUpload.uploadFiles()
+        multifileUpload.start()
         filePickedCompletionHandler?(true)
     }
 }

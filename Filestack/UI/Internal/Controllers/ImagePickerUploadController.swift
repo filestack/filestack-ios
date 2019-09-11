@@ -120,8 +120,8 @@ extension ImagePickerUploadController: UploadListDelegate {
     func upload(_ elements: [SelectableElement]) {
         let urlList = elements.compactMap { $0.localURL }
 
-        multifileUpload.uploadURLs = urlList
-        multifileUpload.uploadFiles()
+        multifileUpload.add(uploadables: urlList)
+        multifileUpload.start()
         filePickedCompletionHandler?(true)
     }
 }
@@ -165,8 +165,8 @@ private extension ImagePickerUploadController {
             self.viewController.dismiss(animated: true) { [weak self] in
                 guard let self = self else { return }
 
-                self.multifileUpload.uploadURLs.append(contentsOf: urlList)
-                self.multifileUpload.uploadFiles()
+                self.multifileUpload.add(uploadables: urlList)
+                self.multifileUpload.start()
                 self.filePickedCompletionHandler?(true)
             }
         })
@@ -207,8 +207,8 @@ private extension ImagePickerUploadController {
     }
 
     func upload(url: URL) {
-        multifileUpload.uploadURLs = [url]
-        multifileUpload.uploadFiles()
+        multifileUpload.add(uploadables: [url])
+        multifileUpload.start()
         filePickedCompletionHandler?(true)
     }
 

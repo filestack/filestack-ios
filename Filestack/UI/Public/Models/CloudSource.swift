@@ -83,7 +83,7 @@ import Foundation
                 .gmail, .googlePhotos, .oneDrive, .amazonDrive, .customSource]
     }
 
-    static func title() -> String {
+    @objc static func title() -> String {
         return "Cloud"
     }
 

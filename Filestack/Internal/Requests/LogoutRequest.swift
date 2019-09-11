@@ -12,23 +12,7 @@ import Foundation
 /// :nodoc:
 public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
 
-/**
- This class represents a response obtained from a cloud logout request.
- */
-public class LogoutResponse: NSObject {
-    // MARK: - Properties
-
-    /// An error response. Optional.
-    @objc public let error: Error?
-
-    // MARK: - Lifecyle Functions
-
-    internal init(error: Error? = nil) {
-        self.error = error
-    }
-}
-
-internal final class LogoutRequest {
+final class LogoutRequest {
     // MARK: - Properties
 
     let provider: CloudProvider

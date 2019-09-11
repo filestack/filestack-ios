@@ -8,21 +8,7 @@
 
 import Foundation
 
-/// :nodoc:
-@objc(FSLocalProvider) public enum LocalProvider: UInt {
-    /// Camera
-    case camera
-
-    /// Photo Library
-    case photoLibrary
-
-    /// Documents
-    case documents
-}
-
-/**
- Represents a type of local source to be used in the picker.
- */
+/// Represents a type of local source to be used in the picker.
 @objc(FSLocalSource) public class LocalSource: NSObject, CellDescriptibleSource {
     let provider: LocalProvider
     let iconImage: UIImage
@@ -54,7 +40,7 @@ import Foundation
         return [.camera, .photoLibrary, .documents]
     }
 
-    static func title() -> String {
+    @objc static func title() -> String {
         return "Local"
     }
 }

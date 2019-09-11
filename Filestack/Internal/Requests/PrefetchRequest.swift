@@ -9,23 +9,9 @@
 import Alamofire
 import Foundation
 
-internal typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Swift.Void
+typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Swift.Void
 
-internal class PrefetchResponse: NSObject {
-    // MARK: - Properties
-
-    @objc public let contents: [String: Any]?
-    @objc public let error: Error?
-
-    // MARK: - Lifecyle Functions
-
-    internal init(contents: [String: Any]? = nil, error: Error? = nil) {
-        self.contents = contents
-        self.error = error
-    }
-}
-
-internal final class PrefetchRequest {
+final class PrefetchRequest {
     // MARK: - Properties
 
     let apiKey: String

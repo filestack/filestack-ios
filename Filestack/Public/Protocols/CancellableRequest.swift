@@ -13,5 +13,5 @@ import Foundation
  */
 @objc(FSCancellableRequest) public protocol CancellableRequest: AnyObject {
     /// Any cancellable requests must implement the `cancel()` function.
-    func cancel()
+    @discardableResult func cancel() -> Bool
 }
