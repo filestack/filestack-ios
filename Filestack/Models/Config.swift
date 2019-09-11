@@ -10,117 +10,14 @@ import AVFoundation.AVAssetExportSession
 import Foundation
 import UIKit.UIImagePickerController
 
-/**
- The `Config` class is used together with `Client` to configure certain aspects of the API.
- */
+/// The `Config` class is used together with `Client` to configure certain aspects of the API.
 @objc(FSConfig) public class Config: NSObject {
-    @objc public static var builder: Builder {
-        return Builder()
-    }
+    // MARK: - Config Builder
 
-    @objc(FSConfigBuilder) public class Builder: NSObject {
-        private var showEditorBeforeUpload: Bool = false
-        private var appURLScheme: String?
-        private var maximumSelectionAllowed: UInt = 1
-        private var modalPresentationStyle: UIModalPresentationStyle = .currentContext
-        private var availableCloudSources: [CloudSource] = CloudSource.all()
-        private var availableLocalSources: [LocalSource] = LocalSource.all()
-        private var documentPickerAllowedUTIs: [String] = ["public.item"]
-        private var cloudSourceAllowedUTIs: [String] = ["public.item"]
-        private var imageURLExportPreset: ImageURLExportPreset?
-        private var imageExportQuality: Float = 0.85
-        private var videoExportPreset: String?
-        private var videoQuality: UIImagePickerController.QualityType = .typeMedium
+    /// Returns a `Builder` instance to help instantiating `Config` objects.
+    @objc public static var builder = Builder()
 
-        @objc public func with(appURLScheme: String) -> Self {
-            self.appURLScheme = appURLScheme
-            return self
-        }
-
-        @available(*, renamed: "with(appURLScheme:)") public func with(appUrlScheme: String) -> Self {
-            return with(appURLScheme: appUrlScheme)
-        }
-
-        @objc public func with(maximumSelectionLimit: UInt) -> Self {
-            maximumSelectionAllowed = maximumSelectionLimit
-            return self
-        }
-
-        @objc public func withNoSelectionLimit() -> Self {
-            maximumSelectionAllowed = Config.kMaximumSelectionNoLimit
-            return self
-        }
-
-        @objc public func with(modalPresentationStyle: UIModalPresentationStyle) -> Self {
-            self.modalPresentationStyle = modalPresentationStyle
-            return self
-        }
-
-        @objc public func with(availableCloudSources: [CloudSource]) -> Self {
-            self.availableCloudSources = availableCloudSources
-            return self
-        }
-
-        @objc public func with(availableLocalSources: [LocalSource]) -> Self {
-            self.availableLocalSources = availableLocalSources
-            return self
-        }
-
-        @objc public func with(documentPickerAllowedUTIs: [String]) -> Self {
-            self.documentPickerAllowedUTIs = documentPickerAllowedUTIs
-            return self
-        }
-
-        @objc public func with(cloudSourceAllowedUTIs: [String]) -> Self {
-            self.cloudSourceAllowedUTIs = cloudSourceAllowedUTIs
-            return self
-        }
-
-        @objc public func with(imageURLExportPreset: ImageURLExportPreset) -> Self {
-            self.imageURLExportPreset = imageURLExportPreset
-            return self
-        }
-
-        @available(*, renamed: "with(imageURLExportPreset:)") public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
-            return with(imageURLExportPreset: imageUrlExportPreset)
-        }
-
-        @objc public func with(imageExportQuality: Float) -> Self {
-            self.imageExportQuality = imageExportQuality
-            return self
-        }
-
-        @objc public func with(videoExportPreset: String) -> Self {
-            self.videoExportPreset = videoExportPreset
-            return self
-        }
-
-        @objc public func with(videoQuality: UIImagePickerController.QualityType) -> Self {
-            self.videoQuality = videoQuality
-            return self
-        }
-
-        @objc public func withEditorEnabled() -> Self {
-            showEditorBeforeUpload = true
-            return self
-        }
-
-        @objc public func build() -> Config {
-            let config = Config()
-            config.showEditorBeforeUpload = showEditorBeforeUpload
-            config.appURLScheme = appURLScheme
-            config.maximumSelectionAllowed = maximumSelectionAllowed
-            config.modalPresentationStyle = modalPresentationStyle
-            config.availableCloudSources = availableCloudSources
-            config.availableLocalSources = availableLocalSources
-            config.documentPickerAllowedUTIs = documentPickerAllowedUTIs
-            config._imageURLExportPreset = imageURLExportPreset
-            config.imageExportQuality = imageExportQuality
-            config._videoExportPreset = videoExportPreset
-            config.videoQuality = videoQuality
-            return config
-        }
-    }
+    // MARK: - Config Options
 
     /// Change this flag to true if you want to allow user to edit photos before the upload.
     @objc public var showEditorBeforeUpload: Bool = false
@@ -162,26 +59,15 @@ import UIKit.UIImagePickerController
     /// By default, this contains `["public.item"]`.
     @objc public var cloudSourceAllowedUTIs: [String] = ["public.item"]
 
-    /// This setting determines the format used for exported images (available only in iOS 11.)
+    /// This setting determines the format used for exported images.
     /// Possible values are `.compatible` (for JPEG) and `.current` (for HEIF).
-    /// In iOS versions earlier than 11.0, JPEG will always be used.
-    @objc @available(iOS 11.0, *)
-    public var imageURLExportPreset: ImageURLExportPreset {
-        get {
-            return _imageURLExportPreset ?? .compatible
-        }
-        set {
-            _imageURLExportPreset = newValue
-        }
-    }
-
-    private var _imageURLExportPreset: ImageURLExportPreset?
+    @objc public var imageURLExportPreset: ImageURLExportPreset = .compatible
 
     /// This setting determines the quality setting for images taken using the camera and exported either as HEIC or JPEG.
     /// - Note: This setting has no effect on images picked from the photo library.
     @objc public var imageExportQuality: Float = 0.85
 
-    /// This setting determines the format used for exported videos (available only in iOS 11.)
+    /// This setting determines the format used for exported videos.
     ///
     /// Some possible values are:
     /// - `AVAssetExportPresetHEVCHighestQuality` (for highest quality HEVC)
@@ -190,17 +76,7 @@ import UIKit.UIImagePickerController
     /// For more possible values, please consult `AVAssetExportSession`.
     ///
     /// The default value is `AVAssetExportPresetHEVCHighestQuality`
-    @objc @available(iOS 11.0, *)
-    public var videoExportPreset: String {
-        get {
-            return _videoExportPreset ?? AVAssetExportPresetHEVCHighestQuality
-        }
-        set {
-            _videoExportPreset = newValue
-        }
-    }
-
-    private var _videoExportPreset: String?
+    @objc public var videoExportPreset: String = AVAssetExportPresetHEVCHighestQuality
 
     /// This setting determines the video recording quality for videos recorded using the camera.
     /// It is also used whenever picking a recorded movie. Specifically, if the video quality setting is lower than the
@@ -209,4 +85,165 @@ import UIKit.UIImagePickerController
     ///
     /// The default value is `.typeMedium`
     @objc public var videoQuality: UIImagePickerController.QualityType = .typeMedium
+}
+
+extension Config {
+    /// A convenience class that allows easily building a new `Config` object.
+    @objc(FSConfigBuilder) public class Builder: NSObject {
+        private var showEditorBeforeUpload: Bool?
+        private var appURLScheme: String?
+        private var maximumSelectionAllowed: UInt?
+        private var modalPresentationStyle: UIModalPresentationStyle?
+        private var availableCloudSources: [CloudSource]?
+        private var availableLocalSources: [LocalSource]?
+        private var documentPickerAllowedUTIs: [String]?
+        private var cloudSourceAllowedUTIs: [String]?
+        private var imageURLExportPreset: ImageURLExportPreset?
+        private var imageExportQuality: Float?
+        private var videoExportPreset: String?
+        private var videoQuality: UIImagePickerController.QualityType?
+
+        override init() {}
+
+        /// :nodoc:
+        @objc public func with(appURLScheme: String) -> Self {
+            self.appURLScheme = appURLScheme
+            return self
+        }
+
+        /// :nodoc:
+        @available(*, renamed: "with(appURLScheme:)")
+        public func with(appUrlScheme: String) -> Self {
+            return with(appURLScheme: appUrlScheme)
+        }
+
+        /// :nodoc:
+        @objc public func with(maximumSelectionLimit: UInt) -> Self {
+            maximumSelectionAllowed = maximumSelectionLimit
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func withNoSelectionLimit() -> Self {
+            maximumSelectionAllowed = Config.kMaximumSelectionNoLimit
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(modalPresentationStyle: UIModalPresentationStyle) -> Self {
+            self.modalPresentationStyle = modalPresentationStyle
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(availableCloudSources: [CloudSource]) -> Self {
+            self.availableCloudSources = availableCloudSources
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(availableLocalSources: [LocalSource]) -> Self {
+            self.availableLocalSources = availableLocalSources
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(documentPickerAllowedUTIs: [String]) -> Self {
+            self.documentPickerAllowedUTIs = documentPickerAllowedUTIs
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(cloudSourceAllowedUTIs: [String]) -> Self {
+            self.cloudSourceAllowedUTIs = cloudSourceAllowedUTIs
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(imageURLExportPreset: ImageURLExportPreset) -> Self {
+            self.imageURLExportPreset = imageURLExportPreset
+            return self
+        }
+
+        /// :nodoc:
+        @available(*, renamed: "with(imageURLExportPreset:)")
+        public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
+            return with(imageURLExportPreset: imageUrlExportPreset)
+        }
+
+        /// :nodoc:
+        @objc public func with(imageExportQuality: Float) -> Self {
+            self.imageExportQuality = imageExportQuality
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(videoExportPreset: String) -> Self {
+            self.videoExportPreset = videoExportPreset
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func with(videoQuality: UIImagePickerController.QualityType) -> Self {
+            self.videoQuality = videoQuality
+            return self
+        }
+
+        /// :nodoc:
+        @objc public func withEditorEnabled() -> Self {
+            showEditorBeforeUpload = true
+            return self
+        }
+
+        /// Instantiates a new `Config` object using any user-supplied options.
+        @objc public func build() -> Config {
+            let config = Config()
+
+            if let showEditorBeforeUpload = showEditorBeforeUpload {
+                config.showEditorBeforeUpload = showEditorBeforeUpload
+            }
+
+            if let appURLScheme = appURLScheme {
+                config.appURLScheme = appURLScheme
+            }
+
+            if let maximumSelectionAllowed = maximumSelectionAllowed {
+                config.maximumSelectionAllowed = maximumSelectionAllowed
+            }
+
+            if let modalPresentationStyle = modalPresentationStyle {
+                config.modalPresentationStyle = modalPresentationStyle
+            }
+
+            if let availableCloudSources = availableCloudSources {
+                config.availableCloudSources = availableCloudSources
+            }
+
+            if let availableLocalSources = availableLocalSources {
+                config.availableLocalSources = availableLocalSources
+            }
+
+            if let documentPickerAllowedUTIs = documentPickerAllowedUTIs {
+                config.documentPickerAllowedUTIs = documentPickerAllowedUTIs
+            }
+
+            if let imageURLExportPreset = imageURLExportPreset {
+                config.imageURLExportPreset = imageURLExportPreset
+            }
+
+            if let imageExportQuality = imageExportQuality {
+                config.imageExportQuality = imageExportQuality
+            }
+
+            if let videoExportPreset = videoExportPreset {
+                config.videoExportPreset = videoExportPreset
+            }
+
+            if let videoQuality = videoQuality {
+                config.videoQuality = videoQuality
+            }
+
+            return config
+        }
+    }
 }
