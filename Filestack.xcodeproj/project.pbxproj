@@ -320,8 +320,7 @@
 				454054731F98A30F00C12B2F /* Client.swift */,
 				45DEBA541FBAF48000A267E7 /* Config.swift */,
 			);
-			name = Models;
-			path = ../Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		452DA7F91FB6235D0082E52D /* Extensions */ = {
