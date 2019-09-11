@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal struct Constants {
+struct Constants {
     static let cloudURL = URL(string: "https://cloud.filestackapi.com")!
     static let validHTTPResponseCodes = Array(200 ..< 300)
 }

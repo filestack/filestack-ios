@@ -10,36 +10,14 @@ import Alamofire
 import FilestackSDK
 import UIKit
 
-internal struct CloudSourceTabBarScene: Scene {
-    let client: Client
-    let storeOptions: StorageOptions
-    let source: CloudSource
-
-    var customSourceName: String?
-    var path: String?
-    var nextPageToken: String?
-    var viewType: CloudSourceViewType
-
-    func configureViewController(_ viewController: CloudSourceTabBarController) {
-        // Inject the dependencies
-        viewController.client = client
-        viewController.storeOptions = storeOptions
-        viewController.source = source
-        viewController.customSourceName = customSourceName
-        viewController.nextPageToken = nextPageToken
-        viewController.path = path ?? "/"
-        viewController.viewType = viewType
-    }
-}
-
-internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
+class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     var client: Client!
     var storeOptions: StorageOptions!
     var source: CloudSource!
     var path: String!
     var nextPageToken: String?
-
-    internal private(set) var items: [CloudItem]?
+    var customSourceName: String?
+    var viewType: CloudSourceViewType!
 
     let thumbnailCache: NSCache<NSURL, UIImage> = {
         let cache = NSCache<NSURL, UIImage>()
@@ -49,7 +27,7 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
         return cache
     }()
 
-    var viewType: CloudSourceViewType!
+    private(set) var items: [CloudItem]?
 
     private var requestInProgress: Bool {
         return currentRequest != nil
@@ -60,8 +38,6 @@ internal class CloudSourceTabBarController: UITabBarController, CloudSourceDataS
     private var currentRequest: CancellableRequest?
     private var thumbnailRequests: [DataRequest] = [DataRequest]()
     private weak var uploadMonitorViewController: UploadMonitorViewController?
-
-    fileprivate var customSourceName: String?
 
     // MARK: - View Overrides
 

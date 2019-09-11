@@ -10,7 +10,7 @@ import Alamofire
 import FilestackSDK
 import Foundation
 
-internal class CloudService {
+class CloudService {
     let sessionManager = SessionManager.filestackDefault
     let baseURL = Constants.cloudURL
 

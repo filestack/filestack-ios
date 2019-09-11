@@ -236,15 +236,18 @@ private extension SourceTableViewController {
             picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
         }
 
+        let uploadOptions = UploadOptions.defaults
+        uploadOptions.storeOptions = storeOptions
+
         if let sourceType = sourceType {
             cancellableRequest = client.uploadFromImagePicker(viewController: self,
                                                               sourceType: sourceType,
-                                                              storeOptions: storeOptions,
+                                                              options: uploadOptions,
                                                               uploadProgress: uploadProgressHandler,
                                                               completionHandler: completionHandler)
         } else {
             cancellableRequest = client.uploadFromDocumentPicker(viewController: self,
-                                                                 storeOptions: storeOptions,
+                                                                 options: uploadOptions,
                                                                  uploadProgress: uploadProgressHandler,
                                                                  completionHandler: completionHandler)
         }

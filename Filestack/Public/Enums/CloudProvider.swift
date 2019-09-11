@@ -8,9 +8,7 @@
 
 import Foundation
 
-/**
- Represents a cloud provider.
- */
+/// Represents a cloud provider.
 @objc(FSCloudProvider) public enum CloudProvider: UInt, CustomStringConvertible {
     /// Facebook
     case facebook
@@ -44,54 +42,33 @@ import Foundation
 
     /// Custom Source
     case customSource
+}
 
-    // MARK: - CustomStringConvertible
-
-    /// Returns a `String` representation of self.
+extension CloudProvider {
+    /// :nodoc:
     public var description: String {
         switch self {
         case .facebook:
-
             return "facebook"
-
         case .instagram:
-
             return "instagram"
-
         case .googleDrive:
-
             return "googledrive"
-
         case .dropbox:
-
             return "dropbox"
-
         case .box:
-
             return "box"
-
         case .gitHub:
-
             return "github"
-
         case .gmail:
-
             return "gmail"
-
         case .googlePhotos:
-
             return "picasa"
-
         case .oneDrive:
-
             return "onedrive"
-
         case .amazonDrive:
-
             return "clouddrive"
-
         case .customSource:
-
             return "customsource"
         }
     }

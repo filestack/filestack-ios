@@ -8,14 +8,17 @@
 
 import Foundation
 
-/**
- Represents a type of cloud source to be used in the picker.
- */
+/// Represents a type of cloud source to be used in the picker.
 @objc(FSCloudSource) public class CloudSource: NSObject, CellDescriptibleSource {
     let provider: CloudProvider
     let iconImage: UIImage
     let textDescription: String
 
+    /// Initializer for a `CloudSource`.
+    ///
+    /// - Parameter description: A `String` describing the cloud source.
+    /// - Parameter image: An `UIImage` visually describing the cloud source.
+    /// - Parameter provider: A `CloudProvider` that better represents the cloud source.
     @objc public init(description: String, image: UIImage, provider: CloudProvider) {
         self.textDescription = description
         self.iconImage = image
@@ -83,7 +86,8 @@ import Foundation
                 .gmail, .googlePhotos, .oneDrive, .amazonDrive, .customSource]
     }
 
-    @objc static func title() -> String {
+    /// Returns this source's title.
+    @objc public static func title() -> String {
         return "Cloud"
     }
 

@@ -14,9 +14,11 @@ extension UIView {
               inset: CGFloat = 0,
               withSafeAreaRespecting useSafeArea: Bool = false) {
         subview.translatesAutoresizingMaskIntoConstraints = false
+
         if !subviews.contains(subview) {
             addSubview(subview)
         }
+
         connect(edges: connectingEdges, of: subview, inset: inset, withSafeAreaRespecting: useSafeArea)
     }
 
@@ -25,15 +27,13 @@ extension UIView {
                  inset: CGFloat = 0,
                  withSafeAreaRespecting useSafeArea: Bool = false) {
         guard subviews.contains(subview) else { return }
-        let primaryItem: Any
-        if #available(iOS 11.0, *) {
-            primaryItem = useSafeArea ? self.safeAreaLayoutGuide : self
-        } else {
-            primaryItem = self
-        }
+
+        let primaryItem = useSafeArea ? safeAreaLayoutGuide : self
+
         for edge in edges {
             let reversedEdges: [NSLayoutConstraint.Attribute] = [.top, .left, .topMargin, .leftMargin]
             let offset = reversedEdges.contains(edge) ? -inset : inset
+
             NSLayoutConstraint(item: primaryItem, attribute: edge, relatedBy: .equal,
                                toItem: subview, attribute: edge, multiplier: 1, constant: offset).isActive = true
         }

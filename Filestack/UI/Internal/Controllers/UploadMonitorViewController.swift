@@ -9,14 +9,6 @@
 import FilestackSDK
 import Foundation
 
-struct UploadMonitorScene: Scene {
-    var cancellableRequest: CancellableRequest?
-
-    func configureViewController(_ viewController: UploadMonitorViewController) {
-        viewController.cancellableRequest = cancellableRequest
-    }
-}
-
 final class UploadMonitorViewController: UIViewController {
     @IBOutlet var progressView: UIProgressView!
     @IBOutlet var cancelButton: UIButton!

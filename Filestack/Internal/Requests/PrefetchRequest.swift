@@ -9,8 +9,6 @@
 import Alamofire
 import Foundation
 
-typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Swift.Void
-
 final class PrefetchRequest {
     // MARK: - Properties
 

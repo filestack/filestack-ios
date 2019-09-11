@@ -9,8 +9,7 @@
 import AVFoundation
 import UIKit
 
-internal extension UIImage {
-    @available(iOS 11.0, *)
+extension UIImage {
     func heicRepresentation(quality: Float) -> Data? {
         var imageData: Data?
         let destinationData = NSMutableData()

@@ -8,6 +8,6 @@
 
 import Foundation
 
-internal protocol CloudSourceDataSourceConsumer {
+protocol CloudSourceDataSourceConsumer {
     func dataSourceReceivedInitialResults(dataSource: CloudSourceDataSource)
 }

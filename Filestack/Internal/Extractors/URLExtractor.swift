@@ -26,12 +26,14 @@ class URLExtractor {
         let dispatchGroup = DispatchGroup()
         var urlList = [URL]()
         let serialQueue = DispatchQueue(label: "serialQueue")
+
         for element in elements {
             fetchURL(of: element, inside: dispatchGroup) { url in
                 guard let url = url else { return }
                 serialQueue.sync { urlList.append(url) }
             }
         }
+
         dispatchGroup.notify(queue: .main) {
             completion(urlList)
         }
@@ -41,12 +43,14 @@ class URLExtractor {
         let dispatchGroup = DispatchGroup()
         var urlList = [URL]()
         let serialQueue = DispatchQueue(label: "serialQueue")
+
         for asset in assets {
             fetchURL(of: asset, inside: dispatchGroup) { url in
                 guard let url = url else { return }
                 serialQueue.sync { urlList.append(url) }
             }
         }
+
         dispatchGroup.notify(queue: .main) {
             completion(urlList)
         }
@@ -87,6 +91,7 @@ private extension URLExtractor {
             fetchVideoURL(of: video, completion: completion)
             return
         }
+
         completion(nil)
     }
 
@@ -107,6 +112,7 @@ private extension URLExtractor {
                 completion(nil)
                 return
             }
+
             self.fetchVideoURL(of: element, completion: completion)
         }
     }
@@ -116,28 +122,31 @@ private extension URLExtractor {
             completion(nil)
             return
         }
+
         export.exportAsynchronously { completion(export.outputURL) }
     }
 
     var videoRequestOptions: PHVideoRequestOptions {
         let options = PHVideoRequestOptions()
+
         options.version = PHVideoRequestOptionsVersion.current
         options.deliveryMode = PHVideoRequestOptionsDeliveryMode.highQualityFormat
+
         return options
     }
 
     func preferedVideoPreset(for asset: AVAsset) -> String {
-        let compatibilePresets = AVAssetExportSession.exportPresets(compatibleWith: asset)
-        if #available(iOS 11.0, *), compatibilePresets.contains(videoExportPreset) {
-            return videoExportPreset
-        }
-        return AVAssetExportPresetPassthrough
+        let compatiblePresets = AVAssetExportSession.exportPresets(compatibleWith: asset)
+
+        return compatiblePresets.contains(videoExportPreset) ? videoExportPreset : AVAssetExportPresetPassthrough
     }
 
     func videoExportSession(for asset: AVAsset) -> AVAssetExportSession? {
         let export = AVAssetExportSession(asset: asset, presetName: preferedVideoPreset(for: asset))
+
         export?.outputURL = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".mov")
         export?.outputFileType = .mov
+
         return export
     }
 
@@ -155,12 +164,12 @@ private extension URLExtractor {
         }
     }
 
-    @available(iOS 11.0, *)
     func exportedHEICImageURL(image: UIImage) -> URL? {
         if let imageData = image.heicRepresentation(quality: cameraImageQuality) {
             let filename = UUID().uuidString + ".heic"
             return writeImageDataToURL(imageData: imageData, filename: filename)
         }
+
         return nil
     }
 
@@ -169,6 +178,7 @@ private extension URLExtractor {
             let filename = UUID().uuidString + ".jpeg"
             return writeImageDataToURL(imageData: imageData, filename: filename)
         }
+
         return nil
     }
 

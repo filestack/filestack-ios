@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal struct CloudItem {
+struct CloudItem {
     let isFolder: Bool
     let name: String
     let path: String

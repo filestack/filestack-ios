@@ -9,20 +9,23 @@
 import Alamofire
 import Foundation
 
-internal extension SessionManager {
+extension SessionManager {
     static var filestackDefault: SessionManager {
         let configuration = URLSessionConfiguration.default
         var defaultHeaders = SessionManager.defaultHTTPHeaders
 
+        defaultHeaders["User-Agent"] = "filestack-ios \(shortVersionString)"
+        defaultHeaders["Filestack-Source"] = "Swift-\(shortVersionString)"
+
         configuration.httpShouldUsePipelining = true
-
-        if let shortVersionString = BundleInfo.version {
-            defaultHeaders["User-Agent"] = "filestack-ios \(shortVersionString)"
-            defaultHeaders["Filestack-Source"] = "Swift-\(shortVersionString)"
-        }
-
         configuration.httpAdditionalHeaders = defaultHeaders
 
         return SessionManager(configuration: configuration)
+    }
+
+    // MARK: - Private Functions
+
+    private class var shortVersionString: String {
+        return Bundle(for: Client.self).infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
     }
 }

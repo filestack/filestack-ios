@@ -12,7 +12,7 @@ import Foundation
 import Photos
 import SVProgressHUD
 
-internal class ImagePickerUploadController: NSObject {
+class ImagePickerUploadController: NSObject {
     let multifileUpload: MultifileUpload
     let viewController: UIViewController
 
@@ -50,32 +50,32 @@ internal class ImagePickerUploadController: NSObject {
     }
 }
 
-private extension ImagePickerUploadController {
-    var sourceTypeSupportsMultipleSelection: Bool {
+extension ImagePickerUploadController {
+    private var sourceTypeSupportsMultipleSelection: Bool {
         return sourceType == .camera ? false : true
     }
 
-    var shouldUseCustomPicker: Bool {
+    private var shouldUseCustomPicker: Bool {
         let multipleSelectionAllowed = config.maximumSelectionAllowed != 1
         let editingEnabled = config.showEditorBeforeUpload
+
         return sourceTypeSupportsMultipleSelection && (multipleSelectionAllowed || editingEnabled)
     }
 
-    var nativePicker: UINavigationController {
+    private var nativePicker: UINavigationController {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.modalPresentationStyle = config.modalPresentationStyle
         picker.sourceType = sourceType
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: sourceType)!
-        if #available(iOS 11.0, *) {
-            picker.imageExportPreset = config.imageURLExportPreset.asImagePickerControllerImageURLExportPreset
-            picker.videoExportPreset = config.videoExportPreset
-        }
+        picker.imageExportPreset = config.imageURLExportPreset.asImagePickerControllerImageURLExportPreset
+        picker.videoExportPreset = config.videoExportPreset
         picker.videoQuality = config.videoQuality
+
         return picker
     }
 
-    var customPicker: UINavigationController {
+    private var customPicker: UINavigationController {
         let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
 
         // Keep a strong reference to the picker, so it does not go away while we still need it.
@@ -84,15 +84,17 @@ private extension ImagePickerUploadController {
         picker.delegate = self
         let navigation = picker.navigation
         navigation.modalPresentationStyle = config.modalPresentationStyle
+
         return navigation
     }
 
-    func editor(with image: UIImage) -> UIViewController {
+    private func editor(with image: UIImage) -> UIViewController {
         return EditorViewController(image: image, completion: { image in
             guard let image = image, let url = self.urlExtractor.fetchURL(image: image) else {
                 self.cancelUpload()
                 return
             }
+
             self.upload(url: url)
         })
     }
@@ -140,6 +142,8 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
         }
     }
 
+    // MARK: - Private Functions
+
     private func upload(with info: [UIImagePickerController.InfoKey: Any]) {
         if let imageURL = info[.imageURL] as? URL {
             upload(url: imageURL)
@@ -153,8 +157,8 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
     }
 }
 
-private extension ImagePickerUploadController {
-    func upload(assets: [PHAsset]) {
+extension ImagePickerUploadController {
+    private func upload(assets: [PHAsset]) {
         SVProgressHUD.show(withStatus: "Preparing")
 
         urlExtractor.fetchURLs(assets, completion: { [weak self] urlList in
@@ -172,7 +176,7 @@ private extension ImagePickerUploadController {
         })
     }
 
-    func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
+    private func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
         if assets.count == 1 {
             handleSingleSelection(of: assets[0], on: navigationController)
         } else {
@@ -180,12 +184,12 @@ private extension ImagePickerUploadController {
         }
     }
 
-    func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
+    private func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
         let editor = SelectionListViewController(assets: assets, config: config, delegate: self)
         navigationController.pushViewController(editor, animated: true)
     }
 
-    func handleSingleSelection(of asset: PHAsset, on navigationController: UINavigationController) {
+    private func handleSingleSelection(of asset: PHAsset, on navigationController: UINavigationController) {
         if asset.mediaType == .image {
             showEditor(with: asset, on: navigationController)
         } else {
@@ -193,7 +197,7 @@ private extension ImagePickerUploadController {
         }
     }
 
-    func showEditor(with singleImageAsset: PHAsset, on navigationController: UINavigationController) {
+    private func showEditor(with singleImageAsset: PHAsset, on navigationController: UINavigationController) {
         UploadableExtractor().fetchUploadable(of: singleImageAsset) { uploadable in
             guard let image = uploadable as? UIImage else {
                 self.upload(assets: [singleImageAsset])
@@ -206,13 +210,13 @@ private extension ImagePickerUploadController {
         }
     }
 
-    func upload(url: URL) {
+    private func upload(url: URL) {
         multifileUpload.add(uploadables: [url])
         multifileUpload.start()
         filePickedCompletionHandler?(true)
     }
 
-    func cancelUpload() {
+    private func cancelUpload() {
         multifileUpload.cancel()
         filePickedCompletionHandler?(false)
     }

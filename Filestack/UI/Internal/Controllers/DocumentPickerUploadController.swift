@@ -15,7 +15,7 @@ import Foundation
     import SSZipArchive
 #endif
 
-internal class DocumentPickerUploadController: NSObject {
+class DocumentPickerUploadController: NSObject {
     let multifileUpload: MultifileUpload
     let viewController: UIViewController
     let picker: UIDocumentPickerViewController
@@ -33,29 +33,28 @@ internal class DocumentPickerUploadController: NSObject {
     func start() {
         picker.delegate = self
         picker.modalPresentationStyle = config.modalPresentationStyle
-        if #available(iOS 11.0, *) {
-            picker.allowsMultipleSelection = (config.maximumSelectionAllowed != 1)
-        }
+        picker.allowsMultipleSelection = (config.maximumSelectionAllowed != 1)
+
         viewController.present(picker, animated: true, completion: nil)
     }
 }
 
-private extension DocumentPickerUploadController {
-    func upload(urls: [URL]) {
+extension DocumentPickerUploadController {
+    private func upload(urls: [URL]) {
+        guard !urls.isEmpty else {
+            cancel()
+            return
+        }
+
         multifileUpload.add(uploadables: urls.compactMap { validURL(from: $0) })
-        // multifileUpload.uploadURLs = urls.compactMap { validURL(from: $0) }
-//        guard !multifileUpload.uploadURLs.isEmpty else {
-//            cancel()
-//            return
-//        }
         startUpload()
     }
 
-    func validURL(from url: URL) -> URL? {
+    private func validURL(from url: URL) -> URL? {
         return url.hasDirectoryPath ? zipURL(from: url) : url
     }
 
-    func zipURL(from url: URL) -> URL? {
+    private func zipURL(from url: URL) -> URL? {
         let tmpFilePath = tempZipPath(filename: url.lastPathComponent)
         let success = SSZipArchive.createZipFile(atPath: tmpFilePath,
                                                  withContentsOfDirectory: url.path,
@@ -63,18 +62,18 @@ private extension DocumentPickerUploadController {
         return success ? URL(fileURLWithPath: tmpFilePath) : nil
     }
 
-    func tempZipPath(filename: String) -> String {
+    private func tempZipPath(filename: String) -> String {
         var path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
         path += "/\(UUID().uuidString)_\(filename).zip"
         return path
     }
 
-    func cancel() {
+    private func cancel() {
         multifileUpload.cancel()
         filePickedCompletionHandler?(false)
     }
 
-    func startUpload() {
+    private func startUpload() {
         multifileUpload.start()
         filePickedCompletionHandler?(true)
     }
@@ -87,13 +86,7 @@ extension DocumentPickerUploadController: UIDocumentPickerDelegate {
     }
 
     // Required
-    @available(iOS 11.0, *)
     func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         upload(urls: urls)
-    }
-
-    @available(iOS, introduced: 8.0, deprecated: 11.0)
-    func documentPicker(_: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        upload(urls: [url])
     }
 }

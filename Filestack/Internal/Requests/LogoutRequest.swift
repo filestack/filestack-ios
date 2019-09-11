@@ -9,9 +9,6 @@
 import Alamofire
 import Foundation
 
-/// :nodoc:
-public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
-
 final class LogoutRequest {
     // MARK: - Properties
 

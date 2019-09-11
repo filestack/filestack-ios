@@ -15,7 +15,7 @@ private extension String {
     static let activityIndicatorReuseIdentifier = "ActivityIndicatorTableViewCell"
 }
 
-internal class CloudSourceTableViewController: UITableViewController {
+class CloudSourceTableViewController: UITableViewController {
     private weak var dataSource: (CloudSourceDataSource)!
 
     // MARK: - View Overrides

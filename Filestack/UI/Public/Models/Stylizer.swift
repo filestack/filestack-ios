@@ -8,13 +8,7 @@
 
 import Foundation
 
-@objc(FSStylizerDelegate) protocol StylizerDelegate: AnyObject {
-    @objc func updateStyle()
-}
-
-/**
- Object used to pass set colors, fonts and defaults style of Picker.
- */
+/// Object used to pass set colors, fonts and defaults style of Picker.
 @objc(FSStylizer) public class Stylizer: NSObject {
     struct SourceTableViewModel {
         var tintColor = UIColor.black
@@ -43,6 +37,9 @@ import Foundation
     private(set) var navBar = NavigationBarViewModel()
     private weak var delegate: StylizerDelegate?
 
+    /// Default initializer.
+    ///
+    /// - Parameter delegate: An `StylizerDelegate`.
     @objc init(delegate: StylizerDelegate) {
         self.delegate = delegate
     }
