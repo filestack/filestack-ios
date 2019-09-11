@@ -1,4 +1,4 @@
-github "Alamofire/Alamofire" ~> 4.8
+github "Alamofire/Alamofire" ~> 4.9
 github "ZipArchive/ZipArchive" "v2.2.2"
-github "filestack/filestack-swift" ~> 2.1
+github "filestack/filestack-swift" "develop"
 github "SVProgressHUD/SVProgressHUD" ~> 2.2
