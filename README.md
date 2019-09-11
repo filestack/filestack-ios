@@ -31,7 +31,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.0'
+    pod 'Filestack', '~> 2.2'
 end
 ```
 
@@ -52,7 +52,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.0`
+`github "filestack/filestack-ios" ~> 2.2`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, `CryptoSwift.framework`, `SVProgressHUD.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
 
@@ -129,7 +129,7 @@ let client = Filestack.Client(apiKey: "YOUR-API-KEY", security: security, config
 ```swift
 let localURL = URL(string: "file:///an-app-sandbox-friendly-local-url")!
 
-let uploadRequest = client.upload(from: localURL, uploadProgress: { (progress) in
+let uploadRequest = client.upload(using: localURL, uploadProgress: { (progress) in
     // Here you may update the UI to reflect the upload progress.
     print("progress = \(String(describing: progress))")
 }) { (response) in
@@ -224,7 +224,6 @@ Remember also to add this piece of code to your `AppDelegate` so the auth flow c
 
 ```swift
 func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-
     if url.scheme == "YOUR-APP-URL-SCHEME" && url.host == "Filestack" {
         return true
     }
@@ -332,9 +331,7 @@ And implement the `PickerNavigationControllerDelegate` protocol in your view con
 
 ```swift
 extension ViewController: PickerNavigationControllerDelegate {
-
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
-
         if let contents = response.contents {
             // Our cloud file was stored into the destination location.
             print("Stored file response: \(contents)")
@@ -345,7 +342,6 @@ extension ViewController: PickerNavigationControllerDelegate {
     }
 
     func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
-
         if let contents = response?.json {
             // Our local file was stored into the destination location.
             print("Uploaded file response: \(contents)")
