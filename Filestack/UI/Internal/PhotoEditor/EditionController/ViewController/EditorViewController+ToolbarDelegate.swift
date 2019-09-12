@@ -85,6 +85,6 @@ extension EditorViewController: EditorToolbarDelegate {
         editMode = .none
         cropHandler.reset()
         circleHandler.reset()
-        topToolbar.setUndo(hidden: !editor.canUndo())
+        topToolbar.setActions(showUndo: editor.canUndo(), showRedo: editor.canRedo())
     }
 }

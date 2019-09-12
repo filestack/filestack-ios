@@ -47,13 +47,13 @@ class EditorToolbar: UIToolbar {
 
     var done: UIBarButtonItem {
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneSelected))
-        redo.tintColor = editColor
+        done.tintColor = editColor
         return done
     }
 
     lazy var undo: UIBarButtonItem = {
         let undo = imageBarButton("icon-undo", action: #selector(undoSelected))
-        redo.tintColor = editColor
+        undo.tintColor = editColor
         return undo
     }()
 
@@ -161,15 +161,19 @@ class TopEditorToolbar: EditorToolbar {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setUndo(hidden: Bool) {
-        let items = hidden ? [space] : [space, undo]
+    func setActions(showUndo: Bool, showRedo: Bool) {
+        var items = [space]
+
+        if showUndo { items.append(undo) }
+        if showRedo { items.append(redo) }
+
         setItems(items, animated: false)
     }
 }
 
 private extension TopEditorToolbar {
     func setupView() {
-        setUndo(hidden: true)
+        setActions(showUndo: false, showRedo: false)
         setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         barTintColor = .clear
         backgroundColor = .clear

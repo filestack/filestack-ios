@@ -31,18 +31,21 @@ extension ImageEditor {
     func rotate(clockwise: Bool) {
         if let rotatedImage = editedImage.rotated(clockwise: clockwise) {
             editedImages.append(rotatedImage)
+            undoneImages.removeAll()
         }
     }
 
     func crop(insets: UIEdgeInsets) {
         if let croppedImage = editedImage.cropped(by: insets) {
             editedImages.append(croppedImage)
+            undoneImages.removeAll()
         }
     }
 
     func cropCircled(center: CGPoint, radius: CGFloat) {
         if let cropCircledImage = editedImage.circled(center: center, radius: radius) {
             editedImages.append(cropCircledImage)
+            undoneImages.removeAll()
         }
     }
 }
