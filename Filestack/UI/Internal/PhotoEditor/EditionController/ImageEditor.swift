@@ -35,13 +35,13 @@ extension ImageEditor {
     }
 
     func crop(insets: UIEdgeInsets) {
-        if let croppedImage = editedImage.cropped(by: insets, transformed: true) {
+        if let croppedImage = editedImage.cropped(by: insets) {
             editedImages.append(croppedImage)
         }
     }
 
     func cropCircled(center: CGPoint, radius: CGFloat) {
-        if let cropCircledImage = editedImage.circled(center: center, radius: radius, transformed: true) {
+        if let cropCircledImage = editedImage.circled(center: center, radius: radius) {
             editedImages.append(cropCircledImage)
         }
     }
@@ -51,13 +51,13 @@ extension ImageEditor {
 
 extension ImageEditor {
     func undo() {
-        if !editedImages.isEmpty {
+        if canUndo() {
             undoneImages.append(editedImages.removeLast())
         }
     }
 
     func redo() {
-        if !undoneImages.isEmpty {
+        if canRedo() {
             editedImages.append(undoneImages.removeLast())
         }
     }

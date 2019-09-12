@@ -9,6 +9,12 @@
 import Foundation
 import UIKit.UIImage
 
+extension UIEdgeInsets {
+    func rounded() -> UIEdgeInsets {
+        return UIEdgeInsets(top: top.rounded(), left: left.rounded(), bottom: bottom.rounded(), right: right.rounded())
+    }
+}
+
 extension UIImage {
     /// Returns a 90 degree-rotated image with a `CIImage` as the backing image.
     ///
@@ -26,26 +32,13 @@ extension UIImage {
     /// Returns a cropped image with a `CIImage` as the backing image.
     ///
     /// - Parameter insets: Specifies how much should be inset on each side of the rect.
-    /// - Parameter transformed: Whether to transform UIKit coordinates into Core Image coordinates. Defaults to false.
     ///
-    func cropped(by insets: UIEdgeInsets, transformed: Bool = false) -> UIImage? {
+    func cropped(by insets: UIEdgeInsets) -> UIImage? {
         guard let ciImage = ciImage ?? CIImage(image: self) else { return nil }
 
-        let roundedInsets = UIEdgeInsets(top: insets.top.rounded(),
-                                         left: insets.left.rounded(),
-                                         bottom: insets.bottom.rounded(),
-                                         right: insets.right.rounded())
-
         let extent = ciImage.extent
-        var rect: CGRect!
-
-        if transformed {
-            let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -extent.height)
-            rect = extent.applying(transform).inset(by: roundedInsets).applying(transform)
-        } else {
-            rect = extent.inset(by: roundedInsets)
-        }
-
+        let transform = coordinatesTransform(rect: extent)
+        let rect = extent.applying(transform).inset(by: insets.rounded()).applying(transform)
         let outputImage = ciImage.cropped(to: rect)
 
         return UIImage(ciImage: outputImage)
@@ -57,12 +50,12 @@ extension UIImage {
     /// - Parameter radius: Circle's radius.
     /// - Parameter transformed: Whether to transform UIKit coordinates into Core Image coordinates. Defaults to false.
     ///
-    func circled(center: CGPoint, radius: CGFloat, transformed: Bool = false) -> UIImage? {
+    func circled(center: CGPoint, radius: CGFloat) -> UIImage? {
         guard let ciImage = ciImage ?? CIImage(image: self) else { return nil }
 
         let extent = ciImage.extent
-        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -extent.height)
-        let tCenter = transformed ? center.applying(transform) : center
+        let transform = coordinatesTransform(rect: extent)
+        let tCenter = center.applying(transform)
 
         let origin = CGPoint(x: (extent.minX + (tCenter.x - radius)).rounded(),
                              y: (extent.minY + (tCenter.y - radius)).rounded())
@@ -107,5 +100,11 @@ extension UIImage {
         guard let ciImage = CIImage(image: self) else { return nil }
 
         return UIImage(ciImage: ciImage)
+    }
+
+    // MARK: - Private Functions
+
+    private func coordinatesTransform(rect: CGRect) -> CGAffineTransform {
+        return CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -rect.height)
     }
 }

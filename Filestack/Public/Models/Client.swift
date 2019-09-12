@@ -10,7 +10,7 @@ import FilestackSDK
 import Foundation
 import SafariServices
 
-typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
+private typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
 
 /// The `Client` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
 @objc(FSFilestackClient) public class Client: NSObject {
@@ -51,8 +51,8 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
     @objc public init(apiKey: String, security: Security? = nil, config: Config? = nil, token: String? = nil) {
         self.apiKey = apiKey
         self.security = security
-        lastToken = token
-        client = FilestackSDK.Client(apiKey: apiKey, security: security)
+        self.lastToken = token
+        self.client = FilestackSDK.Client(apiKey: apiKey, security: security)
         self.config = config ?? Config()
 
         super.init()
@@ -70,6 +70,7 @@ typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?)
     @objc public func picker(storeOptions: StorageOptions = .defaults) -> PickerNavigationController {
         let storyboard = UIStoryboard(name: "Picker", bundle: Bundle(for: type(of: self)))
         let scene = PickerNavigationScene(client: self, storeOptions: storeOptions)
+
         return storyboard.instantiateViewController(for: scene)
     }
 

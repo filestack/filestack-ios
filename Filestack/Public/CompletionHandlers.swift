@@ -17,5 +17,5 @@ public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Swift.V
 /// :nodoc:
 public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
 
-/// :nodoc
+/// :nodoc:
 public typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Swift.Void

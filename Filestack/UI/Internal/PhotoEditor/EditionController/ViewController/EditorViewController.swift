@@ -57,6 +57,7 @@ final class EditorViewController: UIViewController, UIGestureRecognizerDelegate 
 extension EditorViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
         updatePaths()
         imageClearBackground.frame = imageFrame.applying(CGAffineTransform(translationX: 4, y: 4))
     }
