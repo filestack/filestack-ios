@@ -8,6 +8,7 @@
 
 import FilestackSDK
 import Foundation
+import Photos
 import SafariServices
 
 private typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
@@ -182,7 +183,11 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
             uploadProgress?(progress)
         }
 
-        uploadController.start()
+        PHPhotoLibrary.requestAuthorization { status in
+            if status == .authorized {
+                DispatchQueue.main.async { uploadController.start() }
+            }
+        }
 
         return mfu
     }
