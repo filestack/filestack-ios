@@ -212,9 +212,9 @@ private extension SourceTableViewController {
             }
 
             // Send progress update to upload monitor
-            let fractionCompleted = Float(progress.fractionCompleted)
-            self.uploadMonitorViewController?.updateProgress(value: fractionCompleted)
+            self.uploadMonitorViewController?.update(progress: progress)
             // Notify delegate
+            let fractionCompleted = Float(progress.fractionCompleted)
             picker.pickerDelegate?.pickerReportedUploadProgress?(picker: picker, progress: fractionCompleted)
         }
 

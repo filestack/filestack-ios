@@ -161,6 +161,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="D78-32-g7a" id="bQf-gt-t77"/>
+                        <outlet property="messageLabel" destination="EaU-Tl-eOG" id="Q5u-2z-WcV"/>
                         <outlet property="progressView" destination="4gJ-0b-lFA" id="G2A-of-D9H"/>
                     </connections>
                 </viewController>

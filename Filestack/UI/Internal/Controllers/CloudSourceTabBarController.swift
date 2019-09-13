@@ -134,7 +134,9 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
             // Since we can not measure progress here, we will have to fake it.
             // Set progress to 50% after 0.25 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                uploadMonitorViewController.updateProgress(value: 0.5)
+                let progress = Progress(totalUnitCount: 100)
+                progress.completedUnitCount = 50
+                uploadMonitorViewController.update(progress: progress)
             }
         }
 
@@ -158,7 +160,10 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
                 }
             } else {
                 // Set progress to 100%
-                uploadMonitorViewController.updateProgress(value: 1.0)
+                let progress = Progress(totalUnitCount: 100)
+                progress.completedUnitCount = 100
+                uploadMonitorViewController.update(progress: progress)
+
                 // After 0.25 seconds, dismiss monitor view controller, and remove strong reference to it.
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     uploadMonitorViewController.dismiss(animated: true) {
