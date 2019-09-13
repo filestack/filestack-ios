@@ -143,7 +143,6 @@ private extension SelectionCell {
         imageView.layer.borderColor = Consts.imageBorderColor
         imageView.layer.borderWidth = Consts.imageBorderWidth
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .white
         imageView.clipsToBounds = true
         fill(with: imageView)
     }

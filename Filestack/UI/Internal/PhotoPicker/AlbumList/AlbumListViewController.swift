@@ -40,7 +40,7 @@ private extension AlbumListViewController {
     }
 }
 
-extension AlbumListViewController {
+private extension AlbumListViewController {
     func set(_ albums: [Album]) {
         albumList = albums
         stopLoading()
@@ -63,7 +63,6 @@ private extension AlbumListViewController {
     func configureAndShowEmptyTableView() {
         DispatchQueue.main.async {
             self.tableView.backgroundView = UIView(frame: self.tableView.frame)
-            self.tableView.backgroundView?.backgroundColor = .white
             self.tableView.separatorStyle = .none
         }
     }

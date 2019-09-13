@@ -11,20 +11,61 @@ import Foundation
 /// Object used to pass set colors, fonts and defaults style of Picker.
 @objc(FSStylizer) public class Stylizer: NSObject {
     struct SourceTableViewModel {
-        var tintColor = UIColor.black
+        fileprivate(set) var tintColor: UIColor = .systemBlue
 
-        var cellTextColor = UIColor.black
-        var cellTextFont = UIFont.systemFont(ofSize: 17)
-        var cellBackgroundColor = UIColor.white
+        fileprivate(set) var cellTextColor: UIColor = {
+            if #available(iOS 13.0, *) {
+                return .label
+            } else {
+                return .black
+            }
+        }()
 
-        var headerTextColor = UIColor.black
-        var headerTextFont = UIFont.boldSystemFont(ofSize: 17)
-        var headerBackgroundColor = UIColor(white: 0.97, alpha: 1)
+        fileprivate(set) var cellTextFont = UIFont.systemFont(ofSize: 17)
 
-        var separatorColor = UIColor.appleTableSeparator
-        var tableBackground = UIColor.white
+        fileprivate(set) var cellBackgroundColor: UIColor = {
+            if #available(iOS 13.0, *) {
+                return .systemBackground
+            } else {
+                return .white
+            }
+        }()
 
-        var title = "Filestack"
+        fileprivate(set) var headerTextColor: UIColor = {
+            if #available(iOS 13.0, *) {
+                return .label
+            } else {
+                return .black
+            }
+        }()
+
+        fileprivate(set) var headerTextFont: UIFont = .boldSystemFont(ofSize: UIFont.labelFontSize)
+
+        fileprivate(set) var headerBackgroundColor: UIColor = {
+            if #available(iOS 13.0, *) {
+                return .secondarySystemBackground
+            } else {
+                return UIColor(white: 0.97, alpha: 1)
+            }
+        }()
+
+        fileprivate(set) var separatorColor: UIColor = {
+            if #available(iOS 13.0, *) {
+                return .separator
+            } else {
+                return .appleTableSeparator
+            }
+        }()
+
+        fileprivate(set) var tableBackground: UIColor = {
+            if #available(iOS 13.0, *) {
+                return .systemBackground
+            } else {
+                return .white
+            }
+        }()
+
+        fileprivate(set) var title = "Filestack"
     }
 
     struct NavigationBarViewModel {

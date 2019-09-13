@@ -147,7 +147,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4gJ-0b-lFA" firstAttribute="top" secondItem="EaU-Tl-eOG" secondAttribute="bottom" constant="8" symbolic="YES" id="6Pv-3t-QZY"/>
                             <constraint firstItem="4gJ-0b-lFA" firstAttribute="centerX" secondItem="D78-32-g7a" secondAttribute="centerX" id="725-D5-ChZ"/>
@@ -175,7 +175,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="yTo-39-azG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9ye-ra-ZCj">
                             <size key="itemSize" width="80" height="98"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>

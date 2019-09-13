@@ -50,10 +50,15 @@ class SelectionListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
 
         collectionView?.register(SelectionCell.self)
-        collectionView?.backgroundColor = .white
+
+        if #available(iOS 13.0, *) {
+            collectionView?.backgroundColor = .systemBackground
+        } else {
+            collectionView?.backgroundColor = .white
+        }
+
         collectionView?.reloadData()
     }
 }

@@ -41,7 +41,6 @@ class AssetCollectionViewController: UICollectionViewController {
 
 extension AssetCollectionViewController {
     func setupView() {
-        view.backgroundColor = .white
         collectionView?.contentInsetAdjustmentBehavior = .always
     }
 }
