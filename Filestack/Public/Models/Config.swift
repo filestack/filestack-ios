@@ -240,7 +240,7 @@ extension Config {
 
 /// :nodoc:
 extension Config {
-    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `callbackURLScheme` instead")
+    @available(*, deprecated, message: "Marked for removal in version 3.0", renamed: "callbackURLScheme")
     @objc public var appURLScheme: String? {
         set { callbackURLScheme = newValue }
         get { callbackURLScheme }
@@ -249,18 +249,18 @@ extension Config {
 
 /// :nodoc:
 extension Config.Builder {
-    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `with(callbackURLScheme:)` instead")
+    @available(*, deprecated, message: "Marked for removal in version 3.0", renamed: "with(callbackURLScheme:)")
     @objc public func with(appURLScheme: String) -> Self {
         self.callbackURLScheme = appURLScheme
         return self
     }
 
-    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `with(callbackURLScheme:)` instead")
+    @available(*, deprecated, message: "Marked for removal in version 3.0", renamed: "with(callbackURLScheme:)")
     public func with(appUrlScheme: String) -> Self {
         return with(appURLScheme: appUrlScheme)
     }
 
-    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `with(imageURLExportPreset:)` instead")
+    @available(*, deprecated, message: "Marked for removal in version 3.0", renamed: "with(imageURLExportPreset:)")
     public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
         return with(imageURLExportPreset: imageUrlExportPreset)
     }

@@ -267,7 +267,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                            queue: DispatchQueue = .main,
                            completionHandler: @escaping FolderListCompletionHandler) -> Cancellable {
         guard let authCallbackURL = authCallbackURL else {
-            fatalError("Please make sure your Filestack config object has an appURLScheme set.")
+            fatalError("Please make sure your config's `callbackURLScheme` is present.")
         }
 
         let request = FolderListRequest(authCallbackURL: authCallbackURL,

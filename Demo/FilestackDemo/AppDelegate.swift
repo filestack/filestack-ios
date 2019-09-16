@@ -12,7 +12,7 @@ import FilestackSDK
 import UIKit
 
 // Set your app's URL scheme here.
-let appURLScheme = "filestackdemo"
+let callbackURLScheme = "filestackdemo"
 // Set your Filestack's API key here.
 let filestackAPIKey = "YOUR-FILESTACK-API-KEY"
 // Set your Filestack's app secret here.
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create `Config` object.
         let config = Filestack.Config.builder
             // Make sure to assign a valid app scheme URL
-            .with(appUrlScheme: appURLScheme)
+            .with(callbackURLScheme: callbackURLScheme)
             // Video quality for video recording (and sometimes exporting.)
             .with(videoQuality: .typeHigh)
             // Starting in iOS 11, you can export images in HEIF or JPEG by setting this value to
