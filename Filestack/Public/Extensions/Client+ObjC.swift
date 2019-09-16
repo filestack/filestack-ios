@@ -32,11 +32,13 @@ extension Client {
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
     /// - Returns: A `Uploader` that allows cancelling the upload request.
-    @objc public func uploadURL(using localURL: NSURL,
-                                options: UploadOptions = .defaults,
-                                queue: DispatchQueue = .main,
-                                uploadProgress: ((Progress) -> Void)? = nil,
-                                completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
+    @objc
+    @discardableResult
+    public func uploadURL(using localURL: NSURL,
+                          options: UploadOptions = .defaults,
+                          queue: DispatchQueue = .main,
+                          uploadProgress: ((Progress) -> Void)? = nil,
+                          completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
         return upload(using: localURL as URL,
                       options: options,
                       queue: queue,
@@ -64,11 +66,13 @@ extension Client {
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
     /// - Returns: A `Uploader` that allows cancelling the upload request.
-    @objc public func uploadMultipleURLs(using localURLs: [NSURL],
-                                         options: UploadOptions = .defaults,
-                                         queue: DispatchQueue = .main,
-                                         uploadProgress: ((Progress) -> Void)? = nil,
-                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader {
+    @objc
+    @discardableResult
+    public func uploadMultipleURLs(using localURLs: [NSURL],
+                                   options: UploadOptions = .defaults,
+                                   queue: DispatchQueue = .main,
+                                   uploadProgress: ((Progress) -> Void)? = nil,
+                                   completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader {
         return upload(using: localURLs.map { $0 as URL },
                       options: options,
                       queue: queue,
@@ -96,11 +100,13 @@ extension Client {
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
     /// - Returns: A `Uploader` that allows cancelling the upload request.
-    @objc public func uploadData(using data: NSData,
-                                 options: UploadOptions = .defaults,
-                                 queue: DispatchQueue = .main,
-                                 uploadProgress: ((Progress) -> Void)? = nil,
-                                 completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
+    @objc
+    @discardableResult
+    public func uploadData(using data: NSData,
+                           options: UploadOptions = .defaults,
+                           queue: DispatchQueue = .main,
+                           uploadProgress: ((Progress) -> Void)? = nil,
+                           completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
         return upload(using: data as Data,
                       options: options,
                       queue: queue,
@@ -128,11 +134,13 @@ extension Client {
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
     /// - Returns: A `Uploader` that allows cancelling the upload request.
-    @objc public func uploadMultipleData(using multipleData: [NSData],
-                                         options: UploadOptions = .defaults,
-                                         queue: DispatchQueue = .main,
-                                         uploadProgress: ((Progress) -> Void)? = nil,
-                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader {
+    @objc
+    @discardableResult
+    public func uploadMultipleData(using multipleData: [NSData],
+                                   options: UploadOptions = .defaults,
+                                   queue: DispatchQueue = .main,
+                                   uploadProgress: ((Progress) -> Void)? = nil,
+                                   completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader {
         return upload(using: multipleData.map { $0 as Data },
                       options: options,
                       queue: queue,
