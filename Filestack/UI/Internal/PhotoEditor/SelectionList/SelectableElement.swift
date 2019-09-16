@@ -118,7 +118,13 @@ extension SelectableElement {
         case .compatible:
             return image.exportJPGImage(to: destinationURL, quality: imageExportQuality)
         case .current:
-            return image.exportHEICImage(to: destinationURL, quality: imageExportQuality)
+            // Use HEIC, and fallback to JPEG if it fails, since HEIC is not available in all devices
+            // (see https://support.apple.com/en-us/HT207022)
+            if image.exportHEICImage(to: destinationURL, quality: imageExportQuality) {
+                return true
+            } else {
+                return image.exportJPGImage(to: destinationURL, quality: imageExportQuality)
+            }
         }
     }
 }
