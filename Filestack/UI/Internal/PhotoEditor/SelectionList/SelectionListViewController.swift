@@ -98,6 +98,7 @@ extension SelectionListViewController {
 
 // MARK: ViewSetup
 
+/// :nodoc:
 private extension SelectionListViewController {
     func setup() {
         navigationItem.leftBarButtonItem = cancelItem

@@ -50,6 +50,7 @@ class ImagePickerUploadController: NSObject {
     }
 }
 
+/// :nodoc:
 extension ImagePickerUploadController {
     private var sourceTypeSupportsMultipleSelection: Bool {
         return sourceType == .camera ? false : true

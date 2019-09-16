@@ -85,6 +85,7 @@ extension AssetCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+/// :nodoc:
 private extension AssetCollectionViewController {
     var cellSize: CGSize {
         return CGSize(width: cellEdge, height: cellEdge)

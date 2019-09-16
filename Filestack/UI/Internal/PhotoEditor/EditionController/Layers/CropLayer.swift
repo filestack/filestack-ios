@@ -62,6 +62,7 @@ class CropLayer: CALayer {
     }()
 }
 
+/// :nodoc:
 private extension CropLayer {
     func updateSublayers() {
         outsideLayer.path = outsidePath

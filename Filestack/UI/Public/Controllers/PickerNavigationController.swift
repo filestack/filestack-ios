@@ -35,6 +35,7 @@ import Foundation
 }
 
 extension PickerNavigationController: StylizerDelegate {
+    /// :nodoc:
     public func updateStyle() {
         navigationBar.tintColor = stylizer.navBar.tintColor
         navigationBar.titleTextAttributes = [.foregroundColor: stylizer.navBar.titleColor]

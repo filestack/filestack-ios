@@ -66,6 +66,7 @@ class URLExtractor {
     }
 }
 
+/// :nodoc:
 private extension URLExtractor {
     func fetchURL(of element: Uploadable, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
         dispatchGroup.enter()

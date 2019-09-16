@@ -8,7 +8,9 @@
 
 import Foundation
 
+/// A specific kind of `Error` that may be returned by the `Client`.
 public enum ClientError: Error {
+    /// Authentication failed.
     case authenticationFailed
 }
 

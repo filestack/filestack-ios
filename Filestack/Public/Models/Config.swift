@@ -91,7 +91,7 @@ extension Config {
     /// A convenience class that allows easily building a new `Config` object.
     @objc(FSConfigBuilder) public class Builder: NSObject {
         private var showEditorBeforeUpload: Bool?
-        private var appURLScheme: String?
+        private var callbackURLScheme: String?
         private var maximumSelectionAllowed: UInt?
         private var modalPresentationStyle: UIModalPresentationStyle?
         private var availableCloudSources: [CloudSource]?
@@ -106,15 +106,9 @@ extension Config {
         override init() {}
 
         /// :nodoc:
-        @objc public func with(appURLScheme: String) -> Self {
-            self.appURLScheme = appURLScheme
+        @objc public func with(callbackURLScheme: String) -> Self {
+            self.callbackURLScheme = callbackURLScheme
             return self
-        }
-
-        /// :nodoc:
-        @available(*, renamed: "with(appURLScheme:)")
-        public func with(appUrlScheme: String) -> Self {
-            return with(appURLScheme: appUrlScheme)
         }
 
         /// :nodoc:
@@ -166,12 +160,6 @@ extension Config {
         }
 
         /// :nodoc:
-        @available(*, renamed: "with(imageURLExportPreset:)")
-        public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
-            return with(imageURLExportPreset: imageUrlExportPreset)
-        }
-
-        /// :nodoc:
         @objc public func with(imageExportQuality: Float) -> Self {
             self.imageExportQuality = imageExportQuality
             return self
@@ -203,8 +191,8 @@ extension Config {
                 config.showEditorBeforeUpload = showEditorBeforeUpload
             }
 
-            if let appURLScheme = appURLScheme {
-                config.callbackURLScheme = appURLScheme
+            if let callbackURLScheme = callbackURLScheme {
+                config.callbackURLScheme = callbackURLScheme
             }
 
             if let maximumSelectionAllowed = maximumSelectionAllowed {
@@ -245,5 +233,35 @@ extension Config {
 
             return config
         }
+    }
+}
+
+// MARK: - Deprecated
+
+/// :nodoc:
+extension Config {
+    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `callbackURLScheme` instead")
+    @objc public var appURLScheme: String? {
+        set { callbackURLScheme = newValue }
+        get { callbackURLScheme }
+    }
+}
+
+/// :nodoc:
+extension Config.Builder {
+    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `with(callbackURLScheme:)` instead")
+    @objc public func with(appURLScheme: String) -> Self {
+        self.callbackURLScheme = appURLScheme
+        return self
+    }
+
+    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `with(callbackURLScheme:)` instead")
+    public func with(appUrlScheme: String) -> Self {
+        return with(appURLScheme: appUrlScheme)
+    }
+
+    @available(*, deprecated, message: "Marked for removal in version 3.0. Please use `with(imageURLExportPreset:)` instead")
+    public func with(imageUrlExportPreset: ImageURLExportPreset) -> Self {
+        return with(imageURLExportPreset: imageUrlExportPreset)
     }
 }

@@ -46,6 +46,7 @@ class CircleLayer: CALayer {
     }()
 }
 
+/// :nodoc:
 private extension CircleLayer {
     func updateSublayers() {
         outsideLayer.path = outsidePath

@@ -38,6 +38,7 @@ class UploadableExtractor {
     }
 }
 
+/// :nodoc:
 private extension UploadableExtractor {
     func fetchUploadable(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (Uploadable?) -> Void) {
         dispatchGroup.enter()
