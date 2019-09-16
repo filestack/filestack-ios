@@ -48,25 +48,28 @@ class ViewController: UIViewController {
 
 extension ViewController: PickerNavigationControllerDelegate {
     /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
-    func pickerStoredFile(picker _: PickerNavigationController, response: StoreResponse) {
-        if let contents = response.contents {
-            // Our cloud file was stored into the destination location.
-            print("Stored file response: \(contents)")
-        } else if let error = response.error {
-            // The store operation failed.
-            print("Error storing file: \(error)")
+    func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
+        picker.dismiss(animated: false) {
+            if let handle = response.contents?["handle"] as? String {
+                self.presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
+            } else if let error = response.error {
+                self.presentAlert(titled: "Error Uploading File", message: error.localizedDescription)
+            }
         }
     }
 
     /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
-    func pickerUploadedFiles(picker _: PickerNavigationController, responses: [NetworkJSONResponse]) {
-        for response in responses {
-            if let contents = response.json {
-                // Our local file was stored into the destination location.
-                print("Uploaded file response: \(contents)")
-            } else if let error = response.error {
-                // The upload operation failed.
-                print("Error uploading file: \(error)")
+    func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse]) {
+        picker.dismiss(animated: false) {
+            let handles = responses.compactMap { $0.json?["handle"] as? String }
+            let errors = responses.compactMap { $0.error }
+
+            if errors.isEmpty {
+                let joinedHandles = handles.joined(separator: ", ")
+                self.presentAlert(titled: "Success", message: "Finished uploading files with handles: \(joinedHandles)")
+            } else {
+                let joinedErrors = errors.map { $0.localizedDescription }.joined(separator: ", ")
+                self.presentAlert(titled: "Error Uploading File", message: joinedErrors)
             }
         }
     }
