@@ -132,10 +132,16 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
 
         (navigationController ?? self).present(uploadMonitorViewController, animated: true) {
             // Since we can not measure progress here, we will have to fake it.
-            // Set progress to 50% after 0.25 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                let progress = Progress(totalUnitCount: 100)
-                progress.completedUnitCount = 50
+            // Set progress to 50% after 125ms
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.125) {
+                let progress = Progress(totalUnitCount: 1)
+                progress.completedUnitCount = 0
+
+                let childProgress = Progress(totalUnitCount: 100)
+                childProgress.completedUnitCount = 50
+
+                progress.addChild(childProgress, withPendingUnitCount: 1)
+
                 uploadMonitorViewController.update(progress: progress)
             }
         }
@@ -160,12 +166,12 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
                 }
             } else {
                 // Set progress to 100%
-                let progress = Progress(totalUnitCount: 100)
-                progress.completedUnitCount = 100
+                let progress = Progress(totalUnitCount: 1)
+                progress.completedUnitCount = 1
                 uploadMonitorViewController.update(progress: progress)
 
-                // After 0.25 seconds, dismiss monitor view controller, and remove strong reference to it.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                // After 125ms, dismiss monitor view controller, and remove strong reference to it.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.125) {
                     uploadMonitorViewController.dismiss(animated: true) {
                         self.uploadMonitorViewController = nil
                         callPickerStoredFileOnDelegate()
