@@ -129,7 +129,7 @@ let client = Filestack.Client(apiKey: "YOUR-API-KEY", security: security, config
 ```swift
 let localURL = URL(string: "file:///an-app-sandbox-friendly-local-url")!
 
-let uploadRequest = client.upload(using: localURL, uploadProgress: { (progress) in
+let uploader = client.upload(using: localURL, uploadProgress: { (progress) in
     // Here you may update the UI to reflect the upload progress.
     print("progress = \(String(describing: progress))")
 }) { (response) in
@@ -151,7 +151,7 @@ let presentingViewController = self
 // The source type (e.g. `.camera`, `.photoLibrary`)
 let sourceType: UIImagePickerControllerSourceType = .camera
 
-let uploadRequest = client.uploadFromImagePicker(viewController: presentingViewController, sourceType: sourceType, uploadProgress: { (progress) in
+let uploader = client.uploadFromImagePicker(viewController: presentingViewController, sourceType: sourceType, uploadProgress: { (progress) in
     // Here you may update the UI to reflect the upload progress.
     print("progress = \(String(describing: progress))")
 }) { (response) in
@@ -170,7 +170,7 @@ let uploadRequest = client.uploadFromImagePicker(viewController: presentingViewC
 // The view controller that will be presenting the image picker.
 let presentingViewController = self
 
-let uploadRequest = client.uploadFromDocumentPicker(viewController: presentingViewController, uploadProgress: { (progress) in
+let uploader = client.uploadFromDocumentPicker(viewController: presentingViewController, uploadProgress: { (progress) in
     // Here you may update the UI to reflect the upload progress.
     print("progress = \(String(describing: progress))")
 }) { (response) in
@@ -183,25 +183,16 @@ let uploadRequest = client.uploadFromDocumentPicker(viewController: presentingVi
 }
 ```
 
-In all the previous uploading examples, an upload may be cancelled at anytime by calling `cancel()` on the `CancellableRequest` conforming object returned by any of the functions above:
+In all the previous uploading examples, an upload may be cancelled at anytime by calling `cancel()` on the `Uploader`:
 
 ```swift
-uploadRequest.cancel()
+uploader.cancel()
 ```
 
 ### Listing contents from a cloud provider
 
 ```swift
-// The cloud provider to use (it may require authentication)
-let provider: CloudProvider = .googleDrive
-
-// The cloud provider's path (e.g. "/" for the root's folder)
-let path = "/"
-
-// An URL scheme that your app can handle.
-let appURLScheme = "FilestackDemo"
-
-client.folderList(provider: provider, path: path, pageToken: nil) { response in
+client.folderList(provider: .googleDrive, path: "/", pageToken: nil) { response in
     if let error = response.error {
         // Handle error
         return
@@ -236,17 +227,11 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
 ### Storing contents from a cloud provider into a store location
 
 ```swift
-// The cloud provider to use
-let provider: CloudProvider = .googleDrive
-
-// A path to a file in the cloud
-let path = "/some-large-image.jpg"
-
 // Store options for your uploaded files.
 // Here we are saying our storage location is S3 and access for uploaded files should be public.
 let storeOptions = StorageOptions(location: .s3, access: .public)
 
-client.store(provider: provider, path: path, storeOptions: storeOptions) { (response) in
+client.store(provider: .googleDrive, path: "/some-large-image.jpg", storeOptions: storeOptions) { (response) in
     if let error = response.error {
         // Handle error
         return
@@ -372,10 +357,6 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
     return false
 }
 ```
-
-### Final notes on usage
-
-- Some of the functions and objects used above support additional parameters and properties, consult the [API Reference](https://filestack.github.io/filestack-ios/) for more details.
 
 ## Demo
 
