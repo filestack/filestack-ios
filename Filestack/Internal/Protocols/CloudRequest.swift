@@ -9,7 +9,7 @@
 import FilestackSDK
 import Foundation
 
-typealias CloudRequestCompletion = (_ appRedirectURL: URL?, _ response: CloudResponse) -> Swift.Void
+typealias CloudRequestCompletion = (_ appRedirectURL: URL?, _ response: CloudResponse) -> Void
 
 protocol CloudRequest {
     var token: String? { get }

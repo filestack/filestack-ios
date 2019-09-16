@@ -16,7 +16,7 @@ class CloudService {
 
     func folderListRequest(provider: CloudProvider,
                            path: String,
-                           appURL: URL,
+                           authCallbackURL: URL,
                            apiKey: String,
                            security: Security? = nil,
                            token: String? = nil,
@@ -25,7 +25,7 @@ class CloudService {
 
         var params: [String: Any] = [
             "flow": "mobile",
-            "appurl": appURL.absoluteString,
+            "appurl": authCallbackURL.absoluteString,
             "apikey": apiKey,
         ]
 

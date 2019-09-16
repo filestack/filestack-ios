@@ -29,7 +29,7 @@ class ImagePickerUploadController: NSObject {
 
     private var photoPickerController: PhotoPickerController?
 
-    var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)?
+    var filePickedCompletionHandler: ((_ success: Bool) -> Void)?
 
     init(uploader: Uploader & DeferredAdd,
          viewController: UIViewController,

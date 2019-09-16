@@ -13,7 +13,7 @@ import Foundation
 final class FolderListRequest: CloudRequest, Cancellable {
     // MARK: - Properties
 
-    let appURLScheme: String
+    let authCallbackURL: URL
     let apiKey: String
     let security: Security?
     let pageToken: String?
@@ -25,14 +25,14 @@ final class FolderListRequest: CloudRequest, Cancellable {
 
     // MARK: - Lifecyle Functions
 
-    init(appURLScheme: String,
+    init(authCallbackURL: URL,
          apiKey: String,
          security: Security? = nil,
          token: String? = nil,
          pageToken: String? = nil,
          provider: CloudProvider,
          path: String) {
-        self.appURLScheme = appURLScheme
+        self.authCallbackURL = authCallbackURL
         self.apiKey = apiKey
         self.security = security
         self.token = token
@@ -53,11 +53,9 @@ final class FolderListRequest: CloudRequest, Cancellable {
     // MARK: - Internal Functions
 
     func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) {
-        let appRedirectURL = generateAppRedirectURL(using: UUID())
-
         let request = cloudService.folderListRequest(provider: provider,
                                                      path: path,
-                                                     appURL: appRedirectURL,
+                                                     authCallbackURL: authCallbackURL,
                                                      apiKey: apiKey,
                                                      security: security,
                                                      token: token,
@@ -84,7 +82,7 @@ final class FolderListRequest: CloudRequest, Cancellable {
                 // Auth is required — redirect to authentication URL
                 let response = FolderListResponse(authURL: authURL)
 
-                completionBlock(appRedirectURL, response)
+                completionBlock(self.authCallbackURL, response)
             } else if let results = self.getResults(from: json) {
                 // Results received — return response with contents, and, optionally next token
                 let contents = results["contents"] as? [[String: Any]]
@@ -113,9 +111,5 @@ final class FolderListRequest: CloudRequest, Cancellable {
         guard let redirectURLString = authJSON["redirect_url"] as? String else { return nil }
 
         return URL(string: redirectURLString)
-    }
-
-    private func generateAppRedirectURL(using uuid: UUID) -> URL {
-        return URL(string: appURLScheme.lowercased() + "://Filestack/?requestUUID=" + uuid.uuidString)!
     }
 }

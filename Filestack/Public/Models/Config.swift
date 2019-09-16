@@ -23,7 +23,7 @@ import UIKit.UIImagePickerController
     @objc public var showEditorBeforeUpload: Bool = false
 
     /// An URL scheme supported by the app. This is required to complete the cloud provider's authentication flow.
-    @objc public var appURLScheme: String?
+    @objc public var callbackURLScheme: String?
 
     /// This policy controls the thumbnail's caching behavior when browsing cloud contents in the picker.
     @objc public var cloudThumbnailCachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
@@ -204,7 +204,7 @@ extension Config {
             }
 
             if let appURLScheme = appURLScheme {
-                config.appURLScheme = appURLScheme
+                config.callbackURLScheme = appURLScheme
             }
 
             if let maximumSelectionAllowed = maximumSelectionAllowed {

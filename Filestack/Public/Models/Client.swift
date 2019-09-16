@@ -11,7 +11,7 @@ import Foundation
 import Photos
 import SafariServices
 
-private typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Swift.Void
+private typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Void
 
 /// The `Client` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
 @objc(FSFilestackClient) public class Client: NSObject {
@@ -39,6 +39,11 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     private var lastToken: String?
     private var resumeCloudRequestNotificationObserver: NSObjectProtocol!
     private var safariAuthSession: AnyObject?
+
+    private lazy var authCallbackURL: URL? = {
+        guard let scheme = config.callbackURLScheme else { return nil }
+        return URL(string: "\(scheme)://Filestack")
+    }()
 
     // MARK: - Lifecyle Functions
 
@@ -261,11 +266,11 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                            pageToken: String? = nil,
                            queue: DispatchQueue = .main,
                            completionHandler: @escaping FolderListCompletionHandler) -> Cancellable {
-        guard let appURLScheme = config.appURLScheme else {
+        guard let authCallbackURL = authCallbackURL else {
             fatalError("Please make sure your Filestack config object has an appURLScheme set.")
         }
 
-        let request = FolderListRequest(appURLScheme: appURLScheme,
+        let request = FolderListRequest(authCallbackURL: authCallbackURL,
                                         apiKey: apiKey,
                                         security: security,
                                         token: lastToken,
@@ -342,39 +347,39 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     // MARK: - Private Functions
 
     private func perform(request: CloudRequest, queue: DispatchQueue = .main, completionBlock: @escaping CompletionHandler) {
-        // Perform request.
-        // On success, store last token and call completion block.
-        // Else, if auth is required, authenticate against web service.
-        request.perform(cloudService: cloudService, queue: queue) { authRedirectURL, response in
+        // Perform cloud request.
+        request.perform(cloudService: cloudService, queue: queue) { _, response in
             if let token = request.token {
+                // Store last token
                 self.lastToken = token
             }
 
-            guard let authURL = response.authURL, let authRedirectURL = authRedirectURL else {
+            guard let authURL = response.authURL else {
+                // Already authenticated, call completion block and return.
                 completionBlock(response, nil)
                 return
             }
 
-            DispatchQueue.main.async {
-                let completion: SFAuthenticationSession.CompletionHandler = { url, error in
-                    // Remove strong reference, so object can be deallocated.
-                    self.safariAuthSession = nil
+            // Request authentication.
+            let session = SFAuthenticationSession(url: authURL,
+                                                  callbackURLScheme: self.config.callbackURLScheme) { url, error in
+                // Remove strong reference, so object can be deallocated.
+                self.safariAuthSession = nil
 
-                    if let safariError = error {
-                        completionBlock(response, safariError)
-                    } else if let url = url, url.absoluteString.starts(with: authRedirectURL.absoluteString) {
-                        self.perform(request: request, queue: queue, completionBlock: completionBlock)
-                    }
+                if let safariError = error {
+                    completionBlock(response, safariError)
+                } else if let url = url, url == self.authCallbackURL {
+                    self.perform(request: request, queue: queue, completionBlock: completionBlock)
+                } else {
+                    completionBlock(response, ClientError.authenticationFailed)
                 }
+            }
 
-                let safariAuthSession = SFAuthenticationSession(url: authURL,
-                                                                callbackURLScheme: self.config.appURLScheme,
-                                                                completionHandler: completion)
+            // Keep a strong reference to the auth session.
+            self.safariAuthSession = session
 
-                // Keep a strong reference to the auth session.
-                self.safariAuthSession = safariAuthSession
-
-                safariAuthSession.start()
+            DispatchQueue.main.async {
+                session.start()
             }
         }
     }

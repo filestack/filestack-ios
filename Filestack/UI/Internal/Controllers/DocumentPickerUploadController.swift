@@ -21,7 +21,7 @@ class DocumentPickerUploadController: NSObject {
     let picker: UIDocumentPickerViewController
     let config: Config
 
-    var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)?
+    var filePickedCompletionHandler: ((_ success: Bool) -> Void)?
 
     init(uploader: Uploader & DeferredAdd, viewController: UIViewController, config: Config) {
         self.deferredUploader = uploader

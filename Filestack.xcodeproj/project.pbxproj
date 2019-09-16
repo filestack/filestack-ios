@@ -17,6 +17,7 @@
 		4546628E1FB6063F00260033 /* CloudItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546628D1FB6063F00260033 /* CloudItem.swift */; };
 		454775B522D7659D00C7F04D /* UIImage+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454775B422D7659D00C7F04D /* UIImage+Export.swift */; };
 		454775B722D7664D00C7F04D /* AVAsset+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454775B622D7664D00C7F04D /* AVAsset+Export.swift */; };
+		454783CA232FCBDE00380144 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454783C9232FCBDE00380144 /* ClientError.swift */; };
 		455804A21F9F43A7007C694C /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455804A11F9F43A7007C694C /* CloudService.swift */; };
 		455804A51F9F4420007C694C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455804A41F9F4420007C694C /* Constants.swift */; };
 		455804AA1F9F448C007C694C /* SessionManager+FilestackDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455804A91F9F448C007C694C /* SessionManager+FilestackDefault.swift */; };
@@ -170,6 +171,7 @@
 		4546628D1FB6063F00260033 /* CloudItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudItem.swift; sourceTree = "<group>"; };
 		454775B422D7659D00C7F04D /* UIImage+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Export.swift"; sourceTree = "<group>"; };
 		454775B622D7664D00C7F04D /* AVAsset+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Export.swift"; sourceTree = "<group>"; };
+		454783C9232FCBDE00380144 /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		455804A11F9F43A7007C694C /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
 		455804A41F9F4420007C694C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		455804A91F9F448C007C694C /* SessionManager+FilestackDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionManager+FilestackDefault.swift"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		452DCF631FA1E1CA0033B75D /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				454783C9232FCBDE00380144 /* ClientError.swift */,
 				452DCF6C1FA1E1E30033B75D /* CloudProvider.swift */,
 				45B603D21FC5B88A006775BF /* ImageURLExportPreset.swift */,
 			);
@@ -349,6 +352,14 @@
 				455804A11F9F43A7007C694C /* CloudService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		455AB6BD232FD27C001ABE81 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4565CEF11FBEEC140043BFBB /* Collection View Cells */ = {
@@ -507,7 +518,6 @@
 		45A92F0C1FA0BE3500FEB611 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */,
 				45A92F171FA0BE9600FEB611 /* FolderListRequest.swift */,
 				4500C5721FC46A9200B17485 /* LogoutRequest.swift */,
 				45A48C151FB311F000356BC6 /* PrefetchRequest.swift */,
@@ -523,6 +533,7 @@
 				45BFF69423291B9700944028 /* Extensions */,
 				45BFF69223291ACF00944028 /* Extractors */,
 				45BFF69323291AE100944028 /* Formatters */,
+				455AB6BD232FD27C001ABE81 /* Protocols */,
 				45A92F0C1FA0BE3500FEB611 /* Requests */,
 				455804981F9F438A007C694C /* Services */,
 			);
@@ -957,6 +968,7 @@
 				452B77BE1FB45EF9000F3FAE /* UploadMonitorViewController.swift in Sources */,
 				45A92F161FA0BE3F00FEB611 /* CloudRequest.swift in Sources */,
 				4565CEFB1FBF50010043BFBB /* CloudSourceDataSourceConsumer.swift in Sources */,
+				454783CA232FCBDE00380144 /* ClientError.swift in Sources */,
 				454775B522D7659D00C7F04D /* UIImage+Export.swift in Sources */,
 				45BFF6A623292F2300944028 /* PickerNavigationScene.swift in Sources */,
 				45BFF68C2329197800944028 /* CloudResponse.swift in Sources */,

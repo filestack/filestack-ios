@@ -30,14 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        if url.scheme == appURLScheme, url.host == "Filestack" {
-            return true
-        }
-
-        return false
-    }
-
     private func setupFilestackClient() {
         // In case your Filestack account has security enabled, you will need to instantiate a `Security` object.
         // We can do this by either configuring a `Policy` and instantiating a `Security` object by passing
