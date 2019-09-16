@@ -12,7 +12,6 @@
 		452B77BE1FB45EF9000F3FAE /* UploadMonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */; };
 		452DCF6D1FA1E1E30033B75D /* CloudProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DCF6C1FA1E1E30033B75D /* CloudProvider.swift */; };
 		45340F7F22C616E100A62562 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45340F7E22C616E100A62562 /* SVProgressHUD.framework */; };
-		45340FBA22C652DD00A62562 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = 45340FB922C652DD00A62562 /* Cartfile.private */; };
 		454054741F98A30F00C12B2F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054731F98A30F00C12B2F /* Client.swift */; };
 		454662831FB5BBEB00260033 /* CloudSourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454662821FB5BBEB00260033 /* CloudSourceTableViewController.swift */; };
 		4546628E1FB6063F00260033 /* CloudItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546628D1FB6063F00260033 /* CloudItem.swift */; };
@@ -166,7 +165,6 @@
 		452B77BD1FB45EF9000F3FAE /* UploadMonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMonitorViewController.swift; sourceTree = "<group>"; };
 		452DCF6C1FA1E1E30033B75D /* CloudProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudProvider.swift; sourceTree = "<group>"; };
 		45340F7E22C616E100A62562 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
-		45340FB922C652DD00A62562 /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		454054731F98A30F00C12B2F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		454662821FB5BBEB00260033 /* CloudSourceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSourceTableViewController.swift; sourceTree = "<group>"; };
 		4546628D1FB6063F00260033 /* CloudItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudItem.swift; sourceTree = "<group>"; };
@@ -470,7 +468,6 @@
 			isa = PBXGroup;
 			children = (
 				45690CEB22A66E4300285F62 /* Cartfile */,
-				45340FB922C652DD00A62562 /* Cartfile.private */,
 				45BFF67823290AC700944028 /* Cartfile.resolved */,
 				45690CE622A66E2800285F62 /* Alamofire.framework */,
 				45690CFC22A6765100285F62 /* CryptoSwift.framework */,
@@ -900,7 +897,6 @@
 				45BFF67F23290B1F00944028 /* LICENSE in Resources */,
 				45BFF67E23290B1F00944028 /* Filestack.podspec in Resources */,
 				45BFF67923290AC700944028 /* Cartfile.resolved in Resources */,
-				45340FBA22C652DD00A62562 /* Cartfile.private in Resources */,
 				45BFF69E2329201800944028 /* PhotoPicker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
