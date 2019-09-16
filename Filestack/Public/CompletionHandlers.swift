@@ -9,13 +9,13 @@
 import Foundation
 
 /// :nodoc:
-public typealias FolderListCompletionHandler = (_ response: FolderListResponse) -> Swift.Void
+public typealias FolderListCompletionHandler = (_ response: FolderListResponse) -> Void
 
 /// :nodoc:
-public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Swift.Void
+public typealias StoreCompletionHandler = (_ response: StoreResponse) -> Void
 
 /// :nodoc:
-public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Swift.Void
+public typealias LogoutCompletionHandler = (_ response: LogoutResponse) -> Void
 
 /// :nodoc:
-public typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Swift.Void
+public typealias PrefetchCompletionHandler = (_ response: PrefetchResponse) -> Void

@@ -10,7 +10,7 @@ import Alamofire
 import FilestackSDK
 import Foundation
 
-final class FolderListRequest: CloudRequest, CancellableRequest {
+final class FolderListRequest: CloudRequest, Cancellable {
     // MARK: - Properties
 
     let appURLScheme: String
@@ -40,6 +40,8 @@ final class FolderListRequest: CloudRequest, CancellableRequest {
         self.provider = provider
         self.path = path
     }
+
+    // MARK: - Cancellable Protocol Implementation
 
     @discardableResult func cancel() -> Bool {
         guard let dataRequest = dataRequest else { return false }

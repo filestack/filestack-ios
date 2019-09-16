@@ -88,8 +88,6 @@
 		45C47E841FB9F0DF009B8248 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C47E831FB9F0DF009B8248 /* Scene.swift */; };
 		45CBF4891FBF6D7700891BBD /* CloudItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CBF4881FBF6D7700891BBD /* CloudItemTableViewCell.swift */; };
 		45CF081322D745E500DA2884 /* UIImage+Resized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CF081222D745E500DA2884 /* UIImage+Resized.swift */; };
-		45DEBA511FBAE61000A267E7 /* CancellableRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBA501FBAE61000A267E7 /* CancellableRequest.swift */; };
-		45DEBA531FBAE63700A267E7 /* MultipartUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */; };
 		45DEBA551FBAF48000A267E7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBA541FBAF48000A267E7 /* Config.swift */; };
 		45DEBA571FBB05F600A267E7 /* UIImage+Squared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBA561FBB05F600A267E7 /* UIImage+Squared.swift */; };
 		45E2B7B11FC2FEB500448ED2 /* UIImage+HEIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2B7B01FC2FEB500448ED2 /* UIImage+HEIC.swift */; };
@@ -130,7 +128,6 @@
 		BC5A82A0211DC2C500960F4B /* UIColor+Predefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A829F211DC2C500960F4B /* UIColor+Predefined.swift */; };
 		BC636BA920BD978A007F67B6 /* PhotosExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */; };
 		BC85013A20BD5070000D96AE /* PhotoAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */; };
-		BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */; };
 		BCFFE954211C7E2200F7CB49 /* Stylizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFFE953211C7E2200F7CB49 /* Stylizer.swift */; };
 /* End PBXBuildFile section */
 
@@ -242,8 +239,6 @@
 		45C47E831FB9F0DF009B8248 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		45CBF4881FBF6D7700891BBD /* CloudItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudItemTableViewCell.swift; sourceTree = "<group>"; };
 		45CF081222D745E500DA2884 /* UIImage+Resized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resized.swift"; sourceTree = "<group>"; };
-		45DEBA501FBAE61000A267E7 /* CancellableRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableRequest.swift; sourceTree = "<group>"; };
-		45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultipartUpload+Cancellable.swift"; sourceTree = "<group>"; };
 		45DEBA541FBAF48000A267E7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		45DEBA561FBB05F600A267E7 /* UIImage+Squared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Squared.swift"; sourceTree = "<group>"; };
 		45E2B7B01FC2FEB500448ED2 /* UIImage+HEIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+HEIC.swift"; sourceTree = "<group>"; };
@@ -284,7 +279,6 @@
 		BC5A829F211DC2C500960F4B /* UIColor+Predefined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Predefined.swift"; sourceTree = "<group>"; };
 		BC636BA820BD978A007F67B6 /* PhotosExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosExtensions.swift; sourceTree = "<group>"; };
 		BC85013920BD5070000D96AE /* PhotoAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumRepository.swift; sourceTree = "<group>"; };
-		BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultifileUpload+Cancellable.swift"; sourceTree = "<group>"; };
 		BCFFE953211C7E2200F7CB49 /* Stylizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stylizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -545,7 +539,6 @@
 				452DCF631FA1E1CA0033B75D /* Enums */,
 				45BFF69523291C0400944028 /* Extensions */,
 				452B6AD21FA8860400FFD490 /* Models */,
-				45DEBA471FBAE60300A267E7 /* Protocols */,
 				45BFF6862329188E00944028 /* Responses */,
 			);
 			path = Public;
@@ -588,8 +581,6 @@
 				45A48C1F1FB317F100356BC6 /* Data+JSON.swift */,
 				45BFF6A223292E5800944028 /* ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift */,
 				BC0D160E210DAF6000A88F30 /* Math+Clamp.swift */,
-				BCDB406E20AB370E00148136 /* MultifileUpload+Cancellable.swift */,
-				45DEBA521FBAE63700A267E7 /* MultipartUpload+Cancellable.swift */,
 				455804A91F9F448C007C694C /* SessionManager+FilestackDefault.swift */,
 				45C142E522CA4B25007B4EDA /* String+UTI.swift */,
 				BC0D160F210DAF6000A88F30 /* UICollectionView+Reusable.swift */,
@@ -692,14 +683,6 @@
 			isa = PBXGroup;
 			children = (
 				45BFF6AC232931EC00944028 /* StylizerDelegate.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		45DEBA471FBAE60300A267E7 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				45DEBA501FBAE61000A267E7 /* CancellableRequest.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -992,7 +975,6 @@
 				4568DCD01F9DFD7300F29923 /* ImagePickerUploadController.swift in Sources */,
 				BC0D1657211329FE00A88F30 /* UploadableExtractor.swift in Sources */,
 				BC0D1629210E7A2500A88F30 /* CircleGesturesHandler.swift in Sources */,
-				45DEBA531FBAE63700A267E7 /* MultipartUpload+Cancellable.swift in Sources */,
 				4569C7851FB1B6C500DE990E /* SourceTableViewController.swift in Sources */,
 				BC0D1623210E7A2500A88F30 /* EditorViewController+ViewSetup.swift in Sources */,
 				BC0D1624210E7A2500A88F30 /* EditorViewController.swift in Sources */,
@@ -1008,7 +990,6 @@
 				BC0D1628210E7A2500A88F30 /* CropGesturesHandler.swift in Sources */,
 				459ADA0A1FB9FB050087698A /* ActivityIndicatorTableViewCell.swift in Sources */,
 				BC5A82A0211DC2C500960F4B /* UIColor+Predefined.swift in Sources */,
-				BCDB406F20AB370E00148136 /* MultifileUpload+Cancellable.swift in Sources */,
 				45BFF6A823292F5E00944028 /* CloudSourceBarTabScene.swift in Sources */,
 				4575E09722CF41BC0025E357 /* ImageEditor.swift in Sources */,
 				4575E09522CF34090025E357 /* ImageEditorView.swift in Sources */,
@@ -1017,7 +998,6 @@
 				45C142E622CA4B25007B4EDA /* String+UTI.swift in Sources */,
 				BC0D160B210DAED700A88F30 /* SelectionListViewController+FlowLayout.swift in Sources */,
 				4569C7A61FB1F85800DE990E /* LocalSource.swift in Sources */,
-				45DEBA511FBAE61000A267E7 /* CancellableRequest.swift in Sources */,
 				4565CEF51FBEF5AE0043BFBB /* ActivityIndicatorCollectionViewCell.swift in Sources */,
 				BC0D1636210E81DD00A88F30 /* UIImage+Sanitize.swift in Sources */,
 				BC0D1637210E81DD00A88F30 /* UIImage+Rect.swift in Sources */,

@@ -16,15 +16,15 @@ import Foundation
 #endif
 
 class DocumentPickerUploadController: NSObject {
-    let multifileUpload: MultifileUpload
+    let deferredUploader: Uploader & DeferredAdd
     let viewController: UIViewController
     let picker: UIDocumentPickerViewController
     let config: Config
 
     var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)?
 
-    init(multifileUpload: MultifileUpload, viewController: UIViewController, config: Config) {
-        self.multifileUpload = multifileUpload
+    init(uploader: Uploader & DeferredAdd, viewController: UIViewController, config: Config) {
+        self.deferredUploader = uploader
         self.viewController = viewController
         picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
         self.config = config
@@ -46,7 +46,7 @@ extension DocumentPickerUploadController {
             return
         }
 
-        multifileUpload.add(uploadables: urls.compactMap { validURL(from: $0) })
+        deferredUploader.add(uploadables: urls.compactMap { validURL(from: $0) })
         startUpload()
     }
 
@@ -69,12 +69,12 @@ extension DocumentPickerUploadController {
     }
 
     private func cancel() {
-        multifileUpload.cancel()
+        deferredUploader.cancel()
         filePickedCompletionHandler?(false)
     }
 
     private func startUpload() {
-        multifileUpload.start()
+        deferredUploader.start()
         filePickedCompletionHandler?(true)
     }
 }

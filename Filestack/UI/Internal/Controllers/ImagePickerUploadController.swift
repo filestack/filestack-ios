@@ -13,7 +13,7 @@ import Photos
 import SVProgressHUD
 
 class ImagePickerUploadController: NSObject {
-    let multifileUpload: MultifileUpload
+    let deferredUploader: Uploader & DeferredAdd
     let viewController: UIViewController
 
     let sourceType: UIImagePickerController.SourceType
@@ -31,11 +31,11 @@ class ImagePickerUploadController: NSObject {
 
     var filePickedCompletionHandler: ((_ success: Bool) -> Swift.Void)?
 
-    init(multifileUpload: MultifileUpload,
+    init(uploader: Uploader & DeferredAdd,
          viewController: UIViewController,
          sourceType: UIImagePickerController.SourceType,
          config: Config) {
-        self.multifileUpload = multifileUpload
+        self.deferredUploader = uploader
         self.viewController = viewController
         self.sourceType = sourceType
         self.config = config
@@ -122,8 +122,8 @@ extension ImagePickerUploadController: UploadListDelegate {
     func upload(_ elements: [SelectableElement]) {
         let urlList = elements.compactMap { $0.localURL }
 
-        multifileUpload.add(uploadables: urlList)
-        multifileUpload.start()
+        deferredUploader.add(uploadables: urlList)
+        deferredUploader.start()
         filePickedCompletionHandler?(true)
     }
 }
@@ -169,8 +169,8 @@ extension ImagePickerUploadController {
             self.viewController.dismiss(animated: true) { [weak self] in
                 guard let self = self else { return }
 
-                self.multifileUpload.add(uploadables: urlList)
-                self.multifileUpload.start()
+                self.deferredUploader.add(uploadables: urlList)
+                self.deferredUploader.start()
                 self.filePickedCompletionHandler?(true)
             }
         })
@@ -211,13 +211,13 @@ extension ImagePickerUploadController {
     }
 
     private func upload(url: URL) {
-        multifileUpload.add(uploadables: [url])
-        multifileUpload.start()
+        deferredUploader.add(uploadables: [url])
+        deferredUploader.start()
         filePickedCompletionHandler?(true)
     }
 
     private func cancelUpload() {
-        multifileUpload.cancel()
+        deferredUploader.cancel()
         filePickedCompletionHandler?(false)
     }
 }

@@ -6,12 +6,13 @@
 //  Copyright © 2019 Filestack. All rights reserved.
 //
 
+import FilestackSDK
 import Foundation
 
 struct UploadMonitorScene: Scene {
-    var cancellableRequest: CancellableRequest?
+    var cancellable: Cancellable?
 
     func configureViewController(_ viewController: UploadMonitorViewController) {
-        viewController.cancellableRequest = cancellableRequest
+        viewController.cancellable = cancellable
     }
 }

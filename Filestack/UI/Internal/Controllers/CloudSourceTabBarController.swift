@@ -35,7 +35,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
 
     private let sessionManager = SessionManager.filestackDefault
     private var toggleViewTypeButton: UIBarButtonItem?
-    private var currentRequest: CancellableRequest?
+    private var currentRequest: Cancellable?
     private var thumbnailRequests: [DataRequest] = [DataRequest]()
     private weak var uploadMonitorViewController: UploadMonitorViewController?
 
@@ -174,12 +174,10 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
             }
         }
 
-        let cancellableRequest = client.store(provider: source.provider,
-                                              path: item.path,
-                                              storeOptions: storeOptions,
-                                              completionHandler: completionHandler)
-
-        uploadMonitorViewController.cancellableRequest = cancellableRequest
+        uploadMonitorViewController.cancellable = client.store(provider: source.provider,
+                                                               path: item.path,
+                                                               storeOptions: storeOptions,
+                                                               completionHandler: completionHandler)
     }
 
     func loadNextPage(completionHandler: @escaping (() -> Void)) {
@@ -290,7 +288,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     private func requestFolderList(source: CloudSource,
                                    path: String,
                                    pageToken: String? = nil,
-                                   completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
+                                   completionHandler: @escaping FolderListCompletionHandler) -> Cancellable {
         return client.folderList(provider: source.provider,
                                  path: path,
                                  pageToken: pageToken,

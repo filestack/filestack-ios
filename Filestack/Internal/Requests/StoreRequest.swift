@@ -10,7 +10,7 @@ import Alamofire
 import FilestackSDK
 import Foundation
 
-final class StoreRequest: CloudRequest, CancellableRequest {
+final class StoreRequest: CloudRequest, Cancellable {
     // MARK: - Properties
 
     let apiKey: String
@@ -37,6 +37,8 @@ final class StoreRequest: CloudRequest, CancellableRequest {
         self.path = path
         self.storeOptions = storeOptions
     }
+
+    // MARK: - Cancellable Protocol Implementation
 
     @discardableResult func cancel() -> Bool {
         guard let dataRequest = dataRequest else { return false }

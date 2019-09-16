@@ -14,7 +14,7 @@ final class UploadMonitorViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var messageLabel: UILabel!
 
-    var cancellableRequest: CancellableRequest?
+    var cancellable: Cancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ final class UploadMonitorViewController: UIViewController {
     }
 
     @IBAction func cancel(_: AnyObject) {
-        cancellableRequest?.cancel()
+        cancellable?.cancel()
     }
 
     private func updateLabel(using progress: Progress) {

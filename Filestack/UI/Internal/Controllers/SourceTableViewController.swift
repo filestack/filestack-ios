@@ -193,7 +193,7 @@ private extension SourceTableViewController {
     func upload(sourceType: UIImagePickerController.SourceType? = nil) {
         guard let picker = self.navigationController as? PickerNavigationController else { return }
 
-        var cancellableRequest: CancellableRequest?
+        var cancellable: Cancellable?
 
         // Disable user interaction on this view until the file is picked and uploaded.
         // We want to prevent any taps from happening during the short timeframe between tapping the local source
@@ -203,7 +203,7 @@ private extension SourceTableViewController {
         let uploadProgressHandler: ((Progress) -> Void) = { progress in
             // Present upload monitor (if not already presented)
             if self.uploadMonitorViewController == nil {
-                let scene = UploadMonitorScene(cancellableRequest: cancellableRequest)
+                let scene = UploadMonitorScene(cancellable: cancellable)
                 if let vc = self.storyboard?.instantiateViewController(for: scene) {
                     vc.modalPresentationStyle = self.client.config.modalPresentationStyle
                     self.uploadMonitorViewController = vc
@@ -240,16 +240,16 @@ private extension SourceTableViewController {
         uploadOptions.storeOptions = storeOptions
 
         if let sourceType = sourceType {
-            cancellableRequest = client.uploadFromImagePicker(viewController: self,
-                                                              sourceType: sourceType,
-                                                              options: uploadOptions,
-                                                              uploadProgress: uploadProgressHandler,
-                                                              completionHandler: completionHandler)
+            cancellable = client.uploadFromImagePicker(viewController: self,
+                                                       sourceType: sourceType,
+                                                       options: uploadOptions,
+                                                       uploadProgress: uploadProgressHandler,
+                                                       completionHandler: completionHandler)
         } else {
-            cancellableRequest = client.uploadFromDocumentPicker(viewController: self,
-                                                                 options: uploadOptions,
-                                                                 uploadProgress: uploadProgressHandler,
-                                                                 completionHandler: completionHandler)
+            cancellable = client.uploadFromDocumentPicker(viewController: self,
+                                                          options: uploadOptions,
+                                                          uploadProgress: uploadProgressHandler,
+                                                          completionHandler: completionHandler)
         }
     }
 

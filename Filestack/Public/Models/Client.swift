@@ -91,13 +91,13 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// as data is uploaded to the server. `nil` by default.
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
-    /// - Returns: A `CancellableRequest` object that allows cancelling the upload request.
+    /// - Returns: An `Uploader` that allows starting, cancelling and monitoring the upload.
     @discardableResult
     public func upload(using uploadable: FilestackSDK.Uploadable,
                        options: UploadOptions = .defaults,
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
-                       completionHandler: @escaping (NetworkJSONResponse) -> Void) -> CancellableRequest {
+                       completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
         return client.upload(using: uploadable,
                              options: options,
                              queue: queue,
@@ -115,20 +115,21 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// uploadable, otherwise `text/plain` will be assumed.
     ///
     /// - Parameter uploadables: An array of items to upload conforming to `Uploadable`. May be `nil` if you intend to
-    /// add them later to the returned `MultifileUpload` object.
+    /// add them later to the returned `Uploader`.
     /// - Parameter options: A set of upload options (see `UploadOptions` for more information.)
     /// - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
     /// - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
     /// as data is uploaded to the server. `nil` by default.
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
-    /// - Returns: A `CancellableRequest` object that allows cancelling the upload request.
+    /// - Returns: An `Uploader & DeferredAdd` that allows starting, cancelling and monitoring
+    /// the upload, plus adding `Uploadables` at a later time.
     @discardableResult
     public func upload(using uploadables: [FilestackSDK.Uploadable],
                        options: UploadOptions = .defaults,
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
-                       completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
+                       completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader & DeferredAdd {
         return client.upload(using: uploadables,
                              options: options,
                              queue: queue,
@@ -146,22 +147,22 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// as data is uploaded to the server. `nil` by default.
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
-    /// - Returns: A `CancellableRequest` object that allows cancelling the upload request.
+    /// - Returns: A `Cancellable & Monitorizable` that allows cancelling and monitoring the upload.
     @discardableResult
     public func uploadFromImagePicker(viewController: UIViewController,
                                       sourceType: UIImagePickerController.SourceType,
                                       options: UploadOptions = .defaults,
                                       queue: DispatchQueue = .main,
                                       uploadProgress: ((Progress) -> Void)? = nil,
-                                      completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
+                                      completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Cancellable & Monitorizable {
         options.startImmediately = false
 
-        let mfu = client.upload(options: options,
-                                queue: queue,
-                                uploadProgress: uploadProgress,
-                                completionHandler: completionHandler)
+        let uploader = client.upload(options: options,
+                                     queue: queue,
+                                     uploadProgress: uploadProgress,
+                                     completionHandler: completionHandler)
 
-        let uploadController = ImagePickerUploadController(multifileUpload: mfu,
+        let uploadController = ImagePickerUploadController(uploader: uploader,
                                                            viewController: viewController,
                                                            sourceType: sourceType,
                                                            config: config)
@@ -172,7 +173,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
 
             guard success else {
                 // Picking from image picker was cancelled
-                mfu.cancel()
+                uploader.cancel()
                 return
             }
 
@@ -189,7 +190,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
             }
         }
 
-        return mfu
+        return uploader
     }
 
     /// Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
@@ -202,18 +203,21 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// as data is uploaded to the server. `nil` by default.
     /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
     ///
-    /// - Returns: A `CancellableRequest` object that allows cancelling the upload request.
+    /// - Returns: A `Cancellable & Monitorizable` that allows cancelling and monitoring the upload.
     @discardableResult
     public func uploadFromDocumentPicker(viewController: UIViewController,
                                          options: UploadOptions = .defaults,
                                          queue: DispatchQueue = .main,
                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> CancellableRequest {
+                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Cancellable & Monitorizable {
         options.startImmediately = false
 
-        let mfu = client.upload(options: options, queue: queue, uploadProgress: uploadProgress, completionHandler: completionHandler)
+        let uploader = client.upload(options: options,
+                                     queue: queue,
+                                     uploadProgress: uploadProgress,
+                                     completionHandler: completionHandler)
 
-        let uploadController = DocumentPickerUploadController(multifileUpload: mfu,
+        let uploadController = DocumentPickerUploadController(uploader: uploader,
                                                               viewController: viewController,
                                                               config: config)
 
@@ -223,7 +227,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
 
             guard success else {
                 // Picking from document picker was cancelled
-                mfu.cancel()
+                uploader.cancel()
                 return
             }
 
@@ -236,7 +240,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
 
         uploadController.start()
 
-        return mfu
+        return uploader
     }
 
     /// Lists the content of a cloud provider at a given path. Results are paginated (see `pageToken` below.)
@@ -249,14 +253,14 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
     /// or error response.
     ///
-    /// - Returns: A `CancellableRequest` object that allows cancelling the folder list request.
+    /// - Returns: A `Cancellable` that allows cancelling the folder list request.
     @objc
     @discardableResult
     public func folderList(provider: CloudProvider,
                            path: String,
                            pageToken: String? = nil,
                            queue: DispatchQueue = .main,
-                           completionHandler: @escaping FolderListCompletionHandler) -> CancellableRequest {
+                           completionHandler: @escaping FolderListCompletionHandler) -> Cancellable {
         guard let appURLScheme = config.appURLScheme else {
             fatalError("Please make sure your Filestack config object has an appURLScheme set.")
         }
@@ -291,14 +295,14 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// - Parameter completionHandler: Adds a handler to be called once the request has completed either with a success,
     /// or error response.
     ///
-    /// - Returns: A `CancellableRequest` object that allows cancelling the store request.
+    /// - Returns: A `Cancellable` that allows cancelling the store request.
     @objc
     @discardableResult
     public func store(provider: CloudProvider,
                       path: String,
                       storeOptions: StorageOptions = .defaults,
                       queue: DispatchQueue = .main,
-                      completionHandler: @escaping StoreCompletionHandler) -> CancellableRequest {
+                      completionHandler: @escaping StoreCompletionHandler) -> Cancellable {
         let request = StoreRequest(apiKey: apiKey,
                                    security: security,
                                    token: lastToken,
