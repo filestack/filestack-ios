@@ -1,5 +1,5 @@
 github "Alamofire/Alamofire" "4.9.0"
 github "SVProgressHUD/SVProgressHUD" "2.2.5"
 github "ZipArchive/ZipArchive" "v2.2.2"
-github "filestack/filestack-swift" "00fe54ac9c9154cc348f70324908cb10c3b5f2db"
+github "filestack/filestack-swift" "a6000c1404d87e4f8d8425957830fe15e1c157c0"
 github "krzyzanowskim/CryptoSwift" "1.0.0"
