@@ -172,21 +172,9 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                                            sourceType: sourceType,
                                                            config: config)
 
-        uploadController.filePickedCompletionHandler = { success in
+        uploadController.filePickedCompletionHandler = { _ in
             // Remove completion handler, so this `ImagePickerUploadController` object can be properly deallocated.
             uploadController.filePickedCompletionHandler = nil
-
-            guard success else {
-                // Picking from image picker was cancelled
-                uploader.cancel()
-                return
-            }
-
-            // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
-            let progress = Progress(totalUnitCount: 1)
-            progress.completedUnitCount = 0
-
-            uploadProgress?(progress)
         }
 
         PHPhotoLibrary.requestAuthorization { status in
@@ -226,21 +214,9 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                                               viewController: viewController,
                                                               config: config)
 
-        uploadController.filePickedCompletionHandler = { success in
+        uploadController.filePickedCompletionHandler = { _ in
             // Remove completion handler, so this `DocumentPickerUploadController` object can be properly deallocated.
             uploadController.filePickedCompletionHandler = nil
-
-            guard success else {
-                // Picking from document picker was cancelled
-                uploader.cancel()
-                return
-            }
-
-            // As soon as a file is picked, let's send a progress update with 0% progress for faster feedback.
-            let progress = Progress(totalUnitCount: 1)
-            progress.completedUnitCount = 0
-
-            uploadProgress?(progress)
         }
 
         uploadController.start()
