@@ -26,7 +26,7 @@ class DocumentPickerUploadController: NSObject {
     init(uploader: Uploader & DeferredAdd, viewController: UIViewController, config: Config) {
         self.deferredUploader = uploader
         self.viewController = viewController
-        picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
+        self.picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
         self.config = config
     }
 
@@ -35,7 +35,7 @@ class DocumentPickerUploadController: NSObject {
         picker.modalPresentationStyle = config.modalPresentationStyle
         picker.allowsMultipleSelection = (config.maximumSelectionAllowed != 1)
 
-        viewController.present(picker, animated: true, completion: nil)
+        viewController.present(picker, animated: true)
     }
 }
 
@@ -46,26 +46,9 @@ extension DocumentPickerUploadController {
             return
         }
 
-        deferredUploader.add(uploadables: urls.compactMap { validURL(from: $0) })
-        startUpload()
-    }
-
-    private func validURL(from url: URL) -> URL? {
-        return url.hasDirectoryPath ? zipURL(from: url) : url
-    }
-
-    private func zipURL(from url: URL) -> URL? {
-        let tmpFilePath = tempZipPath(filename: url.lastPathComponent)
-        let success = SSZipArchive.createZipFile(atPath: tmpFilePath,
-                                                 withContentsOfDirectory: url.path,
-                                                 keepParentDirectory: true)
-        return success ? URL(fileURLWithPath: tmpFilePath) : nil
-    }
-
-    private func tempZipPath(filename: String) -> String {
-        var path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
-        path += "/\(UUID().uuidString)_\(filename).zip"
-        return path
+        deferredUploader.add(uploadables: urls.compactMap { uploadableURL(from: $0) })
+        deferredUploader.start()
+        filePickedCompletionHandler?(true)
     }
 
     private func cancel() {
@@ -73,9 +56,25 @@ extension DocumentPickerUploadController {
         filePickedCompletionHandler?(false)
     }
 
-    private func startUpload() {
-        deferredUploader.start()
-        filePickedCompletionHandler?(true)
+    private func uploadableURL(from url: URL) -> URL? {
+        return url.isDirectory ? zipURL(from: url) : url
+    }
+
+    private func zipURL(from url: URL) -> URL? {
+        guard let tmpFileURL = tempZipURL(filename: url.lastPathComponent),
+            SSZipArchive.createZipFile(atPath: tmpFileURL.path,
+                                       withContentsOfDirectory: url.path,
+                                       keepParentDirectory: true) else { return nil }
+
+        return tmpFileURL
+    }
+
+    private func tempZipURL(filename: String) -> URL? {
+        let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+
+        return cachesDirectoryURL?
+            .appendingPathComponent(UUID().uuidString + "_" + filename)
+            .appendingPathExtension("zip")
     }
 }
 
