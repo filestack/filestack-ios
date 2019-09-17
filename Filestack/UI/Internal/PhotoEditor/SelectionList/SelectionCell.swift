@@ -10,7 +10,7 @@ import UIKit
 
 class SelectionCell: UICollectionViewCell {
     private struct Consts {
-        static let imageBorderColor = UIColor(red: 202 / 255, green: 206 / 255, blue: 216 / 255, alpha: 1).cgColor
+        static let imageBorderColor = (UIColor.fromFilestackBundle("SelectionCellBorderColor") ?? .white).cgColor
         static let imageBorderWidth: CGFloat = 0.5
         static let imageBorderCornerRadius: CGFloat = 5
         static let selectionIconEdgeSize: CGFloat = 30

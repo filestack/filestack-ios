@@ -42,6 +42,7 @@ class AssetCollectionViewController: UICollectionViewController {
 extension AssetCollectionViewController {
     func setupView() {
         collectionView?.contentInsetAdjustmentBehavior = .always
+        collectionView?.collectionViewLayout = CollectionViewFlowLayout()
     }
 }
 
@@ -80,19 +81,37 @@ extension AssetCollectionViewController {
 extension AssetCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView,
                         layout _: UICollectionViewLayout,
+                        insetForSectionAt _: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
+    }
+
+    func collectionView(_: UICollectionView,
+                        layout _: UICollectionViewLayout,
                         sizeForItemAt _: IndexPath) -> CGSize {
         return cellSize
+    }
+
+    func collectionView(_: UICollectionView,
+                        layout _: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt _: Int) -> CGFloat {
+        return cellSpacing
+    }
+
+    func collectionView(_: UICollectionView,
+                        layout _: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
+        return cellSpacing
     }
 }
 
 /// :nodoc:
 private extension AssetCollectionViewController {
     var cellSize: CGSize {
-        return CGSize(width: cellEdge, height: cellEdge)
+        return CGSize(width: cellSide, height: cellSide)
     }
 
-    var cellEdge: CGFloat {
-        let totalSpacing = cellSpacing * (columnsCount - 1)
+    var cellSide: CGFloat {
+        let totalSpacing = cellSpacing * (columnsCount + 1)
         return (totalWidth - totalSpacing) / columnsCount
     }
 
@@ -101,12 +120,15 @@ private extension AssetCollectionViewController {
     }
 
     var columnsCount: CGFloat {
-        let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
-        return isPortrait ? 4 : 7
+        return (totalWidth / targetSide).rounded(.down)
+    }
+
+    var targetSide: CGFloat {
+        return 100.0
     }
 
     var cellSpacing: CGFloat {
-        return 2
+        return 6
     }
 
     var maximumReached: Bool {

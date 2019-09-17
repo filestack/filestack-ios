@@ -36,18 +36,24 @@ extension SelectionListViewController: UICollectionViewDelegateFlowLayout {
 
 private extension SelectionListViewController {
     var cellSize: CGSize {
-        return CGSize(width: cellEdge, height: cellEdge)
+        return CGSize(width: cellSide, height: cellSide)
     }
 
-    private var cellEdge: CGFloat {
-        let totalWidth = view.frame.width
+    var cellSide: CGFloat {
         let totalSpacing = cellSpacing * (columnsCount + 1)
         return (totalWidth - totalSpacing) / columnsCount
     }
 
-    private var columnsCount: CGFloat {
-        let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
-        return isPortrait ? 3 : 5
+    var totalWidth: CGFloat {
+        return view.safeAreaLayoutGuide.layoutFrame.width
+    }
+
+    var columnsCount: CGFloat {
+        return (totalWidth / targetSide).rounded(.down)
+    }
+
+    var targetSide: CGFloat {
+        return 100.0
     }
 
     var cellSpacing: CGFloat {

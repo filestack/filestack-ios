@@ -41,7 +41,6 @@ class SelectionListViewController: UICollectionViewController {
 
         self.delegate = delegate
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        setup()
     }
 
     required init?(coder _: NSCoder) {
@@ -50,16 +49,7 @@ class SelectionListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        collectionView?.register(SelectionCell.self)
-
-        if #available(iOS 13.0, *) {
-            collectionView?.backgroundColor = .systemBackground
-        } else {
-            collectionView?.backgroundColor = .white
-        }
-
-        collectionView?.reloadData()
+        setupView()
     }
 }
 
@@ -100,7 +90,19 @@ extension SelectionListViewController {
 
 /// :nodoc:
 private extension SelectionListViewController {
-    func setup() {
+    func setupView() {
+        collectionView?.contentInsetAdjustmentBehavior = .always
+        collectionView?.collectionViewLayout = CollectionViewFlowLayout()
+        collectionView?.register(SelectionCell.self)
+
+        if #available(iOS 13.0, *) {
+            collectionView?.backgroundColor = .systemBackground
+        } else {
+            collectionView?.backgroundColor = .white
+        }
+
+        collectionView?.reloadData()
+
         navigationItem.leftBarButtonItem = cancelItem
         navigationItem.rightBarButtonItem = uploadItem
     }
