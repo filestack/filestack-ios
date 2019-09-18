@@ -24,9 +24,11 @@ final class UploadMonitorViewController: UIViewController {
     func update(progress: Progress) {
         guard isViewLoaded else { return }
 
-        progressView.progress = Float(progress.fractionCompleted)
-        updateLabel(using: progress)
+        if progressView.observedProgress != progress {
+            progressView.observedProgress = progress
+        }
 
+        updateLabel(using: progress)
         cancelButton.isEnabled = progressView.progress < 1.0
     }
 
