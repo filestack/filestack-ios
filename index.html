@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           Filestack Docs
         </a>
-         (75% documented)
+         (99% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -88,26 +88,16 @@
             <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ClientError.html">ClientError</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/CloudProvider.html">CloudProvider</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:9Filestack5clamp_3min3maxxx_xxtSLRzlF">clamp(_:min:max:)</a>
+                <a class="nav-group-task-link" href="Enums/LocalProvider.html">LocalProvider</a>
               </li>
             </ul>
           </li>
@@ -115,21 +105,7 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/CancellableRequest.html">CancellableRequest</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Typealiases.html#/s:9Filestack27FolderListCompletionHandlera">FolderListCompletionHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Typealiases.html#/s:9Filestack22StoreCompletionHandlera">StoreCompletionHandler</a>
               </li>
             </ul>
           </li>
@@ -171,7 +147,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.0'
+    pod 'Filestack', '~&gt; 2.2'
 end
 </code></pre>
 
@@ -189,7 +165,7 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.0</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.2</code></p>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, <code>CryptoSwift.framework</code>, <code>SVProgressHUD.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -244,15 +220,15 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="c1">// Create `Config` object.</span>
 <span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="p">()</span>
 
-<span class="c1">// Make sure to assign an app scheme URL that matches the one configured in your info.plist.</span>
-<span class="n">config</span><span class="o">.</span><span class="n">appURLScheme</span> <span class="o">=</span> <span class="s">"filestackdemo"</span>
+<span class="c1">// Make sure to assign a callback URL scheme that is handled by your app.</span>
+<span class="n">config</span><span class="o">.</span><span class="n">callbackURLScheme</span> <span class="o">=</span> <span class="s">"filestackdemo"</span>
 
 <span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
 </code></pre>
 <h3 id='uploading-local-files' class='heading'>Uploading local files</h3>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">localURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"file:///an-app-sandbox-friendly-local-url"</span><span class="p">)</span><span class="o">!</span>
 
-<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">localURL</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
+<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="n">localURL</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
     <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
@@ -271,7 +247,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="c1">// The source type (e.g. `.camera`, `.photoLibrary`)</span>
 <span class="k">let</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">UIImagePickerControllerSourceType</span> <span class="o">=</span> <span class="o">.</span><span class="n">camera</span>
 
-<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
+<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
     <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
@@ -287,7 +263,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <pre class="highlight swift"><code><span class="c1">// The view controller that will be presenting the image picker.</span>
 <span class="k">let</span> <span class="nv">presentingViewController</span> <span class="o">=</span> <span class="k">self</span>
 
-<span class="k">let</span> <span class="nv">uploadRequest</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromDocumentPicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
+<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromDocumentPicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
     <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
@@ -300,20 +276,11 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="p">}</span>
 </code></pre>
 
-<p>In all the previous uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code><a href="Protocols/CancellableRequest.html">CancellableRequest</a></code> conforming object returned by any of the functions above:</p>
-<pre class="highlight swift"><code><span class="n">uploadRequest</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span>
+<p>In all the previous uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code>Uploader</code>:</p>
+<pre class="highlight swift"><code><span class="n">uploader</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span>
 </code></pre>
 <h3 id='listing-contents-from-a-cloud-provider' class='heading'>Listing contents from a cloud provider</h3>
-<pre class="highlight swift"><code><span class="c1">// The cloud provider to use (it may require authentication)</span>
-<span class="k">let</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CloudProvider</span> <span class="o">=</span> <span class="o">.</span><span class="n">googleDrive</span>
-
-<span class="c1">// The cloud provider's path (e.g. "/" for the root's folder)</span>
-<span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="s">"/"</span>
-
-<span class="c1">// An URL scheme that your app can handle.</span>
-<span class="k">let</span> <span class="nv">appURLScheme</span> <span class="o">=</span> <span class="s">"FilestackDemo"</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">folderList</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">pageToken</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">folderList</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="o">.</span><span class="n">googleDrive</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="s">"/"</span><span class="p">,</span> <span class="nv">pageToken</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
         <span class="c1">// Handle error</span>
         <span class="k">return</span>
@@ -331,30 +298,12 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-
-<p>Remember also to add this piece of code to your <code>AppDelegate</code> so the auth flow can complete:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Here we just state that any other URLs should not be handled by this app.</span>
-    <span class="k">return</span> <span class="kc">false</span>
-<span class="p">}</span>
-</code></pre>
 <h3 id='storing-contents-from-a-cloud-provider-into-a-store-location' class='heading'>Storing contents from a cloud provider into a store location</h3>
-<pre class="highlight swift"><code><span class="c1">// The cloud provider to use</span>
-<span class="k">let</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CloudProvider</span> <span class="o">=</span> <span class="o">.</span><span class="n">googleDrive</span>
-
-<span class="c1">// A path to a file in the cloud</span>
-<span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="s">"/some-large-image.jpg"</span>
-
-<span class="c1">// Store options for your uploaded files.</span>
+<pre class="highlight swift"><code><span class="c1">// Store options for your uploaded files.</span>
 <span class="c1">// Here we are saying our storage location is S3 and access for uploaded files should be public.</span>
 <span class="k">let</span> <span class="nv">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
 
-<span class="n">client</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="o">.</span><span class="n">googleDrive</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="s">"/some-large-image.jpg"</span><span class="p">,</span> <span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
         <span class="c1">// Handle error</span>
         <span class="k">return</span>
@@ -369,7 +318,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <p>Please make sure to authenticate against the cloud provider first by using the <code>folderList</code> function before calling <code>store</code>.</p>
 <h3 id='launching-picker-ui' class='heading'>Launching picker UI</h3>
 
-<p>This is a code fragment broken into pieces taken from the <a href="https://github.com/filestack/filestack-ios/tree/master/Demo">Demo app</a> describing the process of launching the picker UI using some of the most relevant config options:</p>
+<p>This is a code fragment broken into pieces taken from the demo app (included in this repository) describing the process of launching the picker UI using some of the most relevant config options:</p>
 <h4 id='1-setting-up-policy-and-security-objects' class='heading'>1. Setting up Policy and Security objects</h4>
 <pre class="highlight swift"><code><span class="c1">// In case your Filestack account has security enabled, you will need to instantiate a `Security` object.</span>
 <span class="c1">// We can do this by either configuring a `Policy` and instantiating a `Security` object by passing</span>
@@ -390,7 +339,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <pre class="highlight swift"><code><span class="c1">// Create `Config` object.</span>
 <span class="c1">// IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist</span>
 <span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="o">.</span><span class="n">builder</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">appURLScheme</span><span class="p">:</span> <span class="s">"YOUR-APP-URL-SCHEME"</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">callbackURLScheme</span><span class="p">:</span> <span class="s">"YOUR-APP-URL-SCHEME"</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">videoQuality</span><span class="p">:</span> <span class="o">.</span><span class="n">typeHigh</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="o">.</span><span class="n">current</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">maximumSelectionLimit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
@@ -420,9 +369,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <p>And implement the <code><a href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a></code> protocol in your view controller, i.e.:</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">PickerNavigationControllerDelegate</span> <span class="p">{</span>
-
+    <span class="c1">/// Called when the picker finishes storing a file originating from a cloud source into the destination storage location.</span>
     <span class="kd">func</span> <span class="nf">pickerStoredFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">StoreResponse</span><span class="p">)</span> <span class="p">{</span>
-
         <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">contents</span> <span class="p">{</span>
             <span class="c1">// Our cloud file was stored into the destination location.</span>
             <span class="nf">print</span><span class="p">(</span><span class="s">"Stored file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
@@ -432,8 +380,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
         <span class="p">}</span>
     <span class="p">}</span>
 
+    <span class="c1">/// Called when the picker finishes uploading a file originating from the local device into the destination storage location.</span>
     <span class="kd">func</span> <span class="nf">pickerUploadedFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">NetworkJSONResponse</span><span class="p">?)</span> <span class="p">{</span>
-
         <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span>
             <span class="c1">// Our local file was stored into the destination location.</span>
             <span class="nf">print</span><span class="p">(</span><span class="s">"Uploaded file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
@@ -442,31 +390,19 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
             <span class="nf">print</span><span class="p">(</span><span class="s">"Error uploading file: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
+
+    <span class="c1">/// Called when the picker reports progress during a file or set of files being uploaded.</span>
+    <span class="kd">func</span> <span class="nf">pickerReportedUploadProgress</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Picker </span><span class="se">\(</span><span class="n">picker</span><span class="se">)</span><span class="s"> reported upload progress: </span><span class="se">\(</span><span class="n">progress</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>    
 <span class="p">}</span>
 </code></pre>
 <h4 id='6-presenting-the-picker-on-the-screen' class='heading'>6. Presenting the picker on the screen</h4>
 <pre class="highlight swift"><code><span class="n">yourViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
 </code></pre>
-
-<p>Finally, remember that you&rsquo;ll need this piece of code in your <code>AppDelegate</code> for the auth flow to complete:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">"YOUR-APP-URL-SCHEME"</span> <span class="o">&amp;&amp;</span> <span class="n">url</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="s">"Filestack"</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Here we just state that any other URLs should not be handled by this app.</span>
-    <span class="k">return</span> <span class="kc">false</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='final-notes-on-usage' class='heading'>Final notes on usage</h3>
-
-<ul>
-<li>Some of the functions and objects used above support additional parameters and properties, consult the <a href="https://filestack.github.io/filestack-ios/">API Reference</a> for more details.</li>
-</ul>
 <h2 id='demo' class='heading'>Demo</h2>
 
-<p>Check the <a href="https://github.com/filestack/filestack-ios/tree/master/Demo">Demo app</a> for an example on how to launch the picker UI with all the settings and options discussed above.</p>
+<p>Check the demo app included in this repository showcasing all the topics discussed above. </p>
 <h2 id='versioning' class='heading'>Versioning</h2>
 
 <p>Filestack iOS SDK follows the <a href="http://semver.org/">Semantic Versioning</a>.</p>
@@ -487,8 +423,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-09-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-09-18)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

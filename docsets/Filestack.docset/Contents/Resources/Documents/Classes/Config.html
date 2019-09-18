@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Filestack Docs
         </a>
-         (75% documented)
+         (99% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -89,26 +89,16 @@
             <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ClientError.html">ClientError</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/CloudProvider.html">CloudProvider</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions.html#/s:9Filestack5clamp_3min3maxxx_xxtSLRzlF">clamp(_:min:max:)</a>
+                <a class="nav-group-task-link" href="../Enums/LocalProvider.html">LocalProvider</a>
               </li>
             </ul>
           </li>
@@ -116,21 +106,7 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/CancellableRequest.html">CancellableRequest</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Filestack27FolderListCompletionHandlera">FolderListCompletionHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Filestack22StoreCompletionHandlera">StoreCompletionHandler</a>
               </li>
             </ul>
           </li>
@@ -156,6 +132,13 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Config%20Builder"></a>
+                <a name="//apple_ref/swift/Section/Config Builder" class="dashAnchor"></a>
+                <a href="#/Config%20Builder">
+                  <h3 class="section-name">Config Builder</h3>
+                </a>
+              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
@@ -170,7 +153,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns a <code><a href="../Classes/Config/Builder.html">Builder</a></code> instance to help instantiating <code>Config</code> objects.</p>
 
                       </div>
                       <div class="declaration">
@@ -178,42 +161,24 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">builder</span><span class="p">:</span> <span class="kt"><a href="../Classes/Config/Builder.html">Builder</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">builder</span><span class="p">:</span> <span class="kt">Config</span><span class="o">.</span><span class="kt"><a href="../Classes/Config/Builder.html">Builder</a></span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Filestack6ConfigC7BuilderC"></a>
-                    <a name="//apple_ref/swift/Class/Builder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ConfigC7BuilderC">Builder</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="../Classes/Config/Builder.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(FSConfigBuilder)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Builder</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Config%20Options"></a>
+                <a name="//apple_ref/swift/Section/Config Options" class="dashAnchor"></a>
+                <a href="#/Config%20Options">
+                  <h3 class="section-name">Config Options</h3>
+                </a>
+              </div>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -245,9 +210,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@objc(cs)FSConfig(py)appURLScheme"></a>
-                    <a name="//apple_ref/swift/Property/appURLScheme" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSConfig(py)appURLScheme">appURLScheme</a>
+                    <a name="/c:@M@Filestack@objc(cs)FSConfig(py)callbackURLScheme"></a>
+                    <a name="//apple_ref/swift/Property/callbackURLScheme" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Filestack@objc(cs)FSConfig(py)callbackURLScheme">callbackURLScheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -263,7 +228,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">appURLScheme</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">callbackURLScheme</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -521,18 +486,16 @@ By default, this contains <code>[&quot;public.item&quot;]</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This setting determines the format used for exported images (available only in iOS 11.)
-Possible values are <code>.compatible</code> (for JPEG) and <code>.current</code> (for HEIF).
-In iOS versions earlier than 11.0, JPEG will always be used.</p>
+                        <p>This setting determines the format used for exported images.
+Possible values are <code>.compatible</code> (for JPEG) and <code>.current</code> (for HEIF).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
-<span class="kd">@objc</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageURLExportPreset.html">ImageURLExportPreset</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageURLExportPreset.html">ImageURLExportPreset</a></span></code></pre>
 
                         </div>
                       </div>
@@ -585,7 +548,7 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This setting determines the format used for exported videos (available only in iOS 11.)</p>
+                        <p>This setting determines the format used for exported videos.</p>
 
 <p>Some possible values are:</p>
 
@@ -603,9 +566,8 @@ In iOS versions earlier than 11.0, JPEG will always be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
-<span class="kd">@objc</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">videoExportPreset</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">videoExportPreset</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -647,14 +609,47 @@ lower quality.</p>
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ConfigC7BuilderC"></a>
+                    <a name="//apple_ref/swift/Class/Builder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ConfigC7BuilderC">Builder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience class that allows easily building a new <code><a href="../Classes/Config.html">Config</a></code> object.</p>
+
+                        <a href="../Classes/Config/Builder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(FSConfigBuilder)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Builder</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-09-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2019-09-18)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
