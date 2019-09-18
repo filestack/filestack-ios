@@ -14,11 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet var pickerButton: UIButton!
 
     override func present(_ viewControllerToPresent: UIViewController, animated _: Bool, completion: (() -> Void)? = nil) {
-        // On the iPad, present the picker as a popover — this is totally optional.
         if let viewController = viewControllerToPresent as? PickerNavigationController {
-            viewController.modalPresentationStyle = .popover
-            viewController.popoverPresentationController?.sourceView = pickerButton
-            viewController.popoverPresentationController?.sourceRect = pickerButton.bounds
+            viewController.modalPresentationStyle = .pageSheet
+            // If using `popover`, set `sourceView` and `sourceRect` to the control the popover should be anchored to.
+            // viewController.popoverPresentationController?.sourceView = pickerButton
+            // viewController.popoverPresentationController?.sourceRect = pickerButton.bounds
         }
 
         super.present(viewControllerToPresent, animated: true, completion: completion)
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
 extension ViewController: PickerNavigationControllerDelegate {
     /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
-        picker.dismiss(animated: false) {
+        picker.dismiss(animated: true) {
             if let handle = response.contents?["handle"] as? String {
                 self.presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
             } else if let error = response.error {
@@ -60,7 +60,7 @@ extension ViewController: PickerNavigationControllerDelegate {
 
     /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
     func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse]) {
-        picker.dismiss(animated: false) {
+        picker.dismiss(animated: true) {
             let handles = responses.compactMap { $0.json?["handle"] as? String }
             let errors = responses.compactMap { $0.error }
 
