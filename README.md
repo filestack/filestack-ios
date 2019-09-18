@@ -118,8 +118,8 @@ guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET")
 // Create `Config` object.
 let config = Filestack.Config()
 
-// Make sure to assign an app scheme URL that matches the one configured in your info.plist.
-config.appURLScheme = "filestackdemo"
+// Make sure to assign a callback URL scheme that is handled by your app.
+config.callbackURLScheme = "filestackdemo"
 
 let client = Filestack.Client(apiKey: "YOUR-API-KEY", security: security, config: config)
 ```
@@ -211,19 +211,6 @@ client.folderList(provider: .googleDrive, path: "/", pageToken: nil) { response 
 }
 ```
 
-Remember also to add this piece of code to your `AppDelegate` so the auth flow can complete:
-
-```swift
-func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-    if url.scheme == "YOUR-APP-URL-SCHEME" && url.host == "Filestack" {
-        return true
-    }
-
-    // Here we just state that any other URLs should not be handled by this app.
-    return false
-}
-```
-
 ### Storing contents from a cloud provider into a store location
 
 ```swift
@@ -248,7 +235,7 @@ Please make sure to authenticate against the cloud provider first by using the `
 
 ### Launching picker UI
 
-This is a code fragment broken into pieces taken from the [Demo app](https://github.com/filestack/filestack-ios/tree/master/Demo) describing the process of launching the picker UI using some of the most relevant config options:
+This is a code fragment broken into pieces taken from the demo app (included in this repository) describing the process of launching the picker UI using some of the most relevant config options:
 
 #### 1. Setting up Policy and Security objects
 
@@ -275,7 +262,7 @@ guard let security = try? Security(policy: policy, appSecret: "YOUR-APP-SECRET-H
 // Create `Config` object.
 // IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist
 let config = Filestack.Config.builder
-  .with(appURLScheme: "YOUR-APP-URL-SCHEME")
+  .with(callbackURLScheme: "YOUR-APP-URL-SCHEME")
   .with(videoQuality: .typeHigh)
   .with(imageURLExportPreset: .current)
   .with(maximumSelectionLimit: 10)
@@ -316,6 +303,7 @@ And implement the `PickerNavigationControllerDelegate` protocol in your view con
 
 ```swift
 extension ViewController: PickerNavigationControllerDelegate {
+    /// Called when the picker finishes storing a file originating from a cloud source into the destination storage location.
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
         if let contents = response.contents {
             // Our cloud file was stored into the destination location.
@@ -326,6 +314,7 @@ extension ViewController: PickerNavigationControllerDelegate {
         }
     }
 
+    /// Called when the picker finishes uploading a file originating from the local device into the destination storage location.
     func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
         if let contents = response?.json {
             // Our local file was stored into the destination location.
@@ -335,6 +324,11 @@ extension ViewController: PickerNavigationControllerDelegate {
             print("Error uploading file: \(error)")
         }
     }
+    
+    /// Called when the picker reports progress during a file or set of files being uploaded.
+    func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float) {
+        print("Picker \(picker) reported upload progress: \(progress)")
+    }    
 }
 ```
 
@@ -344,23 +338,9 @@ extension ViewController: PickerNavigationControllerDelegate {
 yourViewController.present(picker, animated: true)
 ```
 
-Finally, remember that you'll need this piece of code in your `AppDelegate` for the auth flow to complete:
-
-```swift
-func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-
-    if url.scheme == "YOUR-APP-URL-SCHEME" && url.host == "Filestack" {
-        return true
-    }
-
-    // Here we just state that any other URLs should not be handled by this app.
-    return false
-}
-```
-
 ## Demo
 
-Check the [Demo app](https://github.com/filestack/filestack-ios/tree/master/Demo) for an example on how to launch the picker UI with all the settings and options discussed above.
+Check the demo app included in this repository showcasing all the topics discussed above. 
 
 ## Versioning
 
