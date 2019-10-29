@@ -11,7 +11,7 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 ## Requirements
 
-* Xcode 10.2 or later
+* Xcode 11 or later
 * Swift 4.2 up to 5.0 / Objective-C
 * iOS 11 or later
 
