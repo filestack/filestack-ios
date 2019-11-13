@@ -126,7 +126,7 @@ class BottomEditorToolbar: EditorToolbar {
     }
 
     init() {
-        super.init(frame: .zero)
+        super.init(frame: .infinite)
         setupView()
     }
 
@@ -153,7 +153,7 @@ private extension BottomEditorToolbar {
 
 class TopEditorToolbar: EditorToolbar {
     init() {
-        super.init(frame: .zero)
+        super.init(frame: .infinite)
         setupView()
     }
 
