@@ -35,7 +35,16 @@ class AssetCollectionViewController: UICollectionViewController {
 
     func configure(with album: Album) {
         title = album.title
-        elements = album.elements
+        elements = album.elements.sorted(by: { (asset1:PHAsset, asset2:PHAsset) -> Bool in
+            if let date1 = asset1.creationDate, let date2 = asset2.creationDate {
+                return date1 > date2
+            } else {
+                // some date is null
+                let name1 = asset1.value(forKey: "filename") as? String ?? ""
+                let name2 = asset2.value(forKey: "filename") as? String ?? ""
+                return name1 < name2
+            }
+        })
     }
 }
 
