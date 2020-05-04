@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.2.2 (2020-05-04)
+----------------------------
+
+- Removed unnecessary files from Copy Bundle Resources phase.
+- Updated Cocoapod and Carthage dependency on `SSZipArchive` to `2.2.3`.
+- Updated Cocoapod and Carthage dependency on `FilestackSDK` to `2.2.2`.
+
 Version 2.2.1 (2020-01-16)
 ----------------------------
 
