@@ -1,9 +1,1346 @@
 {
   "warnings": [
     {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/AVAsset+Export.swift",
+      "line": 12,
+      "symbol": "AVAsset.videoExportSession(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/Array+SafeIndex.swift",
+      "line": 14,
+      "symbol": "Array.subscript(safe:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/Data+JSON.swift",
+      "line": 12,
+      "symbol": "Data.parseJSON()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 12,
+      "symbol": "CGPoint.Metric",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 13,
+      "symbol": "CGPoint.Metric.euclidean",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 14,
+      "symbol": "CGPoint.Metric.manhattan",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 15,
+      "symbol": "CGPoint.Metric.maximum",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 18,
+      "symbol": "CGPoint.distance(to:metric:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 26,
+      "symbol": "CGPoint.euclideanDistance(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 30,
+      "symbol": "CGPoint.manhattanDistance(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGPoint+Distance.swift",
+      "line": 34,
+      "symbol": "CGPoint.maximumDistance(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGRect+Scale.swift",
+      "line": 12,
+      "symbol": "CGRect.scaled(by:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/CGRect+Scale.swift",
+      "line": 18,
+      "symbol": "CGPoint.movedBy(x:y:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/UIImage+CIImageTransformations.swift",
+      "line": 13,
+      "symbol": "UIEdgeInsets.rounded()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/UIImage+Rect.swift",
+      "line": 12,
+      "symbol": "UIImage.cgRect",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageEdition/UIImage+Sanitize.swift",
+      "line": 14,
+      "symbol": "UIImage.sanitized",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift",
+      "line": 12,
+      "symbol": "ImageURLExportPreset.asImagePickerControllerImageURLExportPreset",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/SessionManager+FilestackDefault.swift",
+      "line": 13,
+      "symbol": "SessionManager.filestackDefault",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/String+UTI.swift",
+      "line": 13,
+      "symbol": "String.UTI",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UICollectionView+Reusable.swift",
+      "line": 18,
+      "symbol": "UICollectionView.register(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UICollectionView+Reusable.swift",
+      "line": 22,
+      "symbol": "UICollectionView.reuse(_:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIColor+Bundle.swift",
+      "line": 12,
+      "symbol": "UIColor.fromFilestackBundle(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIColor+Predefined.swift",
+      "line": 12,
+      "symbol": "UIColor.appleBlue",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIColor+Predefined.swift",
+      "line": 16,
+      "symbol": "UIColor.appleTableSeparator",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+Bundle.swift",
+      "line": 12,
+      "symbol": "UIImage.fromFilestackBundle(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+Bundle.swift",
+      "line": 16,
+      "symbol": "UIImage.templatedFilestackImage(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+Export.swift",
+      "line": 12,
+      "symbol": "UIImage.exportHEICImage(to:quality:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+Export.swift",
+      "line": 18,
+      "symbol": "UIImage.exportJPGImage(to:quality:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+HEIC.swift",
+      "line": 13,
+      "symbol": "UIImage.heicRepresentation(quality:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+Resized.swift",
+      "line": 12,
+      "symbol": "UIImage.resized(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIImage+Write.swift",
+      "line": 12,
+      "symbol": "UIImage.with(written:atPoint:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIView+Constraints.swift",
+      "line": 12,
+      "symbol": "UIView.fill(with:connectingEdges:inset:withSafeAreaRespecting:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/UIView+Constraints.swift",
+      "line": 25,
+      "symbol": "UIView.connect(edges:of:inset:withSafeAreaRespecting:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/URL+Copy.swift",
+      "line": 12,
+      "symbol": "URL.copy(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/URL+Copy.swift",
+      "line": 23,
+      "symbol": "URL.copyIntoTemporaryLocation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Extensions/URL+IsDirectory.swift",
+      "line": 12,
+      "symbol": "URL.isDirectory",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Protocols/CloudRequest.swift",
+      "line": 24,
+      "symbol": "CloudRequest",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Internal/Protocols/CloudRequest.swift",
+      "line": 25,
+      "symbol": "CloudRequest.getResults(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/CloudSourceCollectionViewController.swift",
+      "line": 191,
+      "symbol": "CloudSourceCollectionViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/CloudSourceCollectionViewController.swift",
+      "line": 192,
+      "symbol": "CloudSourceCollectionViewController.dataSourceReceivedInitialResults(dataSource:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/CloudSourceTableViewController.swift",
+      "line": 179,
+      "symbol": "CloudSourceTableViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/CloudSourceTableViewController.swift",
+      "line": 180,
+      "symbol": "CloudSourceTableViewController.dataSourceReceivedInitialResults(dataSource:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/DocumentPickerUploadController.swift",
+      "line": 81,
+      "symbol": "DocumentPickerUploadController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/DocumentPickerUploadController.swift",
+      "line": 83,
+      "symbol": "DocumentPickerUploadController.documentPickerWasCancelled(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/DocumentPickerUploadController.swift",
+      "line": 88,
+      "symbol": "DocumentPickerUploadController.documentPicker(_:didPickDocumentsAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 104,
+      "symbol": "ImagePickerUploadController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 105,
+      "symbol": "ImagePickerUploadController.photoPickerControllerDidCancel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 109,
+      "symbol": "ImagePickerUploadController.photoPicker(_:didSelectAssets:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 118,
+      "symbol": "ImagePickerUploadController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 119,
+      "symbol": "ImagePickerUploadController.resignFromUpload()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 123,
+      "symbol": "ImagePickerUploadController.upload(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 132,
+      "symbol": "ImagePickerUploadController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 133,
+      "symbol": "ImagePickerUploadController.imagePickerControllerDidCancel(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/ImagePickerUploadController.swift",
+      "line": 139,
+      "symbol": "ImagePickerUploadController.imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 51,
+      "symbol": "SourceTableViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 52,
+      "symbol": "SourceTableViewController.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 56,
+      "symbol": "SourceTableViewController.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 64,
+      "symbol": "SourceTableViewController.tableView(_:heightForHeaderInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 72,
+      "symbol": "SourceTableViewController.tableView(_:titleForHeaderInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 80,
+      "symbol": "SourceTableViewController.tableView(_:willDisplayHeaderView:forSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 87,
+      "symbol": "SourceTableViewController.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 104,
+      "symbol": "SourceTableViewController.tableView(_:didSelectRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 113,
+      "symbol": "SourceTableViewController.sourceWasSelected(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 121,
+      "symbol": "SourceTableViewController.sourceWasSelected(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 138,
+      "symbol": "SourceTableViewController.tableView(_:heightForFooterInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Controllers/SourceTableViewController.swift",
+      "line": 142,
+      "symbol": "SourceTableViewController.tableView(_:viewForFooterInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Enums/CloudSourceViewType.swift",
+      "line": 16,
+      "symbol": "CloudSourceViewType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Enums/CloudSourceViewType.swift",
+      "line": 17,
+      "symbol": "CloudSourceViewType.iconName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Enums/CloudSourceViewType.swift",
+      "line": 26,
+      "symbol": "CloudSourceViewType.toggle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/Scene+Defaults.swift",
+      "line": 12,
+      "symbol": "Scene.identifier",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/Storyboard+Scenes.swift",
+      "line": 12,
+      "symbol": "UIStoryboard.instantiateViewController(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UIImage+Squared.swift",
+      "line": 12,
+      "symbol": "UIImage.isPortrait",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UIImage+Squared.swift",
+      "line": 13,
+      "symbol": "UIImage.isLandscape",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UIImage+Squared.swift",
+      "line": 14,
+      "symbol": "UIImage.breadth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UIImage+Squared.swift",
+      "line": 15,
+      "symbol": "UIImage.breadthSize",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UIImage+Squared.swift",
+      "line": 16,
+      "symbol": "UIImage.breadthRect",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UIImage+Squared.swift",
+      "line": 18,
+      "symbol": "UIImage.squared",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UserDefaults+State.swift",
+      "line": 16,
+      "symbol": "UserDefaults.cloudSourceViewType()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Extensions/UserDefaults+State.swift",
+      "line": 20,
+      "symbol": "UserDefaults.set(cloudSourceViewType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 76,
+      "symbol": "EditorToolbar",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 77,
+      "symbol": "EditorToolbar.rotateSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 81,
+      "symbol": "EditorToolbar.cropSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 85,
+      "symbol": "EditorToolbar.circleSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 89,
+      "symbol": "EditorToolbar.saveSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 93,
+      "symbol": "EditorToolbar.cancelSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 97,
+      "symbol": "EditorToolbar.doneSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 101,
+      "symbol": "EditorToolbar.undoSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/EditorToolbar.swift",
+      "line": 105,
+      "symbol": "EditorToolbar.redoSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CircleGesturesHandler.swift",
+      "line": 116,
+      "symbol": "CircleGesturesHandler",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CircleGesturesHandler.swift",
+      "line": 117,
+      "symbol": "CircleGesturesHandler.handlePanGesture(recognizer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CircleGesturesHandler.swift",
+      "line": 123,
+      "symbol": "CircleGesturesHandler.handlePinchGesture(recognizer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CircleGesturesHandler.swift",
+      "line": 128,
+      "symbol": "CircleGesturesHandler.rotateCounterClockwise()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CropGesturesHandler.swift",
+      "line": 53,
+      "symbol": "CropGesturesHandler",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CropGesturesHandler.swift",
+      "line": 54,
+      "symbol": "CropGesturesHandler.handlePanGesture(recognizer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/Handlers/CropGesturesHandler.swift",
+      "line": 61,
+      "symbol": "CropGesturesHandler.rotateCounterClockwise()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 30,
+      "symbol": "ImageEditor",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 31,
+      "symbol": "ImageEditor.rotate(clockwise:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 38,
+      "symbol": "ImageEditor.crop(insets:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 45,
+      "symbol": "ImageEditor.cropCircled(center:radius:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 55,
+      "symbol": "ImageEditor",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 56,
+      "symbol": "ImageEditor.undo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 62,
+      "symbol": "ImageEditor.redo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 68,
+      "symbol": "ImageEditor.canUndo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 72,
+      "symbol": "ImageEditor.canRedo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ImageEditor.swift",
+      "line": 76,
+      "symbol": "ImageEditor.reset()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+EditDataSource.swift",
+      "line": 20,
+      "symbol": "EditorViewController.imageFrame",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+EditDataSource.swift",
+      "line": 24,
+      "symbol": "EditorViewController.imageSize",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+EditDataSource.swift",
+      "line": 28,
+      "symbol": "EditorViewController.imageOrigin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+EditDataSource.swift",
+      "line": 32,
+      "symbol": "EditorViewController.imageActualSize",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 12,
+      "symbol": "EditorViewController.cancelSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 18,
+      "symbol": "EditorViewController.rotateSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 24,
+      "symbol": "EditorViewController.cropSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 31,
+      "symbol": "EditorViewController.circleSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 38,
+      "symbol": "EditorViewController.saveSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 48,
+      "symbol": "EditorViewController.doneSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 56,
+      "symbol": "EditorViewController.undoSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ToolbarDelegate.swift",
+      "line": 60,
+      "symbol": "EditorViewController.redoSelected()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ViewSetup.swift",
+      "line": 12,
+      "symbol": "EditorViewController.setupGestureRecognizer()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController+ViewSetup.swift",
+      "line": 22,
+      "symbol": "EditorViewController.setupView()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 11,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 11,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 19,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 57,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 58,
+      "symbol": "EditorViewController.viewDidLayoutSubviews()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 119,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 120,
+      "symbol": "EditorViewController.handlePanGesture(recognizer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 128,
+      "symbol": "EditorViewController.handlePinchGesture(recognizer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 139,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 140,
+      "symbol": "EditorViewController.updateCropInset(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 147,
+      "symbol": "EditorViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/EditionController/ViewController/EditorViewController.swift",
+      "line": 148,
+      "symbol": "EditorViewController.updateCircle(_:radius:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionCell.swift",
+      "line": 213,
+      "symbol": "SelectionCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionCell.swift",
+      "line": 214,
+      "symbol": "SelectionCell.selectableElementThumbnailChanged(selectableElement:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+FlowLayout.swift",
+      "line": 12,
+      "symbol": "SelectionListViewController.collectionView(_:layout:insetForSectionAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+FlowLayout.swift",
+      "line": 18,
+      "symbol": "SelectionListViewController.collectionView(_:layout:sizeForItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+FlowLayout.swift",
+      "line": 24,
+      "symbol": "SelectionListViewController.collectionView(_:layout:minimumLineSpacingForSectionAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+FlowLayout.swift",
+      "line": 30,
+      "symbol": "SelectionListViewController.collectionView(_:layout:minimumInteritemSpacingForSectionAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+UICollectionView.swift",
+      "line": 12,
+      "symbol": "SelectionListViewController.collectionView(_:numberOfItemsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+UICollectionView.swift",
+      "line": 16,
+      "symbol": "SelectionListViewController.collectionView(_:cellForItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+UICollectionView.swift",
+      "line": 23,
+      "symbol": "SelectionListViewController.collectionView(_:didSelectItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+UICollectionView.swift",
+      "line": 31,
+      "symbol": "SelectionListViewController.collectionView(_:shouldShowMenuForItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+UICollectionView.swift",
+      "line": 37,
+      "symbol": "SelectionListViewController.collectionView(_:canPerformAction:forItemAt:withSender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController+UICollectionView.swift",
+      "line": 44,
+      "symbol": "SelectionListViewController.collectionView(_:performAction:forItemAt:withSender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 11,
+      "symbol": "SelectionListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 11,
+      "symbol": "SelectionListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 30,
+      "symbol": "SelectionListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
       "line": 37,
       "symbol": "SelectionListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 58,
+      "symbol": "SelectionListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 59,
+      "symbol": "SelectionListViewController.numberOfCells",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 63,
+      "symbol": "SelectionListViewController.cellWasPressed(on:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 70,
+      "symbol": "SelectionListViewController.cellWasLongPressed(on:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 79,
+      "symbol": "SelectionListViewController.cellWasDisplayed(_:on:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 255,
+      "symbol": "SelectionListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 256,
+      "symbol": "SelectionListViewController.scrollViewDidScroll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 260,
+      "symbol": "SelectionListViewController.updateAllVisibleCells()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 264,
+      "symbol": "SelectionListViewController.visibleCellsToDelete()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/SelectionListViewController.swift",
+      "line": 276,
+      "symbol": "SelectionListViewController.allSelectionCells",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 20,
+      "symbol": "UIImage.isEditable",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 24,
+      "symbol": "UIImage.associatedImage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 28,
+      "symbol": "UIImage.typeIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 32,
+      "symbol": "UIImage.additionalInfo",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 38,
+      "symbol": "AVAsset.isEditable",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 42,
+      "symbol": "AVAsset.associatedImage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 52,
+      "symbol": "AVAsset.typeIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoEditor/SelectionList/Uploadable.swift",
+      "line": 57,
+      "symbol": "AVAsset.additionalInfo",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AlbumList/AlbumListViewController.swift",
+      "line": 100,
+      "symbol": "AlbumListViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AlbumList/AlbumListViewController.swift",
+      "line": 101,
+      "symbol": "AlbumListViewController.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AlbumList/AlbumListViewController.swift",
+      "line": 105,
+      "symbol": "AlbumListViewController.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AlbumList/AlbumListViewController.swift",
+      "line": 109,
+      "symbol": "AlbumListViewController.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AlbumList/AlbumListViewController.swift",
+      "line": 119,
+      "symbol": "AlbumListViewController.tableView(_:viewForFooterInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AlbumList/AlbumListViewController.swift",
+      "line": 123,
+      "symbol": "AlbumListViewController.tableView(_:didSelectRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 42,
+      "symbol": "AssetCollectionViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 43,
+      "symbol": "AssetCollectionViewController.setupView()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 49,
+      "symbol": "AssetCollectionViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 50,
+      "symbol": "AssetCollectionViewController.collectionView(_:numberOfItemsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 54,
+      "symbol": "AssetCollectionViewController.collectionView(_:cellForItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 66,
+      "symbol": "AssetCollectionViewController.collectionView(_:didSelectItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 81,
+      "symbol": "AssetCollectionViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 82,
+      "symbol": "AssetCollectionViewController.collectionView(_:layout:insetForSectionAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 88,
+      "symbol": "AssetCollectionViewController.collectionView(_:layout:sizeForItemAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 94,
+      "symbol": "AssetCollectionViewController.collectionView(_:layout:minimumLineSpacingForSectionAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/AssetCollection/AssetCollectionViewController.swift",
+      "line": 100,
+      "symbol": "AssetCollectionViewController.collectionView(_:layout:minimumInteritemSpacingForSectionAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotoPickerController.swift",
+      "line": 97,
+      "symbol": "PhotoPickerController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotoPickerController.swift",
+      "line": 98,
+      "symbol": "PhotoPickerController.add(asset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotoPickerController.swift",
+      "line": 107,
+      "symbol": "PhotoPickerController.remove(asset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotoPickerController.swift",
+      "line": 112,
+      "symbol": "PhotoPickerController.updateNavBar()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotosExtensions.swift",
+      "line": 12,
+      "symbol": "PHAsset.fetchImage(forSize:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotosExtensions.swift",
+      "line": 35,
+      "symbol": "PHAssetCollection.allCollections(types:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/PhotoPicker/PhotosExtensions.swift",
+      "line": 44,
+      "symbol": "PHAssetCollection.allAssets",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Protocols/CloudSourceDataSource.swift",
+      "line": 29,
+      "symbol": "CloudSourceDataSource",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Protocols/CloudSourceDataSource.swift",
+      "line": 31,
+      "symbol": "CloudSourceDataSource.canSelect(item:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/UI/Internal/Protocols/Scene.swift",
+      "line": 11,
+      "symbol": "Scene",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     }
