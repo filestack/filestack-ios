@@ -63,11 +63,6 @@
 		45A92F161FA0BE3F00FEB611 /* CloudRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A92F151FA0BE3F00FEB611 /* CloudRequest.swift */; };
 		45A92F181FA0BE9600FEB611 /* FolderListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A92F171FA0BE9600FEB611 /* FolderListRequest.swift */; };
 		45B603D31FC5B88A006775BF /* ImageURLExportPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B603D21FC5B88A006775BF /* ImageURLExportPreset.swift */; };
-		45BFF67923290AC700944028 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 45BFF67823290AC700944028 /* Cartfile.resolved */; };
-		45BFF67E23290B1F00944028 /* Filestack.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 45BFF67A23290B1E00944028 /* Filestack.podspec */; };
-		45BFF67F23290B1F00944028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 45BFF67B23290B1E00944028 /* LICENSE */; };
-		45BFF68023290B1F00944028 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 45BFF67C23290B1F00944028 /* CHANGELOG.md */; };
-		45BFF68123290B1F00944028 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 45BFF67D23290B1F00944028 /* VERSION */; };
 		45BFF68323290FA700944028 /* Client+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BFF68223290FA600944028 /* Client+Deprecated.swift */; };
 		45BFF6882329189800944028 /* StoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BFF6872329189800944028 /* StoreResponse.swift */; };
 		45BFF68A2329192700944028 /* FolderListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BFF6892329192700944028 /* FolderListResponse.swift */; };
@@ -923,11 +918,6 @@
 			files = (
 				4569C7881FB1C35600DE990E /* Icons.xcassets in Resources */,
 				4569C79D1FB1CFC000DE990E /* Picker.storyboard in Resources */,
-				45BFF68123290B1F00944028 /* VERSION in Resources */,
-				45BFF68023290B1F00944028 /* CHANGELOG.md in Resources */,
-				45BFF67F23290B1F00944028 /* LICENSE in Resources */,
-				45BFF67E23290B1F00944028 /* Filestack.podspec in Resources */,
-				45BFF67923290AC700944028 /* Cartfile.resolved in Resources */,
 				459FF21823313A85003671EA /* Colors.xcassets in Resources */,
 				45BFF69E2329201800944028 /* PhotoPicker.storyboard in Resources */,
 			);
