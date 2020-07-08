@@ -35,7 +35,7 @@ class AssetCollectionViewController: UICollectionViewController {
 
     func configure(with album: Album) {
         title = album.title
-        elements = album.elements
+        elements = album.elements.reversed()
     }
 }
 

@@ -315,7 +315,7 @@ extension ViewController: PickerNavigationControllerDelegate {
     }
 
     /// Called when the picker finishes uploading a file originating from the local device into the destination storage location.
-    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
+    func pickerUploadedFile(picker: PickerNavigationController, response: JSONResponse?) {
         if let contents = response?.json {
             // Our local file was stored into the destination location.
             print("Uploaded file response: \(contents)")

@@ -19,11 +19,7 @@
 		45F764FE232FE0C800C5DB6A /* FilestackSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45103DBC232FBB28009D628A /* FilestackSDK.framework */; };
 		45FB7D90232FE27D00BFE52F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7D7F232FE26B00BFE52F /* Alamofire.framework */; };
 		45FB7D91232FE28200BFE52F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7D7F232FE26B00BFE52F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45FB7DA6232FE2A300BFE52F /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7D9B232FE29400BFE52F /* CryptoSwift.framework */; };
-		45FB7DA7232FE2AF00BFE52F /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7D9B232FE29400BFE52F /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45FB7DC4232FE2EA00BFE52F /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7DAE232FE2C300BFE52F /* SVProgressHUD.framework */; };
 		45FB7DC5232FE2EA00BFE52F /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */; };
-		45FB7DC6232FE2F500BFE52F /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7DAE232FE2C300BFE52F /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FB7DC7232FE2F500BFE52F /* ZipArchive.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -126,62 +122,6 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
 		};
-		45FB7D9A232FE29400BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 754BE45519693E190098E6F3;
-			remoteInfo = CryptoSwift;
-		};
-		45FB7D9C232FE29400BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75211F92207249D8004E41F8;
-			remoteInfo = "CryptoSwift-TestHostApp";
-		};
-		45FB7D9E232FE29400BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 754BE46019693E190098E6F3;
-			remoteInfo = Tests;
-		};
-		45FB7DA0232FE29400BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7595C14A2072E48C00EA1A5F;
-			remoteInfo = "TestsPerformance-Mac";
-		};
-		45FB7DA2232FE29400BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7564F0602072EAEB00CA5A96;
-			remoteInfo = "TestsPerformance-iOS";
-		};
-		45FB7DA4232FE29F00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 754BE45419693E190098E6F3;
-			remoteInfo = CryptoSwift;
-		};
-		45FB7DAD232FE2C300BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DA8232FE2C300BFE52F /* SVProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4A9D7DD81AB345980039B273;
-			remoteInfo = "SVProgressHUD-Framework";
-		};
-		45FB7DAF232FE2C300BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DA8232FE2C300BFE52F /* SVProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65F021FC15C857EF0030BBEF;
-			remoteInfo = SVProgressHUD;
-		};
 		45FB7DB8232FE2CD00BFE52F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
@@ -210,13 +150,6 @@
 			remoteGlobalIDString = 37952C5E1F63BB7100DD6677;
 			remoteInfo = "ZipArchive-watchos";
 		};
-		45FB7DC0232FE2E200BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DA8232FE2C300BFE52F /* SVProgressHUD.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A9D7DD71AB345980039B273;
-			remoteInfo = "SVProgressHUD-Framework";
-		};
 		45FB7DC2232FE2E200BFE52F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
@@ -233,9 +166,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				45FB7DC6232FE2F500BFE52F /* SVProgressHUD.framework in Embed Frameworks */,
 				45FB7DC7232FE2F500BFE52F /* ZipArchive.framework in Embed Frameworks */,
-				45FB7DA7232FE2AF00BFE52F /* CryptoSwift.framework in Embed Frameworks */,
 				45FB7D91232FE28200BFE52F /* Alamofire.framework in Embed Frameworks */,
 				45103DC5232FBD55009D628A /* FilestackSDK.framework in Embed Frameworks */,
 				45103DC4232FBCA3009D628A /* Filestack.framework in Embed Frameworks */,
@@ -261,8 +192,6 @@
 		455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		45C2D50B1FD55F4F00912749 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Carthage/Checkouts/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
-		45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = ../Carthage/Checkouts/CryptoSwift/CryptoSwift.xcodeproj; sourceTree = "<group>"; };
-		45FB7DA8232FE2C300BFE52F /* SVProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SVProgressHUD.xcodeproj; path = ../Carthage/Checkouts/SVProgressHUD/SVProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipArchive.xcodeproj; path = ../Carthage/Checkouts/ZipArchive/ZipArchive.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,9 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FB7DC4232FE2EA00BFE52F /* SVProgressHUD.framework in Frameworks */,
 				45FB7DC5232FE2EA00BFE52F /* ZipArchive.framework in Frameworks */,
-				45FB7DA6232FE2A300BFE52F /* CryptoSwift.framework in Frameworks */,
 				45FB7D90232FE27D00BFE52F /* Alamofire.framework in Frameworks */,
 				45F764FE232FE0C800C5DB6A /* FilestackSDK.framework in Frameworks */,
 				45F764FD232FE0C800C5DB6A /* Filestack.framework in Frameworks */,
@@ -305,10 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */,
-				45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */,
 				45103DAB232FB9EB009D628A /* Filestack.xcodeproj */,
 				45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */,
-				45FB7DA8232FE2C300BFE52F /* SVProgressHUD.xcodeproj */,
 				45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */,
 				454054831F98A69A00C12B2F /* FilestackDemo */,
 				45407B3A1F9E0D35009BC40A /* Frameworks */,
@@ -371,27 +296,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		45FB7D93232FE29400BFE52F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				45FB7D9B232FE29400BFE52F /* CryptoSwift.framework */,
-				45FB7D9D232FE29400BFE52F /* CryptoSwift-TestHostApp.app */,
-				45FB7D9F232FE29400BFE52F /* Tests.xctest */,
-				45FB7DA1232FE29400BFE52F /* TestsPerformance-Mac.xctest */,
-				45FB7DA3232FE29400BFE52F /* TestsPerformance-iOS.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		45FB7DA9232FE2C300BFE52F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				45FB7DAE232FE2C300BFE52F /* SVProgressHUD.framework */,
-				45FB7DB0232FE2C300BFE52F /* libSVProgressHUD.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		45FB7DB2232FE2CC00BFE52F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,9 +323,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				45FB7DC1232FE2E200BFE52F /* PBXTargetDependency */,
 				45FB7DC3232FE2E200BFE52F /* PBXTargetDependency */,
-				45FB7DA5232FE29F00BFE52F /* PBXTargetDependency */,
 				45FB7D8F232FE27700BFE52F /* PBXTargetDependency */,
 				45103DC9232FBD68009D628A /* PBXTargetDependency */,
 				45103DB5232FB9EF009D628A /* PBXTargetDependency */,
@@ -465,20 +367,12 @@
 					ProjectRef = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 45FB7D93232FE29400BFE52F /* Products */;
-					ProjectRef = 45FB7D92232FE29400BFE52F /* CryptoSwift.xcodeproj */;
-				},
-				{
 					ProductGroup = 45103DAC232FB9EB009D628A /* Products */;
 					ProjectRef = 45103DAB232FB9EB009D628A /* Filestack.xcodeproj */;
 				},
 				{
 					ProductGroup = 45103DB7232FBB28009D628A /* Products */;
 					ProjectRef = 45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */;
-				},
-				{
-					ProductGroup = 45FB7DA9232FE2C300BFE52F /* Products */;
-					ProjectRef = 45FB7DA8232FE2C300BFE52F /* SVProgressHUD.xcodeproj */;
 				},
 				{
 					ProductGroup = 45FB7DB2232FE2CC00BFE52F /* Products */;
@@ -568,55 +462,6 @@
 			fileType = wrapper.framework;
 			path = Alamofire.framework;
 			remoteRef = 45FB7D8A232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D9B232FE29400BFE52F /* CryptoSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CryptoSwift.framework;
-			remoteRef = 45FB7D9A232FE29400BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D9D232FE29400BFE52F /* CryptoSwift-TestHostApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "CryptoSwift-TestHostApp.app";
-			remoteRef = 45FB7D9C232FE29400BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D9F232FE29400BFE52F /* Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Tests.xctest;
-			remoteRef = 45FB7D9E232FE29400BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DA1232FE29400BFE52F /* TestsPerformance-Mac.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "TestsPerformance-Mac.xctest";
-			remoteRef = 45FB7DA0232FE29400BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DA3232FE29400BFE52F /* TestsPerformance-iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "TestsPerformance-iOS.xctest";
-			remoteRef = 45FB7DA2232FE29400BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DAE232FE2C300BFE52F /* SVProgressHUD.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SVProgressHUD.framework;
-			remoteRef = 45FB7DAD232FE2C300BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DB0232FE2C300BFE52F /* libSVProgressHUD.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSVProgressHUD.a;
-			remoteRef = 45FB7DAF232FE2C300BFE52F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */ = {
@@ -711,16 +556,6 @@
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";
 			targetProxy = 45FB7D8E232FE27700BFE52F /* PBXContainerItemProxy */;
-		};
-		45FB7DA5232FE29F00BFE52F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CryptoSwift;
-			targetProxy = 45FB7DA4232FE29F00BFE52F /* PBXContainerItemProxy */;
-		};
-		45FB7DC1232FE2E200BFE52F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "SVProgressHUD-Framework";
-			targetProxy = 45FB7DC0232FE2E200BFE52F /* PBXContainerItemProxy */;
 		};
 		45FB7DC3232FE2E200BFE52F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -92,7 +92,7 @@ import Foundation
     }
 
     /// Returns a `String` representation of self.
-    public override var description: String {
+    override public var description: String {
         return textDescription
     }
 }

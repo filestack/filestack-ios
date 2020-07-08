@@ -33,7 +33,7 @@ extension Client {
                        useIntelligentIngestionIfAvailable: Bool = true,
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
-                       completionHandler: @escaping (NetworkJSONResponse?) -> Void) -> Uploader {
+                       completionHandler: @escaping (JSONResponse?) -> Void) -> Uploader {
         let uploadOptions = UploadOptions(preferIntelligentIngestion: useIntelligentIngestionIfAvailable,
                                           startImmediately: true,
                                           storeOptions: storeOptions)
@@ -68,7 +68,7 @@ extension Client {
                                       useIntelligentIngestionIfAvailable: Bool = true,
                                       queue: DispatchQueue = .main,
                                       uploadProgress: ((Progress) -> Void)? = nil,
-                                      completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Cancellable & Monitorizable {
+                                      completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         let uploadOptions = UploadOptions(preferIntelligentIngestion: useIntelligentIngestionIfAvailable,
                                           startImmediately: false,
                                           storeOptions: storeOptions)
@@ -103,7 +103,7 @@ extension Client {
                                          useIntelligentIngestionIfAvailable: Bool = true,
                                          queue: DispatchQueue = .main,
                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Cancellable & Monitorizable {
+                                         completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         let uploadOptions = UploadOptions(preferIntelligentIngestion: useIntelligentIngestionIfAvailable,
                                           startImmediately: false,
                                           storeOptions: storeOptions)

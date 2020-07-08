@@ -11,7 +11,7 @@ import Foundation
 import Photos
 import SafariServices
 
-private typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Error?) -> Void
+private typealias CompletionHandler = (_ response: CloudResponse, _ safariError: Swift.Error?) -> Void
 
 /// The `Client` class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.
 @objc(FSFilestackClient) public class Client: NSObject {
@@ -102,7 +102,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                        options: UploadOptions = .defaults,
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
-                       completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
+                       completionHandler: @escaping (JSONResponse) -> Void) -> Uploader {
         return client.upload(using: uploadable,
                              options: options,
                              queue: queue,
@@ -134,7 +134,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                        options: UploadOptions = .defaults,
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
-                       completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader & DeferredAdd {
+                       completionHandler: @escaping ([JSONResponse]) -> Void) -> Uploader & DeferredAdd {
         return client.upload(using: uploadables,
                              options: options,
                              queue: queue,
@@ -159,7 +159,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                       options: UploadOptions = .defaults,
                                       queue: DispatchQueue = .main,
                                       uploadProgress: ((Progress) -> Void)? = nil,
-                                      completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Cancellable & Monitorizable {
+                                      completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         options.startImmediately = false
 
         let uploader = client.upload(options: options,
@@ -172,18 +172,14 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                                            sourceType: sourceType,
                                                            config: config)
 
-        uploadController.filePickedCompletionHandler = { _ in
-            // Remove completion handler, so this `ImagePickerUploadController` object can be properly deallocated.
-            uploadController.filePickedCompletionHandler = nil
-        }
-
         PHPhotoLibrary.requestAuthorization { status in
             if status == .authorized {
+                // Start upload...
                 DispatchQueue.main.async { uploadController.start() }
             }
         }
 
-        return uploader
+        return uploadController
     }
 
     /// Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
@@ -202,7 +198,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                          options: UploadOptions = .defaults,
                                          queue: DispatchQueue = .main,
                                          uploadProgress: ((Progress) -> Void)? = nil,
-                                         completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Cancellable & Monitorizable {
+                                         completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         options.startImmediately = false
 
         let uploader = client.upload(options: options,
@@ -283,7 +279,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                       path: String,
                       storeOptions: StorageOptions = .defaults,
                       queue: DispatchQueue = .main,
-                      completionHandler: @escaping StoreCompletionHandler) -> Cancellable {
+                      completionHandler: @escaping StoreCompletionHandler) -> Cancellable & Monitorizable {
         let request = StoreRequest(apiKey: apiKey,
                                    security: security,
                                    token: lastToken,
@@ -345,7 +341,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                 if let safariError = error {
                     completionBlock(response, safariError)
                 } else if let url = url, url == self.authCallbackURL {
-                    self.perform(request: request, queue: queue, completionBlock: completionBlock)
+                    _ = self.perform(request: request, queue: queue, completionBlock: completionBlock)
                 } else {
                     completionBlock(response, ClientError.authenticationFailed)
                 }

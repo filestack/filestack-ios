@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupFilestackClient() {
+        // Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.
+        FilestackSDK.UploadService.shared.useBackgroundSession = true
+
         // In case your Filestack account has security enabled, you will need to instantiate a `Security` object.
         // We can do this by either configuring a `Policy` and instantiating a `Security` object by passing
         // the `Policy` and an `appSecret`, or by instantiating a `Security` object directly by passing an already

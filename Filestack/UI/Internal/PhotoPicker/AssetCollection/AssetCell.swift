@@ -16,6 +16,8 @@ class AssetCell: UICollectionViewCell {
     private lazy var gradientLayer = CAGradientLayer()
 
     private var asset: PHAsset!
+    private var requestIDs: [PHImageRequestID] = []
+    private let uploadableExtractor = UploadableExtractor()
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,20 +26,36 @@ class AssetCell: UICollectionViewCell {
 
     func configure(for asset: PHAsset, isSelected: Bool) {
         self.asset = asset
-        asset.fetchImage(forSize: image.frame.size) { image in
+
+        requestIDs.append(asset.fetchImage(forSize: image.frame.size) { image, requestID in
+            self.requestIDs.removeAll { $0 == requestID }
+
             DispatchQueue.main.async {
                 self.configure(with: image)
                 self.set(selected: isSelected)
             }
-        }
+        })
+
         if asset.mediaType == .video {
-            UploadableExtractor().fetchUploadable(of: asset) { uploadable in
+            if let requestID = (uploadableExtractor.fetchUploadable(using: asset) { uploadable, requestID in
+                self.requestIDs.removeAll { $0 == requestID }
+
                 DispatchQueue.main.async {
                     self.additionalInfoLabel.text = uploadable?.additionalInfo
                     self.setupGradientLayer()
                 }
+            }) {
+                requestIDs.append(requestID)
             }
         }
+    }
+
+    deinit {
+        for requestID in requestIDs {
+            uploadableExtractor.cancelFetch(using: requestID)
+        }
+
+        requestIDs.removeAll()
     }
 
     func set(selected: Bool) {
