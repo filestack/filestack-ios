@@ -16,7 +16,7 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
     let viewController: UIViewController
 
     private let trackingProgress = TrackingProgress()
-    private var uploaderObserver: NSKeyValueObservation?
+    private var uploaderObservers: [NSKeyValueObservation] = []
 
     /// Adds `Monitorizable` Conformance
     var progress: Progress { trackingProgress }
@@ -55,8 +55,8 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
     /// Adds `Cancellable` Conformance
     @discardableResult
     func cancel() -> Bool {
-        trackingProgress.end()
         urlExtractorOperation?.cancel()
+        trackingProgress.cancel()
 
         return uploader.cancel()
     }
@@ -126,10 +126,19 @@ private extension ImagePickerUploadController {
     func upload(urls: [URL]) {
         trackingProgress.update(tracked: uploader.progress, delay: 1)
 
-        uploaderObserver = uploader.progress.observe(\.isFinished, options: [.new]) { (progress, change) in
-            self.trackingProgress.end()
-            self.uploaderObserver = nil
+        let cleanup: () -> () = {
+            self.trackingProgress.cancel()
+            self.uploaderObservers.removeAll()
+            self.photoPickerController = nil
         }
+
+        uploaderObservers.append(uploader.progress.observe(\.isCancelled) { (_, _) in
+            cleanup()
+        })
+
+        uploaderObservers.append(uploader.progress.observe(\.isFinished) { (_, _) in
+            cleanup()
+        })
 
         uploader.add(uploadables: urls)
         uploader.start()

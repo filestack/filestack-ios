@@ -17,12 +17,9 @@ class TrackingProgress: Progress {
 
     private var _tracked: Progress? {
         didSet {
-            guard let progress = _tracked else {
-                removeObservers()
-                return
-            }
-
             removeObservers()
+
+            guard let progress = _tracked else { return }
 
             kind = progress.kind
             fileOperationKind = progress.fileOperationKind
@@ -63,11 +60,14 @@ extension TrackingProgress {
         let delay: Double = tracked == nil ? 0 : delay // ignore `delay` argument if there's currently no tracked progress.
 
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            guard !self.isCancelled else { return }
             self.tracked = progress
         }
     }
 
-    func end() {
+    override func cancel() {
+        super.cancel()
+
         tracked = nil
     }
 }

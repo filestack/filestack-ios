@@ -142,41 +142,15 @@ private extension MonitorViewController {
     }
 
     func setupObservers() {
-//        progressObservers.append(progressable.progress.observe(\.isFinished, options: [.new]) { (progress, change) in
-//            DispatchQueue.main.async {
-//                self.cancelButton.isEnabled = false
-//                self.removeObservers()
-//            }
-//        })
-//
-//        progressObservers.append(progressable.progress.observe(\.isCancelled, options: [.new]) { (progress, change) in
-//            DispatchQueue.main.async {
-//                self.cancelButton.isEnabled = false
-//                self.removeObservers()
-//            }
-//        })
-//
-//        progressObservers.append(progressable.progress.observe(\.localizedDescription, options: [.new]) { (progress, change) in
-//            DispatchQueue.main.async {
-//                self.descriptionLabel.text = progress.localizedDescription
-//            }
-//        })
-//
-//        progressObservers.append(progressable.progress.observe(\.localizedDescription, options: [.new]) { (progress, change) in
-//            DispatchQueue.main.async {
-//                self.descriptionLabel.text = progress.localizedAdditionalDescription
-//            }
-//        })
-
-        progressObservers.append(progressable.progress.observe(\.totalUnitCount, options: [.new]) { (progress, change) in
+        progressObservers.append(progressable.progress.observe(\.totalUnitCount) { (_, _) in
             DispatchQueue.main.async { self.updateUI() }
         })
 
-        progressObservers.append(progressable.progress.observe(\.completedUnitCount, options: [.new]) { (progress, change) in
+        progressObservers.append(progressable.progress.observe(\.completedUnitCount) { (_, _) in
             DispatchQueue.main.async { self.updateUI() }
         })
 
-        progressObservers.append(progressable.progress.observe(\.fractionCompleted, options: [.new]) { (progress, change) in
+        progressObservers.append(progressable.progress.observe(\.fractionCompleted) { (_, _) in
             DispatchQueue.main.async { self.updateUI() }
         })
     }
@@ -196,8 +170,8 @@ private extension MonitorViewController {
             }
         }
 
-        descriptionLabel.text = progressable.progress.localizedDescription ?? ""
-        additionalDescriptionLabel.text = progressable.progress.localizedAdditionalDescription ?? ""
+        descriptionLabel.text = progressable.progress.localizedDescription
+        additionalDescriptionLabel.text = progressable.progress.localizedAdditionalDescription
     }
 
     func removeObservers() {

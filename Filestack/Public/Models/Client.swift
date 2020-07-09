@@ -210,14 +210,9 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                                               viewController: viewController,
                                                               config: config)
 
-        uploadController.filePickedCompletionHandler = { _ in
-            // Remove completion handler, so this `DocumentPickerUploadController` object can be properly deallocated.
-            uploadController.filePickedCompletionHandler = nil
-        }
-
         uploadController.start()
 
-        return uploader
+        return uploadController
     }
 
     /// Lists the content of a cloud provider at a given path. Results are paginated (see `pageToken` below.)
