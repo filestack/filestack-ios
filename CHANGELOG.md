@@ -1,12 +1,12 @@
 Change Log
 ==========
 
-Version 2.3 (TBA)
+Version 2.3 (2020-07-09)
 ----------------------------
 
 - Added support for background uploads (see "Enabling background upload support" in README.md for more information.)
 - Improved upload monitoring and cancellation.
-- Updated Cocoapod and Carthage dependency on `FilestackSDK` to `~> 2.3`.
+- Updated Cocoapod dependency on `FilestackSDK` to `2.3.1`.
 - Removed dependency on `SVProgressHUD`. 
 
 Version 2.2.2 (2020-05-04)
