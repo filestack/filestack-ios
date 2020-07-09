@@ -18,6 +18,7 @@ class AssetCollectionViewController: UICollectionViewController {
     weak var pickerController: PhotoPickerController?
 
     var elements: [PHAsset]?
+    var shouldScrollDown: Bool = true
 
     var selectedAssets: Set<PHAsset>? {
         return pickerController?.selectedAssets
@@ -33,9 +34,19 @@ class AssetCollectionViewController: UICollectionViewController {
         navigationItem.rightBarButtonItems = pickerController?.rightBarItems
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if shouldScrollDown {
+            shouldScrollDown = false
+            let lastItem = IndexPath(item: collectionView.numberOfItems(inSection: 0) - 1, section: 0)
+            collectionView.scrollToItem(at: lastItem, at: .top, animated: false)
+        }
+    }
+
     func configure(with album: Album) {
         title = album.title
-        elements = album.elements.reversed()
+        elements = album.elements
     }
 }
 
