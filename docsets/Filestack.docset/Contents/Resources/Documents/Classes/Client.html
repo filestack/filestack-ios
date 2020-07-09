@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Filestack 2.2.2 Docs
+          Filestack 2.3 Docs
         </a>
          (100% documented)
       </p>
@@ -119,6 +119,7 @@
             <h1>Client</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">@objc(FSFilestackClient)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="kt">Client</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
@@ -420,9 +421,9 @@ If none given, S3 location with default options is assumed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ19NetworkJSONResponseCctF"></a>
+                    <a name="/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ12JSONResponseCctF"></a>
                     <a name="//apple_ref/swift/Method/upload(using:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ19NetworkJSONResponseCctF">upload(using:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
+                    <a class="token" href="#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ12JSONResponseCctF">upload(using:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -451,7 +452,7 @@ uploadable, otherwise <code>text/plain</code> will be assumed.</p>
                    <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                    <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                    <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                   <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NetworkJSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
+                   <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">JSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
 
                         </div>
                       </div>
@@ -533,9 +534,9 @@ as data is uploaded to the server. <code>nil</code> by default.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK11DeferredAdd_AJ8UploaderpSayAJ10Uploadable_pG_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgySayAJ19NetworkJSONResponseCGctF"></a>
+                    <a name="/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK11DeferredAdd_AJ8UploaderpSayAJ10Uploadable_pG_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF"></a>
                     <a name="//apple_ref/swift/Method/upload(using:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK11DeferredAdd_AJ8UploaderpSayAJ10Uploadable_pG_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgySayAJ19NetworkJSONResponseCGctF">upload(using:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
+                    <a class="token" href="#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK11DeferredAdd_AJ8UploaderpSayAJ10Uploadable_pG_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF">upload(using:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -564,7 +565,7 @@ uploadable, otherwise <code>text/plain</code> will be assumed.</p>
                    <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                    <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                    <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                   <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span> <span class="o">&amp;</span> <span class="kt">DeferredAdd</span></code></pre>
+                   <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span> <span class="o">&amp;</span> <span class="kt">DeferredAdd</span></code></pre>
 
                         </div>
                       </div>
@@ -648,9 +649,9 @@ the upload, plus adding <code>Uploadables</code> at a later time.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK19NetworkJSONResponseCGctF"></a>
+                    <a name="/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK12JSONResponseCGctF"></a>
                     <a name="//apple_ref/swift/Method/uploadFromImagePicker(viewController:sourceType:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK19NetworkJSONResponseCGctF">uploadFromImagePicker(viewController:<wbr>sourceType:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
+                    <a class="token" href="#/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK12JSONResponseCGctF">uploadFromImagePicker(viewController:<wbr>sourceType:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -671,7 +672,7 @@ the upload, plus adding <code>Uploadables</code> at a later time.</p>
                                   <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                                   <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                   <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
+                                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
 
                         </div>
                       </div>
@@ -765,9 +766,9 @@ as data is uploaded to the server. <code>nil</code> by default.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ19NetworkJSONResponseCGctF"></a>
+                    <a name="/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF"></a>
                     <a name="//apple_ref/swift/Method/uploadFromDocumentPicker(viewController:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ19NetworkJSONResponseCGctF">uploadFromDocumentPicker(viewController:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
+                    <a class="token" href="#/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF">uploadFromDocumentPicker(viewController:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -788,7 +789,7 @@ other third-party cloud services.</p>
                                      <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                                      <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                      <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                     <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
+                                     <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
 
                         </div>
                       </div>
@@ -999,7 +1000,7 @@ or error response.</p>
                   <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
                   <span class="nv">storeOptions</span><span class="p">:</span> <span class="kt">StorageOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                   <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
-                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">StoreCompletionHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span></code></pre>
+                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">StoreCompletionHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
 
                         </div>
                       </div>
@@ -1180,7 +1181,7 @@ either contain an error (on failure) or nothing at all (on success.)</p>
                    <span class="nv">useIntelligentIngestionIfAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
                    <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                    <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                   <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NetworkJSONResponse</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
+                   <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">JSONResponse</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
 
                         </div>
                       </div>
@@ -1302,7 +1303,7 @@ as data is uploaded to the server. <code>nil</code> by default.</p>
                                   <span class="nv">useIntelligentIngestionIfAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
                                   <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                   <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
+                                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
 
                         </div>
                       </div>
@@ -1436,7 +1437,7 @@ other third-party cloud services.</p>
                                      <span class="nv">useIntelligentIngestionIfAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
                                      <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                      <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                     <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
+                                     <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
 
                         </div>
                       </div>
@@ -1567,7 +1568,7 @@ uploadable, otherwise <code>text/plain</code> will be assumed.</p>
 </div><div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This function is made available especially for Objective-C SDK users. If you are using Swift,
-you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ19NetworkJSONResponseCctF">upload(using:options:queue:uploadProgress:completionHandler:)</a></code> instead.</p>
+you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ12JSONResponseCctF">upload(using:options:queue:uploadProgress:completionHandler:)</a></code> instead.</p>
 
 </div>
 
@@ -1582,7 +1583,7 @@ you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6Client
                       <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                       <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                       <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                      <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NetworkJSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
+                      <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">JSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
 
                         </div>
                       </div>
@@ -1686,7 +1687,7 @@ uploadable, otherwise <code>text/plain</code> will be assumed.</p>
 </div><div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This function is made available especially for Objective-C SDK users. If you are using Swift,
-you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ19NetworkJSONResponseCctF">upload(using:options:queue:uploadProgress:completionHandler:)</a></code> instead.</p>
+you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ12JSONResponseCctF">upload(using:options:queue:uploadProgress:completionHandler:)</a></code> instead.</p>
 
 </div>
 
@@ -1701,7 +1702,7 @@ you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6Client
                                <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                                <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                               <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
+                               <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
 
                         </div>
                       </div>
@@ -1805,7 +1806,7 @@ uploadable, otherwise <code>text/plain</code> will be assumed.</p>
 </div><div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This function is made available especially for Objective-C SDK users. If you are using Swift,
-you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ19NetworkJSONResponseCctF">upload(using:options:queue:uploadProgress:completionHandler:)</a></code> instead.</p>
+you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6ClientC6upload5using7options5queue0C8Progress17completionHandler0A3SDK8Uploader_pAJ10Uploadable_p_AJ13UploadOptionsCSo012OS_dispatch_F0CySo10NSProgressCcSgyAJ12JSONResponseCctF">upload(using:options:queue:uploadProgress:completionHandler:)</a></code> instead.</p>
 
 </div>
 
@@ -1820,7 +1821,7 @@ you might want to use <code><a href="../Classes/Client.html#/s:9Filestack6Client
                        <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                        <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                        <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                       <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NetworkJSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
+                       <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">JSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
 
                         </div>
                       </div>
@@ -1939,7 +1940,7 @@ If you are using Swift, you might want to use <code>add(uploadables:)</code> ins
                                <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
                                <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                                <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                               <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">NetworkJSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
+                               <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Uploader</span></code></pre>
 
                         </div>
                       </div>
@@ -2026,8 +2027,8 @@ of the upload process as data is uploaded to the server. <code>nil</code> by def
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2020-05-04)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2020-07-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

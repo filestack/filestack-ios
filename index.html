@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          Filestack 2.2.2 Docs
+          Filestack 2.3 Docs
         </a>
          (100% documented)
       </p>
@@ -147,7 +147,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.2.2'
+    pod 'Filestack', '~&gt; 2.3'
 end
 </code></pre>
 
@@ -165,9 +165,9 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.2.2</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.3</code></p>
 
-<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, <code>CryptoSwift.framework</code>, <code>SVProgressHUD.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
+<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
 <h4 id='embedded-framework' class='heading'>Embedded Framework</h4>
 
@@ -179,9 +179,7 @@ $ brew install carthage
 <pre class="highlight shell"><code><span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
 <span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
 <span class="nv">$ </span>git submodule add https://github.com/Alamofire/Alamofire.git
-<span class="nv">$ </span>git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
 <span class="nv">$ </span>git submodule add https://github.com/ZipArchive/ZipArchive.git
-<span class="nv">$ </span>git submodule add https://github.com/SVProgressHUD/SVProgressHUD.git
 </code></pre>
 
 <p>Open the new <code>filestack-ios</code> folder, and drag the <code>Filestack.xcodeproj</code> into the Project Navigator of your application&rsquo;s Xcode project.</p>
@@ -195,7 +193,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <p>Click on the + button under the &ldquo;Embedded Binaries&rdquo; section and choose the <code>Filestack.framework</code> for iOS.</p>
 
-<p>Repeat the same process for adding <code>Alamofire</code>, <code>CryptoSwift</code>, <code>FilestackSDK</code>, <code>SVProgressHUD</code>, and <code>ZipArchive</code> dependent frameworks.</p>
+<p>Repeat the same process for adding <code>Alamofire</code>, <code>FilestackSDK</code>, and <code>ZipArchive</code> dependent frameworks.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='importing-required-frameworks' class='heading'>Importing required frameworks</h3>
 
@@ -381,7 +379,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="p">}</span>
 
     <span class="c1">/// Called when the picker finishes uploading a file originating from the local device into the destination storage location.</span>
-    <span class="kd">func</span> <span class="nf">pickerUploadedFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">NetworkJSONResponse</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">pickerUploadedFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">JSONResponse</span><span class="p">?)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span>
             <span class="c1">// Our local file was stored into the destination location.</span>
             <span class="nf">print</span><span class="p">(</span><span class="s">"Uploaded file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
@@ -399,6 +397,12 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 </code></pre>
 <h4 id='6-presenting-the-picker-on-the-screen' class='heading'>6. Presenting the picker on the screen</h4>
 <pre class="highlight swift"><code><span class="n">yourViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre>
+<h4 id='7-enabling-background-upload-support' class='heading'>7. Enabling background upload support</h4>
+
+<p>Starting in FilestackSDK <code>2.3</code>, background upload support is available. In order to use it in <code>Filestack</code> for file uploads, simply add the following to your code:</p>
+<pre class="highlight swift"><code><span class="c1">// Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.</span>
+<span class="kt">FilestackSDK</span><span class="o">.</span><span class="kt">UploadService</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">useBackgroundSession</span> <span class="o">=</span> <span class="kc">true</span>
 </code></pre>
 <h2 id='demo' class='heading'>Demo</h2>
 
@@ -423,8 +427,8 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2020-05-04)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2020-07-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
