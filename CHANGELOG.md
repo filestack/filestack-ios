@@ -4,6 +4,11 @@ Change Log
 Version 2.3.1 (2020-07-30)
 ----------------------------
 
+- Updated Cocoapod and Carthage dependency on `FilestackSDK` to `~> 2.3`.
+
+Version 2.3.1 (2020-07-30)
+----------------------------
+
 - Bugfix: Ensure `cloudSourceAllowedUTIs` is set when using `Config.builder`.
 - Added `with(cloudThumbnailCachePolicy: URLRequest.CachePolicy)` support to `Config.builder`.
 
@@ -13,7 +18,7 @@ Version 2.3 (2020-07-09)
 - Added support for background uploads (see "Enabling background upload support" in README.md for more information.)
 - Improved upload monitoring and cancellation.
 - Updated Cocoapod dependency on `FilestackSDK` to `2.3.1`.
-- Removed dependency on `SVProgressHUD`. 
+- Removed dependency on `SVProgressHUD`.
 
 Version 2.2.2 (2020-05-04)
 ----------------------------
@@ -35,7 +40,7 @@ Version 2.2 *(2019-09-18)*
 - `Client` upload functions now return types based on protocols, such as `Uploadable`, `DeferredAdd`, `Cancellable`, `Monitorizable` or combinations of these.
 - Likewise, the functions `folderList(provider:path:pageToken:queue:completionHandler:)` and `store(provider:path:storeOptions:queue:completionHandler:)` now return a `Cancellable`.
 - Improved collection view's layout reflowing in the picker to better adapt to larger presentation styles.
-- Improved upload monitor so it now indicates the number of files being uploaded and how many of them are pending upload at any given time. 
+- Improved upload monitor so it now indicates the number of files being uploaded and how many of them are pending upload at any given time.
 - Added redo action to image editor.
 - Bugfix: Explicitly ask for authorization before accessing Photos library.
 - Bugfix: Fallback to `JPEG` export if `HEIC` is not available on the device.
