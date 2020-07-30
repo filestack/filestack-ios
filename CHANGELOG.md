@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.3.1 (2020-07-30)
+Version 2.3.2 (2020-07-30)
 ----------------------------
 
 - Updated Cocoapod and Carthage dependency on `FilestackSDK` to `~> 2.3`.
