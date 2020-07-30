@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          Filestack 2.3.1 Docs
+          Filestack 2.3.2 Docs
         </a>
          (99% documented)
       </p>
@@ -147,7 +147,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.3.1'
+    pod 'Filestack', '~&gt; 2.3.2'
 end
 </code></pre>
 
@@ -165,7 +165,7 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.3.1</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.3.2</code></p>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, and <code>ZipArchive.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -392,7 +392,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="c1">/// Called when the picker reports progress during a file or set of files being uploaded.</span>
     <span class="kd">func</span> <span class="nf">pickerReportedUploadProgress</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="p">{</span>
         <span class="nf">print</span><span class="p">(</span><span class="s">"Picker </span><span class="se">\(</span><span class="n">picker</span><span class="se">)</span><span class="s"> reported upload progress: </span><span class="se">\(</span><span class="n">progress</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>    
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 <h4 id='6-presenting-the-picker-on-the-screen' class='heading'>6. Presenting the picker on the screen</h4>
@@ -406,7 +406,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 </code></pre>
 <h2 id='demo' class='heading'>Demo</h2>
 
-<p>Check the demo app included in this repository showcasing all the topics discussed above. </p>
+<p>Check the demo app included in this repository showcasing all the topics discussed above.</p>
 <h2 id='versioning' class='heading'>Versioning</h2>
 
 <p>Filestack iOS SDK follows the <a href="http://semver.org/">Semantic Versioning</a>.</p>
