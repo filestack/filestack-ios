@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 2.3.1 (2020-07-30)
+----------------------------
+
+- Bugfix: Ensure `cloudSourceAllowedUTIs` is set when using `Config.builder`.
+- Added `with(cloudThumbnailCachePolicy: URLRequest.CachePolicy)` support to `Config.builder`.
+
 Version 2.3 (2020-07-09)
 ----------------------------
 
