@@ -215,6 +215,10 @@ extension Config {
                 config.documentPickerAllowedUTIs = documentPickerAllowedUTIs
             }
 
+            if let cloudSourceAllowedUTIs = cloudSourceAllowedUTIs {
+                config.cloudSourceAllowedUTIs = cloudSourceAllowedUTIs
+            }
+
             if let imageURLExportPreset = imageURLExportPreset {
                 config.imageURLExportPreset = imageURLExportPreset
             }
