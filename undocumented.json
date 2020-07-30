@@ -1,6 +1,12 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/ruben/src/filestack/filestack-ios/Filestack/Public/Models/Config.swift",
+      "line": 115,
+      "symbol": "Config.Builder.with(cloudThumbnailCachePolicy:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/ruben/src/filestack/filestack-ios"
 }
