@@ -37,7 +37,8 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     private var toggleViewTypeButton: UIBarButtonItem?
     private var currentRequest: Cancellable?
     private var thumbnailRequests: [DataRequest] = [DataRequest]()
-    private weak var uploadMonitorViewController: UploadMonitorViewController?
+    private weak var uploadMonitorViewController: MonitorViewController?
+    private var uploaderObserver: NSKeyValueObservation?
 
     // MARK: - View Overrides
 
@@ -122,68 +123,43 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     // MARK: - CloudSourceDataSource Protocol Functions
 
     func store(item: CloudItem) {
-        // Instantiate upload monitor  controller
-        let scene = UploadMonitorScene()
-
-        guard let uploadMonitorViewController = storyboard?.instantiateViewController(for: scene) else { return }
-
-        uploadMonitorViewController.modalPresentationStyle = client.config.modalPresentationStyle
-        self.uploadMonitorViewController = uploadMonitorViewController
-
-        (navigationController ?? self).present(uploadMonitorViewController, animated: true) {
-            // Since we can not measure progress here, we will have to fake it.
-            // Set progress to 50% after 125ms
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.125) {
-                let progress = Progress(totalUnitCount: 1)
-                progress.completedUnitCount = 0
-
-                let childProgress = Progress(totalUnitCount: 100)
-                childProgress.completedUnitCount = 50
-
-                progress.addChild(childProgress, withPendingUnitCount: 1)
-
-                uploadMonitorViewController.update(progress: progress)
-            }
-        }
+        guard let picker = navigationController as? PickerNavigationController else { return }
 
         let completionHandler: ((StoreResponse) -> Void) = { response in
-            let callPickerStoredFileOnDelegate: () -> Void = {
-                if let picker = self.navigationController as? PickerNavigationController {
+            self.uploaderObserver = nil
+
+            self.uploadMonitorViewController?.dismiss(animated: true) {
+                self.uploadMonitorViewController = nil
+
+                if let error = response.error {
+                    let alert = UIAlertController(title: "Upload Failed",
+                                                  message: error.localizedDescription,
+                                                  preferredStyle: .alert)
+
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                        picker.pickerDelegate?.pickerStoredFile(picker: picker, response: response)
+                    }))
+
+                    picker.present(alert, animated: true)
+                } else {
                     picker.pickerDelegate?.pickerStoredFile(picker: picker, response: response)
                 }
             }
-
-            if let error = response.error {
-                uploadMonitorViewController.dismiss(animated: true) {
-                    self.uploadMonitorViewController = nil
-
-                    let alert = UIAlertController(title: "Upload Failed", message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                        callPickerStoredFileOnDelegate()
-                    }))
-
-                    self.present(alert, animated: true)
-                }
-            } else {
-                // Set progress to 100%
-                let progress = Progress(totalUnitCount: 1)
-                progress.completedUnitCount = 1
-                uploadMonitorViewController.update(progress: progress)
-
-                // After 125ms, dismiss monitor view controller, and remove strong reference to it.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.125) {
-                    uploadMonitorViewController.dismiss(animated: true) {
-                        self.uploadMonitorViewController = nil
-                        callPickerStoredFileOnDelegate()
-                    }
-                }
-            }
         }
 
-        uploadMonitorViewController.cancellable = client.store(provider: source.provider,
-                                                               path: item.path,
-                                                               storeOptions: storeOptions,
-                                                               completionHandler: completionHandler)
+        let request = client.store(provider: source.provider,
+                                   path: item.path,
+                                   storeOptions: storeOptions,
+                                   completionHandler: completionHandler)
+
+        if uploadMonitorViewController == nil {
+            let monitorViewController = MonitorViewController(progressable: request)
+            monitorViewController.modalPresentationStyle = .currentContext
+
+            self.uploadMonitorViewController = monitorViewController
+
+            picker.present(monitorViewController, animated: true, completion: nil)
+        }
     }
 
     func loadNextPage(completionHandler: @escaping (() -> Void)) {

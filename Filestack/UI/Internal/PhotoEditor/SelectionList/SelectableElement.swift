@@ -46,6 +46,8 @@ class SelectableElement {
     var imageExportPreset: ImageURLExportPreset = .current
     var videoExportPreset: String = AVAssetExportPresetHEVCHighestQuality
 
+    private var requestIDs: [PHImageRequestID] = []
+
     // MARK: - Lifecycle Functions
 
     init(asset: PHAsset) {
@@ -59,6 +61,14 @@ class SelectableElement {
         }
 
         setup()
+    }
+
+    deinit {
+        for requestID in requestIDs {
+            PHImageManager.default().cancelImageRequest(requestID)
+        }
+
+        requestIDs.removeAll()
     }
 
     // MARK: - Public Functions
@@ -104,9 +114,10 @@ class SelectableElement {
         }
 
         // Get original thumbnail
-        asset.fetchImage(forSize: thumbnailSize) { image in
+        requestIDs.append(asset.fetchImage(forSize: thumbnailSize) { image, requestID in
+            self.requestIDs.removeAll { $0 == requestID }
             self.thumbnail = image
-        }
+        })
     }
 }
 

@@ -24,10 +24,6 @@ class ViewController: UIViewController {
         super.present(viewControllerToPresent, animated: true, completion: completion)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     @IBAction func presentPicker(_: AnyObject) {
         guard let client = client else { return }
 
@@ -49,27 +45,21 @@ class ViewController: UIViewController {
 extension ViewController: PickerNavigationControllerDelegate {
     /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
-        picker.dismiss(animated: true) {
-            if let handle = response.contents?["handle"] as? String {
+        if let handle = response.contents?["handle"] as? String {
+            picker.dismiss(animated: true) {
                 self.presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
-            } else if let error = response.error {
-                self.presentAlert(titled: "Error Uploading File", message: error.localizedDescription)
             }
         }
     }
 
     /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
-    func pickerUploadedFiles(picker: PickerNavigationController, responses: [NetworkJSONResponse]) {
-        picker.dismiss(animated: true) {
-            let handles = responses.compactMap { $0.json?["handle"] as? String }
-            let errors = responses.compactMap { $0.error }
+    func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse]) {
+        let handles = responses.compactMap { $0.json?["handle"] as? String }
 
-            if errors.isEmpty {
+        if !handles.isEmpty {
+            picker.dismiss(animated: true) {
                 let joinedHandles = handles.joined(separator: ", ")
                 self.presentAlert(titled: "Success", message: "Finished uploading files with handles: \(joinedHandles)")
-            } else {
-                let joinedErrors = errors.map { $0.localizedDescription }.joined(separator: ", ")
-                self.presentAlert(titled: "Error Uploading File", message: joinedErrors)
             }
         }
     }

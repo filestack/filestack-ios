@@ -10,7 +10,7 @@ import Alamofire
 import FilestackSDK
 import Foundation
 
-final class StoreRequest: CloudRequest, Cancellable {
+final class StoreRequest: CloudRequest, Cancellable, Monitorizable {
     // MARK: - Properties
 
     let apiKey: String
@@ -21,6 +21,15 @@ final class StoreRequest: CloudRequest, Cancellable {
 
     private(set) var token: String?
     private weak var dataRequest: DataRequest?
+
+    let progress: Progress = {
+        let progress = Progress(totalUnitCount: 0)
+
+        progress.localizedDescription = "Storing file in storage location…"
+        progress.localizedAdditionalDescription = ""
+
+        return progress
+    }()
 
     // MARK: - Lifecyle Functions
 
@@ -49,7 +58,7 @@ final class StoreRequest: CloudRequest, Cancellable {
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) {
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) -> DataRequest {
         let request = cloudService.storeRequest(provider: provider,
                                                 path: path,
                                                 apiKey: apiKey,
@@ -79,5 +88,7 @@ final class StoreRequest: CloudRequest, Cancellable {
                 completionBlock(nil, response)
             }
         }
+
+        return request
     }
 }

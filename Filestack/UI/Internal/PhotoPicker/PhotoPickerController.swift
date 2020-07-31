@@ -8,61 +8,42 @@
 
 import Photos
 
-protocol PhotoPickerControllerDelegate: AnyObject {
-    func photoPickerControllerDidCancel()
-    func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset])
+protocol PhotoPickerControllerDelegate: class {
+    func photoPickerControllerDidCancel(controller: UINavigationController)
+    func photoPicker(controller: UINavigationController, didSelectAssets assets: [PHAsset])
 }
 
 class PhotoPickerController {
-    let albumRepository = PhotoAlbumRepository()
-    var selectedAssets = Set<PHAsset>()
+    // MARK: - Internal Properties
 
+    let albumRepository = PhotoAlbumRepository()
     let maximumSelectionAllowed: UInt
-    var isMaximumLimitSet: Bool {
-        return maximumSelectionAllowed != Config.kMaximumSelectionNoLimit
-    }
+    var isMaximumLimitSet: Bool { maximumSelectionAllowed != Config.kMaximumSelectionNoLimit }
+    var selectedAssets = Set<PHAsset>()
 
     weak var delegate: PhotoPickerControllerDelegate?
 
-    init(maximumSelection: UInt) {
-        maximumSelectionAllowed = maximumSelection
-        albumRepository.getAlbums { _ in
-            DispatchQueue.main.async {
-                self.albumList.tableView.reloadData()
-            }
-        }
-    }
-
     var assetCollection: AssetCollectionViewController {
         let vc = viewController(with: "AssetCollectionViewController")
+
         guard let assetCollection = vc as? AssetCollectionViewController else {
             fatalError("AssetCollectionViewController type is corrupted")
         }
+
         assetCollection.pickerController = self
+
         return assetCollection
     }
 
-    lazy var albumList: AlbumListViewController = {
-        let vc = viewController(with: "AlbumListViewController")
-        guard let albumList = vc as? AlbumListViewController else {
-            fatalError("AlbumListViewController type is corrupted")
-        }
-        albumList.pickerController = self
-        return albumList
-    }()
-
-    lazy var navigation: UINavigationController = {
-        UINavigationController(rootViewController: albumList)
-    }()
+    lazy var navigation = UINavigationController(rootViewController: albumList)
 
     var cancelBarButton: UIBarButtonItem {
         return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissWithoutSelection))
     }
 
     var rightBarItems: [UIBarButtonItem] {
-        if selectedAssets.isEmpty {
-            return []
-        }
+        guard !selectedAssets.isEmpty else { return [] }
+
         return [selectionCountBarButton, doneBarButton]
     }
 
@@ -73,30 +54,66 @@ class PhotoPickerController {
     var selectionCountBarButton: UIBarButtonItem {
         let maximum = isMaximumLimitSet ? "/\(maximumSelectionAllowed)" : ""
         let title = "(\(selectedAssets.count)\(maximum))"
+
         return UIBarButtonItem(title: title, style: .done, target: self, action: #selector(dismissWithSelection))
     }
 
-    @objc func dismissWithSelection() {
-        self.delegate?.photoPicker(self.navigation, didSelectAssets: Array(self.selectedAssets))
-    }
+    // MARK: - Private Properties
 
-    @objc func dismissWithoutSelection() {
-        navigation.dismiss(animated: true) {
-            self.delegate?.photoPickerControllerDidCancel()
+    private lazy var albumList: AlbumListViewController = {
+        let vc = viewController(with: "AlbumListViewController")
+
+        guard let albumList = vc as? AlbumListViewController else {
+            fatalError("AlbumListViewController type is corrupted")
+        }
+
+        albumList.pickerController = self
+
+        return albumList
+    }()
+
+
+    // MARK: - Lifecycle
+
+    init(maximumSelection: UInt) {
+        maximumSelectionAllowed = maximumSelection
+
+        albumRepository.getAlbums { _ in
+            DispatchQueue.main.async {
+                self.albumList.tableView.reloadData()
+            }
         }
     }
 }
 
+// MARK: - Private Functions
+
 private extension PhotoPickerController {
     func viewController(with name: String) -> UIViewController {
         let storyboard = UIStoryboard(name: "PhotoPicker", bundle: Bundle(for: type(of: self)))
+
         return storyboard.instantiateViewController(withIdentifier: name)
     }
 }
 
+// MARK: - Navigation Bar Actions
+
+private extension PhotoPickerController {
+    @objc func dismissWithSelection() {
+        delegate?.photoPicker(controller: navigation, didSelectAssets: Array(selectedAssets))
+    }
+
+    @objc func dismissWithoutSelection() {
+        delegate?.photoPickerControllerDidCancel(controller: navigation)
+    }
+}
+
+// MARK: - AssetSelectionDelegate Conformance
+
 extension PhotoPickerController: AssetSelectionDelegate {
     func add(asset: PHAsset) {
         selectedAssets.insert(asset)
+
         if maximumSelectionAllowed == 1 {
             dismissWithSelection()
         } else {
@@ -110,6 +127,8 @@ extension PhotoPickerController: AssetSelectionDelegate {
     }
 
     func updateNavBar() {
-        navigation.viewControllers.forEach { $0.navigationItem.rightBarButtonItems = self.rightBarItems }
+        for vc in navigation.viewControllers {
+            vc.navigationItem.rightBarButtonItems = rightBarItems
+        }
     }
 }

@@ -10,11 +10,16 @@ import AVFoundation.AVAssetExportSession
 import FilestackSDK
 import Foundation
 import Photos
-import SVProgressHUD
 
-class ImagePickerUploadController: NSObject {
-    let deferredUploader: Uploader & DeferredAdd
+class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
+    let uploader: Uploader & DeferredAdd
     let viewController: UIViewController
+
+    private let trackingProgress = TrackingProgress()
+    private var uploaderObservers: [NSKeyValueObservation] = []
+
+    /// Adds `Monitorizable` Conformance
+    var progress: Progress { trackingProgress }
 
     let sourceType: UIImagePickerController.SourceType
     let config: Config
@@ -26,16 +31,14 @@ class ImagePickerUploadController: NSObject {
     }()
 
     private lazy var uploadableExtractor = UploadableExtractor()
-
     private var photoPickerController: PhotoPickerController?
-
-    var filePickedCompletionHandler: ((_ success: Bool) -> Void)?
+    private weak var urlExtractorOperation: AssetURLExtractorOperation?
 
     init(uploader: Uploader & DeferredAdd,
          viewController: UIViewController,
          sourceType: UIImagePickerController.SourceType,
          config: Config) {
-        self.deferredUploader = uploader
+        self.uploader = uploader
         self.viewController = viewController
         self.sourceType = sourceType
         self.config = config
@@ -48,23 +51,34 @@ class ImagePickerUploadController: NSObject {
             viewController.present(nativePicker, animated: true, completion: nil)
         }
     }
+
+    /// Adds `Cancellable` Conformance
+    @discardableResult
+    func cancel() -> Bool {
+        urlExtractorOperation?.cancel()
+        trackingProgress.cancel()
+
+        return uploader.cancel()
+    }
 }
 
-/// :nodoc:
-extension ImagePickerUploadController {
-    private var sourceTypeSupportsMultipleSelection: Bool {
+// MARK: - Private Computed Properties
+
+private extension ImagePickerUploadController {
+    var sourceTypeSupportsMultipleSelection: Bool {
         return sourceType == .camera ? false : true
     }
 
-    private var shouldUseCustomPicker: Bool {
+    var shouldUseCustomPicker: Bool {
         let multipleSelectionAllowed = config.maximumSelectionAllowed != 1
         let editingEnabled = config.showEditorBeforeUpload
 
         return sourceTypeSupportsMultipleSelection && (multipleSelectionAllowed || editingEnabled)
     }
 
-    private var nativePicker: UINavigationController {
+    var nativePicker: UIImagePickerController {
         let picker = UIImagePickerController()
+
         picker.delegate = self
         picker.modalPresentationStyle = config.modalPresentationStyle
         picker.sourceType = sourceType
@@ -76,149 +90,145 @@ extension ImagePickerUploadController {
         return picker
     }
 
-    private var customPicker: UINavigationController {
+    var customPicker: UINavigationController {
         let picker = PhotoPickerController(maximumSelection: config.maximumSelectionAllowed)
+        picker.delegate = self
 
         // Keep a strong reference to the picker, so it does not go away while we still need it.
         photoPickerController = picker
 
-        picker.delegate = self
         let navigation = picker.navigation
         navigation.modalPresentationStyle = config.modalPresentationStyle
 
         return navigation
     }
+}
 
-    private func editor(with image: UIImage) -> UIViewController {
+// MARK: - Private Functions
+
+private extension ImagePickerUploadController {
+    func extractAndUpload(assets: [PHAsset]) {
+        let operation = urlExtractor.fetchURLs(of: assets, config: config) { (result) in
+            self.urlExtractorOperation = nil
+
+            switch result {
+            case let .success(urls):
+                self.upload(urls: urls)
+            case .failure(_):
+                self.cancel()
+            }
+        }
+
+        urlExtractorOperation = operation
+        trackingProgress.update(tracked: operation.progress)
+    }
+
+    func upload(urls: [URL]) {
+        trackingProgress.update(tracked: uploader.progress, delay: 1)
+
+        let cleanup: () -> () = {
+            self.trackingProgress.cancel()
+            self.uploaderObservers.removeAll()
+            self.photoPickerController = nil
+        }
+
+        uploaderObservers.append(uploader.progress.observe(\.isCancelled) { (_, _) in
+            cleanup()
+        })
+
+        uploaderObservers.append(uploader.progress.observe(\.isFinished) { (_, _) in
+            cleanup()
+        })
+
+        uploader.add(uploadables: urls)
+        uploader.start()
+    }
+
+    func editor(using image: UIImage) -> UIViewController {
         return EditorViewController(image: image, completion: { image in
             guard let image = image, let url = self.urlExtractor.fetchURL(image: image) else {
-                self.cancelUpload()
+                self.cancel()
                 return
             }
 
-            self.upload(url: url)
+            self.upload(urls: [url])
         })
     }
-}
 
-extension ImagePickerUploadController: PhotoPickerControllerDelegate {
-    func photoPickerControllerDidCancel() {
-        cancelUpload()
-    }
+    func showEditor(with asset: PHAsset, on navigationController: UINavigationController) {
+        // Fetch uploadable completion
+        let completion: (Uploadable?, PHImageRequestID?) -> Void = { uploadable, requestID in
+            guard let image = uploadable as? UIImage else {
+                self.extractAndUpload(assets: [asset])
+                return
+            }
 
-    func photoPicker(_ controller: UINavigationController, didSelectAssets assets: [PHAsset]) {
-        if config.showEditorBeforeUpload {
-            showEditor(with: assets, on: controller)
-        } else {
-            upload(assets: assets)
+            self.viewController.present(self.editor(using: image), animated: true)
+        }
+
+        guard uploadableExtractor.fetchUploadable(using: asset, completion: completion) != nil else {
+            extractAndUpload(assets: [asset])
+            return
         }
     }
 }
 
-extension ImagePickerUploadController: UploadListDelegate {
-    func resignFromUpload() {
-        cancelUpload()
+// MARK: - PhotoPickerControllerDelegate Conformance
+
+extension ImagePickerUploadController: PhotoPickerControllerDelegate {
+    func photoPickerControllerDidCancel(controller: UINavigationController) {
+        controller.dismiss(animated: true) {
+            self.cancel()
+        }
     }
 
-    func upload(_ elements: [SelectableElement]) {
-        let urlList = elements.compactMap { $0.localURL }
-
-        deferredUploader.add(uploadables: urlList)
-        deferredUploader.start()
-        filePickedCompletionHandler?(true)
+    func photoPicker(controller: UINavigationController, didSelectAssets assets: [PHAsset]) {
+        controller.dismiss(animated: true) {
+            if self.config.showEditorBeforeUpload, assets.count == 1, let asset = assets.first {
+                self.showEditor(with: asset, on: controller)
+            } else {
+                self.extractAndUpload(assets: assets)
+            }
+        }
     }
 }
+
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate Conformance
 
 extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) {
-            self.cancelUpload()
+            self.cancel()
         }
     }
 
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true) { [unowned self] in
-            self.upload(with: info)
-        }
-    }
-
-    // MARK: - Private Functions
-
-    private func upload(with info: [UIImagePickerController.InfoKey: Any]) {
-        if let imageURL = info[.imageURL] as? URL {
-            upload(url: imageURL)
-        } else if let mediaURL = info[.mediaURL] as? URL {
-            upload(url: mediaURL)
-        } else if let image = info[.originalImage] as? UIImage, let url = self.urlExtractor.fetchURL(image: image) {
-            upload(url: url)
-        } else {
-            cancelUpload()
+        picker.dismiss(animated: true) {
+            if let imageURL = info[.imageURL] as? URL {
+                self.upload(urls: [imageURL])
+            } else if let mediaURL = info[.mediaURL] as? URL {
+                self.upload(urls: [mediaURL])
+            } else if let image = info[.originalImage] as? UIImage, let imageURL = self.urlExtractor.fetchURL(image: image) {
+                self.upload(urls: [imageURL])
+            } else {
+                self.cancel()
+            }
         }
     }
 }
 
-extension ImagePickerUploadController {
-    private func upload(assets: [PHAsset]) {
-        SVProgressHUD.show(withStatus: "Preparing")
+// MARK: - UploadListDelegate Conformance
 
-        urlExtractor.fetchURLs(assets, completion: { [weak self] urlList in
-            guard let self = self else { return }
-
-            SVProgressHUD.dismiss()
-
-            self.viewController.dismiss(animated: true) { [weak self] in
-                guard let self = self else { return }
-
-                self.deferredUploader.add(uploadables: urlList)
-                self.deferredUploader.start()
-                self.filePickedCompletionHandler?(true)
-            }
-        })
+extension ImagePickerUploadController: UploadListDelegate {
+    func resignFromUpload() {
+        cancel()
     }
 
-    private func showEditor(with assets: [PHAsset], on navigationController: UINavigationController) {
-        if assets.count == 1 {
-            handleSingleSelection(of: assets[0], on: navigationController)
-        } else {
-            showSelectionList(with: assets, on: navigationController)
-        }
-    }
+    func upload(_ elements: [SelectableElement]) {
+        let urls = elements.compactMap(\.localURL)
 
-    private func showSelectionList(with assets: [PHAsset], on navigationController: UINavigationController) {
-        let editor = SelectionListViewController(assets: assets, config: config, delegate: self)
-        navigationController.pushViewController(editor, animated: true)
-    }
-
-    private func handleSingleSelection(of asset: PHAsset, on navigationController: UINavigationController) {
-        if asset.mediaType == .image {
-            showEditor(with: asset, on: navigationController)
-        } else {
-            upload(assets: [asset])
-        }
-    }
-
-    private func showEditor(with singleImageAsset: PHAsset, on navigationController: UINavigationController) {
-        UploadableExtractor().fetchUploadable(of: singleImageAsset) { uploadable in
-            guard let image = uploadable as? UIImage else {
-                self.upload(assets: [singleImageAsset])
-                return
-            }
-
-            navigationController.dismiss(animated: false) {
-                self.viewController.present(self.editor(with: image), animated: false)
-            }
-        }
-    }
-
-    private func upload(url: URL) {
-        deferredUploader.add(uploadables: [url])
-        deferredUploader.start()
-        filePickedCompletionHandler?(true)
-    }
-
-    private func cancelUpload() {
-        deferredUploader.cancel()
-        filePickedCompletionHandler?(false)
+        uploader.add(uploadables: urls)
+        uploader.start()
     }
 }

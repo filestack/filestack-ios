@@ -92,6 +92,7 @@ extension Config {
     @objc(FSConfigBuilder) public class Builder: NSObject {
         private var showEditorBeforeUpload: Bool?
         private var callbackURLScheme: String?
+        private var cloudThumbnailCachePolicy: URLRequest.CachePolicy?
         private var maximumSelectionAllowed: UInt?
         private var modalPresentationStyle: UIModalPresentationStyle?
         private var availableCloudSources: [CloudSource]?
@@ -108,6 +109,11 @@ extension Config {
         /// :nodoc:
         @objc public func with(callbackURLScheme: String) -> Self {
             self.callbackURLScheme = callbackURLScheme
+            return self
+        }
+
+        @objc public func with(cloudThumbnailCachePolicy: URLRequest.CachePolicy) -> Self {
+            self.cloudThumbnailCachePolicy = cloudThumbnailCachePolicy
             return self
         }
 
@@ -195,6 +201,10 @@ extension Config {
                 config.callbackURLScheme = callbackURLScheme
             }
 
+            if let cloudThumbnailCachePolicy = cloudThumbnailCachePolicy {
+                config.cloudThumbnailCachePolicy = cloudThumbnailCachePolicy
+            }
+
             if let maximumSelectionAllowed = maximumSelectionAllowed {
                 config.maximumSelectionAllowed = maximumSelectionAllowed
             }
@@ -213,6 +223,10 @@ extension Config {
 
             if let documentPickerAllowedUTIs = documentPickerAllowedUTIs {
                 config.documentPickerAllowedUTIs = documentPickerAllowedUTIs
+            }
+
+            if let cloudSourceAllowedUTIs = cloudSourceAllowedUTIs {
+                config.cloudSourceAllowedUTIs = cloudSourceAllowedUTIs
             }
 
             if let imageURLExportPreset = imageURLExportPreset {

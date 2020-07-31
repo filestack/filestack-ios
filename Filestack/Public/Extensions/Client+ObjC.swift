@@ -38,7 +38,7 @@ extension Client {
                           options: UploadOptions = .defaults,
                           queue: DispatchQueue = .main,
                           uploadProgress: ((Progress) -> Void)? = nil,
-                          completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
+                          completionHandler: @escaping (JSONResponse) -> Void) -> Uploader {
         return upload(using: localURL as URL,
                       options: options,
                       queue: queue,
@@ -72,7 +72,7 @@ extension Client {
                                    options: UploadOptions = .defaults,
                                    queue: DispatchQueue = .main,
                                    uploadProgress: ((Progress) -> Void)? = nil,
-                                   completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader {
+                                   completionHandler: @escaping ([JSONResponse]) -> Void) -> Uploader {
         return upload(using: localURLs.map { $0 as URL },
                       options: options,
                       queue: queue,
@@ -106,7 +106,7 @@ extension Client {
                            options: UploadOptions = .defaults,
                            queue: DispatchQueue = .main,
                            uploadProgress: ((Progress) -> Void)? = nil,
-                           completionHandler: @escaping (NetworkJSONResponse) -> Void) -> Uploader {
+                           completionHandler: @escaping (JSONResponse) -> Void) -> Uploader {
         return upload(using: data as Data,
                       options: options,
                       queue: queue,
@@ -140,7 +140,7 @@ extension Client {
                                    options: UploadOptions = .defaults,
                                    queue: DispatchQueue = .main,
                                    uploadProgress: ((Progress) -> Void)? = nil,
-                                   completionHandler: @escaping ([NetworkJSONResponse]) -> Void) -> Uploader {
+                                   completionHandler: @escaping ([JSONResponse]) -> Void) -> Uploader {
         return upload(using: multipleData.map { $0 as Data },
                       options: options,
                       queue: queue,

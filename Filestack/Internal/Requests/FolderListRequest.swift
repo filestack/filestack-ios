@@ -52,7 +52,7 @@ final class FolderListRequest: CloudRequest, Cancellable {
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) {
+    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) -> DataRequest {
         let request = cloudService.folderListRequest(provider: provider,
                                                      path: path,
                                                      authCallbackURL: authCallbackURL,
@@ -96,6 +96,8 @@ final class FolderListRequest: CloudRequest, Cancellable {
                 completionBlock(nil, response)
             }
         }
+
+        return request
     }
 
     private func token(from string: String?) -> String? {

@@ -17,27 +17,14 @@ protocol Uploadable: AnyObject {
 }
 
 extension UIImage: Uploadable {
-    var isEditable: Bool {
-        return true
-    }
-
-    var associatedImage: UIImage {
-        return self
-    }
-
-    var typeIcon: UIImage {
-        return UIImage.fromFilestackBundle("icon-image").withRenderingMode(.alwaysTemplate)
-    }
-
-    var additionalInfo: String? {
-        return nil
-    }
+    var isEditable: Bool { true }
+    var associatedImage: UIImage { self }
+    var typeIcon: UIImage { UIImage.fromFilestackBundle("icon-image").withRenderingMode(.alwaysTemplate) }
+    var additionalInfo: String? { nil }
 }
 
 extension AVAsset: Uploadable {
-    var isEditable: Bool {
-        return false
-    }
+    var isEditable: Bool { false }
 
     var associatedImage: UIImage {
         let beginning = CMTime(seconds: 0, preferredTimescale: 1)
@@ -49,12 +36,7 @@ extension AVAsset: Uploadable {
         }
     }
 
-    var typeIcon: UIImage {
-        return UIImage.fromFilestackBundle("icon-file-video")
-            .withRenderingMode(.alwaysTemplate)
-    }
+    var typeIcon: UIImage { UIImage.fromFilestackBundle("icon-file-video").withRenderingMode(.alwaysTemplate) }
 
-    var additionalInfo: String? {
-        return DurationFormatter().string(from: duration.seconds)
-    }
+    var additionalInfo: String? { DurationFormatter().string(from: duration.seconds) }
 }

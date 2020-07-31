@@ -15,16 +15,16 @@ import Foundation
     import SSZipArchive
 #endif
 
-class DocumentPickerUploadController: NSObject {
-    let deferredUploader: Uploader & DeferredAdd
+class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
+    let uploader: Uploader & DeferredAdd
     let viewController: UIViewController
     let picker: UIDocumentPickerViewController
     let config: Config
 
-    var filePickedCompletionHandler: ((_ success: Bool) -> Void)?
+    var progress: Progress { uploader.progress }
 
     init(uploader: Uploader & DeferredAdd, viewController: UIViewController, config: Config) {
-        self.deferredUploader = uploader
+        self.uploader = uploader
         self.viewController = viewController
         self.picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
         self.config = config
@@ -37,6 +37,11 @@ class DocumentPickerUploadController: NSObject {
 
         viewController.present(picker, animated: true)
     }
+
+    @discardableResult
+    func cancel() -> Bool {
+        return uploader.cancel()
+    }
 }
 
 extension DocumentPickerUploadController {
@@ -46,14 +51,8 @@ extension DocumentPickerUploadController {
             return
         }
 
-        deferredUploader.add(uploadables: urls.compactMap { uploadableURL(from: $0) })
-        deferredUploader.start()
-        filePickedCompletionHandler?(true)
-    }
-
-    private func cancel() {
-        deferredUploader.cancel()
-        filePickedCompletionHandler?(false)
+        uploader.add(uploadables: urls.compactMap { uploadableURL(from: $0) })
+        uploader.start()
     }
 
     private func uploadableURL(from url: URL) -> URL? {

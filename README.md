@@ -31,7 +31,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.2.2'
+    pod 'Filestack', '~> 2.3.2'
 end
 ```
 
@@ -52,9 +52,9 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.2.2`
+`github "filestack/filestack-ios" ~> 2.3.2`
 
-Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, `CryptoSwift.framework`, `SVProgressHUD.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
+Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
 
 ### Manually
 
@@ -70,9 +70,7 @@ Add Filestack and its dependencies as git submodules by running the following co
 $ git submodule add https://github.com/filestack/filestack-ios.git
 $ git submodule add https://github.com/filestack/filestack-swift.git
 $ git submodule add https://github.com/Alamofire/Alamofire.git
-$ git submodule add https://github.com/krzyzanowskim/CryptoSwift.git
 $ git submodule add https://github.com/ZipArchive/ZipArchive.git
-$ git submodule add https://github.com/SVProgressHUD/SVProgressHUD.git
 ```
 
 Open the new `filestack-ios` folder, and drag the `Filestack.xcodeproj` into the Project Navigator of your application's Xcode project.
@@ -86,7 +84,7 @@ In the tab bar at the top of that window, open the "General" panel.
 
 Click on the + button under the "Embedded Binaries" section and choose the `Filestack.framework` for iOS.
 
-Repeat the same process for adding `Alamofire`, `CryptoSwift`, `FilestackSDK`, `SVProgressHUD`, and `ZipArchive` dependent frameworks.
+Repeat the same process for adding `Alamofire`, `FilestackSDK`, and `ZipArchive` dependent frameworks.
 
 ## Usage
 
@@ -315,7 +313,7 @@ extension ViewController: PickerNavigationControllerDelegate {
     }
 
     /// Called when the picker finishes uploading a file originating from the local device into the destination storage location.
-    func pickerUploadedFile(picker: PickerNavigationController, response: NetworkJSONResponse?) {
+    func pickerUploadedFile(picker: PickerNavigationController, response: JSONResponse?) {
         if let contents = response?.json {
             // Our local file was stored into the destination location.
             print("Uploaded file response: \(contents)")
@@ -324,11 +322,11 @@ extension ViewController: PickerNavigationControllerDelegate {
             print("Error uploading file: \(error)")
         }
     }
-    
+
     /// Called when the picker reports progress during a file or set of files being uploaded.
     func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float) {
         print("Picker \(picker) reported upload progress: \(progress)")
-    }    
+    }
 }
 ```
 
@@ -338,9 +336,18 @@ extension ViewController: PickerNavigationControllerDelegate {
 yourViewController.present(picker, animated: true)
 ```
 
+#### 7. Enabling background upload support
+
+Starting in FilestackSDK `2.3`, background upload support is available. In order to use it in `Filestack` for file uploads, simply add the following to your code:
+
+```swift
+// Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.
+FilestackSDK.UploadService.shared.useBackgroundSession = true
+```
+
 ## Demo
 
-Check the demo app included in this repository showcasing all the topics discussed above. 
+Check the demo app included in this repository showcasing all the topics discussed above.
 
 ## Versioning
 
