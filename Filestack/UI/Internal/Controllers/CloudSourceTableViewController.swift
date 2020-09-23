@@ -15,7 +15,10 @@ private extension String {
     static let activityIndicatorReuseIdentifier = "ActivityIndicatorTableViewCell"
 }
 
+private let rowHeight: CGFloat = 52
+
 class CloudSourceTableViewController: UITableViewController {
+    @IBOutlet weak var searchBar: UISearchBar?
     private weak var dataSource: (CloudSourceDataSource)!
 
     // MARK: - View Overrides
@@ -30,6 +33,11 @@ class CloudSourceTableViewController: UITableViewController {
             fatalError("Parent must adopt the CloudSourceDataSource protocol.")
         }
 
+        // Toggle search header on/off.
+        if !dataSource.source.provider.searchBased {
+            tableView.tableHeaderView = nil
+        }
+
         // Setup refresh control if we have items
         if dataSource.items != nil {
             // Setup refresh control
@@ -41,6 +49,7 @@ class CloudSourceTableViewController: UITableViewController {
         super.viewDidAppear(animated)
 
         tableView.reloadData()
+        focusOnSearchBar()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,9 +57,11 @@ class CloudSourceTableViewController: UITableViewController {
 
         super.viewWillDisappear(animated)
     }
+}
 
-    // MARK: - Table view data source
+// MARK: - UITableViewDataSource Conformance
 
+extension CloudSourceTableViewController {
     override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
@@ -133,6 +144,18 @@ class CloudSourceTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
+    }
+}
+
+// MARK: - UITableViewDelegate Conformance
+
+extension CloudSourceTableViewController {
     override func tableView(_: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return false }
 
@@ -156,25 +179,21 @@ class CloudSourceTableViewController: UITableViewController {
             }
         }
     }
+}
 
-    // MARK: - Actions
+// MARK: - UISearchBarDelegate Conformance
 
-    @IBAction func refresh(_: Any) {
-        dataSource.refresh {
-            self.refreshControl?.endRefreshing()
+extension CloudSourceTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchTerm = searchBar.text else { return }
+
+        dataSource.search(text: searchTerm) {
             self.tableView.reloadData()
         }
     }
-
-    // MARK: - Private Functions
-
-    fileprivate func setupRefreshControl() {
-        guard refreshControl == nil else { return }
-
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-    }
 }
+
+// MARK: - CloudSourceDataSourceConsumer Conformance
 
 extension CloudSourceTableViewController: CloudSourceDataSourceConsumer {
     func dataSourceReceivedInitialResults(dataSource _: CloudSourceDataSource) {
@@ -184,3 +203,30 @@ extension CloudSourceTableViewController: CloudSourceDataSourceConsumer {
         setupRefreshControl()
     }
 }
+
+// MARK: - Actions
+
+extension CloudSourceTableViewController {
+    @IBAction func refresh(_: Any) {
+        dataSource.refresh {
+            self.refreshControl?.endRefreshing()
+            self.tableView.reloadData()
+        }
+    }
+}
+
+// MARK: - Private Functions
+
+private extension CloudSourceTableViewController {
+    func setupRefreshControl() {
+        guard refreshControl == nil else { return }
+
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+
+    func focusOnSearchBar() {
+        searchBar?.becomeFirstResponder()
+    }
+}
+

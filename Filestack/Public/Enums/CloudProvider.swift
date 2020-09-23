@@ -40,8 +40,33 @@ import Foundation
     /// Amazon Drive
     case amazonDrive
 
+    /// Unsplash
+    case unsplash
+
     /// Custom Source
     case customSource
+}
+
+extension CloudProvider {
+    /// :nodoc:
+    public var searchBased: Bool {
+        switch self {
+        case .unsplash:
+            return true
+        default:
+            return false
+        }
+    }
+
+    /// :nodoc:
+    var viewType: CloudSourceViewType? {
+        switch self {
+        case .unsplash:
+            return .grid
+        default:
+            return nil
+        }
+    }
 }
 
 extension CloudProvider {
@@ -68,6 +93,8 @@ extension CloudProvider {
             return "onedrive"
         case .amazonDrive:
             return "clouddrive"
+        case .unsplash:
+            return "unsplash"
         case .customSource:
             return "customsource"
         }

@@ -336,7 +336,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                 if let safariError = error {
                     completionBlock(response, safariError)
                 } else if let url = url, url == self.authCallbackURL {
-                    _ = self.perform(request: request, queue: queue, completionBlock: completionBlock)
+                    self.perform(request: request, queue: queue, completionBlock: completionBlock)
                 } else {
                     completionBlock(response, ClientError.authenticationFailed)
                 }

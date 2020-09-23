@@ -71,8 +71,11 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        selectedIndex = viewType.rawValue
-        setupViewtypeButton()
+        selectedIndex = (source.provider.viewType ?? viewType).rawValue
+
+        if source.provider.viewType == nil {
+            setupViewTypeButton()
+        }
 
         guard items == nil else { return }
 
@@ -236,6 +239,14 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         thumbnailRequests.append(request)
     }
 
+    func search(text: String, completionHandler: @escaping (() -> Void)) {
+        guard let escapedText = text.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+
+        path = "/\(escapedText)/"
+
+        refresh(completionHandler: completionHandler)
+    }
+
     func navigate(to item: CloudItem) {
         let scene = CloudSourceTabBarScene(client: client,
                                            storeOptions: storeOptions,
@@ -258,7 +269,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         return UIImage.fromFilestackBundle(alternateViewtype.iconName)
     }
 
-    private func setupViewtypeButton() {
+    private func setupViewTypeButton() {
         if toggleViewTypeButton == nil {
             toggleViewTypeButton = UIBarButtonItem(image: alternateIcon(), style: .plain, target: self, action: #selector(toggleViewType))
             navigationItem.rightBarButtonItems?.append(toggleViewTypeButton!)
@@ -291,7 +302,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     @IBAction func toggleViewType(_: Any) {
         viewType = viewType.toggle()
         selectedIndex = viewType.rawValue
-        setupViewtypeButton()
+        setupViewTypeButton()
         // Store view type in user defaults
         UserDefaults.standard.set(cloudSourceViewType: viewType)
     }

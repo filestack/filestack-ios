@@ -75,6 +75,11 @@ import Foundation
                                                       image: .templatedFilestackImage("icon-clouddrive"),
                                                       provider: .amazonDrive)
 
+    /// Unsplash
+    @objc public static var unsplash = CloudSource(description: "Unsplash",
+                                                      image: .templatedFilestackImage("icon-unsplash"),
+                                                      provider: .unsplash)
+
     /// Custom Source
     @objc public static var customSource = CloudSource(description: "Custom Source",
                                                        image: .templatedFilestackImage("icon-customsource"),
@@ -83,7 +88,7 @@ import Foundation
     /// Returns all the supported sources.
     @objc public static func all() -> [CloudSource] {
         return [.facebook, .instagram, .googleDrive, .dropbox, .box, .gitHub,
-                .gmail, .googlePhotos, .oneDrive, .amazonDrive, .customSource]
+                .gmail, .googlePhotos, .oneDrive, .amazonDrive, .unsplash, .customSource]
     }
 
     /// Returns this source's title.

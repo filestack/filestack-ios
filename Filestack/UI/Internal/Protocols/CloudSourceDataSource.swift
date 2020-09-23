@@ -22,6 +22,7 @@ protocol CloudSourceDataSource: AnyObject {
     func store(item: CloudItem)
     func navigate(to item: CloudItem)
     func loadNextPage(completionHandler: @escaping (() -> Void))
+    func search(text: String, completionHandler: @escaping (() -> Void))
     func refresh(completionHandler: @escaping (() -> Void))
     func cacheThumbnail(for item: CloudItem, completionHandler: @escaping ((UIImage) -> Void))
 }

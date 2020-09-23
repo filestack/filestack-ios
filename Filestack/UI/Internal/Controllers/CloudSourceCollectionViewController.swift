@@ -13,6 +13,7 @@ import UIKit
 private extension String {
     static let cloudItemReuseIdentifier = "CloudItemCollectionViewCell"
     static let activityIndicatorReuseIdentifier = "ActivityIndicatorCollectionViewCell"
+    static let headerID = "SearchView"
 }
 
 class CloudSourceCollectionViewController: UICollectionViewController {
@@ -31,16 +32,26 @@ class CloudSourceCollectionViewController: UICollectionViewController {
             fatalError("Parent must adopt the CloudSourceDataSource protocol.")
         }
 
+        // Toggle search header on/off.
+        if !dataSource.source.provider.searchBased {
+            (collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = .zero
+        }
+
         // Setup refresh control if we have items
         if dataSource.items != nil {
             setupRefreshControl()
         }
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         collectionView!.reloadData()
+
+        if dataSource.source.provider.searchBased {
+            focusOnSearchBar()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,9 +59,11 @@ class CloudSourceCollectionViewController: UICollectionViewController {
 
         super.viewWillDisappear(animated)
     }
+}
 
-    // MARK: UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource Conformance
 
+extension CloudSourceCollectionViewController {
     override func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
@@ -58,15 +71,12 @@ class CloudSourceCollectionViewController: UICollectionViewController {
     override func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-
             if let items = dataSource.items {
                 return dataSource.nextPageToken == nil ? items.count : items.count + 1
             } else {
                 return 1
             }
-
         default:
-
             return 0
         }
     }
@@ -84,11 +94,8 @@ class CloudSourceCollectionViewController: UICollectionViewController {
 
         switch cell {
         case let cell as ActivityIndicatorCollectionViewCell:
-
             cell.activityIndicator.startAnimating()
-
         case let cell as CloudItemCollectionViewCell:
-
             guard let item = dataSource.items?[safe: UInt(indexPath.row)] else { return cell }
 
             // Configure the cell
@@ -121,9 +128,7 @@ class CloudSourceCollectionViewController: UICollectionViewController {
             }
 
             cell.imageView?.image = cachedImage
-
         default:
-
             break
         }
 
@@ -148,8 +153,28 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         }
     }
 
-    // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: .headerID,
+                                                                         for: indexPath)
+        return headerView
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+
+        if view.reuseIdentifier == .headerID {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                guard let subview = view.subviews.first, !subview.isFirstResponder else { return }
+                subview.becomeFirstResponder()
+            }
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegate Conformance
+
+extension CloudSourceCollectionViewController {
     override func collectionView(_: UICollectionView, shouldHighlightItemAt _: IndexPath) -> Bool {
         return true
     }
@@ -163,8 +188,34 @@ class CloudSourceCollectionViewController: UICollectionViewController {
             return false
         }
     }
+}
 
-    // MARK: - Actions
+// MARK: - UISearchBarDelegate Conformance
+
+extension CloudSourceCollectionViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchTerm = searchBar.text else { return }
+
+        dataSource.search(text: searchTerm) {
+            self.collectionView!.reloadData()
+        }
+    }
+}
+
+// MARK: - CloudSourceDataSourceConsumer Conformance
+
+extension CloudSourceCollectionViewController: CloudSourceDataSourceConsumer {
+    func dataSourceReceivedInitialResults(dataSource _: CloudSourceDataSource) {
+        // Reload collection view's data
+        collectionView!.reloadData()
+        // Setup refresh control
+        setupRefreshControl()
+    }
+}
+
+// MARK: - Actions
+
+extension CloudSourceCollectionViewController {
 
     @IBAction func refresh(_: Any) {
         dataSource.refresh {
@@ -172,10 +223,12 @@ class CloudSourceCollectionViewController: UICollectionViewController {
             self.collectionView!.reloadData()
         }
     }
+}
 
-    // MARK: - Private Functions
+// MARK: - Private Functions
 
-    fileprivate func setupRefreshControl() {
+private extension CloudSourceCollectionViewController {
+    func setupRefreshControl() {
         guard refreshControl == nil else { return }
 
         refreshControl = UIRefreshControl()
@@ -186,13 +239,13 @@ class CloudSourceCollectionViewController: UICollectionViewController {
             collectionView!.alwaysBounceVertical = true
         }
     }
-}
 
-extension CloudSourceCollectionViewController: CloudSourceDataSourceConsumer {
-    func dataSourceReceivedInitialResults(dataSource _: CloudSourceDataSource) {
-        // Reload collection view's data
-        collectionView!.reloadData()
-        // Setup refresh control
-        setupRefreshControl()
+    func focusOnSearchBar() {
+        let views = collectionView!.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader)
+
+        if let searchBar = (views.first?.subviews.first as? UISearchBar) {
+            searchBar.becomeFirstResponder()
+        }
     }
 }
+
