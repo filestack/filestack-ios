@@ -62,7 +62,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CloudItemTableViewCell" textLabel="4UJ-SI-gmi" style="IBUITableViewCellStyleDefault" id="iyK-Jy-AZz" customClass="CloudItemTableViewCell" customModule="Filestack" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CloudItemTableViewCell" textLabel="4UJ-SI-gmi" style="IBUITableViewCellStyleDefault" id="iyK-Jy-AZz" customClass="CloudItemTableViewCell" customModule="Filestack">
                                 <rect key="frame" x="0.0" y="72" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iyK-Jy-AZz" id="6bL-jf-JVT">
@@ -79,7 +79,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityIndicatorTableViewCell" id="Umj-4M-yvJ" customClass="ActivityIndicatorTableViewCell" customModule="Filestack" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityIndicatorTableViewCell" id="Umj-4M-yvJ" customClass="ActivityIndicatorTableViewCell" customModule="Filestack">
                                 <rect key="frame" x="0.0" y="115.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Umj-4M-yvJ" id="2fQ-V4-pey">
@@ -147,7 +147,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CloudItemCollectionViewCell" id="DM8-2L-7Aw" customClass="CloudItemCollectionViewCell" customModule="Filestack" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CloudItemCollectionViewCell" id="DM8-2L-7Aw" customClass="CloudItemCollectionViewCell" customModule="Filestack">
                                 <rect key="frame" x="10" y="60" width="80" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -179,7 +179,7 @@
                                     <outlet property="label" destination="huL-SR-0ZD" id="hpo-py-bqs"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ActivityIndicatorCollectionViewCell" id="bZX-R3-r2y" customClass="ActivityIndicatorCollectionViewCell" customModule="Filestack" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ActivityIndicatorCollectionViewCell" id="bZX-R3-r2y" customClass="ActivityIndicatorCollectionViewCell" customModule="Filestack">
                                 <rect key="frame" x="101.5" y="60" width="80" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
