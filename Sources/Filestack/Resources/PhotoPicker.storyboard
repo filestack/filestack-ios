@@ -11,7 +11,7 @@
         <!--Album List View Controller-->
         <scene sceneID="vuC-rH-sdy">
             <objects>
-                <tableViewController storyboardIdentifier="AlbumListViewController" id="uCb-J9-VIA" customClass="AlbumListViewController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AlbumListViewController" id="uCb-J9-VIA" customClass="AlbumListViewController" customModule="Filestack" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="YWg-N9-k8r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,7 +64,7 @@
         <!--Asset Collection View Controller-->
         <scene sceneID="39L-yv-VX7">
             <objects>
-                <collectionViewController storyboardIdentifier="AssetCollectionViewController" id="fcy-Os-18l" customClass="AssetCollectionViewController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="AssetCollectionViewController" id="fcy-Os-18l" customClass="AssetCollectionViewController" customModule="Filestack" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mLr-pI-FRJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
