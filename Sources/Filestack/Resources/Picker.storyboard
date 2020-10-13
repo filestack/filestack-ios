@@ -225,7 +225,7 @@
         <!--Picker Navigation Controller-->
         <scene sceneID="tDc-lK-qgj">
             <objects>
-                <navigationController storyboardIdentifier="PickerNavigationController" id="mfw-Bx-U3m" customClass="FSPickerNavigationController" customModule="Filestack" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PickerNavigationController" id="mfw-Bx-U3m" customClass="PickerNavigationController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tz5-1a-qid">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
