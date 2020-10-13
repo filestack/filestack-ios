@@ -58,7 +58,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         // Add logout button (unless we are displaying the custom source)
         if source != .customSource {
-            let logoutImage = UIImage(named: "icon-logout", in: Bundle(for: type(of: self)), compatibleWith: nil)
+            let logoutImage = UIImage(named: "icon-logout", in: bundle, compatibleWith: nil)
 
             navigationItem.rightBarButtonItems = [
                 UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(logout)),
@@ -225,7 +225,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
                     image = squareImage
                 } else {
                     // Unable to obtain image, use file placeholder.
-                    image = UIImage(named: "file", in: Bundle(for: type(of: self)), compatibleWith: nil)
+                    image = UIImage(named: "file", in: bundle, compatibleWith: nil)
                 }
 
                 // Update thumbnail cache with image.

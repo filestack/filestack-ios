@@ -68,7 +68,7 @@ class AssetCell: UICollectionViewCell {
 private extension AssetCell {
     func configure(with image: UIImage?) {
         self.image.image = image
-        selectedCheckbox.image = UIImage(named: "icon-selected", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        selectedCheckbox.image = UIImage(named: "icon-selected", in: bundle, compatibleWith: nil)
     }
 
     func setupGradientLayer() {

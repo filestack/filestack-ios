@@ -115,7 +115,7 @@ extension CloudSourceTableViewController {
 
             guard let cachedImage = dataSource.thumbnailCache.object(forKey: item.thumbnailURL as NSURL) else {
                 // Use a placeholder until we get the real thumbnail
-                cell.imageView?.image = UIImage(named: "placeholder", in: Bundle(for: type(of: self)), compatibleWith: nil)
+                cell.imageView?.image = UIImage(named: "placeholder", in: bundle, compatibleWith: nil)
 
                 dataSource.cacheThumbnail(for: item, completionHandler: { image in
                     // Update the cell's thumbnail picture.
