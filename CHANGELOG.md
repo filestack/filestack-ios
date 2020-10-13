@@ -1,11 +1,11 @@
 Change Log
 ==========
 
-Version 2.4.0 (TBD)
+Version 2.4.0 (2020-10-13)
 ----------------------------
 
 - Added support for Unsplash cloud source.
-- Added support for Swift Package Manager. 
+- Added support for Swift Package Manager.
 
 Version 2.3.2 (2020-07-30)
 ----------------------------
