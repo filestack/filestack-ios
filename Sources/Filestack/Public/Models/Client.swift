@@ -74,7 +74,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     ///
     /// - Returns: A `PickerNavigationController` that may be presented using `present(_:animated:)` from your view controller.
     @objc public func picker(storeOptions: StorageOptions = .defaults) -> PickerNavigationController {
-        let storyboard = UIStoryboard(name: "Picker", bundle: Bundle(for: type(of: self)))
+        let storyboard = UIStoryboard(name: "Picker", bundle: bundle)
         let scene = PickerNavigationScene(client: self, storeOptions: storeOptions)
 
         return storyboard.instantiateViewController(for: scene)

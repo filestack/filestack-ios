@@ -115,6 +115,7 @@
 		4540BB9B2535CF860053CDBB /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB2D2535CF860053CDBB /* Client.swift */; };
 		4540BB9C2535CF860053CDBB /* Client+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB2F2535CF860053CDBB /* Client+ObjC.swift */; };
 		4540BB9D2535CF860053CDBB /* Client+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB302535CF860053CDBB /* Client+Deprecated.swift */; };
+		45453E8D2535E3540090F78D /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45453E8C2535E3540090F78D /* Bundle.swift */; };
 		4564B90D2535B3DA0045A3C7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B90C2535B3DA0045A3C7 /* Alamofire */; };
 		4564B9112535B3E70045A3C7 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9102535B3E70045A3C7 /* Zip */; };
 		4564B9152535B4030045A3C7 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9142535B4030045A3C7 /* FilestackSDK */; };
@@ -231,6 +232,7 @@
 		4540BB2F2535CF860053CDBB /* Client+ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+ObjC.swift"; sourceTree = "<group>"; };
 		4540BB302535CF860053CDBB /* Client+Deprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+Deprecated.swift"; sourceTree = "<group>"; };
 		4540BB312535CF860053CDBB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45453E8C2535E3540090F78D /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		457084FF1F975C6C00991340 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45BFF67A23290B1E00944028 /* Filestack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Filestack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		45BFF67B23290B1E00944028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -263,12 +265,12 @@
 		4540BA9A2535CF860053CDBB /* Filestack */ = {
 			isa = PBXGroup;
 			children = (
-				4540BA9B2535CF860053CDBB /* UI */,
-				4540BAED2535CF860053CDBB /* Resources */,
-				4540BAF22535CF860053CDBB /* Internal */,
 				4540BB1E2535CF860053CDBB /* Filestack.h */,
-				4540BB1F2535CF860053CDBB /* Public */,
 				4540BB312535CF860053CDBB /* Info.plist */,
+				4540BAF22535CF860053CDBB /* Internal */,
+				4540BB1F2535CF860053CDBB /* Public */,
+				4540BAED2535CF860053CDBB /* Resources */,
+				4540BA9B2535CF860053CDBB /* UI */,
 			);
 			path = Filestack;
 			sourceTree = "<group>";
@@ -566,6 +568,7 @@
 				4540BB172535CF860053CDBB /* Extractors */,
 				4540BB1A2535CF860053CDBB /* Protocols */,
 				4540BB1C2535CF860053CDBB /* Services */,
+				45453E8C2535E3540090F78D /* Bundle.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4540BB4B2535CF860053CDBB /* EditorToolbar.swift in Sources */,
+				45453E8D2535E3540090F78D /* Bundle.swift in Sources */,
 				4540BB5D2535CF860053CDBB /* ActivityIndicatorCollectionViewCell.swift in Sources */,
 				4540BB422535CF860053CDBB /* ActivityIndicatorTableViewCell.swift in Sources */,
 				4540BB872535CF860053CDBB /* UIImage+Write.swift in Sources */,

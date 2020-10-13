@@ -10,6 +10,6 @@ import UIKit
 
 extension UIColor {
     static func fromFilestackBundle(_ name: String) -> UIColor? {
-        return UIColor(named: name, in: Bundle(for: Client.self), compatibleWith: nil)
+        return UIColor(named: name, in: bundle, compatibleWith: nil)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
     static func fromFilestackBundle(_ name: String) -> UIImage {
-        return UIImage(named: name, in: Bundle(for: Client.self), compatibleWith: nil) ?? UIImage()
+        return UIImage(named: name, in: bundle, compatibleWith: nil) ?? UIImage()
     }
 
     static func templatedFilestackImage(_ name: String) -> UIImage {
