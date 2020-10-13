@@ -10,7 +10,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Filestack",
-            targets: ["Filestack"]),
+            targets: ["Filestack"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,6 +25,10 @@ let package = Package(
         .target(
             name: "Filestack",
             dependencies: ["Alamofire", "FilestackSDK", "Zip"],
-            exclude: ["Filestack.h", "Info.plist"])
+            exclude: ["Filestack.h", "Info.plist"],
+            resources: [
+                .copy("VERSION")
+            ]
+        )
     ]
 )

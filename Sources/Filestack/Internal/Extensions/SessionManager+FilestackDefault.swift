@@ -9,23 +9,52 @@
 import Alamofire
 import Foundation
 
+#if SWIFT_PACKAGE
+#else
+private class BundleFinder {}
+#endif
+
 extension SessionManager {
     static var filestackDefault: SessionManager {
         let configuration = URLSessionConfiguration.default
+
+        configuration.isDiscretionary = false
+        configuration.shouldUseExtendedBackgroundIdleMode = true
+        configuration.httpMaximumConnectionsPerHost = 20
+        configuration.httpShouldUsePipelining = true
+        configuration.httpAdditionalHeaders = customHTTPHeaders
+
+        return SessionManager(configuration: configuration)
+    }
+}
+
+// MARK: - Private Functions
+
+private extension SessionManager {
+    static var customHTTPHeaders: HTTPHeaders {
         var defaultHeaders = SessionManager.defaultHTTPHeaders
 
         defaultHeaders["User-Agent"] = "filestack-ios \(shortVersionString)"
         defaultHeaders["Filestack-Source"] = "Swift-\(shortVersionString)"
 
-        configuration.httpShouldUsePipelining = true
-        configuration.httpAdditionalHeaders = defaultHeaders
-
-        return SessionManager(configuration: configuration)
+        return defaultHeaders
     }
 
-    // MARK: - Private Functions
+    static var shortVersionString: String {
+        #if SWIFT_PACKAGE
+        if let url = Bundle.module.url(forResource: "VERSION", withExtension: nil),
+           let data = try? Data(contentsOf: url),
+           let version = String(data: data, encoding: .utf8)?.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        {
+            return version
+        }
+        #else
+        if let info = Bundle(for: BundleFinder.self).infoDictionary,
+           let version = info["CFBundleShortVersionString"] as? String {
+            return version
+        }
+        #endif
 
-    private class var shortVersionString: String {
-        return Bundle(for: Client.self).infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
+        return "0.0.0"
     }
 }
