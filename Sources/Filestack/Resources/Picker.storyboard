@@ -11,7 +11,7 @@
         <!--Source Table View Controller-->
         <scene sceneID="b0h-sT-H09">
             <objects>
-                <tableViewController id="Yfg-8U-grp" userLabel="Source Table View Controller" customClass="SourceTableViewController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Yfg-8U-grp" userLabel="Source Table View Controller" customClass="SourceTableViewController" customModule="Filestack" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ez7-h1-8T6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
         <!--List-->
         <scene sceneID="Rp7-Co-X5k">
             <objects>
-                <tableViewController id="Twb-Fi-xpi" customClass="CloudSourceTableViewController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Twb-Fi-xpi" customClass="CloudSourceTableViewController" customModule="Filestack" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cux-Ok-C9t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,7 +117,7 @@
         <!--Cloud Source Tab Bar Controller-->
         <scene sceneID="gpZ-TV-Mem">
             <objects>
-                <tabBarController storyboardIdentifier="CloudSourceTabBarController" id="1Df-Fr-zP1" customClass="CloudSourceTabBarController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CloudSourceTabBarController" id="1Df-Fr-zP1" customClass="CloudSourceTabBarController" customModule="Filestack" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L9o-MX-nTT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -135,7 +135,7 @@
         <!--Grid-->
         <scene sceneID="cc5-1B-q2Z">
             <objects>
-                <collectionViewController id="1zJ-HD-JHQ" customClass="CloudSourceCollectionViewController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="1zJ-HD-JHQ" customClass="CloudSourceCollectionViewController" customModule="Filestack" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="yTo-39-azG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +225,7 @@
         <!--Picker Navigation Controller-->
         <scene sceneID="tDc-lK-qgj">
             <objects>
-                <navigationController storyboardIdentifier="PickerNavigationController" id="mfw-Bx-U3m" customClass="PickerNavigationController" customModule="Filestack" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PickerNavigationController" id="mfw-Bx-U3m" customClass="PickerNavigationController" customModule="Filestack" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tz5-1a-qid">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
