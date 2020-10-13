@@ -16,6 +16,7 @@ DerivedData
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
+.swiftpm/xcode
 
 ## Other
 *.xccheckout
@@ -32,8 +33,8 @@ compile_commands.json
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-Packages/
-.build/
+/.build
+/Packages
 
 # CocoaPods
 #
@@ -61,7 +62,8 @@ Carthage/
 fastlane/report.xml
 fastlane/screenshots
 
-*.DS_Store
+.DS_Store
 
 # Jazzy Docs
 docs/
+

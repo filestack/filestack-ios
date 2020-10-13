@@ -7,169 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45103DC4232FBCA3009D628A /* Filestack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45103DB1232FB9EB009D628A /* Filestack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45103DC5232FBD55009D628A /* FilestackSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45103DBC232FBB28009D628A /* FilestackSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		454054851F98A69A00C12B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054841F98A69A00C12B2F /* AppDelegate.swift */; };
 		454054871F98A69A00C12B2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454054861F98A69A00C12B2F /* ViewController.swift */; };
 		4540548A1F98A69A00C12B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454054881F98A69A00C12B2F /* Main.storyboard */; };
 		4540548C1F98A69A00C12B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4540548B1F98A69A00C12B2F /* Assets.xcassets */; };
 		4540548F1F98A69A00C12B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4540548D1F98A69A00C12B2F /* LaunchScreen.storyboard */; };
 		455AB6C2232FD680001ABE81 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */; };
-		45F764FD232FE0C800C5DB6A /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45103DB1232FB9EB009D628A /* Filestack.framework */; };
-		45F764FE232FE0C800C5DB6A /* FilestackSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45103DBC232FBB28009D628A /* FilestackSDK.framework */; };
-		45FB7D90232FE27D00BFE52F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7D7F232FE26B00BFE52F /* Alamofire.framework */; };
-		45FB7D91232FE28200BFE52F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7D7F232FE26B00BFE52F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45FB7DC5232FE2EA00BFE52F /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */; };
-		45FB7DC7232FE2F500BFE52F /* ZipArchive.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45A758C52535DE6800C8547F /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A758C32535DE6200C8547F /* Filestack.framework */; };
+		45A758C62535DE6800C8547F /* Filestack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45A758C32535DE6200C8547F /* Filestack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		45103DB0232FB9EB009D628A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45103DAB232FB9EB009D628A /* Filestack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 457084FF1F975C6C00991340;
-			remoteInfo = Filestack;
-		};
-		45103DB2232FB9EB009D628A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45103DAB232FB9EB009D628A /* Filestack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 457085081F975C6C00991340;
-			remoteInfo = FilestackTests;
-		};
-		45103DB4232FB9EF009D628A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45103DAB232FB9EB009D628A /* Filestack.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 457084FE1F975C6C00991340;
-			remoteInfo = Filestack;
-		};
-		45103DBB232FBB28009D628A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 45B8309B1F03B27A0053742A;
-			remoteInfo = FilestackSDK;
-		};
-		45103DBD232FBB28009D628A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 45B8310D1F03D8140053742A;
-			remoteInfo = FilestackSDKTests;
-		};
-		45103DC8232FBD68009D628A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 45B8309A1F03B27A0053742A;
-			remoteInfo = FilestackSDK;
-		};
-		45FB7D7E232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		45FB7D80232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS Tests";
-		};
-		45FB7D82232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
-			remoteInfo = "Alamofire macOS";
-		};
-		45FB7D84232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
-			remoteInfo = "Alamofire macOS Tests";
-		};
-		45FB7D86232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
-			remoteInfo = "Alamofire tvOS";
-		};
-		45FB7D88232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
-			remoteInfo = "Alamofire tvOS Tests";
-		};
-		45FB7D8A232FE26B00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4202FE01B667AA100C997FB;
-			remoteInfo = "Alamofire watchOS";
-		};
-		45FB7D8E232FE27700BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		45FB7DB8232FE2CD00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B423AE1A1C0DF76A0004A2F1;
-			remoteInfo = "ZipArchive-iOS";
-		};
-		45FB7DBA232FE2CD00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AFF75A241C37279600F450AC;
-			remoteInfo = "ZipArchive-Mac";
-		};
-		45FB7DBC232FE2CD00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 37952C261F63B50D00DD6677;
-			remoteInfo = "ZipArchive-tvos";
-		};
-		45FB7DBE232FE2CD00BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 37952C5E1F63BB7100DD6677;
-			remoteInfo = "ZipArchive-watchos";
-		};
-		45FB7DC2232FE2E200BFE52F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B423AE191C0DF76A0004A2F1;
-			remoteInfo = "ZipArchive-iOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		45407B401F9E0D45009BC40A /* Embed Frameworks */ = {
+		45A758C72535DE6800C8547F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				45FB7DC7232FE2F500BFE52F /* ZipArchive.framework in Embed Frameworks */,
-				45FB7D91232FE28200BFE52F /* Alamofire.framework in Embed Frameworks */,
-				45103DC5232FBD55009D628A /* FilestackSDK.framework in Embed Frameworks */,
-				45103DC4232FBCA3009D628A /* Filestack.framework in Embed Frameworks */,
+				45A758C62535DE6800C8547F /* Filestack.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,8 +32,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		45103DAB232FB9EB009D628A /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = ../Filestack.xcodeproj; sourceTree = "<group>"; };
-		45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilestackSDK.xcodeproj; path = "../Carthage/Checkouts/filestack-swift/FilestackSDK.xcodeproj"; sourceTree = "<group>"; };
 		454054811F98A69A00C12B2F /* FilestackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilestackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		454054841F98A69A00C12B2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		454054861F98A69A00C12B2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -186,13 +39,8 @@
 		4540548B1F98A69A00C12B2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4540548E1F98A69A00C12B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		454054901F98A69A00C12B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		45407B421F9E0D62009BC40A /* FilestackSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45407B481F9E0D91009BC40A /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45450FE61FC33277008C2404 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
-		45C2D50B1FD55F4F00912749 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Carthage/Checkouts/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
-		45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipArchive.xcodeproj; path = ../Carthage/Checkouts/ZipArchive/ZipArchive.xcodeproj; sourceTree = "<group>"; };
+		45A758C32535DE6200C8547F /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,41 +48,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FB7DC5232FE2EA00BFE52F /* ZipArchive.framework in Frameworks */,
-				45FB7D90232FE27D00BFE52F /* Alamofire.framework in Frameworks */,
-				45F764FE232FE0C800C5DB6A /* FilestackSDK.framework in Frameworks */,
-				45F764FD232FE0C800C5DB6A /* Filestack.framework in Frameworks */,
+				45A758C52535DE6800C8547F /* Filestack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		45103DAC232FB9EB009D628A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				45103DB1232FB9EB009D628A /* Filestack.framework */,
-				45103DB3232FB9EB009D628A /* FilestackTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		45103DB7232FBB28009D628A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				45103DBC232FBB28009D628A /* FilestackSDK.framework */,
-				45103DBE232FBB28009D628A /* FilestackSDKTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		454054781F98A69A00C12B2F = {
 			isa = PBXGroup;
 			children = (
-				45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */,
-				45103DAB232FB9EB009D628A /* Filestack.xcodeproj */,
-				45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */,
-				45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */,
 				454054831F98A69A00C12B2F /* FilestackDemo */,
 				45407B3A1F9E0D35009BC40A /* Frameworks */,
 				454054821F98A69A00C12B2F /* Products */,
@@ -266,10 +89,7 @@
 		45407B3A1F9E0D35009BC40A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				45407B481F9E0D91009BC40A /* Alamofire.framework */,
-				45450FE61FC33277008C2404 /* CryptoSwift.framework */,
-				45407B421F9E0D62009BC40A /* FilestackSDK.framework */,
-				45C2D50B1FD55F4F00912749 /* ZipArchive.framework */,
+				45A758C32535DE6200C8547F /* Filestack.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -282,31 +102,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		45FB7D74232FE26B00BFE52F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				45FB7D7F232FE26B00BFE52F /* Alamofire.framework */,
-				45FB7D81232FE26B00BFE52F /* Alamofire iOS Tests.xctest */,
-				45FB7D83232FE26B00BFE52F /* Alamofire.framework */,
-				45FB7D85232FE26B00BFE52F /* Alamofire macOS Tests.xctest */,
-				45FB7D87232FE26B00BFE52F /* Alamofire.framework */,
-				45FB7D89232FE26B00BFE52F /* Alamofire tvOS Tests.xctest */,
-				45FB7D8B232FE26B00BFE52F /* Alamofire.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		45FB7DB2232FE2CC00BFE52F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */,
-				45FB7DBB232FE2CD00BFE52F /* ZipArchive.framework */,
-				45FB7DBD232FE2CD00BFE52F /* ZipArchive.framework */,
-				45FB7DBF232FE2CD00BFE52F /* ZipArchive.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,21 +109,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4540549E1F98A69A00C12B2F /* Build configuration list for PBXNativeTarget "FilestackDemo" */;
 			buildPhases = (
-				45CDA03922C6606F008DF3F4 /* Run SwiftFormat */,
 				4540547D1F98A69A00C12B2F /* Sources */,
 				4540547E1F98A69A00C12B2F /* Frameworks */,
 				4540547F1F98A69A00C12B2F /* Resources */,
-				45407B401F9E0D45009BC40A /* Embed Frameworks */,
+				45A758C72535DE6800C8547F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				45FB7DC3232FE2E200BFE52F /* PBXTargetDependency */,
-				45FB7D8F232FE27700BFE52F /* PBXTargetDependency */,
-				45103DC9232FBD68009D628A /* PBXTargetDependency */,
-				45103DB5232FB9EF009D628A /* PBXTargetDependency */,
 			);
 			name = FilestackDemo;
+			packageProductDependencies = (
+			);
 			productName = FilestackDemo;
 			productReference = 454054811F98A69A00C12B2F /* FilestackDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -340,7 +132,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					454054801F98A69A00C12B2F = {
@@ -359,140 +151,16 @@
 				Base,
 			);
 			mainGroup = 454054781F98A69A00C12B2F;
+			packageReferences = (
+			);
 			productRefGroup = 454054821F98A69A00C12B2F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 45FB7D74232FE26B00BFE52F /* Products */;
-					ProjectRef = 45FB7D73232FE26B00BFE52F /* Alamofire.xcodeproj */;
-				},
-				{
-					ProductGroup = 45103DAC232FB9EB009D628A /* Products */;
-					ProjectRef = 45103DAB232FB9EB009D628A /* Filestack.xcodeproj */;
-				},
-				{
-					ProductGroup = 45103DB7232FBB28009D628A /* Products */;
-					ProjectRef = 45103DB6232FBB28009D628A /* FilestackSDK.xcodeproj */;
-				},
-				{
-					ProductGroup = 45FB7DB2232FE2CC00BFE52F /* Products */;
-					ProjectRef = 45FB7DB1232FE2CC00BFE52F /* ZipArchive.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				454054801F98A69A00C12B2F /* FilestackDemo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		45103DB1232FB9EB009D628A /* Filestack.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Filestack.framework;
-			remoteRef = 45103DB0232FB9EB009D628A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45103DB3232FB9EB009D628A /* FilestackTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FilestackTests.xctest;
-			remoteRef = 45103DB2232FB9EB009D628A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45103DBC232FBB28009D628A /* FilestackSDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FilestackSDK.framework;
-			remoteRef = 45103DBB232FBB28009D628A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45103DBE232FBB28009D628A /* FilestackSDKTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FilestackSDKTests.xctest;
-			remoteRef = 45103DBD232FBB28009D628A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D7F232FE26B00BFE52F /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 45FB7D7E232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D81232FE26B00BFE52F /* Alamofire iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire iOS Tests.xctest";
-			remoteRef = 45FB7D80232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D83232FE26B00BFE52F /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 45FB7D82232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D85232FE26B00BFE52F /* Alamofire macOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire macOS Tests.xctest";
-			remoteRef = 45FB7D84232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D87232FE26B00BFE52F /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 45FB7D86232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D89232FE26B00BFE52F /* Alamofire tvOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire tvOS Tests.xctest";
-			remoteRef = 45FB7D88232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7D8B232FE26B00BFE52F /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 45FB7D8A232FE26B00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DB9232FE2CD00BFE52F /* ZipArchive.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZipArchive.framework;
-			remoteRef = 45FB7DB8232FE2CD00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DBB232FE2CD00BFE52F /* ZipArchive.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZipArchive.framework;
-			remoteRef = 45FB7DBA232FE2CD00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DBD232FE2CD00BFE52F /* ZipArchive.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZipArchive.framework;
-			remoteRef = 45FB7DBC232FE2CD00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		45FB7DBF232FE2CD00BFE52F /* ZipArchive.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZipArchive.framework;
-			remoteRef = 45FB7DBE232FE2CD00BFE52F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4540547F1F98A69A00C12B2F /* Resources */ = {
@@ -507,27 +175,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		45CDA03922C6606F008DF3F4 /* Run SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftFormat";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/../bin/apply-swiftformat.sh\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		4540547D1F98A69A00C12B2F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -540,29 +187,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		45103DB5232FB9EF009D628A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Filestack;
-			targetProxy = 45103DB4232FB9EF009D628A /* PBXContainerItemProxy */;
-		};
-		45103DC9232FBD68009D628A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FilestackSDK;
-			targetProxy = 45103DC8232FBD68009D628A /* PBXContainerItemProxy */;
-		};
-		45FB7D8F232FE27700BFE52F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = 45FB7D8E232FE27700BFE52F /* PBXContainerItemProxy */;
-		};
-		45FB7DC3232FE2E200BFE52F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ZipArchive-iOS";
-			targetProxy = 45FB7DC2232FE2E200BFE52F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		454054881F98A69A00C12B2F /* Main.storyboard */ = {
@@ -609,6 +233,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -668,6 +293,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
