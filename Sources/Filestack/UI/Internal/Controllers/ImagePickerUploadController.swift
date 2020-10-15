@@ -10,6 +10,7 @@ import AVFoundation.AVAssetExportSession
 import FilestackSDK
 import Photos
 import UIKit
+import PhotosUI
 
 class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
     let uploader: Uploader & DeferredAdd
@@ -45,10 +46,12 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
     }
 
     func start() {
-        if shouldUseCustomPicker {
+        if #available(iOS 14.0, *) {
+            viewController.present(nativePicker, animated: true, completion: nil)
+        } else if shouldUseCustomPicker {
             viewController.present(customPicker, animated: true, completion: nil)
         } else {
-            viewController.present(nativePicker, animated: true, completion: nil)
+            viewController.present(legacyNativePicker, animated: true, completion: nil)
         }
     }
 
@@ -76,7 +79,21 @@ private extension ImagePickerUploadController {
         return sourceTypeSupportsMultipleSelection && (multipleSelectionAllowed || editingEnabled)
     }
 
-    var nativePicker: UIImagePickerController {
+    @available(iOS 14.0, *)
+    var nativePicker: PHPickerViewController {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .any(of: config.photosPickerFilter.map(\.asPHFilter))
+        configuration.selectionLimit = Int(config.maximumSelectionAllowed)
+        configuration.preferredAssetRepresentationMode = .current
+
+        let picker = PHPickerViewController(configuration: configuration)
+
+        picker.delegate = self
+
+        return picker
+    }
+
+    var legacyNativePicker: UIImagePickerController {
         let picker = UIImagePickerController()
 
         picker.delegate = self
@@ -121,6 +138,51 @@ private extension ImagePickerUploadController {
 
         urlExtractorOperation = operation
         trackingProgress.update(tracked: operation.progress)
+    }
+
+    @available(iOS 14.0, *)
+    func upload(results: [PHPickerResult]) {
+        let itemProviders = results.map(\.itemProvider)
+        let group = DispatchGroup()
+        var urls: [URL] = []
+        var typeIdentifier: String?
+
+        for itemProvider in itemProviders {
+            group.enter()
+
+            let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
+
+            switch self.config.imageURLExportPreset {
+            case .compatible:
+                if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
+                    typeIdentifier = AVFileType.jpg.rawValue
+                } else {
+                    typeIdentifier = registeredTypeIdentifiers.last
+                }
+            case .current:
+                if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
+                    typeIdentifier = AVFileType.heic.rawValue
+                } else {
+                    typeIdentifier = registeredTypeIdentifiers.last
+                }
+            }
+
+            guard let typeIdentifier = typeIdentifier else { return }
+
+            itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { (url, error) in
+                defer { group.leave() }
+
+                // `loadFileRepresentation(:)` returns a copy of the file we are requesting, but the file is deleted
+                // after this completion handler returns, so we move/copy the file into a temporary location before the
+                // upload starts.
+                if let url = url?.moveIntoTemporaryLocation() ?? url?.copyIntoTemporaryLocation() {
+                    urls.append(url)
+                }
+            }
+        }
+
+        group.wait()
+        upload(urls: urls)
     }
 
     func upload(urls: [URL]) {
@@ -214,6 +276,17 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
             } else {
                 self.cancel()
             }
+        }
+    }
+}
+
+// MARK: - PHPickerViewControllerDelegate Conformance
+
+@available(iOS 14, *)
+extension ImagePickerUploadController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true) {
+            self.upload(results: results)
         }
     }
 }

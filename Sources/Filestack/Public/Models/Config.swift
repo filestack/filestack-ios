@@ -9,6 +9,7 @@
 import AVFoundation.AVAssetExportSession
 import Foundation
 import UIKit.UIImagePickerController
+import PhotosUI
 
 /// The `Config` class is used together with `Client` to configure certain aspects of the API.
 @objc(FSConfig) public class Config: NSObject {
@@ -85,6 +86,14 @@ import UIKit.UIImagePickerController
     ///
     /// The default value is `.typeMedium`
     @objc public var videoQuality: UIImagePickerController.QualityType = .typeMedium
+
+    /// This setting determines what kind of asset types can be picked when using the new photos picker
+    /// ([PHPickerViewController](https://developer.apple.com/documentation/photokit/phpickerviewcontroller))
+    /// that our SDK now uses by default on iOS 14+ devices. However, when running on older devices, our SDK will
+    /// fallback to the old photos pickers and this setting will be ignored.
+    ///
+    /// The default value is `[.images, .livePhotos, .videos]`.
+    public var photosPickerFilter: [PhotosPickerFilter] = [.images, .livePhotos, .videos]
 }
 
 extension Config {
@@ -103,6 +112,7 @@ extension Config {
         private var imageExportQuality: Float?
         private var videoExportPreset: String?
         private var videoQuality: UIImagePickerController.QualityType?
+        private var photosPickerFilter: [PhotosPickerFilter]?
 
         override init() {}
 
@@ -189,6 +199,12 @@ extension Config {
             return self
         }
 
+        /// :nodoc:
+        public func with(photosPickerFilter: [PhotosPickerFilter]) -> Self {
+            self.photosPickerFilter = photosPickerFilter
+            return self
+        }
+
         /// Instantiates a new `Config` object using any user-supplied options.
         @objc public func build() -> Config {
             let config = Config()
@@ -243,6 +259,10 @@ extension Config {
 
             if let videoQuality = videoQuality {
                 config.videoQuality = videoQuality
+            }
+
+            if let photosPickerFilter = photosPickerFilter {
+                config.photosPickerFilter = photosPickerFilter
             }
 
             return config
