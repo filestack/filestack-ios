@@ -36,6 +36,7 @@ extension Client {
                        completionHandler: @escaping (JSONResponse?) -> Void) -> Uploader {
         let uploadOptions = UploadOptions(preferIntelligentIngestion: useIntelligentIngestionIfAvailable,
                                           startImmediately: true,
+                                          deleteTemporaryFilesAfterUpload: false,
                                           storeOptions: storeOptions)
 
         return upload(using: localURL,
@@ -71,6 +72,7 @@ extension Client {
                                       completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         let uploadOptions = UploadOptions(preferIntelligentIngestion: useIntelligentIngestionIfAvailable,
                                           startImmediately: false,
+                                          deleteTemporaryFilesAfterUpload: false,
                                           storeOptions: storeOptions)
 
         return uploadFromImagePicker(viewController: viewController,
@@ -106,6 +108,7 @@ extension Client {
                                          completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         let uploadOptions = UploadOptions(preferIntelligentIngestion: useIntelligentIngestionIfAvailable,
                                           startImmediately: false,
+                                          deleteTemporaryFilesAfterUpload: false,
                                           storeOptions: storeOptions)
 
         return uploadFromDocumentPicker(viewController: viewController,

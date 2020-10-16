@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450FE2D02539AEC40035D67C /* Zip+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450FE2CF2539AEC40035D67C /* Zip+Extensions.swift */; };
 		4540BB322535CF860053CDBB /* CloudSourceBarTabScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BA9E2535CF860053CDBB /* CloudSourceBarTabScene.swift */; };
 		4540BB332535CF860053CDBB /* PickerNavigationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BA9F2535CF860053CDBB /* PickerNavigationScene.swift */; };
 		4540BB342535CF860053CDBB /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAA12535CF860053CDBB /* PhotoPickerController.swift */; };
@@ -124,6 +125,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		450FE2CF2539AEC40035D67C /* Zip+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Zip+Extensions.swift"; sourceTree = "<group>"; };
 		4518BDF51FC6DE0400FB7D9D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4540BA9E2535CF860053CDBB /* CloudSourceBarTabScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudSourceBarTabScene.swift; sourceTree = "<group>"; };
 		4540BA9F2535CF860053CDBB /* PickerNavigationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerNavigationScene.swift; sourceTree = "<group>"; };
@@ -596,26 +598,27 @@
 		4540BAF92535CF860053CDBB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAFA2535CF860053CDBB /* AVAsset+Export.swift */,
-				4540BAFB2535CF860053CDBB /* UICollectionView+Reusable.swift */,
-				4540BAFC2535CF860053CDBB /* UIColor+Predefined.swift */,
-				4540BAFD2535CF860053CDBB /* SessionManager+FilestackDefault.swift */,
-				4540BAFE2535CF860053CDBB /* Math+Clamp.swift */,
-				4540BAFF2535CF860053CDBB /* String+UTI.swift */,
-				4540BB002535CF860053CDBB /* UIImage+Bundle.swift */,
-				4540BB012535CF860053CDBB /* ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift */,
-				4540BB022535CF860053CDBB /* URL+Copy.swift */,
-				4540BB032535CF860053CDBB /* UIImage+HEIC.swift */,
-				4540BB042535CF860053CDBB /* UIView+Constraints.swift */,
-				4540BB052535CF860053CDBB /* Data+JSON.swift */,
-				4540BB062535CF860053CDBB /* UIColor+Bundle.swift */,
-				4540BB072535CF860053CDBB /* URL+IsDirectory.swift */,
-				4540BB082535CF860053CDBB /* UIImage+Resized.swift */,
 				4540BB092535CF860053CDBB /* Array+SafeIndex.swift */,
-				4540BB0A2535CF860053CDBB /* ImageEdition */,
+				4540BAFA2535CF860053CDBB /* AVAsset+Export.swift */,
+				4540BB052535CF860053CDBB /* Data+JSON.swift */,
+				4540BB012535CF860053CDBB /* ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift */,
+				4540BAFE2535CF860053CDBB /* Math+Clamp.swift */,
+				4540BAFD2535CF860053CDBB /* SessionManager+FilestackDefault.swift */,
+				4540BAFF2535CF860053CDBB /* String+UTI.swift */,
+				4540BAFB2535CF860053CDBB /* UICollectionView+Reusable.swift */,
+				4540BB062535CF860053CDBB /* UIColor+Bundle.swift */,
+				4540BAFC2535CF860053CDBB /* UIColor+Predefined.swift */,
+				4540BB002535CF860053CDBB /* UIImage+Bundle.swift */,
 				4540BB102535CF860053CDBB /* UIImage+Export.swift */,
+				4540BB032535CF860053CDBB /* UIImage+HEIC.swift */,
+				4540BB082535CF860053CDBB /* UIImage+Resized.swift */,
 				4540BB112535CF860053CDBB /* UIImage+Write.swift */,
+				4540BB042535CF860053CDBB /* UIView+Constraints.swift */,
+				4540BB022535CF860053CDBB /* URL+Copy.swift */,
+				4540BB072535CF860053CDBB /* URL+IsDirectory.swift */,
 				4581FF54253869260019B70F /* URL+Move.swift */,
+				450FE2CF2539AEC40035D67C /* Zip+Extensions.swift */,
+				4540BB0A2535CF860053CDBB /* ImageEdition */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -890,6 +893,7 @@
 				4540BB572535CF860053CDBB /* Uploadable.swift in Sources */,
 				4540BB8C2535CF860053CDBB /* UploadableExtractor.swift in Sources */,
 				4540BB932535CF860053CDBB /* ImageURLExportPreset.swift in Sources */,
+				450FE2D02539AEC40035D67C /* Zip+Extensions.swift in Sources */,
 				4540BB912535CF860053CDBB /* CompletionHandlers.swift in Sources */,
 				4540BB4A2535CF860053CDBB /* CloudSourceCollectionViewController.swift in Sources */,
 				4540BB882535CF860053CDBB /* LogoutRequest.swift in Sources */,
@@ -1198,7 +1202,7 @@
 			repositoryURL = "https://github.com/filestack/filestack-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
+				minimumVersion = 2.5.0;
 			};
 		};
 		4564B91A2535B4670045A3C7 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {

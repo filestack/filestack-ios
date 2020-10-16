@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/filestack/filestack-swift.git",
         "state": {
           "branch": null,
-          "revision": "5652c2dbbc957e068346ac503893140ae41b19d8",
-          "version": "2.4.1"
+          "revision": "aa6a3fd74f232845e966bc949b8353437b6894ad",
+          "version": "2.5.0"
         }
       },
       {

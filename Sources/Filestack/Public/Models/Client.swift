@@ -161,6 +161,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                       uploadProgress: ((Progress) -> Void)? = nil,
                                       completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         options.startImmediately = false
+        options.deleteTemporaryFilesAfterUpload = true
 
         let uploader = client.upload(options: options,
                                      queue: queue,
@@ -200,6 +201,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                          uploadProgress: ((Progress) -> Void)? = nil,
                                          completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
         options.startImmediately = false
+        options.deleteTemporaryFilesAfterUpload = true
 
         let uploader = client.upload(options: options,
                                      queue: queue,

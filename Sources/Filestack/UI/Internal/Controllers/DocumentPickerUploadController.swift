@@ -57,15 +57,15 @@ extension DocumentPickerUploadController {
     private func zipURL(from url: URL) -> URL? {
         let fileName = url.lastPathComponent
         
-        return try? Zip.quickZipFiles([url], fileName: fileName)
-    }
+        let zippedURL = try? Zip.quickZipFiles([url],
+                                               directory: FileManager.default.temporaryDirectory,
+                                               fileName: fileName)
 
-    private func tempZipURL(filename: String) -> URL? {
-        let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+        if url.path.starts(with: FileManager.default.temporaryDirectory.path) {
+            try? FileManager.default.removeItem(at: url)
+        }
 
-        return cachesDirectoryURL?
-            .appendingPathComponent(UUID().uuidString + "_" + filename)
-            .appendingPathExtension("zip")
+        return zippedURL
     }
 }
 
