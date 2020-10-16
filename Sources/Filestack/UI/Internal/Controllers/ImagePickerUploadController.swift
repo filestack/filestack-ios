@@ -46,7 +46,7 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
     }
 
     func start() {
-        if #available(iOS 14.0, *) {
+        if #available(iOS 14.0, *), sourceType != .camera {
             viewController.present(nativePicker, animated: true, completion: nil)
         } else if shouldUseCustomPicker {
             viewController.present(customPicker, animated: true, completion: nil)
