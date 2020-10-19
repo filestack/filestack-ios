@@ -2,7 +2,7 @@
   "warnings": [
     {
       "file": "/Users/ruben/src/filestack/filestack-ios/Sources/Filestack/Public/Models/Config.swift",
-      "line": 115,
+      "line": 125,
       "symbol": "Config.Builder.with(cloudThumbnailCachePolicy:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
