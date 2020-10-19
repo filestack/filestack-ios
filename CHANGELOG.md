@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.5.1 (2020-10-19)
+----------------------------
+
+- Updating Cocoapod dependency on `FilestackSDK` to '~> 2.5`.
+
 Version 2.5.0 (2020-10-19)
 ----------------------------
 
