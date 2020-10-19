@@ -146,43 +146,56 @@ private extension ImagePickerUploadController {
         let group = DispatchGroup()
         var urls: [URL] = []
         var typeIdentifier: String?
+        let progress = Progress(totalUnitCount: Int64(itemProviders.count))
 
-        for itemProvider in itemProviders {
-            group.enter()
+        progress.localizedDescription = "Fetching \(progress.totalUnitCount) photo album asset(s)…"
 
-            let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
+        trackingProgress.update(tracked: progress)
 
-            switch self.config.imageURLExportPreset {
-            case .compatible:
-                if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
-                    typeIdentifier = AVFileType.jpg.rawValue
-                } else {
-                    typeIdentifier = registeredTypeIdentifiers.last
+        DispatchQueue.global(qos: .userInitiated).async {
+            for itemProvider in itemProviders {
+                group.enter()
+
+                let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
+
+                switch self.config.imageURLExportPreset {
+                case .compatible:
+                    if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
+                        typeIdentifier = AVFileType.jpg.rawValue
+                    } else {
+                        typeIdentifier = registeredTypeIdentifiers.last
+                    }
+                case .current:
+                    if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
+                        typeIdentifier = AVFileType.heic.rawValue
+                    } else {
+                        typeIdentifier = registeredTypeIdentifiers.last
+                    }
                 }
-            case .current:
-                if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
-                    typeIdentifier = AVFileType.heic.rawValue
-                } else {
-                    typeIdentifier = registeredTypeIdentifiers.last
+
+                guard let typeIdentifier = typeIdentifier else {
+                    progress.completedUnitCount += 1
+                    return
+                }
+
+                itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { (url, error) in
+                    defer {
+                        progress.completedUnitCount += 1
+                        group.leave()
+                    }
+
+                    // `loadFileRepresentation(:)` returns a copy of the file we are requesting, but the file is deleted
+                    // after this completion handler returns, so we move/copy the file into a temporary location before the
+                    // upload starts.
+                    if let url = url?.moveIntoTemporaryLocation() ?? url?.copyIntoTemporaryLocation() {
+                        urls.append(url)
+                    }
                 }
             }
 
-            guard let typeIdentifier = typeIdentifier else { return }
-
-            itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { (url, error) in
-                defer { group.leave() }
-
-                // `loadFileRepresentation(:)` returns a copy of the file we are requesting, but the file is deleted
-                // after this completion handler returns, so we move/copy the file into a temporary location before the
-                // upload starts.
-                if let url = url?.moveIntoTemporaryLocation() ?? url?.copyIntoTemporaryLocation() {
-                    urls.append(url)
-                }
-            }
+            group.wait()
+            self.upload(urls: urls)
         }
-
-        group.wait()
-        upload(urls: urls)
     }
 
     func upload(urls: [URL]) {

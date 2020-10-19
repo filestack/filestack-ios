@@ -16,7 +16,9 @@ class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
     let picker: UIDocumentPickerViewController
     let config: Config
 
-    var progress: Progress { uploader.progress }
+    private let trackingProgress = TrackingProgress()
+
+    var progress: Progress { trackingProgress }
 
     init(uploader: Uploader & DeferredAdd, viewController: UIViewController, config: Config) {
         self.uploader = uploader
@@ -41,25 +43,68 @@ class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
 
 extension DocumentPickerUploadController {
     private func upload(urls: [URL]) {
+        DispatchQueue.global(qos: .userInitiated).async { self.doUpload(urls: urls) }
+    }
+
+    private func doUpload(urls: [URL]) {
+        let progress = Progress(totalUnitCount: Int64(urls.count * 100))
+
+        progress.localizedDescription = "Processing \(urls.count) file(s)…"
+        progress.localizedAdditionalDescription = ""
+
+        trackingProgress.update(tracked: progress)
+
+        var uploadables: [URL] = []
+        var individualProgress: [Int: Double] = [:]
+        let dispatchGroup = DispatchGroup()
+
+        let updateProgress: () -> () = {
+            progress.localizedAdditionalDescription = "\(uploadables.count) of \(urls.count)"
+        }
+
+        updateProgress()
+
+        for (idx, url) in urls.enumerated()  {
+            dispatchGroup.enter()
+
+            uploadableURL(from: url) { (url) in
+                if let url = url {
+                    uploadables.append(url)
+                }
+
+                updateProgress()
+                dispatchGroup.leave()
+            } progress: { (completed) in
+                individualProgress[idx] = completed
+                progress.completedUnitCount = Int64(individualProgress.values.reduce(0, +) * 100)
+            }
+        }
+
+        dispatchGroup.wait()
+
         guard !urls.isEmpty else {
             cancel()
             return
         }
 
-        uploader.add(uploadables: urls.compactMap { uploadableURL(from: $0) })
+        uploader.add(uploadables: uploadables)
         uploader.start()
+        trackingProgress.update(tracked: uploader.progress)
     }
 
-    private func uploadableURL(from url: URL) -> URL? {
-        return url.isDirectory ? zipURL(from: url) : url
+    private func uploadableURL(from url: URL, completion: (URL?) -> (), progress: @escaping ((_ progress: Double) -> ())) {
+        if url.isDirectory {
+            completion(zipURL(from: url, progress: progress))
+        } else {
+            completion(url)
+        }
     }
 
-    private func zipURL(from url: URL) -> URL? {
-        let fileName = url.lastPathComponent
-        
+    private func zipURL(from url: URL, progress: @escaping ((_ progress: Double) -> ())) -> URL? {
         let zippedURL = try? Zip.quickZipFiles([url],
                                                directory: FileManager.default.temporaryDirectory,
-                                               fileName: fileName)
+                                               fileName: url.lastPathComponent,
+                                               progress: progress)
 
         if url.path.starts(with: FileManager.default.temporaryDirectory.path) {
             try? FileManager.default.removeItem(at: url)
