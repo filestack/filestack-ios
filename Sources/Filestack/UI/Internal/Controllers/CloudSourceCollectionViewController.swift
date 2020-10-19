@@ -19,6 +19,7 @@ private extension String {
 class CloudSourceCollectionViewController: UICollectionViewController {
     private weak var dataSource: (CloudSourceDataSource)!
     private var refreshControl: UIRefreshControl?
+    private var shouldFocusOnSearchBar: Bool = false
 
     // MARK: - View Overrides
 
@@ -48,16 +49,20 @@ class CloudSourceCollectionViewController: UICollectionViewController {
         super.viewDidAppear(animated)
 
         collectionView!.reloadData()
-
-        if dataSource.source.provider.searchBased {
-            focusOnSearchBar()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         refreshControl?.endRefreshing()
 
         super.viewWillDisappear(animated)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if dataSource.source.provider.searchBased {
+            focusOnSearchBar()
+        }
     }
 }
 
@@ -162,13 +167,7 @@ extension CloudSourceCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
-
-        if view.reuseIdentifier == .headerID {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                guard let subview = view.subviews.first, !subview.isFirstResponder else { return }
-                subview.becomeFirstResponder()
-            }
-        }
+        shouldFocusOnSearchBar = true
     }
 }
 
@@ -241,11 +240,15 @@ private extension CloudSourceCollectionViewController {
     }
 
     func focusOnSearchBar() {
+        guard shouldFocusOnSearchBar else { return }
+
         let views = collectionView!.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader)
 
-        if let searchBar = (views.first?.subviews.first as? UISearchBar) {
+        if let searchBar = (views.first?.subviews.first as? UISearchBar), !searchBar.isFirstResponder {
             searchBar.becomeFirstResponder()
         }
+
+        shouldFocusOnSearchBar = false
     }
 }
 
