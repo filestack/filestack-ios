@@ -82,14 +82,22 @@ extension DocumentPickerUploadController {
 
         dispatchGroup.wait()
 
-        guard !urls.isEmpty else {
+        guard !uploadables.isEmpty else {
             cancel()
             return
         }
 
-        uploader.add(uploadables: uploadables)
-        uploader.start()
-        trackingProgress.update(tracked: uploader.progress)
+        if uploader.state == .cancelled {
+            for url in uploadables {
+                if url.path.starts(with: FileManager.default.temporaryDirectory.path) {
+                    try? FileManager.default.removeItem(at: url)
+                }
+            }
+        } else {
+            uploader.add(uploadables: uploadables)
+            uploader.start()
+            trackingProgress.update(tracked: uploader.progress)
+        }
     }
 
     private func uploadableURL(from url: URL, completion: (URL?) -> (), progress: @escaping ((_ progress: Double) -> ())) {

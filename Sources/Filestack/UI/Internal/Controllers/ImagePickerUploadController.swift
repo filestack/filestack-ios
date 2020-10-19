@@ -215,8 +215,16 @@ private extension ImagePickerUploadController {
             cleanup()
         })
 
-        uploader.add(uploadables: urls)
-        uploader.start()
+        if uploader.state == .cancelled {
+            for url in urls {
+                if url.path.starts(with: FileManager.default.temporaryDirectory.path) {
+                    try? FileManager.default.removeItem(at: url)
+                }
+            }
+        } else {
+            uploader.add(uploadables: urls)
+            uploader.start()
+        }
     }
 
     func editor(using image: UIImage) -> UIViewController {
