@@ -36,7 +36,7 @@
 # rules
 
 --enable isEmpty
---enable specifiers
+--enable modifierOrder
 --enable spaceInsideComments
 --enable linebreakAtEndOfFile
 --enable typeSugar

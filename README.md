@@ -11,9 +11,9 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 ## Requirements
 
-* Xcode 11 or later
-* Swift 4.2 up to 5.2 / Objective-C
-* iOS 11 or later
+* Xcode 11+ (*Xcode 12+ required for SPM support*)
+* Swift 4.2+ / Objective-C
+* iOS 11.0+
 
 ## Installing
 
@@ -31,7 +31,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.3.2'
+    pod 'Filestack', '~> 2.5.1'
 end
 ```
 
@@ -52,9 +52,21 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.3.2`
+`github "filestack/filestack-ios" ~> 2.5.1`
 
-Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `ZipArchive.framework` to the embedded frameworks build phase of your app's target.
+Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `Zip.framework` to the embedded frameworks build phase of your app's target.
+
+### Swift Package Manager
+
+Add `https://github.com/filestack/filestack-ios.git` as a [Swift Package Manager](https://swift.org/package-manager/) dependency to your Xcode project.
+
+Alternatively, if you are adding `Filestack` to your own Swift Package, declare the dependency in your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.5.1"))
+]
+```
 
 ### Manually
 
@@ -70,7 +82,7 @@ Add Filestack and its dependencies as git submodules by running the following co
 $ git submodule add https://github.com/filestack/filestack-ios.git
 $ git submodule add https://github.com/filestack/filestack-swift.git
 $ git submodule add https://github.com/Alamofire/Alamofire.git
-$ git submodule add https://github.com/ZipArchive/ZipArchive.git
+$ git submodule add https://github.com/marmelroy/Zip.git
 ```
 
 Open the new `filestack-ios` folder, and drag the `Filestack.xcodeproj` into the Project Navigator of your application's Xcode project.
@@ -84,7 +96,7 @@ In the tab bar at the top of that window, open the "General" panel.
 
 Click on the + button under the "Embedded Binaries" section and choose the `Filestack.framework` for iOS.
 
-Repeat the same process for adding `Alamofire`, `FilestackSDK`, and `ZipArchive` dependent frameworks.
+Repeat the same process for adding `Alamofire`, `FilestackSDK`, and `Zip` dependent frameworks.
 
 ## Usage
 
