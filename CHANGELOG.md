@@ -1,10 +1,15 @@
 Change Log
 ==========
 
+Version 2.5.2 (2020-10-22)
+----------------------------
+
+- Fixed podspec containing old path to storyboards.
+
 Version 2.5.1 (2020-10-19)
 ----------------------------
 
-- Updating Cocoapod dependency on `FilestackSDK` to '~> 2.5`.
+- Updated Cocoapod dependency on `FilestackSDK` to '~> 2.5`.
 
 Version 2.5.0 (2020-10-19)
 ----------------------------
