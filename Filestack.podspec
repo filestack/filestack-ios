@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target  = '11.0'
 
   spec.source_files = 'Sources/Filestack/**/*.{h,swift}'
-  spec.resources = ["Sources/Filestack/UI/Storyboards/*.storyboard", "Sources/Filestack/Resources/*.xcassets"]
+  spec.resources = ["Sources/Filestack/Resources/*.{storyboard,xcassets}"]
   spec.public_header_files = 'Sources/**/*.h'
 
   spec.swift_versions = [4.2, 5.2]
