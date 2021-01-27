@@ -74,7 +74,7 @@
 		4540BB712535CF860053CDBB /* AVAsset+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFA2535CF860053CDBB /* AVAsset+Export.swift */; };
 		4540BB722535CF860053CDBB /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFB2535CF860053CDBB /* UICollectionView+Reusable.swift */; };
 		4540BB732535CF860053CDBB /* UIColor+Predefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFC2535CF860053CDBB /* UIColor+Predefined.swift */; };
-		4540BB742535CF860053CDBB /* SessionManager+FilestackDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFD2535CF860053CDBB /* SessionManager+FilestackDefault.swift */; };
+		4540BB742535CF860053CDBB /* URLSession+FilestackDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFD2535CF860053CDBB /* URLSession+FilestackDefault.swift */; };
 		4540BB752535CF860053CDBB /* Math+Clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFE2535CF860053CDBB /* Math+Clamp.swift */; };
 		4540BB762535CF860053CDBB /* String+UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BAFF2535CF860053CDBB /* String+UTI.swift */; };
 		4540BB772535CF860053CDBB /* UIImage+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB002535CF860053CDBB /* UIImage+Bundle.swift */; };
@@ -117,12 +117,26 @@
 		4540BB9C2535CF860053CDBB /* Client+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB2F2535CF860053CDBB /* Client+ObjC.swift */; };
 		4540BB9D2535CF860053CDBB /* Client+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB302535CF860053CDBB /* Client+Deprecated.swift */; };
 		45453E8D2535E3540090F78D /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45453E8C2535E3540090F78D /* Bundle.swift */; };
-		4564B90D2535B3DA0045A3C7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B90C2535B3DA0045A3C7 /* Alamofire */; };
 		4564B9112535B3E70045A3C7 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9102535B3E70045A3C7 /* Zip */; };
 		4564B9152535B4030045A3C7 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9142535B4030045A3C7 /* FilestackSDK */; };
+		4577A46D25BB01CF00A2CEB9 /* FilestackSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9142535B4030045A3C7 /* FilestackSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4581FF55253869260019B70F /* URL+Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581FF54253869260019B70F /* URL+Move.swift */; };
 		4581FF5D25388EBD0019B70F /* PhotosPickerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4577A46E25BB01CF00A2CEB9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4577A46D25BB01CF00A2CEB9 /* FilestackSDK in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		450FE2CF2539AEC40035D67C /* Zip+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Zip+Extensions.swift"; sourceTree = "<group>"; };
@@ -193,7 +207,7 @@
 		4540BAFA2535CF860053CDBB /* AVAsset+Export.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVAsset+Export.swift"; sourceTree = "<group>"; };
 		4540BAFB2535CF860053CDBB /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
 		4540BAFC2535CF860053CDBB /* UIColor+Predefined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Predefined.swift"; sourceTree = "<group>"; };
-		4540BAFD2535CF860053CDBB /* SessionManager+FilestackDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManager+FilestackDefault.swift"; sourceTree = "<group>"; };
+		4540BAFD2535CF860053CDBB /* URLSession+FilestackDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+FilestackDefault.swift"; sourceTree = "<group>"; };
 		4540BAFE2535CF860053CDBB /* Math+Clamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math+Clamp.swift"; sourceTree = "<group>"; };
 		4540BAFF2535CF860053CDBB /* String+UTI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+UTI.swift"; sourceTree = "<group>"; };
 		4540BB002535CF860053CDBB /* UIImage+Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Bundle.swift"; sourceTree = "<group>"; };
@@ -238,6 +252,7 @@
 		4540BB312535CF860053CDBB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45453E8C2535E3540090F78D /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		457084FF1F975C6C00991340 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4577A46925BB017600A2CEB9 /* filestack-swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "filestack-swift"; path = "../filestack-swift"; sourceTree = "<group>"; };
 		4581FF54253869260019B70F /* URL+Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Move.swift"; sourceTree = "<group>"; };
 		4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosPickerFilter.swift; sourceTree = "<group>"; };
 		45BFF67A23290B1E00944028 /* Filestack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Filestack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -252,7 +267,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4564B9152535B4030045A3C7 /* FilestackSDK in Frameworks */,
-				4564B90D2535B3DA0045A3C7 /* Alamofire in Frameworks */,
 				4564B9112535B3E70045A3C7 /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,7 +617,7 @@
 				4540BB052535CF860053CDBB /* Data+JSON.swift */,
 				4540BB012535CF860053CDBB /* ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift */,
 				4540BAFE2535CF860053CDBB /* Math+Clamp.swift */,
-				4540BAFD2535CF860053CDBB /* SessionManager+FilestackDefault.swift */,
+				4540BAFD2535CF860053CDBB /* URLSession+FilestackDefault.swift */,
 				4540BAFF2535CF860053CDBB /* String+UTI.swift */,
 				4540BAFB2535CF860053CDBB /* UICollectionView+Reusable.swift */,
 				4540BB062535CF860053CDBB /* UIColor+Bundle.swift */,
@@ -734,6 +748,7 @@
 		457084F51F975C6B00991340 = {
 			isa = PBXGroup;
 			children = (
+				4577A46925BB017600A2CEB9 /* filestack-swift */,
 				45BFF67B23290B1E00944028 /* LICENSE */,
 				45BFF67D23290B1F00944028 /* VERSION */,
 				45BFF67C23290B1F00944028 /* CHANGELOG.md */,
@@ -776,6 +791,7 @@
 				457084FC1F975C6C00991340 /* Headers */,
 				457084FD1F975C6C00991340 /* Resources */,
 				452B6ADB1FA89A4F00FFD490 /* Set Version and Build Number */,
+				4577A46E25BB01CF00A2CEB9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -783,7 +799,6 @@
 			);
 			name = Filestack;
 			packageProductDependencies = (
-				4564B90C2535B3DA0045A3C7 /* Alamofire */,
 				4564B9102535B3E70045A3C7 /* Zip */,
 				4564B9142535B4030045A3C7 /* FilestackSDK */,
 			);
@@ -798,7 +813,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					457084FE1F975C6C00991340 = {
@@ -818,7 +833,6 @@
 			);
 			mainGroup = 457084F51F975C6B00991340;
 			packageReferences = (
-				4564B90B2535B3DA0045A3C7 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4564B90F2535B3E70045A3C7 /* XCRemoteSwiftPackageReference "Zip" */,
 				4564B9132535B4030045A3C7 /* XCRemoteSwiftPackageReference "filestack-swift" */,
 				4564B91A2535B4670045A3C7 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
@@ -905,7 +919,7 @@
 				4540BB3E2535CF860053CDBB /* UserDefaults+State.swift in Sources */,
 				4540BB842535CF860053CDBB /* CGRect+Scale.swift in Sources */,
 				4540BB9D2535CF860053CDBB /* Client+Deprecated.swift in Sources */,
-				4540BB742535CF860053CDBB /* SessionManager+FilestackDefault.swift in Sources */,
+				4540BB742535CF860053CDBB /* URLSession+FilestackDefault.swift in Sources */,
 				4540BB6E2535CF860053CDBB /* TrackingProgress.swift in Sources */,
 				4540BB782535CF860053CDBB /* ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift in Sources */,
 				4540BB592535CF860053CDBB /* SelectionCell.swift in Sources */,
@@ -1181,14 +1195,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4564B90B2535B3DA0045A3C7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.9.1;
-			};
-		};
 		4564B90F2535B3E70045A3C7 /* XCRemoteSwiftPackageReference "Zip" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/Zip.git";
@@ -1216,11 +1222,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4564B90C2535B3DA0045A3C7 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4564B90B2535B3DA0045A3C7 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		4564B9102535B3E70045A3C7 /* Zip */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4564B90F2535B3E70045A3C7 /* XCRemoteSwiftPackageReference "Zip" */;

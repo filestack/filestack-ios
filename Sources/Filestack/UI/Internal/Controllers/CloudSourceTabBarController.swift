@@ -6,7 +6,6 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import FilestackSDK
 import UIKit
 
@@ -33,10 +32,10 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         return currentRequest != nil
     }
 
-    private let sessionManager = SessionManager.filestackDefault
+    private let session = URLSession.filestackDefault
     private var toggleViewTypeButton: UIBarButtonItem?
     private var currentRequest: Cancellable?
-    private var thumbnailRequests: [DataRequest] = [DataRequest]()
+    private var thumbnailTaskRequests: [URLSessionDataTask] = [URLSessionDataTask]()
     private weak var uploadMonitorViewController: MonitorViewController?
     private var uploaderObserver: NSKeyValueObservation?
 
@@ -206,37 +205,36 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         let cachePolicy = client.config.cloudThumbnailCachePolicy
         let urlRequest = URLRequest(url: item.thumbnailURL, cachePolicy: cachePolicy)
 
-        var request: DataRequest!
-
         // Request thumbnail
+        var task: URLSessionDataTask!
 
-        request = sessionManager.request(urlRequest)
-            .validate(contentType: ["image/*"])
-            .responseData(completionHandler: { response in
-                // Remove request from thumbnail requests
-                if let idx = (self.thumbnailRequests.firstIndex { $0.task == request.task }) {
-                    self.thumbnailRequests.remove(at: idx)
-                }
+        task = URLSession.filestackDefault.dataTask(with: urlRequest) { (data, response, error) in
+            // Remove request from thumbnail requests
+            if let idx = (self.thumbnailTaskRequests.firstIndex { $0 == task }) {
+                self.thumbnailTaskRequests.remove(at: idx)
+            }
 
-                var image: UIImage!
+            var image: UIImage!
 
-                // Obtain image from data, and square it.
-                if let data = response.data, let squareImage = UIImage(data: data)?.squared {
-                    image = squareImage
-                } else {
-                    // Unable to obtain image, use file placeholder.
-                    image = UIImage(named: "file", in: bundle, compatibleWith: nil)
-                }
+            // Obtain image from data, and square it.
+            if error == nil, let data = data, let squareImage = UIImage(data: data)?.squared {
+                image = squareImage
+            } else {
+                // Unable to obtain image, use file placeholder.
+                image = UIImage(named: "file", in: bundle, compatibleWith: nil)
+            }
 
-                // Update thumbnail cache with image.
-                self.thumbnailCache.setObject(image, forKey: item.thumbnailURL as NSURL)
+            // Update thumbnail cache with image.
+            self.thumbnailCache.setObject(image, forKey: item.thumbnailURL as NSURL)
 
-                // Call completion handler
-                completionHandler(image)
-            })
+            // Call completion handler
+            DispatchQueue.main.async { completionHandler(image) }
+        }
+
+        task.resume()
 
         // Add request to thumbnail requests.
-        thumbnailRequests.append(request)
+        thumbnailTaskRequests.append(task)
     }
 
     func search(text: String, completionHandler: @escaping (() -> Void)) {
@@ -290,11 +288,11 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     }
 
     private func cancelPendingThumbnailRequests() {
-        for request in thumbnailRequests {
+        for request in thumbnailTaskRequests {
             request.cancel()
         }
 
-        thumbnailRequests.removeAll()
+        thumbnailTaskRequests.removeAll()
     }
 
     // MARK: - Actions

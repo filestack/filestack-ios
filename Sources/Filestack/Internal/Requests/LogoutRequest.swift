@@ -6,7 +6,6 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
 final class LogoutRequest {
@@ -29,12 +28,12 @@ final class LogoutRequest {
     func perform(cloudService: CloudService, completionBlock: @escaping LogoutCompletionHandler) {
         let request = cloudService.logoutRequest(provider: provider, apiKey: apiKey, token: token)
 
-        request.validate(statusCode: Constants.validHTTPResponseCodes)
-
-        request.responseData { dataResponse in
-            let response = LogoutResponse(error: dataResponse.error)
+        let task = URLSession.filestackDefault.dataTask(with: request) { (data, response, error) in
+            let response = LogoutResponse(error: error)
 
             completionBlock(response)
         }
+
+        task.resume()
     }
 }

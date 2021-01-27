@@ -15,17 +15,13 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/Alamofire/Alamofire", from: "4.9.1"),
-        .package(name: "FilestackSDK", url: "https://github.com/filestack/filestack-swift", from: "2.4.1"),
-        .package(url: "https://github.com/marmelroy/Zip", from: "2.1.1")
+        .package(name: "FilestackSDK", url: "https://github.com/filestack/filestack-swift", .upToNextMajor(from: Version(2, 5, 0))),
+        .package(url: "https://github.com/marmelroy/Zip", .upToNextMajor(from: Version(2, 1, 0)))
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Filestack",
-            dependencies: ["Alamofire", "FilestackSDK", "Zip"],
+            dependencies: ["FilestackSDK", "Zip"],
             exclude: ["Filestack.h", "Info.plist"],
             resources: [
                 .copy("VERSION")

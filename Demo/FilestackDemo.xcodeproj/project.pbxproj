@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		4540548C1F98A69A00C12B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4540548B1F98A69A00C12B2F /* Assets.xcassets */; };
 		4540548F1F98A69A00C12B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4540548D1F98A69A00C12B2F /* LaunchScreen.storyboard */; };
 		455AB6C2232FD680001ABE81 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */; };
+		4577A47025BB022700A2CEB9 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4577A46F25BB022700A2CEB9 /* FilestackSDK */; };
+		4577A47125BB022700A2CEB9 /* FilestackSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4577A46F25BB022700A2CEB9 /* FilestackSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		45A758C52535DE6800C8547F /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A758C32535DE6200C8547F /* Filestack.framework */; };
 		45A758C62535DE6800C8547F /* Filestack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45A758C32535DE6200C8547F /* Filestack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -24,6 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4577A47125BB022700A2CEB9 /* FilestackSDK in Embed Frameworks */,
 				45A758C62535DE6800C8547F /* Filestack.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -48,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4577A47025BB022700A2CEB9 /* FilestackSDK in Frameworks */,
 				45A758C52535DE6800C8547F /* Filestack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +124,7 @@
 			);
 			name = FilestackDemo;
 			packageProductDependencies = (
+				4577A46F25BB022700A2CEB9 /* FilestackSDK */,
 			);
 			productName = FilestackDemo;
 			productReference = 454054811F98A69A00C12B2F /* FilestackDemo.app */;
@@ -132,7 +137,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					454054801F98A69A00C12B2F = {
@@ -315,7 +320,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -330,7 +336,10 @@
 				DEVELOPMENT_TEAM = ZBJR46PSPF;
 				INFOPLIST_FILE = FilestackDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LLVM_LTO = YES_THIN;
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -348,7 +357,10 @@
 				DEVELOPMENT_TEAM = ZBJR46PSPF;
 				INFOPLIST_FILE = FilestackDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LLVM_LTO = YES_THIN;
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FilestackDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -379,6 +391,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4577A46F25BB022700A2CEB9 /* FilestackSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FilestackSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 454054791F98A69A00C12B2F /* Project object */;
 }

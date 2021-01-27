@@ -1,12 +1,11 @@
 //
-//  SessionManager+FilestackDefault.swift
+//  URLSession+FilestackDefault.swift
 //  Filestack
 //
 //  Created by Ruben Nine on 10/24/17.
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
 #if SWIFT_PACKAGE
@@ -14,8 +13,8 @@ import Foundation
 private class BundleFinder {}
 #endif
 
-extension SessionManager {
-    static var filestackDefault: SessionManager {
+extension URLSession {
+    static var filestackDefault: URLSession {
         let configuration = URLSessionConfiguration.default
 
         configuration.isDiscretionary = false
@@ -24,15 +23,26 @@ extension SessionManager {
         configuration.httpShouldUsePipelining = true
         configuration.httpAdditionalHeaders = customHTTPHeaders
 
-        return SessionManager(configuration: configuration)
+        return URLSession(configuration: configuration)
+    }
+
+    func jsonRequest(_ url: URL, payload: [String: Any], method: String = "POST") -> URLRequest {
+        var request = URLRequest(url: url)
+
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = method
+        request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
+
+        return request
     }
 }
 
 // MARK: - Private Functions
 
-private extension SessionManager {
-    static var customHTTPHeaders: HTTPHeaders {
-        var defaultHeaders = SessionManager.defaultHTTPHeaders
+private extension URLSession {
+    static var customHTTPHeaders: [String: String] {
+        var defaultHeaders: [String: String] = [:]
 
         defaultHeaders["User-Agent"] = "filestack-ios \(shortVersionString)"
         defaultHeaders["Filestack-Source"] = "Swift-\(shortVersionString)"

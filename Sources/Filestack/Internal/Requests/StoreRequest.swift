@@ -6,7 +6,6 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import FilestackSDK
 import Foundation
 
@@ -20,7 +19,7 @@ final class StoreRequest: CloudRequest, Cancellable, Monitorizable {
     let storeOptions: StorageOptions
 
     private(set) var token: String?
-    private weak var dataRequest: DataRequest?
+    private weak var dataTask: URLSessionDataTask?
 
     let progress: Progress = {
         let progress = Progress(totalUnitCount: 0)
@@ -50,15 +49,15 @@ final class StoreRequest: CloudRequest, Cancellable, Monitorizable {
     // MARK: - Cancellable Protocol Implementation
 
     @discardableResult func cancel() -> Bool {
-        guard let dataRequest = dataRequest else { return false }
-        dataRequest.cancel()
+        guard let dataTask = dataTask else { return false }
+        dataTask.cancel()
 
         return true
     }
 
     // MARK: - Internal Functions
 
-    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) -> DataRequest {
+    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletion) -> URLSessionDataTask {
         let request = cloudService.storeRequest(provider: provider,
                                                 path: path,
                                                 apiKey: apiKey,
@@ -66,15 +65,12 @@ final class StoreRequest: CloudRequest, Cancellable, Monitorizable {
                                                 token: token,
                                                 storeOptions: storeOptions)
 
-        dataRequest = request
-
-        request.validate(statusCode: Constants.validHTTPResponseCodes)
-
-        request.responseJSON(queue: queue) { dataResponse in
+        let task = URLSession.filestackDefault.dataTask(with: request) { (data, response, error) in
             // Parse JSON, or return early with error if unable to parse.
-            guard let data = dataResponse.data, let json = data.parseJSON() else {
-                let response = StoreResponse(error: dataResponse.error)
-                completionBlock(nil, response)
+            guard let data = data, let json = data.parseJSON() else {
+                let response = StoreResponse(error: error)
+
+                DispatchQueue.main.async { completionBlock(nil, response) }
 
                 return
             }
@@ -84,11 +80,16 @@ final class StoreRequest: CloudRequest, Cancellable, Monitorizable {
 
             if let results = self.getResults(from: json) {
                 // Results received — return response with contents
-                let response = StoreResponse(contents: results, error: dataResponse.error)
-                completionBlock(nil, response)
+                let response = StoreResponse(contents: results, error: error)
+
+                DispatchQueue.main.async { completionBlock(nil, response) }
             }
         }
 
-        return request
+        dataTask = task
+
+        task.resume()
+
+        return task
     }
 }

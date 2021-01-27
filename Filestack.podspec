@@ -15,7 +15,6 @@ Pod::Spec.new do |spec|
 
   spec.swift_versions = [4.2, 5.2]
 
-  spec.dependency 'Alamofire', '~> 4.9'
-  spec.dependency 'FilestackSDK', '~> 2.5'
+  spec.dependency 'FilestackSDK', '~> 2.6'
   spec.dependency 'Zip', '~> 2.1'
 end

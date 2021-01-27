@@ -6,7 +6,6 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import FilestackSDK
 import Foundation
 
@@ -19,7 +18,7 @@ protocol CloudRequest {
     var security: Security? { get }
 
     @discardableResult
-    func perform(cloudService: CloudService, queue: DispatchQueue, completionBlock: @escaping CloudRequestCompletion) -> DataRequest
+    func perform(cloudService: CloudService, completionBlock: @escaping CloudRequestCompletion) -> URLSessionDataTask
 
     func getResults(from json: [String: Any]) -> [String: Any]?
 }

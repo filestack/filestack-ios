@@ -6,12 +6,11 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import FilestackSDK
 import Foundation
 
 class CloudService {
-    let sessionManager = SessionManager.filestackDefault
+    let session = URLSession.filestackDefault
     let baseURL = Constants.cloudURL
 
     func folderListRequest(provider: CloudProvider,
@@ -20,13 +19,13 @@ class CloudService {
                            apiKey: String,
                            security: Security? = nil,
                            token: String? = nil,
-                           pageToken: String? = nil) -> DataRequest {
+                           pageToken: String? = nil) -> URLRequest {
         let url = baseURL.appendingPathComponent("folder/list")
 
         var params: [String: Any] = [
-            "flow": "mobile",
-            "appurl": authCallbackURL.absoluteString,
             "apikey": apiKey,
+            "appurl": authCallbackURL.absoluteString,
+            "flow": "mobile",
         ]
 
         if let token = token {
@@ -53,7 +52,7 @@ class CloudService {
             params["signature"] = security.signature
         }
 
-        return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
+        return session.jsonRequest(url, payload: params)
     }
 
     func storeRequest(provider: CloudProvider,
@@ -61,65 +60,40 @@ class CloudService {
                       apiKey: String,
                       security: Security? = nil,
                       token: String? = nil,
-                      storeOptions: StorageOptions) -> DataRequest {
+                      storeOptions: StorageOptions) -> URLRequest {
         let url = baseURL.appendingPathComponent("store/")
 
         var params: [String: Any] = [
-            "flow": "mobile",
             "apikey": apiKey,
+            "flow": "mobile",
+            "clouds": [
+                provider.description: [
+                    "path": path,
+                    "store": storeOptions.asDictionary(),
+                ],
+            ]
         ]
 
         if let token = token {
             params["token"] = token
         }
 
-        var storeOptionsJSON: [String: Any] = [
-            "location": storeOptions.location.description.lowercased(),
-        ]
-
-        if let storeRegion = storeOptions.region {
-            storeOptionsJSON["region"] = storeRegion
-        }
-
-        if let storeContainer = storeOptions.container {
-            storeOptionsJSON["container"] = storeContainer
-        }
-
-        if let storePath = storeOptions.path {
-            storeOptionsJSON["path"] = storePath
-        }
-
-        if let storeAccess = storeOptions.access {
-            storeOptionsJSON["access"] = storeAccess.description
-        }
-
-        if let storeFilename = storeOptions.filename {
-            storeOptionsJSON["filename"] = storeFilename
-        }
-
-        params["clouds"] = [
-            provider.description: [
-                "path": path,
-                "store": storeOptionsJSON,
-            ],
-        ]
-
         if let security = security {
             params["policy"] = security.encodedPolicy
             params["signature"] = security.signature
         }
 
-        return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
+        return session.jsonRequest(url, payload: params)
     }
 
-    func prefetchRequest(apiKey: String) -> DataRequest {
+    func prefetchRequest(apiKey: String) -> URLRequest {
         let url = baseURL.appendingPathComponent("prefetch")
         let params: [String: Any] = ["apikey": apiKey]
 
-        return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
+        return session.jsonRequest(url, payload: params)
     }
 
-    func logoutRequest(provider: CloudProvider, apiKey: String, token: String) -> DataRequest {
+    func logoutRequest(provider: CloudProvider, apiKey: String, token: String) -> URLRequest {
         let url = baseURL.appendingPathComponent("auth/logout")
 
         let params: [String: Any] = [
@@ -131,6 +105,6 @@ class CloudService {
             ],
         ]
 
-        return sessionManager.request(url, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default)
+        return session.jsonRequest(url, payload: params)
     }
 }

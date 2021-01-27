@@ -247,7 +247,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                         provider: provider,
                                         path: path)
 
-        perform(request: request, queue: queue) { response, safariError in
+        perform(request: request) { response, safariError in
             switch (response, safariError) {
             case (let response as FolderListResponse, nil):
                 completionHandler(response)
@@ -284,7 +284,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                                    path: path,
                                    storeOptions: storeOptions)
 
-        perform(request: request, queue: queue) { response, _ in
+        perform(request: request) { response, _ in
             guard let response = response as? StoreResponse else { return }
             completionHandler(response)
         }
@@ -315,9 +315,9 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
 
     // MARK: - Private Functions
 
-    private func perform(request: CloudRequest, queue: DispatchQueue = .main, completionBlock: @escaping CompletionHandler) {
+    private func perform(request: CloudRequest, completionBlock: @escaping CompletionHandler) {
         // Perform cloud request.
-        request.perform(cloudService: cloudService, queue: queue) { _, response in
+        request.perform(cloudService: cloudService) { _, response in
             if let token = request.token {
                 // Store last token
                 self.lastToken = token
@@ -338,7 +338,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                 if let safariError = error {
                     completionBlock(response, safariError)
                 } else if let url = url, url == self.authCallbackURL {
-                    self.perform(request: request, queue: queue, completionBlock: completionBlock)
+                    self.perform(request: request, completionBlock: completionBlock)
                 } else {
                     completionBlock(response, ClientError.authenticationFailed)
                 }

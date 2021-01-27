@@ -31,7 +31,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.5.2'
+    pod 'Filestack', '~> 2.6.0'
 end
 ```
 
@@ -52,9 +52,9 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.5.2`
+`github "filestack/filestack-ios" ~> 2.6.0`
 
-Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, `Alamofire.framework`, and `Zip.framework` to the embedded frameworks build phase of your app's target.
+Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, and `Zip.framework` to the embedded frameworks build phase of your app's target.
 
 ### Swift Package Manager
 
@@ -64,7 +64,7 @@ Alternatively, if you are adding `Filestack` to your own Swift Package, declare 
 
 ```swift
 dependencies: [
-    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.5.2"))
+    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.6.0"))
 ]
 ```
 
@@ -81,7 +81,6 @@ Add Filestack and its dependencies as git submodules by running the following co
 ```shell
 $ git submodule add https://github.com/filestack/filestack-ios.git
 $ git submodule add https://github.com/filestack/filestack-swift.git
-$ git submodule add https://github.com/Alamofire/Alamofire.git
 $ git submodule add https://github.com/marmelroy/Zip.git
 ```
 
@@ -96,7 +95,7 @@ In the tab bar at the top of that window, open the "General" panel.
 
 Click on the + button under the "Embedded Binaries" section and choose the `Filestack.framework` for iOS.
 
-Repeat the same process for adding `Alamofire`, `FilestackSDK`, and `Zip` dependent frameworks.
+Repeat the same process for adding `FilestackSDK`, and `Zip` dependent frameworks.
 
 ## Usage
 

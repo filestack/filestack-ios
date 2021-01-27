@@ -6,7 +6,6 @@
 //  Copyright © 2017 Filestack. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
 final class PrefetchRequest {
@@ -25,21 +24,22 @@ final class PrefetchRequest {
     func perform(cloudService: CloudService, completionBlock: @escaping PrefetchCompletionHandler) {
         let request = cloudService.prefetchRequest(apiKey: apiKey)
 
-        request.validate(statusCode: Constants.validHTTPResponseCodes)
-
-        request.responseJSON(completionHandler: { dataResponse in
-
+        let task = URLSession.filestackDefault.dataTask(with: request) { (data, response, error) in
             // Parse JSON, or return early with error if unable to parse.
-            guard let data = dataResponse.data, let json = data.parseJSON() else {
-                let response = PrefetchResponse(error: dataResponse.error)
-                completionBlock(response)
+            guard let data = data, let json = data.parseJSON() else {
+                let response = PrefetchResponse(error: error)
+
+                DispatchQueue.main.async { completionBlock(response) }
 
                 return
             }
 
             // Results received — return response with contents
-            let response = PrefetchResponse(contents: json, error: dataResponse.error)
-            completionBlock(response)
-        })
+            let response = PrefetchResponse(contents: json, error: error)
+
+            DispatchQueue.main.async { completionBlock(response) }
+        }
+
+        task.resume()
     }
 }
