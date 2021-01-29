@@ -252,7 +252,6 @@
 		4540BB312535CF860053CDBB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45453E8C2535E3540090F78D /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		457084FF1F975C6C00991340 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4577A46925BB017600A2CEB9 /* filestack-swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "filestack-swift"; path = "../filestack-swift"; sourceTree = "<group>"; };
 		4581FF54253869260019B70F /* URL+Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Move.swift"; sourceTree = "<group>"; };
 		4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosPickerFilter.swift; sourceTree = "<group>"; };
 		45BFF67A23290B1E00944028 /* Filestack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Filestack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -748,7 +747,6 @@
 		457084F51F975C6B00991340 = {
 			isa = PBXGroup;
 			children = (
-				4577A46925BB017600A2CEB9 /* filestack-swift */,
 				45BFF67B23290B1E00944028 /* LICENSE */,
 				45BFF67D23290B1F00944028 /* VERSION */,
 				45BFF67C23290B1F00944028 /* CHANGELOG.md */,
@@ -1208,7 +1206,7 @@
 			repositoryURL = "https://github.com/filestack/filestack-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.0;
+				minimumVersion = 2.6.0;
 			};
 		};
 		4564B91A2535B4670045A3C7 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {

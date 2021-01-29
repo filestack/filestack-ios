@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "FilestackSDK",
+        "repositoryURL": "https://github.com/filestack/filestack-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "520d90cfab24882f398c32a6ddfc69fa7e359746",
+          "version": "2.6.0"
+        }
+      },
+      {
         "package": "OHHTTPStubs",
         "repositoryURL": "https://github.com/AliSoftware/OHHTTPStubs.git",
         "state": {
