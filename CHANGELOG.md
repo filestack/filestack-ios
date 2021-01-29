@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.6.0 (*TBD*)
+Version 2.6.0 *(2021-01-29)*
 ----------------------------
 
 - Removed dependency on `AlamoFire`.
