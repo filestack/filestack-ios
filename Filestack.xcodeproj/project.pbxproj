@@ -118,10 +118,10 @@
 		4540BB9D2535CF860053CDBB /* Client+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB302535CF860053CDBB /* Client+Deprecated.swift */; };
 		45453E8D2535E3540090F78D /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45453E8C2535E3540090F78D /* Bundle.swift */; };
 		4564B9112535B3E70045A3C7 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9102535B3E70045A3C7 /* Zip */; };
-		4564B9152535B4030045A3C7 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9142535B4030045A3C7 /* FilestackSDK */; };
-		4577A46D25BB01CF00A2CEB9 /* FilestackSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4564B9142535B4030045A3C7 /* FilestackSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4581FF55253869260019B70F /* URL+Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581FF54253869260019B70F /* URL+Move.swift */; };
 		4581FF5D25388EBD0019B70F /* PhotosPickerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */; };
+		45CEFC4425C44A9100A8C165 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC4325C44A9100A8C165 /* FilestackSDK */; settings = {ATTRIBUTES = (Required, ); }; };
+		45CEFC4525C44A9100A8C165 /* FilestackSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC4325C44A9100A8C165 /* FilestackSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -131,7 +131,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4577A46D25BB01CF00A2CEB9 /* FilestackSDK in Embed Frameworks */,
+				45CEFC4525C44A9100A8C165 /* FilestackSDK in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,7 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4564B9152535B4030045A3C7 /* FilestackSDK in Frameworks */,
+				45CEFC4425C44A9100A8C165 /* FilestackSDK in Frameworks */,
 				4564B9112535B3E70045A3C7 /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,7 +798,7 @@
 			name = Filestack;
 			packageProductDependencies = (
 				4564B9102535B3E70045A3C7 /* Zip */,
-				4564B9142535B4030045A3C7 /* FilestackSDK */,
+				45CEFC4325C44A9100A8C165 /* FilestackSDK */,
 			);
 			productName = Filestack;
 			productReference = 457084FF1F975C6C00991340 /* Filestack.framework */;
@@ -811,7 +811,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					457084FE1F975C6C00991340 = {
@@ -832,8 +832,8 @@
 			mainGroup = 457084F51F975C6B00991340;
 			packageReferences = (
 				4564B90F2535B3E70045A3C7 /* XCRemoteSwiftPackageReference "Zip" */,
-				4564B9132535B4030045A3C7 /* XCRemoteSwiftPackageReference "filestack-swift" */,
 				4564B91A2535B4670045A3C7 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+				45CEFC3C25C44A6D00A8C165 /* XCRemoteSwiftPackageReference "filestack-swift" */,
 			);
 			productRefGroup = 457085001F975C6C00991340 /* Products */;
 			projectDirPath = "";
@@ -1201,20 +1201,20 @@
 				minimumVersion = 2.1.1;
 			};
 		};
-		4564B9132535B4030045A3C7 /* XCRemoteSwiftPackageReference "filestack-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/filestack/filestack-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.0;
-			};
-		};
 		4564B91A2535B4670045A3C7 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 9.0.0;
+			};
+		};
+		45CEFC3C25C44A6D00A8C165 /* XCRemoteSwiftPackageReference "filestack-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/filestack/filestack-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1225,9 +1225,9 @@
 			package = 4564B90F2535B3E70045A3C7 /* XCRemoteSwiftPackageReference "Zip" */;
 			productName = Zip;
 		};
-		4564B9142535B4030045A3C7 /* FilestackSDK */ = {
+		45CEFC4325C44A9100A8C165 /* FilestackSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4564B9132535B4030045A3C7 /* XCRemoteSwiftPackageReference "filestack-swift" */;
+			package = 45CEFC3C25C44A6D00A8C165 /* XCRemoteSwiftPackageReference "filestack-swift" */;
 			productName = FilestackSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
