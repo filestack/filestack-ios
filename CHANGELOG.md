@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.6.1 *(2021-02-02)*
+----------------------------
+
+- Added compliance with Library Evolution Support.
+
 Version 2.6.0 *(2021-01-29)*
 ----------------------------
 
