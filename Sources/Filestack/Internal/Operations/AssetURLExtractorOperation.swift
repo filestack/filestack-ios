@@ -44,11 +44,9 @@ class AssetURLExtractorOperation: BaseOperation<[URL]>, ProgressReporting {
         self.assets = assets
         self.config = config
     }
-}
 
-// MARK: - Overrides
+    // MARK: - Overrides
 
-extension AssetURLExtractorOperation {
     override func main() {
         extract()
     }
