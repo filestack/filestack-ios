@@ -8,7 +8,7 @@
 
 import FilestackSDK
 import UIKit
-import Zip
+import ZIPFoundation
 
 class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
     let uploader: Uploader & DeferredAdd
@@ -17,6 +17,7 @@ class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
     let config: Config
 
     private let trackingProgress = TrackingProgress()
+    private var observers: [NSKeyValueObservation] = []
 
     var progress: Progress { trackingProgress }
 
@@ -37,6 +38,8 @@ class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
 
     @discardableResult
     func cancel() -> Bool {
+        observers.removeAll()
+
         return uploader.cancel()
     }
 }
@@ -67,20 +70,26 @@ extension DocumentPickerUploadController {
         for (idx, url) in urls.enumerated()  {
             dispatchGroup.enter()
 
-            uploadableURL(from: url) { (url) in
+            let fileProgress = Progress()
+
+            observers.append(fileProgress.observe(\.fractionCompleted, options: [.new]) { (progress, change) in
+                individualProgress[idx] = progress.fractionCompleted
+                progress.completedUnitCount = Int64(individualProgress.values.reduce(0, +) * 100)
+            })
+
+            uploadableURL(from: url, progress: progress) { (url) in
                 if let url = url {
                     uploadables.append(url)
                 }
 
                 updateProgress()
                 dispatchGroup.leave()
-            } progress: { (completed) in
-                individualProgress[idx] = completed
-                progress.completedUnitCount = Int64(individualProgress.values.reduce(0, +) * 100)
             }
         }
 
         dispatchGroup.wait()
+
+        observers.removeAll()
 
         guard !uploadables.isEmpty else {
             cancel()
@@ -100,7 +109,7 @@ extension DocumentPickerUploadController {
         }
     }
 
-    private func uploadableURL(from url: URL, completion: (URL?) -> (), progress: @escaping ((_ progress: Double) -> ())) {
+    private func uploadableURL(from url: URL, progress: Progress, completion: (URL?) -> ()) {
         if url.isDirectory {
             completion(zipURL(from: url, progress: progress))
         } else {
@@ -108,17 +117,26 @@ extension DocumentPickerUploadController {
         }
     }
 
-    private func zipURL(from url: URL, progress: @escaping ((_ progress: Double) -> ())) -> URL? {
-        let zippedURL = try? Zip.quickZipFiles([url],
-                                               directory: FileManager.default.temporaryDirectory,
-                                               fileName: url.lastPathComponent,
-                                               progress: progress)
+    private func zipURL(from url: URL, progress: Progress) -> URL? {
+        let destinationURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent(url.lastPathComponent)
+            .appendingPathExtension("zip")
+
+        do {
+            try FileManager.default.zipItem(at: url,
+                                            to: destinationURL,
+                                            shouldKeepParent: true,
+                                            compressionMethod: .deflate,
+                                            progress: progress)
+        } catch {
+            return nil
+        }
 
         if url.path.starts(with: FileManager.default.temporaryDirectory.path) {
             try? FileManager.default.removeItem(at: url)
         }
 
-        return zippedURL
+        return destinationURL
     }
 }
 

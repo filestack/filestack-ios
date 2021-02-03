@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 2.6.3 *(2021-02-03)*
+----------------------------
+
+- Updated dependency on `FilestackSDK` to 2.6.2.
+- Migrated from `Zip` to `ZIPFoundation`.
+
 Version 2.6.2 *(2021-02-03)*
 ----------------------------
 
