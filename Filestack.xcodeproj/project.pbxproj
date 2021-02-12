@@ -257,7 +257,6 @@
 		45BFF67B23290B1E00944028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		45BFF67C23290B1F00944028 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		45BFF67D23290B1F00944028 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
-		45CF056525D55CF80090966A /* filestack-swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "filestack-swift"; path = "../filestack-swift"; sourceTree = "<group>"; };
 		45CF056625D5744E0090966A /* PickerBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -748,7 +747,6 @@
 		457084F51F975C6B00991340 = {
 			isa = PBXGroup;
 			children = (
-				45CF056525D55CF80090966A /* filestack-swift */,
 				45BFF67B23290B1E00944028 /* LICENSE */,
 				45BFF67D23290B1F00944028 /* VERSION */,
 				45BFF67C23290B1F00944028 /* CHANGELOG.md */,
@@ -1216,7 +1214,7 @@
 			repositoryURL = "https://github.com/filestack/filestack-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.0;
+				minimumVersion = 2.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -15,7 +15,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "FilestackSDK", url: "https://github.com/filestack/filestack-swift", .upToNextMajor(from: Version(2, 6, 0))),
+        .package(name: "FilestackSDK", url: "https://github.com/filestack/filestack-swift", .upToNextMajor(from: Version(2, 7, 0))),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: Version(0, 9, 0)))
     ],
     targets: [
