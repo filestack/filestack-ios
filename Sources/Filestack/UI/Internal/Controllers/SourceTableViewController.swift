@@ -28,10 +28,10 @@ class SourceTableViewController: UITableViewController {
         }
     }
 
-    private var uploader: (Cancellable & Monitorizable)?
-    private var uploaderObserver: NSKeyValueObservation?
+    private var filePicker: (Cancellable & Monitorizable)?
+    private var filePickerObserver: NSKeyValueObservation?
 
-    private var uploadMonitorViewController: MonitorViewController?
+    private var pickMonitorViewController: MonitorViewController?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -114,11 +114,7 @@ extension SourceTableViewController {
     }
 
     func sourceWasSelected(_ localSource: LocalSource) {
-        switch localSource.provider {
-        case .camera: upload(sourceType: .camera)
-        case .photoLibrary: upload(sourceType: .photoLibrary)
-        case .documents: upload()
-        }
+        pick(source: localSource)
     }
 
     func sourceWasSelected(_ cloudSource: CloudSource) {
@@ -193,74 +189,149 @@ private extension SourceTableViewController {
         return UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
     }
 
-    func upload(sourceType: UIImagePickerController.SourceType? = nil) {
+    func source(from indexPath: IndexPath) -> CellDescriptibleSource? {
+        switch indexPath.section {
+        case 0: return localSources[indexPath.row]
+        case 1: return cloudSources[indexPath.row]
+        default: return nil
+        }
+    }
+
+    func pick(source: LocalSource) {
         guard let picker = navigationController as? PickerNavigationController else { return }
 
-        let completionHandler: (([JSONResponse]) -> Void) = { responses in
-            self.uploaderObserver = nil
-            self.uploader = nil
-
-            // Dismiss upload monitor
-            self.uploadMonitorViewController?.dismiss(animated: true) {
-                self.uploadMonitorViewController = nil
-
-                if let error = responses.isEmpty ? Error.cancelled : responses.compactMap(\.error).first {
-                    let alert = UIAlertController(title: "Upload Failed",
-                                                  message: error.localizedDescription,
-                                                  preferredStyle: .alert)
-
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                        picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
-                    }))
-
-                    picker.present(alert, animated: true)
-                } else {
-                    picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
-                }
+        let pickCompletionHandler: (([URL]) -> Void) = { urls in
+            DispatchQueue.global().async {
+                self.pickCompleted(picker: picker, urls: urls)
             }
         }
 
-        let uploadOptions = UploadOptions.defaults
-
-        uploadOptions.storeOptions = storeOptions
-
-        let uploader: Cancellable & Monitorizable
-
-        if let sourceType = sourceType {
-            uploader = client.uploadFromImagePicker(viewController: self,
-                                                    sourceType: sourceType,
-                                                    options: uploadOptions,
-                                                    completionHandler: completionHandler)
-        } else {
-            uploader = client.uploadFromDocumentPicker(viewController: self,
-                                                       options: uploadOptions,
-                                                       completionHandler: completionHandler)
+        let uploadCompletionHandler: (([JSONResponse]) -> Void) = { responses in
+            DispatchQueue.global().async {
+                self.uploadCompleted(picker: picker, responses: responses)
+            }
         }
 
-        self.uploader = uploader
+        let filePicker = client.pickFiles(using: self,
+                                          source: source,
+                                          behavior: picker.behavior,
+                                          pickCompletionHandler: pickCompletionHandler,
+                                          uploadCompletionHandler: uploadCompletionHandler)
+
+        self.filePicker = filePicker
 
         // As soon as we detect some activity, we will present the upload monitor.
-        uploaderObserver = uploader.progress.observe(\.totalUnitCount, options: [.new]) { progress, change in
+        filePickerObserver = filePicker.progress.observe(\.totalUnitCount, options: [.new]) { progress, change in
             // Remove observer, we no longer need to observe changes.
-            self.uploaderObserver = nil
+            self.filePickerObserver = nil
 
             DispatchQueue.main.async {
                 // Present upload monitor.
-                let monitorViewController = MonitorViewController(progressable: uploader)
+                let monitorViewController = MonitorViewController(progressable: filePicker)
                 monitorViewController.modalPresentationStyle = .currentContext
 
-                self.uploadMonitorViewController = monitorViewController
+                self.pickMonitorViewController = monitorViewController
 
                 self.present(monitorViewController, animated: true, completion: nil)
             }
         }
     }
 
-    func source(from indexPath: IndexPath) -> CellDescriptibleSource? {
-        switch indexPath.section {
-        case 0: return localSources[indexPath.row]
-        case 1: return cloudSources[indexPath.row]
-        default: return nil
+    func pickCompleted(picker: PickerNavigationController, urls: [URL]) -> Void {
+        dispatchPrecondition(condition: .notOnQueue(.main))
+
+        switch picker.behavior {
+        case .storeOnly:
+            let semaphore = DispatchSemaphore(value: 0)
+
+            self.filePickerObserver = nil
+            self.filePicker = nil
+
+            DispatchQueue.main.async {
+                // Dismiss pick monitor
+                if let pickMonitorViewController = self.pickMonitorViewController {
+                    pickMonitorViewController.dismiss(animated: true) {
+                        self.pickMonitorViewController = nil
+                        semaphore.signal()
+                    }
+                } else {
+                    semaphore.signal()
+                }
+            }
+
+            semaphore.wait()
+        default:
+            break
+        }
+
+        DispatchQueue.main.async {
+            picker.pickerDelegate?.pickerPickedFiles(picker: picker, fileURLs: urls)
+
+            if picker.behavior == .storeOnly {
+                // Remove any temporary files after returning from delegate call.
+                self.deleteTemporaryFiles(at: urls)
+            }
+        }
+    }
+
+    func uploadCompleted(picker: PickerNavigationController, responses: [JSONResponse]) -> Void {
+        dispatchPrecondition(condition: .notOnQueue(.main))
+
+        switch picker.behavior {
+        case .uploadAndStore(_):
+            let semaphore = DispatchSemaphore(value: 0)
+
+            self.filePickerObserver = nil
+            self.filePicker = nil
+
+            DispatchQueue.main.async {
+                // Dismiss pick monitor
+                if let pickMonitorViewController = self.pickMonitorViewController {
+                    pickMonitorViewController.dismiss(animated: true) {
+                        self.pickMonitorViewController = nil
+
+                        if let error = responses.isEmpty ? Error.cancelled : responses.compactMap(\.error).first {
+                            let alert = UIAlertController(title: "Upload Failed",
+                                                          message: error.localizedDescription,
+                                                          preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                                semaphore.signal()
+                            }))
+
+                            picker.present(alert, animated: true)
+                        } else {
+                            semaphore.signal()
+                        }
+                    }
+                } else {
+                    semaphore.signal()
+                }
+            }
+
+            semaphore.wait()
+
+            DispatchQueue.main.async {
+                picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
+
+                // Remove any temporary files after returning from delegate call.
+                let urls = responses.compactMap { $0.context as? URL }
+
+                self.deleteTemporaryFiles(at: urls)
+            }
+        case .storeOnly:
+            // NO-OP
+            break
+        }
+    }
+
+    func deleteTemporaryFiles(at urls: [URL]) {
+        let fm = FileManager.default
+
+        for url in urls {
+            if url.path.starts(with: fm.temporaryDirectory.path) {
+                try? fm.removeItem(at: url)
+            }
         }
     }
 }

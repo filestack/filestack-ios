@@ -12,10 +12,11 @@ import Photos
 import UIKit
 import PhotosUI
 
-class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
-    let uploader: Uploader & DeferredAdd
+class ImagePickerUploadController: NSObject, Cancellable, Monitorizable, Startable {
+    let uploader: (Uploader & DeferredAdd)?
     let viewController: UIViewController
 
+    private let completionBlock: (([URL]) -> Void)?
     private let trackingProgress = TrackingProgress()
     private var uploaderObservers: [NSKeyValueObservation] = []
 
@@ -35,17 +36,21 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
     private var photoPickerController: PhotoPickerController?
     private weak var urlExtractorOperation: AssetURLExtractorOperation?
 
-    init(uploader: Uploader & DeferredAdd,
+    init(uploader: (Uploader & DeferredAdd)?,
          viewController: UIViewController,
          sourceType: UIImagePickerController.SourceType,
-         config: Config) {
+         config: Config,
+         completionBlock: (([URL]) -> Void)? = nil) {
         self.uploader = uploader
         self.viewController = viewController
         self.sourceType = sourceType
         self.config = config
+        self.completionBlock = completionBlock
     }
 
-    func start() {
+    /// Add `Startable` conformance.
+    @discardableResult
+    func start() -> Bool {
         if #available(iOS 14.0, *), sourceType != .camera {
             viewController.present(nativePicker, animated: true, completion: nil)
         } else if shouldUseCustomPicker {
@@ -53,15 +58,17 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable {
         } else {
             viewController.present(legacyNativePicker, animated: true, completion: nil)
         }
+
+        return true
     }
 
-    /// Adds `Cancellable` Conformance
+    /// Add `Cancellable` conformance.
     @discardableResult
     func cancel() -> Bool {
         urlExtractorOperation?.cancel()
         trackingProgress.cancel()
 
-        return uploader.cancel()
+        return uploader?.cancel() ?? true
     }
 }
 
@@ -194,11 +201,15 @@ private extension ImagePickerUploadController {
             }
 
             group.wait()
+
+            self.completionBlock?(urls)
             self.upload(urls: urls)
         }
     }
 
     func upload(urls: [URL]) {
+        guard let uploader = uploader else { return }
+
         trackingProgress.update(tracked: uploader.progress, delay: 1)
 
         let cleanup: () -> () = {
@@ -322,7 +333,11 @@ extension ImagePickerUploadController: UploadListDelegate {
     func upload(_ elements: [SelectableElement]) {
         let urls = elements.compactMap(\.localURL)
 
-        uploader.add(uploadables: urls)
-        uploader.start()
+        completionBlock?(urls)
+
+        if let uploader = uploader {
+            uploader.add(uploadables: urls)
+            uploader.start()
+        }
     }
 }

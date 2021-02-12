@@ -117,4 +117,64 @@ extension Client {
                                         uploadProgress: uploadProgress,
                                         completionHandler: completionHandler)
     }
+
+    /// Uploads a file to a given storage location picked interactively from the camera or the photo library.
+    ///
+    /// - Parameter viewController: The view controller that will present the picker.
+    /// - Parameter sourceType: The desired source type (e.g. camera, photo library.)
+    /// - Parameter options: A set of upload options (see `UploadOptions` for more information.)
+    /// - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
+    /// - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
+    /// as data is uploaded to the server. `nil` by default.
+    /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
+    ///
+    /// - Returns: A `Cancellable & Monitorizable` that allows cancelling and monitoring the upload.
+    @available(*, deprecated, message: "Marked for removal in version 3.0. Use `pickFiles` instead. Additionally, please notice that the `uploadProgress` argument is no longer honored. Instead, you may observe progress on the `Monitorizable` returned by this function.")
+    @discardableResult
+    public func uploadFromImagePicker(viewController: UIViewController,
+                                      sourceType: UIImagePickerController.SourceType,
+                                      options: UploadOptions = .defaults,
+                                      queue: DispatchQueue = .main,
+                                      uploadProgress: ((Progress) -> Void)? = nil,
+                                      completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
+        let source: LocalSource
+
+        switch sourceType {
+        case .camera:
+            source = LocalSource.camera
+        default:
+            source = LocalSource.photoLibrary
+        }
+
+        return pickFiles(using: viewController,
+                         source: source,
+                         behavior: .uploadAndStore(uploadOptions: options),
+                         pickCompletionHandler: nil,
+                         uploadCompletionHandler: completionHandler)
+    }
+
+    /// Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
+    /// other third-party cloud services.
+    ///
+    /// - Parameter viewController: The view controller that will present the picker.
+    /// - Parameter options: A set of upload options (see `UploadOptions` for more information.)
+    /// - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
+    /// - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
+    /// as data is uploaded to the server. `nil` by default.
+    /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
+    ///
+    /// - Returns: A `Cancellable & Monitorizable` that allows cancelling and monitoring the upload.
+    @available(*, deprecated, message: "Marked for removal in version 3.0. Use `pickFiles` instead. Additionally, please notice that the `uploadProgress` argument is no longer honored. Instead, you may observe progress on the `Monitorizable` returned by this function.")
+    @discardableResult
+    public func uploadFromDocumentPicker(viewController: UIViewController,
+                                         options: UploadOptions = .defaults,
+                                         queue: DispatchQueue = .main,
+                                         uploadProgress: ((Progress) -> Void)? = nil,
+                                         completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
+        return pickFiles(using: viewController,
+                         source: .documents,
+                         behavior: .uploadAndStore(uploadOptions: options),
+                         pickCompletionHandler: nil,
+                         uploadCompletionHandler: completionHandler)
+    }
 }

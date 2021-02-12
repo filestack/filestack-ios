@@ -27,15 +27,17 @@ class ViewController: UIViewController {
     @IBAction func presentPicker(_: AnyObject) {
         guard let client = client else { return }
 
-        // Store options for your uploaded files.
-        // Here we are saying our storage location is S3 and access for uploaded files should be public.
-        let storeOptions = StorageOptions(location: .s3, access: .public)
+        // Upload options for any uploaded files.
+        let uploadOptions: UploadOptions = .defaults
+        // Store options for any uploaded files.
+        uploadOptions.storeOptions = StorageOptions(location: .s3, access: .public)
 
-        // Instantiate picker by passing the `StorageOptions` object we just set up.
-        let picker = client.picker(storeOptions: storeOptions)
-
+        // Instantiate picker using a custom `StorageOptions` object.
+        let picker = client.picker(storeOptions: uploadOptions.storeOptions)
         // Optional. Set the picker's delegate.
         picker.pickerDelegate = self
+        // Optional. Set the picker's behavior (see `PickerBehavior` for more details.)
+        picker.behavior = .uploadAndStore(uploadOptions: uploadOptions)
 
         // Finally, present the picker on the screen.
         present(picker, animated: true)
@@ -52,14 +54,45 @@ extension ViewController: PickerNavigationControllerDelegate {
         }
     }
 
-    /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
-    func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse]) {
-        let handles = responses.compactMap { $0.json?["handle"] as? String }
+    /// Called when the picker finishes picking files originating from the local device.
+    func pickerPickedFiles(picker: PickerNavigationController, fileURLs: [URL]) {
+        switch picker.behavior {
+        case .storeOnly:
+            // IMPORTANT: Copy, move, or access the contents of the returned files at this point while they are still available.
+            // Once this delegate function call returns, all the files will be automatically removed.
 
-        if !handles.isEmpty {
-            picker.dismiss(animated: true) {
+            // Dismiss the picker since we have finished picking files from the local device, and, in `storeOnly` mode,
+            // there's no upload phase.
+            DispatchQueue.main.async {
+                picker.dismiss(animated: true) {
+                    self.presentAlert(titled: "Success", message: "Finished picking files: \(fileURLs)")
+                }
+            }
+        default:
+            break
+        }
+    }
+
+    /// Called when the picker finishes uploading files originating from the local device in the destination storage location.
+    func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse]) {
+        // IMPORTANT: Copy, move, or access the contents of the returned files at this point while they are still available.
+        // Once this delegate function call returns, all the files will be automatically removed.
+        //
+        // Every `JSONResponse` entry contains a `context` property with the file URL that was uploaded, and you may
+        // get all the file URLs like this:
+        let fileURLs = responses.compactMap { $0.context as? URL }
+
+        print("Uploaded file URLs: \(fileURLs)")
+
+        // Dismiss the picker since we finished uploading picked files.
+        picker.dismiss(animated: true) {
+            let handles = responses.compactMap { $0.json?["handle"] as? String }
+
+            if !handles.isEmpty {
                 let joinedHandles = handles.joined(separator: ", ")
-                self.presentAlert(titled: "Success", message: "Finished uploading files with handles: \(joinedHandles)")
+
+                self.presentAlert(titled: "Success",
+                                  message: "Finished uploading files with handles: \(joinedHandles)")
             }
         }
     }

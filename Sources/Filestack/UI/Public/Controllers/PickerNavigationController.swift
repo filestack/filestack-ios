@@ -15,6 +15,11 @@ import UIKit
     var client: Client!
     var storeOptions: StorageOptions!
 
+    /// This setting determines what should happen after picking files (see `PickerBehavior` for more information.)
+    ///
+    /// The default value is `.uploadAndStore`
+    public var behavior: PickerBehavior = .uploadAndStore(uploadOptions: .defaults)
+
     /// Stylizer used for changing default colors and fonts.
     @objc public lazy var stylizer = Stylizer(delegate: self)
 
@@ -27,8 +32,11 @@ import UIKit
     /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
     @objc func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse)
 
-    /// Called when the picker finishes uploading a file originating from the local device in the destination storage location.
+    /// Called when the picker finishes uploading files originating from the local device in the destination storage location.
     @objc func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse])
+
+    /// Called when the picker finishes picking files originating from the local device.
+    @objc func pickerPickedFiles(picker: PickerNavigationController, fileURLs: [URL])
 
     /// Called when the picker reports progress during a file or set of files being uploaded.
     @objc optional func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float)

@@ -121,6 +121,7 @@
 		458DE82E25CAEF5F00A39149 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 458DE82D25CAEF5F00A39149 /* ZIPFoundation */; };
 		45CEFC4425C44A9100A8C165 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC4325C44A9100A8C165 /* FilestackSDK */; settings = {ATTRIBUTES = (Required, ); }; };
 		45CEFC4525C44A9100A8C165 /* FilestackSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC4325C44A9100A8C165 /* FilestackSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		45CF056725D5744E0090966A /* PickerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CF056625D5744E0090966A /* PickerBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -256,6 +257,8 @@
 		45BFF67B23290B1E00944028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		45BFF67C23290B1F00944028 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		45BFF67D23290B1F00944028 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		45CF056525D55CF80090966A /* filestack-swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "filestack-swift"; path = "../filestack-swift"; sourceTree = "<group>"; };
+		45CF056625D5744E0090966A /* PickerBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,17 +307,17 @@
 		4540BA9C2535CF860053CDBB /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				4540BA9D2535CF860053CDBB /* Scenes */,
-				4540BAA02535CF860053CDBB /* PhotoPicker */,
+				4540BADA2535CF860053CDBB /* Collection View Cells */,
+				4540BAB82535CF860053CDBB /* Controllers */,
 				4540BAAA2535CF860053CDBB /* Enums */,
+				4540BAB02535CF860053CDBB /* Extensions */,
 				4540BAAC2535CF860053CDBB /* FlowLayouts */,
 				4540BAAE2535CF860053CDBB /* Models */,
-				4540BAB02535CF860053CDBB /* Extensions */,
-				4540BAB52535CF860053CDBB /* Table View Cells */,
-				4540BAB82535CF860053CDBB /* Controllers */,
 				4540BAC02535CF860053CDBB /* PhotoEditor */,
-				4540BADA2535CF860053CDBB /* Collection View Cells */,
+				4540BAA02535CF860053CDBB /* PhotoPicker */,
 				4540BADD2535CF860053CDBB /* Protocols */,
+				4540BA9D2535CF860053CDBB /* Scenes */,
+				4540BAB52535CF860053CDBB /* Table View Cells */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -331,11 +334,11 @@
 		4540BAA02535CF860053CDBB /* PhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
+				4540BAA92535CF860053CDBB /* PhotoAlbumRepository.swift */,
 				4540BAA12535CF860053CDBB /* PhotoPickerController.swift */,
-				4540BAA22535CF860053CDBB /* AssetCollection */,
 				4540BAA52535CF860053CDBB /* PhotosExtensions.swift */,
 				4540BAA62535CF860053CDBB /* AlbumList */,
-				4540BAA92535CF860053CDBB /* PhotoAlbumRepository.swift */,
+				4540BAA22535CF860053CDBB /* AssetCollection */,
 			);
 			path = PhotoPicker;
 			sourceTree = "<group>";
@@ -352,8 +355,8 @@
 		4540BAA62535CF860053CDBB /* AlbumList */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAA72535CF860053CDBB /* AlbumListViewController.swift */,
 				4540BAA82535CF860053CDBB /* AlbumCell.swift */,
+				4540BAA72535CF860053CDBB /* AlbumListViewController.swift */,
 			);
 			path = AlbumList;
 			sourceTree = "<group>";
@@ -385,10 +388,10 @@
 		4540BAB02535CF860053CDBB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAB12535CF860053CDBB /* UserDefaults+State.swift */,
-				4540BAB22535CF860053CDBB /* Storyboard+Scenes.swift */,
 				4540BAB32535CF860053CDBB /* Scene+Defaults.swift */,
+				4540BAB22535CF860053CDBB /* Storyboard+Scenes.swift */,
 				4540BAB42535CF860053CDBB /* UIImage+Squared.swift */,
+				4540BAB12535CF860053CDBB /* UserDefaults+State.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -405,13 +408,13 @@
 		4540BAB82535CF860053CDBB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4540BABF2535CF860053CDBB /* CloudSourceCollectionViewController.swift */,
+				4540BABE2535CF860053CDBB /* CloudSourceTabBarController.swift */,
+				4540BABC2535CF860053CDBB /* CloudSourceTableViewController.swift */,
 				4540BAB92535CF860053CDBB /* DocumentPickerUploadController.swift */,
+				4540BABD2535CF860053CDBB /* ImagePickerUploadController.swift */,
 				4540BABA2535CF860053CDBB /* MonitorViewController.swift */,
 				4540BABB2535CF860053CDBB /* SourceTableViewController.swift */,
-				4540BABC2535CF860053CDBB /* CloudSourceTableViewController.swift */,
-				4540BABD2535CF860053CDBB /* ImagePickerUploadController.swift */,
-				4540BABE2535CF860053CDBB /* CloudSourceTabBarController.swift */,
-				4540BABF2535CF860053CDBB /* CloudSourceCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -429,12 +432,12 @@
 			isa = PBXGroup;
 			children = (
 				4540BAC22535CF860053CDBB /* EditorToolbar.swift */,
-				4540BAC32535CF860053CDBB /* Layers */,
-				4540BAC62535CF860053CDBB /* Enums */,
 				4540BAC82535CF860053CDBB /* ImageEditor.swift */,
+				4540BAC62535CF860053CDBB /* Enums */,
+				4540BAD02535CF860053CDBB /* Handlers */,
+				4540BAC32535CF860053CDBB /* Layers */,
 				4540BAC92535CF860053CDBB /* ViewController */,
 				4540BACE2535CF860053CDBB /* Views */,
-				4540BAD02535CF860053CDBB /* Handlers */,
 			);
 			path = EditionController;
 			sourceTree = "<group>";
@@ -442,8 +445,8 @@
 		4540BAC32535CF860053CDBB /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAC42535CF860053CDBB /* CropLayer.swift */,
 				4540BAC52535CF860053CDBB /* CircleLayer.swift */,
+				4540BAC42535CF860053CDBB /* CropLayer.swift */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -459,10 +462,10 @@
 		4540BAC92535CF860053CDBB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4540BACA2535CF860053CDBB /* EditorViewController+ToolbarDelegate.swift */,
-				4540BACB2535CF860053CDBB /* EditorViewController+ViewSetup.swift */,
 				4540BACC2535CF860053CDBB /* EditorViewController.swift */,
 				4540BACD2535CF860053CDBB /* EditorViewController+EditDataSource.swift */,
+				4540BACA2535CF860053CDBB /* EditorViewController+ToolbarDelegate.swift */,
+				4540BACB2535CF860053CDBB /* EditorViewController+ViewSetup.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -478,8 +481,8 @@
 		4540BAD02535CF860053CDBB /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAD12535CF860053CDBB /* CropGesturesHandler.swift */,
 				4540BAD22535CF860053CDBB /* CircleGesturesHandler.swift */,
+				4540BAD12535CF860053CDBB /* CropGesturesHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -487,12 +490,12 @@
 		4540BAD32535CF860053CDBB /* SelectionList */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAD42535CF860053CDBB /* Uploadable.swift */,
 				4540BAD52535CF860053CDBB /* SelectableElement.swift */,
 				4540BAD62535CF860053CDBB /* SelectionCell.swift */,
 				4540BAD72535CF860053CDBB /* SelectionListViewController.swift */,
-				4540BAD82535CF860053CDBB /* SelectionListViewController+UICollectionView.swift */,
 				4540BAD92535CF860053CDBB /* SelectionListViewController+FlowLayout.swift */,
+				4540BAD82535CF860053CDBB /* SelectionListViewController+UICollectionView.swift */,
+				4540BAD42535CF860053CDBB /* Uploadable.swift */,
 			);
 			path = SelectionList;
 			sourceTree = "<group>";
@@ -509,10 +512,10 @@
 		4540BADD2535CF860053CDBB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4540BADE2535CF860053CDBB /* Scene.swift */,
+				4540BAE12535CF860053CDBB /* CellDescriptibleSource.swift */,
 				4540BADF2535CF860053CDBB /* CloudSourceDataSource.swift */,
 				4540BAE02535CF860053CDBB /* CloudSourceDataSourceConsumer.swift */,
-				4540BAE12535CF860053CDBB /* CellDescriptibleSource.swift */,
+				4540BADE2535CF860053CDBB /* Scene.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -520,9 +523,9 @@
 		4540BAE22535CF860053CDBB /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				4540BAE92535CF860053CDBB /* Controllers */,
 				4540BAE32535CF860053CDBB /* Enums */,
 				4540BAE52535CF860053CDBB /* Models */,
-				4540BAE92535CF860053CDBB /* Controllers */,
 				4540BAEB2535CF860053CDBB /* Protocols */,
 			);
 			path = Public;
@@ -539,9 +542,9 @@
 		4540BAE52535CF860053CDBB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4540BAE82535CF860053CDBB /* CloudSource.swift */,
 				4540BAE62535CF860053CDBB /* LocalSource.swift */,
 				4540BAE72535CF860053CDBB /* Stylizer.swift */,
-				4540BAE82535CF860053CDBB /* CloudSource.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -565,10 +568,10 @@
 		4540BAED2535CF860053CDBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4540BAEE2535CF860053CDBB /* Colors.xcassets */,
-				4540BAEF2535CF860053CDBB /* Icons.xcassets */,
 				4540BAF02535CF860053CDBB /* PhotoPicker.storyboard */,
 				4540BAF12535CF860053CDBB /* Picker.storyboard */,
+				4540BAEE2535CF860053CDBB /* Colors.xcassets */,
+				4540BAEF2535CF860053CDBB /* Icons.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -576,16 +579,16 @@
 		4540BAF22535CF860053CDBB /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				45453E8C2535E3540090F78D /* Bundle.swift */,
 				4540BAF32535CF860053CDBB /* Constants.swift */,
 				4540BAF42535CF860053CDBB /* TrackingProgress.swift */,
+				4540BAF92535CF860053CDBB /* Extensions */,
+				4540BB172535CF860053CDBB /* Extractors */,
 				4540BAF52535CF860053CDBB /* Formatters */,
 				4540BAF72535CF860053CDBB /* Operations */,
-				4540BAF92535CF860053CDBB /* Extensions */,
-				4540BB122535CF860053CDBB /* Requests */,
-				4540BB172535CF860053CDBB /* Extractors */,
 				4540BB1A2535CF860053CDBB /* Protocols */,
+				4540BB122535CF860053CDBB /* Requests */,
 				4540BB1C2535CF860053CDBB /* Services */,
-				45453E8C2535E3540090F78D /* Bundle.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -614,7 +617,6 @@
 				4540BB052535CF860053CDBB /* Data+JSON.swift */,
 				4540BB012535CF860053CDBB /* ImageURLExportPreset+asImagePickerControllerImageURLExportPreset.swift */,
 				4540BAFE2535CF860053CDBB /* Math+Clamp.swift */,
-				4540BAFD2535CF860053CDBB /* URLSession+FilestackDefault.swift */,
 				4540BAFF2535CF860053CDBB /* String+UTI.swift */,
 				4540BAFB2535CF860053CDBB /* UICollectionView+Reusable.swift */,
 				4540BB062535CF860053CDBB /* UIColor+Bundle.swift */,
@@ -628,6 +630,7 @@
 				4540BB022535CF860053CDBB /* URL+Copy.swift */,
 				4540BB072535CF860053CDBB /* URL+IsDirectory.swift */,
 				4581FF54253869260019B70F /* URL+Move.swift */,
+				4540BAFD2535CF860053CDBB /* URLSession+FilestackDefault.swift */,
 				4540BB0A2535CF860053CDBB /* ImageEdition */,
 			);
 			path = Extensions;
@@ -686,9 +689,9 @@
 			children = (
 				4540BB202535CF860053CDBB /* CompletionHandlers.swift */,
 				4540BB212535CF860053CDBB /* Enums */,
-				4540BB252535CF860053CDBB /* Responses */,
-				4540BB2B2535CF860053CDBB /* Models */,
 				4540BB2E2535CF860053CDBB /* Extensions */,
+				4540BB2B2535CF860053CDBB /* Models */,
+				4540BB252535CF860053CDBB /* Responses */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -696,10 +699,11 @@
 		4540BB212535CF860053CDBB /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */,
 				4540BB242535CF860053CDBB /* ClientError.swift */,
 				4540BB222535CF860053CDBB /* CloudProvider.swift */,
 				4540BB232535CF860053CDBB /* ImageURLExportPreset.swift */,
+				4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */,
+				45CF056625D5744E0090966A /* PickerBehavior.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -707,9 +711,9 @@
 		4540BB252535CF860053CDBB /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				4540BB262535CF860053CDBB /* LogoutResponse.swift */,
 				4540BB272535CF860053CDBB /* CloudResponse.swift */,
 				4540BB282535CF860053CDBB /* FolderListResponse.swift */,
+				4540BB262535CF860053CDBB /* LogoutResponse.swift */,
 				4540BB292535CF860053CDBB /* PrefetchResponse.swift */,
 				4540BB2A2535CF860053CDBB /* StoreResponse.swift */,
 			);
@@ -719,8 +723,8 @@
 		4540BB2B2535CF860053CDBB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4540BB2C2535CF860053CDBB /* Config.swift */,
 				4540BB2D2535CF860053CDBB /* Client.swift */,
+				4540BB2C2535CF860053CDBB /* Config.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -728,8 +732,8 @@
 		4540BB2E2535CF860053CDBB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4540BB2F2535CF860053CDBB /* Client+ObjC.swift */,
 				4540BB302535CF860053CDBB /* Client+Deprecated.swift */,
+				4540BB2F2535CF860053CDBB /* Client+ObjC.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -744,6 +748,7 @@
 		457084F51F975C6B00991340 = {
 			isa = PBXGroup;
 			children = (
+				45CF056525D55CF80090966A /* filestack-swift */,
 				45BFF67B23290B1E00944028 /* LICENSE */,
 				45BFF67D23290B1F00944028 /* VERSION */,
 				45BFF67C23290B1F00944028 /* CHANGELOG.md */,
@@ -930,6 +935,7 @@
 				4540BB5F2535CF860053CDBB /* Scene.swift in Sources */,
 				4540BB7C2535CF860053CDBB /* Data+JSON.swift in Sources */,
 				4540BB622535CF860053CDBB /* CellDescriptibleSource.swift in Sources */,
+				45CF056725D5744E0090966A /* PickerBehavior.swift in Sources */,
 				4540BB472535CF860053CDBB /* CloudSourceTableViewController.swift in Sources */,
 				4540BB552535CF860053CDBB /* CropGesturesHandler.swift in Sources */,
 				4540BB9C2535CF860053CDBB /* Client+ObjC.swift in Sources */,

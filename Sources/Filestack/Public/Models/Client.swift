@@ -27,13 +27,10 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     @objc public let config: Config
 
     /// The Filestack SDK client used for uploads and transformations.
-    @objc public var sdkClient: FilestackSDK.Client {
-        return client
-    }
+    @objc public let sdkClient: FilestackSDK.Client
 
     // MARK: - Private Properties
 
-    private let client: FilestackSDK.Client
     private let cloudService = CloudService()
 
     private var lastToken: String?
@@ -58,7 +55,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
         self.apiKey = apiKey
         self.security = security
         self.lastToken = token
-        self.client = FilestackSDK.Client(apiKey: apiKey, security: security)
+        self.sdkClient = FilestackSDK.Client(apiKey: apiKey, security: security)
         self.config = config ?? Config()
 
         super.init()
@@ -103,11 +100,11 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
                        completionHandler: @escaping (JSONResponse) -> Void) -> Uploader {
-        return client.upload(using: uploadable,
-                             options: options,
-                             queue: queue,
-                             uploadProgress: uploadProgress,
-                             completionHandler: completionHandler)
+        return sdkClient.upload(using: uploadable,
+                                options: options,
+                                queue: queue,
+                                uploadProgress: uploadProgress,
+                                completionHandler: completionHandler)
     }
 
     /// Uploads an array of `Uploadable` items to a given storage location.
@@ -135,43 +132,71 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                        queue: DispatchQueue = .main,
                        uploadProgress: ((Progress) -> Void)? = nil,
                        completionHandler: @escaping ([JSONResponse]) -> Void) -> Uploader & DeferredAdd {
-        return client.upload(using: uploadables,
-                             options: options,
-                             queue: queue,
-                             uploadProgress: uploadProgress,
-                             completionHandler: completionHandler)
+        return sdkClient.upload(using: uploadables,
+                                options: options,
+                                queue: queue,
+                                uploadProgress: uploadProgress,
+                                completionHandler: completionHandler)
     }
 
-    /// Uploads a file to a given storage location picked interactively from the camera or the photo library.
+    /// Allows interactively picking file(s) from a local source (e.g. camera, photo library or documents) and,
+    /// optionally, uploads the file(s) to Filestack.
     ///
-    /// - Parameter viewController: The view controller that will present the picker.
-    /// - Parameter sourceType: The desired source type (e.g. camera, photo library.)
-    /// - Parameter options: A set of upload options (see `UploadOptions` for more information.)
-    /// - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
-    /// - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
-    /// as data is uploaded to the server. `nil` by default.
-    /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
+    /// - Parameter presentingViewController: The view controller that will present the picker.
+    /// - Parameter source: The desired local source (e.g. camera, photo library or documents.)
+    /// - Parameter behavior: The picker behavior (see `PickerBehavior` for more information.)
+    /// - Parameter queue: The queue on which the pick completion and upload completion handlers are dispatched.
+    /// - Parameter pickCompletionHandler: Adds a handler to be called immediately after the files are picked.
+    /// - Parameter uploadCompletionHandler: Adds a handler to be called once the upload has finished (only called
+    /// if behavior is set to `.uploadAndStore`.)
     ///
     /// - Returns: A `Cancellable & Monitorizable` that allows cancelling and monitoring the upload.
     @discardableResult
-    public func uploadFromImagePicker(viewController: UIViewController,
-                                      sourceType: UIImagePickerController.SourceType,
-                                      options: UploadOptions = .defaults,
-                                      queue: DispatchQueue = .main,
-                                      uploadProgress: ((Progress) -> Void)? = nil,
-                                      completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
-        options.startImmediately = false
-        options.deleteTemporaryFilesAfterUpload = true
+    public func pickFiles(using presentingViewController: UIViewController,
+                          source: LocalSource,
+                          behavior: PickerBehavior = .uploadAndStore(uploadOptions: .defaults),
+                          pickCompletionHandler: (([URL]) -> Void)? = nil,
+                          uploadCompletionHandler: (([JSONResponse]) -> Void)? = nil) -> Cancellable & Monitorizable {
+        let uploader: (DeferredAdd & Uploader)?
 
-        let uploader = client.upload(options: options,
-                                     queue: queue,
-                                     uploadProgress: uploadProgress,
-                                     completionHandler: completionHandler)
+        switch behavior {
+        case let .uploadAndStore(options):
+            options.startImmediately = false
+            options.deleteTemporaryFilesAfterUpload = false
 
-        let uploadController = ImagePickerUploadController(uploader: uploader,
-                                                           viewController: viewController,
+            // Setup uploader.
+            uploader = sdkClient.upload(options: options) { responses in
+                uploadCompletionHandler?(responses)
+            }
+        case .storeOnly:
+            // No uploader.
+            uploader = nil
+        }
+
+        let uploadController: (Cancellable & Monitorizable & Startable)
+        let sourceType: UIImagePickerController.SourceType?
+
+        switch source {
+        case .camera:
+            sourceType = .camera
+        case .photoLibrary:
+            sourceType = .photoLibrary
+        default:
+            sourceType = nil
+        }
+
+        if let sourceType = sourceType {
+            uploadController = ImagePickerUploadController(uploader: uploader,
+                                                           viewController: presentingViewController,
                                                            sourceType: sourceType,
-                                                           config: config)
+                                                           config: config,
+                                                           completionBlock: pickCompletionHandler)
+        } else {
+            uploadController = DocumentPickerUploadController(uploader: uploader,
+                                                              viewController: presentingViewController,
+                                                              config: config,
+                                                              completionBlock: pickCompletionHandler)
+        }
 
         PHPhotoLibrary.requestAuthorization { status in
             if status == .authorized {
@@ -179,40 +204,6 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
                 DispatchQueue.main.async { uploadController.start() }
             }
         }
-
-        return uploadController
-    }
-
-    /// Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
-    /// other third-party cloud services.
-    ///
-    /// - Parameter viewController: The view controller that will present the picker.
-    /// - Parameter options: A set of upload options (see `UploadOptions` for more information.)
-    /// - Parameter queue: The queue on which the upload progress and completion handlers are dispatched.
-    /// - Parameter uploadProgress: Sets a closure to be called periodically during the lifecycle of the upload process
-    /// as data is uploaded to the server. `nil` by default.
-    /// - Parameter completionHandler: Adds a handler to be called once the upload has finished.
-    ///
-    /// - Returns: A `Cancellable & Monitorizable` that allows cancelling and monitoring the upload.
-    @discardableResult
-    public func uploadFromDocumentPicker(viewController: UIViewController,
-                                         options: UploadOptions = .defaults,
-                                         queue: DispatchQueue = .main,
-                                         uploadProgress: ((Progress) -> Void)? = nil,
-                                         completionHandler: @escaping ([JSONResponse]) -> Void) -> Cancellable & Monitorizable {
-        options.startImmediately = false
-        options.deleteTemporaryFilesAfterUpload = true
-
-        let uploader = client.upload(options: options,
-                                     queue: queue,
-                                     uploadProgress: uploadProgress,
-                                     completionHandler: completionHandler)
-
-        let uploadController = DocumentPickerUploadController(uploader: uploader,
-                                                              viewController: viewController,
-                                                              config: config)
-
-        uploadController.start()
 
         return uploadController
     }
@@ -312,10 +303,12 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
 
         prefetchRequest.perform(cloudService: cloudService, completionBlock: completionBlock)
     }
+}
 
-    // MARK: - Private Functions
+// MARK: - Private Functions
 
-    private func perform(request: CloudRequest, completionBlock: @escaping CompletionHandler) {
+private extension Client {
+    func perform(request: CloudRequest, completionBlock: @escaping CompletionHandler) {
         // Perform cloud request.
         request.perform(cloudService: cloudService) { _, response in
             if let token = request.token {

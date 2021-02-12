@@ -10,37 +10,47 @@ import FilestackSDK
 import UIKit
 import ZIPFoundation
 
-class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable {
-    let uploader: Uploader & DeferredAdd
+class DocumentPickerUploadController: NSObject, Cancellable, Monitorizable, Startable {
+    let uploader: (Uploader & DeferredAdd)?
     let viewController: UIViewController
     let picker: UIDocumentPickerViewController
     let config: Config
 
+    private let completionBlock: (([URL]) -> Void)?
     private let trackingProgress = TrackingProgress()
     private var observers: [NSKeyValueObservation] = []
 
     var progress: Progress { trackingProgress }
 
-    init(uploader: Uploader & DeferredAdd, viewController: UIViewController, config: Config) {
+    init(uploader: (Uploader & DeferredAdd)?,
+         viewController: UIViewController,
+         config: Config,
+         completionBlock: (([URL]) -> Void)? = nil) {
         self.uploader = uploader
         self.viewController = viewController
         self.picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
         self.config = config
+        self.completionBlock = completionBlock
     }
 
-    func start() {
+    /// Add `Startable` conformance.
+    @discardableResult
+    func start() -> Bool {
         picker.delegate = self
         picker.modalPresentationStyle = config.modalPresentationStyle
         picker.allowsMultipleSelection = (config.maximumSelectionAllowed != 1)
 
         viewController.present(picker, animated: true)
+
+        return true
     }
 
+    /// Add `Cancellable` conformance.
     @discardableResult
     func cancel() -> Bool {
         observers.removeAll()
 
-        return uploader.cancel()
+        return uploader?.cancel() ?? true
     }
 }
 
@@ -50,6 +60,8 @@ extension DocumentPickerUploadController {
     }
 
     private func doUpload(urls: [URL]) {
+        guard let uploader = uploader else { return }
+
         let progress = Progress(totalUnitCount: Int64(urls.count * 100))
 
         progress.localizedDescription = "Processing \(urls.count) file(s)…"
@@ -148,6 +160,10 @@ extension DocumentPickerUploadController: UIDocumentPickerDelegate {
 
     // Required
     func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        upload(urls: urls)
+        completionBlock?(urls)
+
+        if uploader != nil {
+            upload(urls: urls)
+        }
     }
 }
