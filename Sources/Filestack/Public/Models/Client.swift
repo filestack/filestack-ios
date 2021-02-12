@@ -154,7 +154,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     @discardableResult
     public func pickFiles(using presentingViewController: UIViewController,
                           source: LocalSource,
-                          behavior: PickerBehavior = .uploadAndStore(uploadOptions: .defaults),
+                          behavior: PickerBehavior,
                           pickCompletionHandler: (([URL]) -> Void)? = nil,
                           uploadCompletionHandler: (([JSONResponse]) -> Void)? = nil) -> Cancellable & Monitorizable {
         let uploader: (DeferredAdd & Uploader)?
