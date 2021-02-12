@@ -45,15 +45,6 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PickerNavigationControllerDelegate {
-    /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
-    func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
-        if let handle = response.contents?["handle"] as? String {
-            picker.dismiss(animated: true) {
-                self.presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
-            }
-        }
-    }
-
     /// Called when the picker finishes picking files originating from the local device.
     func pickerPickedFiles(picker: PickerNavigationController, fileURLs: [URL]) {
         switch picker.behavior {
@@ -73,7 +64,7 @@ extension ViewController: PickerNavigationControllerDelegate {
         }
     }
 
-    /// Called when the picker finishes uploading files originating from the local device in the destination storage location.
+    /// Called when the picker finishes uploading files originating from the local device to the storage destination.
     func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse]) {
         // IMPORTANT: Copy, move, or access the contents of the returned files at this point while they are still available.
         // Once this delegate function call returns, all the files will be automatically removed.
@@ -93,6 +84,15 @@ extension ViewController: PickerNavigationControllerDelegate {
 
                 self.presentAlert(titled: "Success",
                                   message: "Finished uploading files with handles: \(joinedHandles)")
+            }
+        }
+    }
+
+    /// Called when the picker finishes storing a file originating from a cloud source into the storage destination.
+    func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
+        if let handle = response.contents?["handle"] as? String {
+            picker.dismiss(animated: true) {
+                self.presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
             }
         }
     }

@@ -29,14 +29,14 @@ import UIKit
 
 /// This protocol contains the function signatures any `PickerNavigationController` delegate should conform to.
 @objc(FSPickerNavigationControllerDelegate) public protocol PickerNavigationControllerDelegate: AnyObject {
-    /// Called when the picker finishes storing a file originating from a cloud source in the destination storage location.
-    @objc func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse)
-
-    /// Called when the picker finishes uploading files originating from the local device in the destination storage location.
-    @objc func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse])
-
     /// Called when the picker finishes picking files originating from the local device.
     @objc func pickerPickedFiles(picker: PickerNavigationController, fileURLs: [URL])
+
+    /// Called when the picker finishes uploading files originating from the local device to the storage destination.
+    @objc func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse])
+
+    /// Called when the picker finishes storing a file originating from a cloud source into the storage destination.
+    @objc func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse)
 
     /// Called when the picker reports progress during a file or set of files being uploaded.
     @objc optional func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float)
