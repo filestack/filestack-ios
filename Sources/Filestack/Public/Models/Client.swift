@@ -145,7 +145,6 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
     /// - Parameter presentingViewController: The view controller that will present the picker.
     /// - Parameter source: The desired local source (e.g. camera, photo library or documents.)
     /// - Parameter behavior: The picker behavior (see `PickerBehavior` for more information.)
-    /// - Parameter queue: The queue on which the pick completion and upload completion handlers are dispatched.
     /// - Parameter pickCompletionHandler: Adds a handler to be called immediately after the files are picked.
     /// - Parameter uploadCompletionHandler: Adds a handler to be called once the upload has finished (only called
     /// if behavior is set to `.uploadAndStore`.)
