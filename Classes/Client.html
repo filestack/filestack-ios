@@ -103,9 +103,6 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PhotosPickerFilter.html">PhotosPickerFilter</a>
               </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/PickerBehavior.html">PickerBehavior</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -254,7 +251,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="k">let</span> <span class="nv">sdkClient</span><span class="p">:</span> <span class="kt">FilestackSDK</span><span class="o">.</span><span class="kt">Client</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">sdkClient</span><span class="p">:</span> <span class="kt">FilestackSDK</span><span class="o">.</span><span class="kt">Client</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -655,9 +652,9 @@ the upload, plus adding <code>Uploadables</code> at a later time.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Filestack6ClientC9pickFiles5using6source8behavior0C17CompletionHandler06uploadhI00A3SDK11Cancellable_AJ13MonitorizablepSo16UIViewControllerC_AA11LocalSourceCAA14PickerBehaviorOySay10Foundation3URLVGcSgySayAJ12JSONResponseCGcSgtF"></a>
-                    <a name="//apple_ref/swift/Method/pickFiles(using:source:behavior:pickCompletionHandler:uploadCompletionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC9pickFiles5using6source8behavior0C17CompletionHandler06uploadhI00A3SDK11Cancellable_AJ13MonitorizablepSo16UIViewControllerC_AA11LocalSourceCAA14PickerBehaviorOySay10Foundation3URLVGcSgySayAJ12JSONResponseCGcSgtF">pickFiles(using:<wbr>source:<wbr>behavior:<wbr>pickCompletionHandler:<wbr>uploadCompletionHandler:<wbr>)</a>
+                    <a name="/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK12JSONResponseCGctF"></a>
+                    <a name="//apple_ref/swift/Method/uploadFromImagePicker(viewController:sourceType:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK12JSONResponseCGctF">uploadFromImagePicker(viewController:<wbr>sourceType:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -665,8 +662,7 @@ the upload, plus adding <code>Uploadables</code> at a later time.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Allows interactively picking file(s) from a local source (e.g. camera, photo library or documents) and,
-optionally, uploads the file(s) to Filestack.</p>
+                        <p>Uploads a file to a given storage location picked interactively from the camera or the photo library.</p>
 
                       </div>
                       <div class="declaration">
@@ -674,11 +670,12 @@ optionally, uploads the file(s) to Filestack.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">pickFiles</span><span class="p">(</span><span class="n">using</span> <span class="nv">presentingViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
-                      <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/LocalSource.html">LocalSource</a></span><span class="p">,</span>
-                      <span class="nv">behavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/PickerBehavior.html">PickerBehavior</a></span><span class="p">,</span>
-                      <span class="nv">pickCompletionHandler</span><span class="p">:</span> <span class="p">(([</span><span class="kt">URL</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                      <span class="nv">uploadCompletionHandler</span><span class="p">:</span> <span class="p">(([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
+                                  <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">UIImagePickerController</span><span class="o">.</span><span class="kt">SourceType</span><span class="p">,</span>
+                                  <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
+                                  <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
+                                  <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
 
                         </div>
                       </div>
@@ -689,7 +686,7 @@ optionally, uploads the file(s) to Filestack.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>presentingViewController</em>
+                                <em>viewController</em>
                                 </code>
                               </td>
                               <td>
@@ -701,24 +698,24 @@ optionally, uploads the file(s) to Filestack.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>source</em>
+                                <em>sourceType</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The desired local source (e.g. camera, photo library or documents.)</p>
+                                  <p>The desired source type (e.g. camera, photo library.)</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>behavior</em>
+                                <em>options</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The picker behavior (see <code><a href="../Enums/PickerBehavior.html">PickerBehavior</a></code> for more information.)</p>
+                                  <p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
                                 </div>
                               </td>
                             </tr>
@@ -730,32 +727,137 @@ optionally, uploads the file(s) to Filestack.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The queue on which the pick completion and upload completion handlers are dispatched.</p>
+                                  <p>The queue on which the upload progress and completion handlers are dispatched.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>pickCompletionHandler</em>
+                                <em>uploadProgress</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Adds a handler to be called immediately after the files are picked.</p>
+                                  <p>Sets a closure to be called periodically during the lifecycle of the upload process
+as data is uploaded to the server. <code>nil</code> by default.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>uploadCompletionHandler</em>
+                                <em>completionHandler</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Adds a handler to be called once the upload has finished (only called
-if behavior is set to <code>.uploadAndStore</code>.)</p>
+                                  <p>Adds a handler to be called once the upload has finished.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF"></a>
+                    <a name="//apple_ref/swift/Method/uploadFromDocumentPicker(viewController:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF">uploadFromDocumentPicker(viewController:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Uploads a file to a given storage location picked interactively from the device&rsquo;s documents, iCloud Drive or
+other third-party cloud services.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">uploadFromDocumentPicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
+                                     <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
+                                     <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
+                                     <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                     <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view controller that will present the picker.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The queue on which the upload progress and completion handlers are dispatched.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>uploadProgress</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets a closure to be called periodically during the lifecycle of the upload process
+as data is uploaded to the server. <code>nil</code> by default.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Adds a handler to be called once the upload has finished.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1381,230 +1483,6 @@ If none given, S3 location with default options is assumed.</p>
                                 <div>
                                   <p>Attempts to use Intelligent Ingestion for file uploading.
 Defaults to <code>true</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>queue</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The queue on which the upload progress and completion handlers are dispatched.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>uploadProgress</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Sets a closure to be called periodically during the lifecycle of the upload process
-as data is uploaded to the server. <code>nil</code> by default.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completionHandler</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Adds a handler to be called once the upload has finished.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK12JSONResponseCGctF"></a>
-                    <a name="//apple_ref/swift/Method/uploadFromImagePicker(viewController:sourceType:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC21uploadFromImagePicker14viewController10sourceType7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AK13MonitorizablepSo06UIViewH0C_So07UIImagefh6SourceJ0VAK13UploadOptionsCSo012OS_dispatch_L0CySo10NSProgressCcSgySayAK12JSONResponseCGctF">uploadFromImagePicker(viewController:<wbr>sourceType:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Uploads a file to a given storage location picked interactively from the camera or the photo library.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"Marked for removal in version 3.0. Use `pickFiles` instead. Additionally, please notice that the `uploadProgress` argument is no longer honored. Instead, you may observe progress on the `Monitorizable` returned by this function."</span><span class="p">)</span>
-<span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
-                                  <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">UIImagePickerController</span><span class="o">.</span><span class="kt">SourceType</span><span class="p">,</span>
-                                  <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
-                                  <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
-                                  <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                  <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>viewController</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The view controller that will present the picker.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>sourceType</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The desired source type (e.g. camera, photo library.)</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>options</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>queue</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The queue on which the upload progress and completion handlers are dispatched.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>uploadProgress</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Sets a closure to be called periodically during the lifecycle of the upload process
-as data is uploaded to the server. <code>nil</code> by default.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completionHandler</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Adds a handler to be called once the upload has finished.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF"></a>
-                    <a name="//apple_ref/swift/Method/uploadFromDocumentPicker(viewController:options:queue:uploadProgress:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Filestack6ClientC24uploadFromDocumentPicker14viewController7options5queue0C8Progress17completionHandler0A3SDK11Cancellable_AJ13MonitorizablepSo06UIViewH0C_AJ13UploadOptionsCSo012OS_dispatch_J0CySo10NSProgressCcSgySayAJ12JSONResponseCGctF">uploadFromDocumentPicker(viewController:<wbr>options:<wbr>queue:<wbr>uploadProgress:<wbr>completionHandler:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Uploads a file to a given storage location picked interactively from the device&rsquo;s documents, iCloud Drive or
-other third-party cloud services.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"Marked for removal in version 3.0. Use `pickFiles` instead. Additionally, please notice that the `uploadProgress` argument is no longer honored. Instead, you may observe progress on the `Monitorizable` returned by this function."</span><span class="p">)</span>
-<span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">uploadFromDocumentPicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
-                                     <span class="nv">options</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span><span class="p">,</span>
-                                     <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
-                                     <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">((</span><span class="kt">Progress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                     <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">JSONResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Cancellable</span> <span class="o">&amp;</span> <span class="kt">Monitorizable</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>viewController</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The view controller that will present the picker.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>options</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
                                 </div>
                               </td>
                             </tr>
