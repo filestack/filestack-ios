@@ -133,7 +133,7 @@ config.callbackURLScheme = "filestackdemo"
 let client = Filestack.Client(apiKey: "YOUR-API-KEY", security: security, config: config)
 ```
 
-### Uploading local files
+### Uploading files programmatically
 
 ```swift
 let localURL = URL(string: "file:///an-app-sandbox-friendly-local-url")!
@@ -151,7 +151,7 @@ let uploader = client.upload(using: localURL, uploadProgress: { (progress) in
 }
 ```
 
-### Uploading photos and videos from the Photo Library, Camera or Documents
+### Uploading files interactively from the Camera, Photo Library, or Documents
 
 ```swift
 // The view controller that will be presenting the image picker.
