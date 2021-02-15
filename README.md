@@ -157,7 +157,7 @@ let uploader = client.upload(using: localURL, uploadProgress: { (progress) in
 // The view controller that will be presenting the image picker.
 let presentingViewController = self
 
-// The source type (e.g. `.camera`, `.photoLibrary`, or `documents`)
+// The source type (e.g. `.camera`, `.photoLibrary`, or `.documents`)
 let sourceType: LocalSource = .camera
 
 // Upload options for any uploaded files.
@@ -168,7 +168,10 @@ uploadOptions.storeOptions = StorageOptions(location: .s3, access: .public)
 
 let behavior = .uploadAndStore(uploadOptions: uploadOptions)
 
-let uploader = client.pickFiles(using: presentingViewController, source: .sourceType, behavior: behavior, pickCompletionHandler: { (urls) in
+let uploader = client.pickFiles(using: presentingViewController,
+                                source: .sourceType,
+                                behavior: behavior,
+                                pickCompletionHandler: { (urls) in
     // Copy, move, or access the contents of the returned files at this point while they are still available.
     // Once this closure call returns, all the files will be automatically removed.
 }) { (responses) in
