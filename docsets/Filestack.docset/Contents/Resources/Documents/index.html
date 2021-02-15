@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          Filestack 2.6.3 Docs
+          Filestack 2.7.0 Docs
         </a>
          (99% documented)
       </p>
@@ -102,6 +102,9 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/PhotosPickerFilter.html">PhotosPickerFilter</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/PickerBehavior.html">PickerBehavior</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -150,7 +153,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.6.3'
+    pod 'Filestack', '~&gt; 2.7.0'
 end
 </code></pre>
 
@@ -168,16 +171,16 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.6.3</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.7.0</code></p>
 
-<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, and <code>Zip.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
+<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, and <code>ZIPFoundation.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
 <p>Add <code>https://github.com/filestack/filestack-ios.git</code> as a <a href="https://swift.org/package-manager/">Swift Package Manager</a> dependency to your Xcode project.</p>
 
 <p>Alternatively, if you are adding <code>Filestack</code> to your own Swift Package, declare the dependency in your <code>Package.swift</code>:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.6.3"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.7.0"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -190,7 +193,7 @@ $ brew install carthage
 <p>Add Filestack and its dependencies as git submodules by running the following commands:</p>
 <pre class="highlight shell"><code><span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
 <span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
-<span class="nv">$ </span>git submodule add https://github.com/marmelroy/Zip.git
+<span class="nv">$ </span>git submodule add https://github.com/weichsel/ZIPFoundation.git
 </code></pre>
 
 <p>Open the new <code>filestack-ios</code> folder, and drag the <code>Filestack.xcodeproj</code> into the Project Navigator of your application&rsquo;s Xcode project.</p>
@@ -204,7 +207,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <p>Click on the + button under the &ldquo;Embedded Binaries&rdquo; section and choose the <code>Filestack.framework</code> for iOS.</p>
 
-<p>Repeat the same process for adding <code>FilestackSDK</code>, and <code>Zip</code> dependent frameworks.</p>
+<p>Repeat the same process for adding <code>FilestackSDK</code>, and <code>ZIPFoundation</code> dependent frameworks.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='importing-required-frameworks' class='heading'>Importing required frameworks</h3>
 
@@ -249,40 +252,42 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<h3 id='uploading-photos-and-videos-from-the-photo-library-or-camera' class='heading'>Uploading photos and videos from the Photo Library or Camera</h3>
+<h3 id='uploading-photos-and-videos-from-the-photo-library-camera-or-documents' class='heading'>Uploading photos and videos from the Photo Library, Camera or Documents</h3>
 <pre class="highlight swift"><code><span class="c1">// The view controller that will be presenting the image picker.</span>
 <span class="k">let</span> <span class="nv">presentingViewController</span> <span class="o">=</span> <span class="k">self</span>
 
-<span class="c1">// The source type (e.g. `.camera`, `.photoLibrary`)</span>
-<span class="k">let</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">UIImagePickerControllerSourceType</span> <span class="o">=</span> <span class="o">.</span><span class="n">camera</span>
+<span class="c1">// The source type (e.g. `.camera`, `.photoLibrary`, or `.documents`)</span>
+<span class="k">let</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">LocalSource</span> <span class="o">=</span> <span class="o">.</span><span class="n">camera</span>
 
-<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromImagePicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-<span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Try to obtain Filestack handle</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="k">let</span> <span class="nv">handle</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"handle"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">{</span>
-        <span class="c1">// Use Filestack handle</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-        <span class="c1">// Handle error</span>
+<span class="c1">// Upload options for any uploaded files.</span>
+<span class="k">let</span> <span class="nv">uploadOptions</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span>
+
+<span class="c1">// Store options for any uploaded files.</span>
+<span class="n">uploadOptions</span><span class="o">.</span><span class="n">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">behavior</span> <span class="o">=</span> <span class="o">.</span><span class="nf">uploadAndStore</span><span class="p">(</span><span class="nv">uploadOptions</span><span class="p">:</span> <span class="n">uploadOptions</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">pickFiles</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span>
+                                <span class="nv">source</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span>
+                                <span class="nv">behavior</span><span class="p">:</span> <span class="n">behavior</span><span class="p">,</span>
+                                <span class="nv">pickCompletionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">urls</span><span class="p">)</span> <span class="k">in</span>
+    <span class="c1">// Copy, move, or access the contents of the returned files at this point while they are still available.</span>
+    <span class="c1">// Once this closure call returns, all the files will be automatically removed.</span>
+<span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">for</span> <span class="n">response</span> <span class="k">in</span> <span class="n">responses</span> <span class="p">{</span>
+        <span class="c1">// Try to obtain Filestack handle</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="k">let</span> <span class="nv">handle</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"handle"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">{</span>
+            <span class="c1">// Use Filestack handle</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
+            <span class="c1">// Handle error</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-<h3 id='uploading-files-from-device-icloud-drive-or-another-third-party-cloud-provider' class='heading'>Uploading files from device, iCloud Drive or another third-party cloud provider</h3>
-<pre class="highlight swift"><code><span class="c1">// The view controller that will be presenting the image picker.</span>
-<span class="k">let</span> <span class="nv">presentingViewController</span> <span class="o">=</span> <span class="k">self</span>
 
-<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">uploadFromDocumentPicker</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-<span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Try to obtain Filestack handle</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="k">let</span> <span class="nv">handle</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"handle"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">{</span>
-        <span class="c1">// Use Filestack handle</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-        <span class="c1">// Handle error</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="c1">// OPTIONAL: Monitor upload progress.</span>
+<span class="k">let</span> <span class="nv">uploadObserver</span> <span class="o">=</span> <span class="n">uploader</span><span class="o">.</span><span class="n">progress</span><span class="o">.</span><span class="nf">observe</span><span class="p">(\</span><span class="o">.</span><span class="n">fractionCompleted</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="k">new</span><span class="p">])</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span> <span class="k">in</span>
+    <span class="c1">// TODO: Use `progress` or `change` objects.</span>
+<span class="p">})</span>
 </code></pre>
 
 <p>In all the previous uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code>Uploader</code>:</p>
@@ -371,13 +376,44 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 <span class="c1">// Instantiate picker by passing the `StorageOptions` object we just set up.</span>
 <span class="k">let</span> <span class="nv">picker</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">picker</span><span class="p">(</span><span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span>
 </code></pre>
-<h4 id='5-setting-the-picker-39-s-delegate' class='heading'>5. Setting the picker&rsquo;s delegate</h4>
+<h4 id='5-em-optional-em-setting-picking-behavior' class='heading'>5. <em>(Optional)</em> Setting picking behavior</h4>
+<h5 id='upload-and-store-behavior' class='heading'>Upload and Store Behavior</h5>
+<pre class="highlight swift"><code><span class="c1">/// After finishing picking, local files are uploaded and cloud files are stored at the store destination.</span>
+<span class="n">picker</span><span class="o">.</span><span class="n">behavior</span> <span class="o">=</span> <span class="o">.</span><span class="nf">uploadAndStore</span><span class="p">(</span><span class="nv">uploadOptions</span><span class="p">:</span> <span class="o">.</span><span class="n">defaults</span><span class="p">)</span>
+</code></pre>
+<h5 id='store-only-behavior' class='heading'>Store Only Behavior</h5>
+<pre class="highlight swift"><code><span class="c1">/// After finishing picking, only cloud files are stored at the store destination.</span>
+<span class="n">picker</span><span class="o">.</span><span class="n">behavior</span> <span class="o">=</span> <span class="o">.</span><span class="n">storeOnly</span>
+</code></pre>
+<h4 id='6-setting-the-picker-39-s-delegate' class='heading'>6. Setting the picker&rsquo;s delegate</h4>
 <pre class="highlight swift"><code><span class="c1">// Optional. Set the picker's delegate.</span>
 <span class="n">picker</span><span class="o">.</span><span class="n">pickerDelegate</span> <span class="o">=</span> <span class="k">self</span>
 </code></pre>
 
 <p>And implement the <code><a href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a></code> protocol in your view controller, i.e.:</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">PickerNavigationControllerDelegate</span> <span class="p">{</span>
+    <span class="c1">/// Called when the picker finishes picking files originating from the local device.</span>
+    <span class="kd">func</span> <span class="nf">pickerPickedFiles</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">fileURLs</span><span class="p">:</span> <span class="p">[</span><span class="kt">URL</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">picker</span><span class="o">.</span><span class="n">behavior</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">storeOnly</span><span class="p">:</span>
+            <span class="c1">// IMPORTANT: Copy, move, or access the contents of the returned files at this point while they are still available.</span>
+            <span class="c1">// Once this delegate function call returns, all the files will be automatically removed.</span>
+
+            <span class="c1">// Dismiss the picker since we have finished picking files from the local device, and, in `storeOnly` mode,</span>
+            <span class="c1">// there's no upload phase.</span>
+            <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">async</span> <span class="p">{</span>
+                <span class="n">picker</span><span class="o">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">self</span><span class="o">.</span><span class="nf">presentAlert</span><span class="p">(</span><span class="nv">titled</span><span class="p">:</span> <span class="s">"Success"</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"Finished picking files: </span><span class="se">\(</span><span class="n">fileURLs</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="k">case</span> <span class="kd">let</span> <span class="o">.</span><span class="nf">uploadAndStore</span><span class="p">(</span><span class="n">uploadOptions</span><span class="p">):</span>
+            <span class="c1">// TODO: Handle this case.</span>
+            <span class="k">break</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
     <span class="c1">/// Called when the picker finishes storing a file originating from a cloud source into the destination storage location.</span>
     <span class="kd">func</span> <span class="nf">pickerStoredFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">StoreResponse</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">contents</span> <span class="p">{</span>
@@ -406,10 +442,10 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<h4 id='6-presenting-the-picker-on-the-screen' class='heading'>6. Presenting the picker on the screen</h4>
+<h4 id='7-presenting-the-picker-on-the-screen' class='heading'>7. Presenting the picker on the screen</h4>
 <pre class="highlight swift"><code><span class="n">yourViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
 </code></pre>
-<h4 id='7-enabling-background-upload-support' class='heading'>7. Enabling background upload support</h4>
+<h4 id='8-em-optional-em-enabling-background-upload-support' class='heading'>8. (<em>Optional</em>) Enabling background upload support</h4>
 
 <p>Starting in FilestackSDK <code>2.3</code>, background upload support is available. In order to use it in <code>Filestack</code> for file uploads, simply add the following to your code:</p>
 <pre class="highlight swift"><code><span class="c1">// Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.</span>
