@@ -169,7 +169,7 @@ uploadOptions.storeOptions = StorageOptions(location: .s3, access: .public)
 let behavior = .uploadAndStore(uploadOptions: uploadOptions)
 
 let uploader = client.pickFiles(using: presentingViewController,
-                                source: .sourceType,
+                                source: sourceType,
                                 behavior: behavior,
                                 pickCompletionHandler: { (urls) in
     // Copy, move, or access the contents of the returned files at this point while they are still available.
