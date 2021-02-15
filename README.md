@@ -31,7 +31,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.6.3'
+    pod 'Filestack', '~> 2.7.0'
 end
 ```
 
@@ -52,7 +52,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.6.3`
+`github "filestack/filestack-ios" ~> 2.7.0`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, and `Zip.framework` to the embedded frameworks build phase of your app's target.
 
@@ -64,7 +64,7 @@ Alternatively, if you are adding `Filestack` to your own Swift Package, declare 
 
 ```swift
 dependencies: [
-    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.6.3"))
+    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.7.0"))
 ]
 ```
 
@@ -151,45 +151,41 @@ let uploader = client.upload(using: localURL, uploadProgress: { (progress) in
 }
 ```
 
-### Uploading photos and videos from the Photo Library or Camera
+### Uploading photos and videos from the Photo Library, Camera or Documents
 
 ```swift
 // The view controller that will be presenting the image picker.
 let presentingViewController = self
 
-// The source type (e.g. `.camera`, `.photoLibrary`)
-let sourceType: UIImagePickerControllerSourceType = .camera
+// The source type (e.g. `.camera`, `.photoLibrary`, or `documents`)
+let sourceType: LocalSource = .camera
 
-let uploader = client.uploadFromImagePicker(viewController: presentingViewController, sourceType: sourceType, uploadProgress: { (progress) in
-    // Here you may update the UI to reflect the upload progress.
-    print("progress = \(String(describing: progress))")
-}) { (response) in
-    // Try to obtain Filestack handle
-    if let json = response?.json, let handle = json["handle"] as? String {
-        // Use Filestack handle
-    } else if let error = response?.error {
-        // Handle error
+// Upload options for any uploaded files.
+let uploadOptions: UploadOptions = .defaults
+
+// Store options for any uploaded files.
+uploadOptions.storeOptions = StorageOptions(location: .s3, access: .public)
+
+let behavior = .uploadAndStore(uploadOptions: uploadOptions)
+
+let uploader = client.pickFiles(using: presentingViewController, source: .sourceType, behavior: behavior, pickCompletionHandler: { (urls) in
+    // Copy, move, or access the contents of the returned files at this point while they are still available.
+    // Once this closure call returns, all the files will be automatically removed.
+}) { (responses) in
+    for response in responses {
+        // Try to obtain Filestack handle
+        if let json = response?.json, let handle = json["handle"] as? String {
+            // Use Filestack handle
+        } else if let error = response?.error {
+            // Handle error
+        }
     }
 }
-```
 
-### Uploading files from device, iCloud Drive or another third-party cloud provider
-
-```swift
-// The view controller that will be presenting the image picker.
-let presentingViewController = self
-
-let uploader = client.uploadFromDocumentPicker(viewController: presentingViewController, uploadProgress: { (progress) in
-    // Here you may update the UI to reflect the upload progress.
-    print("progress = \(String(describing: progress))")
-}) { (response) in
-    // Try to obtain Filestack handle
-    if let json = response?.json, let handle = json["handle"] as? String {
-        // Use Filestack handle
-    } else if let error = response?.error {
-        // Handle error
-    }
-}
+// OPTIONAL: Monitor upload progress.
+let uploadObserver = uploader.progress.observe(\.fractionCompleted, options: [.new]) { (progress, change) in
+    // TODO: Use `progress` or `change` objects.
+})
 ```
 
 In all the previous uploading examples, an upload may be cancelled at anytime by calling `cancel()` on the `Uploader`:
@@ -301,7 +297,22 @@ let storeOptions = StorageOptions(location: .s3, access: .public)
 let picker = client.picker(storeOptions: storeOptions)
 ```
 
-#### 5. Setting the picker's delegate
+#### 5. *(Optional)* Setting picking behavior
+
+##### Upload and Store Behavior
+
+```swift
+/// After finishing picking, local files are uploaded and cloud files are stored at the store destination.
+picker.behavior = .uploadAndStore(uploadOptions: .defaults)
+```
+##### Store Only Behavior
+
+```swift
+/// After finishing picking, only cloud files are stored at the store destination.
+picker.behavior = .storeOnly
+```
+
+#### 6. Setting the picker's delegate
 
 ```swift
 // Optional. Set the picker's delegate.
@@ -312,6 +323,28 @@ And implement the `PickerNavigationControllerDelegate` protocol in your view con
 
 ```swift
 extension ViewController: PickerNavigationControllerDelegate {
+    /// Called when the picker finishes picking files originating from the local device.
+    func pickerPickedFiles(picker: PickerNavigationController, fileURLs: [URL]) {
+        switch picker.behavior {
+        case .storeOnly:
+            // IMPORTANT: Copy, move, or access the contents of the returned files at this point while they are still available.
+            // Once this delegate function call returns, all the files will be automatically removed.
+
+            // Dismiss the picker since we have finished picking files from the local device, and, in `storeOnly` mode,
+            // there's no upload phase.
+            DispatchQueue.main.async {
+                picker.dismiss(animated: true) {
+                    self.presentAlert(titled: "Success", message: "Finished picking files: \(fileURLs)")
+                }
+            }
+        case let .uploadAndStore(uploadOptions):
+            // TODO: Handle this case.
+            break
+        default:
+            break
+        }
+    }
+
     /// Called when the picker finishes storing a file originating from a cloud source into the destination storage location.
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
         if let contents = response.contents {
@@ -341,13 +374,13 @@ extension ViewController: PickerNavigationControllerDelegate {
 }
 ```
 
-#### 6. Presenting the picker on the screen
+#### 7. Presenting the picker on the screen
 
 ```swift
 yourViewController.present(picker, animated: true)
 ```
 
-#### 7. Enabling background upload support
+#### 8. (*Optional*) Enabling background upload support
 
 Starting in FilestackSDK `2.3`, background upload support is available. In order to use it in `Filestack` for file uploads, simply add the following to your code:
 

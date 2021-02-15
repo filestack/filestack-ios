@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.7.0 *(2021-02-15)*
+----------------------------
+
+- Added support for custom picker behaviors (see `PickerBehavior` enum.)
+- Deprecated `uploadFromImagePicker(viewController:sourceType:options:queue:uploadProgress:completionHandler:)` and  `uploadFromDocumentPicker(viewController:options:queue:uploadProgress:completionHandler:)` functions in favor of newly introduced function `pickFiles(using:source:behavior:pickCompletionHandler:uploadCompletionHandler:)`.
+- Updated dependency on `FilestackSDK` to 2.7.0.
+
 Version 2.6.3 *(2021-02-03)*
 ----------------------------
 
