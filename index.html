@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          Filestack 2.5.0 Docs
+          Filestack 2.6.3 Docs
         </a>
          (99% documented)
       </p>
@@ -102,6 +102,9 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/PhotosPickerFilter.html">PhotosPickerFilter</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/PickerBehavior.html">PickerBehavior</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -150,7 +153,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.5.0'
+    pod 'Filestack', '~&gt; 2.6.3'
 end
 </code></pre>
 
@@ -168,16 +171,16 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.5.0</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.6.3</code></p>
 
-<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, <code>Alamofire.framework</code>, and <code>Zip.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
+<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, and <code>Zip.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
 <p>Add <code>https://github.com/filestack/filestack-ios.git</code> as a <a href="https://swift.org/package-manager/">Swift Package Manager</a> dependency to your Xcode project.</p>
 
 <p>Alternatively, if you are adding <code>Filestack</code> to your own Swift Package, declare the dependency in your <code>Package.swift</code>:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.5.0"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.6.3"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -190,7 +193,6 @@ $ brew install carthage
 <p>Add Filestack and its dependencies as git submodules by running the following commands:</p>
 <pre class="highlight shell"><code><span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
 <span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
-<span class="nv">$ </span>git submodule add https://github.com/Alamofire/Alamofire.git
 <span class="nv">$ </span>git submodule add https://github.com/marmelroy/Zip.git
 </code></pre>
 
@@ -205,7 +207,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <p>Click on the + button under the &ldquo;Embedded Binaries&rdquo; section and choose the <code>Filestack.framework</code> for iOS.</p>
 
-<p>Repeat the same process for adding <code>Alamofire</code>, <code>FilestackSDK</code>, and <code>Zip</code> dependent frameworks.</p>
+<p>Repeat the same process for adding <code>FilestackSDK</code>, and <code>Zip</code> dependent frameworks.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='importing-required-frameworks' class='heading'>Importing required frameworks</h3>
 
@@ -439,7 +441,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2020-10-19)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2021-02-15)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

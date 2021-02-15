@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>LocalProvider Enumeration Reference</title>
+    <title>PickerBehavior Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/LocalProvider" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/PickerBehavior" class="dashAnchor"></a>
 
-    <a title="LocalProvider Enumeration Reference"></a>
+    <a title="PickerBehavior Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Filestack Reference</a>
       <img class="carat" src="../img/carat.png" />
-      LocalProvider Enumeration Reference
+      PickerBehavior Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -122,16 +122,15 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>LocalProvider</h1>
+            <h1>PickerBehavior</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">FSLocalProvider</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LocalProvider</span> <span class="p">:</span> <span class="kt">UInt</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PickerBehavior</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents a local provider to be used by a <code><a href="../Classes/LocalSource.html">LocalSource</a></code>.</p>
+            <p>Represents the picker&rsquo;s pick behavior.</p>
 
           </div>
         </section>
@@ -143,9 +142,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@E@FSLocalProvider@FSLocalProviderCamera"></a>
-                    <a name="//apple_ref/swift/Element/camera" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@E@FSLocalProvider@FSLocalProviderCamera">camera</a>
+                    <a name="/s:9Filestack14PickerBehaviorO14uploadAndStoreyAC0A3SDK13UploadOptionsC_tcACmF"></a>
+                    <a name="//apple_ref/swift/Element/uploadAndStore(uploadOptions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack14PickerBehaviorO14uploadAndStoreyAC0A3SDK13UploadOptionsC_tcACmF">uploadAndStore(uploadOptions:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -153,14 +152,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Camera</p>
+                        <p>After finishing picking, local files are uploaded and cloud files are stored at the store destination.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">camera</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">uploadAndStore</span><span class="p">(</span><span class="nv">uploadOptions</span><span class="p">:</span> <span class="kt">UploadOptions</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -170,9 +169,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Filestack@E@FSLocalProvider@FSLocalProviderPhotoLibrary"></a>
-                    <a name="//apple_ref/swift/Element/photoLibrary" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@E@FSLocalProvider@FSLocalProviderPhotoLibrary">photoLibrary</a>
+                    <a name="/s:9Filestack14PickerBehaviorO9storeOnlyyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/storeOnly" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Filestack14PickerBehaviorO9storeOnlyyA2CmF">storeOnly</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -180,41 +179,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Photo Library</p>
+                        <p>After finishing picking, only cloud files are stored at the store destination.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">photoLibrary</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@Filestack@E@FSLocalProvider@FSLocalProviderDocuments"></a>
-                    <a name="//apple_ref/swift/Element/documents" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Filestack@E@FSLocalProvider@FSLocalProviderDocuments">documents</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Documents</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">documents</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">storeOnly</span></code></pre>
 
                         </div>
                       </div>
