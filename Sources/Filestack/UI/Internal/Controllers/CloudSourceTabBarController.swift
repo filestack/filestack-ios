@@ -9,6 +9,29 @@
 import FilestackSDK
 import UIKit
 
+private struct URLSessionTaskTracker {
+    private var tasks: [URLSessionTask] = [URLSessionTask]()
+    private let queue = DispatchQueue(label: "com.filestack.URLSessionTaskTracker")
+
+    mutating func add(_ task: URLSessionTask) {
+        queue.sync { tasks.append(task) }
+    }
+
+    mutating func remove(_ task: URLSessionTask) {
+        queue.sync { tasks.removeAll { $0 == task } }
+    }
+
+    mutating func cancelPendingAndRemove() {
+        queue.sync {
+            for request in tasks {
+                request.cancel()
+            }
+
+            tasks.removeAll()
+        }
+    }
+}
+
 class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     var client: Client!
     var storeOptions: StorageOptions!
@@ -35,7 +58,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     private let session = URLSession.filestackDefault
     private var toggleViewTypeButton: UIBarButtonItem?
     private var currentRequest: Cancellable?
-    private var thumbnailTaskRequests: [URLSessionDataTask] = [URLSessionDataTask]()
+    private var thumbnailTasks = URLSessionTaskTracker()
     private weak var uploadMonitorViewController: MonitorViewController?
     private var uploaderObserver: NSKeyValueObservation?
 
@@ -210,9 +233,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
 
         task = URLSession.filestackDefault.dataTask(with: urlRequest) { (data, response, error) in
             // Remove request from thumbnail requests
-            if let idx = (self.thumbnailTaskRequests.firstIndex { $0 == task }) {
-                self.thumbnailTaskRequests.remove(at: idx)
-            }
+            self.thumbnailTasks.remove(task)
 
             var image: UIImage!
 
@@ -234,7 +255,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         task.resume()
 
         // Add request to thumbnail requests.
-        thumbnailTaskRequests.append(task)
+        thumbnailTasks.add(task)
     }
 
     func search(text: String, completionHandler: @escaping (() -> Void)) {
@@ -288,11 +309,7 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
     }
 
     private func cancelPendingThumbnailRequests() {
-        for request in thumbnailTaskRequests {
-            request.cancel()
-        }
-
-        thumbnailTaskRequests.removeAll()
+        thumbnailTasks.cancelPendingAndRemove()
     }
 
     // MARK: - Actions
