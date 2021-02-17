@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          Filestack 2.7.0 Docs
+          Filestack 2.7.1 Docs
         </a>
          (99% documented)
       </p>
@@ -153,7 +153,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.7.0'
+    pod 'Filestack', '~&gt; 2.7.1'
 end
 </code></pre>
 
@@ -171,7 +171,7 @@ $ brew install carthage
 
 <p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
 
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.7.0</code></p>
+<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.7.1</code></p>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, and <code>ZIPFoundation.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
@@ -180,7 +180,7 @@ $ brew install carthage
 
 <p>Alternatively, if you are adding <code>Filestack</code> to your own Swift Package, declare the dependency in your <code>Package.swift</code>:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.7.0"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.7.1"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 <h3 id='manually' class='heading'>Manually</h3>
@@ -237,7 +237,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
 
 <span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
 </code></pre>
-<h3 id='uploading-local-files' class='heading'>Uploading local files</h3>
+<h3 id='uploading-files-programmatically' class='heading'>Uploading files programmatically</h3>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">localURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"file:///an-app-sandbox-friendly-local-url"</span><span class="p">)</span><span class="o">!</span>
 
 <span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="n">localURL</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
@@ -252,7 +252,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<h3 id='uploading-photos-and-videos-from-the-photo-library-camera-or-documents' class='heading'>Uploading photos and videos from the Photo Library, Camera or Documents</h3>
+<h3 id='uploading-files-interactively-from-the-camera-photo-library-or-documents' class='heading'>Uploading files interactively from the Camera, Photo Library, or Documents</h3>
 <pre class="highlight swift"><code><span class="c1">// The view controller that will be presenting the image picker.</span>
 <span class="k">let</span> <span class="nv">presentingViewController</span> <span class="o">=</span> <span class="k">self</span>
 
@@ -474,7 +474,7 @@ Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2021-02-15)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2021-02-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
