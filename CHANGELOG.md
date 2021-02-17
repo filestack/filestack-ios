@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.7.1 *(2021-02-17)*
+----------------------------
+
+- Added synchronized access to add, remove and cancel thumbnail requests originating from cloud sources in picker to prevent race conditions. 
+
 Version 2.7.0 *(2021-02-15)*
 ----------------------------
 
