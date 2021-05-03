@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.7.2 *(2021-05-03)*
+----------------------------
+
+- [Hotfix] Ensuring Minimum Deployment Target compatibility with iOS 11 (only relevant for CocoaPod users.)   
+
 Version 2.7.1 *(2021-02-17)*
 ----------------------------
 
@@ -183,7 +188,7 @@ Version 1.2 *(2017-12-19)*
 Version 1.1 *(2017-12-04)*
 ----------------------------
 
-- Adding support for uploading files picked using Apple's document picker either programmatically or using our provided picker.
+- Added support for uploading files picked using Apple's document picker either programmatically or using our provided picker.
 
 Version 1.0 *(2017-11-23)*
 ----------------------------
