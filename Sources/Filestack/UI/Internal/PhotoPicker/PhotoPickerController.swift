@@ -9,7 +9,7 @@
 import Photos
 import UIKit
 
-protocol PhotoPickerControllerDelegate: class {
+protocol PhotoPickerControllerDelegate: AnyObject {
     func photoPickerControllerDidCancel(controller: UINavigationController)
     func photoPicker(controller: UINavigationController, didSelectAssets assets: [PHAsset])
 }

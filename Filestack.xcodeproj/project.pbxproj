@@ -811,7 +811,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					457084FE1F975C6C00991340 = {
