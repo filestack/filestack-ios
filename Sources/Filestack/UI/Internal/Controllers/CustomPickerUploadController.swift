@@ -32,10 +32,9 @@ class CustomPickerUploadController: URLPickerUploadController {
 extension CustomPickerUploadController: SourceProviderDelegate {
     func sourceProviderPicked(urls: [URL]) {
         upload(urls: urls)
-        print("Custom SourceProvider Picked urls: \(urls)")
     }
 
     func sourceProviderCancelled() {
-        print("Custom SourceProvider Cancelled.")
+        // NO-OP
     }
 }
