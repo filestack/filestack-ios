@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Enable a list of cloud sources.
             .with(availableCloudSources: [.dropbox, .googleDrive, .googlePhotos, .customSource])
             // Enable a list of local sources.
-            .with(availableLocalSources: [.camera, .photoLibrary, .documents])
+            .with(availableLocalSources: [.camera, .photoLibrary, .documents, customLocalSource()])
             // Specify what UTIs are allowed for documents picked from Apple's Document Picker (aka iOS Files.)
             .with(documentPickerAllowedUTIs: ["public.item"])
             // Specify what UTIs are allowed for files picked from cloud providers.
@@ -80,5 +80,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // together with a `Security` and `Config` object.
         // If your account does not have security enabled, then you can omit this parameter or set it to `nil`.
         client = Filestack.Client(apiKey: filestackAPIKey, security: security, config: config)
+    }
+
+    /// Returns a custom `LocalSource` configured to use an user-provided `SourceProvider`.
+    private func customLocalSource() -> LocalSource {
+        let customSourceTitle = "Custom Source"
+        let customProvider = MyCustomSourceProvider()
+
+        customProvider.title = customSourceTitle
+
+        customProvider.availableURLs = [
+            Bundle.main.url(forResource: "demo1", withExtension: "jpg")!,
+            Bundle.main.url(forResource: "demo2", withExtension: "jpg")!,
+            Bundle.main.url(forResource: "demo3", withExtension: "jpg")!,
+            Bundle.main.url(forResource: "demo4", withExtension: "jpg")!,
+            Bundle.main.url(forResource: "demo5", withExtension: "jpg")!
+        ]
+
+        let customSource = LocalSource.custom(
+            description: customSourceTitle,
+            image: UIImage(named: "icon-custom-source")!,
+            provider: customProvider
+        )
+
+        return customSource
     }
 }

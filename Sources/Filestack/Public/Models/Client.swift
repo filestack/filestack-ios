@@ -184,7 +184,13 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
             sourceType = nil
         }
 
-        if let sourceType = sourceType {
+        if let sourceProvider = source.sourceProvider {
+            uploadController = CustomPickerUploadController(uploader: uploader,
+                                                            viewController: presentingViewController,
+                                                            provider: sourceProvider,
+                                                            config: config,
+                                                            completionBlock: pickCompletionHandler)
+        } else if let sourceType = sourceType {
             uploadController = ImagePickerUploadController(uploader: uploader,
                                                            viewController: presentingViewController,
                                                            sourceType: sourceType,

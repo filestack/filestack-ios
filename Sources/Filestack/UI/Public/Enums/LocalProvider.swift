@@ -18,4 +18,7 @@ import Foundation
 
     /// Documents
     case documents
+
+    /// Custom Source
+    case customSource
 }

@@ -116,9 +116,13 @@
 		4540BB9C2535CF860053CDBB /* Client+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB2F2535CF860053CDBB /* Client+ObjC.swift */; };
 		4540BB9D2535CF860053CDBB /* Client+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BB302535CF860053CDBB /* Client+Deprecated.swift */; };
 		45453E8D2535E3540090F78D /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45453E8C2535E3540090F78D /* Bundle.swift */; };
+		456B743826BC2FD3008F434F /* URLPickerUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456B743726BC2FD3008F434F /* URLPickerUploadController.swift */; };
 		4581FF55253869260019B70F /* URL+Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581FF54253869260019B70F /* URL+Move.swift */; };
 		4581FF5D25388EBD0019B70F /* PhotosPickerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */; };
 		458DE82E25CAEF5F00A39149 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 458DE82D25CAEF5F00A39149 /* ZIPFoundation */; };
+		4599415326BBF6790039BF8F /* CustomPickerUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4599415226BBF6780039BF8F /* CustomPickerUploadController.swift */; };
+		45A2497526BC3A4B0078785D /* SourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A2497426BC3A4B0078785D /* SourceProvider.swift */; };
+		45A2497726BC3A5E0078785D /* SourceProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A2497626BC3A5E0078785D /* SourceProviderDelegate.swift */; };
 		45CEFC4425C44A9100A8C165 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC4325C44A9100A8C165 /* FilestackSDK */; settings = {ATTRIBUTES = (Required, ); }; };
 		45CEFC4525C44A9100A8C165 /* FilestackSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC4325C44A9100A8C165 /* FilestackSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		45CF056725D5744E0090966A /* PickerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CF056625D5744E0090966A /* PickerBehavior.swift */; };
@@ -250,9 +254,13 @@
 		4540BB302535CF860053CDBB /* Client+Deprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+Deprecated.swift"; sourceTree = "<group>"; };
 		4540BB312535CF860053CDBB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45453E8C2535E3540090F78D /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		456B743726BC2FD3008F434F /* URLPickerUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPickerUploadController.swift; sourceTree = "<group>"; };
 		457084FF1F975C6C00991340 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4581FF54253869260019B70F /* URL+Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Move.swift"; sourceTree = "<group>"; };
 		4581FF5C25388EBD0019B70F /* PhotosPickerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosPickerFilter.swift; sourceTree = "<group>"; };
+		4599415226BBF6780039BF8F /* CustomPickerUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerUploadController.swift; sourceTree = "<group>"; };
+		45A2497426BC3A4B0078785D /* SourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceProvider.swift; sourceTree = "<group>"; };
+		45A2497626BC3A5E0078785D /* SourceProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceProviderDelegate.swift; sourceTree = "<group>"; };
 		45BFF67A23290B1E00944028 /* Filestack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Filestack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		45BFF67B23290B1E00944028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		45BFF67C23290B1F00944028 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -410,10 +418,12 @@
 				4540BABF2535CF860053CDBB /* CloudSourceCollectionViewController.swift */,
 				4540BABE2535CF860053CDBB /* CloudSourceTabBarController.swift */,
 				4540BABC2535CF860053CDBB /* CloudSourceTableViewController.swift */,
+				4599415226BBF6780039BF8F /* CustomPickerUploadController.swift */,
 				4540BAB92535CF860053CDBB /* DocumentPickerUploadController.swift */,
 				4540BABD2535CF860053CDBB /* ImagePickerUploadController.swift */,
 				4540BABA2535CF860053CDBB /* MonitorViewController.swift */,
 				4540BABB2535CF860053CDBB /* SourceTableViewController.swift */,
+				456B743726BC2FD3008F434F /* URLPickerUploadController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -559,6 +569,8 @@
 		4540BAEB2535CF860053CDBB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				45A2497426BC3A4B0078785D /* SourceProvider.swift */,
+				45A2497626BC3A5E0078785D /* SourceProviderDelegate.swift */,
 				4540BAEC2535CF860053CDBB /* StylizerDelegate.swift */,
 			);
 			path = Protocols;
@@ -811,7 +823,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					457084FE1F975C6C00991340 = {
@@ -905,6 +917,7 @@
 				4540BB572535CF860053CDBB /* Uploadable.swift in Sources */,
 				4540BB8C2535CF860053CDBB /* UploadableExtractor.swift in Sources */,
 				4540BB932535CF860053CDBB /* ImageURLExportPreset.swift in Sources */,
+				45A2497526BC3A4B0078785D /* SourceProvider.swift in Sources */,
 				4540BB912535CF860053CDBB /* CompletionHandlers.swift in Sources */,
 				4540BB4A2535CF860053CDBB /* CloudSourceCollectionViewController.swift in Sources */,
 				4540BB882535CF860053CDBB /* LogoutRequest.swift in Sources */,
@@ -966,7 +979,9 @@
 				4540BB562535CF860053CDBB /* CircleGesturesHandler.swift in Sources */,
 				4540BB972535CF860053CDBB /* FolderListResponse.swift in Sources */,
 				4581FF5D25388EBD0019B70F /* PhotosPickerFilter.swift in Sources */,
+				45A2497726BC3A5E0078785D /* SourceProviderDelegate.swift in Sources */,
 				4540BB892535CF860053CDBB /* StoreRequest.swift in Sources */,
+				4599415326BBF6790039BF8F /* CustomPickerUploadController.swift in Sources */,
 				4540BB992535CF860053CDBB /* StoreResponse.swift in Sources */,
 				4540BB4F2535CF860053CDBB /* ImageEditor.swift in Sources */,
 				4540BB322535CF860053CDBB /* CloudSourceBarTabScene.swift in Sources */,
@@ -980,6 +995,7 @@
 				4540BB672535CF860053CDBB /* PickerNavigationController.swift in Sources */,
 				4540BB982535CF860053CDBB /* PrefetchResponse.swift in Sources */,
 				4540BB7D2535CF860053CDBB /* UIColor+Bundle.swift in Sources */,
+				456B743826BC2FD3008F434F /* URLPickerUploadController.swift in Sources */,
 				4540BB462535CF860053CDBB /* SourceTableViewController.swift in Sources */,
 				4540BB732535CF860053CDBB /* UIColor+Predefined.swift in Sources */,
 				4540BB512535CF860053CDBB /* EditorViewController+ViewSetup.swift in Sources */,

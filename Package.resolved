@@ -2,7 +2,7 @@
   "object": {
     "pins": [
       {
-        "package": "filestack-swift",
+        "package": "FilestackSDK",
         "repositoryURL": "https://github.com/filestack/filestack-swift",
         "state": {
           "branch": null,

@@ -13,6 +13,13 @@
 		4540548C1F98A69A00C12B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4540548B1F98A69A00C12B2F /* Assets.xcassets */; };
 		4540548F1F98A69A00C12B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4540548D1F98A69A00C12B2F /* LaunchScreen.storyboard */; };
 		455AB6C2232FD680001ABE81 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */; };
+		456B742E26BC198D008F434F /* demo5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 456B742926BC198C008F434F /* demo5.jpg */; };
+		456B742F26BC198D008F434F /* demo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 456B742A26BC198C008F434F /* demo4.jpg */; };
+		456B743026BC198D008F434F /* demo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 456B742B26BC198C008F434F /* demo1.jpg */; };
+		456B743126BC198D008F434F /* demo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 456B742C26BC198D008F434F /* demo3.jpg */; };
+		456B743226BC198D008F434F /* demo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 456B742D26BC198D008F434F /* demo2.jpg */; };
+		456B743626BC2DEB008F434F /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456B743526BC2DEB008F434F /* CustomCell.swift */; };
+		4599415126BBF1270039BF8F /* MyCustomSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4599415026BBF1270039BF8F /* MyCustomSourceProvider.swift */; };
 		45C7935725C4494B00243A1C /* Filestack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C7935325C4494500243A1C /* Filestack.framework */; };
 		45C7935825C4494B00243A1C /* Filestack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45C7935325C4494500243A1C /* Filestack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45CEFC3A25C44A2B00A8C165 /* FilestackSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 45CEFC3925C44A2B00A8C165 /* FilestackSDK */; };
@@ -43,6 +50,13 @@
 		4540548E1F98A69A00C12B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		454054901F98A69A00C12B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
+		456B742926BC198C008F434F /* demo5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo5.jpg; sourceTree = "<group>"; };
+		456B742A26BC198C008F434F /* demo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo4.jpg; sourceTree = "<group>"; };
+		456B742B26BC198C008F434F /* demo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo1.jpg; sourceTree = "<group>"; };
+		456B742C26BC198D008F434F /* demo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo3.jpg; sourceTree = "<group>"; };
+		456B742D26BC198D008F434F /* demo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo2.jpg; sourceTree = "<group>"; };
+		456B743526BC2DEB008F434F /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		4599415026BBF1270039BF8F /* MyCustomSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomSourceProvider.swift; sourceTree = "<group>"; };
 		45C7935325C4494500243A1C /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,6 +93,8 @@
 		454054831F98A69A00C12B2F /* FilestackDemo */ = {
 			isa = PBXGroup;
 			children = (
+				456B742826BC198C008F434F /* Demo Content */,
+				4599414F26BBF1100039BF8F /* Custom Source Providers */,
 				454054901F98A69A00C12B2F /* Info.plist */,
 				454054841F98A69A00C12B2F /* AppDelegate.swift */,
 				454054861F98A69A00C12B2F /* ViewController.swift */,
@@ -104,6 +120,43 @@
 				455AB6C1232FD680001ABE81 /* UIViewController+PresentAlert.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		456B742826BC198C008F434F /* Demo Content */ = {
+			isa = PBXGroup;
+			children = (
+				456B742926BC198C008F434F /* demo5.jpg */,
+				456B742A26BC198C008F434F /* demo4.jpg */,
+				456B742B26BC198C008F434F /* demo1.jpg */,
+				456B742C26BC198D008F434F /* demo3.jpg */,
+				456B742D26BC198D008F434F /* demo2.jpg */,
+			);
+			path = "Demo Content";
+			sourceTree = "<group>";
+		};
+		456B743326BC2DD4008F434F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4599415026BBF1270039BF8F /* MyCustomSourceProvider.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		456B743426BC2DDF008F434F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				456B743526BC2DEB008F434F /* CustomCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4599414F26BBF1100039BF8F /* Custom Source Providers */ = {
+			isa = PBXGroup;
+			children = (
+				456B743426BC2DDF008F434F /* Cells */,
+				456B743326BC2DD4008F434F /* View Controllers */,
+			);
+			path = "Custom Source Providers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +190,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = Filestack;
 				TargetAttributes = {
 					454054801F98A69A00C12B2F = {
@@ -175,7 +228,12 @@
 			files = (
 				4540548F1F98A69A00C12B2F /* LaunchScreen.storyboard in Resources */,
 				4540548C1F98A69A00C12B2F /* Assets.xcassets in Resources */,
+				456B742E26BC198D008F434F /* demo5.jpg in Resources */,
+				456B742F26BC198D008F434F /* demo4.jpg in Resources */,
+				456B743126BC198D008F434F /* demo3.jpg in Resources */,
+				456B743026BC198D008F434F /* demo1.jpg in Resources */,
 				4540548A1F98A69A00C12B2F /* Main.storyboard in Resources */,
+				456B743226BC198D008F434F /* demo2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				454054871F98A69A00C12B2F /* ViewController.swift in Sources */,
+				4599415126BBF1270039BF8F /* MyCustomSourceProvider.swift in Sources */,
+				456B743626BC2DEB008F434F /* CustomCell.swift in Sources */,
 				454054851F98A69A00C12B2F /* AppDelegate.swift in Sources */,
 				455AB6C2232FD680001ABE81 /* UIViewController+PresentAlert.swift in Sources */,
 			);
