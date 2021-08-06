@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 2.8.0 *(2021-08-06)*
+----------------------------
+- It is now possible for SDK users to implement their own picker sources programmatically. Please refer to 
+`SourceProvider` and the demo project included with this SDK for more information.
+- Updated demo project to include a custom picker source implementation.
+- Updated demo project to support requesting extra background execution time if the Filestack SDK Client is currently
+uploading files. 
+- Updated dependency on `FilestackSDK` to 2.8.0.
+
 Version 2.7.2 *(2021-05-03)*
 ----------------------------
 

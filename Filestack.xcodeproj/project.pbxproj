@@ -1227,8 +1227,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/filestack/filestack-swift.git";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
