@@ -408,7 +408,8 @@ Starting in Filestack iOS SDK `2.8.0`, SDK users can add their own custom source
             // TODO: Implement initializer.
         }
         
-        // 3. Call this function whenever you want to start uploading files. These should be passed to the source provider delegate as an array of locally stored URLs.
+        // 3. Call this function whenever you want to start uploading files. 
+        // These should be passed to the source provider delegate as an array of locally stored URLs.
         @objc func upload() {
             let urls = Array(urls)
 
