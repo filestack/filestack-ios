@@ -23,6 +23,7 @@ var client: Filestack.Client?
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var backgroundTaskID: UIBackgroundTaskIdentifier? = nil
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFilestackClient()
@@ -30,7 +31,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    private func setupFilestackClient() {
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        if let client = client, client.sdkClient.isUploading {
+            beginBackgroundTaskForFilestack()
+        }
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        endBackgroundTaskForFilestack()
+    }
+
+}
+
+private extension AppDelegate {
+    func setupFilestackClient() {
         // Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.
         FilestackSDK.UploadService.shared.useBackgroundSession = true
 
@@ -83,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     /// Returns a custom `LocalSource` configured to use an user-provided `SourceProvider`.
-    private func customLocalSource() -> LocalSource {
+    func customLocalSource() -> LocalSource {
         let customSourceTitle = "Custom Source"
         let customProvider = MyCustomSourceProvider()
 
@@ -104,5 +118,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
 
         return customSource
+    }
+
+    func beginBackgroundTaskForFilestack() {
+        backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "Filestack Background Upload") {
+            self.endBackgroundTaskForFilestack()
+        }
+    }
+
+    func endBackgroundTaskForFilestack() {
+        if let backgroundTaskID = backgroundTaskID {
+            UIApplication.shared.endBackgroundTask(backgroundTaskID)
+            self.backgroundTaskID = .invalid
+        }
     }
 }
