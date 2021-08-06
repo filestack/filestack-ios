@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filestack - Client</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Filestack
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#client.init(apikey:security:config:token:)">init(api​Key:​security:​config:​token:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#client.apikey">api​Key</a></li><li class="variable"><a href="#client.security">security</a></li><li class="variable"><a href="#client.config">config</a></li><li class="variable"><a href="#client.sdkclient">sdk​Client</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#client.upload(from:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">upload(from:​store​Options:​use​Intelligent​Ingestion​IfAvailable:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadfromimagepicker(viewcontroller:sourcetype:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">upload​From​Image​Picker(view​Controller:​source​Type:​store​Options:​use​Intelligent​Ingestion​IfAvailable:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadfromdocumentpicker(viewcontroller:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">upload​From​Document​Picker(view​Controller:​store​Options:​use​Intelligent​Ingestion​IfAvailable:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadfromimagepicker(viewcontroller:sourcetype:options:queue:uploadprogress:completionhandler:)">upload​From​Image​Picker(view​Controller:​source​Type:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadfromdocumentpicker(viewcontroller:options:queue:uploadprogress:completionhandler:)">upload​From​Document​Picker(view​Controller:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadurl(using:options:queue:uploadprogress:completionhandler:)">upload​URL(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadmultipleurls(using:options:queue:uploadprogress:completionhandler:)">upload​Multiple​URLs(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploaddata(using:options:queue:uploadprogress:completionhandler:)">upload​Data(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.uploadmultipledata(using:options:queue:uploadprogress:completionhandler:)">upload​Multiple​Data(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.picker(storeoptions:)">picker(store​Options:​)</a></li><li class="function"><a href="#client.upload(using:options:queue:uploadprogress:completionhandler:)">upload(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.upload(using:options:queue:uploadprogress:completionhandler:)">upload(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></li><li class="function"><a href="#client.pickfiles(using:source:behavior:pickcompletionhandler:uploadcompletionhandler:)">pick​Files(using:​source:​behavior:​pick​Completion​Handler:​upload​Completion​Handler:​)</a></li><li class="function"><a href="#client.folderlist(provider:path:pagetoken:queue:completionhandler:)">folder​List(provider:​path:​page​Token:​queue:​completion​Handler:​)</a></li><li class="function"><a href="#client.store(provider:path:storeoptions:queue:completionhandler:)">store(provider:​path:​store​Options:​queue:​completion​Handler:​)</a></li><li class="function"><a href="#client.logout(provider:completionhandler:)">logout(provider:​completion​Handler:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Class</small>
+    <code class="name">Client</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>(<span class="variable">FSFilestackClient</span>) <span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Client</span>: <span class="type">NSObject</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>The <code>Client</code> class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        <figure>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.48.0 (20210717.1556)
+ -->
+<!-- Pages: 1 -->
+<svg width="872pt" height="116pt"
+ viewBox="0.00 0.00 872.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 868,-112 868,4 -4,4"/>
+<!-- Client -->
+<g id="node1" class="node class current">
+<title>Client</title>
+<g id="a_node1"><a xlink:href="/Client" xlink:title="Client">
+<path fill="none" stroke="black" stroke-width="3" d="M528,-108C528,-108 336,-108 336,-108 330,-108 324,-102 324,-96 324,-96 324,-84 324,-84 324,-78 330,-72 336,-72 336,-72 528,-72 528,-72 534,-72 540,-78 540,-84 540,-84 540,-96 540,-96 540,-102 534,-108 528,-108"/>
+<text text-anchor="middle" x="432" y="-86.3" font-family="Menlo" font-size="14.00">Client</text>
+</a>
+</g>
+</g>
+<!-- NSObject -->
+<g id="node2" class="node unknown">
+<title>NSObject</title>
+<path fill="none" stroke="black" d="M528,-36C528,-36 336,-36 336,-36 330,-36 324,-30 324,-24 324,-24 324,-12 324,-12 324,-6 330,0 336,0 336,0 528,0 528,0 534,0 540,-6 540,-12 540,-12 540,-24 540,-24 540,-30 534,-36 528,-36"/>
+<text text-anchor="middle" x="432" y="-14.3" font-family="Menlo" font-size="14.00">NSObject</text>
+</g>
+<!-- Client&#45;&gt;NSObject -->
+<g id="edge1" class="edge conformsTo">
+<title>Client&#45;&gt;NSObject</title>
+<path fill="none" stroke="black" d="M432,-71.7C432,-63.98 432,-54.71 432,-46.11"/>
+<polygon fill="black" stroke="black" points="435.5,-46.1 432,-36.1 428.5,-46.1 435.5,-46.1"/>
+</g>
+</g>
+</svg>
+
+
+    <figcaption hidden>Inheritance graph for Client.</figcaption>
+</figure>
+        <h3>Conforms To</h3>
+<dl>
+    <dt class="unknown"><code>NSObject</code></dt>
+</dl>
+</section>
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="client.init(apikey:security:config:token:)">
+    <h3>
+        <code><a href="#client.init(apikey:security:config:token:)">init(api​Key:​security:​config:​token:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">apiKey</span>: <span class="type">String</span>, <span class="variable">security</span>: <span class="type">Security</span>? = <span class="keyword">nil</span>, <span class="variable">config</span>: <a href="/Config"><span class="type">Config</span></a>? = <span class="keyword">nil</span>, <span class="variable">token</span>: <span class="type">String</span>? = <span class="keyword">nil</span>)  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Default initializer.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>api​Key</th>
+    <td><code class="type">String</code></td>
+    <td><p>An API key obtained from the Developer Portal.</p>
+</td>
+</tr>
+<tr>
+    <th>security</th>
+    <td><code class="type">Security?</code></td>
+    <td><p>A <code>Security</code> object. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>config</th>
+    <td><code class="type">Config?</code></td>
+    <td><p>A <code>Config</code> object. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>token</th>
+    <td><code class="type">String?</code></td>
+    <td><p>A token obtained from <code>lastToken</code> to use initially. This could be useful to avoid authenticating against a cloud provider assuming that the passed token has not yet expired.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="client.apikey">
+    <h3>
+        <code><a href="#client.apikey">api​Key</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">apiKey</span>: <span class="type">String</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>An API key obtained from the <a href="http://dev.filestack.com">Developer Portal</a>.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="client.security">
+    <h3>
+        <code><a href="#client.security">security</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">security</span>: <span class="type">Security</span>? </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A <code>Security</code> object. <code>nil</code> by default.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="client.config">
+    <h3>
+        <code><a href="#client.config">config</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">config</span>: <a href="/Config"><span class="type">Config</span></a></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A <code>Config</code> object.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="client.sdkclient">
+    <h3>
+        <code><a href="#client.sdkclient">sdk​Client</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">sdkClient</span>: <span class="type">FilestackSDK</span>.<a href="/Client"><span class="type">Client</span></a></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>The Filestack SDK client used for uploads and transformations.</p>
+
+</div>
+</div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="client.upload(from:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.upload(from:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">upload(from:​store​Options:​use​Intelligent​Ingestion​IfAvailable:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">message</span>: <span class="string literal">"Marked for removal in version 3.0. Please use upload(using:options:queue:uploadProgress:completionHandler:) instead"</span>)
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">upload</span>(<span class="variable">from</span> <span class="variable">localURL</span>: <span class="type">URL</span>,
+                       <span class="variable">storeOptions</span>: <span class="type">StorageOptions</span> = .<span class="variable">defaults</span>,
+                       <span class="variable">useIntelligentIngestionIfAvailable</span>: <span class="type">Bool</span> = <span class="keyword">true</span>,
+                       <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                       <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                       <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">JSONResponse</span>?) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a file directly to a given storage location (currently only S3 is supported.)</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>local​URL</th>
+    <td><code class="type">URL</code></td>
+    <td><p>The URL of the local file to be uploaded.</p>
+</td>
+</tr>
+<tr>
+    <th>store​Options</th>
+    <td><code class="type">Storage​Options</code></td>
+    <td><p>An object containing the store options (e.g. location, region, container, access, etc. If none given, S3 location with default options is assumed.</p>
+</td>
+</tr>
+<tr>
+    <th>use​Intelligent​Ingestion​IfAvailable</th>
+    <td><code class="type">Bool</code></td>
+    <td><p>Attempts to use Intelligent Ingestion for file uploading. Defaults to <code>true</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping (JSONResponse?) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>An <code>Uploader</code> that allows starting, cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadfromimagepicker(viewcontroller:sourcetype:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadfromimagepicker(viewcontroller:sourcetype:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">upload​From​Image​Picker(view​Controller:​source​Type:​store​Options:​use​Intelligent​Ingestion​IfAvailable:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">message</span>: <span class="string literal">"Marked for removal in version 3.0. Please use uploadFromImagePicker(viewController:sourceType:options:queue:uploadProgress:completionHandler:) instead"</span>)
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadFromImagePicker</span>(<span class="variable">viewController</span>: <span class="type">UIViewController</span>,
+                                      <span class="variable">sourceType</span>: <span class="type">UIImagePickerController</span>.<span class="type">SourceType</span>,
+                                      <span class="variable">storeOptions</span>: <span class="type">StorageOptions</span> = .<span class="variable">defaults</span>,
+                                      <span class="variable">useIntelligentIngestionIfAvailable</span>: <span class="type">Bool</span> = <span class="keyword">true</span>,
+                                      <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                                      <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                                      <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Cancellable</span> &amp; <span class="type">Monitorizable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a file to a given storage location picked interactively from the camera or the photo library.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>view​Controller</th>
+    <td><code class="type">UIView​Controller</code></td>
+    <td><p>The view controller that will present the picker.</p>
+</td>
+</tr>
+<tr>
+    <th>source​Type</th>
+    <td><code class="type">UIImage​Picker​Controller.​Source​Type</code></td>
+    <td><p>The desired source type (e.g. camera, photo library.)</p>
+</td>
+</tr>
+<tr>
+    <th>store​Options</th>
+    <td><code class="type">Storage​Options</code></td>
+    <td><p>An object containing the store options (e.g. location, region, container, access, etc.) If none given, S3 location with default options is assumed.</p>
+</td>
+</tr>
+<tr>
+    <th>use​Intelligent​Ingestion​IfAvailable</th>
+    <td><code class="type">Bool</code></td>
+    <td><p>Attempts to use Intelligent Ingestion for file uploading. Defaults to <code>true</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadfromdocumentpicker(viewcontroller:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadfromdocumentpicker(viewcontroller:storeoptions:useintelligentingestionifavailable:queue:uploadprogress:completionhandler:)">upload​From​Document​Picker(view​Controller:​store​Options:​use​Intelligent​Ingestion​IfAvailable:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">message</span>: <span class="string literal">"Marked for removal in version 3.0. Please use uploadFromDocumentPicker(viewController:options:queue:uploadProgress:completionHandler:) instead"</span>)
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadFromDocumentPicker</span>(<span class="variable">viewController</span>: <span class="type">UIViewController</span>,
+                                         <span class="variable">storeOptions</span>: <span class="type">StorageOptions</span> = .<span class="variable">defaults</span>,
+                                         <span class="variable">useIntelligentIngestionIfAvailable</span>: <span class="type">Bool</span> = <span class="keyword">true</span>,
+                                         <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                                         <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                                         <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Cancellable</span> &amp; <span class="type">Monitorizable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
+other third-party cloud services.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>view​Controller</th>
+    <td><code class="type">UIView​Controller</code></td>
+    <td><p>The view controller that will present the picker.</p>
+</td>
+</tr>
+<tr>
+    <th>store​Options</th>
+    <td><code class="type">Storage​Options</code></td>
+    <td><p>An object containing the store options (e.g. location, region, container, access, etc.) If none given, S3 location with default options is assumed.</p>
+</td>
+</tr>
+<tr>
+    <th>use​Intelligent​Ingestion​IfAvailable</th>
+    <td><code class="type">Bool</code></td>
+    <td><p>Attempts to use Intelligent Ingestion for file uploading. Defaults to <code>true</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadfromimagepicker(viewcontroller:sourcetype:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadfromimagepicker(viewcontroller:sourcetype:options:queue:uploadprogress:completionhandler:)">upload​From​Image​Picker(view​Controller:​source​Type:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">message</span>: <span class="string literal">"Marked for removal in version 3.0. Use `pickFiles` instead. Additionally, please notice that the `uploadProgress` argument is no longer honored. Instead, you may observe progress on the `Monitorizable` returned by this function."</span>)
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadFromImagePicker</span>(<span class="variable">viewController</span>: <span class="type">UIViewController</span>,
+                                      <span class="variable">sourceType</span>: <span class="type">UIImagePickerController</span>.<span class="type">SourceType</span>,
+                                      <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                                      <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                                      <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                                      <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Cancellable</span> &amp; <span class="type">Monitorizable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a file to a given storage location picked interactively from the camera or the photo library.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>view​Controller</th>
+    <td><code class="type">UIView​Controller</code></td>
+    <td><p>The view controller that will present the picker.</p>
+</td>
+</tr>
+<tr>
+    <th>source​Type</th>
+    <td><code class="type">UIImage​Picker​Controller.​Source​Type</code></td>
+    <td><p>The desired source type (e.g. camera, photo library.)</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadfromdocumentpicker(viewcontroller:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadfromdocumentpicker(viewcontroller:options:queue:uploadprogress:completionhandler:)">upload​From​Document​Picker(view​Controller:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">message</span>: <span class="string literal">"Marked for removal in version 3.0. Use `pickFiles` instead. Additionally, please notice that the `uploadProgress` argument is no longer honored. Instead, you may observe progress on the `Monitorizable` returned by this function."</span>)
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadFromDocumentPicker</span>(<span class="variable">viewController</span>: <span class="type">UIViewController</span>,
+                                         <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                                         <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                                         <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                                         <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Cancellable</span> &amp; <span class="type">Monitorizable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a file to a given storage location picked interactively from the device's documents, iCloud Drive or
+other third-party cloud services.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>view​Controller</th>
+    <td><code class="type">UIView​Controller</code></td>
+    <td><p>The view controller that will present the picker.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadurl(using:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadurl(using:options:queue:uploadprogress:completionhandler:)">upload​URL(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadURL</span>(<span class="variable">using</span> <span class="variable">localURL</span>: <span class="type">NSURL</span>,
+                          <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                          <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                          <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                          <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">JSONResponse</span>) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a single local URL directly to a given storage location.</p>
+
+</div>
+<div class="discussion">
+    <p>Currently the only storage location supported is Amazon S3.</p>
+
+<aside class="important" title="Important">
+    <p>If your uploadable can not return a MIME type (e.g. when passing <code>Data</code> as the uploadable), you <strong>must</strong> pass a custom <code>UploadOptions</code> with custom <code>storeOptions</code> initialized with a <code>mimeType</code> that better represents your uploadable, otherwise <code>text/plain</code> will be assumed.</p>
+
+</aside>
+<aside class="note" title="Note">
+    <p>This function is made available especially for Objective-C SDK users. If you are using Swift, you might want to use <code>upload(using:options:queue:uploadProgress:completionHandler:)</code> instead.</p>
+
+</aside>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>local​URL</th>
+    <td><code class="type">NSURL</code></td>
+    <td><p>The URL of the local file to be uploaded.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping (JSONResponse) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Uploader</code> that allows cancelling the upload request.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadmultipleurls(using:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadmultipleurls(using:options:queue:uploadprogress:completionhandler:)">upload​Multiple​URLs(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadMultipleURLs</span>(<span class="variable">using</span> <span class="variable">localURLs</span>: [<span class="type">NSURL</span>],
+                                   <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                                   <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                                   <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                                   <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads an array of local URLs directly to a given storage location.</p>
+
+</div>
+<div class="discussion">
+    <p>Currently the only storage location supported is Amazon S3.</p>
+
+<aside class="important" title="Important">
+    <p>If your uploadable can not return a MIME type (e.g. when passing <code>Data</code> as the uploadable), you <strong>must</strong> pass a custom <code>UploadOptions</code> with custom <code>storeOptions</code> initialized with a <code>mimeType</code> that better represents your uploadable, otherwise <code>text/plain</code> will be assumed.</p>
+
+</aside>
+<aside class="note" title="Note">
+    <p>This function is made available especially for Objective-C SDK users. If you are using Swift, you might want to use <code>upload(using:options:queue:uploadProgress:completionHandler:)</code> instead.</p>
+
+</aside>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>local​URLs</th>
+    <td><code class="type">[NSURL]</code></td>
+    <td><p>The URL of the local file to be uploaded.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Uploader</code> that allows cancelling the upload request.</p>
+
+</div>
+<div role="article" class="function" id="client.uploaddata(using:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploaddata(using:options:queue:uploadprogress:completionhandler:)">upload​Data(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadData</span>(<span class="variable">using</span> <span class="variable">data</span>: <span class="type">NSData</span>,
+                           <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                           <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                           <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                           <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">JSONResponse</span>) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads data directly to a given storage location.</p>
+
+</div>
+<div class="discussion">
+    <p>Currently the only storage location supported is Amazon S3.</p>
+
+<aside class="important" title="Important">
+    <p>If your uploadable can not return a MIME type (e.g. when passing <code>Data</code> as the uploadable), you <strong>must</strong> pass a custom <code>UploadOptions</code> with custom <code>storeOptions</code> initialized with a <code>mimeType</code> that better represents your uploadable, otherwise <code>text/plain</code> will be assumed.</p>
+
+</aside>
+<aside class="note" title="Note">
+    <p>This function is made available especially for Objective-C SDK users. If you are using Swift, you might want to use <code>upload(using:options:queue:uploadProgress:completionHandler:)</code> instead.</p>
+
+</aside>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>data</th>
+    <td><code class="type">NSData</code></td>
+    <td><p>The data to be uploaded.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping (JSONResponse) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Uploader</code> that allows cancelling the upload request.</p>
+
+</div>
+<div role="article" class="function" id="client.uploadmultipledata(using:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.uploadmultipledata(using:options:queue:uploadprogress:completionhandler:)">upload​Multiple​Data(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">uploadMultipleData</span>(<span class="variable">using</span> <span class="variable">multipleData</span>: [<span class="type">NSData</span>],
+                                   <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                                   <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                                   <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                                   <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads multiple data directly to a given storage location.</p>
+
+</div>
+<div class="discussion">
+    <p>Currently the only storage location supported is Amazon S3.</p>
+
+<aside class="important" title="Important">
+    <p>If your uploadable can not return a MIME type (e.g. when passing <code>Data</code> as the uploadable), you <strong>must</strong> pass a custom <code>UploadOptions</code> with custom <code>storeOptions</code> initialized with a <code>mimeType</code> that better represents your uploadable, otherwise <code>text/plain</code> will be assumed.</p>
+
+</aside>
+<aside class="note" title="Note">
+    <p>This function is made available especially for Objective-C SDK users. If you are using Swift, you might want to use <code>add(uploadables:)</code> instead.</p>
+
+</aside>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>multiple​Data</th>
+    <td><code class="type">[NSData]</code></td>
+    <td><p>The array of data objects to be uploaded.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Uploader</code> that allows cancelling the upload request.</p>
+
+</div>
+<div role="article" class="function" id="client.picker(storeoptions:)">
+    <h3>
+        <code><a href="#client.picker(storeoptions:)">picker(store​Options:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">picker</span>(<span class="variable">storeOptions</span>: <span class="type">StorageOptions</span> = .<span class="variable">defaults</span>) -&gt; <a href="/PickerNavigationController"><span class="type">PickerNavigationController</span></a>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Returns an instance of a <code>PickerNavigationController</code> that will allow the user to interactively pick files from
+a local or cloud source and upload them to a given location.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>store​Options</th>
+    <td><code class="type">Storage​Options</code></td>
+    <td><p>An object containing the store options (e.g. location, region, container, access, etc.) If none given, S3 location with default options is assumed.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>PickerNavigationController</code> that may be presented using <code>present(_:animated:)</code> from your view controller.</p>
+
+</div>
+<div role="article" class="function" id="client.upload(using:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.upload(using:options:queue:uploadprogress:completionhandler:)">upload(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">upload</span>(<span class="variable">using</span> <span class="variable">uploadable</span>: <span class="type">FilestackSDK</span>.<span class="type">Uploadable</span>,
+                       <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                       <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                       <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                       <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">JSONResponse</span>) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads a single <code>Uploadable</code> to a given storage location.</p>
+
+</div>
+<div class="discussion">
+    <p>Currently the only storage location supported is Amazon S3.</p>
+
+<aside class="important" title="Important">
+    <p>If your uploadable can not return a MIME type (e.g. when passing <code>Data</code> as the uploadable), you <strong>must</strong> pass a custom <code>UploadOptions</code> with custom <code>storeOptions</code> initialized with a <code>mimeType</code> that better represents your uploadable, otherwise <code>text/plain</code> will be assumed.</p>
+
+</aside>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>uploadable</th>
+    <td><code class="type">Filestack​SDK.​Uploadable</code></td>
+    <td><p>An item to upload conforming to <code>Uploadable</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping (JSONResponse) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>An <code>Uploader</code> that allows starting, cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.upload(using:options:queue:uploadprogress:completionhandler:)">
+    <h3>
+        <code><a href="#client.upload(using:options:queue:uploadprogress:completionhandler:)">upload(using:​options:​queue:​upload​Progress:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">upload</span>(<span class="variable">using</span> <span class="variable">uploadables</span>: [<span class="type">FilestackSDK</span>.<span class="type">Uploadable</span>],
+                       <span class="variable">options</span>: <span class="type">UploadOptions</span> = .<span class="variable">defaults</span>,
+                       <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                       <span class="variable">uploadProgress</span>: ((<span class="type">Progress</span>) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                       <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> ([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Uploader</span> &amp; <span class="type">DeferredAdd</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Uploads an array of <code>Uploadable</code> items to a given storage location.</p>
+
+</div>
+<div class="discussion">
+    <p>Currently the only storage location supported is Amazon S3.</p>
+
+<aside class="important" title="Important">
+    <p>If your uploadable can not return a MIME type (e.g. when passing <code>Data</code> as the uploadable), you <strong>must</strong> pass a custom <code>UploadOptions</code> with custom <code>storeOptions</code> initialized with a <code>mimeType</code> that better represents your uploadable, otherwise <code>text/plain</code> will be assumed.</p>
+
+</aside>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>uploadables</th>
+    <td><code class="type">[Filestack​SDK.​Uploadable]</code></td>
+    <td><p>An array of items to upload conforming to <code>Uploadable</code>. May be <code>nil</code> if you intend to add them later to the returned <code>Uploader</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>options</th>
+    <td><code class="type">Upload​Options</code></td>
+    <td><p>A set of upload options (see <code>UploadOptions</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the upload progress and completion handlers are dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Progress</th>
+    <td><code class="type">((Progress) -&gt; Void)?</code></td>
+    <td><p>Sets a closure to be called periodically during the lifecycle of the upload process as data is uploaded to the server. <code>nil</code> by default.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping ([JSONResponse]) -&gt; Void</code></td>
+    <td><p>Adds a handler to be called once the upload has finished.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>An <code>Uploader &amp; DeferredAdd</code> that allows starting, cancelling and monitoring the upload, plus adding <code>Uploadables</code> at a later time.</p>
+
+</div>
+<div role="article" class="function" id="client.pickfiles(using:source:behavior:pickcompletionhandler:uploadcompletionhandler:)">
+    <h3>
+        <code><a href="#client.pickfiles(using:source:behavior:pickcompletionhandler:uploadcompletionhandler:)">pick​Files(using:​source:​behavior:​pick​Completion​Handler:​upload​Completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">pickFiles</span>(<span class="variable">using</span> <span class="variable">presentingViewController</span>: <span class="type">UIViewController</span>,
+                          <span class="variable">source</span>: <a href="/LocalSource"><span class="type">LocalSource</span></a>,
+                          <span class="variable">behavior</span>: <a href="/PickerBehavior"><span class="type">PickerBehavior</span></a>,
+                          <span class="variable">pickCompletionHandler</span>: (([<span class="type">URL</span>]) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+                          <span class="variable">uploadCompletionHandler</span>: (([<span class="type">JSONResponse</span>]) -&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>) -&gt; <span class="type">Cancellable</span> &amp; <span class="type">Monitorizable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Allows interactively picking file(s) from a local source (e.g. camera, photo library or documents) and,
+optionally, uploads the file(s) to Filestack.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>presenting​View​Controller</th>
+    <td><code class="type">UIView​Controller</code></td>
+    <td><p>The view controller that will present the picker.</p>
+</td>
+</tr>
+<tr>
+    <th>source</th>
+    <td><code class="type">Local​Source</code></td>
+    <td><p>The desired local source (e.g. camera, photo library or documents.)</p>
+</td>
+</tr>
+<tr>
+    <th>behavior</th>
+    <td><code class="type">Picker​Behavior</code></td>
+    <td><p>The picker behavior (see <code>PickerBehavior</code> for more information.)</p>
+</td>
+</tr>
+<tr>
+    <th>pick​Completion​Handler</th>
+    <td><code class="type">(([URL]) -&gt; Void)?</code></td>
+    <td><p>Adds a handler to be called immediately after the files are picked.</p>
+</td>
+</tr>
+<tr>
+    <th>upload​Completion​Handler</th>
+    <td><code class="type">(([JSONResponse]) -&gt; Void)?</code></td>
+    <td><p>Adds a handler to be called once the upload has finished (only called if behavior is set to <code>.uploadAndStore</code>.)</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable &amp; Monitorizable</code> that allows cancelling and monitoring the upload.</p>
+
+</div>
+<div role="article" class="function" id="client.folderlist(provider:path:pagetoken:queue:completionhandler:)">
+    <h3>
+        <code><a href="#client.folderlist(provider:path:pagetoken:queue:completionhandler:)">folder​List(provider:​path:​page​Token:​queue:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">folderList</span>(<span class="variable">provider</span>: <a href="/CloudProvider"><span class="type">CloudProvider</span></a>,
+                           <span class="variable">path</span>: <span class="type">String</span>,
+                           <span class="variable">pageToken</span>: <span class="type">String</span>? = <span class="keyword">nil</span>,
+                           <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                           <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> <span class="type">FolderListCompletionHandler</span>) -&gt; <span class="type">Cancellable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Lists the content of a cloud provider at a given path. Results are paginated (see <code>pageToken</code> below.)</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>provider</th>
+    <td><code class="type">Cloud​Provider</code></td>
+    <td><p>The cloud provider to use (e.g. Dropbox, GoogleDrive, S3)</p>
+</td>
+</tr>
+<tr>
+    <th>path</th>
+    <td><code class="type">String</code></td>
+    <td><p>The path to list (be sure to include a trailing slash &quot;/&quot;.)</p>
+</td>
+</tr>
+<tr>
+    <th>page​Token</th>
+    <td><code class="type">String?</code></td>
+    <td><p>A token obtained from a previous call to this function. This token is included in every <code>FolderListResponse</code> returned by this function in a property called <code>nextToken</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the completion handler is dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping Folder​List​Completion​Handler</code></td>
+    <td><p>Adds a handler to be called once the request has completed either with a success, or error response.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable</code> that allows cancelling the folder list request.</p>
+
+</div>
+<div role="article" class="function" id="client.store(provider:path:storeoptions:queue:completionhandler:)">
+    <h3>
+        <code><a href="#client.store(provider:path:storeoptions:queue:completionhandler:)">store(provider:​path:​store​Options:​queue:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span>
+    <span class="attribute">@</span><span class="attribute">discardableResult</span>
+    <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">store</span>(<span class="variable">provider</span>: <a href="/CloudProvider"><span class="type">CloudProvider</span></a>,
+                      <span class="variable">path</span>: <span class="type">String</span>,
+                      <span class="variable">storeOptions</span>: <span class="type">StorageOptions</span> = .<span class="variable">defaults</span>,
+                      <span class="variable">queue</span>: <span class="type">DispatchQueue</span> = .<span class="variable">main</span>,
+                      <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> <span class="type">StoreCompletionHandler</span>) -&gt; <span class="type">Cancellable</span> &amp; <span class="type">Monitorizable</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Stores a file from a given cloud provider and path at the desired store location.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>provider</th>
+    <td><code class="type">Cloud​Provider</code></td>
+    <td><p>The cloud provider to use (e.g. Dropbox, GoogleDrive, S3)</p>
+</td>
+</tr>
+<tr>
+    <th>path</th>
+    <td><code class="type">String</code></td>
+    <td><p>The path to a file in the cloud provider.</p>
+</td>
+</tr>
+<tr>
+    <th>store​Options</th>
+    <td><code class="type">Storage​Options</code></td>
+    <td><p>An object containing the store options (e.g. location, region, container, access, etc.) If none given, S3 location with default options is assumed.</p>
+</td>
+</tr>
+<tr>
+    <th>queue</th>
+    <td><code class="type">Dispatch​Queue</code></td>
+    <td><p>The queue on which the completion handler is dispatched.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping Store​Completion​Handler</code></td>
+    <td><p>Adds a handler to be called once the request has completed either with a success, or error response.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>A <code>Cancellable</code> that allows cancelling the store request.</p>
+
+</div>
+<div role="article" class="function" id="client.logout(provider:completionhandler:)">
+    <h3>
+        <code><a href="#client.logout(provider:completionhandler:)">logout(provider:​completion​Handler:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">logout</span>(<span class="variable">provider</span>: <a href="/CloudProvider"><span class="type">CloudProvider</span></a>, <span class="variable">completionHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> <span class="type">LogoutCompletionHandler</span>)  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Logs out the user from a given provider.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>provider</th>
+    <td><code class="type">Cloud​Provider</code></td>
+    <td><p>The <code>CloudProvider</code> to logout from.</p>
+</td>
+</tr>
+<tr>
+    <th>completion​Handler</th>
+    <td><code class="type">@escaping Logout​Completion​Handler</code></td>
+    <td><p>Adds a handler to be called once the request has completed. The response will either contain an error (on failure) or nothing at all (on success.)</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-08-06T16:13:58+0200">August 6, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

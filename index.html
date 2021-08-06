@@ -1,482 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Filestack  Reference</title>
-    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
-    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
-    <meta charset="utf-8">
-    <script src="js/jquery.min.js" defer></script>
-    <script src="js/jazzy.js" defer></script>
-    
-    <script src="js/lunr.min.js" defer></script>
-    <script src="js/typeahead.jquery.js" defer></script>
-    <script src="js/jazzy.search.js" defer></script>
-  </head>
-  <body>
-
-
-    <a title="Filestack  Reference"></a>
-
-    <header class="header">
-      <p class="header-col header-col--primary">
-        <a class="header-link" href="index.html">
-          Filestack 2.7.1 Docs
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filestack - Filestack</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Filestack
+            </strong>
+            <span>Documentation</span>
         </a>
-         (99% documented)
-      </p>
-    
-      <p class="header-col--secondary">
-        <form role="search" action="search.json">
-          <input type="text" placeholder="Search documentation" data-typeahead>
-        </form>
-      </p>
-    
-        <p class="header-col header-col--secondary">
-          <a class="header-link" href="http://github.com/filestack/filestack-ios">
-            <img class="header-icon" src="img/gh.png"/>
-            View on GitHub
-          </a>
-        </p>
-    
     </header>
 
-    <p class="breadcrumbs">
-      <a class="breadcrumb" href="index.html">Filestack Reference</a>
-      <img class="carat" src="img/carat.png" />
-      Filestack  Reference
-    </p>
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
 
-    <div class="content-wrapper">
-      <nav class="navigation">
-        <ul class="nav-groups">
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Classes.html">Classes</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Client.html">Client</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/CloudSource.html">CloudSource</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Config.html">Config</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Config/Builder.html">– Builder</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FolderListResponse.html">FolderListResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/LocalSource.html">LocalSource</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/LogoutResponse.html">LogoutResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/PickerNavigationController.html">PickerNavigationController</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/StoreResponse.html">StoreResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Stylizer.html">Stylizer</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/ClientError.html">ClientError</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/CloudProvider.html">CloudProvider</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/ImageURLExportPreset.html">ImageURLExportPreset</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/LocalProvider.html">LocalProvider</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/PhotosPickerFilter.html">PhotosPickerFilter</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/PickerBehavior.html">PickerBehavior</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <article class="main-content">
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#classes">Classes</a></li><li><a href="#enumerations">Enumerations</a></li><li><a href="#protocols">Protocols</a></li><li><a href="#typealiases">Typealiases</a></li></ol>
+        </div>
+    </nav>
 
-        <section class="section">
-          <div class="section-content top-matter">
-            
-            <h1 id='filestack-ios-sdk' class='heading'>Filestack iOS SDK</h1>
+    <main>
+        <article>
+                <section id="classes">
+        <h2>Classes</h2>
+        <dl>
+            <dt class="class">
+    <a href="/Client" title="class - Client">
+        Client
+    </a>
+</dt>
+<dd>
+    <p>The <code>Client</code> class provides an unified API to upload files and manage cloud contents using Filestack REST APIs.</p>
 
-<p><a href="https://www.filestack.com"><img src="https://www.filestack.com/docs/images/fs-logo-dark.svg" align="left" hspace="10" vspace="6"></a>
-This is the official Swift iOS for Filestack — API and content management system that makes it easy to add powerful file uploading and transformation capabilities to any web or mobile application.</p>
-<h2 id='resources' class='heading'>Resources</h2>
+</dd>
+<dt class="class">
+    <a href="/Config" title="class - Config">
+        Config
+    </a>
+</dt>
+<dd>
+    <p>The <code>Config</code> class is used together with <code>Client</code> to configure certain aspects of the API.</p>
 
-<ul>
-<li><a href="https://www.filestack.com">Filestack</a></li>
-<li><a href="https://www.filestack.com/docs">Documentation</a></li>
-<li><a href="https://filestack.github.io/filestack-ios/">API Reference</a></li>
-</ul>
-<h2 id='requirements' class='heading'>Requirements</h2>
+</dd>
+<dt class="class">
+    <a href="/Config_Builder" title="class - Config.Builder">
+        Config.​Builder
+    </a>
+</dt>
+<dd>
+    <p>A convenience class that allows easily building a new <code>Config</code> object.</p>
 
-<ul>
-<li>Xcode 11+ (<em>Xcode 12+ required for SPM support</em>)</li>
-<li>Swift 4.2+ / Objective-C</li>
-<li>iOS 11.0+</li>
-</ul>
-<h2 id='installing' class='heading'>Installing</h2>
-<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+</dd>
+<dt class="class">
+    <a href="/FolderListResponse" title="class - FolderListResponse">
+        Folder​List​Response
+    </a>
+</dt>
+<dd>
+    <p>This class represents a response obtained from a folder list request.</p>
 
-<p><a href="http://cocoapods.org/">CocoaPods</a> is a dependency manager for Cocoa projects. You can install it with the following command:</p>
+</dd>
+<dt class="class">
+    <a href="/LogoutResponse" title="class - LogoutResponse">
+        Logout​Response
+    </a>
+</dt>
+<dd>
+    <p>This class represents a response obtained from a logout request.</p>
 
-<p><code>$ gem install cocoapods</code></p>
+</dd>
+<dt class="class">
+    <a href="/PrefetchResponse" title="class - PrefetchResponse">
+        Prefetch​Response
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
 
-<p>To integrate Filestack into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
-<pre class="highlight plaintext"><code>source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
-use_frameworks!
+</dd>
+<dt class="class">
+    <a href="/StoreResponse" title="class - StoreResponse">
+        Store​Response
+    </a>
+</dt>
+<dd>
+    <p>This class represents a response obtained from a store request.</p>
 
-target '&lt;Your Target Name&gt;' do
-    pod 'Filestack', '~&gt; 2.7.1'
-end
-</code></pre>
+</dd>
+<dt class="class">
+    <a href="/PickerNavigationController" title="class - PickerNavigationController">
+        Picker​Navigation​Controller
+    </a>
+</dt>
+<dd>
+    <p>This class represents a navigation controller containing UI elements that allow picking files from local and cloud
+sources.</p>
 
-<p>Then, run the following command:</p>
+</dd>
+<dt class="class">
+    <a href="/CloudSource" title="class - CloudSource">
+        Cloud​Source
+    </a>
+</dt>
+<dd>
+    <p>Represents a type of cloud source to be used in the picker.</p>
 
-<p><code>$ pod install</code></p>
-<h3 id='carthage' class='heading'>Carthage</h3>
+</dd>
+<dt class="class">
+    <a href="/LocalSource" title="class - LocalSource">
+        Local​Source
+    </a>
+</dt>
+<dd>
+    <p>Represents a type of local source to be used in the picker.</p>
 
-<p><a href="https://github.com/Carthage/Carthage">Carthage</a> is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.</p>
+</dd>
+<dt class="class">
+    <a href="/Stylizer" title="class - Stylizer">
+        Stylizer
+    </a>
+</dt>
+<dd>
+    <p>Object used to pass set colors, fonts and defaults style of Picker.</p>
 
-<p>You can install Carthage with <a href="http://brew.sh/">Homebrew</a> using the following command:</p>
-<pre class="highlight plaintext"><code>$ brew update
-$ brew install carthage
-</code></pre>
-
-<p>To integrate Filestack into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
-
-<p><code>github &quot;filestack/filestack-ios&quot; ~&gt; 2.7.1</code></p>
-
-<p>Run <code>carthage update</code> to build the framework and drag the built <code>Filestack.framework</code> into your Xcode project. Additionally, add <code>Filestack.framework</code>, <code>FilestackSDK.framework</code>, and <code>ZIPFoundation.framework</code> to the embedded frameworks build phase of your app&rsquo;s target.</p>
-<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
-
-<p>Add <code>https://github.com/filestack/filestack-ios.git</code> as a <a href="https://swift.org/package-manager/">Swift Package Manager</a> dependency to your Xcode project.</p>
-
-<p>Alternatively, if you are adding <code>Filestack</code> to your own Swift Package, declare the dependency in your <code>Package.swift</code>:</p>
-<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Filestack"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/filestack/filestack-ios.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.7.1"</span><span class="p">))</span>
-<span class="p">]</span>
-</code></pre>
-<h3 id='manually' class='heading'>Manually</h3>
-<h4 id='embedded-framework' class='heading'>Embedded Framework</h4>
-
-<p>Open up Terminal, cd into your top-level project directory, and run the following command &ldquo;if&rdquo; your project is not initialized as a git repository:</p>
-
-<p><code>$ git init</code></p>
-
-<p>Add Filestack and its dependencies as git submodules by running the following commands:</p>
-<pre class="highlight shell"><code><span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-ios.git
-<span class="nv">$ </span>git submodule add https://github.com/filestack/filestack-swift.git
-<span class="nv">$ </span>git submodule add https://github.com/weichsel/ZIPFoundation.git
-</code></pre>
-
-<p>Open the new <code>filestack-ios</code> folder, and drag the <code>Filestack.xcodeproj</code> into the Project Navigator of your application&rsquo;s Xcode project.</p>
-
-<p>It should appear nested underneath your application&rsquo;s blue project icon. Whether it is above or below all the other Xcode groups does not matter.
-Select the <code>Filestack.xcodeproj</code> in the Project Navigator and verify the deployment target matches that of your application target.</p>
-
-<p>Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the &ldquo;Targets&rdquo; heading in the sidebar.</p>
-
-<p>In the tab bar at the top of that window, open the &ldquo;General&rdquo; panel.</p>
-
-<p>Click on the + button under the &ldquo;Embedded Binaries&rdquo; section and choose the <code>Filestack.framework</code> for iOS.</p>
-
-<p>Repeat the same process for adding <code>FilestackSDK</code>, and <code>ZIPFoundation</code> dependent frameworks.</p>
-<h2 id='usage' class='heading'>Usage</h2>
-<h3 id='importing-required-frameworks' class='heading'>Importing required frameworks</h3>
-
-<p>Any source files that need to use the Filestack iOS SDK should import the <code>Filestack</code> and <code>FilestackSDK</code> frameworks:</p>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Filestack</span>
-<span class="kd">import</span> <span class="kt">FilestackSDK</span>
-</code></pre>
-<h3 id='instantiating-a-filestack-object' class='heading'>Instantiating a Filestack object</h3>
-<pre class="highlight swift"><code><span class="c1">// Initialize a `Policy` with the expiry time and permissions you need.</span>
-<span class="k">let</span> <span class="nv">oneDayInSeconds</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span> <span class="c1">// expires tomorrow</span>
-<span class="k">let</span> <span class="nv">policy</span> <span class="o">=</span> <span class="kt">Policy</span><span class="p">(</span><span class="c1">// Set your expiry time (24 hours in our case)</span>
-                    <span class="nv">expiry</span><span class="p">:</span> <span class="kt">Date</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="n">oneDayInSeconds</span><span class="p">),</span>
-                    <span class="c1">// Set the permissions you want your policy to have</span>
-                    <span class="nv">call</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">pick</span><span class="p">,</span> <span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">store</span><span class="p">])</span>
-
-<span class="c1">// Initialize a `Security` object by providing a `Policy` object and your app secret.</span>
-<span class="c1">// You can find and/or enable your app secret in the Developer Portal.</span>
-<span class="k">guard</span> <span class="k">let</span> <span class="nv">security</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Security</span><span class="p">(</span><span class="nv">policy</span><span class="p">:</span> <span class="n">policy</span><span class="p">,</span> <span class="nv">appSecret</span><span class="p">:</span> <span class="s">"YOUR-APP-SECRET"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span>
-<span class="p">}</span>
-
-<span class="c1">// Create `Config` object.</span>
-<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="p">()</span>
-
-<span class="c1">// Make sure to assign a callback URL scheme that is handled by your app.</span>
-<span class="n">config</span><span class="o">.</span><span class="n">callbackURLScheme</span> <span class="o">=</span> <span class="s">"filestackdemo"</span>
-
-<span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
-</code></pre>
-<h3 id='uploading-files-programmatically' class='heading'>Uploading files programmatically</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">localURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"file:///an-app-sandbox-friendly-local-url"</span><span class="p">)</span><span class="o">!</span>
-
-<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="n">localURL</span><span class="p">,</span> <span class="nv">uploadProgress</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Here you may update the UI to reflect the upload progress.</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"progress = </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">progress</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-<span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Try to obtain Filestack handle</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="k">let</span> <span class="nv">handle</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"handle"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">{</span>
-        <span class="c1">// Use Filestack handle</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-        <span class="c1">// Handle error</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='uploading-files-interactively-from-the-camera-photo-library-or-documents' class='heading'>Uploading files interactively from the Camera, Photo Library, or Documents</h3>
-<pre class="highlight swift"><code><span class="c1">// The view controller that will be presenting the image picker.</span>
-<span class="k">let</span> <span class="nv">presentingViewController</span> <span class="o">=</span> <span class="k">self</span>
-
-<span class="c1">// The source type (e.g. `.camera`, `.photoLibrary`, or `.documents`)</span>
-<span class="k">let</span> <span class="nv">sourceType</span><span class="p">:</span> <span class="kt">LocalSource</span> <span class="o">=</span> <span class="o">.</span><span class="n">camera</span>
-
-<span class="c1">// Upload options for any uploaded files.</span>
-<span class="k">let</span> <span class="nv">uploadOptions</span><span class="p">:</span> <span class="kt">UploadOptions</span> <span class="o">=</span> <span class="o">.</span><span class="n">defaults</span>
-
-<span class="c1">// Store options for any uploaded files.</span>
-<span class="n">uploadOptions</span><span class="o">.</span><span class="n">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
-
-<span class="k">let</span> <span class="nv">behavior</span> <span class="o">=</span> <span class="o">.</span><span class="nf">uploadAndStore</span><span class="p">(</span><span class="nv">uploadOptions</span><span class="p">:</span> <span class="n">uploadOptions</span><span class="p">)</span>
-
-<span class="k">let</span> <span class="nv">uploader</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">pickFiles</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="n">presentingViewController</span><span class="p">,</span>
-                                <span class="nv">source</span><span class="p">:</span> <span class="n">sourceType</span><span class="p">,</span>
-                                <span class="nv">behavior</span><span class="p">:</span> <span class="n">behavior</span><span class="p">,</span>
-                                <span class="nv">pickCompletionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">urls</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// Copy, move, or access the contents of the returned files at this point while they are still available.</span>
-    <span class="c1">// Once this closure call returns, all the files will be automatically removed.</span>
-<span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="k">in</span>
-    <span class="k">for</span> <span class="n">response</span> <span class="k">in</span> <span class="n">responses</span> <span class="p">{</span>
-        <span class="c1">// Try to obtain Filestack handle</span>
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="k">let</span> <span class="nv">handle</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"handle"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">{</span>
-            <span class="c1">// Use Filestack handle</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-            <span class="c1">// Handle error</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// OPTIONAL: Monitor upload progress.</span>
-<span class="k">let</span> <span class="nv">uploadObserver</span> <span class="o">=</span> <span class="n">uploader</span><span class="o">.</span><span class="n">progress</span><span class="o">.</span><span class="nf">observe</span><span class="p">(\</span><span class="o">.</span><span class="n">fractionCompleted</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="k">new</span><span class="p">])</span> <span class="p">{</span> <span class="p">(</span><span class="n">progress</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span> <span class="k">in</span>
-    <span class="c1">// TODO: Use `progress` or `change` objects.</span>
-<span class="p">})</span>
-</code></pre>
-
-<p>In all the previous uploading examples, an upload may be cancelled at anytime by calling <code>cancel()</code> on the <code>Uploader</code>:</p>
-<pre class="highlight swift"><code><span class="n">uploader</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span>
-</code></pre>
-<h3 id='listing-contents-from-a-cloud-provider' class='heading'>Listing contents from a cloud provider</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">folderList</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="o">.</span><span class="n">googleDrive</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="s">"/"</span><span class="p">,</span> <span class="nv">pageToken</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-        <span class="c1">// Handle error</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">contents</span> <span class="p">{</span>
-        <span class="c1">// Contents received — do something with them.</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"Received </span><span class="se">\(</span><span class="n">contents</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> entries."</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">nextToken</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">nextToken</span> <span class="p">{</span>
-         <span class="c1">// More contents are available — to retrieve next page, pass this `nextToken` as a parameter in the `folderList` function.</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-         <span class="c1">// No more contents available — we are done.</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='storing-contents-from-a-cloud-provider-into-a-store-location' class='heading'>Storing contents from a cloud provider into a store location</h3>
-<pre class="highlight swift"><code><span class="c1">// Store options for your uploaded files.</span>
-<span class="c1">// Here we are saying our storage location is S3 and access for uploaded files should be public.</span>
-<span class="k">let</span> <span class="nv">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="o">.</span><span class="n">googleDrive</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="s">"/some-large-image.jpg"</span><span class="p">,</span> <span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-        <span class="c1">// Handle error</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">contents</span> <span class="p">{</span>
-        <span class="c1">// Contents received describing the request's result.</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>Please make sure to authenticate against the cloud provider first by using the <code>folderList</code> function before calling <code>store</code>.</p>
-<h3 id='launching-picker-ui' class='heading'>Launching picker UI</h3>
-
-<p>This is a code fragment broken into pieces taken from the demo app (included in this repository) describing the process of launching the picker UI using some of the most relevant config options:</p>
-<h4 id='1-setting-up-policy-and-security-objects' class='heading'>1. Setting up Policy and Security objects</h4>
-<pre class="highlight swift"><code><span class="c1">// In case your Filestack account has security enabled, you will need to instantiate a `Security` object.</span>
-<span class="c1">// We can do this by either configuring a `Policy` and instantiating a `Security` object by passing</span>
-<span class="c1">// the `Policy` and an `appSecret`, or by instantiating a `Security` object directly by passing an already</span>
-<span class="c1">// encoded policy together with its corresponding signature — in this example, we will use the 1st method.</span>
-
-<span class="c1">// Create `Policy` object with an expiry time and call permissions.</span>
-<span class="k">let</span> <span class="nv">policy</span> <span class="o">=</span> <span class="kt">Policy</span><span class="p">(</span><span class="nv">expiry</span><span class="p">:</span> <span class="o">.</span><span class="n">distantFuture</span><span class="p">,</span>
-                    <span class="nv">call</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">pick</span><span class="p">,</span> <span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">stat</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">writeURL</span><span class="p">,</span> <span class="o">.</span><span class="n">store</span><span class="p">,</span> <span class="o">.</span><span class="n">convert</span><span class="p">,</span> <span class="o">.</span><span class="n">remove</span><span class="p">,</span> <span class="o">.</span><span class="n">exif</span><span class="p">])</span>
-
-<span class="c1">// Create `Security` object based on our previously created `Policy` object and app secret obtained from</span>
-<span class="c1">// https://dev.filestack.com/.</span>
-<span class="k">guard</span> <span class="k">let</span> <span class="nv">security</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Security</span><span class="p">(</span><span class="nv">policy</span><span class="p">:</span> <span class="n">policy</span><span class="p">,</span> <span class="nv">appSecret</span><span class="p">:</span> <span class="s">"YOUR-APP-SECRET-HERE"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Unable to instantiate Security object."</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre>
-<h4 id='2-setting-up-config-object' class='heading'>2. Setting up Config object</h4>
-<pre class="highlight swift"><code><span class="c1">// Create `Config` object.</span>
-<span class="c1">// IMPORTANT: - Make sure to assign an app scheme URL that matches the one(s) configured in your info.plist</span>
-<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Config</span><span class="o">.</span><span class="n">builder</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">callbackURLScheme</span><span class="p">:</span> <span class="s">"YOUR-APP-URL-SCHEME"</span><span class="p">)</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">videoQuality</span><span class="p">:</span> <span class="o">.</span><span class="n">typeHigh</span><span class="p">)</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">imageURLExportPreset</span><span class="p">:</span> <span class="o">.</span><span class="n">current</span><span class="p">)</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">maximumSelectionLimit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
-  <span class="o">.</span><span class="nf">withEditorEnabled</span><span class="p">()</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">availableCloudSources</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">dropbox</span><span class="p">,</span> <span class="o">.</span><span class="n">googledrive</span><span class="p">,</span> <span class="o">.</span><span class="n">googlephotos</span><span class="p">,</span> <span class="o">.</span><span class="n">customSource</span><span class="p">])</span>
-  <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">availableLocalSources</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">camera</span><span class="p">])</span>
-  <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
-</code></pre>
-<h4 id='3-setting-up-client-object' class='heading'>3. Setting up Client object</h4>
-<pre class="highlight swift"><code><span class="c1">// Instantiate the Filestack `Client` by passing an API key obtained from https://dev.filestack.com/,</span>
-<span class="c1">// together with a `Security` and `Config` object.</span>
-<span class="c1">// If your account does not have security enabled, then you can omit this parameter or set it to `nil`.</span>
-<span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Filestack</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"YOUR-API-KEY-HERE"</span><span class="p">,</span> <span class="nv">security</span><span class="p">:</span> <span class="n">security</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
-</code></pre>
-<h4 id='4-instantiating-the-picker-with-custom-storage-options' class='heading'>4. Instantiating the picker with custom storage options</h4>
-<pre class="highlight swift"><code><span class="c1">// Store options for your uploaded files.</span>
-<span class="c1">// Here we are saying our storage location is S3 and access for uploaded files should be public.</span>
-<span class="k">let</span> <span class="nv">storeOptions</span> <span class="o">=</span> <span class="kt">StorageOptions</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="o">.</span><span class="n">s3</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="o">.</span><span class="kd">public</span><span class="p">)</span>
-
-<span class="c1">// Instantiate picker by passing the `StorageOptions` object we just set up.</span>
-<span class="k">let</span> <span class="nv">picker</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">picker</span><span class="p">(</span><span class="nv">storeOptions</span><span class="p">:</span> <span class="n">storeOptions</span><span class="p">)</span>
-</code></pre>
-<h4 id='5-em-optional-em-setting-picking-behavior' class='heading'>5. <em>(Optional)</em> Setting picking behavior</h4>
-<h5 id='upload-and-store-behavior' class='heading'>Upload and Store Behavior</h5>
-<pre class="highlight swift"><code><span class="c1">/// After finishing picking, local files are uploaded and cloud files are stored at the store destination.</span>
-<span class="n">picker</span><span class="o">.</span><span class="n">behavior</span> <span class="o">=</span> <span class="o">.</span><span class="nf">uploadAndStore</span><span class="p">(</span><span class="nv">uploadOptions</span><span class="p">:</span> <span class="o">.</span><span class="n">defaults</span><span class="p">)</span>
-</code></pre>
-<h5 id='store-only-behavior' class='heading'>Store Only Behavior</h5>
-<pre class="highlight swift"><code><span class="c1">/// After finishing picking, only cloud files are stored at the store destination.</span>
-<span class="n">picker</span><span class="o">.</span><span class="n">behavior</span> <span class="o">=</span> <span class="o">.</span><span class="n">storeOnly</span>
-</code></pre>
-<h4 id='6-setting-the-picker-39-s-delegate' class='heading'>6. Setting the picker&rsquo;s delegate</h4>
-<pre class="highlight swift"><code><span class="c1">// Optional. Set the picker's delegate.</span>
-<span class="n">picker</span><span class="o">.</span><span class="n">pickerDelegate</span> <span class="o">=</span> <span class="k">self</span>
-</code></pre>
-
-<p>And implement the <code><a href="Protocols/PickerNavigationControllerDelegate.html">PickerNavigationControllerDelegate</a></code> protocol in your view controller, i.e.:</p>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">PickerNavigationControllerDelegate</span> <span class="p">{</span>
-    <span class="c1">/// Called when the picker finishes picking files originating from the local device.</span>
-    <span class="kd">func</span> <span class="nf">pickerPickedFiles</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">fileURLs</span><span class="p">:</span> <span class="p">[</span><span class="kt">URL</span><span class="p">])</span> <span class="p">{</span>
-        <span class="k">switch</span> <span class="n">picker</span><span class="o">.</span><span class="n">behavior</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nv">storeOnly</span><span class="p">:</span>
-            <span class="c1">// IMPORTANT: Copy, move, or access the contents of the returned files at this point while they are still available.</span>
-            <span class="c1">// Once this delegate function call returns, all the files will be automatically removed.</span>
-
-            <span class="c1">// Dismiss the picker since we have finished picking files from the local device, and, in `storeOnly` mode,</span>
-            <span class="c1">// there's no upload phase.</span>
-            <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">async</span> <span class="p">{</span>
-                <span class="n">picker</span><span class="o">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">self</span><span class="o">.</span><span class="nf">presentAlert</span><span class="p">(</span><span class="nv">titled</span><span class="p">:</span> <span class="s">"Success"</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"Finished picking files: </span><span class="se">\(</span><span class="n">fileURLs</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="k">case</span> <span class="kd">let</span> <span class="o">.</span><span class="nf">uploadAndStore</span><span class="p">(</span><span class="n">uploadOptions</span><span class="p">):</span>
-            <span class="c1">// TODO: Handle this case.</span>
-            <span class="k">break</span>
-        <span class="k">default</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// Called when the picker finishes storing a file originating from a cloud source into the destination storage location.</span>
-    <span class="kd">func</span> <span class="nf">pickerStoredFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">StoreResponse</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">contents</span> <span class="p">{</span>
-            <span class="c1">// Our cloud file was stored into the destination location.</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"Stored file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-            <span class="c1">// The store operation failed.</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"Error storing file: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// Called when the picker finishes uploading a file originating from the local device into the destination storage location.</span>
-    <span class="kd">func</span> <span class="nf">pickerUploadedFile</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">JSONResponse</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">contents</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span>
-            <span class="c1">// Our local file was stored into the destination location.</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"Uploaded file response: </span><span class="se">\(</span><span class="n">contents</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">error</span> <span class="p">{</span>
-            <span class="c1">// The upload operation failed.</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"Error uploading file: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// Called when the picker reports progress during a file or set of files being uploaded.</span>
-    <span class="kd">func</span> <span class="nf">pickerReportedUploadProgress</span><span class="p">(</span><span class="nv">picker</span><span class="p">:</span> <span class="kt">PickerNavigationController</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"Picker </span><span class="se">\(</span><span class="n">picker</span><span class="se">)</span><span class="s"> reported upload progress: </span><span class="se">\(</span><span class="n">progress</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h4 id='7-presenting-the-picker-on-the-screen' class='heading'>7. Presenting the picker on the screen</h4>
-<pre class="highlight swift"><code><span class="n">yourViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-</code></pre>
-<h4 id='8-em-optional-em-enabling-background-upload-support' class='heading'>8. (<em>Optional</em>) Enabling background upload support</h4>
-
-<p>Starting in FilestackSDK <code>2.3</code>, background upload support is available. In order to use it in <code>Filestack</code> for file uploads, simply add the following to your code:</p>
-<pre class="highlight swift"><code><span class="c1">// Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.</span>
-<span class="kt">FilestackSDK</span><span class="o">.</span><span class="kt">UploadService</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">useBackgroundSession</span> <span class="o">=</span> <span class="kc">true</span>
-</code></pre>
-<h2 id='demo' class='heading'>Demo</h2>
-
-<p>Check the demo app included in this repository showcasing all the topics discussed above.</p>
-<h2 id='versioning' class='heading'>Versioning</h2>
-
-<p>Filestack iOS SDK follows the <a href="http://semver.org/">Semantic Versioning</a>.</p>
-<h2 id='issues' class='heading'>Issues</h2>
-
-<p>If you have problems, please create a <a href="https://github.com/filestack/filestack-ios/issues">Github Issue</a>.</p>
-<h2 id='contributing' class='heading'>Contributing</h2>
-
-<p>Please see <a href="https://github.com/filestack/filestack-ios/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for details.</p>
-<h2 id='credits' class='heading'>Credits</h2>
-
-<p>Thank you to all the <a href="https://github.com/filestack/filestack-ios/graphs/contributors">contributors</a>.</p>
-
-          </div>
-        </section>
-
-
-      </article>
-    </div>
-    <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://github.com/filestack/filestack-ios" target="_blank" rel="external">Filestack</a>. All rights reserved. (Last updated: 2021-02-17)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+</dd>
+        </dl>
     </section>
-  </body>
-</div>
+    <section id="enumerations">
+        <h2>Enumerations</h2>
+        <dl>
+            <dt class="enumeration">
+    <a href="/ClientError" title="enumeration - ClientError">
+        Client​Error
+    </a>
+</dt>
+<dd>
+    <p>A specific kind of <code>Error</code> that may be returned by the <code>Client</code>.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/CloudProvider" title="enumeration - CloudProvider">
+        Cloud​Provider
+    </a>
+</dt>
+<dd>
+    <p>Represents a cloud provider.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/ImageURLExportPreset" title="enumeration - ImageURLExportPreset">
+        Image​URLExport​Preset
+    </a>
+</dt>
+<dd>
+    <p>Represents an image URL export preset.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/PhotosPickerFilter" title="enumeration - PhotosPickerFilter">
+        Photos​Picker​Filter
+    </a>
+</dt>
+<dd>
+    <p>Represents a cloud provider.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/PickerBehavior" title="enumeration - PickerBehavior">
+        Picker​Behavior
+    </a>
+</dt>
+<dd>
+    <p>Represents the picker's pick behavior.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/LocalProvider" title="enumeration - LocalProvider">
+        Local​Provider
+    </a>
+</dt>
+<dd>
+    <p>Represents a local provider to be used by a <code>LocalSource</code>.</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="protocols">
+        <h2>Protocols</h2>
+        <dl>
+            <dt class="protocol">
+    <a href="/CloudResponse" title="protocol - CloudResponse">
+        Cloud​Response
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/PickerNavigationControllerDelegate" title="protocol - PickerNavigationControllerDelegate">
+        Picker​Navigation​Controller​Delegate
+    </a>
+</dt>
+<dd>
+    <p>This protocol contains the function signatures any <code>PickerNavigationController</code> delegate should conform to.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/SourceProvider" title="protocol - SourceProvider">
+        Source​Provider
+    </a>
+</dt>
+<dd>
+    <p><code>SourceProvider</code> defines the protocol that must be implemented by any view controllers that should be used to
+pick files using an user-provided implementation.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/SourceProviderDelegate" title="protocol - SourceProviderDelegate">
+        Source​Provider​Delegate
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/StylizerDelegate" title="protocol - StylizerDelegate">
+        Stylizer​Delegate
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="typealiases">
+        <h2>Typealiases</h2>
+        <dl>
+            <dt class="typealias">
+    <a href="/FolderListCompletionHandler" title="typealias - FolderListCompletionHandler">
+        Folder​List​Completion​Handler
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
+
+</dd>
+<dt class="typealias">
+    <a href="/StoreCompletionHandler" title="typealias - StoreCompletionHandler">
+        Store​Completion​Handler
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
+
+</dd>
+<dt class="typealias">
+    <a href="/LogoutCompletionHandler" title="typealias - LogoutCompletionHandler">
+        Logout​Completion​Handler
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
+
+</dd>
+<dt class="typealias">
+    <a href="/PrefetchCompletionHandler" title="typealias - PrefetchCompletionHandler">
+        Prefetch​Completion​Handler
+    </a>
+</dt>
+<dd>
+    <p>:nodoc:</p>
+
+</dd>
+        </dl>
+    </section>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-08-06T16:13:57+0200">August 6, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
 </html>
