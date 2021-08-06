@@ -417,7 +417,7 @@ Starting in Filestack iOS SDK `2.8.0`, SDK users can add their own custom source
             }
         }
 
-        // 4. Call this function whenever you want to dismiss your picker without uploading. 
+        // 4. Call this function whenever you want to dismiss your source provider without uploading. 
         @objc func cancel() {
             dismiss(animated: true) {
                 self.sourceProviderDelegate?.sourceProviderCancelled()
