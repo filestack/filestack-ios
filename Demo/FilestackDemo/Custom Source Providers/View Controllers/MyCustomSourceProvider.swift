@@ -54,8 +54,10 @@ class MyCustomSourceProvider: UICollectionViewController, SourceProvider {
 
 extension MyCustomSourceProvider {
     @objc func upload() {
+        let urls = Array(urls)
+
         dismiss(animated: true) {
-            self.sourceProviderDelegate?.sourceProviderPicked(urls: Array(self.urls))
+            self.sourceProviderDelegate?.sourceProviderPicked(urls: urls)
         }
     }
 
@@ -90,8 +92,8 @@ extension MyCustomSourceProvider {
         updateUploadButton()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
 
         urls.removeAll()
         collectionView.reloadData()

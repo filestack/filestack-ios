@@ -5,9 +5,9 @@
         "package": "FilestackSDK",
         "repositoryURL": "https://github.com/filestack/filestack-swift.git",
         "state": {
-          "branch": null,
-          "revision": "ea85045fe0d580d8401b63cf0c4ae0bc738a8ae4",
-          "version": "2.7.0"
+          "branch": "develop",
+          "revision": "63a1e52be4e20fbdb49500a3c3eb271d2790d728",
+          "version": null
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/weichsel/ZIPFoundation",
         "state": {
           "branch": null,
-          "revision": "ec32d62d412578542c0ffb7a6ce34d3e64b43b94",
-          "version": "0.9.11"
+          "revision": "cf10bbff6ac3b873e97b36b9784c79866a051a8e",
+          "version": "0.9.12"
         }
       }
     ]
