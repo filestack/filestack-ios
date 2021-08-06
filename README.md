@@ -385,12 +385,82 @@ yourViewController.present(picker, animated: true)
 
 #### 8. (*Optional*) Enabling background upload support
 
-Starting in FilestackSDK `2.3`, background upload support is available. In order to use it in `Filestack` for file uploads, simply add the following to your code:
+Starting in Filestack SDK `2.3`, background upload support is available. In order to use it in `Filestack` for file uploads, simply add the following to your code:
 
 ```swift
 // Set `UploadService.shared.useBackgroundSession` to true to allow uploads in the background.
 FilestackSDK.UploadService.shared.useBackgroundSession = true
 ```
+
+#### 9. (*Optional*) Implementing custom picker sources
+
+Starting in Filestack iOS SDK `2.8.0`, SDK users can add their own custom source implementations by following these steps:
+
+1. Create a new view controller that inherits from `UIViewController` and implements `SourceProvider`: 
+
+    ```swift
+    class MyCustomSourceProvider: UIViewController, SourceProvider {
+        // 1. Add `sourceProviderDelegate`
+        weak var sourceProviderDelegate: SourceProviderDelegate?
+        
+        // 2. Add initializer.
+        init() {
+            // TODO: Implement initializer.
+        }
+        
+        // 3. Call this function whenever you want to start uploading files. These should be passed to the source provider delegate as an array of locally stored URLs.
+        @objc func upload() {
+            let urls = Array(urls)
+
+            dismiss(animated: true) {
+                self.sourceProviderDelegate?.sourceProviderPicked(urls: urls)
+            }
+        }
+
+        // 4. Call this function whenever you want to dismiss your picker without uploading. 
+        @objc func cancel() {
+            dismiss(animated: true) {
+                self.sourceProviderDelegate?.sourceProviderCancelled()
+            }
+        }
+        
+        // TODO: Continue implementing your view controller.
+    }        
+    ```
+    
+2. Set up your custom source:
+
+    ```swift
+    /// Returns a custom `LocalSource` configured to use an user-provided `SourceProvider`.
+    func customLocalSource() -> LocalSource {
+        // Instantiate your source provider
+        let customProvider = MyCustomSourceProvider()
+        
+        // Optional. Configure your `customProvider` object
+        customProvider.urls = [url1, url2, url3]
+
+        // Define your custom source
+        let customSource = LocalSource.custom(
+            description: "Custom Source",
+            image: UIImage(named: "icon-custom-source")!,
+            provider: customProvider
+        )
+
+        // Return your custom source
+        return customSource
+    }
+    ```
+    
+3. Pass your custom source to your `Config` object:
+
+    - Using `Filestack.Config.builder`:
+        ```swift
+        .with(availableLocalSources: [.camera, .photoLibrary, .documents, customLocalSource()])
+        ``` 
+    - Using `Filestack.Config` directly:
+        ```swift
+        config.availableLocalSources = [.camera, .photoLibrary, .documents, customLocalSource()]
+        ```
 
 ## Demo
 
