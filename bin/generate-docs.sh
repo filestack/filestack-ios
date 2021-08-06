@@ -2,4 +2,3 @@
 set -o errexit #abort if any command fails
 
 swift doc generate Sources --module-name Filestack --format html --output docs --base-url https://filestack.github.io/filestack-ios/
-# jazzy --build-tool-arguments -Xswiftc,-sdk,-Xswiftc,$(xcrun --sdk iphonesimulator --show-sdk-path),-Xswiftc,-target,-Xswiftc,"x86_64-apple-ios11.0-simulator"
