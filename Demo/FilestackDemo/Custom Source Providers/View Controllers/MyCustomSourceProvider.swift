@@ -1,5 +1,5 @@
 //
-//  UnsplashSourceProvider.swift
+//  MyCustomSourceProvider.swift
 //  MyCustomSourceProvider
 //
 //  Created by Ruben Nine on 2/8/21.
