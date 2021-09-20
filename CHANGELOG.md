@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 2.8.1 *(2021-09-20)*
+----------------------------
+- Ensure legacy native picker's completion block is called when picker behavior is set to `.store`.
+
 Version 2.8.0 *(2021-08-06)*
 ----------------------------
 - It is now possible for SDK users to implement their own picker sources programmatically. Please refer to 
