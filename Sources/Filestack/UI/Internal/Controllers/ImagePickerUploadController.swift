@@ -202,12 +202,13 @@ private extension ImagePickerUploadController {
 
             group.wait()
 
-            self.completionBlock?(urls)
             self.upload(urls: urls)
         }
     }
 
     func upload(urls: [URL]) {
+        completionBlock?(urls)
+
         guard let uploader = uploader else { return }
 
         trackingProgress.update(tracked: uploader.progress, delay: 1)
