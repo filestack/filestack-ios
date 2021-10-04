@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 2.8.2 *(2021-10-04)*
+----------------------------
+- [Hotfix] Allow built-in image editor to be presented when running iOS 14 or later.
+
 Version 2.8.1 *(2021-09-20)*
 ----------------------------
 - Ensure legacy native picker's completion block is called when picker behavior is set to `.store`.
