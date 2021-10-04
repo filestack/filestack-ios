@@ -148,7 +148,7 @@ private extension ImagePickerUploadController {
     }
 
     @available(iOS 14.0, *)
-    func upload(results: [PHPickerResult]) {
+    func extract(results: [PHPickerResult], updateTrackingProgress: Bool = true, completion: @escaping (([URL]) -> Void)) {
         let itemProviders = results.map(\.itemProvider)
         let group = DispatchGroup()
         var urls: [URL] = []
@@ -157,7 +157,9 @@ private extension ImagePickerUploadController {
 
         progress.localizedDescription = "Fetching \(progress.totalUnitCount) photo album asset(s)…"
 
-        trackingProgress.update(tracked: progress)
+        if updateTrackingProgress {
+            trackingProgress.update(tracked: progress)
+        }
 
         DispatchQueue.global(qos: .userInitiated).async {
             for itemProvider in itemProviders {
@@ -201,8 +203,18 @@ private extension ImagePickerUploadController {
             }
 
             group.wait()
+            completion(urls)
+        }
+    }
 
-            self.upload(urls: urls)
+    @available(iOS 14.0, *)
+    func upload(results: [PHPickerResult]) {
+        extract(results: results) { urls in
+            if urls.count > 0 {
+                self.upload(urls: urls)
+            } else {
+                self.cancel()
+            }
         }
     }
 
@@ -240,8 +252,8 @@ private extension ImagePickerUploadController {
     }
 
     func editor(using image: UIImage) -> UIViewController {
-        return EditorViewController(image: image, completion: { image in
-            guard let image = image, let url = self.urlExtractor.fetchURL(image: image) else {
+        return EditorViewController(image: image, completion: { editedImage in
+            guard let image = editedImage, let url = self.urlExtractor.fetchURL(image: image) else {
                 self.cancel()
                 return
             }
@@ -250,7 +262,7 @@ private extension ImagePickerUploadController {
         })
     }
 
-    func showEditor(with asset: PHAsset, on navigationController: UINavigationController) {
+    func showEditor(with asset: PHAsset) {
         // Fetch uploadable completion
         let completion: (Uploadable?, PHImageRequestID?) -> Void = { uploadable, requestID in
             guard let image = uploadable as? UIImage else {
@@ -258,13 +270,31 @@ private extension ImagePickerUploadController {
                 return
             }
 
-            self.viewController.present(self.editor(using: image), animated: true)
+            self.showEditor(with: image)
         }
 
         guard uploadableExtractor.fetchUploadable(using: asset, completion: completion) != nil else {
             extractAndUpload(assets: [asset])
             return
         }
+    }
+
+    @available(iOS 14.0, *)
+    func showEditor(with result: PHPickerResult) {
+        extract(results: [result], updateTrackingProgress: false) { urls in
+            guard let url = urls.first, let data = try? Data(contentsOf: url), let image = UIImage(data: data) else {
+                self.cancel()
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.showEditor(with: image)
+            }
+        }
+    }
+
+    func showEditor(with image: UIImage) {
+        viewController.present(editor(using: image), animated: true)
     }
 }
 
@@ -280,7 +310,7 @@ extension ImagePickerUploadController: PhotoPickerControllerDelegate {
     func photoPicker(controller: UINavigationController, didSelectAssets assets: [PHAsset]) {
         controller.dismiss(animated: true) {
             if self.config.showEditorBeforeUpload, assets.count == 1, let asset = assets.first {
-                self.showEditor(with: asset, on: controller)
+                self.showEditor(with: asset)
             } else {
                 self.extractAndUpload(assets: assets)
             }
@@ -319,7 +349,11 @@ extension ImagePickerUploadController: UIImagePickerControllerDelegate & UINavig
 extension ImagePickerUploadController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true) {
-            self.upload(results: results)
+            if self.config.showEditorBeforeUpload, results.count == 1, let result = results.first {
+                self.showEditor(with: result)
+            } else {
+                self.upload(results: results)
+            }
         }
     }
 }
