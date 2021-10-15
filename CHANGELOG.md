@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 2.8.3 *(2021-10-15)*
+----------------------------
+- Added `pickerWasDismissed(picker:)` to `PickerNavigationControllerDelegate` protocol.
+
 Version 2.8.2 *(2021-10-04)*
 ----------------------------
 - [Hotfix] Allow built-in image editor to be presented when running iOS 14 or later.
