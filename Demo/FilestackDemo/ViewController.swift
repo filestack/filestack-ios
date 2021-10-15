@@ -101,4 +101,9 @@ extension ViewController: PickerNavigationControllerDelegate {
     func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float) {
         print("Picker \(picker) reported upload progress: \(progress)")
     }
+
+    /// Called after the picker was dismissed.
+    func pickerWasDismissed(picker: PickerNavigationController) {
+        print("Picker \(picker) was dismissed.")
+    }
 }

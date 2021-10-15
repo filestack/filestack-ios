@@ -25,6 +25,10 @@ import UIKit
 
     /// The picker delegate. Optional
     @objc public weak var pickerDelegate: PickerNavigationControllerDelegate?
+
+    deinit {
+        pickerDelegate?.pickerWasDismissed?(picker: self)
+    }
 }
 
 /// This protocol contains the function signatures any `PickerNavigationController` delegate should conform to.
@@ -40,6 +44,9 @@ import UIKit
 
     /// Called when the picker reports progress during a file or set of files being uploaded.
     @objc optional func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float)
+
+    /// Called after the picker was dismissed.
+    @objc optional func pickerWasDismissed(picker: PickerNavigationController)
 }
 
 extension PickerNavigationController: StylizerDelegate {
