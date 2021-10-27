@@ -55,9 +55,8 @@ extension ViewController: PickerNavigationControllerDelegate {
             // Dismiss the picker since we have finished picking files from the local device, and, in `storeOnly` mode,
             // there's no upload phase.
             DispatchQueue.main.async {
-                picker.dismiss(animated: true) {
-                    self.presentAlert(titled: "Success", message: "Finished picking files: \(fileURLs)")
-                }
+                self.presentedViewController?
+                    .presentAlert(titled: "Success", message: "Finished picking files: \(fileURLs)")
             }
         default:
             break
@@ -76,13 +75,14 @@ extension ViewController: PickerNavigationControllerDelegate {
         print("Uploaded file URLs: \(fileURLs)")
 
         // Dismiss the picker since we finished uploading picked files.
-        picker.dismiss(animated: true) {
+        DispatchQueue.main.async {
             let handles = responses.compactMap { $0.json?["handle"] as? String }
 
             if !handles.isEmpty {
                 let joinedHandles = handles.joined(separator: ", ")
 
-                self.presentAlert(titled: "Success",
+                self.presentedViewController?
+                    .presentAlert(titled: "Success",
                                   message: "Finished uploading files with handles: \(joinedHandles)")
             }
         }
@@ -91,8 +91,9 @@ extension ViewController: PickerNavigationControllerDelegate {
     /// Called when the picker finishes storing a file originating from a cloud source into the storage destination.
     func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse) {
         if let handle = response.contents?["handle"] as? String {
-            picker.dismiss(animated: true) {
-                self.presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
+            DispatchQueue.main.async {
+                self.presentedViewController?
+                    .presentAlert(titled: "Success", message: "Finished storing file with handle: \(handle)")
             }
         }
     }

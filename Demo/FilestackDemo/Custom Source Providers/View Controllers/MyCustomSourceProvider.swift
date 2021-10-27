@@ -28,15 +28,15 @@ class MyCustomSourceProvider: UICollectionViewController, SourceProvider {
     private var cellSize = CGSize(width: 100, height: 100)
 
     private var urls: Set<URL> = Set<URL>() {
-        didSet { updateUploadButton() }
+        didSet { updateAddButton() }
     }
 
     private lazy var cancelBarButton: UIBarButtonItem = {
         UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
     }()
 
-    private lazy var uploadBarButton: UIBarButtonItem = {
-        UIBarButtonItem(title: "Upload", style: .plain, target: self, action: #selector(upload))
+    private lazy var addBarButton: UIBarButtonItem = {
+        UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(add))
     }()
 
     // MARK: - Lifecycle
@@ -53,7 +53,7 @@ class MyCustomSourceProvider: UICollectionViewController, SourceProvider {
 // MARK: - Actions
 
 extension MyCustomSourceProvider {
-    @objc func upload() {
+    @objc func add() {
         let urls = Array(urls)
 
         dismiss(animated: true) {
@@ -71,8 +71,9 @@ extension MyCustomSourceProvider {
 // MARK: - Private Functions
 
 private extension MyCustomSourceProvider {
-    func updateUploadButton() {
-        uploadBarButton.title = "Upload (\(urls.count)/\(availableURLs.count))"
+    func updateAddButton() {
+        addBarButton.isEnabled = !urls.isEmpty
+        addBarButton.title = "Add (\(urls.count)/\(availableURLs.count))"
     }
 }
 
@@ -83,13 +84,13 @@ extension MyCustomSourceProvider {
         super.viewDidLoad()
 
         navigationItem.leftBarButtonItem = cancelBarButton
-        navigationItem.rightBarButtonItem = uploadBarButton
+        navigationItem.rightBarButtonItem = addBarButton
 
         collectionView?.backgroundColor = UIColor.black
         collectionView?.register(CustomCell.self, forCellWithReuseIdentifier: customCellID)
         collectionView?.allowsMultipleSelection = true
 
-        updateUploadButton()
+        updateAddButton()
     }
 
     override func viewDidDisappear(_ animated: Bool) {

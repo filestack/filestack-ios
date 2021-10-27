@@ -30,12 +30,13 @@ class SourceTableViewController: UITableViewController {
 
     private var filePicker: (Cancellable & Monitorizable)?
     private var filePickerObserver: NSKeyValueObservation?
-
     private var pickMonitorViewController: MonitorViewController?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = cancelBarButton
+
+        // Add cancel button to navigation bar.
+        navigationItem.leftBarButtonItem = cancelBarButton
 
         // Try to obtain `Client` object from navigation controller
         if let picker = navigationController as? PickerNavigationController {
@@ -198,6 +199,22 @@ private extension SourceTableViewController {
     }
 
     func pick(source: LocalSource) {
+        #if targetEnvironment(simulator)
+        guard source.provider != .camera else {
+            deselectTableViewRows()
+
+            let alert = UIAlertController(title: "Alert",
+                                          message: "Camera source is unavailable in simulator environment.",
+                                          preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+            self.present(alert, animated: true)
+
+            return
+        }
+        #endif
+
         guard let picker = navigationController as? PickerNavigationController else { return }
 
         let pickCompletionHandler: (([URL]) -> Void) = { urls in
@@ -238,6 +255,7 @@ private extension SourceTableViewController {
     }
 
     func pickCompleted(picker: PickerNavigationController, urls: [URL]) -> Void {
+        deselectTableViewRows()
         dispatchPrecondition(condition: .notOnQueue(.main))
 
         switch picker.behavior {
@@ -265,7 +283,9 @@ private extension SourceTableViewController {
         }
 
         DispatchQueue.main.async {
-            picker.pickerDelegate?.pickerPickedFiles(picker: picker, fileURLs: urls)
+            if !urls.isEmpty {
+                picker.pickerDelegate?.pickerPickedFiles(picker: picker, fileURLs: urls)
+            }
 
             if picker.behavior == .storeOnly {
                 // Remove any temporary files after returning from delegate call.
@@ -311,13 +331,15 @@ private extension SourceTableViewController {
 
             semaphore.wait()
 
-            DispatchQueue.main.async {
-                picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
+            if !responses.isEmpty {
+                DispatchQueue.main.async {
+                    picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
 
-                // Remove any temporary files after returning from delegate call.
-                let urls = responses.compactMap { $0.context as? URL }
+                    // Remove any temporary files after returning from delegate call.
+                    let urls = responses.compactMap { $0.context as? URL }
 
-                self.deleteTemporaryFiles(at: urls)
+                    self.deleteTemporaryFiles(at: urls)
+                }
             }
         case .storeOnly:
             // NO-OP
@@ -331,6 +353,14 @@ private extension SourceTableViewController {
         for url in urls {
             if url.path.starts(with: fm.temporaryDirectory.path) {
                 try? fm.removeItem(at: url)
+            }
+        }
+    }
+
+    func deselectTableViewRows() {
+        DispatchQueue.main.async {
+            if let selectedRow = self.tableView.indexPathForSelectedRow {
+                self.tableView.deselectRow(at: selectedRow, animated: true)
             }
         }
     }

@@ -81,7 +81,7 @@ private extension AppDelegate {
             // Enable image editor for files picked from the photo library.
             .withEditorEnabled()
             // Enable a list of cloud sources.
-            .with(availableCloudSources: [.dropbox, .googleDrive, .googlePhotos, .customSource])
+            .with(availableCloudSources: [.dropbox, .googleDrive, .googlePhotos, .unsplash, .customSource])
             // Enable a list of local sources.
             .with(availableLocalSources: [.camera, .photoLibrary, .documents, customLocalSource()])
             // Specify what UTIs are allowed for documents picked from Apple's Document Picker (aka iOS Files.)

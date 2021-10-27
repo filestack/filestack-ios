@@ -35,6 +35,6 @@ extension CustomPickerUploadController: SourceProviderDelegate {
     }
 
     func sourceProviderCancelled() {
-        // NO-OP
+        cancel()
     }
 }

@@ -67,6 +67,7 @@ class ImagePickerUploadController: NSObject, Cancellable, Monitorizable, Startab
     func cancel() -> Bool {
         urlExtractorOperation?.cancel()
         trackingProgress.cancel()
+        completionBlock?([])
 
         return uploader?.cancel() ?? true
     }

@@ -47,6 +47,7 @@ class URLPickerUploadController: NSObject, Cancellable, Monitorizable, Startable
     @discardableResult
     func cancel() -> Bool {
         observers.removeAll()
+        completionBlock?([])
 
         return uploader?.cancel() ?? true
     }
@@ -58,6 +59,8 @@ extension URLPickerUploadController {
     }
 
     private func doUpload(urls: [URL]) {
+        completionBlock?(urls)
+
         guard let uploader = uploader else { return }
 
         let progress = Progress(totalUnitCount: Int64(urls.count * 100))
