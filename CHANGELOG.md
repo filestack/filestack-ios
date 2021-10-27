@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.8.4 *(2021-10-27)*
+----------------------------
+- Ensure `completionBlock ` is called in all paths from `ImagePickerUploadController` and `URLPickerUploadController`.
+- Show cancel button on navigation bar's left side in picker.
+- Present alert when trying to use camera source from simulator instead of crashing.
+- Minor updates in demo project.
+
 Version 2.8.3 *(2021-10-15)*
 ----------------------------
 - Added `pickerWasDismissed(picker:)` to `PickerNavigationControllerDelegate` protocol.
