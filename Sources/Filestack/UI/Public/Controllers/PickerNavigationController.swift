@@ -36,16 +36,16 @@ import UIKit
     /// Called when the picker finishes picking files originating from the local device.
     @objc func pickerPickedFiles(picker: PickerNavigationController, fileURLs: [URL])
 
-    /// Called when the picker finishes uploading files originating from the local device to the storage destination.
-    @objc func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse])
-
     /// Called when the picker finishes storing a file originating from a cloud source into the storage destination.
     @objc func pickerStoredFile(picker: PickerNavigationController, response: StoreResponse)
 
-    /// Called when the picker reports progress during a file or set of files being uploaded.
+    /// Called when the picker finishes uploading files originating from the local device to the storage destination. Optional.
+    @objc optional func pickerUploadedFiles(picker: PickerNavigationController, responses: [JSONResponse])
+
+    /// Called when the picker reports progress during a file or set of files being uploaded. Optional.
     @objc optional func pickerReportedUploadProgress(picker: PickerNavigationController, progress: Float)
 
-    /// Called after the picker was dismissed.
+    /// Called after the picker was dismissed. Optional.
     @objc optional func pickerWasDismissed(picker: PickerNavigationController)
 }
 

@@ -333,7 +333,7 @@ private extension SourceTableViewController {
 
             if !responses.isEmpty {
                 DispatchQueue.main.async {
-                    picker.pickerDelegate?.pickerUploadedFiles(picker: picker, responses: responses)
+                    picker.pickerDelegate?.pickerUploadedFiles?(picker: picker, responses: responses)
 
                     // Remove any temporary files after returning from delegate call.
                     let urls = responses.compactMap { $0.context as? URL }
