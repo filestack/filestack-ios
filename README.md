@@ -31,7 +31,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.8.4'
+    pod 'Filestack', '~> 2.8.5'
 end
 ```
 
@@ -52,7 +52,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.8.4`
+`github "filestack/filestack-ios" ~> 2.8.5`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, and `ZIPFoundation.framework` to the embedded frameworks build phase of your app's target.
 
@@ -64,7 +64,7 @@ Alternatively, if you are adding `Filestack` to your own Swift Package, declare 
 
 ```swift
 dependencies: [
-    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.8.4"))
+    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.8.5"))
 ]
 ```
 

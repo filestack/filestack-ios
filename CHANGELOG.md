@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 2.8.5 *(2021-11-03)*
+----------------------------
+
+- Fix wrong image orientation on exported HEIC images.
+- Turned pickerUploadedFiles(picker:, responses:) into an optional protocol requirement.
+
 Version 2.8.4 *(2021-10-27)*
 ----------------------------
 - Ensure `completionBlock ` is called in all paths from `ImagePickerUploadController` and `URLPickerUploadController`.
