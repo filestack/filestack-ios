@@ -16,5 +16,5 @@ Pod::Spec.new do |spec|
   spec.swift_versions = [4.2, 5.2]
 
   spec.dependency 'FilestackSDK', '~> 2.8.0'
-  spec.dependency 'ZIPFoundation', '0.9.11'
+  spec.dependency 'ZIPFoundation', '0.9.17'
 end
