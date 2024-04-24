@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.8.6 *(2024-04-24)*
+----------------------------
+
+- registeredTypeIdentifiers updated as first prevent to upload .low files for iOS 17
+
 Version 2.8.5 *(2021-11-03)*
 ----------------------------
 
