@@ -173,13 +173,13 @@ private extension ImagePickerUploadController {
                     if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
                         typeIdentifier = AVFileType.jpg.rawValue
                     } else {
-                        typeIdentifier = registeredTypeIdentifiers.last
+                        typeIdentifier = registeredTypeIdentifiers.first
                     }
                 case .current:
                     if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
                         typeIdentifier = AVFileType.heic.rawValue
                     } else {
-                        typeIdentifier = registeredTypeIdentifiers.last
+                        typeIdentifier = registeredTypeIdentifiers.first
                     }
                 }
 
