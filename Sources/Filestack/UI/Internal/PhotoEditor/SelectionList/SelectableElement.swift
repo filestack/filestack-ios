@@ -106,8 +106,14 @@ class SelectableElement {
                     let session = audiovisualAsset.videoExportSession(using: self.videoExportPreset) {
                     self.additionalInfo = audiovisualAsset.additionalInfo
 
-                    session.exportAsynchronously {
-                        self.localURL = session.outputURL
+//                    session.exportAsynchronously {
+//                        self.localURL = session.outputURL
+//                    }
+                    let outputURL = session.outputURL
+                    session.exportAsynchronously { [weak self] in
+                        guard let self = self else { return }
+                        // Use the captured output URL
+                        self.localURL = outputURL
                     }
                 }
             }

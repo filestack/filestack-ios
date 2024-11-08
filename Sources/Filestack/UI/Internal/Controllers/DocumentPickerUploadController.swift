@@ -8,6 +8,7 @@
 
 import FilestackSDK
 import UIKit
+import UniformTypeIdentifiers
 
 class DocumentPickerUploadController: URLPickerUploadController {
     let picker: UIDocumentPickerViewController
@@ -16,8 +17,9 @@ class DocumentPickerUploadController: URLPickerUploadController {
          viewController: UIViewController,
          config: Config,
          completionBlock: (([URL]) -> Void)? = nil) {
-        self.picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
-
+//        self.picker = UIDocumentPickerViewController(documentTypes: config.documentPickerAllowedUTIs, in: .import)
+        let allowedContentTypes = config.documentPickerAllowedUTIs.compactMap { UTType($0) }
+        self.picker = UIDocumentPickerViewController(forOpeningContentTypes: allowedContentTypes)
         super.init(uploader: uploader,
                    viewController: viewController,
                    presentedViewController: picker,

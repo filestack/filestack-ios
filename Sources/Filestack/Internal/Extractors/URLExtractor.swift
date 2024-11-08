@@ -78,8 +78,11 @@ extension URLExtractor {
             return nil
         }
 
-        export.exportAsynchronously { completion(export.outputURL) }
-
+//        export.exportAsynchronously { completion(export.outputURL) }
+        let outputURL = export.outputURL
+        export.exportAsynchronously {
+            completion(outputURL)
+        }
         return export
     }
 }
