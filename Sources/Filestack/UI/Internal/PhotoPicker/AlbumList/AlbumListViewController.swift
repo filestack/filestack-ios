@@ -79,7 +79,7 @@ private extension AlbumListViewController {
 private extension AlbumListViewController {
     func createAndStartLaodingView() {
         DispatchQueue.main.async {
-            let indicator = UIActivityIndicatorView(style: .gray)
+            let indicator = UIActivityIndicatorView(style: .medium)
             indicator.center = self.view.center
             indicator.startAnimating()
             self.view.addSubview(indicator)

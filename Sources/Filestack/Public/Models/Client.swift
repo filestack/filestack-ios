@@ -311,7 +311,7 @@ private typealias CompletionHandler = (_ response: CloudResponse, _ safariError:
 }
 
 // MARK: - Private Functions
-
+import AuthenticationServices
 private extension Client {
     func perform(request: CloudRequest, completionBlock: @escaping CompletionHandler) {
         // Perform cloud request.
@@ -328,20 +328,25 @@ private extension Client {
             }
 
             // Request authentication.
-            let session = SFAuthenticationSession(url: authURL,
-                                                  callbackURLScheme: self.config.callbackURLScheme) { url, error in
+            let session = ASWebAuthenticationSession(
+                url: authURL,
+                callbackURLScheme: self.config.callbackURLScheme
+            ) { url, error in
                 // Remove strong reference, so object can be deallocated.
                 self.safariAuthSession = nil
 
                 if let safariError = error {
                     completionBlock(response, safariError)
-                } else if let url = url, url == self.authCallbackURL {
+                } else if let url = url, url == self.authCallbackURL{
                     self.perform(request: request, completionBlock: completionBlock)
                 } else {
                     completionBlock(response, ClientError.authenticationFailed)
                 }
             }
 
+            // Set the presentation context provider
+            session.presentationContextProvider = self
+            
             // Keep a strong reference to the auth session.
             self.safariAuthSession = session
 
@@ -349,5 +354,10 @@ private extension Client {
                 session.start()
             }
         }
+    }
+}
+extension Client: ASWebAuthenticationPresentationContextProviding {
+    public func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return UIApplication.shared.windows.first { $0.isKeyWindow }!
     }
 }
