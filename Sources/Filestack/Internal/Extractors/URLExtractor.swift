@@ -11,15 +11,15 @@ import UIKit
 
 class URLExtractor {
     // MARK: - Private Properties
-
+    
     private let imageManager = PHCachingImageManager.default()
     private let videoExportPreset: String
     private let imageExportPreset: ImageURLExportPreset
     private let cameraImageQuality: Float
     private let fetchAssetsOperationQueue = OperationQueue()
-
+    
     // MARK: - Lifecycle
-
+    
     init(imageExportPreset: ImageURLExportPreset, videoExportPreset: String, cameraImageQuality: Float) {
         self.videoExportPreset = videoExportPreset
         self.imageExportPreset = imageExportPreset
@@ -32,10 +32,10 @@ class URLExtractor {
 private extension URLExtractor {
     var videoRequestOptions: PHVideoRequestOptions {
         let options = PHVideoRequestOptions()
-
+        
         options.version = PHVideoRequestOptionsVersion.current
         options.deliveryMode = PHVideoRequestOptionsDeliveryMode.highQualityFormat
-
+        
         return options
     }
 }
@@ -45,7 +45,7 @@ private extension URLExtractor {
 extension URLExtractor {
     func fetchURLs(of assets: [PHAsset], config: Config, completion: @escaping (Result<[URL], Error>) -> Void) -> AssetURLExtractorOperation {
         let operation = AssetURLExtractorOperation(assets: assets, config: config)
-
+        
         operation.completionBlock = {
             switch operation.result {
             case let .success(urls):
@@ -54,12 +54,12 @@ extension URLExtractor {
                 completion(.failure(error))
             }
         }
-
+        
         fetchAssetsOperationQueue.addOperation(operation)
-
+        
         return operation
     }
-
+    
     func fetchURL(image: UIImage) -> URL? {
         switch imageExportPreset {
         case .current:
@@ -71,15 +71,20 @@ extension URLExtractor {
             return exportedJPEGImageURL(image: image)
         }
     }
-
+    
     func fetchVideoURL(of asset: AVAsset, completion: @escaping (URL?) -> Void) -> AVAssetExportSession? {
         guard let export = self.videoExportSession(for: asset) else {
             completion(nil)
             return nil
         }
-
-        export.exportAsynchronously { completion(export.outputURL) }
-
+        
+        //        export.exportAsynchronously { completion(export.outputURL) }
+        let outputURL = export.outputURL
+        
+        export.exportAsynchronously {
+            completion(outputURL)
+        }
+        
         return export
     }
 }
@@ -97,7 +102,7 @@ private extension URLExtractor {
             completion(nil)
         }
     }
-
+    
     func fetchURL(of asset: PHAsset, inside dispatchGroup: DispatchGroup, completion: @escaping (URL?) -> Void) {
         dispatchGroup.enter()
         fetchURL(of: asset) { url in
@@ -123,25 +128,25 @@ private extension URLExtractor {
             }
         }
     }
-
+    
     func exportedHEICImageURL(image: UIImage) -> URL? {
         if let imageData = image.heicRepresentation(quality: cameraImageQuality) {
             let filename = UUID().uuidString + ".heic"
             return writeImageDataToURL(imageData: imageData, filename: filename)
         }
-
+        
         return nil
     }
-
+    
     func exportedJPEGImageURL(image: UIImage) -> URL? {
         if let imageData = image.jpegData(compressionQuality: CGFloat(cameraImageQuality)) {
             let filename = UUID().uuidString + ".jpeg"
             return writeImageDataToURL(imageData: imageData, filename: filename)
         }
-
+        
         return nil
     }
-
+    
     func writeImageDataToURL(imageData: Data, filename: String) -> URL? {
         do {
             let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory() + filename)
@@ -162,29 +167,29 @@ private extension URLExtractor {
                 completion(nil)
                 return
             }
-
+            
             let exportSession = self.fetchVideoURL(of: element, completion: { url in
                 completion(url)
             })
-
+            
             if exportSession == nil {
                 completion(nil)
             }
         }
     }
-
+    
     func videoExportSession(for asset: AVAsset) -> AVAssetExportSession? {
         let export = AVAssetExportSession(asset: asset, presetName: preferedVideoPreset(for: asset))
-
+        
         export?.outputURL = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".mov")
         export?.outputFileType = .mov
-
+        
         return export
     }
-
+    
     func preferedVideoPreset(for asset: AVAsset) -> String {
         let compatiblePresets = AVAssetExportSession.exportPresets(compatibleWith: asset)
-
+        
         return compatiblePresets.contains(videoExportPreset) ? videoExportPreset : AVAssetExportPresetPassthrough
     }
 }

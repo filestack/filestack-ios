@@ -231,7 +231,10 @@ class CloudSourceTabBarController: UITabBarController, CloudSourceDataSource {
         // Request thumbnail
         var task: URLSessionDataTask!
 
-        task = URLSession.filestackDefault.dataTask(with: urlRequest) { (data, response, error) in
+        task = URLSession.filestackDefault.dataTask(with: urlRequest) {[weak self, weak task] (data, response, error) in
+            
+            guard let self, let task else { return }
+            
             // Remove request from thumbnail requests
             self.thumbnailTasks.remove(task)
 
