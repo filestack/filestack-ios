@@ -41,7 +41,7 @@ final class MonitorViewController: UIViewController {
         let button = UIButton()
 
         button.setTitle("Cancel", for: .normal)
-        button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        button.addTarget(MonitorViewController.self, action: #selector(cancel), for: .touchUpInside)
 
         return button
     }()
