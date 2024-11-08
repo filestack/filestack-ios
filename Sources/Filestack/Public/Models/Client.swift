@@ -334,7 +334,7 @@ private extension Client {
             ) { url, error in
                 // Remove strong reference, so object can be deallocated.
                 self.safariAuthSession = nil
-                
+
                 if let safariError = error {
                     completionBlock(response, safariError)
                 } else if let url = url, url == self.authCallbackURL{
@@ -343,12 +343,13 @@ private extension Client {
                     completionBlock(response, ClientError.authenticationFailed)
                 }
             }
+
             // Set the presentation context provider
             session.presentationContextProvider = self
             
             // Keep a strong reference to the auth session.
             self.safariAuthSession = session
-            
+
             DispatchQueue.main.async {
                 session.start()
             }
