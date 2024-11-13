@@ -10,7 +10,7 @@ import FilestackSDK
 import Photos
 import UIKit
 
-class AssetURLExtractorOperation: BaseOperation<[URL]>, ProgressReporting {
+class AssetURLExtractorOperation: BaseOperation<[URL]>, ProgressReporting, @unchecked Sendable {
     // MARK: - Internal Properties
 
     let assets: [PHAsset]
