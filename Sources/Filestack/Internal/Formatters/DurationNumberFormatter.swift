@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DurationFormatter: NumberFormatter {
+class DurationFormatter: NumberFormatter, @unchecked Sendable {
     func string(from seconds: Double) -> String {
         let hours = Int(seconds / 3600)
         let minutes = Int(seconds.truncatingRemainder(dividingBy: 3600) / 60)

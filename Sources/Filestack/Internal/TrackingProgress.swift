@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TrackingProgress: Progress {
+class TrackingProgress: Progress, @unchecked Sendable {
     // MARK: - Private Properties
 
     private let lockQueue = DispatchQueue(label: "com.filestack.FilestackSDK.tracking-progress-lock-queue")
