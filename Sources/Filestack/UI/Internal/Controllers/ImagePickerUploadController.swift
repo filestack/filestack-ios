@@ -151,59 +151,58 @@ private extension ImagePickerUploadController {
     @available(iOS 14.0, *)
     func extract(results: [PHPickerResult], updateTrackingProgress: Bool = true, completion: @escaping (([URL]) -> Void)) {
         let itemProviders = results.map(\.itemProvider)
-        let group = DispatchGroup()
         var urls: [URL] = []
-        var typeIdentifier: String?
         let progress = Progress(totalUnitCount: Int64(itemProviders.count))
-
         progress.localizedDescription = "Fetching \(progress.totalUnitCount) photo album asset(s)…"
-
         if updateTrackingProgress {
             trackingProgress.update(tracked: progress)
         }
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            for itemProvider in itemProviders {
-                group.enter()
-
-                let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
-
-                switch self.config.imageURLExportPreset {
-                case .compatible:
-                    if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
-                        typeIdentifier = AVFileType.jpg.rawValue
-                    } else {
-                        typeIdentifier = registeredTypeIdentifiers.first
-                    }
-                case .current:
-                    if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
-                        typeIdentifier = AVFileType.heic.rawValue
-                    } else {
-                        typeIdentifier = registeredTypeIdentifiers.first
+        Task {
+            await withTaskGroup(of: URL?.self) { group in
+                for itemProvider in itemProviders {
+                    group.addTask {
+                        var typeIdentifier: String?
+                        
+                        let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
+                        
+                        switch self.config.imageURLExportPreset {
+                        case .compatible:
+                            if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
+                                typeIdentifier = AVFileType.jpg.rawValue
+                            } else {
+                                typeIdentifier = registeredTypeIdentifiers.first
+                            }
+                        case .current:
+                            if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
+                                typeIdentifier = AVFileType.heic.rawValue
+                            } else {
+                                typeIdentifier = registeredTypeIdentifiers.first
+                            }
+                        }
+                        
+                        guard let unwrappedTypeIdentifier = typeIdentifier else {
+                            progress.completedUnitCount += 1
+                            return nil
+                        }
+                        let resultURL = await withCheckedContinuation { continuation in
+                            itemProvider.loadFileRepresentation(forTypeIdentifier: unwrappedTypeIdentifier) { (url, error) in
+                                defer { progress.completedUnitCount += 1 }
+                                
+                                // Move or copy the file into a temporary location
+                                let tempURL = url?.moveIntoTemporaryLocation() ?? url?.copyIntoTemporaryLocation()
+                                continuation.resume(returning: tempURL)
+                            }
+                        }
+                        
+                        return resultURL
                     }
                 }
-
-                guard let typeIdentifier = typeIdentifier else {
-                    progress.completedUnitCount += 1
-                    return
-                }
-
-                itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { (url, error) in
-                    defer {
-                        progress.completedUnitCount += 1
-                        group.leave()
-                    }
-
-                    // `loadFileRepresentation(:)` returns a copy of the file we are requesting, but the file is deleted
-                    // after this completion handler returns, so we move/copy the file into a temporary location before the
-                    // upload starts.
-                    if let url = url?.moveIntoTemporaryLocation() ?? url?.copyIntoTemporaryLocation() {
+                for await url in group {
+                    if let url = url {
                         urls.append(url)
                     }
                 }
             }
-
-            group.wait()
             completion(urls)
         }
     }
