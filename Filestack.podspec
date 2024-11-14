@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.summary      = 'Official iOS SDK for Filestack.'
   spec.source       = { :git => 'https://github.com/filestack/filestack-ios.git', :tag => spec.version }
 
-  spec.ios.deployment_target  = '11.0'
+  spec.ios.deployment_target  = '14.0'
 
   spec.source_files = 'Sources/Filestack/**/*.{h,swift}'
   spec.resources = ["Sources/Filestack/Resources/*.{storyboard,xcassets}"]
@@ -16,5 +16,5 @@ Pod::Spec.new do |spec|
   spec.swift_versions = [4.2, 5.2]
 
   spec.dependency 'FilestackSDK', '~> 2.8.0'
-  spec.dependency 'ZIPFoundation', '0.9.17'
+  spec.dependency 'ZIPFoundation', '0.9.19'
 end
