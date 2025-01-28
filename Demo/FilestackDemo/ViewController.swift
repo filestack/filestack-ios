@@ -29,8 +29,8 @@ class ViewController: UIViewController {
 
         // Upload options for any uploaded files.
         let uploadOptions: UploadOptions = .defaults
-        // Store options for any uploaded files.
-        uploadOptions.storeOptions = StorageOptions(location: .s3, access: .public)
+        // Store options for any uploaded files. Public access only available for the custom s3 storage.
+        uploadOptions.storeOptions = StorageOptions(location: .s3, access: .private)
 
         // Instantiate picker using a custom `StorageOptions` object.
         let picker = client.picker(storeOptions: uploadOptions.storeOptions)
