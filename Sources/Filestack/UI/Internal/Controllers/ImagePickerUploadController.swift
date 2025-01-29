@@ -284,7 +284,11 @@ private extension ImagePickerUploadController {
     func showEditor(with result: PHPickerResult) {
         extract(results: [result], updateTrackingProgress: false) { urls in
             guard let url = urls.first, let data = try? Data(contentsOf: url), let image = UIImage(data: data) else {
-                self.cancel()
+                if urls.count > 0 {
+                    self.upload(urls: urls)
+                } else {
+                    self.cancel()
+                }
                 return
             }
 
