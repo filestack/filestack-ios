@@ -163,8 +163,8 @@ let sourceType: LocalSource = .camera
 // Upload options for any uploaded files.
 let uploadOptions: UploadOptions = .defaults
 
-// Store options for any uploaded files.
-uploadOptions.storeOptions = StorageOptions(location: .s3, access: .public)
+// Store options for any uploaded files. Public access only available for the custom s3 storage.
+uploadOptions.storeOptions = StorageOptions(location: .s3, access: .private)
 
 let behavior = .uploadAndStore(uploadOptions: uploadOptions)
 
@@ -223,8 +223,8 @@ client.folderList(provider: .googleDrive, path: "/", pageToken: nil) { response 
 
 ```swift
 // Store options for your uploaded files.
-// Here we are saying our storage location is S3 and access for uploaded files should be public.
-let storeOptions = StorageOptions(location: .s3, access: .public)
+// Here we are saying our storage location is S3. Public access only available for the custom s3 storage.
+let storeOptions = StorageOptions(location: .s3, access: .private)
 
 client.store(provider: .googleDrive, path: "/some-large-image.jpg", storeOptions: storeOptions) { (response) in
     if let error = response.error {
@@ -293,8 +293,8 @@ let client = Filestack.Client(apiKey: "YOUR-API-KEY-HERE", security: security, c
 
 ```swift
 // Store options for your uploaded files.
-// Here we are saying our storage location is S3 and access for uploaded files should be public.
-let storeOptions = StorageOptions(location: .s3, access: .public)
+// Here we are saying our storage location is S3. Public access only available for the custom s3 storage.
+let storeOptions = StorageOptions(location: .s3, access: .private)
 
 // Instantiate picker by passing the `StorageOptions` object we just set up.
 let picker = client.picker(storeOptions: storeOptions)
