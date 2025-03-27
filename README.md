@@ -13,7 +13,7 @@ This is the official Swift iOS for Filestack — API and content management syst
 
 * Xcode 11+ (*Xcode 12+ required for SPM support*)
 * Swift 4.2+ / Objective-C
-* iOS 11.0+
+* iOS 14.0+
 
 ## Installing
 
@@ -27,11 +27,11 @@ To integrate Filestack into your Xcode project using CocoaPods, specify it in yo
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
+platform :ios, '14.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Filestack', '~> 2.9.6'
+    pod 'Filestack', '~> 3.0.0'
 end
 ```
 
@@ -52,7 +52,7 @@ $ brew install carthage
 
 To integrate Filestack into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-`github "filestack/filestack-ios" ~> 2.9.6`
+`github "filestack/filestack-ios" ~> 3.0.0`
 
 Run `carthage update` to build the framework and drag the built `Filestack.framework` into your Xcode project. Additionally, add `Filestack.framework`, `FilestackSDK.framework`, and `ZIPFoundation.framework` to the embedded frameworks build phase of your app's target.
 
@@ -64,7 +64,7 @@ Alternatively, if you are adding `Filestack` to your own Swift Package, declare 
 
 ```swift
 dependencies: [
-    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "2.9.6"))
+    .package(name: "Filestack", url: "https://github.com/filestack/filestack-ios.git", .upToNextMajor(from: "3.0.0"))
 ]
 ```
 

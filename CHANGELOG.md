@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 3.0.0 *(2025-03-27)*
+ ----------------------------
+ 
+ - Ensuring Minimum Deployment Target compatibility with iOS 14
+ - Fixed some deprecation warnings
+
+
 Version 2.9.6 *(2024-06-11)*
 ----------------------------
 
