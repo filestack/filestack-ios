@@ -151,40 +151,38 @@ private extension ImagePickerUploadController {
     @available(iOS 14.0, *)
     func extract(results: [PHPickerResult], updateTrackingProgress: Bool = true, completion: @escaping (([URL]) -> Void)) {
         let itemProviders = results.map(\.itemProvider)
-        var urls: [URL] = []
         let progress = Progress(totalUnitCount: Int64(itemProviders.count))
         progress.localizedDescription = "Fetching \(progress.totalUnitCount) photo album asset(s)…"
         if updateTrackingProgress {
             trackingProgress.update(tracked: progress)
         }
+
+        actor URLCollector {
+            private var urls: [URL] = []
+            
+            func add(_ url: URL) {
+                urls.append(url)
+            }
+            
+            func getAllURLs() -> [URL] {
+                return urls
+            }
+        }
+
         Task {
-            await withTaskGroup(of: URL?.self) { group in
-                for itemProvider in itemProviders {
+            let collector = URLCollector()
+            await withThrowingTaskGroup(of: Void.self) { group in
+                let providers = itemProviders
+                for itemProvider in providers {
                     group.addTask {
-                        var typeIdentifier: String?
-                        
-                        let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
-                        
-                        switch self.config.imageURLExportPreset {
-                        case .compatible:
-                            if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
-                                typeIdentifier = AVFileType.jpg.rawValue
-                            } else {
-                                typeIdentifier = registeredTypeIdentifiers.first
-                            }
-                        case .current:
-                            if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
-                                typeIdentifier = AVFileType.heic.rawValue
-                            } else {
-                                typeIdentifier = registeredTypeIdentifiers.first
-                            }
-                        }
+                        // Get the appropriate type identifier based on config
+                        let typeIdentifier = await self.getTypeIdentifier(for: itemProvider)
                         
                         guard let unwrappedTypeIdentifier = typeIdentifier else {
                             progress.completedUnitCount += 1
-                            return nil
+                            return
                         }
-                        let resultURL = await withCheckedContinuation { continuation in
+                        let url = await withCheckedContinuation { continuation in
                             itemProvider.loadFileRepresentation(forTypeIdentifier: unwrappedTypeIdentifier) { (url, error) in
                                 defer { progress.completedUnitCount += 1 }
                                 
@@ -194,16 +192,37 @@ private extension ImagePickerUploadController {
                             }
                         }
                         
-                        return resultURL
+                        if let url = url {
+                            await collector.add(url)
+                        }
                     }
                 }
-                for await url in group {
-                    if let url = url {
-                        urls.append(url)
-                    }
-                }
+
+                try? await group.waitForAll()
             }
+
+            let urls = await collector.getAllURLs()
             completion(urls)
+        }
+    }
+    
+    @available(iOS 14.0, *)
+    private func getTypeIdentifier(for itemProvider: NSItemProvider) async -> String? {
+        let registeredTypeIdentifiers = itemProvider.registeredTypeIdentifiers
+        
+        switch self.config.imageURLExportPreset {
+        case .compatible:
+            if registeredTypeIdentifiers.contains(AVFileType.jpg.rawValue) {
+                return AVFileType.jpg.rawValue
+            } else {
+                return registeredTypeIdentifiers.first
+            }
+        case .current:
+            if registeredTypeIdentifiers.contains(AVFileType.heic.rawValue) {
+                return AVFileType.heic.rawValue
+            } else {
+                return registeredTypeIdentifiers.first
+            }
         }
     }
 
