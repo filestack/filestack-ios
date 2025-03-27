@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.0.1 *(2025-03-28)*
+ ----------------------------
+ 
+ - Fixed mutation of captured var 'urls' in concurrently-executing code
+
 Version 3.0.0 *(2025-03-27)*
  ----------------------------
  
